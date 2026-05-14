@@ -1,0 +1,71 @@
+name: Update data + deploy
+
+on:
+  schedule:
+    # 06:00 UTC daily = 02:00 ET / 23:00 PT prev day.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      refresh_baseline:
+        description: "Re-download the Clerk PDF before parsing (otherwise the committed copy is used)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r data-pipeline/requirements.txt
+
+      - name: Run pipeline
+        run: |
+          if [ "${{ inputs.refresh_baseline }}" = "true" ]; then
+            python data-pipeline/update.py --refresh
+          else
+            python data-pipeline/update.py
+          fi
+
+      - name: Upload data artifacts (for debugging on failure)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-data
+          path: public/data/
+          retention-days: 7
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=the-proportional-house --branch=main

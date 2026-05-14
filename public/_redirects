@@ -1,0 +1,3 @@
+# SPA fallback for client-side routing (react-router-dom BrowserRouter).
+# Without this, /methodology and other deep links return 404 on Cloudflare Pages.
+/*    /index.html   200

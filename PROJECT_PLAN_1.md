@@ -349,6 +349,24 @@ Each phase is sized for roughly one Claude Code session.
 
 ---
 
+## Deploy setup (one-time, for Phase 4)
+
+The pipeline ships via [.github/workflows/update-data.yml](.github/workflows/update-data.yml), which runs daily at 06:00 UTC and on `workflow_dispatch`. It executes the Python pipeline, builds the Vite site against the freshly-generated JSONs in `public/data/`, and uploads the `dist/` artifact to Cloudflare Pages with `wrangler pages deploy`. Nothing is committed back to the repo — the deployed bundle is the source of truth for the live data.
+
+**One-time setup the workflow needs:**
+
+1. **Cloudflare Pages project.** In the Cloudflare dashboard, create a Pages project named exactly `the-proportional-house` using **Direct Upload** mode (do not connect a Git provider — the GitHub Action handles deploys). On first run, `wrangler` will pick this project by name.
+2. **Cloudflare API token.** In Cloudflare → My Profile → API Tokens, create a token with the `Cloudflare Pages: Edit` permission for your account. Copy the token.
+3. **Cloudflare account ID.** Visible in the right sidebar of any Cloudflare dashboard page.
+4. **GitHub repo secrets.** In the repo's Settings → Secrets and variables → Actions, add:
+   - `CLOUDFLARE_API_TOKEN` — the token from step 2.
+   - `CLOUDFLARE_ACCOUNT_ID` — the account ID from step 3.
+5. **First run.** Trigger via Actions → "Update data + deploy" → Run workflow. The first successful run publishes to `the-proportional-house.pages.dev`.
+
+**Open TODO** (per the review note in Section 4): confirm Ballotpedia and Decision Desk HQ's robots.txt / ToS allow our nightly fallback scrapes before we wire those fetchers in. Until that's done the pipeline relies solely on the Silver Bulletin CSV.
+
+---
+
 ## 10. Stretch Ideas (not for v1)
 
 - Per-state historical view: "Texas under PR, 2010–2024."
