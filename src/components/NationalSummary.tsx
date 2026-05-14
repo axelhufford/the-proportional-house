@@ -11,16 +11,13 @@ export function NationalSummary({ payload }: Props) {
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
 
   return (
-    <header className="bg-white border-b border-stone-200">
+    <section className="bg-white border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-6 py-5">
-        <h1 className="text-2xl font-semibold text-stone-900 tracking-tight">
-          The Proportional House
-        </h1>
-        <p className="text-sm text-stone-600 mt-1">
+        <p className="text-sm text-stone-600">
           What the U.S. House would look like if every state allocated its seats by proportional representation.
         </p>
 
-        <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
           <SummaryStat
             label="Projected under PR"
             primary={<><span className="text-blue-700">D {national.projected.d_seats}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {national.projected.r_seats}</span></>}
@@ -42,10 +39,9 @@ export function NationalSummary({ payload }: Props) {
         <div className="mt-4 text-xs text-stone-500">
           Generic ballot used: <span className="font-medium text-stone-700">{genericLabel}</span>
           {' · '}Method: <span className="font-medium text-stone-700">Sainte-Laguë</span>
-          {' · '}Data: <span className="font-medium text-stone-700">{meta.data_source}</span>
         </div>
       </div>
-    </header>
+    </section>
   );
 }
 
