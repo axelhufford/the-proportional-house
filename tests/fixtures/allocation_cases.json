@@ -1,0 +1,124 @@
+{
+  "$comment": "Shared parity fixture for src/lib/allocation.ts and data-pipeline/allocation.py. Inputs and hand-computed expected outputs. When adding cases, verify expected values manually — do not freeze auto-generated numbers, that breaks the parity guarantee. Larger real-state cases will be added in Phase 2 once we have curated baselines.",
+  "cases": [
+    {
+      "name": "1-seat D-leaning (60/40)",
+      "input": { "seats": 1, "d_votes": 600, "r_votes": 400 },
+      "expected": {
+        "sainte-lague": { "d_seats": 1, "r_seats": 0 },
+        "dhondt":       { "d_seats": 1, "r_seats": 0 },
+        "hamilton":     { "d_seats": 1, "r_seats": 0 }
+      }
+    },
+    {
+      "name": "1-seat R-leaning (40/60)",
+      "input": { "seats": 1, "d_votes": 400, "r_votes": 600 },
+      "expected": {
+        "sainte-lague": { "d_seats": 0, "r_seats": 1 },
+        "dhondt":       { "d_seats": 0, "r_seats": 1 },
+        "hamilton":     { "d_seats": 0, "r_seats": 1 }
+      }
+    },
+    {
+      "name": "1-seat exact tie (D wins tie-break)",
+      "input": { "seats": 1, "d_votes": 500, "r_votes": 500 },
+      "expected": {
+        "sainte-lague": { "d_seats": 1, "r_seats": 0 },
+        "dhondt":       { "d_seats": 1, "r_seats": 0 },
+        "hamilton":     { "d_seats": 1, "r_seats": 0 }
+      }
+    },
+    {
+      "name": "2-seat exact tie",
+      "input": { "seats": 2, "d_votes": 500, "r_votes": 500 },
+      "expected": {
+        "sainte-lague": { "d_seats": 1, "r_seats": 1 },
+        "dhondt":       { "d_seats": 1, "r_seats": 1 },
+        "hamilton":     { "d_seats": 1, "r_seats": 1 }
+      }
+    },
+    {
+      "name": "2-seat 60/40 splits 1-1",
+      "input": { "seats": 2, "d_votes": 600, "r_votes": 400 },
+      "expected": {
+        "sainte-lague": { "d_seats": 1, "r_seats": 1 },
+        "dhondt":       { "d_seats": 1, "r_seats": 1 },
+        "hamilton":     { "d_seats": 1, "r_seats": 1 }
+      }
+    },
+    {
+      "name": "2-seat 67/33 — methods diverge (D'Hondt sweeps)",
+      "$note": "SL & Hamilton give 1-1; D'Hondt gives 2-0 because D/2=335 > R/1=330.",
+      "input": { "seats": 2, "d_votes": 670, "r_votes": 330 },
+      "expected": {
+        "sainte-lague": { "d_seats": 1, "r_seats": 1 },
+        "dhondt":       { "d_seats": 2, "r_seats": 0 },
+        "hamilton":     { "d_seats": 1, "r_seats": 1 }
+      }
+    },
+    {
+      "name": "2-seat 75/25 landslide",
+      "input": { "seats": 2, "d_votes": 750, "r_votes": 250 },
+      "expected": {
+        "sainte-lague": { "d_seats": 2, "r_seats": 0 },
+        "dhondt":       { "d_seats": 2, "r_seats": 0 },
+        "hamilton":     { "d_seats": 2, "r_seats": 0 }
+      }
+    },
+    {
+      "name": "3-seat 60/40 — proportional outcome",
+      "input": { "seats": 3, "d_votes": 600, "r_votes": 400 },
+      "expected": {
+        "sainte-lague": { "d_seats": 2, "r_seats": 1 },
+        "dhondt":       { "d_seats": 2, "r_seats": 1 },
+        "hamilton":     { "d_seats": 2, "r_seats": 1 }
+      }
+    },
+    {
+      "name": "5-seat 60/40",
+      "input": { "seats": 5, "d_votes": 600, "r_votes": 400 },
+      "expected": {
+        "sainte-lague": { "d_seats": 3, "r_seats": 2 },
+        "dhondt":       { "d_seats": 3, "r_seats": 2 },
+        "hamilton":     { "d_seats": 3, "r_seats": 2 }
+      }
+    },
+    {
+      "name": "5-seat 50/50 (D wins fractional tie)",
+      "input": { "seats": 5, "d_votes": 500, "r_votes": 500 },
+      "expected": {
+        "sainte-lague": { "d_seats": 3, "r_seats": 2 },
+        "dhondt":       { "d_seats": 3, "r_seats": 2 },
+        "hamilton":     { "d_seats": 3, "r_seats": 2 }
+      }
+    },
+    {
+      "name": "10-seat exact 50/50",
+      "input": { "seats": 10, "d_votes": 500, "r_votes": 500 },
+      "expected": {
+        "sainte-lague": { "d_seats": 5, "r_seats": 5 },
+        "dhondt":       { "d_seats": 5, "r_seats": 5 },
+        "hamilton":     { "d_seats": 5, "r_seats": 5 }
+      }
+    },
+    {
+      "name": "10-seat 95/5 extreme (all to majority under all methods)",
+      "$note": "R has too few votes to clear any divisor — D sweeps. Verifies clamping behaviour is unnecessary at 5% but extreme shares hit the floor.",
+      "input": { "seats": 10, "d_votes": 950, "r_votes": 50 },
+      "expected": {
+        "sainte-lague": { "d_seats": 10, "r_seats": 0 },
+        "dhondt":       { "d_seats": 10, "r_seats": 0 },
+        "hamilton":     { "d_seats": 10, "r_seats": 0 }
+      }
+    },
+    {
+      "name": "0-seat state (should return 0-0)",
+      "input": { "seats": 0, "d_votes": 500, "r_votes": 500 },
+      "expected": {
+        "sainte-lague": { "d_seats": 0, "r_seats": 0 },
+        "dhondt":       { "d_seats": 0, "r_seats": 0 },
+        "hamilton":     { "d_seats": 0, "r_seats": 0 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-05-14T01:29:46.606853+00:00",
+  "stale_after_hours": 48,
+  "sources": {
+    "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
+    "polls": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
+  },
+  "generic_ballot": {
+    "margin": 6.069,
+    "n_polls": 31,
+    "window_days": 30,
+    "half_life_days": 14,
+    "uses_house_effect_adjustment": true
+  },
+  "baseline_2024_r_margin": 2.554,
+  "swing": 8.62,
+  "national": {
+    "seats": 435,
+    "projected": {
+      "d_seats": 230,
+      "r_seats": 205
+    },
+    "actual": {
+      "d_seats": 219,
+      "r_seats": 216
+    }
+  },
+  "retrospective_national": {
+    "seats": 435,
+    "projected_pr": {
+      "d_seats": 213,
+      "r_seats": 222
+    },
+    "actual": {
+      "d_seats": 219,
+      "r_seats": 216
+    }
+  }
+}

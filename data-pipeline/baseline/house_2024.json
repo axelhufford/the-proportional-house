@@ -1,0 +1,971 @@
+{
+  "meta": {
+    "source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 (published March 10, 2025).",
+    "source_url": "https://history.house.gov/Institution/Election-Statistics/2024election/",
+    "pdf_local_path": "data-pipeline/baseline/clerk_2024_statistics.pdf",
+    "extracted_from_page": 86,
+    "national_house_popular_vote": {
+      "republican": 74390864,
+      "democratic": 70571330,
+      "total": 149543421,
+      "r_margin_points": 2.554
+    },
+    "notes": [
+      "State-level totals include uncontested districts. States with one major party absent from the recap are flagged baseline_distortion_warning=True.",
+      "Per-district uncontested-race imputation requires CD-level presidential vote share (deferred; would let us recover a counterfactual two-party share for unopposed districts).",
+      "Two-party share is computed as R / (R + D); third parties and write-ins are excluded from the share."
+    ]
+  },
+  "states": [
+    {
+      "fips": "02",
+      "code": "AK",
+      "name": "Alaska",
+      "seats": 1,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 159550,
+        "democratic": 156245,
+        "other": 13760,
+        "total": 329555
+      },
+      "two_party_share_2024": {
+        "d_share": 0.494767,
+        "r_share": 0.505233
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "01",
+      "code": "AL",
+      "name": "Alabama",
+      "seats": 7,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 5,
+      "votes_2024": {
+        "republican": 1508754,
+        "democratic": 518197,
+        "other": 21712,
+        "total": 2048663
+      },
+      "two_party_share_2024": {
+        "d_share": 0.255653,
+        "r_share": 0.744347
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "05",
+      "code": "AR",
+      "name": "Arkansas",
+      "seats": 4,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 4,
+      "votes_2024": {
+        "republican": 764367,
+        "democratic": 358749,
+        "other": 21684,
+        "total": 1144800
+      },
+      "two_party_share_2024": {
+        "d_share": 0.319423,
+        "r_share": 0.680577
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "04",
+      "code": "AZ",
+      "name": "Arizona",
+      "seats": 9,
+      "actual_d_seats_119th": 3,
+      "actual_r_seats_119th": 6,
+      "votes_2024": {
+        "republican": 1680841,
+        "democratic": 1551085,
+        "other": 21994,
+        "total": 3253920
+      },
+      "two_party_share_2024": {
+        "d_share": 0.479926,
+        "r_share": 0.520074
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "seats": 52,
+      "actual_d_seats_119th": 43,
+      "actual_r_seats_119th": 9,
+      "votes_2024": {
+        "republican": 5928084,
+        "democratic": 9138709,
+        "other": 44450,
+        "total": 15111243
+      },
+      "two_party_share_2024": {
+        "d_share": 0.606546,
+        "r_share": 0.393454
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "08",
+      "code": "CO",
+      "name": "Colorado",
+      "seats": 8,
+      "actual_d_seats_119th": 5,
+      "actual_r_seats_119th": 3,
+      "votes_2024": {
+        "republican": 1306086,
+        "democratic": 1667213,
+        "other": 100092,
+        "total": 3073391
+      },
+      "two_party_share_2024": {
+        "d_share": 0.560728,
+        "r_share": 0.439272
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "09",
+      "code": "CT",
+      "name": "Connecticut",
+      "seats": 5,
+      "actual_d_seats_119th": 5,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 683089,
+        "democratic": 981762,
+        "other": 37063,
+        "total": 1701914
+      },
+      "two_party_share_2024": {
+        "d_share": 0.5897,
+        "r_share": 0.4103
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "10",
+      "code": "DE",
+      "name": "Delaware",
+      "seats": 1,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 209606,
+        "democratic": 287830,
+        "other": 0,
+        "total": 497436
+      },
+      "two_party_share_2024": {
+        "d_share": 0.578627,
+        "r_share": 0.421373
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "12",
+      "code": "FL",
+      "name": "Florida",
+      "seats": 28,
+      "actual_d_seats_119th": 8,
+      "actual_r_seats_119th": 20,
+      "votes_2024": {
+        "republican": 5975435,
+        "democratic": 4339733,
+        "other": 12754,
+        "total": 10327922
+      },
+      "two_party_share_2024": {
+        "d_share": 0.420714,
+        "r_share": 0.579286
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "13",
+      "code": "GA",
+      "name": "Georgia",
+      "seats": 14,
+      "actual_d_seats_119th": 5,
+      "actual_r_seats_119th": 9,
+      "votes_2024": {
+        "republican": 2702118,
+        "democratic": 2434984,
+        "other": 0,
+        "total": 5137102
+      },
+      "two_party_share_2024": {
+        "d_share": 0.474,
+        "r_share": 0.526
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "15",
+      "code": "HI",
+      "name": "Hawaii",
+      "seats": 2,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 139844,
+        "democratic": 330488,
+        "other": 51904,
+        "total": 522236
+      },
+      "two_party_share_2024": {
+        "d_share": 0.70267,
+        "r_share": 0.29733
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "19",
+      "code": "IA",
+      "name": "Iowa",
+      "seats": 4,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 4,
+      "votes_2024": {
+        "republican": 904563,
+        "democratic": 696033,
+        "other": 9013,
+        "total": 1609609
+      },
+      "two_party_share_2024": {
+        "d_share": 0.434859,
+        "r_share": 0.565141
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "16",
+      "code": "ID",
+      "name": "Idaho",
+      "seats": 2,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 2,
+      "votes_2024": {
+        "republican": 581168,
+        "democratic": 244885,
+        "other": 91547,
+        "total": 917600
+      },
+      "two_party_share_2024": {
+        "d_share": 0.296452,
+        "r_share": 0.703548
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "17",
+      "code": "IL",
+      "name": "Illinois",
+      "seats": 17,
+      "actual_d_seats_119th": 14,
+      "actual_r_seats_119th": 3,
+      "votes_2024": {
+        "republican": 2517389,
+        "democratic": 2829169,
+        "other": 13496,
+        "total": 5360054
+      },
+      "two_party_share_2024": {
+        "d_share": 0.529157,
+        "r_share": 0.470843
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "18",
+      "code": "IN",
+      "name": "Indiana",
+      "seats": 9,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 7,
+      "votes_2024": {
+        "republican": 1668618,
+        "democratic": 1103484,
+        "other": 96005,
+        "total": 2868107
+      },
+      "two_party_share_2024": {
+        "d_share": 0.398068,
+        "r_share": 0.601932
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "20",
+      "code": "KS",
+      "name": "Kansas",
+      "seats": 4,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 3,
+      "votes_2024": {
+        "republican": 749375,
+        "democratic": 526153,
+        "other": 30121,
+        "total": 1305649
+      },
+      "two_party_share_2024": {
+        "d_share": 0.412498,
+        "r_share": 0.587502
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "21",
+      "code": "KY",
+      "name": "Kentucky",
+      "seats": 6,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 5,
+      "votes_2024": {
+        "republican": 1392354,
+        "democratic": 511998,
+        "other": 1182,
+        "total": 1905534
+      },
+      "two_party_share_2024": {
+        "d_share": 0.268857,
+        "r_share": 0.731143
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "22",
+      "code": "LA",
+      "name": "Louisiana",
+      "seats": 6,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 4,
+      "votes_2024": {
+        "republican": 1248101,
+        "democratic": 650836,
+        "other": 6781,
+        "total": 1905718
+      },
+      "two_party_share_2024": {
+        "d_share": 0.342737,
+        "r_share": 0.657263
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "25",
+      "code": "MA",
+      "name": "Massachusetts",
+      "seats": 9,
+      "actual_d_seats_119th": 9,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 304460,
+        "democratic": 2386143,
+        "other": 822327,
+        "total": 3512930
+      },
+      "two_party_share_2024": {
+        "d_share": 0.886843,
+        "r_share": 0.113157
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "seats": 8,
+      "actual_d_seats_119th": 7,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 1017654,
+        "democratic": 1863416,
+        "other": 54258,
+        "total": 2935328
+      },
+      "two_party_share_2024": {
+        "d_share": 0.646779,
+        "r_share": 0.353221
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "23",
+      "code": "ME",
+      "name": "Maine",
+      "seats": 2,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 349294,
+        "democratic": 446949,
+        "other": 437856,
+        "total": 1234099
+      },
+      "two_party_share_2024": {
+        "d_share": 0.561322,
+        "r_share": 0.438678
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "26",
+      "code": "MI",
+      "name": "Michigan",
+      "seats": 13,
+      "actual_d_seats_119th": 7,
+      "actual_r_seats_119th": 6,
+      "votes_2024": {
+        "republican": 2702653,
+        "democratic": 2634228,
+        "other": 180015,
+        "total": 5516896
+      },
+      "two_party_share_2024": {
+        "d_share": 0.493589,
+        "r_share": 0.506411
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "27",
+      "code": "MN",
+      "name": "Minnesota",
+      "seats": 8,
+      "actual_d_seats_119th": 4,
+      "actual_r_seats_119th": 4,
+      "votes_2024": {
+        "republican": 1550499,
+        "democratic": 1579742,
+        "other": 16521,
+        "total": 3146762
+      },
+      "two_party_share_2024": {
+        "d_share": 0.504671,
+        "r_share": 0.495329
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "29",
+      "code": "MO",
+      "name": "Missouri",
+      "seats": 8,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 6,
+      "votes_2024": {
+        "republican": 1711050,
+        "democratic": 1125671,
+        "other": 88142,
+        "total": 2924863
+      },
+      "two_party_share_2024": {
+        "d_share": 0.396821,
+        "r_share": 0.603179
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "28",
+      "code": "MS",
+      "name": "Mississippi",
+      "seats": 4,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 3,
+      "votes_2024": {
+        "republican": 812799,
+        "democratic": 350353,
+        "other": 0,
+        "total": 1163152
+      },
+      "two_party_share_2024": {
+        "d_share": 0.30121,
+        "r_share": 0.69879
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "30",
+      "code": "MT",
+      "name": "Montana",
+      "seats": 2,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 2,
+      "votes_2024": {
+        "republican": 350361,
+        "democratic": 237496,
+        "other": 9954,
+        "total": 597811
+      },
+      "two_party_share_2024": {
+        "d_share": 0.404003,
+        "r_share": 0.595997
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "37",
+      "code": "NC",
+      "name": "North Carolina",
+      "seats": 14,
+      "actual_d_seats_119th": 4,
+      "actual_r_seats_119th": 10,
+      "votes_2024": {
+        "republican": 2889999,
+        "democratic": 2349621,
+        "other": 243535,
+        "total": 5483155
+      },
+      "two_party_share_2024": {
+        "d_share": 0.448433,
+        "r_share": 0.551567
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "38",
+      "code": "ND",
+      "name": "North Dakota",
+      "seats": 1,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 249101,
+        "democratic": 109231,
+        "other": 1455,
+        "total": 359787
+      },
+      "two_party_share_2024": {
+        "d_share": 0.304832,
+        "r_share": 0.695168
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "31",
+      "code": "NE",
+      "name": "Nebraska",
+      "seats": 3,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 3,
+      "votes_2024": {
+        "republican": 591238,
+        "democratic": 338154,
+        "other": 0,
+        "total": 929392
+      },
+      "two_party_share_2024": {
+        "d_share": 0.363844,
+        "r_share": 0.636156
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "33",
+      "code": "NH",
+      "name": "New Hampshire",
+      "seats": 2,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 373746,
+        "democratic": 430218,
+        "other": 27022,
+        "total": 830986
+      },
+      "two_party_share_2024": {
+        "d_share": 0.535121,
+        "r_share": 0.464879
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "seats": 12,
+      "actual_d_seats_119th": 9,
+      "actual_r_seats_119th": 3,
+      "votes_2024": {
+        "republican": 1828853,
+        "democratic": 2115843,
+        "other": 92430,
+        "total": 4037126
+      },
+      "two_party_share_2024": {
+        "d_share": 0.536377,
+        "r_share": 0.463623
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "35",
+      "code": "NM",
+      "name": "New Mexico",
+      "seats": 3,
+      "actual_d_seats_119th": 3,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 402776,
+        "democratic": 493722,
+        "other": 0,
+        "total": 896498
+      },
+      "two_party_share_2024": {
+        "d_share": 0.550723,
+        "r_share": 0.449277
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "32",
+      "code": "NV",
+      "name": "Nevada",
+      "seats": 4,
+      "actual_d_seats_119th": 3,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 692714,
+        "democratic": 534115,
+        "other": 200248,
+        "total": 1427077
+      },
+      "two_party_share_2024": {
+        "d_share": 0.435362,
+        "r_share": 0.564638
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "36",
+      "code": "NY",
+      "name": "New York",
+      "seats": 26,
+      "actual_d_seats_119th": 19,
+      "actual_r_seats_119th": 7,
+      "votes_2024": {
+        "republican": 3039739,
+        "democratic": 4330117,
+        "other": 1010570,
+        "total": 8380426
+      },
+      "two_party_share_2024": {
+        "d_share": 0.587544,
+        "r_share": 0.412456
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "39",
+      "code": "OH",
+      "name": "Ohio",
+      "seats": 15,
+      "actual_d_seats_119th": 5,
+      "actual_r_seats_119th": 10,
+      "votes_2024": {
+        "republican": 3104290,
+        "democratic": 2382078,
+        "other": 84416,
+        "total": 5570784
+      },
+      "two_party_share_2024": {
+        "d_share": 0.434181,
+        "r_share": 0.565819
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "40",
+      "code": "OK",
+      "name": "Oklahoma",
+      "seats": 5,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 5,
+      "votes_2024": {
+        "republican": 834553,
+        "democratic": 397856,
+        "other": 49697,
+        "total": 1282106
+      },
+      "two_party_share_2024": {
+        "d_share": 0.322828,
+        "r_share": 0.677172
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "41",
+      "code": "OR",
+      "name": "Oregon",
+      "seats": 6,
+      "actual_d_seats_119th": 5,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 912337,
+        "democratic": 1151394,
+        "other": 93241,
+        "total": 2156972
+      },
+      "two_party_share_2024": {
+        "d_share": 0.557919,
+        "r_share": 0.442081
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "42",
+      "code": "PA",
+      "name": "Pennsylvania",
+      "seats": 17,
+      "actual_d_seats_119th": 9,
+      "actual_r_seats_119th": 8,
+      "votes_2024": {
+        "republican": 3481113,
+        "democratic": 3338371,
+        "other": 0,
+        "total": 6819484
+      },
+      "two_party_share_2024": {
+        "d_share": 0.489534,
+        "r_share": 0.510466
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "44",
+      "code": "RI",
+      "name": "Rhode Island",
+      "seats": 2,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 180123,
+        "democratic": 292791,
+        "other": 11684,
+        "total": 484598
+      },
+      "two_party_share_2024": {
+        "d_share": 0.619121,
+        "r_share": 0.380879
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "45",
+      "code": "SC",
+      "name": "South Carolina",
+      "seats": 7,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 6,
+      "votes_2024": {
+        "republican": 1475329,
+        "democratic": 964448,
+        "other": 35127,
+        "total": 2474904
+      },
+      "two_party_share_2024": {
+        "d_share": 0.395302,
+        "r_share": 0.604698
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "46",
+      "code": "SD",
+      "name": "South Dakota",
+      "seats": 1,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 303630,
+        "democratic": 117818,
+        "other": 0,
+        "total": 421448
+      },
+      "two_party_share_2024": {
+        "d_share": 0.279555,
+        "r_share": 0.720445
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "47",
+      "code": "TN",
+      "name": "Tennessee",
+      "seats": 9,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 7,
+      "votes_2024": {
+        "republican": 1884691,
+        "democratic": 977870,
+        "other": 64394,
+        "total": 2926955
+      },
+      "two_party_share_2024": {
+        "d_share": 0.341607,
+        "r_share": 0.658393
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "48",
+      "code": "TX",
+      "name": "Texas",
+      "seats": 38,
+      "actual_d_seats_119th": 13,
+      "actual_r_seats_119th": 25,
+      "votes_2024": {
+        "republican": 6234918,
+        "democratic": 4310913,
+        "other": 128081,
+        "total": 10673912
+      },
+      "two_party_share_2024": {
+        "d_share": 0.408779,
+        "r_share": 0.591221
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "49",
+      "code": "UT",
+      "name": "Utah",
+      "seats": 4,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 4,
+      "votes_2024": {
+        "republican": 909332,
+        "democratic": 471051,
+        "other": 68294,
+        "total": 1448677
+      },
+      "two_party_share_2024": {
+        "d_share": 0.341247,
+        "r_share": 0.658753
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "51",
+      "code": "VA",
+      "name": "Virginia",
+      "seats": 11,
+      "actual_d_seats_119th": 6,
+      "actual_r_seats_119th": 5,
+      "votes_2024": {
+        "republican": 2108450,
+        "democratic": 2274922,
+        "other": 42390,
+        "total": 4425762
+      },
+      "two_party_share_2024": {
+        "d_share": 0.518989,
+        "r_share": 0.481011
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "50",
+      "code": "VT",
+      "name": "Vermont",
+      "seats": 1,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 0,
+      "votes_2024": {
+        "republican": 0,
+        "democratic": 218398,
+        "other": 154487,
+        "total": 372885
+      },
+      "two_party_share_2024": {
+        "d_share": 1.0,
+        "r_share": 0.0
+      },
+      "baseline_distortion_warning": true
+    },
+    {
+      "fips": "53",
+      "code": "WA",
+      "name": "Washington",
+      "seats": 10,
+      "actual_d_seats_119th": 8,
+      "actual_r_seats_119th": 2,
+      "votes_2024": {
+        "republican": 1592599,
+        "democratic": 2155907,
+        "other": 19674,
+        "total": 3768180
+      },
+      "two_party_share_2024": {
+        "d_share": 0.575138,
+        "r_share": 0.424862
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "55",
+      "code": "WI",
+      "name": "Wisconsin",
+      "seats": 8,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 6,
+      "votes_2024": {
+        "republican": 1701860,
+        "democratic": 1603350,
+        "other": 20396,
+        "total": 3325606
+      },
+      "two_party_share_2024": {
+        "d_share": 0.485098,
+        "r_share": 0.514902
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "54",
+      "code": "WV",
+      "name": "West Virginia",
+      "seats": 2,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 2,
+      "votes_2024": {
+        "republican": 496681,
+        "democratic": 200813,
+        "other": 25790,
+        "total": 723284
+      },
+      "two_party_share_2024": {
+        "d_share": 0.287906,
+        "r_share": 0.712094
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "56",
+      "code": "WY",
+      "name": "Wyoming",
+      "seats": 1,
+      "actual_d_seats_119th": 0,
+      "actual_r_seats_119th": 1,
+      "votes_2024": {
+        "republican": 184680,
+        "democratic": 60778,
+        "other": 25665,
+        "total": 271123
+      },
+      "two_party_share_2024": {
+        "d_share": 0.247611,
+        "r_share": 0.752389
+      },
+      "baseline_distortion_warning": false
+    }
+  ]
+}

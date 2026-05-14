@@ -1,0 +1,43 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+build/
+
+# vite cache
+.vite/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Local-only Claude Code settings (per-user)
+.claude/settings.local.json
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

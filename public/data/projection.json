@@ -1,0 +1,1077 @@
+{
+  "meta": {
+    "generated_at": "2026-05-14T01:29:46.606853+00:00",
+    "data_source": "U.S. House Clerk 2024 statistics (state totals) + Silver Bulletin generic-ballot polls",
+    "method": "sainte-lague",
+    "generic_ballot_margin": 6.069,
+    "baseline_2024_margin": -2.554,
+    "baseline_2024_r_margin": 2.554,
+    "swing": 8.62,
+    "n_polls_in_average": 31,
+    "poll_window_days": 30,
+    "poll_half_life_days": 14
+  },
+  "national": {
+    "seats": 435,
+    "projected": {
+      "d_seats": 230,
+      "r_seats": 205
+    },
+    "actual": {
+      "d_seats": 219,
+      "r_seats": 216
+    }
+  },
+  "states": [
+    {
+      "fips": "02",
+      "code": "AK",
+      "name": "Alaska",
+      "seats": 1,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.4948,
+        "r_share": 0.5052
+      },
+      "projected": {
+        "d_share": 0.5379,
+        "r_share": 0.4621,
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "01",
+      "code": "AL",
+      "name": "Alabama",
+      "seats": 7,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 5
+      },
+      "baseline_2024": {
+        "d_share": 0.2557,
+        "r_share": 0.7443
+      },
+      "projected": {
+        "d_share": 0.2988,
+        "r_share": 0.7012,
+        "d_seats": 2,
+        "r_seats": 5
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "05",
+      "code": "AR",
+      "name": "Arkansas",
+      "seats": 4,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 4
+      },
+      "baseline_2024": {
+        "d_share": 0.3194,
+        "r_share": 0.6806
+      },
+      "projected": {
+        "d_share": 0.3625,
+        "r_share": 0.6375,
+        "d_seats": 1,
+        "r_seats": 3
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "04",
+      "code": "AZ",
+      "name": "Arizona",
+      "seats": 9,
+      "actual": {
+        "d_seats": 3,
+        "r_seats": 6
+      },
+      "baseline_2024": {
+        "d_share": 0.4799,
+        "r_share": 0.5201
+      },
+      "projected": {
+        "d_share": 0.523,
+        "r_share": 0.477,
+        "d_seats": 5,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "seats": 52,
+      "actual": {
+        "d_seats": 43,
+        "r_seats": 9
+      },
+      "baseline_2024": {
+        "d_share": 0.6065,
+        "r_share": 0.3935
+      },
+      "projected": {
+        "d_share": 0.6497,
+        "r_share": 0.3503,
+        "d_seats": 34,
+        "r_seats": 18
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "08",
+      "code": "CO",
+      "name": "Colorado",
+      "seats": 8,
+      "actual": {
+        "d_seats": 5,
+        "r_seats": 3
+      },
+      "baseline_2024": {
+        "d_share": 0.5607,
+        "r_share": 0.4393
+      },
+      "projected": {
+        "d_share": 0.6038,
+        "r_share": 0.3962,
+        "d_seats": 5,
+        "r_seats": 3
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "09",
+      "code": "CT",
+      "name": "Connecticut",
+      "seats": 5,
+      "actual": {
+        "d_seats": 5,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.5897,
+        "r_share": 0.4103
+      },
+      "projected": {
+        "d_share": 0.6328,
+        "r_share": 0.3672,
+        "d_seats": 3,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "10",
+      "code": "DE",
+      "name": "Delaware",
+      "seats": 1,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.5786,
+        "r_share": 0.4214
+      },
+      "projected": {
+        "d_share": 0.6217,
+        "r_share": 0.3783,
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "12",
+      "code": "FL",
+      "name": "Florida",
+      "seats": 28,
+      "actual": {
+        "d_seats": 8,
+        "r_seats": 20
+      },
+      "baseline_2024": {
+        "d_share": 0.4207,
+        "r_share": 0.5793
+      },
+      "projected": {
+        "d_share": 0.4638,
+        "r_share": 0.5362,
+        "d_seats": 13,
+        "r_seats": 15
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "13",
+      "code": "GA",
+      "name": "Georgia",
+      "seats": 14,
+      "actual": {
+        "d_seats": 5,
+        "r_seats": 9
+      },
+      "baseline_2024": {
+        "d_share": 0.474,
+        "r_share": 0.526
+      },
+      "projected": {
+        "d_share": 0.5171,
+        "r_share": 0.4829,
+        "d_seats": 7,
+        "r_seats": 7
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "15",
+      "code": "HI",
+      "name": "Hawaii",
+      "seats": 2,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.7027,
+        "r_share": 0.2973
+      },
+      "projected": {
+        "d_share": 0.7458,
+        "r_share": 0.2542,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "19",
+      "code": "IA",
+      "name": "Iowa",
+      "seats": 4,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 4
+      },
+      "baseline_2024": {
+        "d_share": 0.4349,
+        "r_share": 0.5651
+      },
+      "projected": {
+        "d_share": 0.478,
+        "r_share": 0.522,
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "16",
+      "code": "ID",
+      "name": "Idaho",
+      "seats": 2,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 2
+      },
+      "baseline_2024": {
+        "d_share": 0.2965,
+        "r_share": 0.7035
+      },
+      "projected": {
+        "d_share": 0.3396,
+        "r_share": 0.6604,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "17",
+      "code": "IL",
+      "name": "Illinois",
+      "seats": 17,
+      "actual": {
+        "d_seats": 14,
+        "r_seats": 3
+      },
+      "baseline_2024": {
+        "d_share": 0.5292,
+        "r_share": 0.4708
+      },
+      "projected": {
+        "d_share": 0.5723,
+        "r_share": 0.4277,
+        "d_seats": 10,
+        "r_seats": 7
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "18",
+      "code": "IN",
+      "name": "Indiana",
+      "seats": 9,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 7
+      },
+      "baseline_2024": {
+        "d_share": 0.3981,
+        "r_share": 0.6019
+      },
+      "projected": {
+        "d_share": 0.4412,
+        "r_share": 0.5588,
+        "d_seats": 4,
+        "r_seats": 5
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "20",
+      "code": "KS",
+      "name": "Kansas",
+      "seats": 4,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 3
+      },
+      "baseline_2024": {
+        "d_share": 0.4125,
+        "r_share": 0.5875
+      },
+      "projected": {
+        "d_share": 0.4556,
+        "r_share": 0.5444,
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "21",
+      "code": "KY",
+      "name": "Kentucky",
+      "seats": 6,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 5
+      },
+      "baseline_2024": {
+        "d_share": 0.2689,
+        "r_share": 0.7311
+      },
+      "projected": {
+        "d_share": 0.312,
+        "r_share": 0.688,
+        "d_seats": 2,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "22",
+      "code": "LA",
+      "name": "Louisiana",
+      "seats": 6,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 4
+      },
+      "baseline_2024": {
+        "d_share": 0.3427,
+        "r_share": 0.6573
+      },
+      "projected": {
+        "d_share": 0.3859,
+        "r_share": 0.6141,
+        "d_seats": 2,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "25",
+      "code": "MA",
+      "name": "Massachusetts",
+      "seats": 9,
+      "actual": {
+        "d_seats": 9,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.8868,
+        "r_share": 0.1132
+      },
+      "projected": {
+        "d_share": 0.93,
+        "r_share": 0.07,
+        "d_seats": 8,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "seats": 8,
+      "actual": {
+        "d_seats": 7,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.6468,
+        "r_share": 0.3532
+      },
+      "projected": {
+        "d_share": 0.6899,
+        "r_share": 0.3101,
+        "d_seats": 6,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "23",
+      "code": "ME",
+      "name": "Maine",
+      "seats": 2,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.5613,
+        "r_share": 0.4387
+      },
+      "projected": {
+        "d_share": 0.6044,
+        "r_share": 0.3956,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "26",
+      "code": "MI",
+      "name": "Michigan",
+      "seats": 13,
+      "actual": {
+        "d_seats": 7,
+        "r_seats": 6
+      },
+      "baseline_2024": {
+        "d_share": 0.4936,
+        "r_share": 0.5064
+      },
+      "projected": {
+        "d_share": 0.5367,
+        "r_share": 0.4633,
+        "d_seats": 7,
+        "r_seats": 6
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "27",
+      "code": "MN",
+      "name": "Minnesota",
+      "seats": 8,
+      "actual": {
+        "d_seats": 4,
+        "r_seats": 4
+      },
+      "baseline_2024": {
+        "d_share": 0.5047,
+        "r_share": 0.4953
+      },
+      "projected": {
+        "d_share": 0.5478,
+        "r_share": 0.4522,
+        "d_seats": 4,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "29",
+      "code": "MO",
+      "name": "Missouri",
+      "seats": 8,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 6
+      },
+      "baseline_2024": {
+        "d_share": 0.3968,
+        "r_share": 0.6032
+      },
+      "projected": {
+        "d_share": 0.4399,
+        "r_share": 0.5601,
+        "d_seats": 4,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "28",
+      "code": "MS",
+      "name": "Mississippi",
+      "seats": 4,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 3
+      },
+      "baseline_2024": {
+        "d_share": 0.3012,
+        "r_share": 0.6988
+      },
+      "projected": {
+        "d_share": 0.3443,
+        "r_share": 0.6557,
+        "d_seats": 1,
+        "r_seats": 3
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "30",
+      "code": "MT",
+      "name": "Montana",
+      "seats": 2,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 2
+      },
+      "baseline_2024": {
+        "d_share": 0.404,
+        "r_share": 0.596
+      },
+      "projected": {
+        "d_share": 0.4471,
+        "r_share": 0.5529,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "37",
+      "code": "NC",
+      "name": "North Carolina",
+      "seats": 14,
+      "actual": {
+        "d_seats": 4,
+        "r_seats": 10
+      },
+      "baseline_2024": {
+        "d_share": 0.4484,
+        "r_share": 0.5516
+      },
+      "projected": {
+        "d_share": 0.4915,
+        "r_share": 0.5085,
+        "d_seats": 7,
+        "r_seats": 7
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "38",
+      "code": "ND",
+      "name": "North Dakota",
+      "seats": 1,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.3048,
+        "r_share": 0.6952
+      },
+      "projected": {
+        "d_share": 0.3479,
+        "r_share": 0.6521,
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "31",
+      "code": "NE",
+      "name": "Nebraska",
+      "seats": 3,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 3
+      },
+      "baseline_2024": {
+        "d_share": 0.3638,
+        "r_share": 0.6362
+      },
+      "projected": {
+        "d_share": 0.407,
+        "r_share": 0.593,
+        "d_seats": 1,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "33",
+      "code": "NH",
+      "name": "New Hampshire",
+      "seats": 2,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.5351,
+        "r_share": 0.4649
+      },
+      "projected": {
+        "d_share": 0.5782,
+        "r_share": 0.4218,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "seats": 12,
+      "actual": {
+        "d_seats": 9,
+        "r_seats": 3
+      },
+      "baseline_2024": {
+        "d_share": 0.5364,
+        "r_share": 0.4636
+      },
+      "projected": {
+        "d_share": 0.5795,
+        "r_share": 0.4205,
+        "d_seats": 7,
+        "r_seats": 5
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "35",
+      "code": "NM",
+      "name": "New Mexico",
+      "seats": 3,
+      "actual": {
+        "d_seats": 3,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.5507,
+        "r_share": 0.4493
+      },
+      "projected": {
+        "d_share": 0.5938,
+        "r_share": 0.4062,
+        "d_seats": 2,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "32",
+      "code": "NV",
+      "name": "Nevada",
+      "seats": 4,
+      "actual": {
+        "d_seats": 3,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.4354,
+        "r_share": 0.5646
+      },
+      "projected": {
+        "d_share": 0.4785,
+        "r_share": 0.5215,
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "36",
+      "code": "NY",
+      "name": "New York",
+      "seats": 26,
+      "actual": {
+        "d_seats": 19,
+        "r_seats": 7
+      },
+      "baseline_2024": {
+        "d_share": 0.5875,
+        "r_share": 0.4125
+      },
+      "projected": {
+        "d_share": 0.6307,
+        "r_share": 0.3693,
+        "d_seats": 16,
+        "r_seats": 10
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "39",
+      "code": "OH",
+      "name": "Ohio",
+      "seats": 15,
+      "actual": {
+        "d_seats": 5,
+        "r_seats": 10
+      },
+      "baseline_2024": {
+        "d_share": 0.4342,
+        "r_share": 0.5658
+      },
+      "projected": {
+        "d_share": 0.4773,
+        "r_share": 0.5227,
+        "d_seats": 7,
+        "r_seats": 8
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "40",
+      "code": "OK",
+      "name": "Oklahoma",
+      "seats": 5,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 5
+      },
+      "baseline_2024": {
+        "d_share": 0.3228,
+        "r_share": 0.6772
+      },
+      "projected": {
+        "d_share": 0.3659,
+        "r_share": 0.6341,
+        "d_seats": 2,
+        "r_seats": 3
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "41",
+      "code": "OR",
+      "name": "Oregon",
+      "seats": 6,
+      "actual": {
+        "d_seats": 5,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.5579,
+        "r_share": 0.4421
+      },
+      "projected": {
+        "d_share": 0.601,
+        "r_share": 0.399,
+        "d_seats": 4,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "42",
+      "code": "PA",
+      "name": "Pennsylvania",
+      "seats": 17,
+      "actual": {
+        "d_seats": 9,
+        "r_seats": 8
+      },
+      "baseline_2024": {
+        "d_share": 0.4895,
+        "r_share": 0.5105
+      },
+      "projected": {
+        "d_share": 0.5326,
+        "r_share": 0.4674,
+        "d_seats": 9,
+        "r_seats": 8
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "44",
+      "code": "RI",
+      "name": "Rhode Island",
+      "seats": 2,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 0.6191,
+        "r_share": 0.3809
+      },
+      "projected": {
+        "d_share": 0.6622,
+        "r_share": 0.3378,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "45",
+      "code": "SC",
+      "name": "South Carolina",
+      "seats": 7,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 6
+      },
+      "baseline_2024": {
+        "d_share": 0.3953,
+        "r_share": 0.6047
+      },
+      "projected": {
+        "d_share": 0.4384,
+        "r_share": 0.5616,
+        "d_seats": 3,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "46",
+      "code": "SD",
+      "name": "South Dakota",
+      "seats": 1,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.2796,
+        "r_share": 0.7204
+      },
+      "projected": {
+        "d_share": 0.3227,
+        "r_share": 0.6773,
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "47",
+      "code": "TN",
+      "name": "Tennessee",
+      "seats": 9,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 7
+      },
+      "baseline_2024": {
+        "d_share": 0.3416,
+        "r_share": 0.6584
+      },
+      "projected": {
+        "d_share": 0.3847,
+        "r_share": 0.6153,
+        "d_seats": 3,
+        "r_seats": 6
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "48",
+      "code": "TX",
+      "name": "Texas",
+      "seats": 38,
+      "actual": {
+        "d_seats": 13,
+        "r_seats": 25
+      },
+      "baseline_2024": {
+        "d_share": 0.4088,
+        "r_share": 0.5912
+      },
+      "projected": {
+        "d_share": 0.4519,
+        "r_share": 0.5481,
+        "d_seats": 17,
+        "r_seats": 21
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "49",
+      "code": "UT",
+      "name": "Utah",
+      "seats": 4,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 4
+      },
+      "baseline_2024": {
+        "d_share": 0.3412,
+        "r_share": 0.6588
+      },
+      "projected": {
+        "d_share": 0.3844,
+        "r_share": 0.6156,
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "51",
+      "code": "VA",
+      "name": "Virginia",
+      "seats": 11,
+      "actual": {
+        "d_seats": 6,
+        "r_seats": 5
+      },
+      "baseline_2024": {
+        "d_share": 0.519,
+        "r_share": 0.481
+      },
+      "projected": {
+        "d_share": 0.5621,
+        "r_share": 0.4379,
+        "d_seats": 6,
+        "r_seats": 5
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "50",
+      "code": "VT",
+      "name": "Vermont",
+      "seats": 1,
+      "actual": {
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "baseline_2024": {
+        "d_share": 1.0,
+        "r_share": 0.0
+      },
+      "projected": {
+        "d_share": 0.5431,
+        "r_share": 0.4569,
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "baseline_distortion_warning": true
+    },
+    {
+      "fips": "53",
+      "code": "WA",
+      "name": "Washington",
+      "seats": 10,
+      "actual": {
+        "d_seats": 8,
+        "r_seats": 2
+      },
+      "baseline_2024": {
+        "d_share": 0.5751,
+        "r_share": 0.4249
+      },
+      "projected": {
+        "d_share": 0.6183,
+        "r_share": 0.3817,
+        "d_seats": 6,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "55",
+      "code": "WI",
+      "name": "Wisconsin",
+      "seats": 8,
+      "actual": {
+        "d_seats": 2,
+        "r_seats": 6
+      },
+      "baseline_2024": {
+        "d_share": 0.4851,
+        "r_share": 0.5149
+      },
+      "projected": {
+        "d_share": 0.5282,
+        "r_share": 0.4718,
+        "d_seats": 4,
+        "r_seats": 4
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "54",
+      "code": "WV",
+      "name": "West Virginia",
+      "seats": 2,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 2
+      },
+      "baseline_2024": {
+        "d_share": 0.2879,
+        "r_share": 0.7121
+      },
+      "projected": {
+        "d_share": 0.331,
+        "r_share": 0.669,
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "56",
+      "code": "WY",
+      "name": "Wyoming",
+      "seats": 1,
+      "actual": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_2024": {
+        "d_share": 0.2476,
+        "r_share": 0.7524
+      },
+      "projected": {
+        "d_share": 0.2907,
+        "r_share": 0.7093,
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "baseline_distortion_warning": false
+    }
+  ]
+}
