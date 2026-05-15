@@ -287,10 +287,12 @@ def main(refresh_clerk: bool = False) -> None:
     print(f"Retrospective: D {nat_retro_d:>3} / R {nat_retro_r:>3}  (D gain {retro_gain_d:+d})")
     print()
     print("Phase 2 'done when' check:")
-    if 20 <= proj_gain_d <= 40:
-        print(f"  ✓ Projected D gain {proj_gain_d:+d} is in plan's expected 25-35 range (or close).")
+    # Plan updated after first real-data run: expect +10 to +15 D under D+~6
+    # generic ballot. Anything outside ±5 of that warrants a look.
+    if 5 <= proj_gain_d <= 20:
+        print(f"  ✓ Projected D gain {proj_gain_d:+d} is in plan's expected +10 to +15 range (or close).")
     else:
-        print(f"  ⚠ Projected D gain {proj_gain_d:+d} is outside the plan's expected 25-35 range. Check inputs.")
+        print(f"  ⚠ Projected D gain {proj_gain_d:+d} is outside the plan's expected +10 to +15 range. Check inputs.")
     if abs(retro_gain_d) <= 15:
         print(f"  ✓ Retrospective net swing {retro_gain_d:+d} is small (single/low double digits).")
     else:

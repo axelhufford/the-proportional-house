@@ -1,9 +1,9 @@
 {
   "meta": {
-    "generated_at": "2026-05-14T01:29:46.606853+00:00",
+    "generated_at": "2026-05-15T18:52:07.190923+00:00",
     "data_source": "U.S. House Clerk 2024 statistics (state totals) + Silver Bulletin generic-ballot polls",
     "method": "sainte-lague",
-    "generic_ballot_margin": 6.069,
+    "generic_ballot_margin": 6.07,
     "baseline_2024_margin": -2.554,
     "baseline_2024_r_margin": 2.554,
     "swing": 8.62,
@@ -18,8 +18,8 @@
       "r_seats": 205
     },
     "actual": {
-      "d_seats": 219,
-      "r_seats": 216
+      "d_seats": 215,
+      "r_seats": 220
     }
   },
   "states": [
@@ -134,8 +134,8 @@
       "name": "Colorado",
       "seats": 8,
       "actual": {
-        "d_seats": 5,
-        "r_seats": 3
+        "d_seats": 4,
+        "r_seats": 4
       },
       "baseline_2024": {
         "d_share": 0.5607,
@@ -449,8 +449,8 @@
       "name": "Maine",
       "seats": 2,
       "actual": {
-        "d_seats": 1,
-        "r_seats": 1
+        "d_seats": 2,
+        "r_seats": 0
       },
       "baseline_2024": {
         "d_share": 0.5613,
@@ -470,8 +470,8 @@
       "name": "Michigan",
       "seats": 13,
       "actual": {
-        "d_seats": 7,
-        "r_seats": 6
+        "d_seats": 6,
+        "r_seats": 7
       },
       "baseline_2024": {
         "d_share": 0.4936,
@@ -583,8 +583,8 @@
         "r_share": 0.5516
       },
       "projected": {
-        "d_share": 0.4915,
-        "r_share": 0.5085,
+        "d_share": 0.4916,
+        "r_share": 0.5084,
         "d_seats": 7,
         "r_seats": 7
       },
@@ -604,8 +604,8 @@
         "r_share": 0.6952
       },
       "projected": {
-        "d_share": 0.3479,
-        "r_share": 0.6521,
+        "d_share": 0.348,
+        "r_share": 0.652,
         "d_seats": 0,
         "r_seats": 1
       },
@@ -806,16 +806,16 @@
       "name": "Pennsylvania",
       "seats": 17,
       "actual": {
-        "d_seats": 9,
-        "r_seats": 8
+        "d_seats": 7,
+        "r_seats": 10
       },
       "baseline_2024": {
         "d_share": 0.4895,
         "r_share": 0.5105
       },
       "projected": {
-        "d_share": 0.5326,
-        "r_share": 0.4674,
+        "d_share": 0.5327,
+        "r_share": 0.4673,
         "d_seats": 9,
         "r_seats": 8
       },
@@ -890,8 +890,8 @@
       "name": "Tennessee",
       "seats": 9,
       "actual": {
-        "d_seats": 2,
-        "r_seats": 7
+        "d_seats": 1,
+        "r_seats": 8
       },
       "baseline_2024": {
         "d_share": 0.3416,

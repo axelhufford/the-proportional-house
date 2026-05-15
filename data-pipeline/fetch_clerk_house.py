@@ -33,6 +33,13 @@ PDF_URL = "https://history.house.gov/Institution/Election-Statistics/2024electio
 PDF_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "clerk_2024_statistics.pdf"
 OUT_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "house_2024.json"
 
+# Per-state seat counts from the 2024 House election. Sourced from Wikipedia's
+# "Per state" summary table because the Clerk PDF only gives per-district
+# winners (parsing each state's page would work but is fragile). Wikipedia's
+# table updates if special elections shift the count, which is what we want
+# for "actual delegation today".
+WIKIPEDIA_RESULTS_URL = "https://en.wikipedia.org/wiki/2024_United_States_House_of_Representatives_elections"
+
 # Recapitulation table layout on page 86 of the Clerk PDF. Y-ranges identified
 # by reading the rotated column-header chars; (col, y_max, y_min) means a char
 # belongs to `col` if y_min < top <= y_max.
@@ -93,18 +100,62 @@ SEATS_2024 = {
     "WI": 8, "WY": 1,
 }
 
-# 119th Congress current delegation composition (as of January 2025 swearing-in).
-# Used as the "actual delegation today" comparison. Source: Clerk's office /
-# Wikipedia summary table. If special elections change the count, update here.
-ACTUAL_D_SEATS_2024 = {
-    "AL": 2, "AK": 0, "AZ": 3, "AR": 0, "CA": 43, "CO": 5, "CT": 5, "DE": 1,
-    "FL": 8, "GA": 5, "HI": 2, "ID": 0, "IL": 14, "IN": 2, "IA": 0, "KS": 1,
-    "KY": 1, "LA": 2, "ME": 1, "MD": 7, "MA": 9, "MI": 7, "MN": 4, "MS": 1,
-    "MO": 2, "MT": 0, "NE": 0, "NV": 3, "NH": 2, "NJ": 9, "NM": 3, "NY": 19,
-    "NC": 4, "ND": 0, "OH": 5, "OK": 0, "OR": 5, "PA": 9, "RI": 2, "SC": 1,
-    "SD": 0, "TN": 2, "TX": 13, "UT": 0, "VT": 1, "VA": 6, "WA": 8, "WV": 0,
-    "WI": 2, "WY": 0,
-}
+def fetch_house_composition() -> Dict[str, Dict[str, int]]:
+    """Scrape Wikipedia's per-state 2024 House election results table.
+
+    Returns a dict keyed by state code (e.g. 'CA') with {seats, d_seats, r_seats}.
+
+    Wikipedia maintains this table and updates it if special elections shift
+    the count, so this gives us the real current delegation rather than a
+    hardcoded snapshot. Validates that R + D == seats for every state and
+    totals to 435; raises if anything's off.
+    """
+    print(f"Fetching {WIKIPEDIA_RESULTS_URL}")
+    r = requests.get(WIKIPEDIA_RESULTS_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+    r.raise_for_status()
+    html = r.text
+
+    anchor_idx = html.find('id="Per_state"')
+    if anchor_idx < 0:
+        raise RuntimeError("Could not find 'Per_state' anchor in Wikipedia page (page structure may have changed)")
+    slice_ = html[anchor_idx:anchor_idx + 200000]
+    tab_start = slice_.find('<table class="wikitable sortable"')
+    tab_end = slice_.find("</table>", tab_start) + len("</table>")
+    table_html = slice_[tab_start:tab_end]
+
+    def strip_html(s: str) -> str:
+        return re.sub(r"<[^>]+>", "", s).strip()
+
+    out: Dict[str, Dict[str, int]] = {}
+    for tr in re.findall(r"<tr>\s*(.*?)\s*</tr>", table_html, re.DOTALL):
+        m_state = re.search(r'<th><a href="#[^"]+"[^>]*>([A-Z][a-zA-Z ]+)</a>', tr)
+        if not m_state:
+            continue
+        state = m_state.group(1)
+        if state not in STATE_CODES:
+            continue
+        tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.DOTALL)
+        if len(tds) < 5:
+            continue
+        try:
+            total = int(strip_html(tds[0]))
+            r_seats = int(strip_html(tds[1]).split()[0])
+            d_seats = int(strip_html(tds[3]).split()[0])
+        except (ValueError, IndexError):
+            continue
+        if r_seats + d_seats != total:
+            raise RuntimeError(f"{state}: R({r_seats}) + D({d_seats}) != total ({total})")
+        out[STATE_CODES[state]] = {"seats": total, "r_seats": r_seats, "d_seats": d_seats}
+
+    if len(out) != 50:
+        raise RuntimeError(f"Expected 50 states, got {len(out)}")
+    total_seats = sum(v["seats"] for v in out.values())
+    if total_seats != 435:
+        raise RuntimeError(f"Total seats = {total_seats}, expected 435")
+    nat_r = sum(v["r_seats"] for v in out.values())
+    nat_d = sum(v["d_seats"] for v in out.values())
+    print(f"  parsed 50 states: D {nat_d} / R {nat_r} (total {total_seats})")
+    return out
 
 
 def download_pdf(force: bool = False) -> Path:
@@ -185,9 +236,11 @@ def parse_recap(pdf_path: Path) -> Dict[str, Dict[str, int]]:
 def main(force_download: bool = False) -> None:
     pdf_path = download_pdf(force=force_download)
     raw = parse_recap(pdf_path)
+    composition = fetch_house_composition()
 
     states_out = []
     nat_r = nat_d = nat_total = 0
+    nat_actual_d = nat_actual_r = 0
     for state, v in raw.items():
         code = STATE_CODES[state]
         fips = STATES_TO_FIPS[state]
@@ -202,13 +255,18 @@ def main(force_download: bool = False) -> None:
         # the only way to know that purely from the recap. Per-district uncontested
         # imputation needs CD-level presidential data and is deferred.
         baseline_distortion = (r == 0) or (d == 0)
+        comp = composition[code]
+        if comp["seats"] != SEATS_2024[code]:
+            raise RuntimeError(
+                f"{code}: Wikipedia seats {comp['seats']} != apportionment {SEATS_2024[code]}"
+            )
         states_out.append({
             "fips": fips,
             "code": code,
             "name": state,
             "seats": SEATS_2024[code],
-            "actual_d_seats_119th": ACTUAL_D_SEATS_2024[code],
-            "actual_r_seats_119th": SEATS_2024[code] - ACTUAL_D_SEATS_2024[code],
+            "actual_d_seats_119th": comp["d_seats"],
+            "actual_r_seats_119th": comp["r_seats"],
             "votes_2024": {
                 "republican": r,
                 "democratic": d,
@@ -224,6 +282,8 @@ def main(force_download: bool = False) -> None:
         nat_r += r
         nat_d += d
         nat_total += total
+        nat_actual_d += comp["d_seats"]
+        nat_actual_r += comp["r_seats"]
 
     states_out.sort(key=lambda s: s["code"])
 
@@ -234,16 +294,24 @@ def main(force_download: bool = False) -> None:
             "source_url": PDF_URL,
             "pdf_local_path": str(PDF_PATH.relative_to(REPO_ROOT)),
             "extracted_from_page": RECAP_PAGE_INDEX + 1,
+            "composition_source": "Wikipedia, 2024 United States House of Representatives elections — 'Per state' summary table.",
+            "composition_source_url": WIKIPEDIA_RESULTS_URL,
             "national_house_popular_vote": {
                 "republican": nat_r,
                 "democratic": nat_d,
                 "total": nat_total,
                 "r_margin_points": round(national_margin, 3),
             },
+            "national_composition": {
+                "d_seats": nat_actual_d,
+                "r_seats": nat_actual_r,
+                "total": nat_actual_d + nat_actual_r,
+            },
             "notes": [
-                "State-level totals include uncontested districts. States with one major party absent from the recap are flagged baseline_distortion_warning=True.",
+                "State-level vote totals include uncontested districts. States with one major party absent from the recap are flagged baseline_distortion_warning=True.",
                 "Per-district uncontested-race imputation requires CD-level presidential vote share (deferred; would let us recover a counterfactual two-party share for unopposed districts).",
                 "Two-party share is computed as R / (R + D); third parties and write-ins are excluded from the share.",
+                "Actual delegation seat counts are scraped from Wikipedia's per-state results table on every pipeline run, so special-election shifts propagate automatically.",
             ],
         },
         "states": states_out,
@@ -254,8 +322,9 @@ def main(force_download: bool = False) -> None:
     flagged = [s["code"] for s in states_out if s["baseline_distortion_warning"]]
     print(
         f"Wrote {OUT_PATH.relative_to(REPO_ROOT)}: "
-        f"national R+{national_margin:.2f} "
+        f"national popular-vote R+{national_margin:.2f} "
         f"(R {nat_r:,} / D {nat_d:,} of {nat_total:,}). "
+        f"Actual delegation: D {nat_actual_d} / R {nat_actual_r}. "
         f"Flagged states: {', '.join(flagged) or 'none'}"
     )
 

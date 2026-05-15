@@ -4,16 +4,24 @@
     "source_url": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "pdf_local_path": "data-pipeline/baseline/clerk_2024_statistics.pdf",
     "extracted_from_page": 86,
+    "composition_source": "Wikipedia, 2024 United States House of Representatives elections \u2014 'Per state' summary table.",
+    "composition_source_url": "https://en.wikipedia.org/wiki/2024_United_States_House_of_Representatives_elections",
     "national_house_popular_vote": {
       "republican": 74390864,
       "democratic": 70571330,
       "total": 149543421,
       "r_margin_points": 2.554
     },
+    "national_composition": {
+      "d_seats": 215,
+      "r_seats": 220,
+      "total": 435
+    },
     "notes": [
-      "State-level totals include uncontested districts. States with one major party absent from the recap are flagged baseline_distortion_warning=True.",
+      "State-level vote totals include uncontested districts. States with one major party absent from the recap are flagged baseline_distortion_warning=True.",
       "Per-district uncontested-race imputation requires CD-level presidential vote share (deferred; would let us recover a counterfactual two-party share for unopposed districts).",
-      "Two-party share is computed as R / (R + D); third parties and write-ins are excluded from the share."
+      "Two-party share is computed as R / (R + D); third parties and write-ins are excluded from the share.",
+      "Actual delegation seat counts are scraped from Wikipedia's per-state results table on every pipeline run, so special-election shifts propagate automatically."
     ]
   },
   "states": [
@@ -117,8 +125,8 @@
       "code": "CO",
       "name": "Colorado",
       "seats": 8,
-      "actual_d_seats_119th": 5,
-      "actual_r_seats_119th": 3,
+      "actual_d_seats_119th": 4,
+      "actual_r_seats_119th": 4,
       "votes_2024": {
         "republican": 1306086,
         "democratic": 1667213,
@@ -402,8 +410,8 @@
       "code": "ME",
       "name": "Maine",
       "seats": 2,
-      "actual_d_seats_119th": 1,
-      "actual_r_seats_119th": 1,
+      "actual_d_seats_119th": 2,
+      "actual_r_seats_119th": 0,
       "votes_2024": {
         "republican": 349294,
         "democratic": 446949,
@@ -421,8 +429,8 @@
       "code": "MI",
       "name": "Michigan",
       "seats": 13,
-      "actual_d_seats_119th": 7,
-      "actual_r_seats_119th": 6,
+      "actual_d_seats_119th": 6,
+      "actual_r_seats_119th": 7,
       "votes_2024": {
         "republican": 2702653,
         "democratic": 2634228,
@@ -725,8 +733,8 @@
       "code": "PA",
       "name": "Pennsylvania",
       "seats": 17,
-      "actual_d_seats_119th": 9,
-      "actual_r_seats_119th": 8,
+      "actual_d_seats_119th": 7,
+      "actual_r_seats_119th": 10,
       "votes_2024": {
         "republican": 3481113,
         "democratic": 3338371,
@@ -801,8 +809,8 @@
       "code": "TN",
       "name": "Tennessee",
       "seats": 9,
-      "actual_d_seats_119th": 2,
-      "actual_r_seats_119th": 7,
+      "actual_d_seats_119th": 1,
+      "actual_r_seats_119th": 8,
       "votes_2024": {
         "republican": 1884691,
         "democratic": 977870,

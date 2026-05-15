@@ -84,24 +84,27 @@ projected_r_share = baseline_r_share − (swing / 2 / 100)`}</pre>
         </div>
       </Section>
 
-      <Section title="The reveal isn't what you might expect">
+      <Section title="The reveal is more modest than you might expect">
         <p>
-          Common intuition says "proportional representation would help Democrats." Right now, the data
-          says otherwise. Under D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, our projection comes out at{' '}
+          Under today's D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}
           {pipelineMeta?.national && (
             <strong>
               D {pipelineMeta.national.projected.d_seats} / R {pipelineMeta.national.projected.r_seats}
             </strong>
-          )}{' '}
-          — only a handful of seats different from the current House
+          )}
           {pipelineMeta?.national && (
-            <> ({pipelineMeta.national.actual.d_seats}D / {pipelineMeta.national.actual.r_seats}R)</>
-          )}.
+            <>
+              {' '}— enough to flip control from the current{' '}
+              <strong>{pipelineMeta.national.actual.d_seats}D / {pipelineMeta.national.actual.r_seats}R</strong>{' '}
+              House, but a smaller net shift than the "PR would help one side enormously" intuition suggests.
+            </>
+          )}
         </p>
         <p>
           The reason: distortion goes <em>both ways</em>. R-gerrymandered states (TX, FL, OH) over-represent
           Republicans; D-gerrymandered states (CA, NY, IL, MD) over-represent Democrats. Under PR, both
-          effects shrink, and they roughly cancel at the national level.
+          effects shrink, and they largely cancel at the national level — what remains is mostly the
+          national-mood swing (today, toward Democrats) translating into seats more directly than the current map allows.
         </p>
         <p>
           The 2024 Retrospective view (applying PR to actual 2024 results with no swing) confirms this:

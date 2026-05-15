@@ -1,37 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-05-14T01:29:46.606853+00:00",
+    "generated_at": "2026-05-15T18:52:07.190923+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
-    "n_polls": 199,
+    "n_polls": 197,
     "uses_house_effect_adjustment": true
   },
   "polls": [
-    {
-      "date": "2025-11-15",
-      "pollster": "Ipsos",
-      "margin": 2.3,
-      "sample_size": 818,
-      "population": "RV",
-      "url": "https://www.reuters.com/data/which-party-do-americans-want-run-congress-2025-11-05/"
-    },
-    {
-      "date": "2025-11-16",
-      "pollster": "The Winston Group",
-      "margin": 5.39,
-      "sample_size": 1000,
-      "population": "RV",
-      "url": "https://www.winningtheissues.org/2025/12/31/2025-winning-the-issues-research/"
-    },
-    {
-      "date": "2025-11-16",
-      "pollster": "YouGov",
-      "margin": 3.45,
-      "sample_size": 1382,
-      "population": "RV",
-      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_Hb6uOe2.pdf"
-    },
     {
       "date": "2025-11-20",
       "pollster": "Rasmussen Reports",
@@ -235,7 +211,7 @@
     {
       "date": "2025-12-13",
       "pollster": "Quinnipiac University",
-      "margin": 2.57,
+      "margin": 2.56,
       "sample_size": 1035,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3943"
@@ -419,7 +395,7 @@
     {
       "date": "2026-01-10",
       "pollster": "CNN/SSRS",
-      "margin": 5.18,
+      "margin": 5.19,
       "sample_size": 968,
       "population": "RV",
       "url": "https://www.cnn.com/2026/01/18/politics/cnn-poll-democrats-are-deeply-motivated-for-the-midterms-despite-having-dismal-views-of-party-leaders"
@@ -579,7 +555,7 @@
     {
       "date": "2026-01-24",
       "pollster": "Focaldata",
-      "margin": 4.64,
+      "margin": 4.65,
       "sample_size": 1709,
       "population": "LV",
       "url": "https://www.focaldata.com/blog/cost-of-living-fuelling-democrat-strength-in-new-midterms-polling"
@@ -643,7 +619,7 @@
     {
       "date": "2026-01-28",
       "pollster": "HarrisX",
-      "margin": 5.24,
+      "margin": 5.25,
       "sample_size": 1508,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-january-6/"
@@ -739,7 +715,7 @@
     {
       "date": "2026-02-10",
       "pollster": "Focaldata",
-      "margin": 7.14,
+      "margin": 7.15,
       "sample_size": 957,
       "population": "LV",
       "url": "https://www.focaldata.com/blog/cost-of-living-fuelling-democrat-strength-in-new-midterms-polling"
@@ -915,7 +891,7 @@
     {
       "date": "2026-02-25",
       "pollster": "HarrisX",
-      "margin": 1.74,
+      "margin": 1.75,
       "sample_size": 1560,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-february-2026/"
@@ -1011,7 +987,7 @@
     {
       "date": "2026-03-08",
       "pollster": "Focaldata",
-      "margin": 5.64,
+      "margin": 5.65,
       "sample_size": 1534,
       "population": "RV",
       "url": "https://www.focaldata.com/blog/democrats-increase-lead-and-rubio-stock-surges-amid-iran-war"
@@ -1171,7 +1147,7 @@
     {
       "date": "2026-03-21",
       "pollster": "Quinnipiac University",
-      "margin": 9.57,
+      "margin": 9.56,
       "sample_size": 1191,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3953"
@@ -1203,7 +1179,7 @@
     {
       "date": "2026-03-25",
       "pollster": "HarrisX",
-      "margin": 5.74,
+      "margin": 5.75,
       "sample_size": 1475,
       "population": "LV",
       "url": "https://harvardharrispoll.com/wp-content/uploads/2026/03/HHP_Mar2026_KeyResults.pdf"
@@ -1219,7 +1195,7 @@
     {
       "date": "2026-03-28",
       "pollster": "CNN/SSRS",
-      "margin": 6.18,
+      "margin": 6.19,
       "sample_size": 951,
       "population": "RV",
       "url": "https://www.documentcloud.org/documents/27964261-cnn-poll-conducted-by-ssrs-trump-approval-economy/"
@@ -1271,6 +1247,14 @@
       "sample_size": 2200,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
+    },
+    {
+      "date": "2026-04-05",
+      "pollster": "Change Research",
+      "margin": 5.89,
+      "sample_size": 2702,
+      "population": "RV",
+      "url": "https://changeresearch.com/who-do-voters-want-in-2028/"
     },
     {
       "date": "2026-04-06",
@@ -1467,7 +1451,7 @@
     {
       "date": "2026-04-24",
       "pollster": "HarrisX",
-      "margin": 1.74,
+      "margin": 1.75,
       "sample_size": 1963,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-april-2026/"
@@ -1531,7 +1515,7 @@
     {
       "date": "2026-05-02",
       "pollster": "CNN/SSRS",
-      "margin": 3.18,
+      "margin": 3.19,
       "sample_size": 1156,
       "population": "RV",
       "url": "https://www.cnn.com/2026/05/12/politics/cnn-poll-midterms-affordability-politics-impact"
@@ -1539,7 +1523,7 @@
     {
       "date": "2026-05-02",
       "pollster": "HarrisX",
-      "margin": 7.74,
+      "margin": 7.75,
       "sample_size": 1891,
       "population": "LV",
       "url": "https://www.harrisx.com/posts/forbes-and-harrisx-partner-on-new-american-confidence-survey-as-gallup-ends-approval-polling"
@@ -1555,7 +1539,7 @@
     {
       "date": "2026-05-03",
       "pollster": "Focaldata",
-      "margin": 6.64,
+      "margin": 6.65,
       "sample_size": 3167,
       "population": "RV",
       "url": "https://www.focaldata.com/blog/democrats-lead-economy-focaldata-financial-times-poll"
