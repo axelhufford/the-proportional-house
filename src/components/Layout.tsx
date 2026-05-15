@@ -48,15 +48,9 @@ export function Layout({ meta }: LayoutProps) {
                 Updated {new Date(meta.generated_at).toLocaleString()}
                 {' · '}Source: {meta.data_source}
               </span>
-              <span>
-                Swing applied:{' '}
-                <span className={meta.swing >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
-                  {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
-                </span>
-                {meta.n_polls_in_average !== undefined && (
-                  <> {' · '} {meta.n_polls_in_average} polls in average (last {meta.poll_window_days ?? 30}d)</>
-                )}
-              </span>
+              {meta.n_polls_in_average !== undefined && (
+                <span>{meta.n_polls_in_average} polls in average (last {meta.poll_window_days ?? 30}d)</span>
+              )}
             </>
           ) : (
             <span>The Proportional House — open source. Methodology and source data on the Methodology page.</span>

@@ -9,6 +9,8 @@ export function NationalSummary({ payload }: Props) {
   const dGain = national.projected.d_seats - national.actual.d_seats;
   const generic = meta.generic_ballot_margin;
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
+  const baseline = meta.baseline_2024_margin;
+  const baselineLabel = baseline >= 0 ? `D+${baseline.toFixed(1)}` : `R+${Math.abs(baseline).toFixed(1)}`;
 
   return (
     <section className="bg-white border-b border-stone-200">
@@ -37,8 +39,16 @@ export function NationalSummary({ payload }: Props) {
         </div>
 
         <div className="mt-4 text-xs text-stone-500">
-          Generic ballot used: <span className="font-medium text-stone-700">{genericLabel}</span>
-          {' · '}Method: <span className="font-medium text-stone-700">Sainte-Laguë</span>
+          Generic ballot today:{' '}
+          <span className="font-medium text-stone-700">{genericLabel}</span>
+          {' · '}2024 baseline:{' '}
+          <span className="font-medium text-stone-700">{baselineLabel}</span>
+          {' · '}Swing applied:{' '}
+          <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
+            {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
+          </span>
+          {' · '}Method:{' '}
+          <span className="font-medium text-stone-700">Sainte-Laguë</span>
         </div>
       </div>
     </section>
