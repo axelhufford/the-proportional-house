@@ -9,8 +9,8 @@ interface Props {
 
 const VIEW_MODES: { value: ViewMode; label: string; disabled?: boolean }[] = [
   { value: 'current', label: 'Current Projection' },
-  { value: 'retrospective', label: '2024 Retrospective', disabled: true },
-  { value: 'sandbox', label: 'Sandbox', disabled: true },
+  { value: 'retrospective', label: '2024 Retrospective' },
+  { value: 'sandbox', label: 'Sandbox' },
 ];
 
 const COLOR_MODES: { value: ColorMode; label: string }[] = [

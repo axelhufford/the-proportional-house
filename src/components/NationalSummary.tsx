@@ -1,16 +1,22 @@
-import type { ProjectionPayload } from '../lib/types';
+import type { ProjectionPayload, ViewMode } from '../lib/types';
 
 interface Props {
   payload: ProjectionPayload;
+  viewMode?: ViewMode;
 }
 
-export function NationalSummary({ payload }: Props) {
+export function NationalSummary({ payload, viewMode = 'current' }: Props) {
   const { national, meta } = payload;
   const dGain = national.projected.d_seats - national.actual.d_seats;
   const generic = meta.generic_ballot_margin;
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
   const baseline = meta.baseline_2024_margin;
   const baselineLabel = baseline >= 0 ? `D+${baseline.toFixed(1)}` : `R+${Math.abs(baseline).toFixed(1)}`;
+  const projectedLabel = viewMode === 'retrospective'
+    ? 'Projected under PR (2024)'
+    : viewMode === 'sandbox'
+      ? 'Projected under PR (sandbox)'
+      : 'Projected under PR';
 
   return (
     <section className="bg-white border-b border-stone-200">
@@ -21,7 +27,7 @@ export function NationalSummary({ payload }: Props) {
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
           <SummaryStat
-            label="Projected under PR"
+            label={projectedLabel}
             primary={<><span className="text-blue-700">D {national.projected.d_seats}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {national.projected.r_seats}</span></>}
           />
           <SummaryStat
@@ -39,16 +45,42 @@ export function NationalSummary({ payload }: Props) {
         </div>
 
         <div className="mt-4 text-xs text-stone-500">
-          Generic ballot today:{' '}
-          <span className="font-medium text-stone-700">{genericLabel}</span>
-          {' · '}2024 baseline:{' '}
-          <span className="font-medium text-stone-700">{baselineLabel}</span>
-          {' · '}Swing applied:{' '}
-          <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
-            {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
-          </span>
-          {' · '}Method:{' '}
-          <span className="font-medium text-stone-700">Sainte-Laguë</span>
+          {viewMode === 'retrospective' ? (
+            <>
+              <span className="font-medium text-stone-700">No swing applied</span>
+              {' '}— pure PR allocation of 2024's actual votes
+              {' · '}2024 baseline:{' '}
+              <span className="font-medium text-stone-700">{baselineLabel}</span>
+              {' · '}Method:{' '}
+              <span className="font-medium text-stone-700">Sainte-Laguë</span>
+            </>
+          ) : viewMode === 'sandbox' ? (
+            <>
+              Hypothetical generic ballot:{' '}
+              <span className="font-medium text-stone-700">{genericLabel}</span>
+              {' · '}2024 baseline:{' '}
+              <span className="font-medium text-stone-700">{baselineLabel}</span>
+              {' · '}Swing applied:{' '}
+              <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
+                {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
+              </span>
+              {' · '}Method:{' '}
+              <span className="font-medium text-stone-700">Sainte-Laguë</span>
+            </>
+          ) : (
+            <>
+              Generic ballot today:{' '}
+              <span className="font-medium text-stone-700">{genericLabel}</span>
+              {' · '}2024 baseline:{' '}
+              <span className="font-medium text-stone-700">{baselineLabel}</span>
+              {' · '}Swing applied:{' '}
+              <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
+                {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
+              </span>
+              {' · '}Method:{' '}
+              <span className="font-medium text-stone-700">Sainte-Laguë</span>
+            </>
+          )}
         </div>
       </div>
     </section>
