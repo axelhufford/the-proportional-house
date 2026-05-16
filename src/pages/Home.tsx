@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Topology } from 'topojson-specification';
 import { USMap } from '../components/Map';
+import { MapLegend } from '../components/MapLegend';
 import { NationalSummary } from '../components/NationalSummary';
 import { ModeToggle } from '../components/ModeToggle';
 import { StateDetail } from '../components/StateDetail';
@@ -62,6 +63,7 @@ export function Home({ onMetaChange }: HomeProps) {
             selectedFips={selectedFips}
             onSelect={setSelectedFips}
           />
+          <MapLegend mode={colorMode} />
           <p className="mt-3 text-xs text-stone-500">
             Click any state to inspect its projected delegation and Sainte-Laguë allocation.
             Color encodes {colorMode === 'balance' ? "the projected D-R margin of each state's delegation" : 'the per-seat shift (projected minus actual) under proportional allocation'}.
