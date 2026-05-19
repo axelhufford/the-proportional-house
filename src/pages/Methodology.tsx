@@ -25,7 +25,7 @@ export function Methodology(_props: MethodologyProps) {
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-8 prose-stone text-stone-800 leading-relaxed">
-      <h1 className="text-3xl font-semibold text-stone-900 tracking-tight">Methodology</h1>
+      <h1 className="font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">Methodology</h1>
       <p className="mt-3 text-stone-600">
         The Proportional House is a counterfactual: what would the U.S. House of Representatives look
         like if every state allocated its seats by proportional representation, based on current
@@ -157,7 +157,7 @@ projected_r_share = baseline_r_share − (swing / 2 / 100)`}</pre>
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-8">
-      <h2 className="text-xl font-semibold text-stone-900 tracking-tight">{title}</h2>
+      <h2 className="font-serif text-xl sm:text-2xl font-medium text-brand-navy tracking-tight">{title}</h2>
       <div className="mt-3 space-y-3">{children}</div>
     </section>
   );

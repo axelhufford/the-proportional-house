@@ -1,7 +1,31 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-navy: #1F2E4D;
+  --color-brand-navy-mid: #5670A6;
+  --color-brand-navy-light: #9CACC4;
+  --color-brand-cream: #F4EDE0;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 :root {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Brand */
+  --brand-navy: #1F2E4D;
+  --brand-navy-mid: #5670A6;
+  --brand-navy-light: #9CACC4;
+  --brand-cream: #F4EDE0;
+
+  /* Text */
+  --text-primary: #1F2E4D;
+  --text-secondary: #5C5C5A;
+  --text-tertiary: #888780;
+
+  /* Fonts */
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  font-family: var(--font-sans);
   color-scheme: light;
 }
 
@@ -11,6 +35,7 @@ html, body, #root {
 }
 
 body {
-  background-color: #fafaf9;
-  color: #1c1917;
+  background-color: var(--brand-cream);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
 }

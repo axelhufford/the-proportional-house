@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Masthead } from './Masthead';
 import type { ProjectionMeta } from '../lib/types';
 
 interface LayoutProps {
@@ -13,7 +14,7 @@ export function Layout({ meta }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       {isStale && meta && (
-        <div className="bg-amber-100 border-b border-amber-200 text-amber-900 text-sm">
+        <div className="bg-blue-50 border-b border-blue-200 text-blue-900 text-sm">
           <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between gap-4">
             <span>
               <strong>Data may be stale.</strong>{' '}
@@ -24,23 +25,13 @@ export function Layout({ meta }: LayoutProps) {
         </div>
       )}
 
-      <header className="bg-white border-b border-stone-200">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
-          <Link to="/" className="text-base font-semibold text-stone-900 hover:text-stone-700">
-            The Proportional House
-          </Link>
-          <nav className="flex items-center gap-1 text-sm">
-            <TopNavLink to="/">Map</TopNavLink>
-            <TopNavLink to="/methodology">Methodology</TopNavLink>
-          </nav>
-        </div>
-      </header>
+      <Masthead />
 
       <main className="flex-1">
         <Outlet />
       </main>
 
-      <footer className="border-t border-stone-200 py-3 text-xs text-stone-500">
+      <footer className="py-4 text-xs text-stone-600">
         <div className="max-w-6xl mx-auto px-6 flex flex-wrap items-baseline justify-between gap-2">
           {meta ? (
             <>
@@ -58,23 +49,6 @@ export function Layout({ meta }: LayoutProps) {
         </div>
       </footer>
     </div>
-  );
-}
-
-function TopNavLink({ to, children }: { to: string; children: React.ReactNode }) {
-  return (
-    <NavLink
-      to={to}
-      end={to === '/'}
-      className={({ isActive }) =>
-        [
-          'px-3 py-1 rounded',
-          isActive ? 'bg-stone-900 text-white' : 'text-stone-600 hover:bg-stone-100',
-        ].join(' ')
-      }
-    >
-      {children}
-    </NavLink>
   );
 }
 

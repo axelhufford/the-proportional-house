@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="The Proportional House">
+  <rect width="64" height="64" fill="#F4EDE0"/>
+  <path d="M 32,4 L 33.1,11 L 30.9,11 Z" fill="#1F2E4D"/>
+  <rect x="29" y="11" width="6" height="3" fill="#1F2E4D"/>
+  <rect x="27" y="14" width="10" height="4" fill="#1F2E4D"/>
+  <path d="M 16,46 C 16,30 23,21 32,21 C 41,21 48,30 48,46 Z" fill="#1F2E4D"/>
+  <rect x="13" y="46" width="38" height="2" fill="#1F2E4D"/>
+  <rect x="10" y="48" width="44" height="3" fill="#1F2E4D"/>
+  <rect x="11" y="57" width="3" height="4" fill="#A04848"/>
+  <rect x="16" y="56" width="3" height="5" fill="#8E4763"/>
+  <rect x="21" y="55" width="3" height="6" fill="#774A80"/>
+  <rect x="26" y="54" width="3" height="7" fill="#6B4C8E"/>
+  <rect x="31" y="53" width="3" height="8" fill="#5F4F93"/>
+  <rect x="36" y="52" width="3" height="9" fill="#475597"/>
+  <rect x="41" y="51" width="3" height="10" fill="#3B5892"/>
+  <rect x="46" y="51" width="3" height="10" fill="#2F5B8C"/>
+  <rect x="6" y="61" width="52" height="2" fill="#1F2E4D"/>
+</svg>
