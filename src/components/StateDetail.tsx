@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { quotientTable } from '../lib/allocation';
+import { PollingTrendChart } from './PollingTrendChart';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
 
 interface Props {
@@ -115,6 +116,13 @@ export function StateDetail({ state, meta, onClose }: Props) {
             </div>
           </details>
         )}
+
+        <Section title="National polling trend, last 180 days">
+          <PollingTrendChart currentAverageMargin={meta.generic_ballot_margin} />
+          <p className="text-xs text-stone-500 mt-2">
+            Each dot is one poll; size scales with sample size. The navy line is the same 14-day weighted average we use in the projection. Source: Silver Bulletin's public generic-ballot database.
+          </p>
+        </Section>
       </div>
     </aside>
   );
