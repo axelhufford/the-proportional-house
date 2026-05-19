@@ -17,7 +17,7 @@ export function Masthead() {
               The Proportional House
             </h1>
             <p className="font-serif italic text-xs sm:text-sm text-stone-600 leading-snug mt-0.5">
-              Mapping the U.S. House under proportional allocation
+              Mapping the U.S. House under proportional representation
             </p>
           </div>
         </Link>

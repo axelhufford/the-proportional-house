@@ -19,8 +19,8 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
       : 'Projected under PR';
 
   return (
-    <section className="bg-white border-b border-stone-200">
-      <div className="max-w-6xl mx-auto px-6 py-5">
+    <section>
+      <div className="max-w-6xl mx-auto px-6 pt-6 pb-2">
         <p className="text-sm text-stone-600">
           What the U.S. House would look like if every state allocated its seats by proportional representation.
         </p>

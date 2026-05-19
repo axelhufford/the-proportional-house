@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-05-15T18:52:07.190923+00:00",
+    "generated_at": "2026-05-19T20:18:00.365392+00:00",
     "data_source": "U.S. House Clerk 2024 statistics (state totals) + Silver Bulletin generic-ballot polls",
     "method": "sainte-lague",
-    "generic_ballot_margin": 6.07,
+    "generic_ballot_margin": 6.404,
     "baseline_2024_margin": -2.554,
     "baseline_2024_r_margin": 2.554,
-    "swing": 8.62,
-    "n_polls_in_average": 31,
+    "swing": 8.96,
+    "n_polls_in_average": 23,
     "poll_window_days": 30,
     "poll_half_life_days": 14
   },
@@ -37,8 +37,8 @@
         "r_share": 0.5052
       },
       "projected": {
-        "d_share": 0.5379,
-        "r_share": 0.4621,
+        "d_share": 0.5396,
+        "r_share": 0.4604,
         "d_seats": 1,
         "r_seats": 0
       },
@@ -58,8 +58,8 @@
         "r_share": 0.7443
       },
       "projected": {
-        "d_share": 0.2988,
-        "r_share": 0.7012,
+        "d_share": 0.3004,
+        "r_share": 0.6996,
         "d_seats": 2,
         "r_seats": 5
       },
@@ -79,8 +79,8 @@
         "r_share": 0.6806
       },
       "projected": {
-        "d_share": 0.3625,
-        "r_share": 0.6375,
+        "d_share": 0.3642,
+        "r_share": 0.6358,
         "d_seats": 1,
         "r_seats": 3
       },
@@ -100,8 +100,8 @@
         "r_share": 0.5201
       },
       "projected": {
-        "d_share": 0.523,
-        "r_share": 0.477,
+        "d_share": 0.5247,
+        "r_share": 0.4753,
         "d_seats": 5,
         "r_seats": 4
       },
@@ -121,8 +121,8 @@
         "r_share": 0.3935
       },
       "projected": {
-        "d_share": 0.6497,
-        "r_share": 0.3503,
+        "d_share": 0.6513,
+        "r_share": 0.3487,
         "d_seats": 34,
         "r_seats": 18
       },
@@ -142,8 +142,8 @@
         "r_share": 0.4393
       },
       "projected": {
-        "d_share": 0.6038,
-        "r_share": 0.3962,
+        "d_share": 0.6055,
+        "r_share": 0.3945,
         "d_seats": 5,
         "r_seats": 3
       },
@@ -163,8 +163,8 @@
         "r_share": 0.4103
       },
       "projected": {
-        "d_share": 0.6328,
-        "r_share": 0.3672,
+        "d_share": 0.6345,
+        "r_share": 0.3655,
         "d_seats": 3,
         "r_seats": 2
       },
@@ -184,8 +184,8 @@
         "r_share": 0.4214
       },
       "projected": {
-        "d_share": 0.6217,
-        "r_share": 0.3783,
+        "d_share": 0.6234,
+        "r_share": 0.3766,
         "d_seats": 1,
         "r_seats": 0
       },
@@ -205,8 +205,8 @@
         "r_share": 0.5793
       },
       "projected": {
-        "d_share": 0.4638,
-        "r_share": 0.5362,
+        "d_share": 0.4655,
+        "r_share": 0.5345,
         "d_seats": 13,
         "r_seats": 15
       },
@@ -226,8 +226,8 @@
         "r_share": 0.526
       },
       "projected": {
-        "d_share": 0.5171,
-        "r_share": 0.4829,
+        "d_share": 0.5188,
+        "r_share": 0.4812,
         "d_seats": 7,
         "r_seats": 7
       },
@@ -247,8 +247,8 @@
         "r_share": 0.2973
       },
       "projected": {
-        "d_share": 0.7458,
-        "r_share": 0.2542,
+        "d_share": 0.7475,
+        "r_share": 0.2525,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -268,8 +268,8 @@
         "r_share": 0.5651
       },
       "projected": {
-        "d_share": 0.478,
-        "r_share": 0.522,
+        "d_share": 0.4796,
+        "r_share": 0.5204,
         "d_seats": 2,
         "r_seats": 2
       },
@@ -289,8 +289,8 @@
         "r_share": 0.7035
       },
       "projected": {
-        "d_share": 0.3396,
-        "r_share": 0.6604,
+        "d_share": 0.3412,
+        "r_share": 0.6588,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -310,8 +310,8 @@
         "r_share": 0.4708
       },
       "projected": {
-        "d_share": 0.5723,
-        "r_share": 0.4277,
+        "d_share": 0.5739,
+        "r_share": 0.4261,
         "d_seats": 10,
         "r_seats": 7
       },
@@ -331,8 +331,8 @@
         "r_share": 0.6019
       },
       "projected": {
-        "d_share": 0.4412,
-        "r_share": 0.5588,
+        "d_share": 0.4429,
+        "r_share": 0.5571,
         "d_seats": 4,
         "r_seats": 5
       },
@@ -352,8 +352,8 @@
         "r_share": 0.5875
       },
       "projected": {
-        "d_share": 0.4556,
-        "r_share": 0.5444,
+        "d_share": 0.4573,
+        "r_share": 0.5427,
         "d_seats": 2,
         "r_seats": 2
       },
@@ -373,8 +373,8 @@
         "r_share": 0.7311
       },
       "projected": {
-        "d_share": 0.312,
-        "r_share": 0.688,
+        "d_share": 0.3136,
+        "r_share": 0.6864,
         "d_seats": 2,
         "r_seats": 4
       },
@@ -394,8 +394,8 @@
         "r_share": 0.6573
       },
       "projected": {
-        "d_share": 0.3859,
-        "r_share": 0.6141,
+        "d_share": 0.3875,
+        "r_share": 0.6125,
         "d_seats": 2,
         "r_seats": 4
       },
@@ -415,8 +415,8 @@
         "r_share": 0.1132
       },
       "projected": {
-        "d_share": 0.93,
-        "r_share": 0.07,
+        "d_share": 0.9316,
+        "r_share": 0.0684,
         "d_seats": 8,
         "r_seats": 1
       },
@@ -436,8 +436,8 @@
         "r_share": 0.3532
       },
       "projected": {
-        "d_share": 0.6899,
-        "r_share": 0.3101,
+        "d_share": 0.6916,
+        "r_share": 0.3084,
         "d_seats": 6,
         "r_seats": 2
       },
@@ -457,8 +457,8 @@
         "r_share": 0.4387
       },
       "projected": {
-        "d_share": 0.6044,
-        "r_share": 0.3956,
+        "d_share": 0.6061,
+        "r_share": 0.3939,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -478,8 +478,8 @@
         "r_share": 0.5064
       },
       "projected": {
-        "d_share": 0.5367,
-        "r_share": 0.4633,
+        "d_share": 0.5384,
+        "r_share": 0.4616,
         "d_seats": 7,
         "r_seats": 6
       },
@@ -499,8 +499,8 @@
         "r_share": 0.4953
       },
       "projected": {
-        "d_share": 0.5478,
-        "r_share": 0.4522,
+        "d_share": 0.5495,
+        "r_share": 0.4505,
         "d_seats": 4,
         "r_seats": 4
       },
@@ -520,8 +520,8 @@
         "r_share": 0.6032
       },
       "projected": {
-        "d_share": 0.4399,
-        "r_share": 0.5601,
+        "d_share": 0.4416,
+        "r_share": 0.5584,
         "d_seats": 4,
         "r_seats": 4
       },
@@ -541,8 +541,8 @@
         "r_share": 0.6988
       },
       "projected": {
-        "d_share": 0.3443,
-        "r_share": 0.6557,
+        "d_share": 0.346,
+        "r_share": 0.654,
         "d_seats": 1,
         "r_seats": 3
       },
@@ -562,8 +562,8 @@
         "r_share": 0.596
       },
       "projected": {
-        "d_share": 0.4471,
-        "r_share": 0.5529,
+        "d_share": 0.4488,
+        "r_share": 0.5512,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -583,8 +583,8 @@
         "r_share": 0.5516
       },
       "projected": {
-        "d_share": 0.4916,
-        "r_share": 0.5084,
+        "d_share": 0.4932,
+        "r_share": 0.5068,
         "d_seats": 7,
         "r_seats": 7
       },
@@ -604,8 +604,8 @@
         "r_share": 0.6952
       },
       "projected": {
-        "d_share": 0.348,
-        "r_share": 0.652,
+        "d_share": 0.3496,
+        "r_share": 0.6504,
         "d_seats": 0,
         "r_seats": 1
       },
@@ -625,8 +625,8 @@
         "r_share": 0.6362
       },
       "projected": {
-        "d_share": 0.407,
-        "r_share": 0.593,
+        "d_share": 0.4086,
+        "r_share": 0.5914,
         "d_seats": 1,
         "r_seats": 2
       },
@@ -646,8 +646,8 @@
         "r_share": 0.4649
       },
       "projected": {
-        "d_share": 0.5782,
-        "r_share": 0.4218,
+        "d_share": 0.5799,
+        "r_share": 0.4201,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -667,8 +667,8 @@
         "r_share": 0.4636
       },
       "projected": {
-        "d_share": 0.5795,
-        "r_share": 0.4205,
+        "d_share": 0.5812,
+        "r_share": 0.4188,
         "d_seats": 7,
         "r_seats": 5
       },
@@ -688,8 +688,8 @@
         "r_share": 0.4493
       },
       "projected": {
-        "d_share": 0.5938,
-        "r_share": 0.4062,
+        "d_share": 0.5955,
+        "r_share": 0.4045,
         "d_seats": 2,
         "r_seats": 1
       },
@@ -709,8 +709,8 @@
         "r_share": 0.5646
       },
       "projected": {
-        "d_share": 0.4785,
-        "r_share": 0.5215,
+        "d_share": 0.4802,
+        "r_share": 0.5198,
         "d_seats": 2,
         "r_seats": 2
       },
@@ -730,8 +730,8 @@
         "r_share": 0.4125
       },
       "projected": {
-        "d_share": 0.6307,
-        "r_share": 0.3693,
+        "d_share": 0.6323,
+        "r_share": 0.3677,
         "d_seats": 16,
         "r_seats": 10
       },
@@ -751,8 +751,8 @@
         "r_share": 0.5658
       },
       "projected": {
-        "d_share": 0.4773,
-        "r_share": 0.5227,
+        "d_share": 0.479,
+        "r_share": 0.521,
         "d_seats": 7,
         "r_seats": 8
       },
@@ -772,8 +772,8 @@
         "r_share": 0.6772
       },
       "projected": {
-        "d_share": 0.3659,
-        "r_share": 0.6341,
+        "d_share": 0.3676,
+        "r_share": 0.6324,
         "d_seats": 2,
         "r_seats": 3
       },
@@ -793,8 +793,8 @@
         "r_share": 0.4421
       },
       "projected": {
-        "d_share": 0.601,
-        "r_share": 0.399,
+        "d_share": 0.6027,
+        "r_share": 0.3973,
         "d_seats": 4,
         "r_seats": 2
       },
@@ -814,8 +814,8 @@
         "r_share": 0.5105
       },
       "projected": {
-        "d_share": 0.5327,
-        "r_share": 0.4673,
+        "d_share": 0.5343,
+        "r_share": 0.4657,
         "d_seats": 9,
         "r_seats": 8
       },
@@ -835,8 +835,8 @@
         "r_share": 0.3809
       },
       "projected": {
-        "d_share": 0.6622,
-        "r_share": 0.3378,
+        "d_share": 0.6639,
+        "r_share": 0.3361,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -856,8 +856,8 @@
         "r_share": 0.6047
       },
       "projected": {
-        "d_share": 0.4384,
-        "r_share": 0.5616,
+        "d_share": 0.4401,
+        "r_share": 0.5599,
         "d_seats": 3,
         "r_seats": 4
       },
@@ -877,8 +877,8 @@
         "r_share": 0.7204
       },
       "projected": {
-        "d_share": 0.3227,
-        "r_share": 0.6773,
+        "d_share": 0.3243,
+        "r_share": 0.6757,
         "d_seats": 0,
         "r_seats": 1
       },
@@ -898,8 +898,8 @@
         "r_share": 0.6584
       },
       "projected": {
-        "d_share": 0.3847,
-        "r_share": 0.6153,
+        "d_share": 0.3864,
+        "r_share": 0.6136,
         "d_seats": 3,
         "r_seats": 6
       },
@@ -919,8 +919,8 @@
         "r_share": 0.5912
       },
       "projected": {
-        "d_share": 0.4519,
-        "r_share": 0.5481,
+        "d_share": 0.4536,
+        "r_share": 0.5464,
         "d_seats": 17,
         "r_seats": 21
       },
@@ -940,8 +940,8 @@
         "r_share": 0.6588
       },
       "projected": {
-        "d_share": 0.3844,
-        "r_share": 0.6156,
+        "d_share": 0.386,
+        "r_share": 0.614,
         "d_seats": 2,
         "r_seats": 2
       },
@@ -961,8 +961,8 @@
         "r_share": 0.481
       },
       "projected": {
-        "d_share": 0.5621,
-        "r_share": 0.4379,
+        "d_share": 0.5638,
+        "r_share": 0.4362,
         "d_seats": 6,
         "r_seats": 5
       },
@@ -982,8 +982,8 @@
         "r_share": 0.0
       },
       "projected": {
-        "d_share": 0.5431,
-        "r_share": 0.4569,
+        "d_share": 0.5448,
+        "r_share": 0.4552,
         "d_seats": 1,
         "r_seats": 0
       },
@@ -1003,8 +1003,8 @@
         "r_share": 0.4249
       },
       "projected": {
-        "d_share": 0.6183,
-        "r_share": 0.3817,
+        "d_share": 0.6199,
+        "r_share": 0.3801,
         "d_seats": 6,
         "r_seats": 4
       },
@@ -1024,8 +1024,8 @@
         "r_share": 0.5149
       },
       "projected": {
-        "d_share": 0.5282,
-        "r_share": 0.4718,
+        "d_share": 0.5299,
+        "r_share": 0.4701,
         "d_seats": 4,
         "r_seats": 4
       },
@@ -1045,8 +1045,8 @@
         "r_share": 0.7121
       },
       "projected": {
-        "d_share": 0.331,
-        "r_share": 0.669,
+        "d_share": 0.3327,
+        "r_share": 0.6673,
         "d_seats": 1,
         "r_seats": 1
       },
@@ -1066,8 +1066,8 @@
         "r_share": 0.7524
       },
       "projected": {
-        "d_share": 0.2907,
-        "r_share": 0.7093,
+        "d_share": 0.2924,
+        "r_share": 0.7076,
         "d_seats": 0,
         "r_seats": 1
       },
