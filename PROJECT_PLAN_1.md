@@ -363,6 +363,8 @@ The pipeline ships via [.github/workflows/update-data.yml](.github/workflows/upd
    - `CLOUDFLARE_ACCOUNT_ID` — the account ID from step 3.
 5. **First run.** Trigger via Actions → "Update data + deploy" → Run workflow. The first successful run publishes to `the-proportional-house.pages.dev`.
 
+**Deploying manually.** Use `npm run deploy` — never `wrangler pages deploy dist` directly. The combined script runs `pipeline → build → wrangler deploy` in sequence so the bundle being shipped contains the same fresh data the nightly Action would have shipped. Running `wrangler pages deploy dist` on its own will publish whatever stale `public/data/*.json` happens to be on your laptop (often days old from your last local pipeline run), and Cloudflare Pages will promote that deploy to the friendly `the-proportional-house.pages.dev` alias — silently overwriting the fresh data the nightly Action just published. If you only want to push *code* changes without re-running the pipeline, push to GitHub and trigger the workflow manually via the Actions tab (`Run workflow`) — that's the cheapest correct path.
+
 **Open TODO** (per the review note in Section 4): confirm Ballotpedia and Decision Desk HQ's robots.txt / ToS allow our nightly fallback scrapes before we wire those fetchers in. Until that's done the pipeline relies solely on the Silver Bulletin CSV.
 
 ---
