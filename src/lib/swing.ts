@@ -2,28 +2,33 @@ import { allocate } from './allocation';
 import type { ProjectionPayload, SeatSplit, VoteShare } from './types';
 
 /**
- * Apply a uniform national swing to a state's 2024 baseline and run
- * Sainte-Laguë. Mirrors the Python pipeline's per-state logic in
- * data-pipeline/update.py so client-side recomputes for the Retrospective
- * and Sandbox views match what the nightly pipeline would emit.
+ * Apply a state-specific swing (national swing × state elasticity) to the
+ * state's 2024 baseline and run Sainte-Laguë. Mirrors the Python pipeline's
+ * per-state logic in data-pipeline/update.py so client-side recomputes for
+ * the Retrospective and Sandbox views match what the nightly pipeline emits.
  *
- * `swingPoints` is the change in margin (D - R) in percentage points;
- * positive = toward D. Each party's share shifts by swing/2.
+ * `swingPoints` is the national change in margin (D − R) in percentage
+ * points; positive = toward D. Multiplied by the state's elasticity
+ * coefficient (clamped [0.3, 2.0]; computed in fetch_clerk_house.py from
+ * the 2020 → 2024 presidential margin shift). Then each party's share
+ * shifts by stateSwing/2.
  *
  * Vermont-style baseline distortion (one party fielded no statewide
- * candidate in 2024) gets a 50/50 fallback so the projection doesn't
- * start from a 100/0 share that the swing alone can't recover.
+ * candidate in 2024) gets a 50/50 fallback for safety, though in v2 data
+ * VT is now properly imputed via pres-by-CD and the flag never fires.
  */
 function applyStateSwing(
   baseline: VoteShare,
   baselineDistortion: boolean,
   seats: number,
   swingPoints: number,
-): VoteShare & SeatSplit {
+  elasticity: number,
+): VoteShare & SeatSplit & { state_swing_applied: number; state_elasticity: number } {
   const baseD = baselineDistortion ? 0.5 : baseline.d_share;
   const baseR = baselineDistortion ? 0.5 : baseline.r_share;
 
-  const delta = swingPoints / 2 / 100;
+  const stateSwing = swingPoints * elasticity;
+  const delta = stateSwing / 2 / 100;
   let projD = baseD + delta;
   let projR = baseR - delta;
 
@@ -41,7 +46,14 @@ function applyStateSwing(
     'sainte-lague',
   );
 
-  return { d_share: projD, r_share: projR, d_seats, r_seats };
+  return {
+    d_share: projD,
+    r_share: projR,
+    d_seats,
+    r_seats,
+    state_swing_applied: stateSwing,
+    state_elasticity: elasticity,
+  };
 }
 
 /**
@@ -56,10 +68,27 @@ export function recomputeWithSwing(
   payload: ProjectionPayload,
   swingPoints: number,
 ): ProjectionPayload {
-  const states = payload.states.map((s) => ({
-    ...s,
-    projected: applyStateSwing(s.baseline_2024, s.baseline_distortion_warning ?? false, s.seats, swingPoints),
-  }));
+  const states = payload.states.map((s) => {
+    const elasticity = s.state_elasticity ?? 1.0;
+    const projected = applyStateSwing(
+      s.baseline_2024,
+      s.baseline_distortion_warning ?? false,
+      s.seats,
+      swingPoints,
+      elasticity,
+    );
+    return {
+      ...s,
+      projected: {
+        d_share: projected.d_share,
+        r_share: projected.r_share,
+        d_seats: projected.d_seats,
+        r_seats: projected.r_seats,
+      },
+      state_swing_applied: projected.state_swing_applied,
+      state_elasticity: projected.state_elasticity,
+    };
+  });
 
   let natD = 0;
   let natR = 0;

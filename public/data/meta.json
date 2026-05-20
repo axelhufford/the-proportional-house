@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T00:54:40.469237+00:00",
+  "generated_at": "2026-05-20T01:09:19.587590+00:00",
   "stale_after_hours": 48,
   "sources": {
     "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
@@ -17,8 +17,8 @@
   "national": {
     "seats": 435,
     "projected": {
-      "d_seats": 231,
-      "r_seats": 204
+      "d_seats": 232,
+      "r_seats": 203
     },
     "actual": {
       "d_seats": 215,

@@ -40,10 +40,13 @@ export function Sandbox({ genericBallot, swing, baseline2024, onChange }: Props)
           </div>
         </div>
         <div className="text-xs text-stone-600">
-          Resulting swing vs 2024 baseline ({fmtMargin(baseline2024)}):{' '}
+          Resulting national swing vs 2024 baseline ({fmtMargin(baseline2024)}):{' '}
           <span className={swing >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
             {swing >= 0 ? '+' : ''}{swing.toFixed(1)} pts toward {swing >= 0 ? 'D' : 'R'}
           </span>
+          <div className="text-stone-500 mt-1">
+            Each state's projection uses this national swing × that state's elasticity.
+          </div>
         </div>
       </div>
 

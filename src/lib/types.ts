@@ -29,6 +29,8 @@ export interface StateProjection {
   actual: SeatSplit;
   baseline_2024: VoteShare;
   projected: VoteShare & SeatSplit;
+  state_elasticity?: number;
+  state_swing_applied?: number;
   baseline_distortion_warning?: boolean;
   imputed_district_count?: number;
   imputed_district_ids?: string[];

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-20T00:54:40.469237+00:00",
+    "generated_at": "2026-05-20T01:09:19.587590+00:00",
     "baseline_source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 (published March 10, 2025).",
     "baseline_source_url": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "method": "sainte-lague"
@@ -34,6 +34,7 @@
         "d_seats": 0,
         "r_seats": 1
       },
+      "state_elasticity": 0.726,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -55,6 +56,7 @@
         "d_seats": 2,
         "r_seats": 5
       },
+      "state_elasticity": 0.7,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -76,6 +78,7 @@
         "d_seats": 1,
         "r_seats": 3
       },
+      "state_elasticity": 0.68,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -97,6 +100,7 @@
         "d_seats": 4,
         "r_seats": 5
       },
+      "state_elasticity": 1.01,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -118,6 +122,7 @@
         "d_seats": 32,
         "r_seats": 20
       },
+      "state_elasticity": 1.703,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -139,6 +144,7 @@
         "d_seats": 4,
         "r_seats": 4
       },
+      "state_elasticity": 0.386,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -160,6 +166,7 @@
         "d_seats": 3,
         "r_seats": 2
       },
+      "state_elasticity": 0.98,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -181,6 +188,7 @@
         "d_seats": 1,
         "r_seats": 0
       },
+      "state_elasticity": 0.726,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -202,6 +210,7 @@
         "d_seats": 12,
         "r_seats": 16
       },
+      "state_elasticity": 1.702,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -223,6 +232,7 @@
         "d_seats": 7,
         "r_seats": 7
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -244,6 +254,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 1.179,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -265,6 +276,7 @@
         "d_seats": 2,
         "r_seats": 2
       },
+      "state_elasticity": 0.98,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -286,6 +298,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 0.998,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -307,6 +320,7 @@
         "d_seats": 9,
         "r_seats": 8
       },
+      "state_elasticity": 1.067,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -328,6 +342,7 @@
         "d_seats": 4,
         "r_seats": 5
       },
+      "state_elasticity": 0.395,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -349,6 +364,7 @@
         "d_seats": 2,
         "r_seats": 2
       },
+      "state_elasticity": 0.363,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -370,6 +386,7 @@
         "d_seats": 2,
         "r_seats": 4
       },
+      "state_elasticity": 0.756,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -391,6 +408,7 @@
         "d_seats": 2,
         "r_seats": 4
       },
+      "state_elasticity": 0.514,
       "baseline_distortion_warning": false,
       "imputed_district_count": 1,
       "imputed_district_ids": [
@@ -414,6 +432,7 @@
         "d_seats": 8,
         "r_seats": 1
       },
+      "state_elasticity": 1.472,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -435,6 +454,7 @@
         "d_seats": 5,
         "r_seats": 3
       },
+      "state_elasticity": 0.748,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -456,6 +476,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 0.363,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -477,6 +498,7 @@
         "d_seats": 6,
         "r_seats": 7
       },
+      "state_elasticity": 0.677,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -498,6 +520,7 @@
         "d_seats": 4,
         "r_seats": 4
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -519,6 +542,7 @@
         "d_seats": 3,
         "r_seats": 5
       },
+      "state_elasticity": 0.34,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -540,6 +564,7 @@
         "d_seats": 1,
         "r_seats": 3
       },
+      "state_elasticity": 0.862,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -561,6 +586,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 0.544,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -582,6 +608,7 @@
         "d_seats": 6,
         "r_seats": 8
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -603,6 +630,7 @@
         "d_seats": 0,
         "r_seats": 1
       },
+      "state_elasticity": 0.726,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -624,6 +652,7 @@
         "d_seats": 1,
         "r_seats": 2
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -645,6 +674,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 0.907,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -666,6 +696,7 @@
         "d_seats": 6,
         "r_seats": 6
       },
+      "state_elasticity": 1.951,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -687,6 +718,7 @@
         "d_seats": 2,
         "r_seats": 1
       },
+      "state_elasticity": 0.786,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -708,6 +740,7 @@
         "d_seats": 2,
         "r_seats": 2
       },
+      "state_elasticity": 0.998,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -729,6 +762,7 @@
         "d_seats": 15,
         "r_seats": 11
       },
+      "state_elasticity": 1.989,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -750,6 +784,7 @@
         "d_seats": 7,
         "r_seats": 8
       },
+      "state_elasticity": 0.399,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -771,6 +806,7 @@
         "d_seats": 2,
         "r_seats": 3
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -792,6 +828,7 @@
         "d_seats": 3,
         "r_seats": 3
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -813,6 +850,7 @@
         "d_seats": 8,
         "r_seats": 9
       },
+      "state_elasticity": 0.509,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -834,6 +872,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 1.361,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -855,6 +894,7 @@
         "d_seats": 3,
         "r_seats": 4
       },
+      "state_elasticity": 1.089,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -876,6 +916,7 @@
         "d_seats": 0,
         "r_seats": 1
       },
+      "state_elasticity": 0.544,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -897,6 +938,7 @@
         "d_seats": 3,
         "r_seats": 6
       },
+      "state_elasticity": 0.847,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -918,6 +960,7 @@
         "d_seats": 16,
         "r_seats": 22
       },
+      "state_elasticity": 1.366,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -939,6 +982,7 @@
         "d_seats": 1,
         "r_seats": 3
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -960,6 +1004,7 @@
         "d_seats": 6,
         "r_seats": 5
       },
+      "state_elasticity": 0.68,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -981,6 +1026,7 @@
         "d_seats": 1,
         "r_seats": 0
       },
+      "state_elasticity": 0.726,
       "baseline_distortion_warning": false,
       "imputed_district_count": 1,
       "imputed_district_ids": [
@@ -1004,6 +1050,7 @@
         "d_seats": 6,
         "r_seats": 4
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 2,
       "imputed_district_ids": [
@@ -1028,6 +1075,7 @@
         "d_seats": 4,
         "r_seats": 4
       },
+      "state_elasticity": 0.3,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1049,6 +1097,7 @@
         "d_seats": 1,
         "r_seats": 1
       },
+      "state_elasticity": 0.544,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1070,6 +1119,7 @@
         "d_seats": 0,
         "r_seats": 1
       },
+      "state_elasticity": 0.544,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []

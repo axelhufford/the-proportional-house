@@ -90,7 +90,24 @@ export function StateDetail({ state, meta, onClose }: Props) {
             <ShareBlock heading="Projected 2026" d={state.projected.d_share} r={state.projected.r_share} />
           </div>
           <div className="text-xs text-stone-500 mt-2">
-            Uniform swing applied: {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} points toward {meta.swing >= 0 ? 'Democrats' : 'Republicans'}.
+            {(() => {
+              const stateSwing = state.state_swing_applied ?? meta.swing;
+              const elasticity = state.state_elasticity ?? 1.0;
+              const showMultiplier = Math.abs(elasticity - 1.0) > 0.05;
+              const swingLabel = `${stateSwing >= 0 ? '+' : ''}${stateSwing.toFixed(1)} pts toward ${stateSwing >= 0 ? 'D' : 'R'}`;
+              return (
+                <>
+                  Swing applied to this state: <span className={stateSwing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>{swingLabel}</span>
+                  {showMultiplier && (
+                    <>
+                      {' '}<span className="text-stone-400">
+                        (national swing {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} × elasticity {elasticity.toFixed(2)}×)
+                      </span>
+                    </>
+                  )}
+                </>
+              );
+            })()}
           </div>
         </Section>
 

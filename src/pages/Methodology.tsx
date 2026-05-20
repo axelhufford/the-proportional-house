@@ -38,7 +38,7 @@ export function Methodology(_props: MethodologyProps) {
           <li>For each state, take its 2024 two-party House vote share as a baseline.</li>
           <li>Compute the current national generic-ballot polling margin from a weighted average of recent polls.</li>
           <li>The difference between today's generic-ballot margin and 2024's national House margin is the <em>swing</em>.</li>
-          <li>Shift each state's two-party shares by that swing (uniform swing assumption).</li>
+          <li>Shift each state's two-party shares by that swing, scaled by the state's elasticity (how much the state moved between 2020 and 2024 vs the nation as a whole).</li>
           <li>Allocate the state's seats to the projected shares using Sainte-Laguë.</li>
         </ol>
       </Section>
@@ -69,10 +69,12 @@ export function Methodology(_props: MethodologyProps) {
         <p>Each state's 2024 two-party D share is computed from the Clerk's recap as <code>d_share = D / (D + R)</code>. The national swing is</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`swing = current_generic_ballot_margin − baseline_2024_national_margin`}</pre>
         <p>where both terms are in margin points (positive = D advantage). For example, today the generic ballot sits at roughly D+{pipelineMeta?.generic_ballot?.margin?.toFixed(1) ?? '6.0'} and 2024 was R+{pipelineMeta?.baseline_2024_r_margin?.toFixed(2) ?? '2.55'}, giving a swing of about +{pipelineMeta?.swing?.toFixed(1) ?? '8.6'} points toward D.</p>
-        <p>Each state's projected D share is</p>
-        <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`projected_d_share = baseline_d_share + (swing / 2 / 100)
-projected_r_share = baseline_r_share − (swing / 2 / 100)`}</pre>
-        <p>The divide-by-2 is because a swing of N points in the <em>margin</em> shifts each party's share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don't break Sainte-Laguë.</p>
+        <p>States don't all respond to a national swing equally — California swung ~9 points toward Republicans between 2020 and 2024 while Pennsylvania barely moved. We capture that with a per-state <em>elasticity</em> coefficient: each state's D-margin shift between the 2020 and 2024 presidential elections, divided by the national average shift.</p>
+        <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`state_swing  = national_swing × elasticity_state
+projected_d_share = baseline_d_share + (state_swing / 2 / 100)
+projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
+        <p>For example, California's elasticity is 1.70 (it moved 1.7× more than national), so today's +8.9 national swing toward Democrats becomes a +15.1 swing in California — but California is already heavily D, so the marginal seats gained are small. Pennsylvania's elasticity is 0.51, so the swing applied there is +4.5 points — more conservative, reflecting Pennsylvania's reputation as a tight, hard-to-move state. Source: unweighted mean of CD-level Biden/Harris vs Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (would otherwise yield unstable or negative elasticity).</p>
+        <p>The divide-by-2 in both formulas is because a swing of N points in the <em>margin</em> shifts each party's share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don't break Sainte-Laguë.</p>
       </Section>
 
       <Section title="Sainte-Laguë allocation (with an interactive demo)">
@@ -124,7 +126,7 @@ projected_r_share = baseline_r_share − (swing / 2 / 100)`}</pre>
       <Section title="Assumptions and limitations">
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Uniform swing.</strong> We apply the same point shift to every state. Real elasticity varies (Wisconsin moves more than Wyoming). A future v2 will weight by state elasticity.
+            <strong>Single-cycle elasticity calibration.</strong> Per-state elasticities come from only one observation: the 2020→2024 presidential swing. That's the first full post-redistricting cycle, so it's the most representative single data point we have, but a single cycle is a small sample. Two real caveats follow from that. First, the model is linear: a state with elasticity 1.5 doesn't stop at the 100/0 boundary in extreme sandbox values (the clamp catches that, but the projection still saturates). Second, an idiosyncratic state event — a popular incumbent, a sudden scandal, a regional issue — shows up as elasticity but isn't really about national mood. We're not separating those signals here.
           </li>
           <li>
             <strong>Uncontested races, partially imputed.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don't reflect partisan lean (one party gets ~100% of the two-party vote). We replace those districts' House totals with the district's 2024 <em>presidential</em> two-party totals. That fix is live for Vermont (the only state with no Republican filing anywhere). Within-state uncontested districts in Florida, New York, Texas, and a handful of others still inflate their state baselines — fixing them needs per-CD presidential data with no clean fetchable source yet. Each state-detail panel labels how many of its districts were imputed.

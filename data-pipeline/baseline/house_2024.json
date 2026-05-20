@@ -25,7 +25,16 @@
         "WA"
       ],
       "method": "Replaced each uncontested district's House two-party total with that district's 2024 presidential two-party total (no down-ballot dropoff adjustment in v1).",
-      "stage": "Stage 1 \u2014 state-level cases only (VT). Within-state uncontested districts in FL/NY/TX/LA/AL/AR/MS are tracked as a deferred v2 item; they require per-CD presidential data with no clean fetchable source yet."
+      "stage": "Stage 2 \u2014 all districts with both R or D missing from the Clerk PDF recap (VT, LA-4, WA-4, WA-9). FL-20 deferred (no recorded vote total)."
+    },
+    "state_elasticity": {
+      "national_pres_swing_2020_2024_points": -5.511,
+      "source": "Unweighted mean of CD-level 2020 Biden/Trump and 2024 Harris/Trump margins from The Downballot's pres-by-CD CSV. Per-state elasticity = state_swing / national_swing.",
+      "clamp_range": [
+        0.3,
+        2.0
+      ],
+      "notes": "Negative or near-zero raw elasticities (states that swung opposite to national or barely moved) are clamped to 0.3. Extreme high values are clamped to 2.0. State-level elasticity-detail is exposed on each state record."
     },
     "notes": [
       "State-level vote totals reflect uncontested-district imputation where applied (see uncontested_imputation).",
@@ -43,6 +52,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.726,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -10.0,
+        "state_dmargin_2024": -14.0,
+        "state_swing": -4.0,
+        "elasticity_raw": 0.726,
+        "elasticity": 0.726
+      },
       "votes_2024": {
         "republican": 159550,
         "democratic": 156245,
@@ -64,6 +81,14 @@
       "actual_r_seats_119th": 5,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.7,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -25.429,
+        "state_dmargin_2024": -29.286,
+        "state_swing": -3.857,
+        "elasticity_raw": 0.7,
+        "elasticity": 0.7
+      },
       "votes_2024": {
         "republican": 1508754,
         "democratic": 518197,
@@ -85,6 +110,14 @@
       "actual_r_seats_119th": 4,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.68,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -28.0,
+        "state_dmargin_2024": -31.75,
+        "state_swing": -3.75,
+        "elasticity_raw": 0.68,
+        "elasticity": 0.68
+      },
       "votes_2024": {
         "republican": 764367,
         "democratic": 358749,
@@ -106,6 +139,14 @@
       "actual_r_seats_119th": 6,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.01,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 3.567,
+        "state_dmargin_2024": -2.0,
+        "state_swing": -5.567,
+        "elasticity_raw": 1.01,
+        "elasticity": 1.01
+      },
       "votes_2024": {
         "republican": 1680841,
         "democratic": 1551085,
@@ -127,6 +168,14 @@
       "actual_r_seats_119th": 9,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.703,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 29.654,
+        "state_dmargin_2024": 20.269,
+        "state_swing": -9.385,
+        "elasticity_raw": 1.703,
+        "elasticity": 1.703
+      },
       "votes_2024": {
         "republican": 5928084,
         "democratic": 9138709,
@@ -148,6 +197,14 @@
       "actual_r_seats_119th": 4,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.386,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 13.5,
+        "state_dmargin_2024": 11.375,
+        "state_swing": -2.125,
+        "elasticity_raw": 0.386,
+        "elasticity": 0.386
+      },
       "votes_2024": {
         "republican": 1306086,
         "democratic": 1667213,
@@ -169,6 +226,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.98,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 20.2,
+        "state_dmargin_2024": 14.8,
+        "state_swing": -5.4,
+        "elasticity_raw": 0.98,
+        "elasticity": 0.98
+      },
       "votes_2024": {
         "republican": 683089,
         "democratic": 981762,
@@ -190,6 +255,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.726,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 19.0,
+        "state_dmargin_2024": 15.0,
+        "state_swing": -4.0,
+        "elasticity_raw": 0.726,
+        "elasticity": 0.726
+      },
       "votes_2024": {
         "republican": 209606,
         "democratic": 287830,
@@ -211,6 +284,14 @@
       "actual_r_seats_119th": 20,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.702,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -2.154,
+        "state_dmargin_2024": -11.536,
+        "state_swing": -9.382,
+        "elasticity_raw": 1.702,
+        "elasticity": 1.702
+      },
       "votes_2024": {
         "republican": 5975435,
         "democratic": 4339733,
@@ -232,6 +313,14 @@
       "actual_r_seats_119th": 9,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 1.429,
+        "state_dmargin_2024": -0.214,
+        "state_swing": -1.643,
+        "elasticity_raw": 0.298,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 2702118,
         "democratic": 2434984,
@@ -253,6 +342,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.179,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 30.0,
+        "state_dmargin_2024": 23.5,
+        "state_swing": -6.5,
+        "elasticity_raw": 1.179,
+        "elasticity": 1.179
+      },
       "votes_2024": {
         "republican": 139844,
         "democratic": 330488,
@@ -274,6 +371,14 @@
       "actual_r_seats_119th": 4,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.98,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -8.35,
+        "state_dmargin_2024": -13.75,
+        "state_swing": -5.4,
+        "elasticity_raw": 0.98,
+        "elasticity": 0.98
+      },
       "votes_2024": {
         "republican": 904563,
         "democratic": 696033,
@@ -295,6 +400,14 @@
       "actual_r_seats_119th": 2,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.998,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -30.5,
+        "state_dmargin_2024": -36.0,
+        "state_swing": -5.5,
+        "elasticity_raw": 0.998,
+        "elasticity": 0.998
+      },
       "votes_2024": {
         "republican": 581168,
         "democratic": 244885,
@@ -316,6 +429,14 @@
       "actual_r_seats_119th": 3,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.067,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 18.941,
+        "state_dmargin_2024": 13.059,
+        "state_swing": -5.882,
+        "elasticity_raw": 1.067,
+        "elasticity": 1.067
+      },
       "votes_2024": {
         "republican": 2517389,
         "democratic": 2829169,
@@ -337,6 +458,14 @@
       "actual_r_seats_119th": 7,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.395,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -15.444,
+        "state_dmargin_2024": -17.622,
+        "state_swing": -2.178,
+        "elasticity_raw": 0.395,
+        "elasticity": 0.395
+      },
       "votes_2024": {
         "republican": 1668618,
         "democratic": 1103484,
@@ -358,6 +487,14 @@
       "actual_r_seats_119th": 3,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.363,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -16.0,
+        "state_dmargin_2024": -18.0,
+        "state_swing": -2.0,
+        "elasticity_raw": 0.363,
+        "elasticity": 0.363
+      },
       "votes_2024": {
         "republican": 749375,
         "democratic": 526153,
@@ -379,6 +516,14 @@
       "actual_r_seats_119th": 5,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.756,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -26.5,
+        "state_dmargin_2024": -30.667,
+        "state_swing": -4.167,
+        "elasticity_raw": 0.756,
+        "elasticity": 0.756
+      },
       "votes_2024": {
         "republican": 1392354,
         "democratic": 511998,
@@ -402,6 +547,14 @@
       "imputed_district_ids": [
         "LA-4"
       ],
+      "state_elasticity": 0.514,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -17.833,
+        "state_dmargin_2024": -20.667,
+        "state_swing": -2.833,
+        "elasticity_raw": 0.514,
+        "elasticity": 0.514
+      },
       "votes_2024": {
         "republican": 1176226,
         "democratic": 722711,
@@ -423,6 +576,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.472,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 35.0,
+        "state_dmargin_2024": 26.889,
+        "state_swing": -8.111,
+        "elasticity_raw": 1.472,
+        "elasticity": 1.472
+      },
       "votes_2024": {
         "republican": 304460,
         "democratic": 2386143,
@@ -444,6 +605,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.748,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 35.75,
+        "state_dmargin_2024": 31.625,
+        "state_swing": -4.125,
+        "elasticity_raw": 0.748,
+        "elasticity": 0.748
+      },
       "votes_2024": {
         "republican": 1017654,
         "democratic": 1863416,
@@ -465,6 +634,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.363,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 8.0,
+        "state_dmargin_2024": 6.0,
+        "state_swing": -2.0,
+        "elasticity_raw": 0.363,
+        "elasticity": 0.363
+      },
       "votes_2024": {
         "republican": 349294,
         "democratic": 446949,
@@ -486,6 +663,14 @@
       "actual_r_seats_119th": 7,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.677,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 3.808,
+        "state_dmargin_2024": 0.077,
+        "state_swing": -3.731,
+        "elasticity_raw": 0.677,
+        "elasticity": 0.677
+      },
       "votes_2024": {
         "republican": 2702653,
         "democratic": 2634228,
@@ -507,6 +692,14 @@
       "actual_r_seats_119th": 4,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 7.125,
+        "state_dmargin_2024": 5.5,
+        "state_swing": -1.625,
+        "elasticity_raw": 0.295,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 1550499,
         "democratic": 1579742,
@@ -528,6 +721,14 @@
       "actual_r_seats_119th": 6,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.34,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -15.0,
+        "state_dmargin_2024": -16.875,
+        "state_swing": -1.875,
+        "elasticity_raw": 0.34,
+        "elasticity": 0.34
+      },
       "votes_2024": {
         "republican": 1711050,
         "democratic": 1125671,
@@ -549,6 +750,14 @@
       "actual_r_seats_119th": 3,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.862,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -17.25,
+        "state_dmargin_2024": -22.0,
+        "state_swing": -4.75,
+        "elasticity_raw": 0.862,
+        "elasticity": 0.862
+      },
       "votes_2024": {
         "republican": 812799,
         "democratic": 350353,
@@ -570,6 +779,14 @@
       "actual_r_seats_119th": 2,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.544,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -17.0,
+        "state_dmargin_2024": -20.0,
+        "state_swing": -3.0,
+        "elasticity_raw": 0.544,
+        "elasticity": 0.544
+      },
       "votes_2024": {
         "republican": 350361,
         "democratic": 237496,
@@ -591,6 +808,14 @@
       "actual_r_seats_119th": 10,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -1.429,
+        "state_dmargin_2024": -2.714,
+        "state_swing": -1.286,
+        "elasticity_raw": 0.233,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 2889999,
         "democratic": 2349621,
@@ -612,6 +837,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.726,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -33.0,
+        "state_dmargin_2024": -37.0,
+        "state_swing": -4.0,
+        "elasticity_raw": 0.726,
+        "elasticity": 0.726
+      },
       "votes_2024": {
         "republican": 249101,
         "democratic": 109231,
@@ -633,6 +866,14 @@
       "actual_r_seats_119th": 3,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -19.0,
+        "state_dmargin_2024": -20.333,
+        "state_swing": -1.333,
+        "elasticity_raw": 0.242,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 591238,
         "democratic": 338154,
@@ -654,6 +895,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.907,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 7.5,
+        "state_dmargin_2024": 2.5,
+        "state_swing": -5.0,
+        "elasticity_raw": 0.907,
+        "elasticity": 0.907
+      },
       "votes_2024": {
         "republican": 373746,
         "democratic": 430218,
@@ -675,6 +924,14 @@
       "actual_r_seats_119th": 3,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.951,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 18.75,
+        "state_dmargin_2024": 8.0,
+        "state_swing": -10.75,
+        "elasticity_raw": 1.951,
+        "elasticity": 1.951
+      },
       "votes_2024": {
         "republican": 1828853,
         "democratic": 2115843,
@@ -696,6 +953,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.786,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 10.0,
+        "state_dmargin_2024": 5.667,
+        "state_swing": -4.333,
+        "elasticity_raw": 0.786,
+        "elasticity": 0.786
+      },
       "votes_2024": {
         "republican": 402776,
         "democratic": 493722,
@@ -717,6 +982,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.998,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 2.75,
+        "state_dmargin_2024": -2.75,
+        "state_swing": -5.5,
+        "elasticity_raw": 0.998,
+        "elasticity": 0.998
+      },
       "votes_2024": {
         "republican": 692714,
         "democratic": 534115,
@@ -738,6 +1011,14 @@
       "actual_r_seats_119th": 7,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.989,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 27.308,
+        "state_dmargin_2024": 16.346,
+        "state_swing": -10.962,
+        "elasticity_raw": 1.989,
+        "elasticity": 1.989
+      },
       "votes_2024": {
         "republican": 3039739,
         "democratic": 4330117,
@@ -759,6 +1040,14 @@
       "actual_r_seats_119th": 10,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.399,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -7.733,
+        "state_dmargin_2024": -9.93,
+        "state_swing": -2.197,
+        "elasticity_raw": 0.399,
+        "elasticity": 0.399
+      },
       "votes_2024": {
         "republican": 3104290,
         "democratic": 2382078,
@@ -780,6 +1069,14 @@
       "actual_r_seats_119th": 5,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -33.6,
+        "state_dmargin_2024": -35.2,
+        "state_swing": -1.6,
+        "elasticity_raw": 0.29,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 834553,
         "democratic": 397856,
@@ -801,6 +1098,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 16.333,
+        "state_dmargin_2024": 14.833,
+        "state_swing": -1.5,
+        "elasticity_raw": 0.272,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 912337,
         "democratic": 1151394,
@@ -822,6 +1127,14 @@
       "actual_r_seats_119th": 10,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.509,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 1.412,
+        "state_dmargin_2024": -1.394,
+        "state_swing": -2.806,
+        "elasticity_raw": 0.509,
+        "elasticity": 0.509
+      },
       "votes_2024": {
         "republican": 3481113,
         "democratic": 3338371,
@@ -843,6 +1156,14 @@
       "actual_r_seats_119th": 0,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.361,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 21.5,
+        "state_dmargin_2024": 14.0,
+        "state_swing": -7.5,
+        "elasticity_raw": 1.361,
+        "elasticity": 1.361
+      },
       "votes_2024": {
         "republican": 180123,
         "democratic": 292791,
@@ -864,6 +1185,14 @@
       "actual_r_seats_119th": 6,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.089,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -11.286,
+        "state_dmargin_2024": -17.286,
+        "state_swing": -6.0,
+        "elasticity_raw": 1.089,
+        "elasticity": 1.089
+      },
       "votes_2024": {
         "republican": 1475329,
         "democratic": 964448,
@@ -885,6 +1214,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.544,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -26.0,
+        "state_dmargin_2024": -29.0,
+        "state_swing": -3.0,
+        "elasticity_raw": 0.544,
+        "elasticity": 0.544
+      },
       "votes_2024": {
         "republican": 303630,
         "democratic": 117818,
@@ -906,6 +1243,14 @@
       "actual_r_seats_119th": 8,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.847,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -22.222,
+        "state_dmargin_2024": -26.889,
+        "state_swing": -4.667,
+        "elasticity_raw": 0.847,
+        "elasticity": 0.847
+      },
       "votes_2024": {
         "republican": 1884691,
         "democratic": 977870,
@@ -927,6 +1272,14 @@
       "actual_r_seats_119th": 25,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 1.366,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -2.816,
+        "state_dmargin_2024": -10.342,
+        "state_swing": -7.526,
+        "elasticity_raw": 1.366,
+        "elasticity": 1.366
+      },
       "votes_2024": {
         "republican": 6234918,
         "democratic": 4310913,
@@ -948,6 +1301,14 @@
       "actual_r_seats_119th": 4,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -20.5,
+        "state_dmargin_2024": -21.75,
+        "state_swing": -1.25,
+        "elasticity_raw": 0.227,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 909332,
         "democratic": 471051,
@@ -969,6 +1330,14 @@
       "actual_r_seats_119th": 5,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.68,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 10.818,
+        "state_dmargin_2024": 7.073,
+        "state_swing": -3.745,
+        "elasticity_raw": 0.68,
+        "elasticity": 0.68
+      },
       "votes_2024": {
         "republican": 2108450,
         "democratic": 2274922,
@@ -992,6 +1361,14 @@
       "imputed_district_ids": [
         "VT-AL"
       ],
+      "state_elasticity": 0.726,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 35.0,
+        "state_dmargin_2024": 31.0,
+        "state_swing": -4.0,
+        "elasticity_raw": 0.726,
+        "elasticity": 0.726
+      },
       "votes_2024": {
         "republican": 74300,
         "democratic": 144098,
@@ -1016,6 +1393,14 @@
         "WA-4",
         "WA-9"
       ],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 18.6,
+        "state_dmargin_2024": 17.5,
+        "state_swing": -1.1,
+        "elasticity_raw": 0.2,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 1558041,
         "democratic": 2190465,
@@ -1037,6 +1422,14 @@
       "actual_r_seats_119th": 6,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.3,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": 1.75,
+        "state_dmargin_2024": 0.25,
+        "state_swing": -1.5,
+        "elasticity_raw": 0.272,
+        "elasticity": 0.3
+      },
       "votes_2024": {
         "republican": 1701860,
         "democratic": 1603350,
@@ -1058,6 +1451,14 @@
       "actual_r_seats_119th": 2,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.544,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -39.0,
+        "state_dmargin_2024": -42.0,
+        "state_swing": -3.0,
+        "elasticity_raw": 0.544,
+        "elasticity": 0.544
+      },
       "votes_2024": {
         "republican": 496681,
         "democratic": 200813,
@@ -1079,6 +1480,14 @@
       "actual_r_seats_119th": 1,
       "imputed_district_count": 0,
       "imputed_district_ids": [],
+      "state_elasticity": 0.544,
+      "state_elasticity_detail": {
+        "state_dmargin_2020": -43.0,
+        "state_dmargin_2024": -46.0,
+        "state_swing": -3.0,
+        "elasticity_raw": 0.544,
+        "elasticity": 0.544
+      },
       "votes_2024": {
         "republican": 184680,
         "democratic": 60778,

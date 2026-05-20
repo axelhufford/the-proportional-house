@@ -70,15 +70,17 @@ def project_states(baseline_states: list[dict], swing_points: float, method: str
         seats = s["seats"]
         baseline_d = s["two_party_share_2024"]["d_share"]
         baseline_r = s["two_party_share_2024"]["r_share"]
+        elasticity = float(s.get("state_elasticity", 1.0))
+        state_swing = swing_points * elasticity
         if s.get("baseline_distortion_warning"):
-            # When a state has one party absent from the 2024 House baseline (e.g.,
-            # Vermont with no R candidate), the share is meaningless for projecting
-            # 2026. Treat the projected share as the swing applied to a neutral
-            # 50/50, NOT to the distorted baseline. The flag stays on so the UI
-            # warns the user.
-            proj_d, proj_r = apply_uniform_swing(0.5, 0.5, swing_points)
+            # When a state has one party absent from the 2024 House baseline
+            # (and we haven't imputed via pres-by-CD), the share is meaningless
+            # for projecting 2026. Treat the projected share as the swing
+            # applied to a neutral 50/50, NOT to the distorted baseline. The
+            # flag stays on so the UI warns the user.
+            proj_d, proj_r = apply_uniform_swing(0.5, 0.5, state_swing)
         else:
-            proj_d, proj_r = apply_uniform_swing(baseline_d, baseline_r, swing_points)
+            proj_d, proj_r = apply_uniform_swing(baseline_d, baseline_r, state_swing)
         result = allocate(
             AllocationInput(
                 seats=seats,
@@ -106,6 +108,8 @@ def project_states(baseline_states: list[dict], swing_points: float, method: str
                 "d_seats": result.d_seats,
                 "r_seats": result.r_seats,
             },
+            "state_elasticity": round(elasticity, 3),
+            "state_swing_applied": round(state_swing, 3),
             "baseline_distortion_warning": s.get("baseline_distortion_warning", False),
             "imputed_district_count": s.get("imputed_district_count", 0),
             "imputed_district_ids": s.get("imputed_district_ids", []),
@@ -145,6 +149,7 @@ def retrospective_states(baseline_states: list[dict], method: str = "sainte-lagu
             },
             "baseline_2024": {"d_share": round(d, 4), "r_share": round(r, 4)},
             "projected_pr": {"d_seats": result.d_seats, "r_seats": result.r_seats},
+            "state_elasticity": round(float(s.get("state_elasticity", 1.0)), 3),
             "baseline_distortion_warning": s.get("baseline_distortion_warning", False),
             "imputed_district_count": s.get("imputed_district_count", 0),
             "imputed_district_ids": s.get("imputed_district_ids", []),

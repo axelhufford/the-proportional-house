@@ -240,6 +240,69 @@ def parse_recap(pdf_path: Path) -> Dict[str, Dict[str, int]]:
     return merged
 
 
+def _compute_state_elasticities() -> dict:
+    """Compute per-state pres swing 2020→2024 and elasticity coefficients
+    from The Downballot's pres-by-CD percentages.
+
+    Aggregation: unweighted mean of CD-level D-margin within each state.
+    Congressional districts are roughly equipopulated (~760k each), so the
+    unweighted mean is within ~1 point of the true population-weighted state
+    margin. The clamp [0.3, 2.0] handles three classes of outliers:
+      - States whose 2020→2024 swing was tiny relative to the national 5.9-
+        point shift (near-zero numerator → unstable elasticity).
+      - States that swung opposite to the national tide (a handful — would
+        otherwise yield negative elasticity, which is well-defined math but
+        produces backward projections).
+      - Big outliers (e.g., NY moved >10 pts; FL moved similarly) which can
+        produce elasticities >2 and over-amplify in extreme sandbox values.
+
+    Returns a dict with:
+      - `national_swing` (float): aggregate national D-margin shift 2020→2024.
+      - `states` (dict): keyed by state CODE; each value has
+          { "state_dmargin_2020", "state_dmargin_2024",
+            "state_swing", "elasticity_raw", "elasticity" }.
+    """
+    if not PRES_BY_CD_PATH.exists():
+        return {"national_swing": 0.0, "states": {}}
+    with PRES_BY_CD_PATH.open() as f:
+        pres = json.load(f)
+    districts = pres.get("districts", {})
+
+    by_state: Dict[str, list] = {}
+    all_d_2020: list[float] = []
+    all_d_2024: list[float] = []
+    for cd, p in districts.items():
+        state = cd.split("-", 1)[0]
+        d2020 = float(p["biden_pct_2020"]) - float(p["trump_pct_2020"])
+        d2024 = float(p["harris_pct"]) - float(p["trump_pct"])
+        by_state.setdefault(state, []).append((d2020, d2024))
+        all_d_2020.append(d2020)
+        all_d_2024.append(d2024)
+
+    nat_d_2020 = sum(all_d_2020) / len(all_d_2020)
+    nat_d_2024 = sum(all_d_2024) / len(all_d_2024)
+    national_swing = nat_d_2024 - nat_d_2020  # negative = R-ward
+
+    states_out: Dict[str, dict] = {}
+    for state, pairs in by_state.items():
+        d2020 = sum(p[0] for p in pairs) / len(pairs)
+        d2024 = sum(p[1] for p in pairs) / len(pairs)
+        swing = d2024 - d2020
+        if abs(national_swing) < 0.5:
+            raw = 1.0
+        else:
+            raw = swing / national_swing
+        elasticity = max(0.3, min(2.0, raw))
+        states_out[state] = {
+            "state_dmargin_2020": round(d2020, 3),
+            "state_dmargin_2024": round(d2024, 3),
+            "state_swing": round(swing, 3),
+            "elasticity_raw": round(raw, 3),
+            "elasticity": round(elasticity, 3),
+        }
+    return {"national_swing": round(national_swing, 3), "states": states_out}
+
+
 def _apply_uncontested_imputation(state_totals: Dict[str, Dict[str, int]]) -> Dict[str, dict]:
     """For each uncontested district, replace the district's two-party House
     contribution to its state total with the district's 2024 presidential
@@ -344,6 +407,14 @@ def main(force_download: bool = False) -> None:
     n_imputed = sum(m["imputed_district_count"] for m in imputation_meta.values())
     print(f"  Imputed {n_imputed} district(s) across {len(imputation_meta)} state(s)")
 
+    print("Computing state elasticities (pres swing 2020→2024)...")
+    elasticity_data = _compute_state_elasticities()
+    nat_swing = elasticity_data.get("national_swing", 0.0)
+    print(f"  National D-margin swing 2020→2024: {nat_swing:+.2f} pts")
+    print(f"  Elasticity range across {len(elasticity_data.get('states', {}))} states: "
+          f"{min((s['elasticity'] for s in elasticity_data['states'].values()), default=0):.2f} – "
+          f"{max((s['elasticity'] for s in elasticity_data['states'].values()), default=0):.2f}")
+
     states_out = []
     nat_r = nat_d = nat_total = 0
     nat_actual_d = nat_actual_r = 0
@@ -369,6 +440,7 @@ def main(force_download: bool = False) -> None:
             raise RuntimeError(
                 f"{code}: Wikipedia seats {comp['seats']} != apportionment {SEATS_2024[code]}"
             )
+        elasticity_entry = elasticity_data.get("states", {}).get(code, {})
         states_out.append({
             "fips": fips,
             "code": code,
@@ -378,6 +450,8 @@ def main(force_download: bool = False) -> None:
             "actual_r_seats_119th": comp["r_seats"],
             "imputed_district_count": imputed.get("imputed_district_count", 0),
             "imputed_district_ids": imputed.get("imputed_district_ids", []),
+            "state_elasticity": elasticity_entry.get("elasticity", 1.0),
+            "state_elasticity_detail": elasticity_entry,
             "votes_2024": {
                 "republican": r,
                 "democratic": d,
@@ -422,7 +496,13 @@ def main(force_download: bool = False) -> None:
                 "districts_imputed": n_imputed,
                 "states_affected": sorted([STATE_CODES[s] for s in imputation_meta]),
                 "method": "Replaced each uncontested district's House two-party total with that district's 2024 presidential two-party total (no down-ballot dropoff adjustment in v1).",
-                "stage": "Stage 1 — state-level cases only (VT). Within-state uncontested districts in FL/NY/TX/LA/AL/AR/MS are tracked as a deferred v2 item; they require per-CD presidential data with no clean fetchable source yet.",
+                "stage": "Stage 2 — all districts with both R or D missing from the Clerk PDF recap (VT, LA-4, WA-4, WA-9). FL-20 deferred (no recorded vote total).",
+            },
+            "state_elasticity": {
+                "national_pres_swing_2020_2024_points": elasticity_data.get("national_swing"),
+                "source": "Unweighted mean of CD-level 2020 Biden/Trump and 2024 Harris/Trump margins from The Downballot's pres-by-CD CSV. Per-state elasticity = state_swing / national_swing.",
+                "clamp_range": [0.3, 2.0],
+                "notes": "Negative or near-zero raw elasticities (states that swung opposite to national or barely moved) are clamped to 0.3. Extreme high values are clamped to 2.0. State-level elasticity-detail is exposed on each state record.",
             },
             "notes": [
                 "State-level vote totals reflect uncontested-district imputation where applied (see uncontested_imputation).",
