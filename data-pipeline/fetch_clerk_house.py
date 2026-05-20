@@ -285,18 +285,32 @@ def _apply_uncontested_imputation(state_totals: Dict[str, Dict[str, int]]) -> Di
             continue
 
         totals = state_totals[state_name]
-        harris = pres["harris_votes"]
-        trump = pres["trump_votes"]
+        harris_pct = pres["harris_pct"]
+        trump_pct = pres["trump_pct"]
 
-        # Subtract the unopposed candidate's actual house votes from the
-        # winning party's state total, then add the presidential D and R
-        # totals for the district.
+        # The Downballot CSV gives percentages of total district pres votes.
+        # Convert to a counterfactual two-party split of the district's House
+        # turnout (using `unopposed_votes` as a proxy for district turnout).
+        # Renormalize to two-party so the totals sum exactly to the district
+        # turnout we're replacing.
+        two_party_pct = harris_pct + trump_pct
+        if two_party_pct <= 0:
+            print(f"  Skipping {cd}: degenerate pres data ({pres!r})")
+            continue
+        d_share = harris_pct / two_party_pct
+        r_share = trump_pct / two_party_pct
+        counterfactual_d = int(round(d_share * unopposed_votes))
+        counterfactual_r = int(round(r_share * unopposed_votes))
+
+        # Subtract the unopposed candidate's actual House votes from the
+        # winning party's state total, then add the counterfactual D and R
+        # for the district.
         if unopposed_party == "R":
             totals["Republican"] -= unopposed_votes
         elif unopposed_party == "D":
             totals["Democratic"] -= unopposed_votes
-        totals["Republican"] += trump
-        totals["Democratic"] += harris
+        totals["Republican"] += counterfactual_r
+        totals["Democratic"] += counterfactual_d
 
         # Other / Total adjustments: keep "Other" the same (we don't touch
         # third-party votes in the district); recompute Total as R+D+others.
@@ -311,7 +325,11 @@ def _apply_uncontested_imputation(state_totals: Dict[str, Dict[str, int]]) -> Di
         )
         meta["imputed_district_count"] += 1
         meta["imputed_district_ids"].append(cd)
-        print(f"  Imputed {cd}: missing {missing_party} → pres D {harris:,} / R {trump:,} replaces unopposed-{unopposed_party} {unopposed_votes:,}")
+        print(
+            f"  Imputed {cd}: missing {missing_party} | pres D {harris_pct:.1f}% / R {trump_pct:.1f}% "
+            f"→ counterfactual D {counterfactual_d:,} / R {counterfactual_r:,} "
+            f"(replaces unopposed-{unopposed_party} {unopposed_votes:,})"
+        )
 
     return metadata
 

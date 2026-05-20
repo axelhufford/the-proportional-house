@@ -7,10 +7,10 @@
     "composition_source": "Wikipedia, 2024 United States House of Representatives elections \u2014 'Per state' summary table.",
     "composition_source_url": "https://en.wikipedia.org/wiki/2024_United_States_House_of_Representatives_elections",
     "national_house_popular_vote": {
-      "republican": 74510259,
-      "democratic": 70588723,
-      "total": 149680209,
-      "r_margin_points": 2.62
+      "republican": 74465164,
+      "democratic": 70497030,
+      "total": 149543421,
+      "r_margin_points": 2.653
     },
     "national_composition": {
       "d_seats": 215,
@@ -989,14 +989,14 @@
         "VT-AL"
       ],
       "votes_2024": {
-        "republican": 119395,
-        "democratic": 235791,
+        "republican": 74300,
+        "democratic": 144098,
         "other": 154487,
-        "total": 509673
+        "total": 372885
       },
       "two_party_share_2024": {
-        "d_share": 0.663852,
-        "r_share": 0.336148
+        "d_share": 0.659795,
+        "r_share": 0.340205
       },
       "baseline_distortion_warning": false
     },

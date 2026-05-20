@@ -1,11 +1,4358 @@
 {
-  "$comment": "2024 U.S. presidential election two-party results by congressional district. Stage 1 covers only the CDs in uncontested_2024.json (currently just VT-AL). Expanding to all 435 CDs is a deferred v2 task; doing it properly requires either (a) a clean fetchable dataset (no such public source identified yet — Wikipedia's per-state pres election articles each have a 'By congressional district' section, but format varies and 50 articles must be scraped) or (b) hand-curating from a citable single-page compilation.",
-  "source": "Wikipedia, '2024 United States presidential election in X' per-state articles. Each entry below cites the specific URL the values came from in the entry's `source_url`.",
+  "$comment": "2024 (and 2020) presidential vote shares per congressional district. Used for imputing the two-party split in uncontested 2024 House races. Percentages are of total votes cast in that district; sums to slightly less than 100 because third-party + write-ins are excluded.",
+  "source": "The Downballot \u2014 'The Downballot's calculations of presidential election results by congressional district.'",
+  "source_page": "https://www.the-downballot.com/p/the-downballots-calculations-of-presidential",
+  "source_csv_url": "https://docs.google.com/spreadsheets/d/1ng1i_Dm_RMDnEvauH44pgE6JCUsapcuu8F2pCfeLWFo/export?format=csv",
   "districts": {
+    "AK-AL": {
+      "incumbent_2024": "Nick Begich",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 55.0,
+      "margin_2024": -13.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -10.0
+    },
+    "AL-1": {
+      "incumbent_2024": "Barry Moore",
+      "incumbent_party_2024": "R",
+      "harris_pct": 22.0,
+      "trump_pct": 77.0,
+      "margin_2024": -55.0,
+      "biden_pct_2020": 24.0,
+      "trump_pct_2020": 75.0,
+      "margin_2020": -50.0
+    },
+    "AL-2": {
+      "incumbent_2024": "Shomari Figures",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 45.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 12.0
+    },
+    "AL-3": {
+      "incumbent_2024": "Mike Rogers",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 73.0,
+      "margin_2024": -47.0,
+      "biden_pct_2020": 29.0,
+      "trump_pct_2020": 70.0,
+      "margin_2020": -41.0
+    },
+    "AL-4": {
+      "incumbent_2024": "Robert Aderholt",
+      "incumbent_party_2024": "R",
+      "harris_pct": 16.0,
+      "trump_pct": 83.0,
+      "margin_2024": -66.0,
+      "biden_pct_2020": 18.0,
+      "trump_pct_2020": 81.0,
+      "margin_2020": -62.0
+    },
+    "AL-5": {
+      "incumbent_2024": "Dale Strong",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -27.0
+    },
+    "AL-6": {
+      "incumbent_2024": "Gary Palmer",
+      "incumbent_party_2024": "R",
+      "harris_pct": 30.0,
+      "trump_pct": 69.0,
+      "margin_2024": -39.0,
+      "biden_pct_2020": 30.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -38.0
+    },
+    "AL-7": {
+      "incumbent_2024": "Terri Sewell",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 38.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 29.0
+    },
+    "AR-1": {
+      "incumbent_2024": "Rick Crawford",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 72.0,
+      "margin_2024": -45.0,
+      "biden_pct_2020": 28.0,
+      "trump_pct_2020": 69.0,
+      "margin_2020": -41.0
+    },
+    "AR-2": {
+      "incumbent_2024": "French Hill",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 57.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -13.0
+    },
+    "AR-3": {
+      "incumbent_2024": "Steve Womack",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 61.0,
+      "margin_2024": -25.0,
+      "biden_pct_2020": 37.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -23.0
+    },
+    "AR-4": {
+      "incumbent_2024": "Bruce Westerman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 29.0,
+      "trump_pct": 69.0,
+      "margin_2024": -40.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 66.0,
+      "margin_2020": -35.0
+    },
+    "AZ-1": {
+      "incumbent_2024": "David Schweikert",
+      "incumbent_party_2024": "R",
+      "harris_pct": 48.0,
+      "trump_pct": 51.0,
+      "margin_2024": -3.0,
+      "biden_pct_2020": 50.0,
+      "trump_pct_2020": 49.0,
+      "margin_2020": 1.0
+    },
+    "AZ-2": {
+      "incumbent_2024": "Eli Crane",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -15.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -8.0
+    },
+    "AZ-3": {
+      "incumbent_2024": "Yassamin Ansari",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 29.0,
+      "margin_2024": 40.0,
+      "biden_pct_2020": 75.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 51.0
+    },
+    "AZ-4": {
+      "incumbent_2024": "Greg Stanton",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 46.0,
+      "margin_2024": 7.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 10.0
+    },
+    "AZ-5": {
+      "incumbent_2024": "Andy Biggs",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "AZ-6": {
+      "incumbent_2024": "Juan Ciscomani",
+      "incumbent_party_2024": "R",
+      "harris_pct": 49.0,
+      "trump_pct": 50.0,
+      "margin_2024": -1.0,
+      "biden_pct_2020": 49.3,
+      "trump_pct_2020": 49.2,
+      "margin_2020": 0.1
+    },
+    "AZ-7": {
+      "incumbent_2024": "Adelita Grijalva",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 38.0,
+      "margin_2024": 22.0,
+      "biden_pct_2020": 66.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 33.0
+    },
+    "AZ-8": {
+      "incumbent_2024": "Abe Hamadeh",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 56.0,
+      "margin_2020": -14.0
+    },
+    "AZ-9": {
+      "incumbent_2024": "Paul Gosar",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 65.0,
+      "margin_2024": -31.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -26.0
+    },
+    "CA-1": {
+      "incumbent_2024": "VACANT (LaMalfa)",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 61.0,
+      "margin_2024": -25.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -19.0
+    },
+    "CA-2": {
+      "incumbent_2024": "Jared Huffman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 26.0,
+      "margin_2024": 45.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 49.0
+    },
+    "CA-3": {
+      "incumbent_2024": "Kevin Kiley",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 50.0,
+      "margin_2024": -4.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 50.0,
+      "margin_2020": -2.0
+    },
+    "CA-4": {
+      "incumbent_2024": "Mike Thompson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 64.0,
+      "trump_pct": 33.0,
+      "margin_2024": 31.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 30.0,
+      "margin_2020": 37.0
+    },
+    "CA-5": {
+      "incumbent_2024": "Tom McClintock",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 58.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -12.0
+    },
+    "CA-6": {
+      "incumbent_2024": "Ami Bera",
+      "incumbent_party_2024": "D",
+      "harris_pct": 55.0,
+      "trump_pct": 41.0,
+      "margin_2024": 14.0,
+      "biden_pct_2020": 58.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 18.0
+    },
+    "CA-7": {
+      "incumbent_2024": "Doris Matsui",
+      "incumbent_party_2024": "D",
+      "harris_pct": 63.0,
+      "trump_pct": 33.0,
+      "margin_2024": 30.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 30.0,
+      "margin_2020": 37.0
+    },
+    "CA-8": {
+      "incumbent_2024": "John Garamendi",
+      "incumbent_party_2024": "D",
+      "harris_pct": 70.0,
+      "trump_pct": 27.0,
+      "margin_2024": 44.0,
+      "biden_pct_2020": 76.0,
+      "trump_pct_2020": 22.0,
+      "margin_2020": 54.0
+    },
+    "CA-9": {
+      "incumbent_2024": "Josh Harder",
+      "incumbent_party_2024": "D",
+      "harris_pct": 48.0,
+      "trump_pct": 49.0,
+      "margin_2024": -2.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 13.0
+    },
+    "CA-10": {
+      "incumbent_2024": "Mark DeSaulnier",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 31.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 69.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 39.0
+    },
+    "CA-11": {
+      "incumbent_2024": "Nancy Pelosi",
+      "incumbent_party_2024": "D",
+      "harris_pct": 82.0,
+      "trump_pct": 14.0,
+      "margin_2024": 68.0,
+      "biden_pct_2020": 86.0,
+      "trump_pct_2020": 12.0,
+      "margin_2020": 75.0
+    },
+    "CA-12": {
+      "incumbent_2024": "Lateefah Simon",
+      "incumbent_party_2024": "D",
+      "harris_pct": 85.0,
+      "trump_pct": 11.0,
+      "margin_2024": 74.0,
+      "biden_pct_2020": 89.0,
+      "trump_pct_2020": 9.0,
+      "margin_2020": 81.0
+    },
+    "CA-13": {
+      "incumbent_2024": "Adam Gray",
+      "incumbent_party_2024": "D",
+      "harris_pct": 46.0,
+      "trump_pct": 51.0,
+      "margin_2024": -5.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "CA-14": {
+      "incumbent_2024": "VACANT (Swalwell)",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 30.0,
+      "margin_2024": 35.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 45.0
+    },
+    "CA-15": {
+      "incumbent_2024": "Kevin Mullin",
+      "incumbent_party_2024": "D",
+      "harris_pct": 72.0,
+      "trump_pct": 24.0,
+      "margin_2024": 48.0,
+      "biden_pct_2020": 78.0,
+      "trump_pct_2020": 20.0,
+      "margin_2020": 57.0
+    },
+    "CA-16": {
+      "incumbent_2024": "Sam Liccardo",
+      "incumbent_party_2024": "D",
+      "harris_pct": 72.0,
+      "trump_pct": 24.0,
+      "margin_2024": 49.0,
+      "biden_pct_2020": 75.0,
+      "trump_pct_2020": 22.0,
+      "margin_2020": 53.0
+    },
+    "CA-17": {
+      "incumbent_2024": "Ro Khanna",
+      "incumbent_party_2024": "D",
+      "harris_pct": 67.0,
+      "trump_pct": 29.0,
+      "margin_2024": 38.0,
+      "biden_pct_2020": 73.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 47.0
+    },
+    "CA-18": {
+      "incumbent_2024": "Zoe Lofgren",
+      "incumbent_party_2024": "D",
+      "harris_pct": 63.0,
+      "trump_pct": 34.0,
+      "margin_2024": 30.0,
+      "biden_pct_2020": 71.0,
+      "trump_pct_2020": 27.0,
+      "margin_2020": 44.0
+    },
+    "CA-19": {
+      "incumbent_2024": "Jimmy Panetta",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 31.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 69.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 40.0
+    },
+    "CA-20": {
+      "incumbent_2024": "Vince Fong",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 64.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -25.0
+    },
+    "CA-21": {
+      "incumbent_2024": "Jim Costa",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 47.0,
+      "margin_2024": 4.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 20.0
+    },
+    "CA-22": {
+      "incumbent_2024": "David Valadao",
+      "incumbent_party_2024": "R",
+      "harris_pct": 46.0,
+      "trump_pct": 52.0,
+      "margin_2024": -6.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 13.0
+    },
+    "CA-23": {
+      "incumbent_2024": "Jay Obernolte",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 57.0,
+      "margin_2024": -17.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -10.0
+    },
+    "CA-24": {
+      "incumbent_2024": "Salud Carbajal",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 36.0,
+      "margin_2024": 25.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 29.0
+    },
+    "CA-25": {
+      "incumbent_2024": "Raul Ruiz",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 48.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 41.0,
+      "margin_2020": 15.0
+    },
+    "CA-26": {
+      "incumbent_2024": "Julia Brownley",
+      "incumbent_party_2024": "D",
+      "harris_pct": 55.0,
+      "trump_pct": 42.0,
+      "margin_2024": 13.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 20.0
+    },
+    "CA-27": {
+      "incumbent_2024": "George Whitesides",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 47.0,
+      "margin_2024": 4.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 12.0
+    },
+    "CA-28": {
+      "incumbent_2024": "Judy Chu",
+      "incumbent_party_2024": "D",
+      "harris_pct": 62.0,
+      "trump_pct": 35.0,
+      "margin_2024": 27.0,
+      "biden_pct_2020": 66.0,
+      "trump_pct_2020": 32.0,
+      "margin_2020": 34.0
+    },
+    "CA-29": {
+      "incumbent_2024": "Luz Rivas",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 31.0,
+      "margin_2024": 35.0,
+      "biden_pct_2020": 75.0,
+      "trump_pct_2020": 23.0,
+      "margin_2020": 51.0
+    },
+    "CA-30": {
+      "incumbent_2024": "Laura Friedman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 28.0,
+      "margin_2024": 41.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 46.0
+    },
+    "CA-31": {
+      "incumbent_2024": "Gil Cisneros",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 40.0,
+      "margin_2024": 17.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 31.0
+    },
+    "CA-32": {
+      "incumbent_2024": "Brad Sherman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 64.0,
+      "trump_pct": 33.0,
+      "margin_2024": 31.0,
+      "biden_pct_2020": 69.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 41.0
+    },
+    "CA-33": {
+      "incumbent_2024": "Pete Aguilar",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 44.0,
+      "margin_2024": 9.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 25.0
+    },
+    "CA-34": {
+      "incumbent_2024": "Jimmy Gomez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 73.0,
+      "trump_pct": 22.0,
+      "margin_2024": 51.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 17.0,
+      "margin_2020": 64.0
+    },
+    "CA-35": {
+      "incumbent_2024": "Norma Torres",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 43.0,
+      "margin_2024": 10.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 28.0
+    },
+    "CA-36": {
+      "incumbent_2024": "Ted Lieu",
+      "incumbent_party_2024": "D",
+      "harris_pct": 68.0,
+      "trump_pct": 29.0,
+      "margin_2024": 39.0,
+      "biden_pct_2020": 71.0,
+      "trump_pct_2020": 27.0,
+      "margin_2020": 44.0
+    },
+    "CA-37": {
+      "incumbent_2024": "Sydney Kamlager-Dove",
+      "incumbent_party_2024": "D",
+      "harris_pct": 79.0,
+      "trump_pct": 18.0,
+      "margin_2024": 60.0,
+      "biden_pct_2020": 86.0,
+      "trump_pct_2020": 12.0,
+      "margin_2020": 73.0
+    },
+    "CA-38": {
+      "incumbent_2024": "Linda Sanchez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 56.0,
+      "trump_pct": 40.0,
+      "margin_2024": 16.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 30.0
+    },
+    "CA-39": {
+      "incumbent_2024": "Mark Takano",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 44.0,
+      "margin_2024": 10.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 26.0
+    },
+    "CA-40": {
+      "incumbent_2024": "Young Kim",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 49.0,
+      "margin_2024": -2.0,
+      "biden_pct_2020": 50.0,
+      "trump_pct_2020": 48.0,
+      "margin_2020": 2.0
+    },
+    "CA-41": {
+      "incumbent_2024": "Ken Calvert",
+      "incumbent_party_2024": "R",
+      "harris_pct": 46.0,
+      "trump_pct": 52.0,
+      "margin_2024": -6.0,
+      "biden_pct_2020": 49.0,
+      "trump_pct_2020": 50.0,
+      "margin_2020": -1.0
+    },
+    "CA-42": {
+      "incumbent_2024": "Robert Garcia",
+      "incumbent_party_2024": "D",
+      "harris_pct": 64.0,
+      "trump_pct": 32.0,
+      "margin_2024": 32.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 46.0
+    },
+    "CA-43": {
+      "incumbent_2024": "Maxine Waters",
+      "incumbent_party_2024": "D",
+      "harris_pct": 73.0,
+      "trump_pct": 24.0,
+      "margin_2024": 49.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 17.0,
+      "margin_2020": 64.0
+    },
+    "CA-44": {
+      "incumbent_2024": "Nanette Barragan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 32.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 73.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 48.0
+    },
+    "CA-45": {
+      "incumbent_2024": "Derek Tran",
+      "incumbent_party_2024": "D",
+      "harris_pct": 49.0,
+      "trump_pct": 48.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 6.0
+    },
+    "CA-46": {
+      "incumbent_2024": "Lou Correa",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 40.0,
+      "margin_2024": 18.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 30.0
+    },
+    "CA-47": {
+      "incumbent_2024": "Dave Min",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 46.0,
+      "margin_2024": 4.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "CA-48": {
+      "incumbent_2024": "Darrell Issa",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 56.0,
+      "margin_2024": -15.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -12.0
+    },
+    "CA-49": {
+      "incumbent_2024": "Mike Levin",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 45.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "CA-50": {
+      "incumbent_2024": "Scott Peters",
+      "incumbent_party_2024": "D",
+      "harris_pct": 63.0,
+      "trump_pct": 34.0,
+      "margin_2024": 30.0,
+      "biden_pct_2020": 65.0,
+      "trump_pct_2020": 32.0,
+      "margin_2020": 33.0
+    },
+    "CA-51": {
+      "incumbent_2024": "Sara Jacobs",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 37.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 27.0
+    },
+    "CA-52": {
+      "incumbent_2024": "Juan Vargas",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 38.0,
+      "margin_2024": 21.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 31.0,
+      "margin_2020": 37.0
+    },
+    "CO-1": {
+      "incumbent_2024": "Diana DeGette",
+      "incumbent_party_2024": "D",
+      "harris_pct": 77.0,
+      "trump_pct": 21.0,
+      "margin_2024": 56.0,
+      "biden_pct_2020": 80.0,
+      "trump_pct_2020": 18.0,
+      "margin_2020": 61.0
+    },
+    "CO-2": {
+      "incumbent_2024": "Joe Neguse",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 29.0,
+      "margin_2024": 40.0,
+      "biden_pct_2020": 69.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 40.0
+    },
+    "CO-3": {
+      "incumbent_2024": "Jeff Hurd",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 54.0,
+      "margin_2024": -10.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -8.0
+    },
+    "CO-4": {
+      "incumbent_2024": "Lauren Boebert",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 58.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -19.0
+    },
+    "CO-5": {
+      "incumbent_2024": "Jeff Crank",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 53.0,
+      "margin_2024": -9.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -10.0
+    },
+    "CO-6": {
+      "incumbent_2024": "Jason Crow",
+      "incumbent_party_2024": "D",
+      "harris_pct": 58.0,
+      "trump_pct": 39.0,
+      "margin_2024": 20.0,
+      "biden_pct_2020": 61.0,
+      "trump_pct_2020": 37.0,
+      "margin_2020": 24.0
+    },
+    "CO-7": {
+      "incumbent_2024": "Brittany Pettersen",
+      "incumbent_party_2024": "D",
+      "harris_pct": 56.0,
+      "trump_pct": 41.0,
+      "margin_2024": 15.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 14.0
+    },
+    "CO-8": {
+      "incumbent_2024": "Gabe Evans",
+      "incumbent_party_2024": "R",
+      "harris_pct": 48.0,
+      "trump_pct": 50.0,
+      "margin_2024": -2.0,
+      "biden_pct_2020": 51.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 5.0
+    },
+    "CT-1": {
+      "incumbent_2024": "John Larson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 38.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 28.0
+    },
+    "CT-2": {
+      "incumbent_2024": "Joe Courtney",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 45.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "CT-3": {
+      "incumbent_2024": "Rosa DeLauro",
+      "incumbent_party_2024": "D",
+      "harris_pct": 56.0,
+      "trump_pct": 42.0,
+      "margin_2024": 14.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 20.0
+    },
+    "CT-4": {
+      "incumbent_2024": "Jim Himes",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 38.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 65.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 31.0
+    },
+    "CT-5": {
+      "incumbent_2024": "Jahana Hayes",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 11.0
+    },
+    "DE-AL": {
+      "incumbent_2024": "Sarah McBride",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 42.0,
+      "margin_2024": 15.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 19.0
+    },
+    "FL-1": {
+      "incumbent_2024": "Jimmy Patronis",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -37.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "FL-2": {
+      "incumbent_2024": "Neal Dunn",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 59.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "FL-3": {
+      "incumbent_2024": "Kat Cammack",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -14.0
+    },
+    "FL-4": {
+      "incumbent_2024": "Aaron Bean",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 55.0,
+      "margin_2024": -12.0,
+      "biden_pct_2020": 46.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -7.0
+    },
+    "FL-5": {
+      "incumbent_2024": "John Rutherford",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "FL-6": {
+      "incumbent_2024": "Randy Fine",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 65.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -24.0
+    },
+    "FL-7": {
+      "incumbent_2024": "Cory Mills",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -12.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 52.0,
+      "margin_2020": -6.0
+    },
+    "FL-8": {
+      "incumbent_2024": "Mike Haridopolos",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -22.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "FL-9": {
+      "incumbent_2024": "Darren Soto",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 48.0,
+      "margin_2024": 4.0,
+      "biden_pct_2020": 58.0,
+      "trump_pct_2020": 41.0,
+      "margin_2020": 17.0
+    },
+    "FL-10": {
+      "incumbent_2024": "Maxwell Frost",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 38.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 65.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 32.0
+    },
+    "FL-11": {
+      "incumbent_2024": "Daniel Webster",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "FL-12": {
+      "incumbent_2024": "Gus Bilirakis",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 67.0,
+      "margin_2024": -35.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -29.0
+    },
+    "FL-13": {
+      "incumbent_2024": "Anna Paulina Luna",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 55.0,
+      "margin_2024": -12.0,
+      "biden_pct_2020": 46.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -7.0
+    },
+    "FL-14": {
+      "incumbent_2024": "Kathy Castor",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 46.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 19.0
+    },
+    "FL-15": {
+      "incumbent_2024": "Laurel Lee",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 55.0,
+      "margin_2024": -11.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -3.0
+    },
+    "FL-16": {
+      "incumbent_2024": "Vern Buchanan",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -15.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -9.0
+    },
+    "FL-17": {
+      "incumbent_2024": "Greg Steube",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 62.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -16.0
+    },
+    "FL-18": {
+      "incumbent_2024": "Scott Franklin",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -23.0
+    },
+    "FL-19": {
+      "incumbent_2024": "Byron Donalds",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -21.0
+    },
+    "FL-20": {
+      "incumbent_2024": "VACANT (Cherfilus-McCormick)",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 30.0,
+      "margin_2024": 40.0,
+      "biden_pct_2020": 76.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 52.0
+    },
+    "FL-21": {
+      "incumbent_2024": "Brian Mast",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -17.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -9.0
+    },
+    "FL-22": {
+      "incumbent_2024": "Lois Frankel",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 58.0,
+      "trump_pct_2020": 41.0,
+      "margin_2020": 18.0
+    },
+    "FL-23": {
+      "incumbent_2024": "Jared Moskowitz",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 49.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 13.0
+    },
+    "FL-24": {
+      "incumbent_2024": "Frederica Wilson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 35.0,
+      "margin_2024": 30.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 49.0
+    },
+    "FL-25": {
+      "incumbent_2024": "Debbie Wasserman Schultz",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 5.0,
+      "biden_pct_2020": 60.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 20.0
+    },
+    "FL-26": {
+      "incumbent_2024": "Mario Diaz-Balart",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 67.0,
+      "margin_2024": -35.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -18.0
+    },
+    "FL-27": {
+      "incumbent_2024": "Maria Elvira Salazar",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -15.0,
+      "biden_pct_2020": 49.6,
+      "trump_pct_2020": 49.9,
+      "margin_2020": -0.3
+    },
+    "FL-28": {
+      "incumbent_2024": "Carlos Gimenez",
+      "incumbent_party_2024": "R",
+      "harris_pct": 37.0,
+      "trump_pct": 62.0,
+      "margin_2024": -25.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -6.0
+    },
+    "GA-1": {
+      "incumbent_2024": "Buddy Carter",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 58.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 56.0,
+      "margin_2020": -13.0
+    },
+    "GA-2": {
+      "incumbent_2024": "Sanford Bishop",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 46.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 10.0
+    },
+    "GA-3": {
+      "incumbent_2024": "Brian Jack",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 65.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -30.0
+    },
+    "GA-4": {
+      "incumbent_2024": "Hank Johnson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 76.0,
+      "trump_pct": 23.0,
+      "margin_2024": 52.0,
+      "biden_pct_2020": 78.0,
+      "trump_pct_2020": 21.0,
+      "margin_2020": 58.0
+    },
+    "GA-5": {
+      "incumbent_2024": "Nikema Williams",
+      "incumbent_party_2024": "D",
+      "harris_pct": 85.0,
+      "trump_pct": 14.0,
+      "margin_2024": 72.0,
+      "biden_pct_2020": 86.0,
+      "trump_pct_2020": 13.0,
+      "margin_2020": 73.0
+    },
+    "GA-6": {
+      "incumbent_2024": "Lucy McBath",
+      "incumbent_party_2024": "D",
+      "harris_pct": 75.0,
+      "trump_pct": 25.0,
+      "margin_2024": 50.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 49.0
+    },
+    "GA-7": {
+      "incumbent_2024": "Rich McCormick",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 60.0,
+      "margin_2024": -22.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -19.0
+    },
+    "GA-8": {
+      "incumbent_2024": "Austin Scott",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 65.0,
+      "margin_2024": -31.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -28.0
+    },
+    "GA-9": {
+      "incumbent_2024": "Andrew Clyde",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 67.0,
+      "margin_2024": -34.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "GA-10": {
+      "incumbent_2024": "Mike Collins",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -21.0
+    },
+    "GA-11": {
+      "incumbent_2024": "Barry Loudermilk",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -22.0
+    },
+    "GA-12": {
+      "incumbent_2024": "Rick Allen",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 57.0,
+      "margin_2024": -14.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -10.0
+    },
+    "GA-13": {
+      "incumbent_2024": "VACANT (Scott)",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 28.0,
+      "margin_2024": 42.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 41.0
+    },
+    "GA-14": {
+      "incumbent_2024": "Clayton Fuller",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -37.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -38.0
+    },
+    "HI-1": {
+      "incumbent_2024": "Ed Case",
+      "incumbent_party_2024": "D",
+      "harris_pct": 62.0,
+      "trump_pct": 37.0,
+      "margin_2024": 25.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 29.0
+    },
+    "HI-2": {
+      "incumbent_2024": "Jill Tokuda",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 38.0,
+      "margin_2024": 22.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 29.0
+    },
+    "IA-1": {
+      "incumbent_2024": "Mariannette Miller-Meeks",
+      "incumbent_party_2024": "R",
+      "harris_pct": 45.0,
+      "trump_pct": 54.0,
+      "margin_2024": -8.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -3.0
+    },
+    "IA-2": {
+      "incumbent_2024": "Ashley Hinson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 54.0,
+      "margin_2024": -10.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -4.0
+    },
+    "IA-3": {
+      "incumbent_2024": "Zach Nunn",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 52.0,
+      "margin_2024": -4.0,
+      "biden_pct_2020": 48.9,
+      "trump_pct_2020": 49.3,
+      "margin_2020": -0.3
+    },
+    "IA-4": {
+      "incumbent_2024": "Randy Feenstra",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 65.0,
+      "margin_2024": -31.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -26.0
+    },
+    "ID-1": {
+      "incumbent_2024": "Russ Fulcher",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 71.0,
+      "margin_2024": -45.0,
+      "biden_pct_2020": 30.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -38.0
+    },
+    "ID-2": {
+      "incumbent_2024": "Mike Simpson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 62.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 37.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -23.0
+    },
+    "IL-1": {
+      "incumbent_2024": "Jonathan Jackson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 33.0,
+      "margin_2024": 32.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 28.0,
+      "margin_2020": 42.0
+    },
+    "IL-2": {
+      "incumbent_2024": "Robin Kelly",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 33.0,
+      "margin_2024": 33.0,
+      "biden_pct_2020": 69.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 40.0
+    },
+    "IL-3": {
+      "incumbent_2024": "Delia Ramirez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 34.0,
+      "margin_2024": 31.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 28.0,
+      "margin_2020": 41.0
+    },
+    "IL-4": {
+      "incumbent_2024": "Chuy Garcia",
+      "incumbent_party_2024": "D",
+      "harris_pct": 63.0,
+      "trump_pct": 35.0,
+      "margin_2024": 28.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 46.0
+    },
+    "IL-5": {
+      "incumbent_2024": "Mike Quigley",
+      "incumbent_party_2024": "D",
+      "harris_pct": 68.0,
+      "trump_pct": 31.0,
+      "margin_2024": 37.0,
+      "biden_pct_2020": 69.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 40.0
+    },
+    "IL-6": {
+      "incumbent_2024": "Sean Casten",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 5.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 11.0
+    },
+    "IL-7": {
+      "incumbent_2024": "Danny Davis",
+      "incumbent_party_2024": "D",
+      "harris_pct": 82.0,
+      "trump_pct": 17.0,
+      "margin_2024": 65.0,
+      "biden_pct_2020": 86.0,
+      "trump_pct_2020": 13.0,
+      "margin_2020": 73.0
+    },
+    "IL-8": {
+      "incumbent_2024": "Raja Krishnamoorthi",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 46.0,
+      "margin_2024": 7.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 41.0,
+      "margin_2020": 15.0
+    },
+    "IL-9": {
+      "incumbent_2024": "Jan Schakowsky",
+      "incumbent_party_2024": "D",
+      "harris_pct": 68.0,
+      "trump_pct": 31.0,
+      "margin_2024": 37.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 28.0,
+      "margin_2020": 42.0
+    },
+    "IL-10": {
+      "incumbent_2024": "Brad Schneider",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 38.0,
+      "margin_2024": 22.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 26.0
+    },
+    "IL-11": {
+      "incumbent_2024": "Bill Foster",
+      "incumbent_party_2024": "D",
+      "harris_pct": 55.0,
+      "trump_pct": 44.0,
+      "margin_2024": 11.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 41.0,
+      "margin_2020": 15.0
+    },
+    "IL-12": {
+      "incumbent_2024": "Mike Bost",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 71.0,
+      "margin_2024": -43.0,
+      "biden_pct_2020": 28.0,
+      "trump_pct_2020": 71.0,
+      "margin_2020": -43.0
+    },
+    "IL-13": {
+      "incumbent_2024": "Nikki Budzinski",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 44.0,
+      "margin_2024": 10.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "IL-14": {
+      "incumbent_2024": "Lauren Underwood",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 5.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "IL-15": {
+      "incumbent_2024": "Mary Miller",
+      "incumbent_party_2024": "R",
+      "harris_pct": 29.0,
+      "trump_pct": 69.0,
+      "margin_2024": -40.0,
+      "biden_pct_2020": 30.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -39.0
+    },
+    "IL-16": {
+      "incumbent_2024": "Darin LaHood",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -22.0
+    },
+    "IL-17": {
+      "incumbent_2024": "Eric Sorensen",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 5.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 8.0
+    },
+    "IN-1": {
+      "incumbent_2024": "Frank Mrvan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 49.4,
+      "trump_pct": 49.0,
+      "margin_2024": 0.4,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 8.0
+    },
+    "IN-2": {
+      "incumbent_2024": "Rudy Yakym",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 62.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -23.0
+    },
+    "IN-3": {
+      "incumbent_2024": "Marlin Stutzman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 65.0,
+      "margin_2024": -31.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -30.0
+    },
+    "IN-4": {
+      "incumbent_2024": "Jim Baird",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -29.0
+    },
+    "IN-5": {
+      "incumbent_2024": "Victoria Spartz",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 57.0,
+      "margin_2024": -17.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "IN-6": {
+      "incumbent_2024": "Jefferson Shreve",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 65.0,
+      "margin_2024": -33.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "IN-7": {
+      "incumbent_2024": "Andre Carson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 70.0,
+      "trump_pct": 28.0,
+      "margin_2024": 41.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 28.0,
+      "margin_2020": 42.0
+    },
+    "IN-8": {
+      "incumbent_2024": "Mark Messmer",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 67.0,
+      "margin_2024": -36.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -33.0
+    },
+    "IN-9": {
+      "incumbent_2024": "Erin Houchin",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 64.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -27.0
+    },
+    "KS-1": {
+      "incumbent_2024": "Tracey Mann",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 65.0,
+      "margin_2024": -31.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -30.0
+    },
+    "KS-2": {
+      "incumbent_2024": "Derek Schmidt",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "KS-3": {
+      "incumbent_2024": "Sharice Davids",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 47.0,
+      "margin_2024": 4.0,
+      "biden_pct_2020": 51.0,
+      "trump_pct_2020": 47.0,
+      "margin_2020": 4.0
+    },
+    "KS-4": {
+      "incumbent_2024": "Ron Estes",
+      "incumbent_party_2024": "R",
+      "harris_pct": 37.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -22.0
+    },
+    "KY-1": {
+      "incumbent_2024": "James Comer",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 73.0,
+      "margin_2024": -47.0,
+      "biden_pct_2020": 28.0,
+      "trump_pct_2020": 71.0,
+      "margin_2020": -43.0
+    },
+    "KY-2": {
+      "incumbent_2024": "Brett Guthrie",
+      "incumbent_party_2024": "R",
+      "harris_pct": 29.0,
+      "trump_pct": 70.0,
+      "margin_2024": -41.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "KY-3": {
+      "incumbent_2024": "Morgan McGarvey",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 40.0,
+      "margin_2024": 19.0,
+      "biden_pct_2020": 60.0,
+      "trump_pct_2020": 38.0,
+      "margin_2020": 22.0
+    },
+    "KY-4": {
+      "incumbent_2024": "Thomas Massie",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 67.0,
+      "margin_2024": -36.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -33.0
+    },
+    "KY-5": {
+      "incumbent_2024": "Hal Rogers",
+      "incumbent_party_2024": "R",
+      "harris_pct": 17.0,
+      "trump_pct": 81.0,
+      "margin_2024": -64.0,
+      "biden_pct_2020": 20.0,
+      "trump_pct_2020": 79.0,
+      "margin_2020": -59.0
+    },
+    "KY-6": {
+      "incumbent_2024": "Andy Barr",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -15.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -11.0
+    },
+    "LA-1": {
+      "incumbent_2024": "Steve Scalise",
+      "incumbent_party_2024": "R",
+      "harris_pct": 30.0,
+      "trump_pct": 68.0,
+      "margin_2024": -38.0,
+      "biden_pct_2020": 30.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -38.0
+    },
+    "LA-2": {
+      "incumbent_2024": "Troy Carter",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 33.0,
+      "margin_2024": 31.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 31.0,
+      "margin_2020": 36.0
+    },
+    "LA-3": {
+      "incumbent_2024": "Clay Higgins",
+      "incumbent_party_2024": "R",
+      "harris_pct": 27.0,
+      "trump_pct": 72.0,
+      "margin_2024": -45.0,
+      "biden_pct_2020": 28.0,
+      "trump_pct_2020": 70.0,
+      "margin_2020": -42.0
+    },
+    "LA-4": {
+      "incumbent_2024": "Mike Johnson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 23.0,
+      "trump_pct": 75.0,
+      "margin_2024": -52.0,
+      "biden_pct_2020": 25.0,
+      "trump_pct_2020": 74.0,
+      "margin_2020": -49.0
+    },
+    "LA-5": {
+      "incumbent_2024": "Julia Letlow",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 67.0,
+      "margin_2024": -36.0,
+      "biden_pct_2020": 32.0,
+      "trump_pct_2020": 66.0,
+      "margin_2020": -34.0
+    },
+    "LA-6": {
+      "incumbent_2024": "Cleo Fields",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 42.0,
+      "margin_2024": 15.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 20.0
+    },
+    "MA-1": {
+      "incumbent_2024": "Richard Neal",
+      "incumbent_party_2024": "D",
+      "harris_pct": 56.0,
+      "trump_pct": 42.0,
+      "margin_2024": 14.0,
+      "biden_pct_2020": 60.0,
+      "trump_pct_2020": 38.0,
+      "margin_2020": 22.0
+    },
+    "MA-2": {
+      "incumbent_2024": "Jim McGovern",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 37.0,
+      "margin_2024": 24.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 31.0
+    },
+    "MA-3": {
+      "incumbent_2024": "Lori Trahan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 58.0,
+      "trump_pct": 39.0,
+      "margin_2024": 19.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 27.0
+    },
+    "MA-4": {
+      "incumbent_2024": "Jake Auchincloss",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 39.0,
+      "margin_2024": 20.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 28.0
+    },
+    "MA-5": {
+      "incumbent_2024": "Katherine Clark",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 26.0,
+      "margin_2024": 45.0,
+      "biden_pct_2020": 75.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 51.0
+    },
+    "MA-6": {
+      "incumbent_2024": "Seth Moulton",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 39.0,
+      "margin_2024": 21.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 28.0
+    },
+    "MA-7": {
+      "incumbent_2024": "Ayanna Pressley",
+      "incumbent_party_2024": "D",
+      "harris_pct": 80.0,
+      "trump_pct": 17.0,
+      "margin_2024": 63.0,
+      "biden_pct_2020": 86.0,
+      "trump_pct_2020": 13.0,
+      "margin_2020": 72.0
+    },
+    "MA-8": {
+      "incumbent_2024": "Stephen Lynch",
+      "incumbent_party_2024": "D",
+      "harris_pct": 62.0,
+      "trump_pct": 36.0,
+      "margin_2024": 26.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 31.0,
+      "margin_2020": 35.0
+    },
+    "MA-9": {
+      "incumbent_2024": "Bill Keating",
+      "incumbent_party_2024": "D",
+      "harris_pct": 55.0,
+      "trump_pct": 44.0,
+      "margin_2024": 11.0,
+      "biden_pct_2020": 58.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 18.0
+    },
+    "MD-1": {
+      "incumbent_2024": "Andy Harris",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 57.0,
+      "margin_2024": -17.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 56.0,
+      "margin_2020": -15.0
+    },
+    "MD-2": {
+      "incumbent_2024": "Johnny Olszewski",
+      "incumbent_party_2024": "D",
+      "harris_pct": 58.0,
+      "trump_pct": 40.0,
+      "margin_2024": 18.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 21.0
+    },
+    "MD-3": {
+      "incumbent_2024": "Sarah Elfreth",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 37.0,
+      "margin_2024": 24.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 26.0
+    },
+    "MD-4": {
+      "incumbent_2024": "Glenn Ivey",
+      "incumbent_party_2024": "D",
+      "harris_pct": 85.0,
+      "trump_pct": 12.0,
+      "margin_2024": 74.0,
+      "biden_pct_2020": 90.0,
+      "trump_pct_2020": 9.0,
+      "margin_2020": 81.0
+    },
+    "MD-5": {
+      "incumbent_2024": "Steny Hoyer",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 32.0,
+      "margin_2024": 33.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 31.0,
+      "margin_2020": 36.0
+    },
+    "MD-6": {
+      "incumbent_2024": "April McClain Delaney",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 10.0
+    },
+    "MD-7": {
+      "incumbent_2024": "Kweisi Mfume",
+      "incumbent_party_2024": "D",
+      "harris_pct": 78.0,
+      "trump_pct": 19.0,
+      "margin_2024": 59.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 17.0,
+      "margin_2020": 63.0
+    },
+    "MD-8": {
+      "incumbent_2024": "Jamie Raskin",
+      "incumbent_party_2024": "D",
+      "harris_pct": 77.0,
+      "trump_pct": 20.0,
+      "margin_2024": 56.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 18.0,
+      "margin_2020": 63.0
+    },
+    "ME-1": {
+      "incumbent_2024": "Chellie Pingree",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 38.0,
+      "margin_2024": 22.0,
+      "biden_pct_2020": 60.0,
+      "trump_pct_2020": 37.0,
+      "margin_2020": 23.0
+    },
+    "ME-2": {
+      "incumbent_2024": "Jared Golden",
+      "incumbent_party_2024": "D",
+      "harris_pct": 44.0,
+      "trump_pct": 54.0,
+      "margin_2024": -9.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 52.0,
+      "margin_2020": -6.0
+    },
+    "MI-1": {
+      "incumbent_2024": "Jack Bergman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -20.0
+    },
+    "MI-2": {
+      "incumbent_2024": "John Moolenaar",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 64.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -28.0
+    },
+    "MI-3": {
+      "incumbent_2024": "Hillary Scholten",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 45.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 8.0
+    },
+    "MI-4": {
+      "incumbent_2024": "Bill Huizenga",
+      "incumbent_party_2024": "R",
+      "harris_pct": 46.0,
+      "trump_pct": 52.0,
+      "margin_2024": -6.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -4.0
+    },
+    "MI-5": {
+      "incumbent_2024": "Tim Walberg",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 63.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 37.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -24.0
+    },
+    "MI-6": {
+      "incumbent_2024": "Debbie Dingell",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 37.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 63.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 27.0
+    },
+    "MI-7": {
+      "incumbent_2024": "Tom Barrett",
+      "incumbent_party_2024": "R",
+      "harris_pct": 49.0,
+      "trump_pct": 50.0,
+      "margin_2024": -1.0,
+      "biden_pct_2020": 49.4,
+      "trump_pct_2020": 48.9,
+      "margin_2020": 1.0
+    },
+    "MI-8": {
+      "incumbent_2024": "Kristen McDonald Rivet",
+      "incumbent_party_2024": "D",
+      "harris_pct": 48.0,
+      "trump_pct": 50.0,
+      "margin_2024": -2.0,
+      "biden_pct_2020": 50.0,
+      "trump_pct_2020": 48.0,
+      "margin_2020": 2.0
+    },
+    "MI-9": {
+      "incumbent_2024": "Lisa McClain",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 65.0,
+      "margin_2024": -32.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -29.0
+    },
+    "MI-10": {
+      "incumbent_2024": "John James",
+      "incumbent_party_2024": "R",
+      "harris_pct": 46.0,
+      "trump_pct": 52.0,
+      "margin_2024": -7.0,
+      "biden_pct_2020": 49.0,
+      "trump_pct_2020": 50.0,
+      "margin_2020": -1.0
+    },
+    "MI-11": {
+      "incumbent_2024": "Haley Stevens",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 41.0,
+      "margin_2024": 16.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 20.0
+    },
+    "MI-12": {
+      "incumbent_2024": "Rashida Tlaib",
+      "incumbent_party_2024": "D",
+      "harris_pct": 67.0,
+      "trump_pct": 29.0,
+      "margin_2024": 38.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 49.0
+    },
+    "MI-13": {
+      "incumbent_2024": "Shri Thanedar",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 28.0,
+      "margin_2024": 41.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 50.0
+    },
+    "MN-1": {
+      "incumbent_2024": "Brad Finstad",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 55.0,
+      "margin_2024": -12.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -9.0
+    },
+    "MN-2": {
+      "incumbent_2024": "Angie Craig",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 7.0
+    },
+    "MN-3": {
+      "incumbent_2024": "Kelly Morrison",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 38.0,
+      "margin_2024": 21.0,
+      "biden_pct_2020": 60.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 21.0
+    },
+    "MN-4": {
+      "incumbent_2024": "Betty McCollum",
+      "incumbent_party_2024": "D",
+      "harris_pct": 67.0,
+      "trump_pct": 31.0,
+      "margin_2024": 36.0,
+      "biden_pct_2020": 68.0,
+      "trump_pct_2020": 30.0,
+      "margin_2020": 38.0
+    },
+    "MN-5": {
+      "incumbent_2024": "Ilhan Omar",
+      "incumbent_party_2024": "D",
+      "harris_pct": 80.0,
+      "trump_pct": 18.0,
+      "margin_2024": 62.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 17.0,
+      "margin_2020": 63.0
+    },
+    "MN-6": {
+      "incumbent_2024": "Tom Emmer",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "MN-7": {
+      "incumbent_2024": "Michelle Fischbach",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 67.0,
+      "margin_2024": -36.0,
+      "biden_pct_2020": 32.0,
+      "trump_pct_2020": 66.0,
+      "margin_2020": -33.0
+    },
+    "MN-8": {
+      "incumbent_2024": "Pete Stauber",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 56.0,
+      "margin_2024": -14.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "MO-1": {
+      "incumbent_2024": "Wesley Bell",
+      "incumbent_party_2024": "D",
+      "harris_pct": 78.0,
+      "trump_pct": 21.0,
+      "margin_2024": 57.0,
+      "biden_pct_2020": 78.0,
+      "trump_pct_2020": 20.0,
+      "margin_2020": 58.0
+    },
+    "MO-2": {
+      "incumbent_2024": "Ann Wagner",
+      "incumbent_party_2024": "R",
+      "harris_pct": 45.0,
+      "trump_pct": 53.0,
+      "margin_2024": -8.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -8.0
+    },
+    "MO-3": {
+      "incumbent_2024": "Bob Onder",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 63.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -26.0
+    },
+    "MO-4": {
+      "incumbent_2024": "Mark Alford",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 71.0,
+      "margin_2024": -42.0,
+      "biden_pct_2020": 29.0,
+      "trump_pct_2020": 69.0,
+      "margin_2020": -39.0
+    },
+    "MO-5": {
+      "incumbent_2024": "Emanuel Cleaver",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 38.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 26.0
+    },
+    "MO-6": {
+      "incumbent_2024": "Sam Graves",
+      "incumbent_party_2024": "R",
+      "harris_pct": 30.0,
+      "trump_pct": 69.0,
+      "margin_2024": -39.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "MO-7": {
+      "incumbent_2024": "Eric Burlison",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 71.0,
+      "margin_2024": -43.0,
+      "biden_pct_2020": 28.0,
+      "trump_pct_2020": 70.0,
+      "margin_2020": -41.0
+    },
+    "MO-8": {
+      "incumbent_2024": "Jason Smith",
+      "incumbent_party_2024": "R",
+      "harris_pct": 22.0,
+      "trump_pct": 77.0,
+      "margin_2024": -54.0,
+      "biden_pct_2020": 24.0,
+      "trump_pct_2020": 75.0,
+      "margin_2020": -51.0
+    },
+    "MS-1": {
+      "incumbent_2024": "Trent Kelly",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -37.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "MS-2": {
+      "incumbent_2024": "Bennie Thompson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 39.0,
+      "margin_2024": 20.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 36.0,
+      "margin_2020": 26.0
+    },
+    "MS-3": {
+      "incumbent_2024": "Michael Guest",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 37.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -24.0
+    },
+    "MS-4": {
+      "incumbent_2024": "Mike Ezell",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 71.0,
+      "margin_2024": -43.0,
+      "biden_pct_2020": 30.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -38.0
+    },
+    "MT-1": {
+      "incumbent_2024": "Ryan Zinke",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 54.0,
+      "margin_2024": -12.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 52.0,
+      "margin_2020": -7.0
+    },
+    "MT-2": {
+      "incumbent_2024": "Troy Downing",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 63.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -27.0
+    },
+    "NC-1": {
+      "incumbent_2024": "Don Davis",
+      "incumbent_party_2024": "D",
+      "harris_pct": 48.0,
+      "trump_pct": 51.0,
+      "margin_2024": -3.0,
+      "biden_pct_2020": 50.0,
+      "trump_pct_2020": 49.0,
+      "margin_2020": 2.0
+    },
+    "NC-2": {
+      "incumbent_2024": "Deborah Ross",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 32.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 32.0,
+      "margin_2020": 35.0
+    },
+    "NC-3": {
+      "incumbent_2024": "Greg Murphy",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -22.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -17.0
+    },
+    "NC-4": {
+      "incumbent_2024": "Valerie Foushee",
+      "incumbent_party_2024": "D",
+      "harris_pct": 72.0,
+      "trump_pct": 27.0,
+      "margin_2024": 45.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 46.0
+    },
+    "NC-5": {
+      "incumbent_2024": "Virginia Foxx",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -15.0
+    },
+    "NC-6": {
+      "incumbent_2024": "Addison McDowell",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -17.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -16.0
+    },
+    "NC-7": {
+      "incumbent_2024": "David Rouzer",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -14.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "NC-8": {
+      "incumbent_2024": "Mark Harris",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 59.0,
+      "margin_2024": -19.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "NC-9": {
+      "incumbent_2024": "Richard Hudson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 56.0,
+      "margin_2020": -14.0
+    },
+    "NC-10": {
+      "incumbent_2024": "Pat Harrigan",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "NC-11": {
+      "incumbent_2024": "Chuck Edwards",
+      "incumbent_party_2024": "R",
+      "harris_pct": 45.0,
+      "trump_pct": 54.0,
+      "margin_2024": -10.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "NC-12": {
+      "incumbent_2024": "Alma Adams",
+      "incumbent_party_2024": "D",
+      "harris_pct": 72.0,
+      "trump_pct": 26.0,
+      "margin_2024": 46.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 50.0
+    },
+    "NC-13": {
+      "incumbent_2024": "Brad Knott",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -17.0
+    },
+    "NC-14": {
+      "incumbent_2024": "Tim Moore",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -15.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -16.0
+    },
+    "ND-AL": {
+      "incumbent_2024": "Julie Fedorchak",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -37.0,
+      "biden_pct_2020": 32.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -34.0
+    },
+    "NE-1": {
+      "incumbent_2024": "Mike Flood",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -13.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -11.0
+    },
+    "NE-2": {
+      "incumbent_2024": "Don Bacon",
+      "incumbent_party_2024": "R",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 5.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 6.0
+    },
+    "NE-3": {
+      "incumbent_2024": "Adrian Smith",
+      "incumbent_party_2024": "R",
+      "harris_pct": 23.0,
+      "trump_pct": 76.0,
+      "margin_2024": -54.0,
+      "biden_pct_2020": 23.0,
+      "trump_pct_2020": 75.0,
+      "margin_2020": -52.0
+    },
+    "NH-1": {
+      "incumbent_2024": "Chris Pappas",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 49.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 6.0
+    },
+    "NH-2": {
+      "incumbent_2024": "Maggie Goodlander",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 48.0,
+      "margin_2024": 4.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 9.0
+    },
+    "NJ-1": {
+      "incumbent_2024": "Donald Norcross",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 40.0,
+      "margin_2024": 19.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 37.0,
+      "margin_2020": 24.0
+    },
+    "NJ-2": {
+      "incumbent_2024": "Jeff Van Drew",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -13.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 52.0,
+      "margin_2020": -5.0
+    },
+    "NJ-3": {
+      "incumbent_2024": "Herb Conaway",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 45.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 14.0
+    },
+    "NJ-4": {
+      "incumbent_2024": "Chris Smith",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 64.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -22.0
+    },
+    "NJ-5": {
+      "incumbent_2024": "Josh Gottheimer",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 48.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 12.0
+    },
+    "NJ-6": {
+      "incumbent_2024": "Frank Pallone",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 19.0
+    },
+    "NJ-7": {
+      "incumbent_2024": "Tom Kean",
+      "incumbent_party_2024": "R",
+      "harris_pct": 48.0,
+      "trump_pct": 50.0,
+      "margin_2024": -1.0,
+      "biden_pct_2020": 51.0,
+      "trump_pct_2020": 47.0,
+      "margin_2020": 4.0
+    },
+    "NJ-8": {
+      "incumbent_2024": "Rob Menendez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 37.0,
+      "margin_2024": 24.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 27.0,
+      "margin_2020": 45.0
+    },
+    "NJ-9": {
+      "incumbent_2024": "Nellie Pou",
+      "incumbent_party_2024": "D",
+      "harris_pct": 48.0,
+      "trump_pct": 49.0,
+      "margin_2024": -1.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 19.0
+    },
+    "NJ-10": {
+      "incumbent_2024": "LaMonica McIver",
+      "incumbent_party_2024": "D",
+      "harris_pct": 75.0,
+      "trump_pct": 24.0,
+      "margin_2024": 51.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 19.0,
+      "margin_2020": 62.0
+    },
+    "NJ-11": {
+      "incumbent_2024": "Analilia Mejia",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 45.0,
+      "margin_2024": 9.0,
+      "biden_pct_2020": 58.0,
+      "trump_pct_2020": 41.0,
+      "margin_2020": 17.0
+    },
+    "NJ-12": {
+      "incumbent_2024": "Bonnie Watson Coleman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 37.0,
+      "margin_2024": 24.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 32.0,
+      "margin_2020": 34.0
+    },
+    "NM-1": {
+      "incumbent_2024": "Melanie Stansbury",
+      "incumbent_party_2024": "D",
+      "harris_pct": 55.0,
+      "trump_pct": 42.0,
+      "margin_2024": 13.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 14.0
+    },
+    "NM-2": {
+      "incumbent_2024": "Gabe Vasquez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 48.0,
+      "trump_pct": 50.0,
+      "margin_2024": -2.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 6.0
+    },
+    "NM-3": {
+      "incumbent_2024": "Teresa Leger Fernandez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 5.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 11.0
+    },
+    "NV-1": {
+      "incumbent_2024": "Dina Titus",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 48.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 9.0
+    },
+    "NV-2": {
+      "incumbent_2024": "Mark Amodei",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 56.0,
+      "margin_2024": -14.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -11.0
+    },
+    "NV-3": {
+      "incumbent_2024": "Susie Lee",
+      "incumbent_party_2024": "D",
+      "harris_pct": 49.0,
+      "trump_pct": 50.0,
+      "margin_2024": -1.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 7.0
+    },
+    "NV-4": {
+      "incumbent_2024": "Steven Horsford",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 48.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 8.0
+    },
+    "NY-1": {
+      "incumbent_2024": "Nick LaLota",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 54.0,
+      "margin_2024": -10.0,
+      "biden_pct_2020": 49.0,
+      "trump_pct_2020": 50.0,
+      "margin_2020": -2.0
+    },
+    "NY-2": {
+      "incumbent_2024": "Andrew Garbarino",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -14.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -2.0
+    },
+    "NY-3": {
+      "incumbent_2024": "Tom Suozzi",
+      "incumbent_party_2024": "D",
+      "harris_pct": 47.0,
+      "trump_pct": 51.0,
+      "margin_2024": -4.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 11.0
+    },
+    "NY-4": {
+      "incumbent_2024": "Laura Gillen",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 49.0,
+      "margin_2024": 1.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 15.0
+    },
+    "NY-5": {
+      "incumbent_2024": "Gregory Meeks",
+      "incumbent_party_2024": "D",
+      "harris_pct": 70.0,
+      "trump_pct": 28.0,
+      "margin_2024": 42.0,
+      "biden_pct_2020": 81.0,
+      "trump_pct_2020": 19.0,
+      "margin_2020": 62.0
+    },
+    "NY-6": {
+      "incumbent_2024": "Grace Meng",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 29.0
+    },
+    "NY-7": {
+      "incumbent_2024": "Nydia Velazquez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 72.0,
+      "trump_pct": 26.0,
+      "margin_2024": 46.0,
+      "biden_pct_2020": 80.0,
+      "trump_pct_2020": 19.0,
+      "margin_2020": 61.0
+    },
+    "NY-8": {
+      "incumbent_2024": "Hakeem Jeffries",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 27.0,
+      "margin_2024": 44.0,
+      "biden_pct_2020": 77.0,
+      "trump_pct_2020": 22.0,
+      "margin_2020": 56.0
+    },
+    "NY-9": {
+      "incumbent_2024": "Yvette Clarke",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 29.0,
+      "margin_2024": 41.0,
+      "biden_pct_2020": 76.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 52.0
+    },
+    "NY-10": {
+      "incumbent_2024": "Dan Goldman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 79.0,
+      "trump_pct": 19.0,
+      "margin_2024": 60.0,
+      "biden_pct_2020": 85.0,
+      "trump_pct_2020": 14.0,
+      "margin_2020": 71.0
+    },
+    "NY-11": {
+      "incumbent_2024": "Nicole Malliotakis",
+      "incumbent_party_2024": "R",
+      "harris_pct": 37.0,
+      "trump_pct": 61.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 46.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -8.0
+    },
+    "NY-12": {
+      "incumbent_2024": "Jerry Nadler",
+      "incumbent_party_2024": "D",
+      "harris_pct": 81.0,
+      "trump_pct": 17.0,
+      "margin_2024": 64.0,
+      "biden_pct_2020": 85.0,
+      "trump_pct_2020": 14.0,
+      "margin_2020": 71.0
+    },
+    "NY-13": {
+      "incumbent_2024": "Adriano Espaillat",
+      "incumbent_party_2024": "D",
+      "harris_pct": 79.0,
+      "trump_pct": 20.0,
+      "margin_2024": 59.0,
+      "biden_pct_2020": 88.0,
+      "trump_pct_2020": 11.0,
+      "margin_2020": 77.0
+    },
+    "NY-14": {
+      "incumbent_2024": "Alexandria Ocasio-Cortez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 65.0,
+      "trump_pct": 33.0,
+      "margin_2024": 32.0,
+      "biden_pct_2020": 77.0,
+      "trump_pct_2020": 22.0,
+      "margin_2020": 55.0
+    },
+    "NY-15": {
+      "incumbent_2024": "Ritchie Torres",
+      "incumbent_party_2024": "D",
+      "harris_pct": 74.0,
+      "trump_pct": 25.0,
+      "margin_2024": 48.0,
+      "biden_pct_2020": 85.0,
+      "trump_pct_2020": 14.0,
+      "margin_2020": 71.0
+    },
+    "NY-16": {
+      "incumbent_2024": "George Latimer",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 33.0,
+      "margin_2024": 33.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 27.0,
+      "margin_2020": 45.0
+    },
+    "NY-17": {
+      "incumbent_2024": "Mike Lawler",
+      "incumbent_party_2024": "R",
+      "harris_pct": 50.0,
+      "trump_pct": 49.0,
+      "margin_2024": 1.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 10.0
+    },
+    "NY-18": {
+      "incumbent_2024": "Pat Ryan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 48.0,
+      "margin_2024": 3.0,
+      "biden_pct_2020": 54.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 9.0
+    },
+    "NY-19": {
+      "incumbent_2024": "Josh Riley",
+      "incumbent_party_2024": "D",
+      "harris_pct": 50.0,
+      "trump_pct": 49.0,
+      "margin_2024": 2.0,
+      "biden_pct_2020": 51.0,
+      "trump_pct_2020": 47.0,
+      "margin_2020": 4.0
+    },
+    "NY-20": {
+      "incumbent_2024": "Paul Tonko",
+      "incumbent_party_2024": "D",
+      "harris_pct": 56.0,
+      "trump_pct": 42.0,
+      "margin_2024": 14.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 19.0
+    },
+    "NY-21": {
+      "incumbent_2024": "Elise Stefanik",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "NY-22": {
+      "incumbent_2024": "John Mannion",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 46.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 43.0,
+      "margin_2020": 11.0
+    },
+    "NY-23": {
+      "incumbent_2024": "Nick Langworthy",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "NY-24": {
+      "incumbent_2024": "Claudia Tenney",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -20.0
+    },
+    "NY-25": {
+      "incumbent_2024": "Joe Morelle",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 40.0,
+      "margin_2024": 18.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 21.0
+    },
+    "NY-26": {
+      "incumbent_2024": "Tim Kennedy",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 40.0,
+      "margin_2024": 19.0,
+      "biden_pct_2020": 62.0,
+      "trump_pct_2020": 37.0,
+      "margin_2020": 25.0
+    },
+    "OH-1": {
+      "incumbent_2024": "Greg Landsman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 8.0
+    },
+    "OH-2": {
+      "incumbent_2024": "David Taylor",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 73.0,
+      "margin_2024": -48.0,
+      "biden_pct_2020": 27.0,
+      "trump_pct_2020": 72.0,
+      "margin_2020": -45.0
+    },
+    "OH-3": {
+      "incumbent_2024": "Joyce Beatty",
+      "incumbent_party_2024": "D",
+      "harris_pct": 70.0,
+      "trump_pct": 29.0,
+      "margin_2024": 40.0,
+      "biden_pct_2020": 71.0,
+      "trump_pct_2020": 27.0,
+      "margin_2020": 44.0
+    },
+    "OH-4": {
+      "incumbent_2024": "Jim Jordan",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -37.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 67.0,
+      "margin_2020": -36.0
+    },
+    "OH-5": {
+      "incumbent_2024": "Bob Latta",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -27.0
+    },
+    "OH-6": {
+      "incumbent_2024": "Michael Rulli",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 66.0,
+      "margin_2024": -34.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -29.0
+    },
+    "OH-7": {
+      "incumbent_2024": "Max Miller",
+      "incumbent_party_2024": "R",
+      "harris_pct": 44.0,
+      "trump_pct": 55.0,
+      "margin_2024": -11.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -9.0
+    },
+    "OH-8": {
+      "incumbent_2024": "Warren Davidson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -22.0
+    },
+    "OH-9": {
+      "incumbent_2024": "Marcy Kaptur",
+      "incumbent_party_2024": "D",
+      "harris_pct": 46.0,
+      "trump_pct": 53.0,
+      "margin_2024": -7.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -3.0
+    },
+    "OH-10": {
+      "incumbent_2024": "Mike Turner",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 52.0,
+      "margin_2024": -6.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -4.0
+    },
+    "OH-11": {
+      "incumbent_2024": "Shontel Brown",
+      "incumbent_party_2024": "D",
+      "harris_pct": 77.0,
+      "trump_pct": 22.0,
+      "margin_2024": 55.0,
+      "biden_pct_2020": 78.0,
+      "trump_pct_2020": 21.0,
+      "margin_2020": 58.0
+    },
+    "OH-12": {
+      "incumbent_2024": "Troy Balderson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 66.0,
+      "margin_2024": -33.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -31.0
+    },
+    "OH-13": {
+      "incumbent_2024": "Emilia Sykes",
+      "incumbent_party_2024": "D",
+      "harris_pct": 49.569,
+      "trump_pct": 49.523,
+      "margin_2024": 0.046,
+      "biden_pct_2020": 51.0,
+      "trump_pct_2020": 48.0,
+      "margin_2020": 3.0
+    },
+    "OH-14": {
+      "incumbent_2024": "Dave Joyce",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 59.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -15.0
+    },
+    "OH-15": {
+      "incumbent_2024": "Mike Carey",
+      "incumbent_party_2024": "R",
+      "harris_pct": 45.0,
+      "trump_pct": 54.0,
+      "margin_2024": -9.0,
+      "biden_pct_2020": 46.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -7.0
+    },
+    "OK-1": {
+      "incumbent_2024": "Kevin Hern",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 60.0,
+      "margin_2024": -22.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -21.0
+    },
+    "OK-2": {
+      "incumbent_2024": "Josh Brecheen",
+      "incumbent_party_2024": "R",
+      "harris_pct": 21.0,
+      "trump_pct": 77.0,
+      "margin_2024": -56.0,
+      "biden_pct_2020": 22.0,
+      "trump_pct_2020": 76.0,
+      "margin_2020": -53.0
+    },
+    "OK-3": {
+      "incumbent_2024": "Frank Lucas",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 72.0,
+      "margin_2024": -46.0,
+      "biden_pct_2020": 27.0,
+      "trump_pct_2020": 71.0,
+      "margin_2020": -45.0
+    },
+    "OK-4": {
+      "incumbent_2024": "Tom Cole",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 66.0,
+      "margin_2024": -33.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "OK-5": {
+      "incumbent_2024": "Stephanie Bice",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 58.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -17.0
+    },
+    "OR-1": {
+      "incumbent_2024": "Suzanne Bonamici",
+      "incumbent_party_2024": "D",
+      "harris_pct": 67.0,
+      "trump_pct": 29.0,
+      "margin_2024": 38.0,
+      "biden_pct_2020": 68.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 39.0
+    },
+    "OR-2": {
+      "incumbent_2024": "Cliff Bentz",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 62.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 37.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -24.0
+    },
+    "OR-3": {
+      "incumbent_2024": "Maxine Dexter",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 25.0,
+      "margin_2024": 46.0,
+      "biden_pct_2020": 73.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 47.0
+    },
+    "OR-4": {
+      "incumbent_2024": "Val Hoyle",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 42.0,
+      "margin_2024": 12.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 13.0
+    },
+    "OR-5": {
+      "incumbent_2024": "Janelle Bynum",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 44.0,
+      "margin_2024": 9.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 44.0,
+      "margin_2020": 9.0
+    },
+    "OR-6": {
+      "incumbent_2024": "Andrea Salinas",
+      "incumbent_party_2024": "D",
+      "harris_pct": 54.0,
+      "trump_pct": 43.0,
+      "margin_2024": 11.0,
+      "biden_pct_2020": 55.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 13.0
+    },
+    "PA-1": {
+      "incumbent_2024": "Brian Fitzpatrick",
+      "incumbent_party_2024": "R",
+      "harris_pct": 49.7,
+      "trump_pct": 49.4,
+      "margin_2024": 0.3,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 47.0,
+      "margin_2020": 5.0
+    },
+    "PA-2": {
+      "incumbent_2024": "Brendan Boyle",
+      "incumbent_party_2024": "D",
+      "harris_pct": 67.0,
+      "trump_pct": 32.0,
+      "margin_2024": 36.0,
+      "biden_pct_2020": 71.0,
+      "trump_pct_2020": 28.0,
+      "margin_2020": 43.0
+    },
+    "PA-3": {
+      "incumbent_2024": "Dwight Evans",
+      "incumbent_party_2024": "D",
+      "harris_pct": 88.0,
+      "trump_pct": 11.0,
+      "margin_2024": 77.0,
+      "biden_pct_2020": 90.0,
+      "trump_pct_2020": 9.0,
+      "margin_2020": 81.0
+    },
+    "PA-4": {
+      "incumbent_2024": "Madeleine Dean",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 42.0,
+      "margin_2024": 16.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 19.0
+    },
+    "PA-5": {
+      "incumbent_2024": "Mary Gay Scanlon",
+      "incumbent_party_2024": "D",
+      "harris_pct": 64.0,
+      "trump_pct": 35.0,
+      "margin_2024": 29.0,
+      "biden_pct_2020": 66.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 32.0
+    },
+    "PA-6": {
+      "incumbent_2024": "Chrissy Houlahan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 55.0,
+      "trump_pct": 44.0,
+      "margin_2024": 11.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 15.0
+    },
+    "PA-7": {
+      "incumbent_2024": "Ryan Mackenzie",
+      "incumbent_party_2024": "R",
+      "harris_pct": 48.0,
+      "trump_pct": 51.0,
+      "margin_2024": -3.0,
+      "biden_pct_2020": 50.0,
+      "trump_pct_2020": 49.0,
+      "margin_2020": 1.0
+    },
+    "PA-8": {
+      "incumbent_2024": "Rob Bresnahan",
+      "incumbent_party_2024": "R",
+      "harris_pct": 45.0,
+      "trump_pct": 54.0,
+      "margin_2024": -8.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -3.0
+    },
+    "PA-9": {
+      "incumbent_2024": "Dan Meuser",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 69.0,
+      "margin_2024": -38.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "PA-10": {
+      "incumbent_2024": "Scott Perry",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 52.0,
+      "margin_2024": -5.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -4.0
+    },
+    "PA-11": {
+      "incumbent_2024": "Lloyd Smucker",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 60.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -21.0
+    },
+    "PA-12": {
+      "incumbent_2024": "Summer Lee",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 40.0,
+      "margin_2024": 19.0,
+      "biden_pct_2020": 59.0,
+      "trump_pct_2020": 39.0,
+      "margin_2020": 20.0
+    },
+    "PA-13": {
+      "incumbent_2024": "John Joyce",
+      "incumbent_party_2024": "R",
+      "harris_pct": 27.0,
+      "trump_pct": 72.0,
+      "margin_2024": -46.0,
+      "biden_pct_2020": 27.0,
+      "trump_pct_2020": 72.0,
+      "margin_2020": -45.0
+    },
+    "PA-14": {
+      "incumbent_2024": "Guy Reschenthaler",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 66.0,
+      "margin_2024": -33.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "PA-15": {
+      "incumbent_2024": "Glenn Thompson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 69.0,
+      "margin_2024": -38.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "PA-16": {
+      "incumbent_2024": "Mike Kelly",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -21.0
+    },
+    "PA-17": {
+      "incumbent_2024": "Chris Deluzio",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 47.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 6.0
+    },
+    "RI-1": {
+      "incumbent_2024": "Gabe Amo",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 38.0,
+      "margin_2024": 22.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 35.0,
+      "margin_2020": 29.0
+    },
+    "RI-2": {
+      "incumbent_2024": "Seth Magaziner",
+      "incumbent_party_2024": "D",
+      "harris_pct": 52.0,
+      "trump_pct": 46.0,
+      "margin_2024": 7.0,
+      "biden_pct_2020": 56.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 14.0
+    },
+    "SC-1": {
+      "incumbent_2024": "Nancy Mace",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -13.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -9.0
+    },
+    "SC-2": {
+      "incumbent_2024": "Joe Wilson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 56.0,
+      "margin_2024": -14.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "SC-3": {
+      "incumbent_2024": "Sheri Biggs",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 71.0,
+      "margin_2024": -43.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "SC-4": {
+      "incumbent_2024": "William Timmons",
+      "incumbent_party_2024": "R",
+      "harris_pct": 37.0,
+      "trump_pct": 61.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -19.0
+    },
+    "SC-5": {
+      "incumbent_2024": "Ralph Norman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "SC-6": {
+      "incumbent_2024": "Jim Clyburn",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 38.0,
+      "margin_2024": 23.0,
+      "biden_pct_2020": 65.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 32.0
+    },
+    "SC-7": {
+      "incumbent_2024": "Russell Fry",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 63.0,
+      "margin_2024": -26.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -19.0
+    },
+    "SD-AL": {
+      "incumbent_2024": "Dusty Johnson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 34.0,
+      "trump_pct": 63.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -26.0
+    },
+    "TN-1": {
+      "incumbent_2024": "Diana Harshbarger",
+      "incumbent_party_2024": "R",
+      "harris_pct": 21.0,
+      "trump_pct": 78.0,
+      "margin_2024": -58.0,
+      "biden_pct_2020": 22.0,
+      "trump_pct_2020": 76.0,
+      "margin_2020": -54.0
+    },
+    "TN-2": {
+      "incumbent_2024": "Tim Burchett",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 66.0,
+      "margin_2024": -34.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -29.0
+    },
+    "TN-3": {
+      "incumbent_2024": "Chuck Fleischmann",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 67.0,
+      "margin_2024": -36.0,
+      "biden_pct_2020": 33.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "TN-4": {
+      "incumbent_2024": "Scott DesJarlais",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 71.0,
+      "margin_2024": -44.0,
+      "biden_pct_2020": 30.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -38.0
+    },
+    "TN-5": {
+      "incumbent_2024": "Andy Ogles",
+      "incumbent_party_2024": "R",
+      "harris_pct": 40.0,
+      "trump_pct": 58.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -11.0
+    },
+    "TN-6": {
+      "incumbent_2024": "John Rose",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 67.0,
+      "margin_2024": -35.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -29.0
+    },
+    "TN-7": {
+      "incumbent_2024": "Matt Van Epps",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 60.0,
+      "margin_2024": -22.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 56.0,
+      "margin_2020": -15.0
+    },
+    "TN-8": {
+      "incumbent_2024": "David Kustoff",
+      "incumbent_party_2024": "R",
+      "harris_pct": 29.0,
+      "trump_pct": 70.0,
+      "margin_2024": -41.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "TN-9": {
+      "incumbent_2024": "Steve Cohen",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 27.0,
+      "margin_2024": 43.0,
+      "biden_pct_2020": 73.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 48.0
+    },
+    "TX-1": {
+      "incumbent_2024": "Nathaniel Moran",
+      "incumbent_party_2024": "R",
+      "harris_pct": 24.0,
+      "trump_pct": 75.0,
+      "margin_2024": -51.0,
+      "biden_pct_2020": 26.0,
+      "trump_pct_2020": 72.0,
+      "margin_2020": -46.0
+    },
+    "TX-2": {
+      "incumbent_2024": "Dan Crenshaw",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -23.0
+    },
+    "TX-3": {
+      "incumbent_2024": "Keith Self",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 42.0,
+      "trump_pct_2020": 56.0,
+      "margin_2020": -14.0
+    },
+    "TX-4": {
+      "incumbent_2024": "Pat Fallon",
+      "incumbent_party_2024": "R",
+      "harris_pct": 33.0,
+      "trump_pct": 66.0,
+      "margin_2024": -33.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 62.0,
+      "margin_2020": -26.0
+    },
+    "TX-5": {
+      "incumbent_2024": "Lance Gooden",
+      "incumbent_party_2024": "R",
+      "harris_pct": 36.0,
+      "trump_pct": 63.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -22.0
+    },
+    "TX-6": {
+      "incumbent_2024": "Jake Ellzey",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 37.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -24.0
+    },
+    "TX-7": {
+      "incumbent_2024": "Lizzie Fletcher",
+      "incumbent_party_2024": "D",
+      "harris_pct": 59.0,
+      "trump_pct": 38.0,
+      "margin_2024": 21.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 34.0,
+      "margin_2020": 30.0
+    },
+    "TX-8": {
+      "incumbent_2024": "Morgan Luttrell",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 66.0,
+      "margin_2024": -34.0,
+      "biden_pct_2020": 36.0,
+      "trump_pct_2020": 63.0,
+      "margin_2020": -27.0
+    },
+    "TX-9": {
+      "incumbent_2024": "Al Green",
+      "incumbent_party_2024": "D",
+      "harris_pct": 71.0,
+      "trump_pct": 27.0,
+      "margin_2024": 44.0,
+      "biden_pct_2020": 76.0,
+      "trump_pct_2020": 23.0,
+      "margin_2020": 53.0
+    },
+    "TX-10": {
+      "incumbent_2024": "Michael McCaul",
+      "incumbent_party_2024": "R",
+      "harris_pct": 37.0,
+      "trump_pct": 62.0,
+      "margin_2024": -25.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -19.0
+    },
+    "TX-11": {
+      "incumbent_2024": "August Pfluger",
+      "incumbent_party_2024": "R",
+      "harris_pct": 27.0,
+      "trump_pct": 72.0,
+      "margin_2024": -45.0,
+      "biden_pct_2020": 29.0,
+      "trump_pct_2020": 69.0,
+      "margin_2020": -40.0
+    },
+    "TX-12": {
+      "incumbent_2024": "Craig Goldman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "TX-13": {
+      "incumbent_2024": "Ronny Jackson",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 73.0,
+      "margin_2024": -48.0,
+      "biden_pct_2020": 26.0,
+      "trump_pct_2020": 72.0,
+      "margin_2020": -45.0
+    },
+    "TX-14": {
+      "incumbent_2024": "Randy Weber",
+      "incumbent_party_2024": "R",
+      "harris_pct": 32.0,
+      "trump_pct": 67.0,
+      "margin_2024": -34.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 64.0,
+      "margin_2020": -29.0
+    },
+    "TX-15": {
+      "incumbent_2024": "Monica De La Cruz",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 59.0,
+      "margin_2024": -18.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -3.0
+    },
+    "TX-16": {
+      "incumbent_2024": "Veronica Escobar",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 41.0,
+      "margin_2024": 16.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 32.0,
+      "margin_2020": 35.0
+    },
+    "TX-17": {
+      "incumbent_2024": "Pete Sessions",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -29.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -23.0
+    },
+    "TX-18": {
+      "incumbent_2024": "Christian Menefee",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 29.0,
+      "margin_2024": 40.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 25.0,
+      "margin_2020": 49.0
+    },
+    "TX-19": {
+      "incumbent_2024": "Jodey Arrington",
+      "incumbent_party_2024": "R",
+      "harris_pct": 24.0,
+      "trump_pct": 75.0,
+      "margin_2024": -52.0,
+      "biden_pct_2020": 26.0,
+      "trump_pct_2020": 72.0,
+      "margin_2020": -46.0
+    },
+    "TX-20": {
+      "incumbent_2024": "Joaquin Castro",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 39.0,
+      "margin_2024": 21.0,
+      "biden_pct_2020": 66.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 33.0
+    },
+    "TX-21": {
+      "incumbent_2024": "Chip Roy",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -20.0
+    },
+    "TX-22": {
+      "incumbent_2024": "Troy Nehls",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "TX-23": {
+      "incumbent_2024": "VACANT (Gonzales)",
+      "incumbent_party_2024": "R",
+      "harris_pct": 42.0,
+      "trump_pct": 57.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 46.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -7.0
+    },
+    "TX-24": {
+      "incumbent_2024": "Beth Van Duyne",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 57.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 43.0,
+      "trump_pct_2020": 55.0,
+      "margin_2020": -12.0
+    },
+    "TX-25": {
+      "incumbent_2024": "Roger Williams",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -36.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -31.0
+    },
+    "TX-26": {
+      "incumbent_2024": "Brandon Gill",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -19.0
+    },
+    "TX-27": {
+      "incumbent_2024": "Michael Cloud",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 64.0,
+      "margin_2024": -30.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -22.0
+    },
+    "TX-28": {
+      "incumbent_2024": "Henry Cuellar",
+      "incumbent_party_2024": "D",
+      "harris_pct": 46.0,
+      "trump_pct": 53.0,
+      "margin_2024": -7.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 7.0
+    },
+    "TX-29": {
+      "incumbent_2024": "Sylvia Garcia",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 39.0,
+      "margin_2024": 20.0,
+      "biden_pct_2020": 68.0,
+      "trump_pct_2020": 31.0,
+      "margin_2020": 37.0
+    },
+    "TX-30": {
+      "incumbent_2024": "Jasmine Crockett",
+      "incumbent_party_2024": "D",
+      "harris_pct": 73.0,
+      "trump_pct": 26.0,
+      "margin_2024": 47.0,
+      "biden_pct_2020": 78.0,
+      "trump_pct_2020": 21.0,
+      "margin_2020": 57.0
+    },
+    "TX-31": {
+      "incumbent_2024": "John Carter",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -20.0
+    },
+    "TX-32": {
+      "incumbent_2024": "Julie Johnson",
+      "incumbent_party_2024": "D",
+      "harris_pct": 61.0,
+      "trump_pct": 37.0,
+      "margin_2024": 24.0,
+      "biden_pct_2020": 66.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 33.0
+    },
+    "TX-33": {
+      "incumbent_2024": "Marc Veasey",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 32.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 74.0,
+      "trump_pct_2020": 24.0,
+      "margin_2020": 50.0
+    },
+    "TX-34": {
+      "incumbent_2024": "Vicente Gonzalez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 47.0,
+      "trump_pct": 52.0,
+      "margin_2024": -4.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 42.0,
+      "margin_2020": 16.0
+    },
+    "TX-35": {
+      "incumbent_2024": "Greg Casar",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 32.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 45.0
+    },
+    "TX-36": {
+      "incumbent_2024": "Brian Babin",
+      "incumbent_party_2024": "R",
+      "harris_pct": 31.0,
+      "trump_pct": 68.0,
+      "margin_2024": -37.0,
+      "biden_pct_2020": 34.0,
+      "trump_pct_2020": 65.0,
+      "margin_2020": -32.0
+    },
+    "TX-37": {
+      "incumbent_2024": "Lloyd Doggett",
+      "incumbent_party_2024": "D",
+      "harris_pct": 74.0,
+      "trump_pct": 24.0,
+      "margin_2024": 49.0,
+      "biden_pct_2020": 75.0,
+      "trump_pct_2020": 23.0,
+      "margin_2020": 53.0
+    },
+    "TX-38": {
+      "incumbent_2024": "Wesley Hunt",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -18.0
+    },
+    "UT-1": {
+      "incumbent_2024": "Blake Moore",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 58.0,
+      "margin_2020": -20.0
+    },
+    "UT-2": {
+      "incumbent_2024": "Celeste Maloy",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 59.0,
+      "margin_2024": -20.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -17.0
+    },
+    "UT-3": {
+      "incumbent_2024": "Mike Kennedy",
+      "incumbent_party_2024": "R",
+      "harris_pct": 39.0,
+      "trump_pct": 58.0,
+      "margin_2024": -19.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -19.0
+    },
+    "UT-4": {
+      "incumbent_2024": "Burgess Owens",
+      "incumbent_party_2024": "R",
+      "harris_pct": 35.0,
+      "trump_pct": 62.0,
+      "margin_2024": -27.0,
+      "biden_pct_2020": 35.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -26.0
+    },
+    "VA-1": {
+      "incumbent_2024": "Rob Wittman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 52.0,
+      "margin_2024": -5.0,
+      "biden_pct_2020": 46.0,
+      "trump_pct_2020": 52.0,
+      "margin_2020": -6.0
+    },
+    "VA-2": {
+      "incumbent_2024": "Jen Kiggans",
+      "incumbent_party_2024": "R",
+      "harris_pct": 49.3,
+      "trump_pct": 49.5,
+      "margin_2024": -0.2,
+      "biden_pct_2020": 50.0,
+      "trump_pct_2020": 48.0,
+      "margin_2020": 2.0
+    },
+    "VA-3": {
+      "incumbent_2024": "Bobby Scott",
+      "incumbent_party_2024": "D",
+      "harris_pct": 67.0,
+      "trump_pct": 32.0,
+      "margin_2024": 35.0,
+      "biden_pct_2020": 68.0,
+      "trump_pct_2020": 30.0,
+      "margin_2020": 38.0
+    },
+    "VA-4": {
+      "incumbent_2024": "Jennifer McClellan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 33.0,
+      "margin_2024": 33.0,
+      "biden_pct_2020": 67.0,
+      "trump_pct_2020": 32.0,
+      "margin_2020": 36.0
+    },
+    "VA-5": {
+      "incumbent_2024": "John McGuire",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 56.0,
+      "margin_2024": -12.0,
+      "biden_pct_2020": 45.0,
+      "trump_pct_2020": 53.0,
+      "margin_2020": -8.0
+    },
+    "VA-6": {
+      "incumbent_2024": "Ben Cline",
+      "incumbent_party_2024": "R",
+      "harris_pct": 37.0,
+      "trump_pct": 61.0,
+      "margin_2024": -24.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 60.0,
+      "margin_2020": -22.0
+    },
+    "VA-7": {
+      "incumbent_2024": "Eugene Vindman",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 48.0,
+      "margin_2024": 3.0,
+      "biden_pct_2020": 53.0,
+      "trump_pct_2020": 46.0,
+      "margin_2020": 7.0
+    },
+    "VA-8": {
+      "incumbent_2024": "Don Beyer",
+      "incumbent_party_2024": "D",
+      "harris_pct": 74.0,
+      "trump_pct": 24.0,
+      "margin_2024": 50.0,
+      "biden_pct_2020": 77.0,
+      "trump_pct_2020": 21.0,
+      "margin_2020": 56.0
+    },
+    "VA-9": {
+      "incumbent_2024": "Morgan Griffith",
+      "incumbent_party_2024": "R",
+      "harris_pct": 28.0,
+      "trump_pct": 72.0,
+      "margin_2024": -44.0,
+      "biden_pct_2020": 28.0,
+      "trump_pct_2020": 70.0,
+      "margin_2020": -42.0
+    },
+    "VA-10": {
+      "incumbent_2024": "Suhas Subramanyam",
+      "incumbent_party_2024": "D",
+      "harris_pct": 53.0,
+      "trump_pct": 45.0,
+      "margin_2024": 8.0,
+      "biden_pct_2020": 58.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 18.0
+    },
+    "VA-11": {
+      "incumbent_2024": "James Walkinshaw",
+      "incumbent_party_2024": "D",
+      "harris_pct": 66.0,
+      "trump_pct": 31.0,
+      "margin_2024": 34.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 29.0,
+      "margin_2020": 41.0
+    },
     "VT-AL": {
-      "harris_votes": 235791,
-      "trump_votes": 119395,
-      "source_url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_election_in_Vermont"
+      "incumbent_2024": "Becca Balint",
+      "incumbent_party_2024": "D",
+      "harris_pct": 64.0,
+      "trump_pct": 33.0,
+      "margin_2024": 32.0,
+      "biden_pct_2020": 66.0,
+      "trump_pct_2020": 31.0,
+      "margin_2020": 36.0
+    },
+    "WA-1": {
+      "incumbent_2024": "Suzan DelBene",
+      "incumbent_party_2024": "D",
+      "harris_pct": 63.0,
+      "trump_pct": 34.0,
+      "margin_2024": 29.0,
+      "biden_pct_2020": 64.0,
+      "trump_pct_2020": 33.0,
+      "margin_2020": 31.0
+    },
+    "WA-2": {
+      "incumbent_2024": "Rick Larsen",
+      "incumbent_party_2024": "D",
+      "harris_pct": 60.0,
+      "trump_pct": 37.0,
+      "margin_2024": 24.0,
+      "biden_pct_2020": 60.0,
+      "trump_pct_2020": 37.0,
+      "margin_2020": 23.0
+    },
+    "WA-3": {
+      "incumbent_2024": "Marie Gluesenkamp Perez",
+      "incumbent_party_2024": "D",
+      "harris_pct": 47.0,
+      "trump_pct": 50.0,
+      "margin_2024": -3.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -4.0
+    },
+    "WA-4": {
+      "incumbent_2024": "Dan Newhouse",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 59.0,
+      "margin_2024": -21.0,
+      "biden_pct_2020": 40.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -17.0
+    },
+    "WA-5": {
+      "incumbent_2024": "Michael Baumgartner",
+      "incumbent_party_2024": "R",
+      "harris_pct": 43.0,
+      "trump_pct": 54.0,
+      "margin_2024": -11.0,
+      "biden_pct_2020": 44.0,
+      "trump_pct_2020": 54.0,
+      "margin_2020": -10.0
+    },
+    "WA-6": {
+      "incumbent_2024": "Emily Randall",
+      "incumbent_party_2024": "D",
+      "harris_pct": 58.0,
+      "trump_pct": 39.0,
+      "margin_2024": 19.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 17.0
+    },
+    "WA-7": {
+      "incumbent_2024": "Pramila Jayapal",
+      "incumbent_party_2024": "D",
+      "harris_pct": 86.0,
+      "trump_pct": 11.0,
+      "margin_2024": 75.0,
+      "biden_pct_2020": 87.0,
+      "trump_pct_2020": 11.0,
+      "margin_2020": 76.0
+    },
+    "WA-8": {
+      "incumbent_2024": "Kim Schrier",
+      "incumbent_party_2024": "D",
+      "harris_pct": 51.0,
+      "trump_pct": 46.0,
+      "margin_2024": 6.0,
+      "biden_pct_2020": 52.0,
+      "trump_pct_2020": 45.0,
+      "margin_2020": 7.0
+    },
+    "WA-9": {
+      "incumbent_2024": "Adam Smith",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 28.0,
+      "margin_2024": 41.0,
+      "biden_pct_2020": 72.0,
+      "trump_pct_2020": 26.0,
+      "margin_2020": 45.0
+    },
+    "WA-10": {
+      "incumbent_2024": "Marilyn Strickland",
+      "incumbent_party_2024": "D",
+      "harris_pct": 57.0,
+      "trump_pct": 39.0,
+      "margin_2024": 18.0,
+      "biden_pct_2020": 57.0,
+      "trump_pct_2020": 40.0,
+      "margin_2020": 18.0
+    },
+    "WI-1": {
+      "incumbent_2024": "Bryan Steil",
+      "incumbent_party_2024": "R",
+      "harris_pct": 47.0,
+      "trump_pct": 52.0,
+      "margin_2024": -5.0,
+      "biden_pct_2020": 48.0,
+      "trump_pct_2020": 50.0,
+      "margin_2020": -2.0
+    },
+    "WI-2": {
+      "incumbent_2024": "Mark Pocan",
+      "incumbent_party_2024": "D",
+      "harris_pct": 69.0,
+      "trump_pct": 29.0,
+      "margin_2024": 40.0,
+      "biden_pct_2020": 70.0,
+      "trump_pct_2020": 28.0,
+      "margin_2020": 42.0
+    },
+    "WI-3": {
+      "incumbent_2024": "Derrick Van Orden",
+      "incumbent_party_2024": "R",
+      "harris_pct": 46.0,
+      "trump_pct": 53.0,
+      "margin_2024": -7.0,
+      "biden_pct_2020": 47.0,
+      "trump_pct_2020": 51.0,
+      "margin_2020": -5.0
+    },
+    "WI-4": {
+      "incumbent_2024": "Gwen Moore",
+      "incumbent_party_2024": "D",
+      "harris_pct": 75.0,
+      "trump_pct": 23.0,
+      "margin_2024": 52.0,
+      "biden_pct_2020": 76.0,
+      "trump_pct_2020": 23.0,
+      "margin_2020": 53.0
+    },
+    "WI-5": {
+      "incumbent_2024": "Scott Fitzgerald",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 60.0,
+      "margin_2024": -22.0,
+      "biden_pct_2020": 38.0,
+      "trump_pct_2020": 61.0,
+      "margin_2020": -23.0
+    },
+    "WI-6": {
+      "incumbent_2024": "Glenn Grothman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 58.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -16.0
+    },
+    "WI-7": {
+      "incumbent_2024": "Tom Tiffany",
+      "incumbent_party_2024": "R",
+      "harris_pct": 38.0,
+      "trump_pct": 61.0,
+      "margin_2024": -23.0,
+      "biden_pct_2020": 39.0,
+      "trump_pct_2020": 59.0,
+      "margin_2020": -20.0
+    },
+    "WI-8": {
+      "incumbent_2024": "Tony Wied",
+      "incumbent_party_2024": "R",
+      "harris_pct": 41.0,
+      "trump_pct": 57.0,
+      "margin_2024": -16.0,
+      "biden_pct_2020": 41.0,
+      "trump_pct_2020": 57.0,
+      "margin_2020": -15.0
+    },
+    "WV-1": {
+      "incumbent_2024": "Carol Miller",
+      "incumbent_party_2024": "R",
+      "harris_pct": 27.0,
+      "trump_pct": 71.0,
+      "margin_2024": -44.0,
+      "biden_pct_2020": 29.0,
+      "trump_pct_2020": 70.0,
+      "margin_2020": -41.0
+    },
+    "WV-2": {
+      "incumbent_2024": "Riley Moore",
+      "incumbent_party_2024": "R",
+      "harris_pct": 29.0,
+      "trump_pct": 69.0,
+      "margin_2024": -40.0,
+      "biden_pct_2020": 31.0,
+      "trump_pct_2020": 68.0,
+      "margin_2020": -37.0
+    },
+    "WY-AL": {
+      "incumbent_2024": "Harriet Hageman",
+      "incumbent_party_2024": "R",
+      "harris_pct": 26.0,
+      "trump_pct": 72.0,
+      "margin_2024": -46.0,
+      "biden_pct_2020": 27.0,
+      "trump_pct_2020": 70.0,
+      "margin_2020": -44.0
     }
   }
 }

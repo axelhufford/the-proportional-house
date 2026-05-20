@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-20T00:23:57.027889+00:00",
+    "generated_at": "2026-05-20T00:42:53.317219+00:00",
     "baseline_source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 (published March 10, 2025).",
     "baseline_source_url": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "method": "sainte-lague"
@@ -972,8 +972,8 @@
         "r_seats": 0
       },
       "baseline_2024": {
-        "d_share": 0.6639,
-        "r_share": 0.3361
+        "d_share": 0.6598,
+        "r_share": 0.3402
       },
       "projected_pr": {
         "d_seats": 1,
