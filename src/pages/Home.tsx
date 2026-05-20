@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Topology } from 'topojson-specification';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
@@ -23,6 +23,26 @@ export function Home({ onMetaChange }: HomeProps) {
   // Sandbox slider state: hypothetical generic-ballot margin in points.
   // Initialized to the live pipeline value once the payload loads.
   const [sandboxBallot, setSandboxBallot] = useState<number | null>(null);
+  // Track the FIPS of the last-clicked state so we can return keyboard focus
+  // to it when the state-detail dialog closes.
+  const lastSelectedFipsRef = useRef<string | null>(null);
+
+  const handleSelect = useCallback((fips: string) => {
+    lastSelectedFipsRef.current = fips;
+    setSelectedFips(fips);
+  }, []);
+
+  const handleDeselect = useCallback(() => {
+    const fips = lastSelectedFipsRef.current;
+    setSelectedFips(null);
+    // Defer the focus restore so React unmounts the dialog first.
+    if (fips) {
+      requestAnimationFrame(() => {
+        const path = document.querySelector<SVGPathElement>(`svg path[data-fips="${fips}"]`);
+        path?.focus();
+      });
+    }
+  }, []);
 
   useEffect(() => {
     Promise.all([
@@ -73,7 +93,7 @@ export function Home({ onMetaChange }: HomeProps) {
     <>
       <NationalSummary payload={effectivePayload} viewMode={viewMode} />
 
-      <section className="max-w-6xl mx-auto w-full px-6 py-5">
+      <section id="main" className="max-w-6xl mx-auto w-full px-6 py-5">
         <ModeToggle
           viewMode={viewMode}
           onViewModeChange={setViewMode}
@@ -105,8 +125,34 @@ export function Home({ onMetaChange }: HomeProps) {
             states={effectivePayload.states}
             colorMode={colorMode}
             selectedFips={selectedFips}
-            onSelect={setSelectedFips}
+            onSelect={handleSelect}
           />
+          {/* Screen-reader-only tabular fallback for the map. */}
+          <table className="sr-only">
+            <caption>
+              {colorMode === 'balance'
+                ? 'Projected House delegation by state under proportional representation.'
+                : 'Distortion shift by state under proportional representation.'}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">State</th>
+                <th scope="col">Seats</th>
+                <th scope="col">Actual today</th>
+                <th scope="col">Projected under PR</th>
+              </tr>
+            </thead>
+            <tbody>
+              {effectivePayload.states.map((s) => (
+                <tr key={s.fips}>
+                  <th scope="row">{s.name}</th>
+                  <td>{s.seats}</td>
+                  <td>{`Democratic ${s.actual.d_seats}, Republican ${s.actual.r_seats}`}</td>
+                  <td>{`Democratic ${s.projected.d_seats}, Republican ${s.projected.r_seats}`}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <MapLegend mode={colorMode} />
           <p className="mt-3 text-xs text-stone-500">
             Click any state to inspect its projected delegation and Sainte-Laguë allocation.
@@ -119,7 +165,7 @@ export function Home({ onMetaChange }: HomeProps) {
         <StateDetail
           state={selectedState}
           meta={effectivePayload.meta}
-          onClose={() => setSelectedFips(null)}
+          onClose={handleDeselect}
         />
       )}
     </>

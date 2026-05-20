@@ -18,6 +18,24 @@ interface StateFeatureProps {
   name: string;
 }
 
+/**
+ * Build a screen-reader-friendly label for a map state that adapts to the
+ * current color mode. Sighted users get the visual color encoding; AT users
+ * get the same information in words.
+ */
+function buildAriaLabel(state: StateProjection, colorMode: ColorMode): string {
+  const base = `${state.name}, ${state.seats} ${state.seats === 1 ? 'seat' : 'seats'}: ` +
+    `currently ${state.actual.d_seats} Democratic, ${state.actual.r_seats} Republican; ` +
+    `projected under PR ${state.projected.d_seats} Democratic, ${state.projected.r_seats} Republican.`;
+  if (colorMode === 'distortion') {
+    const dShift = state.projected.d_seats - state.actual.d_seats;
+    if (dShift === 0) return `${base} No seat shift under PR.`;
+    const direction = dShift > 0 ? 'Democrats' : 'Republicans';
+    return `${base} Shifts ${Math.abs(dShift)} ${Math.abs(dShift) === 1 ? 'seat' : 'seats'} toward ${direction} under PR.`;
+  }
+  return base;
+}
+
 const WIDTH = 975;
 const HEIGHT = 610;
 
@@ -88,12 +106,13 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect }: M
               stroke={isSelected ? '#111' : '#fff'}
               strokeWidth={isSelected ? 2 : isHover ? 1.5 : 0.75}
               className="cursor-pointer transition-[stroke-width] duration-100"
+              data-fips={fips}
               onMouseEnter={() => setHoverFips(fips)}
               onMouseLeave={() => setHoverFips(null)}
               onClick={() => onSelect(fips)}
               role="button"
               tabIndex={0}
-              aria-label={`${state.name}: projected ${state.projected.d_seats} Democratic, ${state.projected.r_seats} Republican`}
+              aria-label={buildAriaLabel(state, colorMode)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();

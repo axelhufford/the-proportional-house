@@ -59,6 +59,7 @@ export function Sandbox({ genericBallot, swing, baseline2024, onChange }: Props)
           value={genericBallot}
           onChange={(e) => onChange(Number(e.target.value))}
           aria-label="Hypothetical generic ballot margin"
+          aria-valuetext={fmtMargin(genericBallot)}
           className="w-full accent-stone-900"
         />
         <div className="mt-1 flex justify-between text-xs text-stone-500 tabular-nums">

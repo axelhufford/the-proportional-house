@@ -56,8 +56,12 @@ function SegmentedControl<T extends string>({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs uppercase tracking-wider text-stone-500 font-medium">{label}</span>
-      <div className="inline-flex rounded-md border border-stone-300 bg-white p-0.5">
+      <span id={`segctl-${label.replace(/\s+/g, '-')}`} className="text-xs uppercase tracking-wider text-stone-500 font-medium">{label}</span>
+      <div
+        role="group"
+        aria-labelledby={`segctl-${label.replace(/\s+/g, '-')}`}
+        className="inline-flex rounded-md border border-stone-300 bg-white p-0.5"
+      >
         {options.map((opt) => {
           const active = opt.value === value;
           return (
@@ -65,6 +69,7 @@ function SegmentedControl<T extends string>({
               key={opt.value}
               type="button"
               disabled={opt.disabled}
+              aria-pressed={active}
               onClick={() => onChange(opt.value)}
               className={[
                 'px-3 py-1 text-sm rounded',

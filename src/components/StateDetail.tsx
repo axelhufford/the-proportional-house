@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { quotientTable } from '../lib/allocation';
 import { PollingTrendChart } from './PollingTrendChart';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
@@ -10,6 +10,25 @@ interface Props {
 }
 
 export function StateDetail({ state, meta, onClose }: Props) {
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+
+  // Focus the heading on open so screen-reader users land inside the dialog,
+  // and listen for Escape to close.
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [state.fips]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
   const dGain = state.projected.d_seats - state.actual.d_seats;
   const quotients = useMemo(() => {
     if (state.seats <= 1) return [];
@@ -27,12 +46,13 @@ export function StateDetail({ state, meta, onClose }: Props) {
     <aside
       className="fixed inset-y-0 right-0 w-full sm:w-[28rem] bg-white border-l border-stone-200 shadow-xl overflow-y-auto"
       role="dialog"
+      aria-modal="true"
       aria-label={`${state.name} detail`}
     >
       <div className="p-5 border-b border-stone-200 flex items-start justify-between">
         <div>
           <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{state.code}</div>
-          <h2 className="text-xl font-semibold text-stone-900">{state.name}</h2>
+          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-semibold text-stone-900 outline-none">{state.name}</h2>
           <div className="text-sm text-stone-600">
             {state.seats} {state.seats === 1 ? 'seat' : 'seats'}
           </div>

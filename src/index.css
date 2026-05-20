@@ -39,3 +39,19 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
 }
+
+/* Visible keyboard-focus ring for all focusable controls. Uses :focus-visible
+ * so we don't ring on mouse clicks. Navy matches the brand. */
+:where(a, button, [role="button"], input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* SVG paths don't render CSS outline reliably; use a thick navy stroke
+ * for focused map states. Targets the keyboard-focus state on Map.tsx. */
+svg path[role="button"]:focus-visible {
+  stroke: var(--brand-navy);
+  stroke-width: 3;
+  outline: none;
+}
