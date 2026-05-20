@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-05-20T12:30:11.822815+00:00",
+    "generated_at": "2026-05-20T23:34:38.989637+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
-    "n_polls": 198,
+    "n_polls": 199,
     "uses_house_effect_adjustment": true
   },
   "polls": [
@@ -1567,6 +1567,14 @@
       "sample_size": 1507,
       "population": "RV",
       "url": "https://www.nytimes.com/interactive/2026/05/18/polls/times-siena-national-poll-toplines.html"
+    },
+    {
+      "date": "2026-05-14",
+      "pollster": "YouGov",
+      "margin": 5.53,
+      "sample_size": 1397,
+      "population": "LV",
+      "url": "https://www.cbsnews.com/news/redistricting-elections-opinion-poll-19-may-2026/"
     },
     {
       "date": "2026-05-16",
