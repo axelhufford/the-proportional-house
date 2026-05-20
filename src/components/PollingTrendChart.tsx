@@ -96,6 +96,28 @@ function fmtDate(ts: number | string): string {
   return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 }
 
+function fmtMonth(ts: number): string {
+  return new Date(ts).toLocaleDateString(undefined, { month: 'short' });
+}
+
+/** Return ~5 evenly-spaced first-of-month timestamps spanning [xMin, xMax]. */
+function monthlyTicks(xMin: number, xMax: number, count = 5): number[] {
+  if (!Number.isFinite(xMin) || !Number.isFinite(xMax) || xMax <= xMin) return [];
+  const start = new Date(xMin);
+  start.setUTCDate(1);
+  start.setUTCHours(0, 0, 0, 0);
+  const ticks: number[] = [];
+  // Walk month by month, then thin to ~count if there are too many.
+  for (let i = 0; i < 24; i++) {
+    const t = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + i, 1)).getTime();
+    if (t > xMax) break;
+    if (t >= xMin) ticks.push(t);
+  }
+  if (ticks.length <= count) return ticks;
+  const step = Math.ceil(ticks.length / count);
+  return ticks.filter((_, i) => i % step === 0);
+}
+
 interface DotProps {
   cx?: number;
   cy?: number;
@@ -168,10 +190,12 @@ export function PollingTrendChart({ currentAverageMargin }: Props) {
             type="number"
             domain={[xMin, xMax]}
             scale="time"
-            tickFormatter={fmtDate}
+            ticks={monthlyTicks(xMin, xMax, 5)}
+            tickFormatter={fmtMonth}
             tick={{ fontSize: 10, fill: '#888' }}
             stroke="#d6d3d1"
             tickLine={false}
+            minTickGap={8}
           />
           <YAxis
             type="number"
