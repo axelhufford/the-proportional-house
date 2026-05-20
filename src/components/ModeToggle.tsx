@@ -72,7 +72,7 @@ function SegmentedControl<T extends string>({
               aria-pressed={active}
               onClick={() => onChange(opt.value)}
               className={[
-                'px-3 py-1 text-sm rounded',
+                'px-3 py-1.5 sm:py-1 text-sm rounded',
                 active ? 'bg-stone-900 text-white' : 'text-stone-700 hover:bg-stone-100',
                 opt.disabled ? 'opacity-40 cursor-not-allowed hover:bg-transparent' : '',
               ].join(' ')}

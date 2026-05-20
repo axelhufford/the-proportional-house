@@ -44,12 +44,22 @@ export function StateDetail({ state, meta, onClose }: Props) {
 
   return (
     <aside
-      className="fixed inset-y-0 right-0 w-full sm:w-[28rem] bg-white border-l border-stone-200 shadow-xl overflow-y-auto"
+      className={[
+        // Mobile: bottom sheet — covers ~78% of viewport with rounded top corners.
+        'fixed bottom-0 left-0 right-0 max-h-[78vh] rounded-t-2xl',
+        'bg-white border-t border-stone-200 shadow-2xl overflow-y-auto',
+        // Desktop: revert to the right-side sidebar.
+        'sm:top-0 sm:bottom-0 sm:left-auto sm:max-h-none sm:w-[28rem] sm:rounded-none sm:border-t-0 sm:border-l',
+      ].join(' ')}
       role="dialog"
       aria-modal="true"
       aria-label={`${state.name} detail`}
     >
-      <div className="p-5 border-b border-stone-200 flex items-start justify-between">
+      {/* Visual drag-handle affordance, mobile only. */}
+      <div aria-hidden="true" className="sm:hidden flex justify-center pt-2 pb-1">
+        <span className="block h-1.5 w-12 rounded-full bg-stone-300" />
+      </div>
+      <div className="px-5 pt-3 sm:pt-5 pb-5 border-b border-stone-200 flex items-start justify-between gap-3">
         <div>
           <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{state.code}</div>
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-semibold text-stone-900 outline-none">{state.name}</h2>
@@ -60,7 +70,7 @@ export function StateDetail({ state, meta, onClose }: Props) {
         <button
           type="button"
           onClick={onClose}
-          className="text-stone-400 hover:text-stone-700 text-xl leading-none px-2"
+          className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-11 w-11 flex items-center justify-center text-2xl flex-shrink-0 leading-none"
           aria-label="Close"
         >
           ×

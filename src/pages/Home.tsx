@@ -135,11 +135,29 @@ export function Home({ onMetaChange }: HomeProps) {
   }, [payload, viewMode, sandboxBallot]);
 
   if (error) {
-    return <div className="p-6 text-red-700">Failed to load data: {error}</div>;
+    return (
+      <div className="max-w-2xl mx-auto px-6 py-12">
+        <div className="bg-white border border-red-200 rounded-lg shadow-sm p-5">
+          <h2 className="font-serif text-lg text-red-800">Couldn't load the projection</h2>
+          <p className="text-sm text-stone-600 mt-1">{error}</p>
+          <p className="text-xs text-stone-500 mt-3">
+            Try refreshing. If this keeps happening the pipeline may be mid-deploy.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   if (!payload || !topology || !effectivePayload) {
-    return <div className="p-6 text-stone-500">Loading…</div>;
+    return (
+      <div className="max-w-2xl mx-auto px-6 py-16 text-center">
+        <div
+          className="inline-block h-6 w-6 rounded-full border-2 border-stone-300 border-t-brand-navy animate-spin"
+          aria-hidden="true"
+        />
+        <p className="mt-3 text-sm text-stone-500">Loading projection…</p>
+      </div>
+    );
   }
 
   const selectedState = selectedFips
@@ -179,7 +197,7 @@ export function Home({ onMetaChange }: HomeProps) {
           </div>
         )}
 
-        <div className="mt-5 bg-white rounded-lg border border-stone-200 p-4">
+        <div className="mt-5 bg-white rounded-lg border border-stone-200 shadow-sm p-4">
           <USMap
             topology={topology}
             states={effectivePayload.states}
@@ -222,11 +240,21 @@ export function Home({ onMetaChange }: HomeProps) {
       </section>
 
       {selectedState && (
-        <StateDetail
-          state={selectedState}
-          meta={effectivePayload.meta}
-          onClose={handleDeselect}
-        />
+        <>
+          {/* Mobile-only scrim behind the bottom sheet. Tap to dismiss. */}
+          <div
+            className="fixed inset-0 bg-stone-900/30 sm:hidden z-30"
+            aria-hidden="true"
+            onClick={handleDeselect}
+          />
+          <div className="relative z-40">
+            <StateDetail
+              state={selectedState}
+              meta={effectivePayload.meta}
+              onClose={handleDeselect}
+            />
+          </div>
+        </>
       )}
     </>
   );

@@ -79,7 +79,7 @@ export function Sandbox({ genericBallot, swing, baseline2024, onChange }: Props)
               type="button"
               onClick={() => onChange(p.value)}
               className={[
-                'px-2 py-1 rounded border',
+                'px-3 py-1.5 sm:px-2 sm:py-1 rounded border',
                 active
                   ? 'bg-stone-900 text-white border-stone-900'
                   : 'border-stone-300 text-stone-700 hover:bg-stone-100',
