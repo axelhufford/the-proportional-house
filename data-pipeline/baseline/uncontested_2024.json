@@ -1,6 +1,12 @@
 {
-  "$comment": "Hand-curated list of 2024 U.S. House districts where one major party fielded no candidate. Stage 1 covers only state-level cases (where one party is completely absent from a state's recap) because those need fixing most urgently and are simplest to source. Within-state uncontested districts (FL, NY, TX, LA, AL, AR, MS, ...) remain a deferred v2 item — they require per-CD presidential data which currently has no clean fetchable source. See PROJECT_PLAN_1.md §2 + Phase 7 for the broader plan.",
-  "source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 (cross-referenced against Wikipedia per-state House election articles).",
+  "$comment": "Hand-curated list of 2024 U.S. House districts where one major party fielded no candidate. Identified by section-aware parsing of the Clerk PDF's per-state pages (data-pipeline/scripts/find_uncontested.py companion logic) plus manual verification.",
+  "source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 — per-state recapitulation pages.",
+  "deferred_cases": [
+    {
+      "cd": "FL-20",
+      "reason": "Sheila Cherfilus-McCormick (D) was re-elected without opposition; the Clerk PDF records no vote total for this district (footnote '(1)' instead of numbers). No turnover to add to the state total, no votes to replace. Imputing here would require estimating the district's House turnout from outside data."
+    }
+  ],
   "districts": [
     {
       "cd": "VT-AL",
@@ -9,7 +15,34 @@
       "unopposed_party": "D",
       "unopposed_candidate": "Becca Balint",
       "unopposed_votes": 218398,
-      "note": "VT has a single at-large House seat. No Republican filed; Balint ran against Libertarian, Independent, and write-in candidates. Pres-by-CD = statewide pres for single-seat states."
+      "note": "VT has a single at-large House seat. No Republican filed. Pres-by-CD = statewide pres for single-seat states."
+    },
+    {
+      "cd": "LA-4",
+      "state": "LA",
+      "missing_party": "D",
+      "unopposed_party": "R",
+      "unopposed_candidate": "Mike Johnson",
+      "unopposed_votes": 306248,
+      "note": "Speaker Johnson ran unopposed by Democrats in 2024."
+    },
+    {
+      "cd": "WA-4",
+      "state": "WA",
+      "missing_party": "D",
+      "unopposed_party": "R",
+      "unopposed_candidate": "Dan Newhouse",
+      "unopposed_votes": 289652,
+      "note": "Newhouse advanced from WA's top-two primary against another Republican; no Democrat appeared on the general-election ballot."
+    },
+    {
+      "cd": "WA-9",
+      "state": "WA",
+      "missing_party": "R",
+      "unopposed_party": "D",
+      "unopposed_candidate": "Adam Smith",
+      "unopposed_votes": 273381,
+      "note": "Smith advanced from WA's top-two primary against another Democrat; no Republican appeared on the general-election ballot."
     }
   ]
 }
