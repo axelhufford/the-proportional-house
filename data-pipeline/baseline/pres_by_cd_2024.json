@@ -1,0 +1,11 @@
+{
+  "$comment": "2024 U.S. presidential election two-party results by congressional district. Stage 1 covers only the CDs in uncontested_2024.json (currently just VT-AL). Expanding to all 435 CDs is a deferred v2 task; doing it properly requires either (a) a clean fetchable dataset (no such public source identified yet — Wikipedia's per-state pres election articles each have a 'By congressional district' section, but format varies and 50 articles must be scraped) or (b) hand-curating from a citable single-page compilation.",
+  "source": "Wikipedia, '2024 United States presidential election in X' per-state articles. Each entry below cites the specific URL the values came from in the entry's `source_url`.",
+  "districts": {
+    "VT-AL": {
+      "harris_votes": 235791,
+      "trump_votes": 119395,
+      "source_url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_election_in_Vermont"
+    }
+  }
+}

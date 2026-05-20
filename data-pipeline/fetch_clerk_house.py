@@ -40,6 +40,13 @@ OUT_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "house_2024.json"
 # for "actual delegation today".
 WIKIPEDIA_RESULTS_URL = "https://en.wikipedia.org/wiki/2024_United_States_House_of_Representatives_elections"
 
+# Static data files for uncontested-race imputation. Stage 1 covers just
+# state-level cases (only Vermont currently); within-state uncontested
+# districts in FL/NY/TX/etc. are tracked as a deferred v2 item — they need
+# per-CD presidential data with no clean fetchable source yet.
+UNCONTESTED_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "uncontested_2024.json"
+PRES_BY_CD_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "pres_by_cd_2024.json"
+
 # Recapitulation table layout on page 86 of the Clerk PDF. Y-ranges identified
 # by reading the rotated column-header chars; (col, y_max, y_min) means a char
 # belongs to `col` if y_min < top <= y_max.
@@ -233,10 +240,91 @@ def parse_recap(pdf_path: Path) -> Dict[str, Dict[str, int]]:
     return merged
 
 
+def _apply_uncontested_imputation(state_totals: Dict[str, Dict[str, int]]) -> Dict[str, dict]:
+    """For each uncontested district, replace the district's two-party House
+    contribution to its state total with the district's 2024 presidential
+    two-party totals. This isolates each state's partisan lean from accidents
+    of candidate recruitment (e.g. Vermont's 100/0 House baseline becomes
+    ~64/32 once we substitute the presidential split).
+
+    Stage 1 only covers districts listed in baseline/uncontested_2024.json
+    (currently just VT-AL). Within-state uncontested cases are a deferred v2.
+
+    Mutates state_totals in place AND returns metadata about what was done,
+    keyed by state name (matching the keys in state_totals). Each metadata
+    entry has {imputed_district_count, imputed_district_ids}.
+    """
+    if not UNCONTESTED_PATH.exists() or not PRES_BY_CD_PATH.exists():
+        return {}
+
+    with UNCONTESTED_PATH.open() as f:
+        uncontested = json.load(f)
+    with PRES_BY_CD_PATH.open() as f:
+        pres_by_cd = json.load(f)
+
+    pres_districts = pres_by_cd.get("districts", {})
+
+    code_to_state_name = {code: name for name, code in STATE_CODES.items()}
+    metadata: Dict[str, dict] = {}
+
+    for district in uncontested.get("districts", []):
+        cd = district["cd"]
+        state_code = district["state"]
+        missing_party = district["missing_party"]
+        unopposed_party = district["unopposed_party"]
+        unopposed_votes = district["unopposed_votes"]
+
+        pres = pres_districts.get(cd)
+        if not pres:
+            print(f"  Skipping {cd}: no presidential data in pres_by_cd_2024.json")
+            continue
+
+        state_name = code_to_state_name.get(state_code)
+        if state_name is None or state_name not in state_totals:
+            print(f"  Skipping {cd}: state code {state_code} not in recap")
+            continue
+
+        totals = state_totals[state_name]
+        harris = pres["harris_votes"]
+        trump = pres["trump_votes"]
+
+        # Subtract the unopposed candidate's actual house votes from the
+        # winning party's state total, then add the presidential D and R
+        # totals for the district.
+        if unopposed_party == "R":
+            totals["Republican"] -= unopposed_votes
+        elif unopposed_party == "D":
+            totals["Democratic"] -= unopposed_votes
+        totals["Republican"] += trump
+        totals["Democratic"] += harris
+
+        # Other / Total adjustments: keep "Other" the same (we don't touch
+        # third-party votes in the district); recompute Total as R+D+others.
+        others = sum(
+            totals[k]
+            for k in ["Independent", "Libertarian", "Green", "Constitution", "Other", "Write-in"]
+        )
+        totals["Total"] = totals["Republican"] + totals["Democratic"] + others
+
+        meta = metadata.setdefault(
+            state_name, {"imputed_district_count": 0, "imputed_district_ids": []}
+        )
+        meta["imputed_district_count"] += 1
+        meta["imputed_district_ids"].append(cd)
+        print(f"  Imputed {cd}: missing {missing_party} → pres D {harris:,} / R {trump:,} replaces unopposed-{unopposed_party} {unopposed_votes:,}")
+
+    return metadata
+
+
 def main(force_download: bool = False) -> None:
     pdf_path = download_pdf(force=force_download)
     raw = parse_recap(pdf_path)
     composition = fetch_house_composition()
+
+    print("Applying uncontested-district imputation...")
+    imputation_meta = _apply_uncontested_imputation(raw)
+    n_imputed = sum(m["imputed_district_count"] for m in imputation_meta.values())
+    print(f"  Imputed {n_imputed} district(s) across {len(imputation_meta)} state(s)")
 
     states_out = []
     nat_r = nat_d = nat_total = 0
@@ -251,10 +339,13 @@ def main(force_download: bool = False) -> None:
         else:
             d_share = d / two_party
             r_share = r / two_party
-        # Flag states where one major party ran no candidate at the state level —
-        # the only way to know that purely from the recap. Per-district uncontested
-        # imputation needs CD-level presidential data and is deferred.
+        # Baseline distortion now only flags the rare case where, even AFTER
+        # uncontested imputation, one party has zero recorded votes — which
+        # would happen only if a state-level uncontested case wasn't covered
+        # in uncontested_2024.json. In Stage 1 only VT has a state-level
+        # case and it IS covered, so this should never fire for v1 data.
         baseline_distortion = (r == 0) or (d == 0)
+        imputed = imputation_meta.get(state, {})
         comp = composition[code]
         if comp["seats"] != SEATS_2024[code]:
             raise RuntimeError(
@@ -267,6 +358,8 @@ def main(force_download: bool = False) -> None:
             "seats": SEATS_2024[code],
             "actual_d_seats_119th": comp["d_seats"],
             "actual_r_seats_119th": comp["r_seats"],
+            "imputed_district_count": imputed.get("imputed_district_count", 0),
+            "imputed_district_ids": imputed.get("imputed_district_ids", []),
             "votes_2024": {
                 "republican": r,
                 "democratic": d,
@@ -307,9 +400,14 @@ def main(force_download: bool = False) -> None:
                 "r_seats": nat_actual_r,
                 "total": nat_actual_d + nat_actual_r,
             },
+            "uncontested_imputation": {
+                "districts_imputed": n_imputed,
+                "states_affected": sorted([STATE_CODES[s] for s in imputation_meta]),
+                "method": "Replaced each uncontested district's House two-party total with that district's 2024 presidential two-party total (no down-ballot dropoff adjustment in v1).",
+                "stage": "Stage 1 — state-level cases only (VT). Within-state uncontested districts in FL/NY/TX/LA/AL/AR/MS are tracked as a deferred v2 item; they require per-CD presidential data with no clean fetchable source yet.",
+            },
             "notes": [
-                "State-level vote totals include uncontested districts. States with one major party absent from the recap are flagged baseline_distortion_warning=True.",
-                "Per-district uncontested-race imputation requires CD-level presidential vote share (deferred; would let us recover a counterfactual two-party share for unopposed districts).",
+                "State-level vote totals reflect uncontested-district imputation where applied (see uncontested_imputation).",
                 "Two-party share is computed as R / (R + D); third parties and write-ins are excluded from the share.",
                 "Actual delegation seat counts are scraped from Wikipedia's per-state results table on every pipeline run, so special-election shifts propagate automatically.",
             ],
@@ -325,7 +423,8 @@ def main(force_download: bool = False) -> None:
         f"national popular-vote R+{national_margin:.2f} "
         f"(R {nat_r:,} / D {nat_d:,} of {nat_total:,}). "
         f"Actual delegation: D {nat_actual_d} / R {nat_actual_r}. "
-        f"Flagged states: {', '.join(flagged) or 'none'}"
+        f"Imputed: {n_imputed} district(s). "
+        f"Flagged states (post-imputation): {', '.join(flagged) or 'none'}"
     )
 
 

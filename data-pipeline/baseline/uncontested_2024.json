@@ -1,0 +1,15 @@
+{
+  "$comment": "Hand-curated list of 2024 U.S. House districts where one major party fielded no candidate. Stage 1 covers only state-level cases (where one party is completely absent from a state's recap) because those need fixing most urgently and are simplest to source. Within-state uncontested districts (FL, NY, TX, LA, AL, AR, MS, ...) remain a deferred v2 item — they require per-CD presidential data which currently has no clean fetchable source. See PROJECT_PLAN_1.md §2 + Phase 7 for the broader plan.",
+  "source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 (cross-referenced against Wikipedia per-state House election articles).",
+  "districts": [
+    {
+      "cd": "VT-AL",
+      "state": "VT",
+      "missing_party": "R",
+      "unopposed_party": "D",
+      "unopposed_candidate": "Becca Balint",
+      "unopposed_votes": 218398,
+      "note": "VT has a single at-large House seat. No Republican filed; Balint ran against Libertarian, Independent, and write-in candidates. Pres-by-CD = statewide pres for single-seat states."
+    }
+  ]
+}

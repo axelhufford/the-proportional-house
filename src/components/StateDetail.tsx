@@ -48,7 +48,19 @@ export function StateDetail({ state, meta, onClose }: Props) {
       </div>
 
       <div className="p-5 space-y-5">
-        {state.baseline_distortion_warning && (
+        {(state.imputed_district_count ?? 0) > 0 && (
+          <div className="text-sm border border-blue-200 bg-blue-50 text-blue-900 rounded-md px-3 py-2">
+            <strong>
+              {state.imputed_district_count === 1
+                ? '1 district imputed from presidential vote.'
+                : `${state.imputed_district_count} districts imputed from presidential vote.`}
+            </strong>{' '}
+            {state.imputed_district_ids?.join(', ') ?? ''}{' '}
+            had no major-party opponent in 2024; we replaced the district's House two-party total with its 2024 presidential two-party split so the baseline reflects partisan lean rather than no-contest. See methodology.
+          </div>
+        )}
+
+        {state.baseline_distortion_warning && (state.imputed_district_count ?? 0) === 0 && (
           <div className="text-sm border border-amber-200 bg-amber-50 text-amber-900 rounded-md px-3 py-2">
             <strong>Baseline distortion warning.</strong>{' '}
             One major party fielded no candidate statewide in 2024, so the 2024 two-party share isn't meaningful for this state. The projection here assumes a neutral 50/50 baseline before applying the national swing.

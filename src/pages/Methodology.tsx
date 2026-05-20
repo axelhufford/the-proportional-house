@@ -127,7 +127,7 @@ projected_r_share = baseline_r_share − (swing / 2 / 100)`}</pre>
             <strong>Uniform swing.</strong> We apply the same point shift to every state. Real elasticity varies (Wisconsin moves more than Wyoming). A future v2 will weight by state elasticity.
           </li>
           <li>
-            <strong>Uncontested races distort baselines.</strong> Vermont in 2024 had no Republican House candidate; its 2024 baseline reads 100/0 D. We flag that state in the UI and use a neutral 50/50 baseline before applying swing. The cleaner fix — imputing votes for uncontested districts from presidential-by-CD data — is deferred to v2.
+            <strong>Uncontested races, partially imputed.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don't reflect partisan lean (one party gets ~100% of the two-party vote). We replace those districts' House totals with the district's 2024 <em>presidential</em> two-party totals. That fix is live for Vermont (the only state with no Republican filing anywhere). Within-state uncontested districts in Florida, New York, Texas, and a handful of others still inflate their state baselines — fixing them needs per-CD presidential data with no clean fetchable source yet. Each state-detail panel labels how many of its districts were imputed.
           </li>
           <li>
             <strong>Two-party only.</strong> Third-party and write-in votes are excluded from the share. Realistic for U.S. House, but it does mean the model can't represent a Greens or Libertarian breakthrough.

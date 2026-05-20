@@ -30,6 +30,8 @@ export interface StateProjection {
   baseline_2024: VoteShare;
   projected: VoteShare & SeatSplit;
   baseline_distortion_warning?: boolean;
+  imputed_district_count?: number;
+  imputed_district_ids?: string[];
 }
 
 export interface NationalTotals {

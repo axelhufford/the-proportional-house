@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-19T20:53:02.833265+00:00",
+    "generated_at": "2026-05-20T00:23:57.027889+00:00",
     "baseline_source": "U.S. House Clerk, Statistics of the Presidential and Congressional Election of November 5, 2024 (published March 10, 2025).",
     "baseline_source_url": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "method": "sainte-lague"
@@ -34,7 +34,9 @@
         "d_seats": 0,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "01",
@@ -53,7 +55,9 @@
         "d_seats": 2,
         "r_seats": 5
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "05",
@@ -72,7 +76,9 @@
         "d_seats": 1,
         "r_seats": 3
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "04",
@@ -91,7 +97,9 @@
         "d_seats": 4,
         "r_seats": 5
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "06",
@@ -110,7 +118,9 @@
         "d_seats": 32,
         "r_seats": 20
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "08",
@@ -129,7 +139,9 @@
         "d_seats": 4,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "09",
@@ -148,7 +160,9 @@
         "d_seats": 3,
         "r_seats": 2
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "10",
@@ -167,7 +181,9 @@
         "d_seats": 1,
         "r_seats": 0
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "12",
@@ -186,7 +202,9 @@
         "d_seats": 12,
         "r_seats": 16
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "13",
@@ -205,7 +223,9 @@
         "d_seats": 7,
         "r_seats": 7
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "15",
@@ -224,7 +244,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "19",
@@ -243,7 +265,9 @@
         "d_seats": 2,
         "r_seats": 2
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "16",
@@ -262,7 +286,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "17",
@@ -281,7 +307,9 @@
         "d_seats": 9,
         "r_seats": 8
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "18",
@@ -300,7 +328,9 @@
         "d_seats": 4,
         "r_seats": 5
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "20",
@@ -319,7 +349,9 @@
         "d_seats": 2,
         "r_seats": 2
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "21",
@@ -338,7 +370,9 @@
         "d_seats": 2,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "22",
@@ -357,7 +391,9 @@
         "d_seats": 2,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "25",
@@ -376,7 +412,9 @@
         "d_seats": 8,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "24",
@@ -395,7 +433,9 @@
         "d_seats": 5,
         "r_seats": 3
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "23",
@@ -414,7 +454,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "26",
@@ -433,7 +475,9 @@
         "d_seats": 6,
         "r_seats": 7
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "27",
@@ -452,7 +496,9 @@
         "d_seats": 4,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "29",
@@ -471,7 +517,9 @@
         "d_seats": 3,
         "r_seats": 5
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "28",
@@ -490,7 +538,9 @@
         "d_seats": 1,
         "r_seats": 3
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "30",
@@ -509,7 +559,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "37",
@@ -528,7 +580,9 @@
         "d_seats": 6,
         "r_seats": 8
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "38",
@@ -547,7 +601,9 @@
         "d_seats": 0,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "31",
@@ -566,7 +622,9 @@
         "d_seats": 1,
         "r_seats": 2
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "33",
@@ -585,7 +643,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "34",
@@ -604,7 +664,9 @@
         "d_seats": 6,
         "r_seats": 6
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "35",
@@ -623,7 +685,9 @@
         "d_seats": 2,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "32",
@@ -642,7 +706,9 @@
         "d_seats": 2,
         "r_seats": 2
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "36",
@@ -661,7 +727,9 @@
         "d_seats": 15,
         "r_seats": 11
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "39",
@@ -680,7 +748,9 @@
         "d_seats": 7,
         "r_seats": 8
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "40",
@@ -699,7 +769,9 @@
         "d_seats": 2,
         "r_seats": 3
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "41",
@@ -718,7 +790,9 @@
         "d_seats": 3,
         "r_seats": 3
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "42",
@@ -737,7 +811,9 @@
         "d_seats": 8,
         "r_seats": 9
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "44",
@@ -756,7 +832,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "45",
@@ -775,7 +853,9 @@
         "d_seats": 3,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "46",
@@ -794,7 +874,9 @@
         "d_seats": 0,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "47",
@@ -813,7 +895,9 @@
         "d_seats": 3,
         "r_seats": 6
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "48",
@@ -832,7 +916,9 @@
         "d_seats": 16,
         "r_seats": 22
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "49",
@@ -851,7 +937,9 @@
         "d_seats": 1,
         "r_seats": 3
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "51",
@@ -870,7 +958,9 @@
         "d_seats": 6,
         "r_seats": 5
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "50",
@@ -882,14 +972,18 @@
         "r_seats": 0
       },
       "baseline_2024": {
-        "d_share": 0.5,
-        "r_share": 0.5
+        "d_share": 0.6639,
+        "r_share": 0.3361
       },
       "projected_pr": {
         "d_seats": 1,
         "r_seats": 0
       },
-      "baseline_distortion_warning": true
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 1,
+      "imputed_district_ids": [
+        "VT-AL"
+      ]
     },
     {
       "fips": "53",
@@ -908,7 +1002,9 @@
         "d_seats": 6,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "55",
@@ -927,7 +1023,9 @@
         "d_seats": 4,
         "r_seats": 4
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "54",
@@ -946,7 +1044,9 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     },
     {
       "fips": "56",
@@ -965,7 +1065,9 @@
         "d_seats": 0,
         "r_seats": 1
       },
-      "baseline_distortion_warning": false
+      "baseline_distortion_warning": false,
+      "imputed_district_count": 0,
+      "imputed_district_ids": []
     }
   ]
 }

@@ -107,6 +107,8 @@ def project_states(baseline_states: list[dict], swing_points: float, method: str
                 "r_seats": result.r_seats,
             },
             "baseline_distortion_warning": s.get("baseline_distortion_warning", False),
+            "imputed_district_count": s.get("imputed_district_count", 0),
+            "imputed_district_ids": s.get("imputed_district_ids", []),
         })
     return out
 
@@ -144,6 +146,8 @@ def retrospective_states(baseline_states: list[dict], method: str = "sainte-lagu
             "baseline_2024": {"d_share": round(d, 4), "r_share": round(r, 4)},
             "projected_pr": {"d_seats": result.d_seats, "r_seats": result.r_seats},
             "baseline_distortion_warning": s.get("baseline_distortion_warning", False),
+            "imputed_district_count": s.get("imputed_district_count", 0),
+            "imputed_district_ids": s.get("imputed_district_ids", []),
         })
     return out
 
