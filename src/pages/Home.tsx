@@ -104,17 +104,32 @@ export function Home({ onMetaChange }: HomeProps) {
       .catch((e) => setError(String(e)));
   }, [onMetaChange]);
 
-  // Sync local state → URL so links are shareable. Defaults are omitted from
-  // the URL to keep typical visits clean. Uses `replace` so back-button
-  // history isn't polluted by every slider tick.
+  // URL → app state: when the URL gets a `?state=XX` from outside this
+  // component (StateSearch input, /state/:code redirect, browser back/
+  // forward), adopt it and open the matching panel. Without this effect
+  // the in-SPA URL change would be silently overwritten by the
+  // app-state-→-URL effect below.
+  useEffect(() => {
+    if (!payload) return;
+    const urlStateCode = searchParams.get('state');
+    if (!urlStateCode) return;
+    const match = payload.states.find((s) => s.code === urlStateCode.toUpperCase());
+    if (match && match.fips !== selectedFips) {
+      lastSelectedFipsRef.current = match.fips;
+      setSelectedFips(match.fips);
+    }
+  }, [payload, searchParams, selectedFips]);
+
+  // App state → URL: keep the URL in sync with the current view so links
+  // are shareable. Crucially, `searchParams` is NOT a dep here — that
+  // would clobber external URL changes from the effect above. Uses
+  // `replace` so slider ticks don't pollute back-button history.
   useEffect(() => {
     if (!payload) return;
     const next = new URLSearchParams();
     if (viewMode !== 'current') next.set('view', viewMode);
     if (colorMode !== 'balance') next.set('color', colorMode);
     if (viewMode === 'sandbox' && sandboxBallot !== null) {
-      // Only persist the ballot when it differs from the live pipeline value
-      // (the default the slider sits on when sandbox first opens).
       const liveBallot = payload.meta.generic_ballot_margin;
       if (Math.abs(sandboxBallot - liveBallot) > 0.05) {
         next.set('ballot', sandboxBallot.toFixed(1));
