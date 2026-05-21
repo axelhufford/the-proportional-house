@@ -1,0 +1,6 @@
+# The Proportional House — robots.txt
+# Allow everything. Point crawlers at the sitemap for full URL discovery.
+User-agent: *
+Allow: /
+
+Sitemap: https://the-proportional-house.pages.dev/sitemap.xml

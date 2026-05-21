@@ -9,6 +9,7 @@ import { ModeToggle } from '../components/ModeToggle';
 import { Sandbox } from '../components/Sandbox';
 import { StateDetail } from '../components/StateDetail';
 import { recomputeWithSwing } from '../lib/swing';
+import { useDocumentTitle } from '../lib/useDocumentTitle';
 import type { ProjectionPayload, ViewMode, ColorMode } from '../lib/types';
 
 interface HomeProps {
@@ -33,6 +34,11 @@ function parseBallot(raw: string | null): number | null {
 }
 
 export function Home({ onMetaChange }: HomeProps) {
+  useDocumentTitle(
+    'The Proportional House — U.S. House under proportional representation',
+    'See how the U.S. House would look if every state allocated its seats by proportional representation, based on current generic-ballot polling.',
+  );
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [payload, setPayload] = useState<ProjectionPayload | null>(null);

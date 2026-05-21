@@ -296,6 +296,14 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) per-state OG generation failed: {e}")
 
+    # Regenerate sitemap.xml so search engines see fresh <lastmod> dates and
+    # can discover all 50 per-state pages.
+    try:
+        from generate_sitemap import main as generate_sitemap
+        generate_sitemap()
+    except Exception as e:
+        print(f"  (warn) sitemap generation failed: {e}")
+
     # Sanity-check: print the plan's Phase 2 "done when" criteria.
     proj_gain_d = nat_proj_d - nat_actual_d
     retro_gain_d = nat_retro_d - nat_actual_d

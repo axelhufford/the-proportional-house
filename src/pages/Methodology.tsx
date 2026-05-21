@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { SainteLagueDemo } from '../components/SainteLagueDemo';
+import { useDocumentTitle } from '../lib/useDocumentTitle';
 import type { ProjectionMeta } from '../lib/types';
 
 interface MethodologyProps {
@@ -17,6 +18,11 @@ interface MetaJson {
 }
 
 export function Methodology(_props: MethodologyProps) {
+  useDocumentTitle(
+    'Methodology · The Proportional House',
+    'How the projection works: data sources, Sainte-Laguë allocation, state elasticity, uncontested-race imputation, and limitations.',
+  );
+
   const [pipelineMeta, setPipelineMeta] = useState<MetaJson | null>(null);
 
   useEffect(() => {
