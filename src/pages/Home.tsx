@@ -58,6 +58,11 @@ export function Home({ onMetaChange }: HomeProps) {
   // The URL has a `state=XX` (state code) param that resolves to a FIPS once
   // the payload loads. Stash it pending payload-load.
   const pendingStateCodeRef = useRef<string | null>(searchParams.get('state'));
+  // Track the last URL state code we've *processed* in the URL→state effect.
+  // Without this, after a close (setSelectedFips(null)) the URL→state effect
+  // would re-fire (selectedFips changed), see the still-stale ?state=WY in
+  // searchParams, and reopen the panel before the state→URL effect strips it.
+  const lastSeenUrlStateRef = useRef<string | null>(searchParams.get('state'));
   // Track the FIPS of the last-clicked state so we can return keyboard focus
   // to it when the state-detail dialog closes.
   const lastSelectedFipsRef = useRef<string | null>(null);
@@ -109,9 +114,16 @@ export function Home({ onMetaChange }: HomeProps) {
   // forward), adopt it and open the matching panel. Without this effect
   // the in-SPA URL change would be silently overwritten by the
   // app-state-→-URL effect below.
+  //
+  // Gated on lastSeenUrlStateRef so the effect only fires when the URL's
+  // state code actually *changed in the URL*, not just because selectedFips
+  // changed (which would otherwise cause close → reopen loops, since the
+  // URL is updated by the second effect after a tick).
   useEffect(() => {
     if (!payload) return;
     const urlStateCode = searchParams.get('state');
+    if (urlStateCode === lastSeenUrlStateRef.current) return;
+    lastSeenUrlStateRef.current = urlStateCode;
     if (!urlStateCode) return;
     const match = payload.states.find((s) => s.code === urlStateCode.toUpperCase());
     if (match && match.fips !== selectedFips) {
