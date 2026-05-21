@@ -6,6 +6,7 @@ import { About } from './pages/About';
 import { Methodology } from './pages/Methodology';
 import { NotFound } from './pages/NotFound';
 import { Rankings } from './pages/Rankings';
+import { StateRedirect } from './pages/StateRedirect';
 import type { ProjectionMeta, ProjectionPayload } from './lib/types';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/rankings" element={<Rankings />} />
           <Route path="/methodology" element={<Methodology meta={meta} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/state/:code" element={<StateRedirect />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
