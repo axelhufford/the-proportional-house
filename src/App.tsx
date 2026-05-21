@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { ScrollManager } from './components/ScrollManager';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Methodology } from './pages/Methodology';
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollManager />
       <Routes>
         <Route element={<Layout meta={meta} />}>
           <Route path="/" element={<Home onMetaChange={handleMetaChange} />} />

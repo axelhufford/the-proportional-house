@@ -123,7 +123,12 @@ def build_html_page(state: dict) -> str:
     )
     og_image = f"{SITE_URL}/og/state-{code}.png"
     spa_url = f"/?state={code}"
-    canonical_url = f"{SITE_URL}{spa_url}"
+    # Canonical must match the URL the bot fetched (and og:url below). When
+    # canonical pointed at the SPA-with-state URL, Google treated every
+    # /state/{code} page as a duplicate of the homepage and refused to index
+    # them individually. Self-canonical keeps each page as its own indexable
+    # surface — the sitemap has them listed for that exact reason.
+    canonical_url = f"{SITE_URL}/state/{code_lower}"
     return f"""<!doctype html>
 <html lang="en">
 <head>

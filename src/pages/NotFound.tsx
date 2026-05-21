@@ -21,7 +21,9 @@ export function NotFound() {
   );
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-16 text-center">
+    // Layout already renders <main> around the route outlet; a nested <main>
+    // would be invalid HTML and break landmark navigation.
+    <div className="max-w-3xl mx-auto px-6 py-16 text-center">
       <p className="text-xs uppercase tracking-wider text-stone-500 font-medium">404</p>
       <h1 className="mt-2 font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">
         That page doesn't exist
@@ -50,6 +52,6 @@ export function NotFound() {
           Methodology
         </Link>
       </nav>
-    </main>
+    </div>
   );
 }
