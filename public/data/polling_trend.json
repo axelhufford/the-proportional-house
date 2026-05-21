@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-05-20T23:58:37.813524+00:00",
+    "generated_at": "2026-05-21T00:06:30.805519+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
-    "n_polls": 199,
+    "n_polls": 196,
     "uses_house_effect_adjustment": true
   },
   "polls": [
@@ -18,35 +18,11 @@
     },
     {
       "date": "2025-11-22",
-      "pollster": "J.L. Partners",
-      "margin": 3.16,
-      "sample_size": 797,
-      "population": "LV",
-      "url": "https://jlpartners.com/nov25-rv"
-    },
-    {
-      "date": "2025-11-22",
       "pollster": "YouGov",
       "margin": 5.53,
       "sample_size": 1511,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_uZaQqtv.pdf"
-    },
-    {
-      "date": "2025-11-22",
-      "pollster": "YouGov",
-      "margin": 3.53,
-      "sample_size": 1131,
-      "population": "RV",
-      "url": "https://www.scribd.com/document/955905163/Yahoo-YouGov-Politics-Poll-November-2025#content=query:election,pageNum:2,indexOnPage:0,bestMatch:false"
-    },
-    {
-      "date": "2025-11-22",
-      "pollster": "Morning Consult",
-      "margin": 4.33,
-      "sample_size": 2200,
-      "population": "RV",
-      "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
     },
     {
       "date": "2025-11-23",

@@ -66,24 +66,26 @@ svg path[role="button"]:focus-visible {
     background: white;
     color: black;
   }
-  /* Hide everything by default, but only when a state-detail panel is
-   * open — so printing the Methodology page (no print-root) still works. */
-  body:has([data-print-root="state-detail"]) * {
-    visibility: hidden;
+  /* The state-detail dialog is rendered as a React portal directly under
+   * document.body (sibling of #root), so we can hide the whole SPA tree
+   * with display: none and the dialog still renders. Cleaner than trying
+   * to surgically hide ancestors via visibility tricks. */
+  body:has([data-state-detail-portal]) > #root {
+    display: none !important;
   }
-  /* Then bring back only the print-root and its descendants. */
-  [data-print-root="state-detail"],
-  [data-print-root="state-detail"] * {
-    visibility: visible;
+  /* Hide the mobile-only scrim during print. */
+  [data-state-detail-portal] [aria-hidden="true"].fixed {
+    display: none !important;
+  }
+  /* Neutralize the z-40 wrapper that was forcing a stacking context. */
+  [data-state-detail-portal] > div {
+    position: static !important;
+    z-index: auto !important;
   }
   /* Expand the panel to full page. */
   [data-print-root="state-detail"] {
     position: static !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: 0 !important;
-    bottom: auto !important;
-    width: 100% !important;
+    width: auto !important;
     max-height: none !important;
     border: none !important;
     border-radius: 0 !important;
@@ -93,13 +95,12 @@ svg path[role="button"]:focus-visible {
   }
   /* Hide controls inside the panel (close, print, save buttons; drag handle). */
   [data-print-root="state-detail"] [data-no-print="true"],
-  [data-print-root="state-detail"] [aria-hidden="true"]:first-child {
+  [data-print-root="state-detail"] > [aria-hidden="true"]:first-child {
     display: none !important;
   }
-  /* Attribution footer. */
+  /* Attribution footer at the very end of the printed page. */
   [data-print-root="state-detail"]::after {
     content: "the-proportional-house.pages.dev";
-    visibility: visible;
     display: block;
     text-align: center;
     color: #888;

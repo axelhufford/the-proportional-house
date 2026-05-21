@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { USMap } from '../components/Map';
@@ -239,8 +240,8 @@ export function Home({ onMetaChange }: HomeProps) {
         </div>
       </section>
 
-      {selectedState && (
-        <>
+      {selectedState && createPortal(
+        <div data-state-detail-portal="true">
           {/* Mobile-only scrim behind the bottom sheet. Tap to dismiss. */}
           <div
             className="fixed inset-0 bg-stone-900/30 sm:hidden z-30"
@@ -254,7 +255,8 @@ export function Home({ onMetaChange }: HomeProps) {
               onClose={handleDeselect}
             />
           </div>
-        </>
+        </div>,
+        document.body
       )}
     </>
   );
