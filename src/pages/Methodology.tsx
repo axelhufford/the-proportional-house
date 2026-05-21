@@ -27,10 +27,9 @@ export function Methodology(_props: MethodologyProps) {
     <article className="max-w-3xl mx-auto px-6 py-8 prose-stone text-stone-800 leading-relaxed">
       <h1 className="font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">Methodology</h1>
       <p className="mt-3 text-stone-600">
-        The Proportional House is a counterfactual: what would the U.S. House of Representatives look
-        like if every state allocated its seats by proportional representation, based on current
-        generic-ballot polling? This page explains exactly how that number is computed, what data
-        feeds it, and what it does and doesn't tell you.
+        What would the U.S. House look like if every state allocated its seats by proportional
+        representation, based on current generic-ballot polling? This page walks through exactly
+        how that projection is computed, what data feeds it, and what it does and doesn't tell you.
       </p>
 
       <Section title="The short version">
@@ -138,7 +137,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <strong>Sainte-Laguë is a choice.</strong> Most academic work on proportional representation favors it. Reasonable people can prefer D'Hondt (slightly larger-party-favoring) or Hamilton (largest-remainder, with known paradoxes). The interactive demo above lets you sanity-check edge cases.
           </li>
           <li>
-            <strong>State-level polling is sparse.</strong> For most states, we have no recent generic-ballot polling. We apply the national swing uniformly; the projected state-level shares are an inference, not a direct measurement.
+            <strong>State-level polling is sparse.</strong> Most states have no recent House-specific polling at all; even the ~10 states with active Senate races get House polling rarely. Rather than weight state polls (mostly empty), we use the elasticity approach above — every state moves with the national tide, just at different multipliers calibrated from the 2020→2024 presidential shift. A state-poll overlay where data exists is a v3 possibility, not how the current projection works.
           </li>
         </ul>
       </Section>
@@ -150,7 +149,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           gain seats for Republicans in blue states by exactly the same mechanism that gains them for
           Democrats today.
         </p>
-        <p>Source code: <a className="underline" href="https://github.com/" target="_blank" rel="noreferrer">[link will be added at deploy]</a>.</p>
+        <p>Source code: <a className="underline" href="https://github.com/axelhufford/the-proportional-house" target="_blank" rel="noreferrer">github.com/axelhufford/the-proportional-house</a>.</p>
       </Section>
     </article>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { quotientTable } from '../lib/allocation';
 import { PollingTrendChart } from './PollingTrendChart';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
@@ -11,6 +11,29 @@ interface Props {
 
 export function StateDetail({ state, meta, onClose }: Props) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const panelRef = useRef<HTMLElement | null>(null);
+
+  const handlePrint = useCallback(() => {
+    window.print();
+  }, []);
+
+  const handleDownloadImage = useCallback(async () => {
+    const node = panelRef.current;
+    if (!node) return;
+    try {
+      const { domToPng } = await import('modern-screenshot');
+      const dataUrl = await domToPng(node, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+      });
+      const link = document.createElement('a');
+      link.download = `proportional-house-${state.code.toLowerCase()}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('Failed to capture state-detail image', err);
+    }
+  }, [state.code]);
 
   // Focus the heading on open so screen-reader users land inside the dialog,
   // and listen for Escape to close.
@@ -44,6 +67,8 @@ export function StateDetail({ state, meta, onClose }: Props) {
 
   return (
     <aside
+      ref={panelRef}
+      data-print-root="state-detail"
       className={[
         // Mobile: bottom sheet — covers ~78% of viewport with rounded top corners.
         'fixed bottom-0 left-0 right-0 max-h-[78vh] rounded-t-2xl',
@@ -67,14 +92,42 @@ export function StateDetail({ state, meta, onClose }: Props) {
             {state.seats} {state.seats === 1 ? 'seat' : 'seats'}
           </div>
         </div>
-        <button
-          type="button"
-          onClick={onClose}
-          className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-11 w-11 flex items-center justify-center text-2xl flex-shrink-0 leading-none"
-          aria-label="Close"
-        >
-          ×
-        </button>
+        <div className="flex items-center gap-1 flex-shrink-0" data-no-print="true">
+          <button
+            type="button"
+            onClick={handleDownloadImage}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-11 w-11 flex items-center justify-center"
+            aria-label="Save as image"
+            title="Save as image"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={handlePrint}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-11 w-11 flex items-center justify-center"
+            aria-label="Print or save as PDF"
+            title="Print or save as PDF"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="6 9 6 2 18 2 18 9" />
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+              <rect x="6" y="14" width="12" height="8" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-11 w-11 flex items-center justify-center text-2xl leading-none"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
       </div>
 
       <div className="p-5 space-y-5">

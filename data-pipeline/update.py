@@ -288,6 +288,14 @@ def main(refresh_clerk: bool = False) -> None:
     }
     META_PATH.write_text(json.dumps(meta_payload, indent=2))
 
+    # Regenerate per-state OG cards + static HTML pages so social-share
+    # previews always reflect the freshest projection.
+    try:
+        from generate_state_og import main as generate_state_og
+        generate_state_og()
+    except Exception as e:
+        print(f"  (warn) per-state OG generation failed: {e}")
+
     # Sanity-check: print the plan's Phase 2 "done when" criteria.
     proj_gain_d = nat_proj_d - nat_actual_d
     retro_gain_d = nat_retro_d - nat_actual_d
