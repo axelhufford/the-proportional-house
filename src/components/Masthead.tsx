@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import { StateSearch } from './StateSearch';
 
 export function Masthead() {
   // Note: the site brand sits in a <span>, not an <h1>. Each page owns its
@@ -25,12 +26,15 @@ export function Masthead() {
             </span>
           </div>
         </Link>
-        <nav className="flex items-center gap-1 text-sm ml-auto" aria-label="Primary">
-          <MastheadNavLink to="/">Map</MastheadNavLink>
-          <MastheadNavLink to="/rankings">Rankings</MastheadNavLink>
-          <MastheadNavLink to="/methodology">Methodology</MastheadNavLink>
-          <MastheadNavLink to="/about">About</MastheadNavLink>
-        </nav>
+        <div className="flex items-center gap-2 ml-auto flex-wrap">
+          <StateSearch />
+          <nav className="flex items-center gap-1 text-sm" aria-label="Primary">
+            <MastheadNavLink to="/">Map</MastheadNavLink>
+            <MastheadNavLink to="/rankings">Rankings</MastheadNavLink>
+            <MastheadNavLink to="/methodology">Methodology</MastheadNavLink>
+            <MastheadNavLink to="/about">About</MastheadNavLink>
+          </nav>
+        </div>
       </div>
     </header>
   );

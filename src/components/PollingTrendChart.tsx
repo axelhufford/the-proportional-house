@@ -234,3 +234,7 @@ export function PollingTrendChart({ currentAverageMargin }: Props) {
     </div>
   );
 }
+
+// Default export so React.lazy(() => import('./PollingTrendChart')) works.
+// The named export is preserved for any callers that import it directly.
+export default PollingTrendChart;

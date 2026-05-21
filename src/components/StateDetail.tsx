@@ -1,15 +1,32 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
-import { PollingTrendChart } from './PollingTrendChart';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
+
+// Recharts is ~150 KB gzipped and only renders inside this panel — keep it
+// out of the initial bundle so the homepage LCP doesn't pay for it. The
+// chunk loads the first time a user opens any state detail.
+const PollingTrendChart = lazy(() => import('./PollingTrendChart'));
+
+function ChartSkeleton() {
+  // Matches the actual chart's container height + a soft pulse so there's
+  // no layout shift when the chunk resolves.
+  return (
+    <div
+      className="w-full h-48 rounded-md bg-stone-100 animate-pulse"
+      aria-hidden="true"
+    />
+  );
+}
 
 interface Props {
   state: StateProjection;
   meta: ProjectionMeta;
+  allStates: StateProjection[];
   onClose: () => void;
 }
 
-export function StateDetail({ state, meta, onClose }: Props) {
+export function StateDetail({ state, meta, allStates, onClose }: Props) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
   const handleDownloadImage = useCallback(() => {
@@ -66,6 +83,30 @@ export function StateDetail({ state, meta, onClose }: Props) {
   }, [onClose]);
 
   const dGain = state.projected.d_seats - state.actual.d_seats;
+
+  // "See also": find 3 states with the most similar PR distortion. Same
+  // direction as the current state (both gain D, or both gain R), closest
+  // absolute delta. Falls back to nearest distortion regardless of sign
+  // if there aren't enough same-sign matches.
+  const similarStates = useMemo(() => {
+    if (!allStates || allStates.length === 0) return [];
+    const others = allStates.filter((s) => s.fips !== state.fips);
+    const withDelta = others.map((s) => ({
+      state: s,
+      delta: s.projected.d_seats - s.actual.d_seats,
+    }));
+    const sameSign = dGain === 0
+      ? withDelta.filter((x) => x.delta === 0)
+      : withDelta.filter((x) => Math.sign(x.delta) === Math.sign(dGain));
+    // Sort by how close their delta is to ours.
+    const pool = sameSign.length >= 3 ? sameSign : withDelta;
+    return pool
+      .map((x) => ({ ...x, distance: Math.abs(x.delta - dGain) }))
+      .sort((a, b) => a.distance - b.distance)
+      .slice(0, 3)
+      .map((x) => x.state);
+  }, [allStates, state.fips, dGain]);
+
   const quotients = useMemo(() => {
     if (state.seats <= 1) return [];
     return quotientTable(
@@ -240,11 +281,37 @@ export function StateDetail({ state, meta, onClose }: Props) {
         )}
 
         <Section title="National polling trend, last 180 days">
-          <PollingTrendChart currentAverageMargin={meta.generic_ballot_margin} />
+          <Suspense fallback={<ChartSkeleton />}>
+            <PollingTrendChart currentAverageMargin={meta.generic_ballot_margin} />
+          </Suspense>
           <p className="text-xs text-stone-500 mt-2">
             Each dot is one poll; size scales with sample size. The navy line is the same 14-day weighted average we use in the projection. Source: Silver Bulletin's public generic-ballot database.
           </p>
         </Section>
+
+        {similarStates.length > 0 && (
+          <Section title="See also — similar distortions">
+            <div className="flex flex-wrap gap-2">
+              {similarStates.map((s) => {
+                const delta = s.projected.d_seats - s.actual.d_seats;
+                const label = delta === 0 ? '±0' : delta > 0 ? `+${delta} D` : `+${Math.abs(delta)} R`;
+                const labelClass = delta === 0
+                  ? 'text-stone-500'
+                  : delta > 0 ? 'text-blue-700' : 'text-red-700';
+                return (
+                  <Link
+                    key={s.fips}
+                    to={`/state/${s.code.toLowerCase()}`}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-xs hover:bg-stone-200 hover:text-stone-900 transition-colors"
+                  >
+                    <span>{s.name}</span>
+                    <span className={`font-medium tabular-nums ${labelClass}`}>{label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </Section>
+        )}
       </div>
     </aside>
   );

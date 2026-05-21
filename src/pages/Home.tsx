@@ -283,6 +283,7 @@ export function Home({ onMetaChange }: HomeProps) {
             <StateDetail
               state={selectedState}
               meta={effectivePayload.meta}
+              allStates={effectivePayload.states}
               onClose={handleDeselect}
             />
           </div>

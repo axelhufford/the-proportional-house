@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { SainteLagueDemo } from '../components/SainteLagueDemo';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import type { ProjectionMeta } from '../lib/types';
@@ -125,7 +126,11 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           {' '}A small net swing in either direction is exactly what you'd expect from a roughly neutral national distortion.
         </p>
         <p>
-          The interesting story is at the <em>state</em> level: nearly every state with more than ~5 seats has a significantly distorted delegation today. Click around the map to see for yourself.
+          The interesting story is at the <em>state</em> level: nearly every state with more than ~5 seats has a significantly distorted delegation today. Click around the map to see for yourself — or jump straight to the{' '}
+          <Link className="underline hover:text-brand-navy" to="/rankings#most-distorted-today">
+            most distorted state delegations
+          </Link>
+          .
         </p>
       </Section>
 
