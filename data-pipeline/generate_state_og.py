@@ -30,7 +30,7 @@ PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
 OG_DIR = REPO_ROOT / "public" / "og"
 STATE_HTML_DIR = REPO_ROOT / "public" / "state"
 
-SITE_URL = "https://the-proportional-house.pages.dev"
+SITE_URL = "https://proportionalhouse.org"
 
 # Refined Capitol logomark, lifted from public/logomark.svg, anchored at
 # translate(80, 130) scale(2) which fits 200x200 logical size within the
@@ -99,7 +99,7 @@ def build_card_svg(state: dict) -> str:
   <text x="500" y="450" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="28" font-style="italic" fill="{shift_color}">{shift_label}</text>
 
   <text x="500" y="555" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="20" fill="#1F2E4D">The Proportional House</text>
-  <text x="500" y="585" font-family="'Inter', -apple-system, sans-serif" font-size="14" fill="#888780">the-proportional-house.pages.dev/state/{code.lower()}</text>
+  <text x="500" y="585" font-family="'Inter', -apple-system, sans-serif" font-size="14" fill="#888780">proportionalhouse.org/state/{code.lower()}</text>
 </svg>"""
 
 

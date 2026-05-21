@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://the-proportional-house.pages.dev/sitemap.xml
+Sitemap: https://proportionalhouse.org/sitemap.xml

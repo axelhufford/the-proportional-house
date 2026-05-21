@@ -31,7 +31,7 @@ SITEMAP_PATH = REPO_ROOT / "public" / "sitemap.xml"
 # Update this when the custom domain is wired up. The sitemap MUST advertise
 # the canonical hostname or Google will see two competing copies. See
 # generate_state_og.SITE_URL — keep these in sync.
-SITE_URL = "https://the-proportional-house.pages.dev"
+SITE_URL = "https://proportionalhouse.org"
 
 
 def _lastmod() -> str:
