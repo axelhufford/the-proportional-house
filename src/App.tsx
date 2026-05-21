@@ -2,7 +2,10 @@ import { useCallback, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
+import { About } from './pages/About';
 import { Methodology } from './pages/Methodology';
+import { NotFound } from './pages/NotFound';
+import { Rankings } from './pages/Rankings';
 import type { ProjectionMeta, ProjectionPayload } from './lib/types';
 
 export default function App() {
@@ -17,7 +20,10 @@ export default function App() {
       <Routes>
         <Route element={<Layout meta={meta} />}>
           <Route path="/" element={<Home onMetaChange={handleMetaChange} />} />
+          <Route path="/rankings" element={<Rankings />} />
           <Route path="/methodology" element={<Methodology meta={meta} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

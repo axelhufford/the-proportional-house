@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
+import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
 import { NationalSummary } from '../components/NationalSummary';
@@ -37,6 +38,7 @@ export function Home({ onMetaChange }: HomeProps) {
   useDocumentTitle(
     'The Proportional House — U.S. House under proportional representation',
     'See how the U.S. House would look if every state allocated its seats by proportional representation, based on current generic-ballot polling.',
+    '/',
   );
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -174,8 +176,31 @@ export function Home({ onMetaChange }: HomeProps) {
   const ballot = sandboxBallot ?? payload.meta.generic_ballot_margin;
   const sandboxSwing = ballot - payload.meta.baseline_2024_margin;
 
+  // Dataset JSON-LD for the homepage — declares the projection as a public
+  // dataset that Google Dataset Search and other crawlers can index. Kept
+  // page-scoped (only emitted on /) so it doesn't pollute every route.
+  const datasetSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: 'U.S. House proportional representation projection',
+    description: 'State-by-state projection of the U.S. House of Representatives under proportional representation, based on 2024 House election results, current generic-ballot polling, and Sainte-Laguë seat allocation.',
+    url: 'https://proportionalhouse.org/',
+    isAccessibleForFree: true,
+    creator: {
+      '@type': 'Person',
+      name: 'Axel Hufford',
+      url: 'https://axelhufford.com',
+    },
+    distribution: {
+      '@type': 'DataDownload',
+      encodingFormat: 'application/json',
+      contentUrl: 'https://proportionalhouse.org/data/projection.json',
+    },
+  };
+
   return (
     <>
+      <HomeHero payload={effectivePayload} viewMode={viewMode} />
       <NationalSummary payload={effectivePayload} viewMode={viewMode} />
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-5">
@@ -264,6 +289,11 @@ export function Home({ onMetaChange }: HomeProps) {
         </div>,
         document.body
       )}
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }}
+      />
     </>
   );
 }

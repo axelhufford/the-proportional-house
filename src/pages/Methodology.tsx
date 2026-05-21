@@ -21,6 +21,7 @@ export function Methodology(_props: MethodologyProps) {
   useDocumentTitle(
     'Methodology · The Proportional House',
     'How the projection works: data sources, Sainte-Laguë allocation, state elasticity, uncontested-race imputation, and limitations.',
+    '/methodology',
   );
 
   const [pipelineMeta, setPipelineMeta] = useState<MetaJson | null>(null);

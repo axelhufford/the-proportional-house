@@ -9,6 +9,11 @@
     <title>The Proportional House</title>
     <meta name="description" content="Mapping the U.S. House under proportional representation." />
 
+    <!-- Canonical URL. Route components (useDocumentTitle) overwrite this href
+       on navigation, but having it in the initial HTML means crawlers fetching
+       a raw response always see the right canonical even before JS runs. -->
+    <link rel="canonical" href="https://proportionalhouse.org/" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" type="image/png" href="/favicon-32.png" />
@@ -28,6 +33,29 @@
     <meta name="twitter:title" content="The Proportional House" />
     <meta name="twitter:description" content="Mapping the U.S. House under proportional representation." />
     <meta name="twitter:image" content="https://proportionalhouse.org/og-card.png" />
+
+    <!-- Structured data. WebSite + Organization run site-wide; specific pages
+       (e.g. Home injects Dataset, /about injects FAQPage, /rankings injects
+       ItemList) layer additional schemas on top via inline <script> tags. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "The Proportional House",
+      "url": "https://proportionalhouse.org/",
+      "description": "Mapping the U.S. House under proportional representation."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Proportional House",
+      "url": "https://proportionalhouse.org/",
+      "logo": "https://proportionalhouse.org/logomark.svg",
+      "sameAs": ["https://github.com/axelhufford/the-proportional-house"]
+    }
+    </script>
 
     <!-- Cloudflare Web Analytics — cookie-free, GDPR-safe, free with CF Pages.
        Two ways to enable:

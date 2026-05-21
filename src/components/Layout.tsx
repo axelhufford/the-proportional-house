@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Masthead } from './Masthead';
 import type { ProjectionMeta } from '../lib/types';
 
@@ -54,7 +54,16 @@ export function Layout({ meta }: LayoutProps) {
               <span>The Proportional House — open source. Methodology and source data on the Methodology page.</span>
             )}
           </div>
-          <div className="text-center sm:text-right text-stone-500 border-t border-stone-200/60 pt-2">
+          <nav className="flex flex-wrap gap-x-3 gap-y-1 justify-center sm:justify-start border-t border-stone-200/60 pt-2" aria-label="Footer">
+            <Link to="/" className="hover:text-brand-navy">Map</Link>
+            <span aria-hidden="true" className="text-stone-300">·</span>
+            <Link to="/rankings" className="hover:text-brand-navy">Rankings</Link>
+            <span aria-hidden="true" className="text-stone-300">·</span>
+            <Link to="/methodology" className="hover:text-brand-navy">Methodology</Link>
+            <span aria-hidden="true" className="text-stone-300">·</span>
+            <Link to="/about" className="hover:text-brand-navy">About</Link>
+          </nav>
+          <div className="text-center sm:text-right text-stone-500">
             A website by Axel Hufford ·{' '}
             <a
               href="https://axelhufford.com"

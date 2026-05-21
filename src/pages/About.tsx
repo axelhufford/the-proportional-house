@@ -1,0 +1,161 @@
+import { Link } from 'react-router-dom';
+import { useDocumentTitle } from '../lib/useDocumentTitle';
+
+/**
+ * /about — short About section + FAQ. Two SEO purposes:
+ *   1. Trust signal: tells journalists and skeptics who built this and why.
+ *   2. FAQPage JSON-LD: lets Google show the Q&As directly under search results.
+ *
+ * The FAQs use <details>/<summary> so the markup is accessible and works
+ * without JS. The same Q&A content is mirrored in the FAQPage schema below
+ * (kept in sync via the FAQS array — single source of truth).
+ */
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+const FAQS: FaqItem[] = [
+  {
+    q: 'What is proportional representation?',
+    a: 'Proportional representation (PR) means a party\'s share of seats roughly matches its share of the vote. Today the U.S. House uses single-member districts, where the candidate with the most votes in each district wins outright and the runner-up\'s voters get no representation. PR allocates each state\'s seats by vote share — if a state votes 55% Democratic and 45% Republican, a 10-seat delegation would be 5 D + 5 R rather than (say) 8 D + 2 R.',
+  },
+  {
+    q: 'Why does it matter for the U.S. House?',
+    a: 'Single-member districts amplify small vote shifts into large seat shifts and let aggressive line-drawing turn a slim popular-vote loss into a comfortable seat-count win. PR neutralizes that: the seat count tracks the vote count, and the line-drawing process becomes irrelevant to the partisan outcome. The site shows, state by state, how big that distortion is right now.',
+  },
+  {
+    q: 'Where does the data come from?',
+    a: 'The 2024 baseline comes from the U.S. House Clerk\'s official election statistics PDF. The generic-ballot polling average uses Silver Bulletin\'s public polling database. Uncontested districts are imputed from The Downballot\'s 2024 presidential-by-congressional-district vote totals. All sources are linked from the Methodology page.',
+  },
+  {
+    q: 'Is this partisan?',
+    a: 'No. Proportional representation is structural — it shifts seats toward whichever party is underrepresented in a given state, regardless of which one that is. The 2024 baseline shows distortions favoring Democrats in some states (notably blue states with one-sided delegations) and Republicans in others. The point is to make the structural cost of the current system visible, not to advocate for either party.',
+  },
+  {
+    q: 'Why the House and not the Senate?',
+    a: 'The Senate gives every state two senators regardless of population — that\'s a fixed feature of the Constitution that can\'t be changed without a constitutional amendment. The House is allocated proportionally by population already; the gap between current single-member-district allocation and full PR is a statutory choice, not a constitutional one. So the House is the realistic surface where PR could happen.',
+  },
+  {
+    q: 'How are states with only one seat handled?',
+    a: 'There\'s no proportional way to split a single seat between two parties — whoever wins the statewide vote gets it. Seven states have a single House seat: Alaska, Delaware, North Dakota, South Dakota, Vermont, Wyoming, and (after the 2020 reapportionment) Montana shifted up to 2. For these states the projection just records the winner.',
+  },
+  {
+    q: 'How often is the projection updated?',
+    a: 'A scheduled job re-runs the pipeline nightly, pulling fresh polling data and recomputing every state\'s projection. The "Last updated" timestamp in the footer shows when. If it\'s been more than 48 hours, a banner appears across the top of the site.',
+  },
+  {
+    q: 'Can I share or cite this?',
+    a: 'Yes — every page is shareable, and each state has its own URL (e.g. /state/tx) with a brand social-share preview. Cite as: "The Proportional House (proportionalhouse.org), accessed [date]." Source code is on GitHub if you want to dig into the pipeline.',
+  },
+];
+
+export function About() {
+  useDocumentTitle(
+    'About · The Proportional House',
+    'About The Proportional House — a non-partisan visualization of how the U.S. House would look under proportional representation. Plus a FAQ on the methodology and politics.',
+    '/about',
+  );
+
+  // FAQPage JSON-LD. Mirror of the FAQS array — Google parses the Question
+  // and acceptedAnswer fields directly.
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
+
+  return (
+    <article className="max-w-3xl mx-auto px-6 py-8">
+      <h1 className="font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">
+        About
+      </h1>
+
+      <section className="mt-5 text-stone-800 leading-relaxed space-y-4">
+        <p>
+          <strong>The Proportional House</strong> is a non-partisan visualization of what
+          the U.S. House of Representatives would look like if every state allocated its
+          seats by proportional representation rather than by single-member districts.
+        </p>
+        <p>
+          The math is intentionally simple: take each state's two-party House vote share,
+          shift it by the difference between today's generic-ballot polling and the 2024
+          national House margin (scaled by a state-specific elasticity), then allocate
+          that state's seats by the Sainte-Laguë method. No swing-state magic, no
+          district-by-district modeling, no partisan thumbs on the scale. Full details
+          live on the{' '}
+          <Link to="/methodology" className="underline hover:text-brand-navy">
+            Methodology
+          </Link>{' '}
+          page.
+        </p>
+        <p>
+          The point isn't to predict the next election — it's to make the structural
+          cost of the current system visible, state by state. The <Link to="/rankings" className="underline hover:text-brand-navy">rankings</Link>{' '}
+          page surfaces which delegations are most distorted today, and which states
+          would shift the most under proportional allocation.
+        </p>
+        <p className="text-sm text-stone-600 pt-2 border-t border-stone-200/60">
+          Built by{' '}
+          <a
+            href="https://axelhufford.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-brand-navy"
+          >
+            Axel Hufford
+          </a>
+          . Source code on{' '}
+          <a
+            href="https://github.com/axelhufford/the-proportional-house"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-brand-navy"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-serif text-2xl text-brand-navy tracking-tight">
+          Frequently asked questions
+        </h2>
+        <div className="mt-4 space-y-2">
+          {FAQS.map((faq, i) => (
+            <details
+              key={i}
+              className="group border border-stone-200 rounded-lg bg-white open:shadow-sm"
+            >
+              <summary className="cursor-pointer list-none px-4 py-3 flex items-center justify-between gap-3 font-medium text-stone-900 hover:bg-stone-50 rounded-lg">
+                <span>{faq.q}</span>
+                <span
+                  aria-hidden="true"
+                  className="text-stone-400 transition-transform group-open:rotate-45 text-xl leading-none"
+                >
+                  +
+                </span>
+              </summary>
+              <div className="px-4 pb-4 text-stone-700 leading-relaxed text-sm">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+    </article>
+  );
+}

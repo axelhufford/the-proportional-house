@@ -19,13 +19,9 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
       : 'Projected under PR';
 
   return (
-    <section>
-      <div className="max-w-6xl mx-auto px-6 pt-6 pb-2">
-        <p className="text-sm text-stone-600">
-          What the U.S. House would look like if every state allocated its seats by proportional representation.
-        </p>
-
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section aria-label="National summary">
+      <div className="max-w-6xl mx-auto px-6 pt-5 pb-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <SummaryStat
             label={projectedLabel}
             primary={<><span className="text-blue-700">D {national.projected.d_seats}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {national.projected.r_seats}</span></>}
