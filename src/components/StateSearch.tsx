@@ -74,7 +74,10 @@ export function StateSearch() {
     <form
       role="search"
       onSubmit={handleSubmit}
-      className="flex items-center"
+      // Take available width on mobile (input becomes a comfortable target),
+      // fixed 176 px on sm+. `min-w-0` prevents flex-1 from refusing to
+      // shrink below input's intrinsic placeholder width.
+      className="flex items-center flex-1 sm:flex-none min-w-0"
       aria-label="Jump to a state"
     >
       <label htmlFor="state-search-input" className="sr-only">
@@ -90,7 +93,7 @@ export function StateSearch() {
         placeholder="Jump to state…"
         autoComplete="off"
         spellCheck="false"
-        className="w-32 sm:w-44 px-3 py-1 text-sm rounded-full border border-stone-300 bg-white text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-brand-navy focus:ring-1 focus:ring-brand-navy"
+        className="w-full sm:w-44 min-w-0 px-3 py-1.5 text-sm rounded-full border border-stone-300 bg-white text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-brand-navy focus:ring-1 focus:ring-brand-navy"
       />
       <datalist id="state-search-list">
         {states?.map((s) => (

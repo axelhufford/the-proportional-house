@@ -49,9 +49,15 @@ export function RankingRow({ rank, state, caption }: Props) {
             <span className="text-xs text-stone-500">· {state.seats} {state.seats === 1 ? 'seat' : 'seats'}</span>
           </div>
           {caption && <div className="text-xs text-stone-500 mt-0.5">{caption}</div>}
-          <div className="mt-2 grid grid-cols-[1fr_auto_1fr] items-center gap-3 max-w-md">
+          {/* Mobile: strips stack vertically with a ↓ between them so the
+           * row stays readable on 320–360 px screens. sm+: original
+           * side-by-side comparison with an → between them. */}
+          <div className="mt-2 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-1.5 sm:gap-3 max-w-md">
             <MiniSeatStrip heading="Today" d={state.actual.d_seats} r={state.actual.r_seats} />
-            <span className="text-stone-300 text-lg" aria-hidden="true">→</span>
+            <span className="text-stone-300 text-lg justify-self-start sm:justify-self-center" aria-hidden="true">
+              <span className="sm:hidden">↓</span>
+              <span className="hidden sm:inline">→</span>
+            </span>
             <MiniSeatStrip heading="Under PR" d={state.projected.d_seats} r={state.projected.r_seats} />
           </div>
         </div>

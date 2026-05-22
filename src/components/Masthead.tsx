@@ -26,9 +26,13 @@ export function Masthead() {
             </span>
           </div>
         </Link>
-        <div className="flex items-center gap-2 ml-auto flex-wrap">
+        {/* On mobile the right group drops to its own row at full width so
+         * the search input has room to breathe and the nav can wrap without
+         * fighting the logo block. On sm+ it collapses back to the inline
+         * pattern with ml-auto pushing it to the right of the logo. */}
+        <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-2 flex-wrap">
           <StateSearch />
-          <nav className="flex items-center gap-1 text-sm" aria-label="Primary">
+          <nav className="flex items-center gap-1 text-sm flex-wrap" aria-label="Primary">
             <MastheadNavLink to="/">Map</MastheadNavLink>
             <MastheadNavLink to="/rankings">Rankings</MastheadNavLink>
             <MastheadNavLink to="/methodology">Methodology</MastheadNavLink>

@@ -126,7 +126,10 @@ export function HomeHero({ payload, viewMode }: Props) {
           to="/rankings"
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy text-white px-4 py-2 hover:bg-brand-navy-mid transition-colors"
         >
-          See the most distorted state delegations
+          {/* Shorter label on mobile so the button doesn't overflow on
+           * iPhone-SE-class widths; full descriptive label on sm+. */}
+          <span className="sm:hidden">See state rankings</span>
+          <span className="hidden sm:inline">See the most distorted state delegations</span>
           <span aria-hidden="true">→</span>
         </Link>
         <Link

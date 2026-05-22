@@ -137,9 +137,12 @@ export function StateDetail({ state, meta, allStates, onClose }: Props) {
         <span className="block h-1.5 w-12 rounded-full bg-stone-300" />
       </div>
       <div className="px-5 pt-3 sm:pt-5 pb-5 border-b border-stone-200 flex items-start justify-between gap-3">
-        <div>
+        {/* min-w-0 lets the title block shrink past its intrinsic content
+         * width so the buttons aren't pushed off-screen on narrow phones
+         * with long state names like "Massachusetts". */}
+        <div className="min-w-0 flex-1">
           <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{state.code}</div>
-          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-semibold text-stone-900 outline-none">{state.name}</h2>
+          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-semibold text-stone-900 outline-none break-words">{state.name}</h2>
           <div className="text-sm text-stone-600">
             {state.seats} {state.seats === 1 ? 'seat' : 'seats'}
           </div>
