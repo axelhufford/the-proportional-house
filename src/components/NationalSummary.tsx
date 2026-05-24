@@ -1,14 +1,17 @@
 import { useCallback } from 'react';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
+import type { SandboxPayload } from '../lib/sandboxTypes';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 
 interface Props {
   payload: ProjectionPayload;
   viewMode?: ViewMode;
+  /** When present, render the extended N-party variant for sandbox mode. */
+  sandboxPayload?: SandboxPayload | null;
 }
 
-export function NationalSummary({ payload, viewMode = 'current' }: Props) {
+export function NationalSummary({ payload, viewMode = 'current', sandboxPayload }: Props) {
   const { national, meta } = payload;
 
   const handleDownload = useCallback(() => {
@@ -41,13 +44,35 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
       ? 'Projected under PR (sandbox)'
       : 'Projected under PR';
 
+  // Extended-sandbox rendering: when minors are active, show one stat
+  // card per party (filtered to seats > 0) using the canonical party
+  // colors. The "Actual today" and "Difference" cards stay two-party
+  // because actual House membership and the projected-vs-actual delta
+  // are inherently D/R quantities.
+  const extendedParties = sandboxPayload?.national.parties.filter((p) => p.seats > 0) ?? null;
+
   return (
     <section aria-label="National summary">
       <div className="max-w-6xl mx-auto px-6 pt-5 pb-2">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <SummaryStat
             label={projectedLabel}
-            primary={<><span className="text-blue-700">D {national.projected.d_seats}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {national.projected.r_seats}</span></>}
+            primary={
+              extendedParties ? (
+                <span className="inline-flex items-baseline gap-2 flex-wrap">
+                  {extendedParties.map((p, i) => (
+                    <span key={p.party.id} className="inline-flex items-baseline gap-2">
+                      {i > 0 && <span className="text-stone-400 text-base">·</span>}
+                      <span style={{ color: p.party.color }}>
+                        {p.party.id} {p.seats}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              ) : (
+                <><span className="text-blue-700">D {national.projected.d_seats}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {national.projected.r_seats}</span></>
+              )
+            }
           />
           <SummaryStat
             label="Actual House today"
@@ -56,9 +81,38 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
           <SummaryStat
             label="Difference under PR"
             primary={
-              <span className={dGain >= 0 ? 'text-blue-700' : 'text-red-700'}>
-                {dGain > 0 ? '+' : ''}{dGain} D / {dGain > 0 ? '-' : '+'}{Math.abs(dGain)} R
-              </span>
+              extendedParties ? (
+                <span className="inline-flex items-baseline gap-2 flex-wrap text-base">
+                  {extendedParties.map((p, i) => {
+                    // Compare each party's projected seats to its actual
+                    // baseline. For D/R, that's national.actual. For
+                    // minors, baseline is 0 (they don't exist today).
+                    const baseline =
+                      p.party.id === 'D'
+                        ? national.actual.d_seats
+                        : p.party.id === 'R'
+                          ? national.actual.r_seats
+                          : 0;
+                    const delta = p.seats - baseline;
+                    return (
+                      <span key={p.party.id} className="inline-flex items-baseline gap-1">
+                        {i > 0 && <span className="text-stone-400 text-sm">·</span>}
+                        <span className="text-stone-500 text-xs uppercase tracking-wider">{p.party.id}</span>
+                        <span
+                          className="font-semibold"
+                          style={{ color: delta === 0 ? '#888780' : p.party.color }}
+                        >
+                          {delta > 0 ? '+' : ''}{delta}
+                        </span>
+                      </span>
+                    );
+                  })}
+                </span>
+              ) : (
+                <span className={dGain >= 0 ? 'text-blue-700' : 'text-red-700'}>
+                  {dGain > 0 ? '+' : ''}{dGain} D / {dGain > 0 ? '-' : '+'}{Math.abs(dGain)} R
+                </span>
+              )
             }
           />
         </div>
@@ -102,31 +156,43 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
           )}
         </div>
 
+        {/* Share / download buttons. In extended sandbox (minors active),
+          * disable them — the share PNGs, CSV, JSON, and tweet text are
+          * all hardcoded two-party right now; emitting them with a 3- or
+          * 4-party projection would be misleading. */}
         <div className="mt-3 flex justify-end gap-1">
+          {extendedParties ? (
+            <span className="text-xs text-stone-400 italic self-center pr-2">
+              Share & export are two-party only — toggle off minor parties to enable.
+            </span>
+          ) : null}
           <button
             type="button"
             onClick={handleDownloadCsv}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
+            disabled={!!extendedParties}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
             aria-label="Download projection as CSV"
-            title="Download projection as CSV"
+            title={extendedParties ? 'Disabled in extended sandbox' : 'Download projection as CSV'}
           >
             CSV
           </button>
           <button
             type="button"
             onClick={handleDownloadJson}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
+            disabled={!!extendedParties}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
             aria-label="Download projection as JSON"
-            title="Download projection as JSON"
+            title={extendedParties ? 'Disabled in extended sandbox' : 'Download projection as JSON'}
           >
             JSON
           </button>
           <button
             type="button"
             onClick={handleShareTwitter}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-9 w-9 flex items-center justify-center"
+            disabled={!!extendedParties}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 w-9 flex items-center justify-center"
             aria-label="Share on X (Twitter)"
-            title="Share on X (Twitter)"
+            title={extendedParties ? 'Disabled in extended sandbox' : 'Share on X (Twitter)'}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -135,9 +201,10 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
           <button
             type="button"
             onClick={handleDownload}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-9 w-9 flex items-center justify-center"
+            disabled={!!extendedParties}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 w-9 flex items-center justify-center"
             aria-label="Save as image"
-            title="Save as image"
+            title={extendedParties ? 'Disabled in extended sandbox' : 'Save as image'}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

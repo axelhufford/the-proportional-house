@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { PARTY_D, PARTY_R } from '../lib/parties';
+import { SeatStrip } from './SeatStrip';
 import type { StateProjection } from '../lib/types';
 
 /**
@@ -53,12 +55,26 @@ export function RankingRow({ rank, state, caption }: Props) {
            * row stays readable on 320–360 px screens. sm+: original
            * side-by-side comparison with an → between them. */}
           <div className="mt-2 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-1.5 sm:gap-3 max-w-md">
-            <MiniSeatStrip heading="Today" d={state.actual.d_seats} r={state.actual.r_seats} />
+            <SeatStrip
+              heading="Today"
+              size="compact"
+              parties={[
+                { id: 'D', label: 'D', color: PARTY_D.color, seats: state.actual.d_seats },
+                { id: 'R', label: 'R', color: PARTY_R.color, seats: state.actual.r_seats },
+              ]}
+            />
             <span className="text-stone-300 text-lg justify-self-start sm:justify-self-center" aria-hidden="true">
               <span className="sm:hidden">↓</span>
               <span className="hidden sm:inline">→</span>
             </span>
-            <MiniSeatStrip heading="Under PR" d={state.projected.d_seats} r={state.projected.r_seats} />
+            <SeatStrip
+              heading="Under PR"
+              size="compact"
+              parties={[
+                { id: 'D', label: 'D', color: PARTY_D.color, seats: state.projected.d_seats },
+                { id: 'R', label: 'R', color: PARTY_R.color, seats: state.projected.r_seats },
+              ]}
+            />
           </div>
         </div>
         <div className={`text-sm font-medium tabular-nums px-2.5 py-1 rounded-full flex-shrink-0 ${pillClass}`}>
@@ -69,21 +85,3 @@ export function RankingRow({ rank, state, caption }: Props) {
   );
 }
 
-function MiniSeatStrip({ heading, d, r }: { heading: string; d: number; r: number }) {
-  const total = d + r;
-  const dPct = total > 0 ? (d / total) * 100 : 0;
-  return (
-    <div>
-      <div className="text-[10px] uppercase tracking-wider text-stone-400">{heading}</div>
-      <div className="flex items-baseline gap-1.5 tabular-nums text-sm">
-        <span className="text-blue-700 font-semibold">{d}</span>
-        <span className="text-stone-300">·</span>
-        <span className="text-red-700 font-semibold">{r}</span>
-      </div>
-      <div className="mt-1 h-1.5 rounded-full bg-stone-100 overflow-hidden flex">
-        <div className="bg-blue-700" style={{ width: `${dPct}%` }} aria-hidden />
-        <div className="bg-red-700 flex-1" aria-hidden />
-      </div>
-    </div>
-  );
-}

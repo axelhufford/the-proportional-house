@@ -5,10 +5,14 @@ import type { Topology } from 'topojson-specification';
 import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
+import type { MinorState, MinorPresetSelector } from '../components/MinorPartyControls';
 import { NationalSummary } from '../components/NationalSummary';
 import { ModeToggle } from '../components/ModeToggle';
 import { Sandbox } from '../components/Sandbox';
 import { StateDetail } from '../components/StateDetail';
+import { buildCustomParty, PRESET_MINORS } from '../lib/parties';
+import { buildSandboxPayload, type MinorPartySpec } from '../lib/sandboxSwing';
+import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import type { ProjectionPayload, ViewMode, ColorMode } from '../lib/types';
@@ -34,6 +38,74 @@ function parseBallot(raw: string | null): number | null {
   return Math.round(n * 10) / 10;
 }
 
+/**
+ * URL serialization for sandbox minor parties.
+ *
+ *   ?minor1=prog:6.0           → Progressive Left at 6%
+ *   ?minor1=af:8.0             → America First at 8%
+ *   ?minor1=custom:8.0:50:50:Forward+Party
+ *                              → Custom party, 8% share, 50/50 draw, label "Forward Party"
+ *
+ * Invalid input returns null and the slot stays unfilled.
+ */
+function parseMinor(raw: string | null): MinorState | null {
+  if (!raw) return null;
+  const parts = raw.split(':');
+  const presetRaw = parts[0]?.toUpperCase();
+  const sharePct = Number(parts[1]);
+  if (!Number.isFinite(sharePct) || sharePct < 0 || sharePct > 25) return null;
+  const share = sharePct / 100;
+  if (presetRaw === 'PROG' || presetRaw === 'AF') {
+    return { presetId: presetRaw as MinorPresetSelector, share };
+  }
+  if (presetRaw === 'CUSTOM') {
+    const drawDPct = Number(parts[2]);
+    if (!Number.isFinite(drawDPct) || drawDPct < 0 || drawDPct > 100) return null;
+    const label = parts[4] ? decodeURIComponent(parts[4]) : undefined;
+    return { presetId: 'CUSTOM', share, drawD: drawDPct / 100, label };
+  }
+  return null;
+}
+
+function serializeMinor(m: MinorState): string {
+  const sharePct = (m.share * 100).toFixed(1);
+  if (m.presetId === 'CUSTOM') {
+    const drawDPct = Math.round((m.drawD ?? 0.5) * 100);
+    const drawRPct = 100 - drawDPct;
+    const labelPart = m.label && m.label.trim() ? `:${encodeURIComponent(m.label.trim())}` : '';
+    return `custom:${sharePct}:${drawDPct}:${drawRPct}${labelPart}`;
+  }
+  return `${m.presetId.toLowerCase()}:${sharePct}`;
+}
+
+function parseThreshold(raw: string | null): number | null {
+  if (!raw) return null;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0 || n > 10) return null;
+  return n / 100;
+}
+
+const DEFAULT_THRESHOLD = 0.05;
+
+/** Convert a UI MinorState into the swing-math MinorPartySpec. */
+function buildSpec(m: MinorState, slot: 1 | 2): MinorPartySpec {
+  if (m.presetId === 'CUSTOM') {
+    const drawD = m.drawD ?? 0.5;
+    return {
+      party: buildCustomParty({
+        label: m.label,
+        draw_from: { D: drawD, R: 1 - drawD },
+        slot,
+      }),
+      national_share: m.share,
+    };
+  }
+  return {
+    party: PRESET_MINORS[m.presetId],
+    national_share: m.share,
+  };
+}
+
 export function Home({ onMetaChange }: HomeProps) {
   useDocumentTitle(
     'The Proportional House — U.S. House under proportional representation',
@@ -55,6 +127,17 @@ export function Home({ onMetaChange }: HomeProps) {
   // Initialized from URL `ballot=` if present; otherwise from the pipeline
   // value once the payload loads.
   const [sandboxBallot, setSandboxBallot] = useState<number | null>(() => parseBallot(searchParams.get('ballot')));
+  // Sandbox extended mode: up to two minor parties + a per-state threshold.
+  // Initialized from URL params (?minor1, ?minor2, ?threshold). Empty
+  // array means extended mode is off and rendering stays two-party.
+  const [minors, setMinors] = useState<MinorState[]>(() => {
+    const m1 = parseMinor(searchParams.get('minor1'));
+    const m2 = parseMinor(searchParams.get('minor2'));
+    return [m1, m2].filter((x): x is MinorState => x !== null);
+  });
+  const [threshold, setThreshold] = useState<number>(
+    () => parseThreshold(searchParams.get('threshold')) ?? DEFAULT_THRESHOLD,
+  );
   // The URL has a `state=XX` (state code) param that resolves to a FIPS once
   // the payload loads. Stash it pending payload-load.
   const pendingStateCodeRef = useRef<string | null>(searchParams.get('state'));
@@ -147,12 +230,21 @@ export function Home({ onMetaChange }: HomeProps) {
         next.set('ballot', sandboxBallot.toFixed(1));
       }
     }
+    // Sandbox extended params — only emit them in sandbox mode so they
+    // don't clutter URLs for users on Current / Retrospective.
+    if (viewMode === 'sandbox') {
+      if (minors[0]) next.set('minor1', serializeMinor(minors[0]));
+      if (minors[1]) next.set('minor2', serializeMinor(minors[1]));
+      if (minors.length > 0 && Math.abs(threshold - DEFAULT_THRESHOLD) > 0.0005) {
+        next.set('threshold', (threshold * 100).toFixed(1));
+      }
+    }
     if (selectedFips) {
       const state = payload.states.find((s) => s.fips === selectedFips);
       if (state) next.set('state', state.code);
     }
     setSearchParams(next, { replace: true });
-  }, [payload, viewMode, colorMode, sandboxBallot, selectedFips, setSearchParams]);
+  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, selectedFips, setSearchParams]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection (no client recompute).
@@ -169,6 +261,15 @@ export function Home({ onMetaChange }: HomeProps) {
     const swing = ballot - payload.meta.baseline_2024_margin;
     return recomputeWithSwing(payload, swing);
   }, [payload, viewMode, sandboxBallot]);
+
+  // Extended-mode sandbox payload (N-party). Built only when the user is
+  // in sandbox view AND has at least one minor active; otherwise null and
+  // the rest of the page renders via the existing two-party path.
+  const sandboxPayload = useMemo<SandboxPayload | null>(() => {
+    if (!effectivePayload || viewMode !== 'sandbox' || minors.length === 0) return null;
+    const specs = minors.map((m, i) => buildSpec(m, (i + 1) as 1 | 2));
+    return buildSandboxPayload(effectivePayload, specs, threshold);
+  }, [effectivePayload, viewMode, minors, threshold]);
 
   if (error) {
     return (
@@ -228,7 +329,7 @@ export function Home({ onMetaChange }: HomeProps) {
   return (
     <>
       <HomeHero payload={effectivePayload} viewMode={viewMode} />
-      <NationalSummary payload={effectivePayload} viewMode={viewMode} />
+      <NationalSummary payload={effectivePayload} viewMode={viewMode} sandboxPayload={sandboxPayload} />
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-5">
         <ModeToggle
@@ -245,6 +346,10 @@ export function Home({ onMetaChange }: HomeProps) {
               swing={sandboxSwing}
               baseline2024={payload.meta.baseline_2024_margin}
               onChange={setSandboxBallot}
+              minors={minors}
+              threshold={threshold}
+              onMinorsChange={setMinors}
+              onThresholdChange={setThreshold}
             />
           </div>
         )}
@@ -263,6 +368,7 @@ export function Home({ onMetaChange }: HomeProps) {
             colorMode={colorMode}
             selectedFips={selectedFips}
             onSelect={handleSelect}
+            sandboxPayload={sandboxPayload}
           />
           {/* Screen-reader-only tabular fallback for the map. */}
           <table className="sr-only">
@@ -290,7 +396,7 @@ export function Home({ onMetaChange }: HomeProps) {
               ))}
             </tbody>
           </table>
-          <MapLegend mode={colorMode} />
+          <MapLegend mode={colorMode} sandboxPayload={sandboxPayload} />
           <p className="mt-3 text-xs text-stone-500">
             Click any state to inspect its projected delegation and Sainte-Laguë allocation.
             Color encodes {colorMode === 'balance' ? "the projected D-R margin of each state's delegation" : 'the per-seat shift (projected minus actual) under proportional allocation'}.
@@ -308,6 +414,7 @@ export function Home({ onMetaChange }: HomeProps) {
             meta={effectivePayload.meta}
             allStates={effectivePayload.states}
             onClose={handleDeselect}
+            sandboxState={sandboxPayload?.states.find((s) => s.fips === selectedState.fips) ?? null}
           />
         </div>,
         document.body

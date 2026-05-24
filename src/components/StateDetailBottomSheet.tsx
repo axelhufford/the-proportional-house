@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { StateDetailContent } from './StateDetailContent';
+import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
   meta: ProjectionMeta;
   allStates: StateProjection[];
   onClose: () => void;
+  sandboxState?: SandboxStateProjection | null;
 }
 
 type Phase = 'entering' | 'open' | 'exiting';
@@ -24,7 +26,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  * parent `onClose` is only invoked after the transform transition completes
  * so the sheet animates out instead of disappearing.
  */
-export function StateDetailBottomSheet({ state, meta, allStates, onClose }: Props) {
+export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandboxState }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
 
   useLayoutEffect(() => {
@@ -104,6 +106,7 @@ export function StateDetailBottomSheet({ state, meta, allStates, onClose }: Prop
           meta={meta}
           allStates={allStates}
           onClose={startClose}
+          sandboxState={sandboxState}
         />
       </aside>
     </>

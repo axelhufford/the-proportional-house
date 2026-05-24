@@ -13,90 +13,149 @@ export interface AllocationResult {
   r_seats: number;
 }
 
+/**
+ * Generic N-party allocation input. Used by the sandbox extended mode
+ * where the parties list can grow beyond D/R. See `src/lib/sandboxSwing.ts`
+ * for the caller.
+ */
+export interface AllocationInputN {
+  seats: number;
+  /** Vote totals per party. Order is preserved in the seats[] result. */
+  votes: number[];
+}
+
 const EPSILON = 1e-9;
 
-function divisorMethod(
-  input: AllocationInput,
+/**
+ * Generic divisor-method allocator. Computes a quotient per party per
+ * round, ranks all quotients, and assigns the top `seats` to their
+ * originating parties. Returns seats indexed by party in input order.
+ *
+ * Tie-breaking (deterministic): higher quotient wins; ties broken by
+ * larger original vote total; final ties broken by lower party index.
+ * For two-party callers (D=index 0, R=index 1) this preserves the
+ * historical "D wins ties" behavior that the existing fixture encodes.
+ */
+function divisorMethodN(
+  input: AllocationInputN,
   divisorFor: (i: number) => number,
-): AllocationResult {
-  const { seats, d_votes, r_votes } = input;
-  if (seats <= 0) return { d_seats: 0, r_seats: 0 };
+): number[] {
+  const { seats, votes } = input;
+  const n = votes.length;
+  if (seats <= 0 || n === 0) return votes.map(() => 0);
+  // If every party has zero votes, every quotient is zero — the sort
+  // would still hand out seats by tie-break (lower index wins). That's
+  // a meaningless allocation; return all zeros instead. Matches the
+  // existing Hamilton behavior and the spirit of "no seats earned."
+  const totalVotes = votes.reduce((s, v) => s + v, 0);
+  if (totalVotes <= 0) return votes.map(() => 0);
 
-  type Quotient = { party: Party; value: number; votes: number };
+  type Quotient = { partyIdx: number; value: number; votes: number };
   const quotients: Quotient[] = [];
-  for (let i = 0; i < seats; i++) {
-    const div = divisorFor(i);
-    quotients.push({ party: 'D', value: d_votes / div, votes: d_votes });
-    quotients.push({ party: 'R', value: r_votes / div, votes: r_votes });
+  for (let r = 0; r < seats; r++) {
+    const div = divisorFor(r);
+    for (let p = 0; p < n; p++) {
+      quotients.push({ partyIdx: p, value: votes[p] / div, votes: votes[p] });
+    }
   }
 
-  // Sort descending. Ties broken by larger original vote total, then by 'D' < 'R'
-  // (deterministic and matches the plan's spirit: 50/50 in a 2-seat state → 1-1).
   quotients.sort((a, b) => {
     if (Math.abs(a.value - b.value) > EPSILON) return b.value - a.value;
     if (a.votes !== b.votes) return b.votes - a.votes;
-    return a.party === b.party ? 0 : a.party === 'D' ? -1 : 1;
+    return a.partyIdx - b.partyIdx; // lower index wins final tie
   });
 
-  let d = 0;
-  let r = 0;
+  const result = votes.map(() => 0);
   for (let i = 0; i < seats; i++) {
-    if (quotients[i].party === 'D') d++;
-    else r++;
+    result[quotients[i].partyIdx]++;
   }
-  return { d_seats: d, r_seats: r };
+  return result;
 }
 
-function sainteLague(input: AllocationInput): AllocationResult {
-  return divisorMethod(input, (i) => 2 * i + 1);
+function sainteLagueN(input: AllocationInputN): number[] {
+  return divisorMethodN(input, (i) => 2 * i + 1);
 }
 
-function dHondt(input: AllocationInput): AllocationResult {
-  return divisorMethod(input, (i) => i + 1);
+function dHondtN(input: AllocationInputN): number[] {
+  return divisorMethodN(input, (i) => i + 1);
 }
 
-function hamilton(input: AllocationInput): AllocationResult {
-  const { seats, d_votes, r_votes } = input;
-  if (seats <= 0) return { d_seats: 0, r_seats: 0 };
-  const total = d_votes + r_votes;
-  if (total <= 0) return { d_seats: 0, r_seats: 0 };
+/**
+ * Largest-remainder (Hamilton) method, N-party form.
+ *
+ * Each party gets `floor(quota)` seats (quota = share × seats); leftover
+ * seats go to parties with the largest fractional remainder. Ties on the
+ * remainder go to the party with more raw votes; final ties to the lower
+ * party index (matches the divisor methods' tie rule).
+ */
+function hamiltonN(input: AllocationInputN): number[] {
+  const { seats, votes } = input;
+  const n = votes.length;
+  if (seats <= 0 || n === 0) return votes.map(() => 0);
+  const total = votes.reduce((s, v) => s + v, 0);
+  if (total <= 0) return votes.map(() => 0);
 
-  const dQuota = (d_votes / total) * seats;
-  const rQuota = (r_votes / total) * seats;
-  let d = Math.floor(dQuota);
-  let r = Math.floor(rQuota);
-  let remaining = seats - d - r;
+  const quotas = votes.map((v) => (v / total) * seats);
+  const floors = quotas.map((q) => Math.floor(q));
+  const remainders = quotas.map((q, i) => ({ idx: i, frac: q - floors[i], votes: votes[i] }));
+  let assigned = floors.reduce((s, v) => s + v, 0);
+  let remaining = seats - assigned;
 
-  // Assign leftover seats by largest fractional remainder.
-  const dRem = dQuota - d;
-  const rRem = rQuota - r;
+  remainders.sort((a, b) => {
+    if (Math.abs(a.frac - b.frac) > EPSILON) return b.frac - a.frac;
+    if (a.votes !== b.votes) return b.votes - a.votes;
+    return a.idx - b.idx;
+  });
+
+  const result = floors.slice();
+  let cursor = 0;
   while (remaining > 0) {
-    if (dRem > rRem + EPSILON) d++;
-    else if (rRem > dRem + EPSILON) r++;
-    else if (d_votes >= r_votes) d++;
-    else r++;
+    result[remainders[cursor % n].idx]++;
+    cursor++;
     remaining--;
   }
-  return { d_seats: d, r_seats: r };
+  return result;
 }
 
-export function allocate(
-  input: AllocationInput,
+/**
+ * Generic N-party allocator. Returns seats per party in the order the
+ * caller provided in `input.votes`. Sandbox extended mode uses this
+ * directly; the two-party `allocate` wraps it below.
+ */
+export function allocateN(
+  input: AllocationInputN,
   method: AllocationMethod = 'sainte-lague',
-): AllocationResult {
+): number[] {
   switch (method) {
     case 'sainte-lague':
-      return sainteLague(input);
+      return sainteLagueN(input);
     case 'dhondt':
-      return dHondt(input);
+      return dHondtN(input);
     case 'hamilton':
-      return hamilton(input);
+      return hamiltonN(input);
   }
 }
 
 /**
+ * Two-party allocator — preserved as the canonical API for the rest of
+ * the app. Internally delegates to `allocateN` with party order [D, R].
+ */
+export function allocate(
+  input: AllocationInput,
+  method: AllocationMethod = 'sainte-lague',
+): AllocationResult {
+  const [d, r] = allocateN(
+    { seats: input.seats, votes: [input.d_votes, input.r_votes] },
+    method,
+  );
+  return { d_seats: d, r_seats: r };
+}
+
+/**
  * Returns the full quotient table for a divisor method, useful for the
- * "show the math" panel in the state detail UI.
+ * "show the math" panel in the state detail UI. Two-party only — the
+ * methodology demo is a deliberately simple D-vs-R illustration of
+ * Sainte-Laguë; extending it to N parties would muddy the explainer.
  */
 export interface QuotientRow {
   divisor: number;

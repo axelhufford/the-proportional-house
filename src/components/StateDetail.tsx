@@ -1,6 +1,7 @@
 import { StateDetailBottomSheet } from './StateDetailBottomSheet';
 import { StateDetailSidePanel } from './StateDetailSidePanel';
 import { useIsMobile } from '../lib/useIsMobile';
+import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
   meta: ProjectionMeta;
   allStates: StateProjection[];
   onClose: () => void;
+  /** Sandbox extended-mode N-party slice for this state. Optional. */
+  sandboxState?: SandboxStateProjection | null;
 }
 
 /**

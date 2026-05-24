@@ -4,7 +4,8 @@ import { feature } from 'topojson-client';
 import type { FeatureCollection, Geometry } from 'geojson';
 import type { Topology } from 'topojson-specification';
 import type { StateProjection, ColorMode } from '../lib/types';
-import { balanceColor, distortionColor, balanceMargin, distortionMargin } from '../lib/colors';
+import type { SandboxPayload } from '../lib/sandboxTypes';
+import { balanceColor, distortionColor, balanceMargin, distortionMargin, pluralityColor } from '../lib/colors';
 
 interface MapProps {
   topology: Topology;
@@ -12,6 +13,12 @@ interface MapProps {
   colorMode: ColorMode;
   selectedFips: string | null;
   onSelect: (fips: string) => void;
+  /**
+   * When present, state fills use plurality-party colors from the
+   * extended sandbox projection instead of the balance/distortion
+   * scales. The `colorMode` prop is ignored in this mode.
+   */
+  sandboxPayload?: SandboxPayload | null;
 }
 
 interface StateFeatureProps {
@@ -39,7 +46,7 @@ function buildAriaLabel(state: StateProjection, colorMode: ColorMode): string {
 const WIDTH = 975;
 const HEIGHT = 610;
 
-export function USMap({ topology, states, colorMode, selectedFips, onSelect }: MapProps) {
+export function USMap({ topology, states, colorMode, selectedFips, onSelect, sandboxPayload }: MapProps) {
   const [hoverFips, setHoverFips] = useState<string | null>(null);
 
   const projectionByFips = useMemo(() => {
@@ -47,6 +54,16 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect }: M
     for (const s of states) map.set(s.fips, s);
     return map;
   }, [states]);
+
+  // Fast fips → sandbox state lookup for plurality coloring. Empty Map
+  // when not in extended sandbox so the loop below short-circuits.
+  const sandboxByFips = useMemo(() => {
+    const m = new Map<string, NonNullable<SandboxPayload['states'][number]>>();
+    if (sandboxPayload) {
+      for (const s of sandboxPayload.states) m.set(s.fips, s);
+    }
+    return m;
+  }, [sandboxPayload]);
 
   const geojson = useMemo(() => {
     return feature(topology, topology.objects.states) as unknown as FeatureCollection<
@@ -84,18 +101,28 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect }: M
               />
             );
           }
-          const margin =
-            colorMode === 'balance'
-              ? balanceMargin(state.projected.d_seats, state.projected.r_seats, state.seats)
-              : distortionMargin(
-                  state.projected.d_seats,
-                  state.projected.r_seats,
-                  state.actual.d_seats,
-                  state.actual.r_seats,
-                  state.seats,
-                );
-          const fill =
-            colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
+          // Extended sandbox: pick the plurality party's color for this
+          // state. Falls back to the balance/distortion scale when no
+          // sandboxPayload (or when this state somehow isn't in it).
+          const sandboxState = sandboxByFips.get(fips);
+          let fill: string;
+          if (sandboxState) {
+            fill = pluralityColor(
+              sandboxState.parties.map((p) => ({ color: p.party.color, seats: p.seats })),
+            );
+          } else {
+            const margin =
+              colorMode === 'balance'
+                ? balanceMargin(state.projected.d_seats, state.projected.r_seats, state.seats)
+                : distortionMargin(
+                    state.projected.d_seats,
+                    state.projected.r_seats,
+                    state.actual.d_seats,
+                    state.actual.r_seats,
+                    state.seats,
+                  );
+            fill = colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
+          }
           const isSelected = selectedFips === fips;
           const isHover = hoverFips === fips;
           return (

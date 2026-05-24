@@ -1,6 +1,9 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
+import { PARTY_D, PARTY_R } from '../lib/parties';
+import type { SandboxStateProjection } from '../lib/sandboxTypes';
+import { SeatStrip } from './SeatStrip';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
 
 // Recharts is ~150 KB gzipped and only renders inside this panel — keep it
@@ -41,6 +44,13 @@ export interface StateDetailContentProps {
    * inline in a page set false to avoid stealing focus.
    */
   autoFocusHeading?: boolean;
+  /**
+   * When present (extended sandbox mode), render N-party delegation and
+   * vote-share blocks instead of the two-party ones. The two-party
+   * `state` prop is still used for actual-today numbers, polling chart,
+   * and the math-detail demo (those stay D/R).
+   */
+  sandboxState?: SandboxStateProjection | null;
 }
 
 export function StateDetailContent({
@@ -50,6 +60,7 @@ export function StateDetailContent({
   onClose,
   showHeaderControls = true,
   autoFocusHeading = true,
+  sandboxState,
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -205,27 +216,90 @@ export function StateDetailContent({
           </div>
         )}
 
-        <Comparison
-          label="Delegation"
-          left={{ heading: 'Actual today', d: state.actual.d_seats, r: state.actual.r_seats }}
-          right={{ heading: 'Projected under PR', d: state.projected.d_seats, r: state.projected.r_seats }}
-        />
-
-        {dGain !== 0 && (
-          <div className="text-sm">
-            Under PR this state{' '}
-            <span className={dGain > 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
-              {dGain > 0 ? `gains ${dGain} D seat${Math.abs(dGain) === 1 ? '' : 's'}`
-                         : `gains ${Math.abs(dGain)} R seat${Math.abs(dGain) === 1 ? '' : 's'}`}
-            </span>{' '}
-            relative to today.
+        {sandboxState ? (
+          <div>
+            <h3 className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">Delegation</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <SeatStrip
+                heading="Actual today"
+                parties={[
+                  { id: 'D', label: 'D', color: PARTY_D.color, seats: state.actual.d_seats },
+                  { id: 'R', label: 'R', color: PARTY_R.color, seats: state.actual.r_seats },
+                ]}
+              />
+              <SeatStrip
+                heading="Projected under PR"
+                parties={sandboxState.parties.map((p) => ({
+                  id: p.party.id,
+                  label: p.party.id,
+                  color: p.party.color,
+                  seats: p.seats,
+                }))}
+              />
+            </div>
           </div>
+        ) : (
+          <Comparison
+            label="Delegation"
+            left={{ heading: 'Actual today', d: state.actual.d_seats, r: state.actual.r_seats }}
+            right={{ heading: 'Projected under PR', d: state.projected.d_seats, r: state.projected.r_seats }}
+          />
+        )}
+
+        {sandboxState ? (
+          // Minor-party gains paragraph: list any non-D/R party with seats.
+          (() => {
+            const minors = sandboxState.parties.filter(
+              (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+            );
+            if (minors.length === 0) return null;
+            return (
+              <div className="text-sm">
+                {minors.map((m, i) => (
+                  <span key={m.party.id}>
+                    {i > 0 && ' · '}
+                    <span className="font-medium" style={{ color: m.party.color }}>
+                      {m.party.label} {m.seats} seat{m.seats === 1 ? '' : 's'}
+                    </span>
+                  </span>
+                ))}
+                {' '}from a {(minors.reduce((s, m) => s + m.vote_share, 0) * 100).toFixed(1)}% combined vote share.
+              </div>
+            );
+          })()
+        ) : (
+          dGain !== 0 && (
+            <div className="text-sm">
+              Under PR this state{' '}
+              <span className={dGain > 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
+                {dGain > 0 ? `gains ${dGain} D seat${Math.abs(dGain) === 1 ? '' : 's'}`
+                           : `gains ${Math.abs(dGain)} R seat${Math.abs(dGain) === 1 ? '' : 's'}`}
+              </span>{' '}
+              relative to today.
+            </div>
+          )
         )}
 
         <Section title="Vote share">
           <div className="grid grid-cols-2 gap-3 text-sm">
             <ShareBlock heading="2024 baseline" d={state.baseline_2024.d_share} r={state.baseline_2024.r_share} />
-            <ShareBlock heading="Projected 2026" d={state.projected.d_share} r={state.projected.r_share} />
+            {sandboxState ? (
+              <div>
+                <div className="text-xs text-stone-500">Projected (sandbox)</div>
+                <div className="mt-1 space-y-0.5">
+                  {sandboxState.parties.map((p) => (
+                    <div key={p.party.id} className="tabular-nums">
+                      <span className="font-medium" style={{ color: p.party.color }}>
+                        {p.party.id}
+                      </span>{' '}
+                      <span className="text-stone-700">{(p.vote_share * 100).toFixed(1)}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <ShareBlock heading="Projected 2026" d={state.projected.d_share} r={state.projected.r_share} />
+            )}
           </div>
           <div className="text-xs text-stone-500 mt-2">
             {(() => {
@@ -339,36 +413,19 @@ function Comparison({
   left: { heading: string; d: number; r: number };
   right: { heading: string; d: number; r: number };
 }) {
+  // Convert {d, r} to the generic SeatStrip's parties array using the
+  // canonical D/R presets so colors stay consistent with the rest of the
+  // app (Map fills, NationalSummary numbers, etc.).
+  const toParties = (d: number, r: number) => [
+    { id: 'D', label: 'D', color: PARTY_D.color, seats: d },
+    { id: 'R', label: 'R', color: PARTY_R.color, seats: r },
+  ];
   return (
     <div>
       <h3 className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">{label}</h3>
       <div className="grid grid-cols-2 gap-3">
-        <SeatStrip {...left} />
-        <SeatStrip {...right} />
-      </div>
-    </div>
-  );
-}
-
-function SeatStrip({ heading, d, r }: { heading: string; d: number; r: number }) {
-  const total = d + r;
-  const dPct = total > 0 ? (d / total) * 100 : 0;
-  return (
-    <div>
-      <div className="text-xs text-stone-500">{heading}</div>
-      <div className="mt-1 flex items-baseline gap-2">
-        <span className="text-blue-700 font-semibold text-lg tabular-nums">{d}</span>
-        <span className="text-stone-400 text-sm">·</span>
-        <span className="text-red-700 font-semibold text-lg tabular-nums">{r}</span>
-      </div>
-      <div className="mt-1 h-2 rounded-full bg-stone-100 overflow-hidden flex">
-        {/* Animated width transition powers the mode-switch tween from #4. */}
-        <div
-          className="bg-blue-700 transition-[width] duration-[250ms] ease-out motion-reduce:transition-none"
-          style={{ width: `${dPct}%` }}
-          aria-hidden
-        />
-        <div className="bg-red-700 flex-1" aria-hidden />
+        <SeatStrip heading={left.heading} parties={toParties(left.d, left.r)} />
+        <SeatStrip heading={right.heading} parties={toParties(right.d, right.r)} />
       </div>
     </div>
   );

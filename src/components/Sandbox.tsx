@@ -1,3 +1,9 @@
+import {
+  defaultMinorState,
+  MinorPartyControls,
+  type MinorState,
+} from './MinorPartyControls';
+
 interface Props {
   /** Generic-ballot margin the user has chosen (positive = D lead, points). */
   genericBallot: number;
@@ -6,6 +12,11 @@ interface Props {
   /** 2024 baseline margin (negative = R lead). Used to anchor the slider. */
   baseline2024: number;
   onChange: (genericBallot: number) => void;
+  /** Extended-mode controls: minor parties + threshold. */
+  minors: MinorState[];
+  threshold: number;
+  onMinorsChange: (minors: MinorState[]) => void;
+  onThresholdChange: (threshold: number) => void;
 }
 
 const MIN = -15;
@@ -25,7 +36,35 @@ function fmtMargin(pts: number): string {
   return pts >= 0 ? `D+${pts.toFixed(1)}` : `R+${Math.abs(pts).toFixed(1)}`;
 }
 
-export function Sandbox({ genericBallot, swing, baseline2024, onChange }: Props) {
+const THRESHOLD_MIN = 0;
+const THRESHOLD_MAX = 0.1;
+const THRESHOLD_STEP = 0.005;
+
+export function Sandbox({
+  genericBallot,
+  swing,
+  baseline2024,
+  onChange,
+  minors,
+  threshold,
+  onMinorsChange,
+  onThresholdChange,
+}: Props) {
+  const addMinor = () => {
+    // First-added defaults to Progressive Left; second to America First.
+    // Users can change preset via the dropdown.
+    const preset = minors.length === 0 ? 'PROG' : 'AF';
+    onMinorsChange([...minors, defaultMinorState(preset)]);
+  };
+  const updateMinor = (idx: number, next: MinorState) => {
+    const copy = minors.slice();
+    copy[idx] = next;
+    onMinorsChange(copy);
+  };
+  const removeMinor = (idx: number) => {
+    onMinorsChange(minors.filter((_, i) => i !== idx));
+  };
+
   return (
     <div className="border border-stone-200 bg-stone-50 rounded-lg p-4">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -89,6 +128,66 @@ export function Sandbox({ genericBallot, swing, baseline2024, onChange }: Props)
             </button>
           );
         })}
+      </div>
+
+      {/* Extended-mode controls: minor parties + threshold. Additive — when
+        * no minors are active, the sandbox behaves exactly as before. */}
+      <div className="mt-5 pt-4 border-t border-stone-200 space-y-3">
+        <div className="flex items-baseline justify-between gap-2">
+          <div>
+            <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">
+              Add minor parties
+            </div>
+            <div className="text-xs text-stone-500 mt-0.5">
+              See how a coalition split would change every state's projected delegation.
+            </div>
+          </div>
+          {minors.length < 2 && (
+            <button
+              type="button"
+              onClick={addMinor}
+              className="text-xs px-3 py-1.5 sm:py-1 border border-stone-300 rounded text-stone-700 hover:bg-stone-100 flex-shrink-0"
+            >
+              {minors.length === 0 ? '+ Add third party' : '+ Add fourth party'}
+            </button>
+          )}
+        </div>
+
+        {minors.map((m, i) => (
+          <MinorPartyControls
+            key={i}
+            slot={(i + 1) as 1 | 2}
+            state={m}
+            onChange={(next) => updateMinor(i, next)}
+            onRemove={() => removeMinor(i)}
+          />
+        ))}
+
+        {minors.length >= 1 && (
+          <div className="pt-1">
+            <div className="flex items-baseline justify-between text-xs text-stone-600 mb-1">
+              <span className="font-medium text-stone-700">Threshold (per state)</span>
+              <span className="tabular-nums font-medium text-stone-900">
+                {(threshold * 100).toFixed(1)}%
+              </span>
+            </div>
+            <input
+              type="range"
+              min={THRESHOLD_MIN}
+              max={THRESHOLD_MAX}
+              step={THRESHOLD_STEP}
+              value={threshold}
+              onChange={(e) => onThresholdChange(Number(e.target.value))}
+              aria-label="Minor party threshold"
+              aria-valuetext={`${(threshold * 100).toFixed(1)} percent`}
+              className="w-full accent-stone-900"
+            />
+            <div className="text-[10px] text-stone-500 mt-0.5">
+              Parties below this share within a state win no seats. Real PR systems usually
+              set this at 4–5%.
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

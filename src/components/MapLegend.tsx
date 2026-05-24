@@ -1,8 +1,15 @@
 import { balanceColor, distortionColor } from '../lib/colors';
 import type { ColorMode } from '../lib/types';
+import type { SandboxPayload } from '../lib/sandboxTypes';
 
 interface Props {
   mode: ColorMode;
+  /**
+   * When present, replace the diverging color scale with party swatches
+   * for the active sandbox parties. Each state's fill is whichever party
+   * holds plurality; this legend explains the mapping.
+   */
+  sandboxPayload?: SandboxPayload | null;
 }
 
 // Sample the same diverging color function the map uses, at evenly-spaced
@@ -24,7 +31,35 @@ const LABELS: Record<ColorMode, { left: string; center: string; right: string; a
   },
 };
 
-export function MapLegend({ mode }: Props) {
+export function MapLegend({ mode, sandboxPayload }: Props) {
+  // Extended sandbox legend: party swatches instead of a diverging
+  // scale. Shows every party with at least one seat nationally; this is
+  // exactly what state fill colors map to (plurality party per state).
+  if (sandboxPayload) {
+    const activeParties = sandboxPayload.national.parties.filter((p) => p.seats > 0);
+    return (
+      <div className="mt-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-stone-600">
+          <span className="text-stone-500 uppercase tracking-wider">Plurality color:</span>
+          {activeParties.map((p) => (
+            <span key={p.party.id} className="inline-flex items-center gap-1.5">
+              <span
+                className="inline-block h-3 w-3 rounded-full border border-stone-300/60"
+                style={{ backgroundColor: p.party.color }}
+                aria-hidden
+              />
+              <span className="text-stone-700">{p.party.label}</span>
+              <span className="text-stone-400 tabular-nums">{p.seats} seats</span>
+            </span>
+          ))}
+        </div>
+        <div className="mt-1.5 text-[11px] text-stone-500">
+          Each state's fill = whichever party holds the most projected seats. Ties render gray.
+        </div>
+      </div>
+    );
+  }
+
   const colorFn = mode === 'balance' ? balanceColor : distortionColor;
   const stops = STOPS.map((v) => colorFn(v));
   const gradient = `linear-gradient(to right, ${stops.join(', ')})`;

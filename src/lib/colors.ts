@@ -61,3 +61,31 @@ export function distortionMargin(
   const shift = (projectedD - actualD) - (projectedR - actualR);
   return shift / seats;
 }
+
+/**
+ * Pick the fill color for a state under extended (N-party) sandbox mode.
+ * Returns the color of whichever party holds the most seats. Ties (e.g.
+ * 26 D / 26 R / 0 PROG in a 52-seat state) fall back to the neutral
+ * balance scale to communicate "no plurality" rather than picking one
+ * arbitrarily.
+ */
+export function pluralityColor(
+  parties: Array<{ color: string; seats: number }>,
+): string {
+  if (parties.length === 0) return 'rgb(240, 240, 240)';
+  let maxSeats = -1;
+  let winnerIdx = -1;
+  let tie = false;
+  for (let i = 0; i < parties.length; i++) {
+    const s = parties[i].seats;
+    if (s > maxSeats) {
+      maxSeats = s;
+      winnerIdx = i;
+      tie = false;
+    } else if (s === maxSeats) {
+      tie = true;
+    }
+  }
+  if (tie || winnerIdx < 0) return 'rgb(240, 240, 240)';
+  return parties[winnerIdx].color;
+}
