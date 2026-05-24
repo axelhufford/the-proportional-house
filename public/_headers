@@ -1,0 +1,16 @@
+# Cloudflare Pages custom headers.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Embed routes are intentionally framable from any origin so newsrooms can
+# drop the widget into a story. Override any default X-Frame-Options and
+# set CSP frame-ancestors explicitly to wildcard.
+/embed/*
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: frame-ancestors *;
+
+# Public API: CORS + sensible cache. The Pages Function sets these too, but
+# repeating them here means a stale function bundle can't drop them.
+/api/v1/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Cache-Control: public, max-age=300, s-maxage=300

@@ -105,7 +105,11 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect }: M
               fill={fill}
               stroke={isSelected ? '#111' : '#fff'}
               strokeWidth={isSelected ? 2 : isHover ? 1.5 : 0.75}
-              className="cursor-pointer transition-[stroke-width] duration-100"
+              // Fill transition tweens the choropleth when the user switches
+              // view modes or drags the sandbox slider — React's reconciler
+              // keeps the path stable (key=fips), so CSS handles the rest.
+              // motion-reduce: variant respects user OS preference.
+              className="cursor-pointer transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none"
               data-fips={fips}
               onMouseEnter={() => setHoverFips(fips)}
               onMouseLeave={() => setHoverFips(null)}

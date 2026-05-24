@@ -299,21 +299,16 @@ export function Home({ onMetaChange }: HomeProps) {
       </section>
 
       {selectedState && createPortal(
+        // The shell components provide their own positioning, animation, and
+        // (on mobile) backdrop + body-scroll lock. The portal just gets the
+        // dialog out of the page flow.
         <div data-state-detail-portal="true">
-          {/* Mobile-only scrim behind the bottom sheet. Tap to dismiss. */}
-          <div
-            className="fixed inset-0 bg-stone-900/30 sm:hidden z-30"
-            aria-hidden="true"
-            onClick={handleDeselect}
+          <StateDetail
+            state={selectedState}
+            meta={effectivePayload.meta}
+            allStates={effectivePayload.states}
+            onClose={handleDeselect}
           />
-          <div className="relative z-40">
-            <StateDetail
-              state={selectedState}
-              meta={effectivePayload.meta}
-              allStates={effectivePayload.states}
-              onClose={handleDeselect}
-            />
-          </div>
         </div>,
         document.body
       )}

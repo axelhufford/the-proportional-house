@@ -4,6 +4,8 @@ import { Layout } from './components/Layout';
 import { ScrollManager } from './components/ScrollManager';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
+import { EmbedNational } from './pages/EmbedNational';
+import { EmbedState } from './pages/EmbedState';
 import { Methodology } from './pages/Methodology';
 import { NotFound } from './pages/NotFound';
 import { Rankings } from './pages/Rankings';
@@ -21,6 +23,10 @@ export default function App() {
     <BrowserRouter>
       <ScrollManager />
       <Routes>
+        {/* Embed routes sit OUTSIDE the Layout — no nav, no footer, no
+            stale-data banner. They're chrome-less by design for iframe use. */}
+        <Route path="/embed/national" element={<EmbedNational />} />
+        <Route path="/embed/state/:code" element={<EmbedState />} />
         <Route element={<Layout meta={meta} />}>
           <Route path="/" element={<Home onMetaChange={handleMetaChange} />} />
           <Route path="/rankings" element={<Rankings />} />

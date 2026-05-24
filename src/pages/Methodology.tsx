@@ -154,6 +154,74 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </ul>
       </Section>
 
+      <Section title="API and data downloads">
+        <p>
+          The full projection is available as a public, versioned JSON API and as direct CSV/JSON
+          downloads. The download buttons sit beside the share buttons in the national summary
+          on the homepage; the API endpoints below serve the same data programmatically.
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <code>GET /api/v1/projection.json</code> — the full projection in a stable, documented
+            shape. Returns <code>api_version</code>, <code>generated_at</code>, <code>polling</code>{' '}
+            (window, half-life, n_polls, swing), <code>national</code> totals, and one entry per
+            state with both seat counts and underlying vote shares.
+          </li>
+          <li>
+            <code>GET /api/v1/projection.csv</code> — the same data flattened to one row per state,
+            alphabetical by postal code. Column order is documented and stable: <code>code, name,
+            fips, total_seats, actual_D, actual_R, projected_D, projected_R, swing,
+            vote_share_2024_D, vote_share_2024_R, vote_share_projected_D, vote_share_projected_R</code>.
+          </li>
+        </ul>
+        <p className="text-sm text-stone-600">
+          <strong>Cache:</strong> 5 minutes at the edge and in the browser.{' '}
+          <strong>CORS:</strong> any origin (read-only public data).{' '}
+          <strong>Version:</strong> the v1 contract is stable — breaking changes will ship under
+          <code> /api/v2/</code>. If you build something with it, a credit link to{' '}
+          <a className="underline" href="https://proportionalhouse.org" target="_blank" rel="noreferrer">proportionalhouse.org</a>{' '}
+          is appreciated.
+        </p>
+      </Section>
+
+      <Section title="Embeddable widgets">
+        <p>
+          Two iframe-ready views let you drop the projection into a story or post:
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <code>/embed/national</code> — the headline map + national totals. Optional URL params:{' '}
+            <code>?view=current|retrospective|sandbox</code>,{' '}
+            <code>?color=balance|distortion</code>,{' '}
+            <code>?ballot=&lt;margin&gt;</code> (sandbox).
+          </li>
+          <li>
+            <code>/embed/state/:code</code> — a single state's card (replace <code>:code</code> with
+            the two-letter postal abbreviation, e.g. <code>CA</code>).
+          </li>
+        </ul>
+        <p>Minimal host snippet:</p>
+        <pre className="bg-stone-100 rounded p-3 text-xs overflow-x-auto">{`<iframe
+  src="https://proportionalhouse.org/embed/national"
+  style="width:100%; border:0;"
+  title="The Proportional House"
+  loading="lazy"
+></iframe>
+<script>
+  window.addEventListener('message', (e) => {
+    if (e.data && e.data.type === 'proportional-house:resize') {
+      const f = document.querySelector('iframe[src*="proportionalhouse.org/embed"]');
+      if (f) f.style.height = e.data.height + 'px';
+    }
+  });
+</script>`}</pre>
+        <p className="text-sm text-stone-600">
+          The embed posts its content height to the parent window on mount and whenever the
+          content reflows. The snippet listens for that message and resizes the iframe — no
+          fixed-height guessing.
+        </p>
+      </Section>
+
       <Section title="Why the math doesn't favor one side">
         <p>
           The pipeline doesn't look at partisan labels except to count votes. The same code runs whether

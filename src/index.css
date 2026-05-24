@@ -56,3 +56,17 @@ svg path[role="button"]:focus-visible {
   outline: none;
 }
 
+/* Global motion-safety: users who've set "Reduce motion" at the OS level
+ * get near-instant transitions everywhere. We intentionally don't set 0s
+ * (some components key behavior off transitionend); 1ms collapses the
+ * visible animation while still firing the event so logic like the
+ * StateDetail shell's animate-out-then-unmount still works. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

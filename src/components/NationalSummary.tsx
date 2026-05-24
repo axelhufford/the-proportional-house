@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
+import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 
 interface Props {
   payload: ProjectionPayload;
@@ -18,6 +19,17 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
     const url = buildNationalTweetIntent({ national, meta, viewMode });
     window.open(url, '_blank', 'noopener,noreferrer');
   }, [national, meta, viewMode]);
+
+  // Data download — always emits the *unmodified* pipeline payload, not the
+  // effective (sandbox-mutated) one. Researchers want the canonical numbers,
+  // not whatever the user's slider is on.
+  const handleDownloadCsv = useCallback(() => {
+    downloadProjectionCsv(payload);
+  }, [payload]);
+
+  const handleDownloadJson = useCallback(() => {
+    downloadProjectionJson(payload);
+  }, [payload]);
   const dGain = national.projected.d_seats - national.actual.d_seats;
   const generic = meta.generic_ballot_margin;
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
@@ -91,6 +103,24 @@ export function NationalSummary({ payload, viewMode = 'current' }: Props) {
         </div>
 
         <div className="mt-3 flex justify-end gap-1">
+          <button
+            type="button"
+            onClick={handleDownloadCsv}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
+            aria-label="Download projection as CSV"
+            title="Download projection as CSV"
+          >
+            CSV
+          </button>
+          <button
+            type="button"
+            onClick={handleDownloadJson}
+            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
+            aria-label="Download projection as JSON"
+            title="Download projection as JSON"
+          >
+            JSON
+          </button>
           <button
             type="button"
             onClick={handleShareTwitter}
