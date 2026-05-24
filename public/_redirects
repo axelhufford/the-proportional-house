@@ -1,3 +1,7 @@
+# Convenience alias: the no-extension API path 301s to the canonical .json
+# URL. Must come before the SPA fallback or it'd get swallowed.
+/api/v1/projection   /api/v1/projection.json   301
+
 # SPA fallback for client-side routing (react-router-dom BrowserRouter).
 # Without this, /methodology and other deep links return 404 on Cloudflare Pages.
 /*    /index.html   200

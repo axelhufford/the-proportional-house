@@ -4,6 +4,11 @@
  * Returns the current PR projection in the stable, documented v1 shape.
  * See `src/lib/apiShape.ts` for the schema definition and the Methodology
  * page for human-readable documentation.
+ *
+ * Filename note: Cloudflare Pages Functions route by filename, so this
+ * file must be `projection.json.ts` (not `projection.ts`) to serve at
+ * `/api/v1/projection.json`. `/api/v1/projection` (no extension) is
+ * redirected here via the `_redirects` file.
  */
 import { toApiV1 } from '../../../src/lib/apiShape';
 import {
