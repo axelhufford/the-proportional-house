@@ -62,22 +62,27 @@ export const DEFAULT_SHARE: Record<PresetMinorId, number> = {
 /** Default share for a freshly-added Custom party. */
 export const CUSTOM_DEFAULT_SHARE = 0.05;
 
-/** Color used by all Custom parties — no color picker in v1. */
-export const CUSTOM_COLOR = '#6E6E6E';
+/** Default color for a newly-added Custom party. Users can pick any hex. */
+export const CUSTOM_DEFAULT_COLOR = '#6E6E6E';
+
+/** Valid minor-party slot index. Three slots = up to five parties total (D, R, + 3). */
+export type MinorSlot = 1 | 2 | 3;
 
 /**
  * Build a Custom party at runtime from user input. Custom parties get
- * a unique id so two of them can coexist as third + fourth slots.
+ * a unique id so multiple instances can coexist as the third / fourth /
+ * fifth slots. Color is user-set (defaults to gray for new instances).
  */
 export function buildCustomParty(opts: {
   label?: string;
   draw_from: { D: number; R: number };
-  slot: 1 | 2;
+  slot: MinorSlot;
+  color?: string;
 }): Party {
   return {
     id: `CUSTOM-${opts.slot}`,
     label: opts.label?.trim() || `Custom party ${opts.slot}`,
-    color: CUSTOM_COLOR,
+    color: opts.color || CUSTOM_DEFAULT_COLOR,
     draw_from: opts.draw_from,
   };
 }

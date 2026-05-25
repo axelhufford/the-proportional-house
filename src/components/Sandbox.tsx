@@ -51,9 +51,11 @@ export function Sandbox({
   onThresholdChange,
 }: Props) {
   const addMinor = () => {
-    // First-added defaults to Progressive Left; second to America First.
-    // Users can change preset via the dropdown.
-    const preset = minors.length === 0 ? 'PROG' : 'AF';
+    // Defaults: slot 1 → Progressive Left, slot 2 → America First, slot 3
+    // → fully-customizable Custom party. Users can change preset via the
+    // dropdown.
+    const preset =
+      minors.length === 0 ? 'PROG' : minors.length === 1 ? 'AF' : 'CUSTOM';
     onMinorsChange([...minors, defaultMinorState(preset)]);
   };
   const updateMinor = (idx: number, next: MinorState) => {
@@ -64,6 +66,14 @@ export function Sandbox({
   const removeMinor = (idx: number) => {
     onMinorsChange(minors.filter((_, i) => i !== idx));
   };
+
+  const MAX_MINORS = 3;
+  const addButtonLabel =
+    minors.length === 0
+      ? '+ Add third party'
+      : minors.length === 1
+        ? '+ Add fourth party'
+        : '+ Add fifth party';
 
   return (
     <div className="border border-stone-200 bg-stone-50 rounded-lg p-4">
@@ -142,13 +152,13 @@ export function Sandbox({
               See how a coalition split would change every state's projected delegation.
             </div>
           </div>
-          {minors.length < 2 && (
+          {minors.length < MAX_MINORS && (
             <button
               type="button"
               onClick={addMinor}
               className="text-xs px-3 py-1.5 sm:py-1 border border-stone-300 rounded text-stone-700 hover:bg-stone-100 flex-shrink-0"
             >
-              {minors.length === 0 ? '+ Add third party' : '+ Add fourth party'}
+              {addButtonLabel}
             </button>
           )}
         </div>
@@ -156,7 +166,7 @@ export function Sandbox({
         {minors.map((m, i) => (
           <MinorPartyControls
             key={i}
-            slot={(i + 1) as 1 | 2}
+            slot={(i + 1) as 1 | 2 | 3}
             state={m}
             onChange={(next) => updateMinor(i, next)}
             onRemove={() => removeMinor(i)}

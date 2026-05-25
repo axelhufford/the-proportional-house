@@ -10,7 +10,12 @@ import { NationalSummary } from '../components/NationalSummary';
 import { ModeToggle } from '../components/ModeToggle';
 import { Sandbox } from '../components/Sandbox';
 import { StateDetail } from '../components/StateDetail';
-import { buildCustomParty, PRESET_MINORS } from '../lib/parties';
+import {
+  buildCustomParty,
+  CUSTOM_DEFAULT_COLOR,
+  type MinorSlot,
+  PRESET_MINORS,
+} from '../lib/parties';
 import { buildSandboxPayload, type MinorPartySpec } from '../lib/sandboxSwing';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
@@ -38,18 +43,27 @@ function parseBallot(raw: string | null): number | null {
   return Math.round(n * 10) / 10;
 }
 
+/** Hex color regex without the `#` — exactly 6 hex chars. */
+const HEX_RE = /^[0-9A-Fa-f]{6}$/;
+
 /**
  * URL serialization for sandbox minor parties.
  *
  *   ?minor1=prog:6.0:85:15     → Progressive Left at 6%, 85/15 draw (canonical)
  *   ?minor1=prog:6.0           → legacy shorthand, falls back to canonical 85/15 draw
  *   ?minor1=af:8.0:60:40       → America First at 8% with a customized draw
+ *   ?minor1=custom:8.0:50:50:6E6E6E:Forward+Party
+ *                              → Custom party, 8% share, 50/50 draw, gray color, label
  *   ?minor1=custom:8.0:50:50:Forward+Party
- *                              → Custom party, 8% share, 50/50 draw, label "Forward Party"
+ *                              → legacy Custom (no color), defaults to gray
  *
  * Draw fields are optional for the preset forms so old bookmarks keep
  * working; serialization always emits them so the URL round-trips even
  * when the user has tweaked a preset's draw ratio.
+ *
+ * For Custom the color field sits between draw and label. Parser tries
+ * to interpret field 4 as a 6-char hex; if it doesn't match, treats it
+ * as the label (legacy path) and defaults the color to gray.
  */
 function parseMinor(raw: string | null): MinorState | null {
   if (!raw) return null;
@@ -74,8 +88,25 @@ function parseMinor(raw: string | null): MinorState | null {
   }
   if (presetRaw === 'CUSTOM') {
     if (explicitDrawD === undefined) return null; // Custom must specify draw
-    const label = parts[4] ? decodeURIComponent(parts[4]) : undefined;
-    return { presetId: 'CUSTOM', share, drawD: explicitDrawD, label };
+    // Field 4 might be a hex color (new format) or the label (legacy).
+    const rawField4 = parts[4];
+    let color: string | undefined;
+    let labelField: string | undefined;
+    if (rawField4 && HEX_RE.test(rawField4)) {
+      color = `#${rawField4.toUpperCase()}`;
+      labelField = parts[5];
+    } else {
+      color = undefined; // defaults to CUSTOM_DEFAULT_COLOR
+      labelField = rawField4;
+    }
+    const label = labelField ? decodeURIComponent(labelField) : undefined;
+    return {
+      presetId: 'CUSTOM',
+      share,
+      drawD: explicitDrawD,
+      color: color || CUSTOM_DEFAULT_COLOR,
+      label,
+    };
   }
   return null;
 }
@@ -85,8 +116,10 @@ function serializeMinor(m: MinorState): string {
   const drawDPct = Math.round((m.drawD ?? 0.5) * 100);
   const drawRPct = 100 - drawDPct;
   if (m.presetId === 'CUSTOM') {
+    // Color hex stripped of the leading `#` so it doesn't need URL escaping.
+    const colorHex = (m.color || CUSTOM_DEFAULT_COLOR).replace(/^#/, '').toUpperCase();
     const labelPart = m.label && m.label.trim() ? `:${encodeURIComponent(m.label.trim())}` : '';
-    return `custom:${sharePct}:${drawDPct}:${drawRPct}${labelPart}`;
+    return `custom:${sharePct}:${drawDPct}:${drawRPct}:${colorHex}${labelPart}`;
   }
   // Always include draw for presets too — round-trips a customized
   // Progressive Left at 60/40 without losing the user's tweak.
@@ -103,7 +136,7 @@ function parseThreshold(raw: string | null): number | null {
 const DEFAULT_THRESHOLD = 0.05;
 
 /** Convert a UI MinorState into the swing-math MinorPartySpec. */
-function buildSpec(m: MinorState, slot: 1 | 2): MinorPartySpec {
+function buildSpec(m: MinorState, slot: MinorSlot): MinorPartySpec {
   if (m.presetId === 'CUSTOM') {
     const drawD = m.drawD ?? 0.5;
     return {
@@ -111,6 +144,7 @@ function buildSpec(m: MinorState, slot: 1 | 2): MinorPartySpec {
         label: m.label,
         draw_from: { D: drawD, R: 1 - drawD },
         slot,
+        color: m.color,
       }),
       national_share: m.share,
     };
@@ -157,7 +191,8 @@ export function Home({ onMetaChange }: HomeProps) {
   const [minors, setMinors] = useState<MinorState[]>(() => {
     const m1 = parseMinor(searchParams.get('minor1'));
     const m2 = parseMinor(searchParams.get('minor2'));
-    return [m1, m2].filter((x): x is MinorState => x !== null);
+    const m3 = parseMinor(searchParams.get('minor3'));
+    return [m1, m2, m3].filter((x): x is MinorState => x !== null);
   });
   const [threshold, setThreshold] = useState<number>(
     () => parseThreshold(searchParams.get('threshold')) ?? DEFAULT_THRESHOLD,
@@ -259,6 +294,7 @@ export function Home({ onMetaChange }: HomeProps) {
     if (viewMode === 'sandbox') {
       if (minors[0]) next.set('minor1', serializeMinor(minors[0]));
       if (minors[1]) next.set('minor2', serializeMinor(minors[1]));
+      if (minors[2]) next.set('minor3', serializeMinor(minors[2]));
       if (minors.length > 0 && Math.abs(threshold - DEFAULT_THRESHOLD) > 0.0005) {
         next.set('threshold', (threshold * 100).toFixed(1));
       }
@@ -291,7 +327,7 @@ export function Home({ onMetaChange }: HomeProps) {
   // the rest of the page renders via the existing two-party path.
   const sandboxPayload = useMemo<SandboxPayload | null>(() => {
     if (!effectivePayload || viewMode !== 'sandbox' || minors.length === 0) return null;
-    const specs = minors.map((m, i) => buildSpec(m, (i + 1) as 1 | 2));
+    const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
     return buildSandboxPayload(effectivePayload, specs, threshold);
   }, [effectivePayload, viewMode, minors, threshold]);
 
