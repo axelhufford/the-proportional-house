@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-24T15:51:39.218626+00:00",
+    "generated_at": "2026-05-25T21:28:27.651880+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
@@ -51,7 +51,7 @@
     {
       "date": "2025-12-05",
       "pollster": "Ipsos",
-      "margin": 2.47,
+      "margin": 2.48,
       "sample_size": 3521,
       "population": "RV",
       "url": "https://www.reuters.com/data/trumps-approval-rating-2025-01-21/"
@@ -155,7 +155,7 @@
     {
       "date": "2025-12-13",
       "pollster": "Ipsos",
-      "margin": 5.47,
+      "margin": 5.48,
       "sample_size": 775,
       "population": "RV",
       "url": "https://www.reuters.com/data/which-party-do-americans-want-run-congress-2025-11-05/"
@@ -315,7 +315,7 @@
     {
       "date": "2026-01-10",
       "pollster": "Impact Research/National Research",
-      "margin": 4.0,
+      "margin": 4.01,
       "sample_size": 1500,
       "population": "RV",
       "url": "https://www.wsj.com/politics/elections/trump-approval-rating-economy-poll-b3a62e57"
@@ -355,7 +355,7 @@
     {
       "date": "2026-01-12",
       "pollster": "Ipsos",
-      "margin": 3.47,
+      "margin": 3.48,
       "sample_size": 941,
       "population": "RV",
       "url": "https://www.reuters.com/data/which-party-do-americans-want-run-congress-2025-11-05/"
@@ -411,7 +411,7 @@
     {
       "date": "2026-01-17",
       "pollster": "Verasight",
-      "margin": 10.91,
+      "margin": 10.92,
       "sample_size": 1057,
       "population": "LV",
       "url": "https://www.gelliottmorris.com/p/new-poll-trump-slips-on-immigration"
@@ -499,7 +499,7 @@
     {
       "date": "2026-01-24",
       "pollster": "Ipsos",
-      "margin": 5.47,
+      "margin": 5.48,
       "sample_size": 1139,
       "population": "A",
       "url": "https://www.reuters.com/data/trumps-approval-rating-2025-01-21/"
@@ -547,7 +547,7 @@
     {
       "date": "2026-01-28",
       "pollster": "HarrisX",
-      "margin": 5.38,
+      "margin": 5.39,
       "sample_size": 1508,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-january-6/"
@@ -595,7 +595,7 @@
     {
       "date": "2026-02-04",
       "pollster": "John Zogby Strategies",
-      "margin": 6.56,
+      "margin": 6.53,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://johnzogbystrategies.com/the-presidents-approval-ratings-underwater-on-overall-job-all-key-voter-issues/"
@@ -675,7 +675,7 @@
     {
       "date": "2026-02-14",
       "pollster": "Ipsos",
-      "margin": 3.47,
+      "margin": 3.48,
       "sample_size": 2087,
       "population": "RV",
       "url": "https://www.washingtonpost.com/politics/2026/02/25/poll-democrats-trump-republicans-midterms/"
@@ -683,7 +683,7 @@
     {
       "date": "2026-02-14",
       "pollster": "Ipsos",
-      "margin": 5.47,
+      "margin": 5.48,
       "sample_size": 846,
       "population": "RV",
       "url": "https://www.reuters.com/world/us/trumps-immigration-approval-hits-new-low-according-reutersipsos-poll-2026-02-17/"
@@ -731,7 +731,7 @@
     {
       "date": "2026-02-19",
       "pollster": "Verasight",
-      "margin": 7.91,
+      "margin": 7.92,
       "sample_size": 1401,
       "population": "RV",
       "url": "https://www.gelliottmorris.com/p/ahead-of-state-of-the-union-address"
@@ -747,7 +747,7 @@
     {
       "date": "2026-02-20",
       "pollster": "Ipsos",
-      "margin": 3.47,
+      "margin": 3.48,
       "sample_size": 3686,
       "population": "RV",
       "url": "https://www.reuters.com/world/us/most-americans-say-trump-is-growing-erratic-with-age-reutersipsos-poll-finds-2026-02-24/"
@@ -819,7 +819,7 @@
     {
       "date": "2026-02-25",
       "pollster": "HarrisX",
-      "margin": 1.88,
+      "margin": 1.89,
       "sample_size": 1560,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-february-2026/"
@@ -1035,7 +1035,7 @@
     {
       "date": "2026-03-17",
       "pollster": "John Zogby Strategies",
-      "margin": 1.36,
+      "margin": 1.33,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://x.com/zogbystrategies/status/2036096236139245673/photo/1"
@@ -1043,7 +1043,7 @@
     {
       "date": "2026-03-17",
       "pollster": "Verasight",
-      "margin": 3.91,
+      "margin": 3.92,
       "sample_size": 1370,
       "population": "RV",
       "url": "https://www.gelliottmorris.com/p/2026-03-24-march-sin-verasight-poll-main-release"
@@ -1051,7 +1051,7 @@
     {
       "date": "2026-03-18",
       "pollster": "Ipsos",
-      "margin": 4.47,
+      "margin": 4.48,
       "sample_size": 1206,
       "population": "RV",
       "url": "https://www.reuters.com/world/middle-east/americans-believe-trump-will-send-troops-into-iran-dont-like-idea-reutersipsos-2026-03-19/"
@@ -1083,7 +1083,7 @@
     {
       "date": "2026-03-21",
       "pollster": "Ipsos",
-      "margin": 3.47,
+      "margin": 3.48,
       "sample_size": 985,
       "population": "RV",
       "url": "https://www.ipsos.com/en-us/economy-and-foreign-conflicts-now-publics-top-two-issue-concerns"
@@ -1107,7 +1107,7 @@
     {
       "date": "2026-03-25",
       "pollster": "HarrisX",
-      "margin": 5.88,
+      "margin": 5.89,
       "sample_size": 1475,
       "population": "LV",
       "url": "https://harvardharrispoll.com/wp-content/uploads/2026/03/HHP_Mar2026_KeyResults.pdf"
@@ -1259,7 +1259,7 @@
     {
       "date": "2026-04-12",
       "pollster": "Verasight",
-      "margin": 4.91,
+      "margin": 4.92,
       "sample_size": 1386,
       "population": "RV",
       "url": "https://www.gelliottmorris.com/p/2026-04-21-april-strength-in-numbers-verasight-poll"
@@ -1291,7 +1291,7 @@
     {
       "date": "2026-04-17",
       "pollster": "John Zogby Strategies",
-      "margin": 4.76,
+      "margin": 4.73,
       "sample_size": 1001,
       "population": "LV",
       "url": "https://johnzogbystrategies.com/wp-content/uploads/2026/04/Brand-New-Zogby-Poll-Amid-War-Confusion-04.20.26.html"
@@ -1299,7 +1299,7 @@
     {
       "date": "2026-04-17",
       "pollster": "Ipsos",
-      "margin": 4.47,
+      "margin": 4.48,
       "sample_size": 3577,
       "population": "RV",
       "url": "https://www.ipsos.com/en-us/americans-remain-skeptical-trumps-handling-inflation"
@@ -1379,7 +1379,7 @@
     {
       "date": "2026-04-24",
       "pollster": "HarrisX",
-      "margin": 1.88,
+      "margin": 1.89,
       "sample_size": 1963,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-april-2026/"
@@ -1395,7 +1395,7 @@
     {
       "date": "2026-04-25",
       "pollster": "Ipsos",
-      "margin": 5.47,
+      "margin": 5.48,
       "sample_size": 1014,
       "population": "RV",
       "url": "https://www.ipsos.com/en-us/americans-increasingly-feel-economy-wrong-track"
@@ -1419,7 +1419,7 @@
     {
       "date": "2026-04-26",
       "pollster": "Ipsos",
-      "margin": 6.47,
+      "margin": 6.48,
       "sample_size": 2059,
       "population": "RV",
       "url": "https://www.washingtonpost.com/politics/2026/05/03/trump-approval-ratings-poll/"
@@ -1451,7 +1451,7 @@
     {
       "date": "2026-05-02",
       "pollster": "HarrisX",
-      "margin": 7.88,
+      "margin": 7.89,
       "sample_size": 1891,
       "population": "LV",
       "url": "https://www.harrisx.com/posts/forbes-and-harrisx-partner-on-new-american-confidence-survey-as-gallup-ends-approval-polling"
@@ -1499,7 +1499,7 @@
     {
       "date": "2026-05-09",
       "pollster": "Ipsos",
-      "margin": 7.47,
+      "margin": 7.48,
       "sample_size": 993,
       "population": "RV",
       "url": "https://www.ipsos.com/en-us/two-thirds-say-rising-gas-prices-have-affected-their-household-finances"
@@ -1515,7 +1515,7 @@
     {
       "date": "2026-05-12",
       "pollster": "Impact Research/National Research",
-      "margin": 8.0,
+      "margin": 8.01,
       "sample_size": 1500,
       "population": "RV",
       "url": "https://www.wsj.com/politics/policy/trump-republican-congress-control-98a13bd9"
@@ -1579,7 +1579,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Ipsos",
-      "margin": 2.47,
+      "margin": 2.48,
       "sample_size": 984,
       "population": "RV",
       "url": "https://www.ipsos.com/en-us/americas-frustration-cost-living-continues-rise"
@@ -1603,7 +1603,7 @@
     {
       "date": "2026-05-19",
       "pollster": "Verasight/Morris Predictive Insights",
-      "margin": 8.91,
+      "margin": 8.92,
       "sample_size": 2000,
       "population": "A",
       "url": "https://www.politico.com/newsletters/playbook/2026/05/22/pod-save-nobody-00933436"
@@ -1611,8 +1611,8 @@
     {
       "date": "2026-05-21",
       "pollster": "John Zogby Strategies",
-      "margin": 7.86,
-      "sample_size": null,
+      "margin": 8.03,
+      "sample_size": 1000,
       "population": "LV",
       "url": "https://johnzogbystrategies.com/the-latest-zogby-political-poll-trump-economic-concerns-war-trends-05-22-26/"
     }
