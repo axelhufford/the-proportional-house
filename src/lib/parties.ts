@@ -91,3 +91,19 @@ export function buildCustomParty(opts: {
 export function getPresetMinor(id: PresetMinorId): Party {
   return PRESET_MINORS[id];
 }
+
+/**
+ * Human-readable short name for a party. Used at display sites that want
+ * a compact label:
+ *
+ *   - Major/preset parties → their id ("D", "R", "PROG", "AF")
+ *   - Custom parties → their user-typed label (e.g. "Greens"), or the
+ *     "Custom party N" fallback that buildCustomParty assigns when the
+ *     user leaves the field blank.
+ *
+ * Centralizing this rule means tooltips, stat cards, and seat strips
+ * agree without each having to special-case `CUSTOM-N` ids.
+ */
+export function displayName(party: Party): string {
+  return party.id.startsWith('CUSTOM-') ? party.label : party.id;
+}

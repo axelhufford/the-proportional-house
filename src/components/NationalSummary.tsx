@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import { displayName } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 
@@ -64,7 +65,7 @@ export function NationalSummary({ payload, viewMode = 'current', sandboxPayload 
                     <span key={p.party.id} className="inline-flex items-baseline gap-2">
                       {i > 0 && <span className="text-stone-400 text-base">·</span>}
                       <span style={{ color: p.party.color }}>
-                        {p.party.id} {p.seats}
+                        {displayName(p.party)} {p.seats}
                       </span>
                     </span>
                   ))}
@@ -97,7 +98,7 @@ export function NationalSummary({ payload, viewMode = 'current', sandboxPayload 
                     return (
                       <span key={p.party.id} className="inline-flex items-baseline gap-1">
                         {i > 0 && <span className="text-stone-400 text-sm">·</span>}
-                        <span className="text-stone-500 text-xs uppercase tracking-wider">{p.party.id}</span>
+                        <span className="text-stone-500 text-xs uppercase tracking-wider">{displayName(p.party)}</span>
                         <span
                           className="font-semibold"
                           style={{ color: delta === 0 ? '#888780' : p.party.color }}

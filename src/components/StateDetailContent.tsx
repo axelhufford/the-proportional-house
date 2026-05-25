@@ -1,7 +1,7 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
-import { PARTY_D, PARTY_R } from '../lib/parties';
+import { PARTY_D, PARTY_R, displayName } from '../lib/parties';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
@@ -231,7 +231,7 @@ export function StateDetailContent({
                 heading="Projected under PR"
                 parties={sandboxState.parties.map((p) => ({
                   id: p.party.id,
-                  label: p.party.id,
+                  label: displayName(p.party),
                   color: p.party.color,
                   seats: p.seats,
                 }))}
@@ -290,7 +290,7 @@ export function StateDetailContent({
                   {sandboxState.parties.map((p) => (
                     <div key={p.party.id} className="tabular-nums">
                       <span className="font-medium" style={{ color: p.party.color }}>
-                        {p.party.id}
+                        {displayName(p.party)}
                       </span>{' '}
                       <span className="text-stone-700">{(p.vote_share * 100).toFixed(1)}%</span>
                     </div>

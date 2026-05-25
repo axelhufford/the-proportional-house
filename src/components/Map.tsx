@@ -11,8 +11,8 @@ import {
   balanceMargin,
   distortionMargin,
   pluralityColor,
-  topMinorWithSeats,
 } from '../lib/colors';
+import { displayName } from '../lib/parties';
 
 /**
  * Sanitize a hex color (or any string) into something safe for use in an
@@ -95,9 +95,9 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
   const hovered = hoverFips ? projectionByFips.get(hoverFips) : null;
 
   // Compute per-state visuals up front: solid fill color and (if extended
-  // sandbox + a minor won seats with a major holding plurality) a stripe
-  // color for the diagonal overlay. Returning fillRef as a final string
-  // lets the JSX below stay simple.
+  // sandbox + minors won seats with a major holding plurality) a list of
+  // stripe colors — one per minor with seats — for the diagonal overlay.
+  // Returning fillRef as a final string lets the JSX below stay simple.
   type StateVisual = {
     fips: string;
     feature: (typeof geojson.features)[number];
@@ -105,7 +105,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
     fillRef: string;
     ariaLabel?: string;
   };
-  type PatternKey = { bg: string; stripe: string; id: string };
+  type PatternKey = { bg: string; stripes: string[]; id: string };
 
   const { visuals, patterns } = useMemo(() => {
     const out: StateVisual[] = [];
@@ -121,20 +121,22 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
 
       const sandboxState = sandboxByFips.get(fips);
       let bgColor: string;
-      let stripeColor: string | null = null;
+      let stripeColors: string[] = [];
 
       if (sandboxState) {
         bgColor = pluralityColor(
           sandboxState.parties.map((p) => ({ color: p.party.color, seats: p.seats })),
         );
         // Stripe rule: a major (D/R) holds plurality AND at least one
-        // minor won seats. The bgColor will be one of the major colors
-        // in that case; the stripe color comes from the leading minor.
+        // minor won seats. Collect EVERY minor with seats so a state with
+        // both PROG and AF representation shows both colors interleaved
+        // (was: only the top minor's color).
         const winner = findPluralityParty(sandboxState.parties);
         const pluralityIsMajor = winner !== null && (winner.party.id === 'D' || winner.party.id === 'R');
         if (pluralityIsMajor) {
-          const topMinor = topMinorWithSeats(sandboxState.parties);
-          if (topMinor) stripeColor = topMinor.party.color;
+          stripeColors = sandboxState.parties
+            .filter((p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0)
+            .map((p) => p.party.color);
         }
       } else {
         const margin =
@@ -151,10 +153,10 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
       }
 
       let fillRef = bgColor;
-      if (stripeColor) {
-        const id = `stripe-${safeId(bgColor)}-${safeId(stripeColor)}`;
+      if (stripeColors.length > 0) {
+        const id = `stripe-${safeId(bgColor)}-${stripeColors.map(safeId).join('-')}`;
         if (!seenPatterns.has(id)) {
-          seenPatterns.set(id, { bg: bgColor, stripe: stripeColor, id });
+          seenPatterns.set(id, { bg: bgColor, stripes: stripeColors, id });
         }
         fillRef = `url(#${id})`;
       }
@@ -174,23 +176,41 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
         aria-label="U.S. map of projected House delegation under proportional representation"
       >
         {/* Pattern defs for diagonal stripes on states with minor seats.
-          * One <pattern> per unique (bg, stripe) combo — typically 1–4 in
-          * extended sandbox, zero otherwise. */}
+          * One <pattern> per unique (bg, stripe-colors) combo. Stripes
+          * are 3px thick on a 6px period — N stripes interleaved means
+          * the pattern is N * 6 wide, so a state with two minors winning
+          * seats shows green + gold alternating, a state with three shows
+          * green + gold + custom-color alternating, etc. */}
         {patterns.length > 0 && (
           <defs>
-            {patterns.map((p) => (
-              <pattern
-                key={p.id}
-                id={p.id}
-                patternUnits="userSpaceOnUse"
-                width={6}
-                height={6}
-                patternTransform="rotate(45)"
-              >
-                <rect width={6} height={6} fill={p.bg} />
-                <line x1={0} y1={0} x2={0} y2={6} stroke={p.stripe} strokeWidth={2} />
-              </pattern>
-            ))}
+            {patterns.map((p) => {
+              const period = 6;
+              const stripeWidth = 3;
+              const width = period * p.stripes.length;
+              return (
+                <pattern
+                  key={p.id}
+                  id={p.id}
+                  patternUnits="userSpaceOnUse"
+                  width={width}
+                  height={period}
+                  patternTransform="rotate(45)"
+                >
+                  <rect width={width} height={period} fill={p.bg} />
+                  {p.stripes.map((c, i) => (
+                    <line
+                      key={i}
+                      x1={i * period + stripeWidth / 2}
+                      y1={0}
+                      x2={i * period + stripeWidth / 2}
+                      y2={period}
+                      stroke={c}
+                      strokeWidth={stripeWidth}
+                    />
+                  ))}
+                </pattern>
+              );
+            })}
           </defs>
         )}
         {visuals.map((v) => {
@@ -284,7 +304,7 @@ function Tooltip({
               <span key={p.party.id} className="inline-flex items-baseline gap-2">
                 {i > 0 && <span className="text-stone-400">·</span>}
                 <span className="font-medium" style={{ color: p.party.color }}>
-                  {p.party.id} {p.seats}
+                  {displayName(p.party)} {p.seats}
                 </span>
               </span>
             ))}

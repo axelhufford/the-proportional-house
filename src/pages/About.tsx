@@ -33,6 +33,10 @@ const FAQS: FaqItem[] = [
     a: 'No. Proportional representation is structural — it shifts seats toward whichever party is underrepresented in a given state, regardless of which one that is. The 2024 baseline shows distortions favoring Democrats in some states (notably blue states with one-sided delegations) and Republicans in others. The point is to make the structural cost of the current system visible, not to advocate for either party.',
   },
   {
+    q: 'Can I see what would happen with a third or fourth party?',
+    a: 'Yes — the Sandbox view (the third button in the mode toggle) lets you add up to three minor parties on top of D and R. Two are preset coalitions: Progressive Left (a Bernie/AOC-style breakaway, draws mostly from Democrats) and America First (a Trump/MAGA-style breakaway, draws mostly from Republicans). The third slot is fully custom — you pick the name, color, draw ratio between D and R, and national vote share. A per-state threshold slider (defaults to 5%, matching real PR systems) sets the minimum vote share a party needs to win any seats. The map then shows each state\'s plurality party, with diagonal stripes overlaying when a third party wins seats but a major still leads. This is a client-side what-if tool — the Current and Retrospective views, the public data API, and downloadable CSV/JSON stay strictly two-party.',
+  },
+  {
     q: 'Why the House and not the Senate?',
     a: 'The Senate gives every state two senators regardless of population — that\'s a fixed feature of the Constitution that can\'t be changed without a constitutional amendment. The House is allocated proportionally by population already; the gap between current single-member-district allocation and full PR is a statutory choice, not a constitutional one. So the House is the realistic surface where PR could happen.',
   },

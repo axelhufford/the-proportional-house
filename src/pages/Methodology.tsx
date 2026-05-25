@@ -93,6 +93,59 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </div>
       </Section>
 
+      <Section title="Sandbox: third-party scenarios">
+        <p>
+          The Sandbox view lets you go beyond the strictly two-party projection. You can add
+          up to three minor parties — so five total — and watch how the map, national totals,
+          and every state's delegation recompute live.
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Progressive Left</strong> (emerald) — a Bernie/AOC-style breakaway from the
+            Democratic coalition. Defaults: 6% national share, draws 85% from D / 15% from R.
+          </li>
+          <li>
+            <strong>America First</strong> (mustard gold) — a Trump/MAGA-style breakaway from the
+            Republican coalition. Defaults: 8% national share, draws 15% from D / 85% from R.
+          </li>
+          <li>
+            <strong>Custom</strong> — give it any name, any color, and any draw ratio. Use this
+            slot to model a Green Party, a Libertarian Party, a Centrist / Forward / No Labels
+            party, a regional party, or anything else.
+          </li>
+        </ul>
+        <p>
+          The two preset draw ratios are <em>defaults</em>, not constraints — every minor party
+          (preset or Custom) has a draw-bias slider you can adjust on the fly.
+        </p>
+        <p>
+          A <strong>per-state threshold slider</strong> (0–10%, default 5%) sets the minimum vote
+          share a party needs within a given state to win any seats. This matches how most real
+          PR systems work — Germany's 5%, New Zealand's 5% — and prevents 1% parties from
+          winning random seats in 50-seat states. Below the threshold, the party's share is
+          zeroed and the remaining parties renormalize.
+        </p>
+        <p>
+          <strong>Map under Sandbox extended mode:</strong> each state fills with its plurality
+          party's color. If a major party (D or R) holds plurality but a minor still won at least
+          one seat, the state gets diagonal stripes overlaying the major color — one stripe per
+          minor with seats. Hover a state for the full per-party breakdown.
+        </p>
+        <p>
+          <strong>Per-state share is uniform-national in v1.</strong> The share you set is applied
+          to every state identically — a 6% Progressive Left means 6% of the two-party vote share
+          is reassigned in California, Wyoming, and everywhere in between. Real third parties
+          cluster regionally (Greens stronger in Vermont, Libertarians stronger in the mountain
+          west), but modeling that would need per-state minor-party data we don't currently
+          collect. Listed below under limitations.
+        </p>
+        <p>
+          The Sandbox extended mode is a client-side <em>what-if</em> tool. Everything outside the
+          sandbox — the Current view, the 2024 Retrospective, the public API, share PNGs, and CSV
+          / JSON downloads — stays strictly two-party.
+        </p>
+      </Section>
+
       <Section title="The reveal is more modest than you might expect">
         <p>
           Under today's D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}
@@ -143,7 +196,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <strong>Uncontested races, imputed from presidential vote.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don't reflect partisan lean (one party gets ~100% of the two-party vote). The 2024 cycle had unusually few such races: VT-AL (Becca Balint, D), LA-4 (Mike Johnson, R), WA-4 (Dan Newhouse, R), and WA-9 (Adam Smith, D). For each, we replace the district's House two-party total with its 2024 <em>presidential</em> two-party split (sourced from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>'s pres-by-CD calculations) so the state baseline reflects partisan lean rather than no-contest. One edge case is deferred: FL-20 (Sheila Cherfilus-McCormick, D) was re-elected without appearing on the ballot at all, so the Clerk PDF records no vote total to replace — imputing here would require estimating House turnout from outside data, which we're not doing yet. Each state-detail panel labels how many of its districts were imputed.
           </li>
           <li>
-            <strong>Two-party only.</strong> Third-party and write-in votes are excluded from the share. Realistic for U.S. House, but it does mean the model can't represent a Greens or Libertarian breakthrough.
+            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/?view=sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em> — see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
           </li>
           <li>
             <strong>Sainte-Laguë is a choice.</strong> Most academic work on proportional representation favors it. Reasonable people can prefer D'Hondt (slightly larger-party-favoring) or Hamilton (largest-remainder, with known paradoxes). The interactive demo above lets you sanity-check edge cases.
