@@ -35,13 +35,13 @@ export const PRESET_MINORS = {
   PROG: {
     id: 'PROG' as PartyId,
     label: 'Progressive Left',
-    color: '#D53F8C', // rose — historically associated with leftist movements (DSA)
+    color: '#059669', // emerald — maximum distinction from D blue and R red in mixed seat bars
     draw_from: { D: 0.85, R: 0.15 },
   },
   AF: {
     id: 'AF' as PartyId,
     label: 'America First',
-    color: '#B45309', // burnt amber — distinct from R red while reading "right of R"
+    color: '#CA8A04', // mustard gold — earthy, evokes nationalist symbology, distinct from R red
     draw_from: { D: 0.15, R: 0.85 },
   },
 } as const satisfies Record<string, Party>;

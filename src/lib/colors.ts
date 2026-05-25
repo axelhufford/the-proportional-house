@@ -89,3 +89,31 @@ export function pluralityColor(
   if (tie || winnerIdx < 0) return 'rgb(240, 240, 240)';
   return parties[winnerIdx].color;
 }
+
+/**
+ * Return the *minor* party (i.e. not D, not R) with the most seats in a
+ * state, or null if no minor has any seats. Used by Map.tsx to decide
+ * whether to overlay diagonal stripes on a state — when a major has
+ * plurality but a minor still won at least one seat, the stripe signals
+ * "third-party representation here."
+ *
+ * Ties between minors are broken by input order (the parties array is
+ * canonical: [D, R, minors-in-add-order], so PROG outranks AF when both
+ * tie). Pure function; the seat-comparison logic mirrors `pluralityColor`.
+ */
+export function topMinorWithSeats<T extends { party: { id: string }; seats: number }>(
+  parties: T[],
+  majorIds: ReadonlySet<string> = MAJOR_IDS,
+): T | null {
+  let best: T | null = null;
+  for (const p of parties) {
+    if (majorIds.has(p.party.id)) continue;
+    if (p.seats <= 0) continue;
+    if (best === null || p.seats > best.seats) {
+      best = p;
+    }
+  }
+  return best;
+}
+
+const MAJOR_IDS: ReadonlySet<string> = new Set(['D', 'R']);

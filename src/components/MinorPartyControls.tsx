@@ -49,9 +49,12 @@ export function defaultMinorState(presetId: MinorPresetSelector): MinorState {
       drawD: 0.5,
     };
   }
+  // Initialize drawD from the preset's canonical ratio so the slider
+  // (now always visible — see below) lands on the brand baseline.
   return {
     presetId,
     share: DEFAULT_SHARE[presetId],
+    drawD: PRESET_MINORS[presetId].draw_from.D,
   };
 }
 
@@ -115,23 +118,17 @@ export function MinorPartyControls({ slot, state, onChange, onRemove }: Props) {
         )}
       </div>
 
-      {/* Color swatch + draw-from description */}
+      {/* Color swatch + live draw-from description (always reflects the
+        * actual slider value below, whether preset or customized). */}
       <div className="flex items-center gap-2 text-xs text-stone-600">
         <span
           className="inline-block h-3 w-3 rounded-full border border-stone-300"
           style={{ backgroundColor: presetParty?.color ?? '#6E6E6E' }}
           aria-hidden
         />
-        {isCustom ? (
-          <span>
-            Draws {Math.round(drawD * 100)}% from D · {Math.round(drawR * 100)}% from R
-          </span>
-        ) : (
-          <span>
-            Draws {Math.round(presetParty!.draw_from.D * 100)}% from D ·{' '}
-            {Math.round(presetParty!.draw_from.R * 100)}% from R
-          </span>
-        )}
+        <span>
+          Draws {Math.round(drawD * 100)}% from D · {Math.round(drawR * 100)}% from R
+        </span>
       </div>
 
       {/* Share slider */}
@@ -153,32 +150,33 @@ export function MinorPartyControls({ slot, state, onChange, onRemove }: Props) {
         />
       </div>
 
-      {/* Draw slider — Custom only */}
-      {isCustom && (
-        <div>
-          <div className="flex items-baseline justify-between text-xs text-stone-600 mb-1">
-            <span>Draws votes from</span>
-            <span className="tabular-nums text-stone-500">
-              D {Math.round(drawD * 100)}% · R {Math.round(drawR * 100)}%
-            </span>
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.05}
-            value={drawD}
-            onChange={(e) => onChange({ ...state, drawD: Number(e.target.value) })}
-            aria-label="Draw bias slider (0 = all from R, 1 = all from D)"
-            className="w-full accent-stone-900"
-          />
-          <div className="flex justify-between text-[10px] text-stone-400 mt-0.5">
-            <span>← All from R</span>
-            <span>Symmetric</span>
-            <span>All from D →</span>
-          </div>
+      {/* Draw slider — visible for all minors, including presets. Presets
+        * default to their canonical ratio (e.g. Progressive Left = 85/15);
+        * the user can tweak from there without changing the party's name
+        * or color. Re-selecting the preset resets the slider. */}
+      <div>
+        <div className="flex items-baseline justify-between text-xs text-stone-600 mb-1">
+          <span>Draws votes from</span>
+          <span className="tabular-nums text-stone-500">
+            D {Math.round(drawD * 100)}% · R {Math.round(drawR * 100)}%
+          </span>
         </div>
-      )}
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.05}
+          value={drawD}
+          onChange={(e) => onChange({ ...state, drawD: Number(e.target.value) })}
+          aria-label="Draw bias slider (0 = all from R, 1 = all from D)"
+          className="w-full accent-stone-900"
+        />
+        <div className="flex justify-between text-[10px] text-stone-400 mt-0.5">
+          <span>← All from R</span>
+          <span>Symmetric</span>
+          <span>All from D →</span>
+        </div>
+      </div>
     </div>
   );
 }

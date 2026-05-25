@@ -4,8 +4,23 @@ import { feature } from 'topojson-client';
 import type { FeatureCollection, Geometry } from 'geojson';
 import type { Topology } from 'topojson-specification';
 import type { StateProjection, ColorMode } from '../lib/types';
-import type { SandboxPayload } from '../lib/sandboxTypes';
-import { balanceColor, distortionColor, balanceMargin, distortionMargin, pluralityColor } from '../lib/colors';
+import type { PartyShare, SandboxPayload } from '../lib/sandboxTypes';
+import {
+  balanceColor,
+  distortionColor,
+  balanceMargin,
+  distortionMargin,
+  pluralityColor,
+  topMinorWithSeats,
+} from '../lib/colors';
+
+/**
+ * Sanitize a hex color (or any string) into something safe for use in an
+ * SVG element id. Strips the leading `#` and any non-alphanumeric chars.
+ */
+function safeId(hex: string): string {
+  return hex.replace(/[^A-Za-z0-9]/g, '');
+}
 
 interface MapProps {
   topology: Topology;
@@ -79,6 +94,77 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
 
   const hovered = hoverFips ? projectionByFips.get(hoverFips) : null;
 
+  // Compute per-state visuals up front: solid fill color and (if extended
+  // sandbox + a minor won seats with a major holding plurality) a stripe
+  // color for the diagonal overlay. Returning fillRef as a final string
+  // lets the JSX below stay simple.
+  type StateVisual = {
+    fips: string;
+    feature: (typeof geojson.features)[number];
+    state: StateProjection | null;
+    fillRef: string;
+    ariaLabel?: string;
+  };
+  type PatternKey = { bg: string; stripe: string; id: string };
+
+  const { visuals, patterns } = useMemo(() => {
+    const out: StateVisual[] = [];
+    const seenPatterns = new Map<string, PatternKey>();
+
+    for (const f of geojson.features) {
+      const fips = String(f.id).padStart(2, '0');
+      const state = projectionByFips.get(fips);
+      if (!state) {
+        out.push({ fips, feature: f, state: null, fillRef: '#e5e7eb' });
+        continue;
+      }
+
+      const sandboxState = sandboxByFips.get(fips);
+      let bgColor: string;
+      let stripeColor: string | null = null;
+
+      if (sandboxState) {
+        bgColor = pluralityColor(
+          sandboxState.parties.map((p) => ({ color: p.party.color, seats: p.seats })),
+        );
+        // Stripe rule: a major (D/R) holds plurality AND at least one
+        // minor won seats. The bgColor will be one of the major colors
+        // in that case; the stripe color comes from the leading minor.
+        const winner = findPluralityParty(sandboxState.parties);
+        const pluralityIsMajor = winner !== null && (winner.party.id === 'D' || winner.party.id === 'R');
+        if (pluralityIsMajor) {
+          const topMinor = topMinorWithSeats(sandboxState.parties);
+          if (topMinor) stripeColor = topMinor.party.color;
+        }
+      } else {
+        const margin =
+          colorMode === 'balance'
+            ? balanceMargin(state.projected.d_seats, state.projected.r_seats, state.seats)
+            : distortionMargin(
+                state.projected.d_seats,
+                state.projected.r_seats,
+                state.actual.d_seats,
+                state.actual.r_seats,
+                state.seats,
+              );
+        bgColor = colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
+      }
+
+      let fillRef = bgColor;
+      if (stripeColor) {
+        const id = `stripe-${safeId(bgColor)}-${safeId(stripeColor)}`;
+        if (!seenPatterns.has(id)) {
+          seenPatterns.set(id, { bg: bgColor, stripe: stripeColor, id });
+        }
+        fillRef = `url(#${id})`;
+      }
+
+      out.push({ fips, feature: f, state, fillRef, ariaLabel: buildAriaLabel(state, colorMode) });
+    }
+
+    return { visuals: out, patterns: Array.from(seenPatterns.values()) };
+  }, [geojson.features, projectionByFips, sandboxByFips, colorMode]);
+
   return (
     <div className="relative">
       <svg
@@ -87,67 +173,63 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
         role="img"
         aria-label="U.S. map of projected House delegation under proportional representation"
       >
-        {geojson.features.map((f) => {
-          const fips = String(f.id).padStart(2, '0');
-          const state = projectionByFips.get(fips);
-          if (!state) {
+        {/* Pattern defs for diagonal stripes on states with minor seats.
+          * One <pattern> per unique (bg, stripe) combo — typically 1–4 in
+          * extended sandbox, zero otherwise. */}
+        {patterns.length > 0 && (
+          <defs>
+            {patterns.map((p) => (
+              <pattern
+                key={p.id}
+                id={p.id}
+                patternUnits="userSpaceOnUse"
+                width={6}
+                height={6}
+                patternTransform="rotate(45)"
+              >
+                <rect width={6} height={6} fill={p.bg} />
+                <line x1={0} y1={0} x2={0} y2={6} stroke={p.stripe} strokeWidth={2} />
+              </pattern>
+            ))}
+          </defs>
+        )}
+        {visuals.map((v) => {
+          if (!v.state) {
             return (
               <path
-                key={fips}
-                d={pathGen(f) || ''}
-                fill="#e5e7eb"
+                key={v.fips}
+                d={pathGen(v.feature) || ''}
+                fill={v.fillRef}
                 stroke="#fff"
                 strokeWidth={0.75}
               />
             );
           }
-          // Extended sandbox: pick the plurality party's color for this
-          // state. Falls back to the balance/distortion scale when no
-          // sandboxPayload (or when this state somehow isn't in it).
-          const sandboxState = sandboxByFips.get(fips);
-          let fill: string;
-          if (sandboxState) {
-            fill = pluralityColor(
-              sandboxState.parties.map((p) => ({ color: p.party.color, seats: p.seats })),
-            );
-          } else {
-            const margin =
-              colorMode === 'balance'
-                ? balanceMargin(state.projected.d_seats, state.projected.r_seats, state.seats)
-                : distortionMargin(
-                    state.projected.d_seats,
-                    state.projected.r_seats,
-                    state.actual.d_seats,
-                    state.actual.r_seats,
-                    state.seats,
-                  );
-            fill = colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
-          }
-          const isSelected = selectedFips === fips;
-          const isHover = hoverFips === fips;
+          const isSelected = selectedFips === v.fips;
+          const isHover = hoverFips === v.fips;
           return (
             <path
-              key={fips}
-              d={pathGen(f) || ''}
-              fill={fill}
+              key={v.fips}
+              d={pathGen(v.feature) || ''}
+              fill={v.fillRef}
               stroke={isSelected ? '#111' : '#fff'}
               strokeWidth={isSelected ? 2 : isHover ? 1.5 : 0.75}
               // Fill transition tweens the choropleth when the user switches
-              // view modes or drags the sandbox slider — React's reconciler
-              // keeps the path stable (key=fips), so CSS handles the rest.
-              // motion-reduce: variant respects user OS preference.
+              // view modes or drags the sandbox slider. The transition only
+              // tweens solid color values — pattern-ref fills snap on/off
+              // when stripes appear or disappear, which is fine for v1.
               className="cursor-pointer transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none"
-              data-fips={fips}
-              onMouseEnter={() => setHoverFips(fips)}
+              data-fips={v.fips}
+              onMouseEnter={() => setHoverFips(v.fips)}
               onMouseLeave={() => setHoverFips(null)}
-              onClick={() => onSelect(fips)}
+              onClick={() => onSelect(v.fips)}
               role="button"
               tabIndex={0}
-              aria-label={buildAriaLabel(state, colorMode)}
+              aria-label={v.ariaLabel}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  onSelect(fips);
+                  onSelect(v.fips);
                 }
               }}
             />
@@ -155,26 +237,70 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
         })}
       </svg>
       {hovered && (
-        <Tooltip state={hovered} />
+        <Tooltip state={hovered} sandboxState={sandboxByFips.get(hovered.fips) ?? null} />
       )}
     </div>
   );
 }
 
-function Tooltip({ state }: { state: StateProjection }) {
+/**
+ * Local helper: return the party with the most seats, or null on a tie.
+ * Distinct from `pluralityColor` (which returns a hex string) because the
+ * stripe logic needs the party's id to decide if it's a major or minor.
+ */
+function findPluralityParty(parties: PartyShare[]): PartyShare | null {
+  let winner: PartyShare | null = null;
+  let tie = false;
+  for (const p of parties) {
+    if (winner === null || p.seats > winner.seats) {
+      winner = p;
+      tie = false;
+    } else if (p.seats === winner.seats) {
+      tie = true;
+    }
+  }
+  return tie ? null : winner;
+}
+
+function Tooltip({
+  state,
+  sandboxState,
+}: {
+  state: StateProjection;
+  sandboxState: SandboxPayload['states'][number] | null;
+}) {
   const dGain = state.projected.d_seats - state.actual.d_seats;
   return (
     <div className="absolute top-2 right-2 bg-white/95 border border-stone-200 rounded-md px-3 py-2 shadow-sm text-sm pointer-events-none">
       <div className="font-semibold text-stone-900">{state.name}</div>
       <div className="text-stone-600 text-xs">{state.seats} {state.seats === 1 ? 'seat' : 'seats'}</div>
-      <div className="mt-1 flex items-baseline gap-2">
-        <span className="text-blue-700 font-medium">D {state.projected.d_seats}</span>
-        <span className="text-stone-400">·</span>
-        <span className="text-red-700 font-medium">R {state.projected.r_seats}</span>
-      </div>
+      {sandboxState ? (
+        // Extended sandbox: list every party with seats, color-coded by
+        // party.color. Skip parties at 0 to keep the line short.
+        <div className="mt-1 flex items-baseline gap-2 flex-wrap">
+          {sandboxState.parties
+            .filter((p) => p.seats > 0)
+            .map((p, i) => (
+              <span key={p.party.id} className="inline-flex items-baseline gap-2">
+                {i > 0 && <span className="text-stone-400">·</span>}
+                <span className="font-medium" style={{ color: p.party.color }}>
+                  {p.party.id} {p.seats}
+                </span>
+              </span>
+            ))}
+        </div>
+      ) : (
+        <div className="mt-1 flex items-baseline gap-2">
+          <span className="text-blue-700 font-medium">D {state.projected.d_seats}</span>
+          <span className="text-stone-400">·</span>
+          <span className="text-red-700 font-medium">R {state.projected.r_seats}</span>
+        </div>
+      )}
       <div className="text-xs text-stone-500 mt-0.5">
         Now: D {state.actual.d_seats} / R {state.actual.r_seats}
-        {dGain !== 0 && (
+        {/* Drop the "(+X D)" delta in extended mode — it's a two-party
+          * concept and reads as misleading when minors are in the mix. */}
+        {!sandboxState && dGain !== 0 && (
           <span className={dGain > 0 ? ' text-blue-700' : ' text-red-700'}>
             {' '}({dGain > 0 ? '+' : ''}{dGain} D)
           </span>

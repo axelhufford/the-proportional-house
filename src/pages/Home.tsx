@@ -41,12 +41,15 @@ function parseBallot(raw: string | null): number | null {
 /**
  * URL serialization for sandbox minor parties.
  *
- *   ?minor1=prog:6.0           → Progressive Left at 6%
- *   ?minor1=af:8.0             → America First at 8%
+ *   ?minor1=prog:6.0:85:15     → Progressive Left at 6%, 85/15 draw (canonical)
+ *   ?minor1=prog:6.0           → legacy shorthand, falls back to canonical 85/15 draw
+ *   ?minor1=af:8.0:60:40       → America First at 8% with a customized draw
  *   ?minor1=custom:8.0:50:50:Forward+Party
  *                              → Custom party, 8% share, 50/50 draw, label "Forward Party"
  *
- * Invalid input returns null and the slot stays unfilled.
+ * Draw fields are optional for the preset forms so old bookmarks keep
+ * working; serialization always emits them so the URL round-trips even
+ * when the user has tweaked a preset's draw ratio.
  */
 function parseMinor(raw: string | null): MinorState | null {
   if (!raw) return null;
@@ -55,27 +58,39 @@ function parseMinor(raw: string | null): MinorState | null {
   const sharePct = Number(parts[1]);
   if (!Number.isFinite(sharePct) || sharePct < 0 || sharePct > 25) return null;
   const share = sharePct / 100;
+
+  // Optional explicit draw — accepted for any preset, required for Custom.
+  // For PROG / AF, omitting means "use the preset's canonical ratio."
+  const drawDPct = parts.length > 2 ? Number(parts[2]) : NaN;
+  const explicitDrawD =
+    Number.isFinite(drawDPct) && drawDPct >= 0 && drawDPct <= 100 ? drawDPct / 100 : undefined;
+
   if (presetRaw === 'PROG' || presetRaw === 'AF') {
-    return { presetId: presetRaw as MinorPresetSelector, share };
+    return {
+      presetId: presetRaw as MinorPresetSelector,
+      share,
+      drawD: explicitDrawD ?? PRESET_MINORS[presetRaw].draw_from.D,
+    };
   }
   if (presetRaw === 'CUSTOM') {
-    const drawDPct = Number(parts[2]);
-    if (!Number.isFinite(drawDPct) || drawDPct < 0 || drawDPct > 100) return null;
+    if (explicitDrawD === undefined) return null; // Custom must specify draw
     const label = parts[4] ? decodeURIComponent(parts[4]) : undefined;
-    return { presetId: 'CUSTOM', share, drawD: drawDPct / 100, label };
+    return { presetId: 'CUSTOM', share, drawD: explicitDrawD, label };
   }
   return null;
 }
 
 function serializeMinor(m: MinorState): string {
   const sharePct = (m.share * 100).toFixed(1);
+  const drawDPct = Math.round((m.drawD ?? 0.5) * 100);
+  const drawRPct = 100 - drawDPct;
   if (m.presetId === 'CUSTOM') {
-    const drawDPct = Math.round((m.drawD ?? 0.5) * 100);
-    const drawRPct = 100 - drawDPct;
     const labelPart = m.label && m.label.trim() ? `:${encodeURIComponent(m.label.trim())}` : '';
     return `custom:${sharePct}:${drawDPct}:${drawRPct}${labelPart}`;
   }
-  return `${m.presetId.toLowerCase()}:${sharePct}`;
+  // Always include draw for presets too — round-trips a customized
+  // Progressive Left at 60/40 without losing the user's tweak.
+  return `${m.presetId.toLowerCase()}:${sharePct}:${drawDPct}:${drawRPct}`;
 }
 
 function parseThreshold(raw: string | null): number | null {
@@ -100,8 +115,17 @@ function buildSpec(m: MinorState, slot: 1 | 2): MinorPartySpec {
       national_share: m.share,
     };
   }
+  // Preset minors: keep the preset's label/color/id but honor any
+  // user-customized draw ratio. When `m.drawD` matches the preset's
+  // canonical value, this is a no-op; when the user has tweaked the
+  // slider, the spec carries the new ratio through to the swing math.
+  const preset = PRESET_MINORS[m.presetId];
+  const drawD = m.drawD ?? preset.draw_from.D;
   return {
-    party: PRESET_MINORS[m.presetId],
+    party: {
+      ...preset,
+      draw_from: { D: drawD, R: 1 - drawD },
+    },
     national_share: m.share,
   };
 }
