@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-25T21:51:48.060036+00:00",
+    "generated_at": "2026-05-26T21:20:28.568477+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
@@ -8,14 +8,6 @@
     "uses_house_effect_adjustment": true
   },
   "polls": [
-    {
-      "date": "2025-11-27",
-      "pollster": "Morning Consult",
-      "margin": 3.93,
-      "sample_size": 21658,
-      "population": "RV",
-      "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
-    },
     {
       "date": "2025-11-28",
       "pollster": "Morning Consult",
@@ -315,7 +307,7 @@
     {
       "date": "2026-01-10",
       "pollster": "Impact Research/National Research",
-      "margin": 4.01,
+      "margin": 4.0,
       "sample_size": 1500,
       "population": "RV",
       "url": "https://www.wsj.com/politics/elections/trump-approval-rating-economy-poll-b3a62e57"
@@ -411,7 +403,7 @@
     {
       "date": "2026-01-17",
       "pollster": "Verasight",
-      "margin": 10.92,
+      "margin": 10.98,
       "sample_size": 1057,
       "population": "LV",
       "url": "https://www.gelliottmorris.com/p/new-poll-trump-slips-on-immigration"
@@ -547,7 +539,7 @@
     {
       "date": "2026-01-28",
       "pollster": "HarrisX",
-      "margin": 5.39,
+      "margin": 5.38,
       "sample_size": 1508,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-january-6/"
@@ -731,7 +723,7 @@
     {
       "date": "2026-02-19",
       "pollster": "Verasight",
-      "margin": 7.92,
+      "margin": 7.98,
       "sample_size": 1401,
       "population": "RV",
       "url": "https://www.gelliottmorris.com/p/ahead-of-state-of-the-union-address"
@@ -819,7 +811,7 @@
     {
       "date": "2026-02-25",
       "pollster": "HarrisX",
-      "margin": 1.89,
+      "margin": 1.88,
       "sample_size": 1560,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-february-2026/"
@@ -1010,19 +1002,19 @@
     },
     {
       "date": "2026-03-16",
-      "pollster": "The Winston Group",
-      "margin": 9.42,
-      "sample_size": 1000,
-      "population": "RV",
-      "url": "https://www.winningtheissues.org/wp-content/uploads/2026/04/March-2026-Winning-the-Issues-Survey.pdf"
-    },
-    {
-      "date": "2026-03-16",
       "pollster": "Yale University Institution for Social and Policy Studies",
       "margin": 3.29,
       "sample_size": 3429,
       "population": "RV",
       "url": "https://youthpoll.yale.edu/spring-2026-results"
+    },
+    {
+      "date": "2026-03-16",
+      "pollster": "The Winston Group",
+      "margin": 9.42,
+      "sample_size": 1000,
+      "population": "RV",
+      "url": "https://www.winningtheissues.org/wp-content/uploads/2026/04/March-2026-Winning-the-Issues-Survey.pdf"
     },
     {
       "date": "2026-03-17",
@@ -1043,7 +1035,7 @@
     {
       "date": "2026-03-17",
       "pollster": "Verasight",
-      "margin": 3.92,
+      "margin": 3.98,
       "sample_size": 1370,
       "population": "RV",
       "url": "https://www.gelliottmorris.com/p/2026-03-24-march-sin-verasight-poll-main-release"
@@ -1099,7 +1091,7 @@
     {
       "date": "2026-03-25",
       "pollster": "Quantus Insights",
-      "margin": 6.2,
+      "margin": 6.19,
       "sample_size": 1472,
       "population": "LV",
       "url": "https://quantusinsights.org/f/new-quantus-survey-a-sour-national-mood-and-a-midterm-warning"
@@ -1107,7 +1099,7 @@
     {
       "date": "2026-03-25",
       "pollster": "HarrisX",
-      "margin": 5.89,
+      "margin": 5.88,
       "sample_size": 1475,
       "population": "LV",
       "url": "https://harvardharrispoll.com/wp-content/uploads/2026/03/HHP_Mar2026_KeyResults.pdf"
@@ -1259,7 +1251,7 @@
     {
       "date": "2026-04-12",
       "pollster": "Verasight",
-      "margin": 4.92,
+      "margin": 4.98,
       "sample_size": 1386,
       "population": "RV",
       "url": "https://www.gelliottmorris.com/p/2026-04-21-april-strength-in-numbers-verasight-poll"
@@ -1355,7 +1347,7 @@
     {
       "date": "2026-04-22",
       "pollster": "Quantus Insights",
-      "margin": 4.7,
+      "margin": 4.69,
       "sample_size": 1452,
       "population": "LV",
       "url": "https://quantusinsights.org/f/quantus-survey-a-divided-electorate-a-narrow-democratic-edge"
@@ -1379,7 +1371,7 @@
     {
       "date": "2026-04-24",
       "pollster": "HarrisX",
-      "margin": 1.89,
+      "margin": 1.88,
       "sample_size": 1963,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-april-2026/"
@@ -1451,7 +1443,7 @@
     {
       "date": "2026-05-02",
       "pollster": "HarrisX",
-      "margin": 7.89,
+      "margin": 7.88,
       "sample_size": 1891,
       "population": "LV",
       "url": "https://www.harrisx.com/posts/forbes-and-harrisx-partner-on-new-american-confidence-survey-as-gallup-ends-approval-polling"
@@ -1515,7 +1507,7 @@
     {
       "date": "2026-05-12",
       "pollster": "Impact Research/National Research",
-      "margin": 8.01,
+      "margin": 8.0,
       "sample_size": 1500,
       "population": "RV",
       "url": "https://www.wsj.com/politics/policy/trump-republican-congress-control-98a13bd9"
@@ -1601,9 +1593,17 @@
       "url": "https://intel.morningconsult.com/mc-content/trackers/donald-trump-congress-policy-republicans-polling"
     },
     {
+      "date": "2026-05-18",
+      "pollster": "Verasight",
+      "margin": 5.98,
+      "sample_size": 1413,
+      "population": "RV",
+      "url": "https://www.gelliottmorris.com/p/2026-05-26-may-strength-in-numbers-verasight-poll"
+    },
+    {
       "date": "2026-05-19",
       "pollster": "Verasight/Morris Predictive Insights",
-      "margin": 8.92,
+      "margin": 8.98,
       "sample_size": 2000,
       "population": "A",
       "url": "https://www.politico.com/newsletters/playbook/2026/05/22/pod-save-nobody-00933436"
