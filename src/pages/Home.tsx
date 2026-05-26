@@ -5,6 +5,7 @@ import type { Topology } from 'topojson-specification';
 import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
+import { MethodComparisonTable } from '../components/MethodComparisonTable';
 import type { MinorState, MinorPresetSelector } from '../components/MinorPartyControls';
 import { NationalSummary } from '../components/NationalSummary';
 import { ModeToggle } from '../components/ModeToggle';
@@ -16,6 +17,7 @@ import {
   type MinorSlot,
   PRESET_MINORS,
 } from '../lib/parties';
+import { ALL_METHODS, type AllocationMethodKind } from '../lib/methods';
 import { buildSandboxPayload, type MinorPartySpec } from '../lib/sandboxSwing';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
@@ -126,6 +128,19 @@ function serializeMinor(m: MinorState): string {
   return `${m.presetId.toLowerCase()}:${sharePct}:${drawDPct}:${drawRPct}`;
 }
 
+/**
+ * Parse the ?method= URL param. Accepts case-insensitive forms like
+ * "pr" / "PR" / "mmd-3" / "MMP-50". Returns null for unknown values so
+ * Home can fall back to the default (PR).
+ */
+function parseMethod(raw: string | null): AllocationMethodKind | null {
+  if (!raw) return null;
+  const normalized = raw.toUpperCase();
+  return (ALL_METHODS as string[]).includes(normalized)
+    ? (normalized as AllocationMethodKind)
+    : null;
+}
+
 function parseThreshold(raw: string | null): number | null {
   if (!raw) return null;
   const n = Number(raw);
@@ -196,6 +211,11 @@ export function Home({ onMetaChange }: HomeProps) {
   });
   const [threshold, setThreshold] = useState<number>(
     () => parseThreshold(searchParams.get('threshold')) ?? DEFAULT_THRESHOLD,
+  );
+  // Allocation method (PR | MMD-3 | MMD-5 | MMP-50). Defaults to PR so
+  // existing URLs without ?method= behave identically to before.
+  const [method, setMethod] = useState<AllocationMethodKind>(
+    () => parseMethod(searchParams.get('method')) ?? 'PR',
   );
   // The URL has a `state=XX` (state code) param that resolves to a FIPS once
   // the payload loads. Stash it pending payload-load.
@@ -298,13 +318,18 @@ export function Home({ onMetaChange }: HomeProps) {
       if (minors.length > 0 && Math.abs(threshold - DEFAULT_THRESHOLD) > 0.0005) {
         next.set('threshold', (threshold * 100).toFixed(1));
       }
+      // Only emit ?method= when it differs from the default so URLs stay
+      // short for the common case (Pure PR).
+      if (method !== 'PR') {
+        next.set('method', method.toLowerCase());
+      }
     }
     if (selectedFips) {
       const state = payload.states.find((s) => s.fips === selectedFips);
       if (state) next.set('state', state.code);
     }
     setSearchParams(next, { replace: true });
-  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, selectedFips, setSearchParams]);
+  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, method, selectedFips, setSearchParams]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection (no client recompute).
@@ -328,7 +353,20 @@ export function Home({ onMetaChange }: HomeProps) {
   const sandboxPayload = useMemo<SandboxPayload | null>(() => {
     if (!effectivePayload || viewMode !== 'sandbox' || minors.length === 0) return null;
     const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
-    return buildSandboxPayload(effectivePayload, specs, threshold);
+    return buildSandboxPayload(effectivePayload, specs, threshold, method);
+  }, [effectivePayload, viewMode, minors, threshold, method]);
+
+  // Precompute every method's national totals for the comparison table.
+  // Only built in sandbox view; cheap because each call is O(states × parties)
+  // and we cap at 4 calls. Returns null outside sandbox so the table doesn't
+  // render in Current / Retrospective.
+  const methodComparison = useMemo(() => {
+    if (!effectivePayload || viewMode !== 'sandbox') return null;
+    const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
+    return ALL_METHODS.map((m) => ({
+      method: m,
+      payload: buildSandboxPayload(effectivePayload, specs, threshold, m),
+    }));
   }, [effectivePayload, viewMode, minors, threshold]);
 
   if (error) {
@@ -410,7 +448,16 @@ export function Home({ onMetaChange }: HomeProps) {
               threshold={threshold}
               onMinorsChange={setMinors}
               onThresholdChange={setThreshold}
+              method={method}
+              onMethodChange={setMethod}
             />
+            {methodComparison && (
+              <MethodComparisonTable
+                basePayload={effectivePayload}
+                comparison={methodComparison}
+                currentMethod={method}
+              />
+            )}
           </div>
         )}
 

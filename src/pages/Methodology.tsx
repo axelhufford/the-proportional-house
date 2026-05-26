@@ -146,6 +146,55 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
+      <Section title="Allocation methods: MMD and MMP">
+        <p>
+          Pure statewide proportional representation is the cleanest reform on the spectrum but
+          rarely the most politically viable. The Sandbox lets you toggle between four allocation
+          models so you can compare across that spectrum — and a comparison table at the bottom
+          of the Sandbox page shows national totals under every method side-by-side.
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Pure PR.</strong> Every state allocates its seats by total statewide vote
+            share under Sainte-Laguë. The most proportional of the four; the implicit baseline of
+            the rest of the site.
+          </li>
+          <li>
+            <strong>Multi-member districts (MMD).</strong> Each state is chopped into smaller
+            districts of 3 or 5 seats, and PR runs within each district. Real-world precedent:
+            Ireland uses 3–5 seat STV districts; Illinois House elected by 3-seat cumulative
+            voting from 1870–1980. Smaller districts mean less proportionality (a 3-seat district
+            can only meaningfully represent two parties), so MMD-3 sits between today's SMD and
+            pure PR; MMD-5 sits closer to pure PR.
+          </li>
+          <li>
+            <strong>Mixed-member proportional (MMP-50).</strong> Half of each state's seats come
+            from today's single-member districts (we use the current actual delegation as the
+            proxy for "who'd win the district seats"). The other half are list seats, allocated
+            to top each party up to its proportional target. Used in Germany, New Zealand,
+            Scotland, and Wales. Familiar to US voters because the local-district relationship
+            survives.
+          </li>
+        </ul>
+        <p>
+          <strong>Caveats for MMD:</strong> the v1 model assumes uniform partisan distribution
+          across all districts within a state. That's mathematically clean but underestimates
+          proportionality in real-world heterogeneous states — California's San Francisco
+          districts (heavily D) and Central Valley districts (heavily R) would cancel out
+          geographically in a way our uniform-share math doesn't capture. A geographic MMD model
+          using real congressional districts is on the roadmap.
+        </p>
+        <p>
+          <strong>Caveats for MMP:</strong> when a state's actual SMD delegation already
+          over-represents one party past its proportional target (the "overhang" case under heavy
+          gerrymandering), Germany would expand the legislature to compensate ("Ausgleichsmandate").
+          We keep total seats fixed at 435 for cleanliness, which means MMP can leave a small
+          residual distortion in extreme overhang states. Minors get zero SMD seats by default
+          (they don't exist in today's actual House delegations) — their seats come entirely from
+          the proportional list.
+        </p>
+      </Section>
+
       <Section title="The reveal is more modest than you might expect">
         <p>
           Under today's D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}

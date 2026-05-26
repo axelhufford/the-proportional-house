@@ -1,4 +1,10 @@
 import {
+  ALL_METHODS,
+  METHOD_DESCRIPTIONS,
+  METHOD_LABELS,
+  type AllocationMethodKind,
+} from '../lib/methods';
+import {
   defaultMinorState,
   MinorPartyControls,
   type MinorState,
@@ -17,6 +23,9 @@ interface Props {
   threshold: number;
   onMinorsChange: (minors: MinorState[]) => void;
   onThresholdChange: (threshold: number) => void;
+  /** Allocation method (Pure PR / MMD-3 / MMD-5 / MMP-50). */
+  method: AllocationMethodKind;
+  onMethodChange: (next: AllocationMethodKind) => void;
 }
 
 const MIN = -15;
@@ -49,6 +58,8 @@ export function Sandbox({
   threshold,
   onMinorsChange,
   onThresholdChange,
+  method,
+  onMethodChange,
 }: Props) {
   const addMinor = () => {
     // Defaults: slot 1 → Progressive Left, slot 2 → America First, slot 3
@@ -198,6 +209,40 @@ export function Sandbox({
             </div>
           </div>
         )}
+
+        {/* Allocation method picker. Always visible in Sandbox — even without
+          * minor parties, swapping between Pure PR / MMD-3 / MMD-5 / MMP-50
+          * shows how reform models differ for the standard two-party scenario. */}
+        <div className="pt-2 border-t border-stone-200">
+          <div className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">
+            Allocation method
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {ALL_METHODS.map((m) => {
+              const active = m === method;
+              return (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => onMethodChange(m)}
+                  title={METHOD_DESCRIPTIONS[m]}
+                  className={[
+                    'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
+                    active
+                      ? 'bg-stone-900 text-white border-stone-900'
+                      : 'border-stone-300 text-stone-700 hover:bg-stone-100',
+                  ].join(' ')}
+                  aria-pressed={active}
+                >
+                  {METHOD_LABELS[m]}
+                </button>
+              );
+            })}
+          </div>
+          <div className="text-[10px] text-stone-500 mt-1.5">
+            {METHOD_DESCRIPTIONS[method]}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@
  * generic-ballot margin). This module is layered on top — it doesn't
  * compute the D/R swing itself.
  */
-import { allocateN } from './allocation';
+import { allocateByMethod, type AllocationMethodKind } from './methods';
 import { PARTY_D, PARTY_R } from './parties';
 import type { Party, PartyShare, SandboxPayload, SandboxStateProjection } from './sandboxTypes';
 import type { ProjectionPayload, StateProjection } from './types';
@@ -41,6 +41,7 @@ function buildStateProjection(
   state: StateProjection,
   minors: MinorPartySpec[],
   threshold: number,
+  method: AllocationMethodKind,
 ): SandboxStateProjection {
   // Step 1: start from existing projected D/R shares.
   let dShare = state.projected.d_share;
@@ -68,17 +69,24 @@ function buildStateProjection(
   const aboveTotal = above.reduce((s, v) => s + v, 0);
   const filtered = aboveTotal > 0 ? above.map((s) => s / aboveTotal) : above.map(() => 0);
 
-  // Step 5: allocate. Use a notional 1M voter pool — the absolute scale
-  // doesn't matter for divisor methods, just the ratios.
+  // Step 5: dispatch to the chosen allocation method. PR is the
+  // historical default; MMD-3 / MMD-5 / MMP-50 add the comparison
+  // points for the reform discussion.
+  const allParties: Party[] = [PARTY_D, PARTY_R, ...minors.map((m) => m.party)];
   const seats = aboveTotal > 0
-    ? allocateN(
-        { seats: state.seats, votes: filtered.map((s) => s * 1_000_000) },
-        'sainte-lague',
+    ? allocateByMethod(
+        {
+          total_seats: state.seats,
+          vote_shares: filtered,
+          party_ids: allParties.map((p) => p.id),
+          actual_d_seats: state.actual.d_seats,
+          actual_r_seats: state.actual.r_seats,
+        },
+        method,
       )
     : filtered.map(() => 0);
 
   // Stitch back into the party-keyed shape.
-  const allParties: Party[] = [PARTY_D, PARTY_R, ...minors.map((m) => m.party)];
   const parties: PartyShare[] = allParties.map((p, i) => ({
     party: p,
     vote_share: filtered[i],
@@ -101,16 +109,21 @@ function buildStateProjection(
  * and stay on the existing two-party rendering path. This function still
  * works in that case — it returns a SandboxPayload with [D, R] only —
  * but the rest of the app won't benefit.
+ *
+ * `method` defaults to 'PR' (pure statewide Sainte-Laguë, the original
+ * behavior). Pass 'MMD-3', 'MMD-5', or 'MMP-50' to compare reform
+ * models.
  */
 export function buildSandboxPayload(
   twoPartyPayload: ProjectionPayload,
   minors: MinorPartySpec[],
   threshold: number,
+  method: AllocationMethodKind = 'PR',
 ): SandboxPayload {
   const clampedThreshold = Math.max(0, Math.min(0.1, threshold));
 
   const states = twoPartyPayload.states.map((s) =>
-    buildStateProjection(s, minors, clampedThreshold),
+    buildStateProjection(s, minors, clampedThreshold, method),
   );
 
   // National totals: sum seats per party across states. (Don't try to
@@ -151,6 +164,7 @@ export function buildSandboxPayload(
   return {
     meta: twoPartyPayload.meta,
     threshold: clampedThreshold,
+    method,
     minors: minors.map((m) => m.party),
     national: {
       total_seats: nationalSeatTotal,

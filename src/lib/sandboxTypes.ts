@@ -12,6 +12,7 @@
  * if/when the pipeline emits real third-party data. Naming and shapes
  * are intentionally generic.
  */
+import type { AllocationMethodKind } from './methods';
 import type { ProjectionMeta } from './types';
 
 /** Two-letter or short identifier. 'D'/'R' are canonical; minors get 'PROG', 'AF', 'CUSTOM-xxxx'. */
@@ -59,6 +60,8 @@ export interface SandboxPayload {
   meta: ProjectionMeta;
   /** [0, 0.10]; applied per-state before allocation. */
   threshold: number;
+  /** Allocation method used to compute seats from shares. */
+  method: AllocationMethodKind;
   /**
    * Active minor parties — 0, 1, or 2 entries. When empty, callers
    * shouldn't bother building a SandboxPayload; they can stay on the

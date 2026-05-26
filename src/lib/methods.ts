@@ -1,0 +1,220 @@
+/**
+ * Allocation method dispatchers for the Sandbox.
+ *
+ * The Sandbox lets users compare four reform models against today's
+ * single-member-district baseline:
+ *
+ *   - PR       — pure statewide Sainte-Laguë (the original projection).
+ *   - MMD-3    — split each state's seats into 3-seat districts; allocate
+ *                per-district assuming uniform partisan share across the
+ *                state. Less proportional than PR; closer to today's SMD.
+ *   - MMD-5    — same, with 5-seat districts. Somewhat more proportional
+ *                than MMD-3.
+ *   - MMP-50   — half SMD (using today's actual delegation scaled to the
+ *                SMD count), half list (allocated to top each party up to
+ *                its proportional target). German / NZ-style.
+ *
+ * All methods consume a single `MethodAllocationInput` and return a seat
+ * array indexed by party in input order. The math reuses `allocateN`
+ * from `./allocation.ts` for Sainte-Laguë wherever it applies.
+ */
+import { allocateN } from './allocation';
+
+export type AllocationMethodKind = 'PR' | 'MMD-3' | 'MMD-5' | 'MMP-50';
+
+/** Display labels — used by UI for buttons and table headings. */
+export const METHOD_LABELS: Record<AllocationMethodKind, string> = {
+  PR: 'Pure PR',
+  'MMD-3': 'MMD-3',
+  'MMD-5': 'MMD-5',
+  'MMP-50': 'MMP-50',
+};
+
+export const METHOD_DESCRIPTIONS: Record<AllocationMethodKind, string> = {
+  PR: 'Statewide Sainte-Laguë — every state allocates seats by total vote share.',
+  'MMD-3': '3-seat districts — each state is chopped into 3-seat districts, PR within each. Less proportional than statewide PR.',
+  'MMD-5': '5-seat districts — chunked into 5-seat districts (closer to statewide PR than MMD-3).',
+  'MMP-50': '50% single-member districts + 50% proportional list. List seats top each party up to its proportional target. German-style.',
+};
+
+export const ALL_METHODS: AllocationMethodKind[] = ['PR', 'MMD-3', 'MMD-5', 'MMP-50'];
+
+export interface MethodAllocationInput {
+  /** Total House seats in this state. */
+  total_seats: number;
+  /**
+   * Vote share per party in [0, 1], summing to 1. Caller has already
+   * applied threshold filtering + renormalization. Index order is
+   * preserved in the result.
+   */
+  vote_shares: number[];
+  /** Party ids parallel to vote_shares. Used by MMP to locate D / R. */
+  party_ids: string[];
+  /** Today's actual House delegation for this state — MMP uses these for SMD seats. */
+  actual_d_seats: number;
+  actual_r_seats: number;
+}
+
+/**
+ * Statewide Sainte-Laguë — thin wrapper over `allocateN`. Used as
+ * the baseline against which MMD / MMP are compared.
+ */
+export function allocatePR(input: MethodAllocationInput): number[] {
+  return allocateN(
+    { seats: input.total_seats, votes: input.vote_shares.map((s) => s * 1_000_000) },
+    'sainte-lague',
+  );
+}
+
+/**
+ * MMD: chop the state's seats into districts of `size`, allocate PR
+ * within each, sum results across districts. Assumes uniform partisan
+ * distribution — every district has the same vote shares as the state
+ * total. This is the "abstract" v1 model; a future v2 could use real CD
+ * partisan data for geographic heterogeneity.
+ *
+ *   - 1-seat states (AK, DE, ND, SD, VT, WY): bypass MMD entirely, give
+ *     the seat to the plurality party. Equivalent to PR for N=1.
+ *   - Remainder handling: floor(N / size) full-size districts + one
+ *     smaller district of size (N mod size) when the remainder > 0.
+ *     Example: 10 seats, size 3 → districts of [3, 3, 3, 1].
+ *   - District size larger than state total: one district of total_seats.
+ */
+export function allocateMMD(input: MethodAllocationInput, size: number): number[] {
+  const { total_seats, vote_shares } = input;
+  if (total_seats <= 0) return vote_shares.map(() => 0);
+
+  // Compute district sizes.
+  const districts: number[] = [];
+  if (total_seats <= size) {
+    districts.push(total_seats);
+  } else {
+    const full = Math.floor(total_seats / size);
+    const remainder = total_seats - full * size;
+    for (let i = 0; i < full; i++) districts.push(size);
+    if (remainder > 0) districts.push(remainder);
+  }
+
+  // Allocate PR within each district, sum across districts.
+  const totals = vote_shares.map(() => 0);
+  for (const d of districts) {
+    const partial = allocateN(
+      { seats: d, votes: vote_shares.map((s) => s * 1_000_000) },
+      'sainte-lague',
+    );
+    for (let i = 0; i < totals.length; i++) totals[i] += partial[i];
+  }
+  return totals;
+}
+
+/**
+ * MMP: combine SMD and proportional-list seats.
+ *
+ * Algorithm:
+ *   1. SMD count = round(total_seats × smdFraction). List count = total - SMD.
+ *   2. SMD seats for D and R come from today's actual delegation scaled
+ *      down to the SMD count: smd_d = round(actual_d / actual_total ×
+ *      smd_count) (likewise R). Minors get zero SMD seats — they don't
+ *      exist in today's actual House. Any rounding leftover from the
+ *      SMD count goes to whichever major has the larger fractional
+ *      remainder (stable tie-break to D).
+ *   3. Compute target proportional seats per party: target_i = round(
+ *      total_seats × vote_share_i) (with Sainte-Laguë actually, to
+ *      preserve party-totals consistency).
+ *   4. List allocation: each party gets max(0, target_i - smd_i) list
+ *      seats. If list demand exceeds the available list count
+ *      (overhang case), parties at their target get nothing more and
+ *      the remaining demand is met proportionally. If list demand is
+ *      below capacity (rare with the round-down behavior), the
+ *      remaining list seats are allocated to the largest unmet target.
+ *   5. Final per-party seats = smd_i + list_i. Total ≈ total_seats
+ *      (may slightly exceed in overhang cases, which is realistic — MMP
+ *      "Ausgleichsmandate" — but we cap at total_seats for cleanliness).
+ */
+export function allocateMMP(input: MethodAllocationInput, smdFraction: number): number[] {
+  const { total_seats, vote_shares, party_ids, actual_d_seats, actual_r_seats } = input;
+  const n = vote_shares.length;
+  if (total_seats <= 0) return vote_shares.map(() => 0);
+
+  const smdCount = Math.round(total_seats * smdFraction);
+  const listCount = total_seats - smdCount;
+  const actualTotal = actual_d_seats + actual_r_seats;
+
+  // Step 1: SMD allocation. D and R only, scaled from today's actual.
+  const smd = vote_shares.map(() => 0);
+  if (smdCount > 0 && actualTotal > 0) {
+    const dIdx = party_ids.indexOf('D');
+    const rIdx = party_ids.indexOf('R');
+    const dExact = (actual_d_seats / actualTotal) * smdCount;
+    const rExact = (actual_r_seats / actualTotal) * smdCount;
+    let dSmd = Math.floor(dExact);
+    let rSmd = Math.floor(rExact);
+    let leftover = smdCount - dSmd - rSmd;
+    // Distribute leftover by larger fractional remainder; ties → D.
+    while (leftover > 0) {
+      const dFrac = dExact - dSmd;
+      const rFrac = rExact - rSmd;
+      if (dFrac >= rFrac) dSmd++;
+      else rSmd++;
+      leftover--;
+    }
+    if (dIdx >= 0) smd[dIdx] = dSmd;
+    if (rIdx >= 0) smd[rIdx] = rSmd;
+  }
+
+  // Step 2: proportional targets via Sainte-Laguë over the full N total.
+  const target = allocateN(
+    { seats: total_seats, votes: vote_shares.map((s) => s * 1_000_000) },
+    'sainte-lague',
+  );
+
+  // Step 3: list demand per party.
+  const list = vote_shares.map(() => 0);
+  const demand = target.map((t, i) => Math.max(0, t - smd[i]));
+  const totalDemand = demand.reduce((a, b) => a + b, 0);
+
+  if (totalDemand <= listCount) {
+    // No overhang: every party gets exactly its demand. Spare seats (if
+    // any) go to parties with the largest unmet remainder of the next
+    // proportional round — rare, so just keep them with the highest
+    // vote share via Sainte-Laguë over remaining seats.
+    for (let i = 0; i < n; i++) list[i] = demand[i];
+    let spare = listCount - totalDemand;
+    if (spare > 0) {
+      const spareAllocation = allocateN(
+        { seats: spare, votes: vote_shares.map((s) => s * 1_000_000) },
+        'sainte-lague',
+      );
+      for (let i = 0; i < n; i++) list[i] += spareAllocation[i];
+    }
+  } else {
+    // Overhang: total demand exceeds list count. Allocate list seats
+    // proportionally to demand using Sainte-Laguë so the seat-cap is
+    // hit while staying proportional to who needs catch-up. Parties
+    // whose SMD already exceeded their target (demand=0) get nothing.
+    const listAlloc = allocateN(
+      { seats: listCount, votes: demand },
+      'sainte-lague',
+    );
+    for (let i = 0; i < n; i++) list[i] = listAlloc[i];
+  }
+
+  return smd.map((s, i) => s + list[i]);
+}
+
+/** Single entry point: dispatch by method id. */
+export function allocateByMethod(
+  input: MethodAllocationInput,
+  method: AllocationMethodKind,
+): number[] {
+  switch (method) {
+    case 'PR':
+      return allocatePR(input);
+    case 'MMD-3':
+      return allocateMMD(input, 3);
+    case 'MMD-5':
+      return allocateMMD(input, 5);
+    case 'MMP-50':
+      return allocateMMP(input, 0.5);
+  }
+}
