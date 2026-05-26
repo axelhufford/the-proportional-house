@@ -241,6 +241,108 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           (they don't exist in today's actual House delegations) — their seats come entirely from
           the proportional list.
         </p>
+
+        <h3 className="font-serif text-lg text-brand-navy mt-6 mb-2">
+          PR formula variants: Sainte-Laguë, D'Hondt, Hamilton
+        </h3>
+        <p>
+          "Pure PR" itself isn't fully specified — three standard formulas turn vote shares into
+          seat counts, and they differ subtly. The Sandbox method picker exposes all three so you
+          can see how the formula choice nudges the outcome (typically by 1–3 seats per state).
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Sainte-Laguë</strong> (our default). Each party's vote total is divided by the
+            sequence 1, 3, 5, 7, … (the arithmetic-mean divisors); seats go to the largest
+            quotients. The <em>most neutral</em> of the three — it neither favors nor penalizes
+            large parties. Used in Germany (state-list rounds), New Zealand, Sweden, Norway,
+            Denmark.
+          </li>
+          <li>
+            <strong>D'Hondt</strong>. Divisors are 1, 2, 3, 4, … instead. The slightly smaller
+            first divisor (2 vs Sainte-Laguë's 3) makes the first-quotient race fiercer, so
+            larger parties win marginal seats more often. <em>Slightly favors larger parties.</em>{' '}
+            Used in Spain, Portugal, Belgium, the Netherlands, and the European Parliament. A 12-seat
+            state at 55/45 might land 7-5 under Sainte-Laguë but 8-4 under D'Hondt — small but real.
+          </li>
+          <li>
+            <strong>Hamilton / Largest Remainder</strong>. A quota method, not a divisor method:
+            each party gets <code>floor(vote_share × total_seats)</code> seats, then leftover seats
+            go to the parties with the largest fractional remainders. Genuinely proportional in the
+            average case, but susceptible to the <strong>Alabama paradox</strong> (adding a seat to
+            the legislature can <em>cost</em> a state seats) and the related population paradox.
+            The US Congress used Hamilton for inter-state apportionment until 1880 produced bizarre
+            results; Huntington-Hill replaced it for federal use in 1941. Still in use in some
+            European systems (Russia, Albania) and many state-level US contexts.
+          </li>
+        </ul>
+        <p className="text-sm text-stone-600">
+          The Sandbox comparison table renders all three variants side-by-side in the
+          PR / PR (D'Hondt) / PR (Hamilton) rows, so you can see exactly where they diverge under
+          your current settings.
+        </p>
+      </Section>
+
+      <Section title="House size: 435 isn't a constitutional number">
+        <p>
+          The House has been frozen at <strong>435 seats since 1929</strong>. The number isn't in
+          the Constitution. The Permanent Apportionment Act of that year fixed it after the
+          politically toxic 1920 census fight — in fact the House{' '}
+          <em>skipped reapportionment entirely after the 1920 census</em>, the only time in US
+          history, because urban-rural balance shifts threatened too many incumbents. Before 1929,
+          the House grew with the population.
+        </p>
+        <p>
+          <strong>Why expansion matters.</strong> A larger House means smaller districts, more
+          competitive seats, a less extreme small-state bonus (Wyoming's single seat representing
+          ~578 K people becomes proportionally less over-representative), and more proportional
+          outcomes under any allocation method. Many academic reformers argue district size is a
+          bigger lever than the choice of allocation method. The Sandbox House-size slider lets you
+          test that claim directly.
+        </p>
+        <p>
+          Three presets:
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>435</strong> — today's House. Frozen for nearly a century.
+          </li>
+          <li>
+            <strong>Wyoming Rule</strong> (≈ 573 today). Cap district population at the smallest
+            state's. With the 2020 census,{' '}
+            <code>331 M / 578 K ≈ 573</code> seats. Modest expansion; sharply equalizes the
+            "people per representative" ratio across states. Rep. Cohen's <em>Equal Voice Act</em>{' '}
+            (HR 2114) is the most recent legislative expression of this rule.
+          </li>
+          <li>
+            <strong>Cube root rule</strong> (≈ 692 today). The size of a legislature scales roughly
+            as the cube root of population — proposed by Taagepera & Shugart in{' '}
+            <em>Seats and Votes</em> (1989) after surveying democracies worldwide. With the 2020
+            census, <code>∛331 M ≈ 692</code> seats. Bigger expansion; brings the US in line with
+            most peer democracies' legislators-per-capita.
+          </li>
+        </ul>
+        <p>
+          <strong>How seats redistribute under expansion.</strong> The Sandbox uses{' '}
+          <strong>Huntington-Hill</strong> (a.k.a. "Method of Equal Proportions") to apportion the
+          new total among states. This is <em>the same method the real US House has used since
+          1941</em> — most reform proposals keep it. The algorithm: every state with population &gt;
+          0 starts with 1 seat, then the remaining seats are assigned one at a time to whichever
+          state has the highest "priority" of <code>population / √(n × (n+1))</code>, where{' '}
+          <em>n</em> is its current seat count.
+        </p>
+        <p>
+          <strong>MMP caveat under expansion.</strong> When the House grows, each state's "actual
+          today" SMD delegation needs to be scaled up to fill the new seat count — but we don't
+          know how the new districts would have voted. We scale proportionally to the state's old
+          partisan ratio (an 8-D / 4-R state expanded from 12 → 16 seats becomes 11-D / 5-R as the
+          MMP starting point). This is an assumption; document it when citing MMP results under
+          House expansion.
+        </p>
+        <p className="text-sm text-stone-600">
+          The Sandbox "Actual today" row always stays at 435 seats — that's the historical fact —
+          while every reform row reflects your chosen House size.
+        </p>
       </Section>
 
       <Section title="The reveal is more modest than you might expect">

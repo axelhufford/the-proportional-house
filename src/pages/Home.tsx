@@ -17,8 +17,20 @@ import {
   type MinorSlot,
   PRESET_MINORS,
 } from '../lib/parties';
+import {
+  cubeRootSize,
+  wyomingRuleSize,
+} from '../lib/apportionment';
 import { ALL_METHODS, type AllocationMethodKind } from '../lib/methods';
-import { buildSandboxPayload, type MinorPartySpec } from '../lib/sandboxSwing';
+import {
+  buildSandboxPayload,
+  DEFAULT_HOUSE_SIZE,
+  type MinorPartySpec,
+} from '../lib/sandboxSwing';
+import {
+  TOTAL_APPORTIONMENT_POPULATION_2020,
+  WYOMING_POPULATION_2020,
+} from '../lib/statePopulations';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
@@ -150,6 +162,35 @@ function parseThreshold(raw: string | null): number | null {
 
 const DEFAULT_THRESHOLD = 0.05;
 
+/** Precomputed Wyoming Rule House size from 2020 census numbers (~573). */
+export const WYOMING_RULE_HOUSE_SIZE = wyomingRuleSize(
+  TOTAL_APPORTIONMENT_POPULATION_2020,
+  WYOMING_POPULATION_2020,
+);
+/** Precomputed cube root House size from 2020 census numbers (~692). */
+export const CUBE_ROOT_HOUSE_SIZE = cubeRootSize(TOTAL_APPORTIONMENT_POPULATION_2020);
+
+/** Acceptable House size range — 435 today; reform proposals go up. */
+const MIN_HOUSE_SIZE = 435;
+const MAX_HOUSE_SIZE = 800;
+
+/**
+ * Parse the ?house= URL param. Accepts numeric values (435–800) and
+ * semantic shortcuts:
+ *   wyoming → Wyoming Rule (~573)
+ *   cube    → cube root rule (~692)
+ * Returns null on invalid input so Home can fall back to the default 435.
+ */
+function parseHouseSize(raw: string | null): number | null {
+  if (!raw) return null;
+  const lower = raw.toLowerCase().trim();
+  if (lower === 'wyoming') return WYOMING_RULE_HOUSE_SIZE;
+  if (lower === 'cube' || lower === 'cuberoot' || lower === 'cube-root') return CUBE_ROOT_HOUSE_SIZE;
+  const n = Number(raw);
+  if (!Number.isInteger(n) || n < MIN_HOUSE_SIZE || n > MAX_HOUSE_SIZE) return null;
+  return n;
+}
+
 /** Convert a UI MinorState into the swing-math MinorPartySpec. */
 function buildSpec(m: MinorState, slot: MinorSlot): MinorPartySpec {
   if (m.presetId === 'CUSTOM') {
@@ -216,6 +257,11 @@ export function Home({ onMetaChange }: HomeProps) {
   // existing URLs without ?method= behave identically to before.
   const [method, setMethod] = useState<AllocationMethodKind>(
     () => parseMethod(searchParams.get('method')) ?? 'PR',
+  );
+  // Total House size — 435 by default. Wyoming Rule ≈ 573, cube root ≈ 692.
+  // Only meaningful in Sandbox; ignored in Current / Retrospective.
+  const [houseSize, setHouseSize] = useState<number>(
+    () => parseHouseSize(searchParams.get('house')) ?? DEFAULT_HOUSE_SIZE,
   );
   // The URL has a `state=XX` (state code) param that resolves to a FIPS once
   // the payload loads. Stash it pending payload-load.
@@ -323,13 +369,20 @@ export function Home({ onMetaChange }: HomeProps) {
       if (method !== 'PR') {
         next.set('method', method.toLowerCase());
       }
+      // Emit ?house= when expanded. Use semantic shortcuts when the
+      // size matches a recognized preset, otherwise the numeric value.
+      if (houseSize !== DEFAULT_HOUSE_SIZE) {
+        if (houseSize === WYOMING_RULE_HOUSE_SIZE) next.set('house', 'wyoming');
+        else if (houseSize === CUBE_ROOT_HOUSE_SIZE) next.set('house', 'cube');
+        else next.set('house', String(houseSize));
+      }
     }
     if (selectedFips) {
       const state = payload.states.find((s) => s.fips === selectedFips);
       if (state) next.set('state', state.code);
     }
     setSearchParams(next, { replace: true });
-  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, method, selectedFips, setSearchParams]);
+  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, method, houseSize, selectedFips, setSearchParams]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection (no client recompute).
@@ -353,21 +406,22 @@ export function Home({ onMetaChange }: HomeProps) {
   const sandboxPayload = useMemo<SandboxPayload | null>(() => {
     if (!effectivePayload || viewMode !== 'sandbox' || minors.length === 0) return null;
     const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
-    return buildSandboxPayload(effectivePayload, specs, threshold, method);
-  }, [effectivePayload, viewMode, minors, threshold, method]);
+    return buildSandboxPayload(effectivePayload, specs, threshold, method, houseSize);
+  }, [effectivePayload, viewMode, minors, threshold, method, houseSize]);
 
   // Precompute every method's national totals for the comparison table.
   // Only built in sandbox view; cheap because each call is O(states × parties)
-  // and we cap at 4 calls. Returns null outside sandbox so the table doesn't
-  // render in Current / Retrospective.
+  // and we cap at 6 calls. Returns null outside sandbox so the table doesn't
+  // render in Current / Retrospective. House-expansion changes all method
+  // rows alike (Actual stays at 435 — it's a historical fact).
   const methodComparison = useMemo(() => {
     if (!effectivePayload || viewMode !== 'sandbox') return null;
     const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
     return ALL_METHODS.map((m) => ({
       method: m,
-      payload: buildSandboxPayload(effectivePayload, specs, threshold, m),
+      payload: buildSandboxPayload(effectivePayload, specs, threshold, m, houseSize),
     }));
-  }, [effectivePayload, viewMode, minors, threshold]);
+  }, [effectivePayload, viewMode, minors, threshold, houseSize]);
 
   if (error) {
     return (
@@ -450,6 +504,10 @@ export function Home({ onMetaChange }: HomeProps) {
               onThresholdChange={setThreshold}
               method={method}
               onMethodChange={setMethod}
+              houseSize={houseSize}
+              wyomingRuleHouseSize={WYOMING_RULE_HOUSE_SIZE}
+              cubeRootHouseSize={CUBE_ROOT_HOUSE_SIZE}
+              onHouseSizeChange={setHouseSize}
             />
             {methodComparison && (
               <MethodComparisonTable

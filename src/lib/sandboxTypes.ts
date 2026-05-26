@@ -62,6 +62,8 @@ export interface SandboxPayload {
   threshold: number;
   /** Allocation method used to compute seats from shares. */
   method: AllocationMethodKind;
+  /** Total House size — 435 by default; ≠ 435 means seats were reapportioned via Huntington-Hill. */
+  house_size: number;
   /**
    * Active minor parties — 0, 1, or 2 entries. When empty, callers
    * shouldn't bother building a SandboxPayload; they can stay on the

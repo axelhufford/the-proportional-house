@@ -54,6 +54,14 @@ export function MethodComparisonTable({ basePayload, comparison, currentMethod }
         <h2 className="text-sm font-medium text-stone-900">Compare reform models</h2>
         <p className="text-xs text-stone-600 mt-0.5">
           National seat totals under each allocation method, given the current sandbox settings.
+          {/* Pull house_size from the first comparison row — all rows share the same value. */}
+          {comparison[0] && comparison[0].payload.house_size !== 435 && (
+            <>
+              {' '}House expanded to <strong>{comparison[0].payload.house_size} seats</strong> via
+              Huntington-Hill apportionment; the "Actual today" row stays at 435 since that's the
+              current real House.
+            </>
+          )}
         </p>
       </div>
       <div className="overflow-x-auto">

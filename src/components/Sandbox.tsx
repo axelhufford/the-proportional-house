@@ -26,6 +26,13 @@ interface Props {
   /** Allocation method (Pure PR / MMD-3 / MMD-5 / MMP-50). */
   method: AllocationMethodKind;
   onMethodChange: (next: AllocationMethodKind) => void;
+  /** Total House size — 435 default; reform proposals expand. */
+  houseSize: number;
+  /** Wyoming Rule preset (~573 today). */
+  wyomingRuleHouseSize: number;
+  /** Cube root rule preset (~692 today). */
+  cubeRootHouseSize: number;
+  onHouseSizeChange: (next: number) => void;
 }
 
 const MIN = -15;
@@ -49,6 +56,10 @@ const THRESHOLD_MIN = 0;
 const THRESHOLD_MAX = 0.1;
 const THRESHOLD_STEP = 0.005;
 
+const HOUSE_SIZE_MIN = 435;
+const HOUSE_SIZE_MAX = 800;
+const DEFAULT_HOUSE_SIZE = 435;
+
 export function Sandbox({
   genericBallot,
   swing,
@@ -60,6 +71,10 @@ export function Sandbox({
   onThresholdChange,
   method,
   onMethodChange,
+  houseSize,
+  wyomingRuleHouseSize,
+  cubeRootHouseSize,
+  onHouseSizeChange,
 }: Props) {
   const addMinor = () => {
     // Defaults: slot 1 → Progressive Left, slot 2 → America First, slot 3
@@ -241,6 +256,65 @@ export function Sandbox({
           </div>
           <div className="text-[10px] text-stone-500 mt-1.5">
             {METHOD_DESCRIPTIONS[method]}
+          </div>
+        </div>
+
+        {/* House size control. The House has been frozen at 435 seats since
+          * the 1929 Permanent Apportionment Act — but the number isn't in
+          * the Constitution. Three presets cover the main reform proposals
+          * (Wyoming Rule, cube root rule), plus a fine-grained slider.
+          * "Actual today" in the comparison table always stays at 435; only
+          * the reform-method rows reflect the expanded size. */}
+        <div className="pt-2 border-t border-stone-200">
+          <div className="flex items-baseline justify-between gap-2 mb-2">
+            <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">
+              House size
+            </div>
+            <span className="tabular-nums font-medium text-stone-900">
+              {houseSize} seats
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {[
+              { label: '435 (today)', value: DEFAULT_HOUSE_SIZE, title: 'Current US House size, frozen by the 1929 Permanent Apportionment Act.' },
+              { label: `${wyomingRuleHouseSize} (Wyoming Rule)`, value: wyomingRuleHouseSize, title: "Cap district population at the smallest state's. ~573 today." },
+              { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: "House size ≈ ∛(US population). ~692 today (Taagepera & Shugart, 1989)." },
+            ].map((p) => {
+              const active = p.value === houseSize;
+              return (
+                <button
+                  key={p.label}
+                  type="button"
+                  onClick={() => onHouseSizeChange(p.value)}
+                  title={p.title}
+                  className={[
+                    'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
+                    active
+                      ? 'bg-stone-900 text-white border-stone-900'
+                      : 'border-stone-300 text-stone-700 hover:bg-stone-100',
+                  ].join(' ')}
+                  aria-pressed={active}
+                >
+                  {p.label}
+                </button>
+              );
+            })}
+          </div>
+          <input
+            type="range"
+            min={HOUSE_SIZE_MIN}
+            max={HOUSE_SIZE_MAX}
+            step={1}
+            value={houseSize}
+            onChange={(e) => onHouseSizeChange(Number(e.target.value))}
+            aria-label="House size slider"
+            aria-valuetext={`${houseSize} seats`}
+            className="w-full accent-stone-900 mt-2"
+          />
+          <div className="text-[10px] text-stone-500 mt-1">
+            Seats reapportion among states via Huntington-Hill — the same method the real US
+            House uses. "Actual today" in the comparison table stays at 435; reform rows reflect
+            the chosen size.
           </div>
         </div>
       </div>

@@ -18,26 +18,43 @@
  * array indexed by party in input order. The math reuses `allocateN`
  * from `./allocation.ts` for Sainte-Laguë wherever it applies.
  */
-import { allocateN } from './allocation';
+import { allocateN, type AllocationMethod as DivisorMethod } from './allocation';
 
-export type AllocationMethodKind = 'PR' | 'MMD-3' | 'MMD-5' | 'MMP-50';
+export type AllocationMethodKind =
+  | 'PR'        // PR with Sainte-Laguë (most neutral; default)
+  | 'PR-DH'     // PR with D'Hondt (slightly favors larger parties)
+  | 'PR-HAM'    // PR with Hamilton / Largest Remainder
+  | 'MMD-3'
+  | 'MMD-5'
+  | 'MMP-50';
 
 /** Display labels — used by UI for buttons and table headings. */
 export const METHOD_LABELS: Record<AllocationMethodKind, string> = {
   PR: 'Pure PR',
+  'PR-DH': "PR (D'Hondt)",
+  'PR-HAM': 'PR (Hamilton)',
   'MMD-3': 'MMD-3',
   'MMD-5': 'MMD-5',
   'MMP-50': 'MMP-50',
 };
 
 export const METHOD_DESCRIPTIONS: Record<AllocationMethodKind, string> = {
-  PR: 'Statewide Sainte-Laguë — every state allocates seats by total vote share.',
+  PR: 'Statewide PR using Sainte-Laguë — the most neutral divisor method; the default.',
+  'PR-DH': "Statewide PR using D'Hondt — divisors are 1, 2, 3, …; slightly favors larger parties. Used in Spain, Portugal, Belgium.",
+  'PR-HAM': 'Statewide PR using Hamilton / Largest Remainder — quota-based; proportional but has known paradoxes (Alabama paradox, population paradox).',
   'MMD-3': '3-seat districts — each state is chopped into 3-seat districts, PR within each. Less proportional than statewide PR.',
   'MMD-5': '5-seat districts — chunked into 5-seat districts (closer to statewide PR than MMD-3).',
   'MMP-50': '50% single-member districts + 50% proportional list. List seats top each party up to its proportional target. German-style.',
 };
 
-export const ALL_METHODS: AllocationMethodKind[] = ['PR', 'MMD-3', 'MMD-5', 'MMP-50'];
+export const ALL_METHODS: AllocationMethodKind[] = [
+  'PR',
+  'PR-DH',
+  'PR-HAM',
+  'MMD-3',
+  'MMD-5',
+  'MMP-50',
+];
 
 export interface MethodAllocationInput {
   /** Total House seats in this state. */
@@ -56,13 +73,21 @@ export interface MethodAllocationInput {
 }
 
 /**
- * Statewide Sainte-Laguë — thin wrapper over `allocateN`. Used as
- * the baseline against which MMD / MMP are compared.
+ * Statewide PR — thin wrapper over `allocateN`. Parameterized by divisor
+ * formula so the same allocator can serve PR (Sainte-Laguë), PR-DH
+ * (D'Hondt), and PR-HAM (Hamilton/Largest-Remainder).
+ *
+ * Sainte-Laguë is the default and the most neutral. D'Hondt slightly
+ * favors larger parties. Hamilton is quota-based (not a divisor method
+ * in the same sense, but the underlying allocateN handles it).
  */
-export function allocatePR(input: MethodAllocationInput): number[] {
+export function allocatePR(
+  input: MethodAllocationInput,
+  formula: DivisorMethod = 'sainte-lague',
+): number[] {
   return allocateN(
     { seats: input.total_seats, votes: input.vote_shares.map((s) => s * 1_000_000) },
-    'sainte-lague',
+    formula,
   );
 }
 
@@ -209,7 +234,11 @@ export function allocateByMethod(
 ): number[] {
   switch (method) {
     case 'PR':
-      return allocatePR(input);
+      return allocatePR(input, 'sainte-lague');
+    case 'PR-DH':
+      return allocatePR(input, 'dhondt');
+    case 'PR-HAM':
+      return allocatePR(input, 'hamilton');
     case 'MMD-3':
       return allocateMMD(input, 3);
     case 'MMD-5':
