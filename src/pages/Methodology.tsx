@@ -93,11 +93,44 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </div>
       </Section>
 
-      <Section title="Sandbox: third-party scenarios">
+      <Section title="The Sandbox view: what-if scenarios">
         <p>
-          The Sandbox view lets you go beyond the strictly two-party projection. You can add
-          up to three minor parties — so five total — and watch how the map, national totals,
-          and every state's delegation recompute live.
+          Where the <Link to="/?view=current" className="underline hover:text-brand-navy">Current</Link>{' '}
+          and <Link to="/?view=retrospective" className="underline hover:text-brand-navy">2024 Retrospective</Link>{' '}
+          views each show one computed outcome, the <strong>Sandbox</strong> is the interactive
+          calculator. You set assumptions and every state's projected delegation, the national
+          totals, and the map all recompute on the fly. Three knobs are available:
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Hypothetical generic ballot</strong> — slide the national D-vs-R margin from
+            R+15 to D+15. The base D-R toggle that's always been in Sandbox.
+          </li>
+          <li>
+            <strong>Minor parties</strong> (up to three) — model a coalition split with a
+            preset like Progressive Left or America First, or build a Custom party with your own
+            name, color, and draw ratio. Covered in detail in the next subsection.
+          </li>
+          <li>
+            <strong>Allocation method</strong> — toggle between Pure PR, multi-member districts
+            (MMD-3, MMD-5), or mixed-member proportional (MMP-50). Covered below in
+            "Allocation methods."
+          </li>
+        </ul>
+        <p>
+          A <strong>comparison table</strong> at the bottom of the Sandbox view shows national
+          seat totals under every allocation method side-by-side, given your current settings —
+          so you can compare reform models without flipping the picker.
+        </p>
+        <p>
+          Sandbox state is captured in the URL (<code>?view=sandbox&amp;ballot=…&amp;minor1=…&amp;method=…</code>),
+          so any scenario you set up is a sharable link.
+        </p>
+
+        <h3 className="font-serif text-lg text-brand-navy mt-6 mb-2">Minor-party scenarios</h3>
+        <p>
+          You can add up to three minor parties to the projection — so up to five parties total
+          — and watch how the map, national totals, and every state's delegation recompute live.
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
@@ -146,12 +179,20 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="Allocation methods: MMD and MMP">
+      <Section title="Sandbox: allocation methods (MMD and MMP)">
         <p>
           Pure statewide proportional representation is the cleanest reform on the spectrum but
-          rarely the most politically viable. The Sandbox lets you toggle between four allocation
-          models so you can compare across that spectrum — and a comparison table at the bottom
-          of the Sandbox page shows national totals under every method side-by-side.
+          rarely the most politically viable in a US context. The Sandbox lets you toggle between
+          four allocation models so you can compare across that spectrum. The comparison table at
+          the bottom of the Sandbox view shows national seat totals under every method
+          side-by-side, given your current settings — handy for "which reform is most / least
+          proportional?" questions without flipping the picker.
+        </p>
+        <p className="text-sm text-stone-600 italic">
+          A naming-convention note: the number after MMD is the <em>district size in seats</em>{' '}
+          (MMD-3 = 3-seat districts, MMD-5 = 5-seat districts). The number after MMP is the{' '}
+          <em>percentage of seats that come from single-member districts</em> (MMP-50 = 50% SMD +
+          50% list).
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
@@ -160,20 +201,27 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             the rest of the site.
           </li>
           <li>
-            <strong>Multi-member districts (MMD).</strong> Each state is chopped into smaller
-            districts of 3 or 5 seats, and PR runs within each district. Real-world precedent:
-            Ireland uses 3–5 seat STV districts; Illinois House elected by 3-seat cumulative
-            voting from 1870–1980. Smaller districts mean less proportionality (a 3-seat district
-            can only meaningfully represent two parties), so MMD-3 sits between today's SMD and
-            pure PR; MMD-5 sits closer to pure PR.
+            <strong>Multi-member districts (MMD-3, MMD-5).</strong> Each state is chopped into
+            smaller districts of <em>N seats</em> (the number in the method name), and PR runs
+            within each district independently. Real-world precedent: Ireland uses 3–5 seat STV
+            districts; Illinois House elected by 3-seat cumulative voting from 1870–1980. Smaller
+            districts mean less proportionality: a 3-seat district can only meaningfully represent
+            two parties (a third party needs ~25% of the district vote to win even one of three
+            seats), and a 5-seat district lowers that threshold to roughly 17%. So <strong>MMD-3</strong>{' '}
+            sits between today's SMD and pure PR, and <strong>MMD-5</strong> sits closer to pure
+            PR. The Sandbox ships the two district sizes that show up most often in real
+            proposals.
           </li>
           <li>
-            <strong>Mixed-member proportional (MMP-50).</strong> Half of each state's seats come
-            from today's single-member districts (we use the current actual delegation as the
-            proxy for "who'd win the district seats"). The other half are list seats, allocated
-            to top each party up to its proportional target. Used in Germany, New Zealand,
-            Scotland, and Wales. Familiar to US voters because the local-district relationship
-            survives.
+            <strong>Mixed-member proportional (MMP-50).</strong> The <strong>50</strong> is the
+            percentage of seats that come from single-member districts. Half of each state's seats
+            come from today's SMDs (we use the current actual delegation as the proxy for "who'd
+            win the district seats"); the other half are <em>list seats</em>, allocated to top
+            each party up to its proportional target. Used in Germany, New Zealand, Scotland, and
+            Wales. Familiar to US voters because the local-district relationship survives — your
+            congressperson is still elected from your district, with the list seats added on top
+            for proportionality. A future MMP-33 or MMP-66 slider could expose the same model at
+            different SMD/list ratios; v1 ships the 50/50 split that most reform proposals use.
           </li>
         </ul>
         <p>
