@@ -43,14 +43,25 @@ interface StateFeatureProps {
 /**
  * Build a screen-reader-friendly label for a map state that adapts to the
  * current color mode. Sighted users get the visual color encoding; AT users
- * get the same information in words.
+ * get the same information in words. `projectedD` / `projectedR` /
+ * `projectedTotal` default to the state's static `state.projected` /
+ * `state.seats` values, but in Sandbox mode the caller passes the
+ * sandbox-derived seat counts so the spoken label reflects method and
+ * house-size changes too.
  */
-function buildAriaLabel(state: StateProjection, colorMode: ColorMode): string {
-  const base = `${state.name}, ${state.seats} ${state.seats === 1 ? 'seat' : 'seats'}: ` +
+function buildAriaLabel(
+  state: StateProjection,
+  colorMode: ColorMode,
+  projectedD: number = state.projected.d_seats,
+  projectedR: number = state.projected.r_seats,
+  projectedTotal: number = state.seats,
+): string {
+  const totalLabel = `${projectedTotal} ${projectedTotal === 1 ? 'seat' : 'seats'}`;
+  const base = `${state.name}, ${totalLabel}: ` +
     `currently ${state.actual.d_seats} Democratic, ${state.actual.r_seats} Republican; ` +
-    `projected under PR ${state.projected.d_seats} Democratic, ${state.projected.r_seats} Republican.`;
+    `projected under PR ${projectedD} Democratic, ${projectedR} Republican.`;
   if (colorMode === 'distortion') {
-    const dShift = state.projected.d_seats - state.actual.d_seats;
+    const dShift = projectedD - state.actual.d_seats;
     if (dShift === 0) return `${base} No seat shift under PR.`;
     const direction = dShift > 0 ? 'Democrats' : 'Republicans';
     return `${base} Shifts ${Math.abs(dShift)} ${Math.abs(dShift) === 1 ? 'seat' : 'seats'} toward ${direction} under PR.`;
@@ -122,23 +133,55 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
       const sandboxState = sandboxByFips.get(fips);
       let bgColor: string;
       let stripeColors: string[] = [];
+      // Effective projected D/R seats — pulled from sandboxState when
+      // present so method + house-size changes flow through the
+      // balance/distortion palette, the aria-label, and the tooltip
+      // (not just the plurality-color branch).
+      let projectedD = state.projected.d_seats;
+      let projectedR = state.projected.r_seats;
+      let projectedTotal = state.seats;
 
       if (sandboxState) {
-        bgColor = pluralityColor(
-          sandboxState.parties.map((p) => ({ color: p.party.color, seats: p.seats })),
+        projectedD = sandboxState.parties[0]?.seats ?? 0; // D is canonical slot 0
+        projectedR = sandboxState.parties[1]?.seats ?? 0; // R is canonical slot 1
+        projectedTotal = sandboxState.total_seats;
+
+        const hasMinorSeats = sandboxState.parties.some(
+          (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
         );
-        // Stripe rule: a major (D/R) holds plurality AND at least one
-        // minor won seats. Collect EVERY minor with seats so a state with
-        // both PROG and AF representation shows both colors interleaved
-        // (was: only the top minor's color).
-        const winner = findPluralityParty(sandboxState.parties);
-        const pluralityIsMajor = winner !== null && (winner.party.id === 'D' || winner.party.id === 'R');
-        if (pluralityIsMajor) {
-          stripeColors = sandboxState.parties
-            .filter((p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0)
-            .map((p) => p.party.color);
+
+        if (hasMinorSeats) {
+          // Extended-sandbox visual: plurality color, with stripes when a
+          // major holds plurality but minors also won seats.
+          bgColor = pluralityColor(
+            sandboxState.parties.map((p) => ({ color: p.party.color, seats: p.seats })),
+          );
+          const winner = findPluralityParty(sandboxState.parties);
+          const pluralityIsMajor = winner !== null && (winner.party.id === 'D' || winner.party.id === 'R');
+          if (pluralityIsMajor) {
+            stripeColors = sandboxState.parties
+              .filter((p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0)
+              .map((p) => p.party.color);
+          }
+        } else {
+          // Sandbox without minors: keep the diverging balance/distortion
+          // palette, but compute the margin from sandbox-projected seats
+          // so method/house-size changes update the fill.
+          const margin =
+            colorMode === 'balance'
+              ? balanceMargin(projectedD, projectedR, projectedTotal)
+              : distortionMargin(
+                  projectedD,
+                  projectedR,
+                  state.actual.d_seats,
+                  state.actual.r_seats,
+                  projectedTotal,
+                );
+          bgColor = colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
         }
       } else {
+        // Not in Sandbox view: original two-party rendering from
+        // effectivePayload's projected counts.
         const margin =
           colorMode === 'balance'
             ? balanceMargin(state.projected.d_seats, state.projected.r_seats, state.seats)
@@ -161,7 +204,13 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
         fillRef = `url(#${id})`;
       }
 
-      out.push({ fips, feature: f, state, fillRef, ariaLabel: buildAriaLabel(state, colorMode) });
+      out.push({
+        fips,
+        feature: f,
+        state,
+        fillRef,
+        ariaLabel: buildAriaLabel(state, colorMode, projectedD, projectedR, projectedTotal),
+      });
     }
 
     return { visuals: out, patterns: Array.from(seenPatterns.values()) };
@@ -289,16 +338,27 @@ function Tooltip({
   state: StateProjection;
   sandboxState: SandboxPayload['states'][number] | null;
 }) {
-  const dGain = state.projected.d_seats - state.actual.d_seats;
+  // Decide which projected numbers to show. In Sandbox view, always
+  // pull from sandboxState so method + house-size changes are reflected.
+  // Outside Sandbox, use the static state.projected values.
+  const hasMinorSeats =
+    !!sandboxState &&
+    sandboxState.parties.some(
+      (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+    );
+  const projectedD = sandboxState ? sandboxState.parties[0]?.seats ?? 0 : state.projected.d_seats;
+  const projectedR = sandboxState ? sandboxState.parties[1]?.seats ?? 0 : state.projected.r_seats;
+  const projectedTotal = sandboxState ? sandboxState.total_seats : state.seats;
+  const dGain = projectedD - state.actual.d_seats;
   return (
     <div className="absolute top-2 right-2 bg-white/95 border border-stone-200 rounded-md px-3 py-2 shadow-sm text-sm pointer-events-none">
       <div className="font-semibold text-stone-900">{state.name}</div>
-      <div className="text-stone-600 text-xs">{state.seats} {state.seats === 1 ? 'seat' : 'seats'}</div>
-      {sandboxState ? (
+      <div className="text-stone-600 text-xs">{projectedTotal} {projectedTotal === 1 ? 'seat' : 'seats'}</div>
+      {hasMinorSeats ? (
         // Extended sandbox: list every party with seats, color-coded by
         // party.color. Skip parties at 0 to keep the line short.
         <div className="mt-1 flex items-baseline gap-2 flex-wrap">
-          {sandboxState.parties
+          {sandboxState!.parties
             .filter((p) => p.seats > 0)
             .map((p, i) => (
               <span key={p.party.id} className="inline-flex items-baseline gap-2">
@@ -311,16 +371,16 @@ function Tooltip({
         </div>
       ) : (
         <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-blue-700 font-medium">D {state.projected.d_seats}</span>
+          <span className="text-blue-700 font-medium">D {projectedD}</span>
           <span className="text-stone-400">·</span>
-          <span className="text-red-700 font-medium">R {state.projected.r_seats}</span>
+          <span className="text-red-700 font-medium">R {projectedR}</span>
         </div>
       )}
       <div className="text-xs text-stone-500 mt-0.5">
         Now: D {state.actual.d_seats} / R {state.actual.r_seats}
         {/* Drop the "(+X D)" delta in extended mode — it's a two-party
           * concept and reads as misleading when minors are in the mix. */}
-        {!sandboxState && dGain !== 0 && (
+        {!hasMinorSeats && dGain !== 0 && (
           <span className={dGain > 0 ? ' text-blue-700' : ' text-red-700'}>
             {' '}({dGain > 0 ? '+' : ''}{dGain} D)
           </span>

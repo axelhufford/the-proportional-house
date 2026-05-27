@@ -1,6 +1,7 @@
 import { StateDetailBottomSheet } from './StateDetailBottomSheet';
 import { StateDetailSidePanel } from './StateDetailSidePanel';
 import { useIsMobile } from '../lib/useIsMobile';
+import type { AllocationMethodKind } from '../lib/methods';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
 
@@ -11,6 +12,8 @@ interface Props {
   onClose: () => void;
   /** Sandbox extended-mode N-party slice for this state. Optional. */
   sandboxState?: SandboxStateProjection | null;
+  /** Active allocation method — affects the panel's labels and the math-demo visibility. */
+  method?: AllocationMethodKind;
 }
 
 /**

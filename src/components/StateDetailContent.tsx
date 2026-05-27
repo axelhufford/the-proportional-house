@@ -1,6 +1,7 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
+import type { AllocationMethodKind } from '../lib/methods';
 import { PARTY_D, PARTY_R, displayName } from '../lib/parties';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
@@ -45,12 +46,22 @@ export interface StateDetailContentProps {
    */
   autoFocusHeading?: boolean;
   /**
-   * When present (extended sandbox mode), render N-party delegation and
-   * vote-share blocks instead of the two-party ones. The two-party
-   * `state` prop is still used for actual-today numbers, polling chart,
-   * and the math-detail demo (those stay D/R).
+   * Sandbox-derived per-state slice. When present:
+   *   - If `parties.length > 2` (minors active), render N-party delegation +
+   *     vote-share blocks.
+   *   - If `parties.length === 2`, render the two-party UI but pull projected
+   *     D / R seats and shares from sandboxState (so method + house-size
+   *     changes update the panel).
+   * When absent, render the two-party UI from `state.projected` (the static
+   * pipeline value, used in Current / Retrospective and in the /embed view).
    */
   sandboxState?: SandboxStateProjection | null;
+  /**
+   * Active allocation method. Only affects the math-demo visibility today
+   * (hidden under non-PR methods because the Sainte-Laguë quotient table
+   * wouldn't match the actual allocation).
+   */
+  method?: AllocationMethodKind;
 }
 
 export function StateDetailContent({
@@ -61,6 +72,7 @@ export function StateDetailContent({
   showHeaderControls = true,
   autoFocusHeading = true,
   sandboxState,
+  method = 'PR',
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -107,7 +119,24 @@ export function StateDetailContent({
     }
   }, [state.fips, autoFocusHeading]);
 
-  const dGain = state.projected.d_seats - state.actual.d_seats;
+  // "Has minors" controls the UI shape (N-party seat strip vs. 2-party).
+  // "Use sandbox data" applies whenever sandboxState exists — so method +
+  // house-size changes update the 2-party Comparison / Vote share too.
+  const hasMinors =
+    !!sandboxState &&
+    sandboxState.parties.some(
+      (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+    );
+  const projectedD = sandboxState ? sandboxState.parties[0]?.seats ?? 0 : state.projected.d_seats;
+  const projectedR = sandboxState ? sandboxState.parties[1]?.seats ?? 0 : state.projected.r_seats;
+  const projectedDShare = sandboxState
+    ? sandboxState.parties[0]?.vote_share ?? state.projected.d_share
+    : state.projected.d_share;
+  const projectedRShare = sandboxState
+    ? sandboxState.parties[1]?.vote_share ?? state.projected.r_share
+    : state.projected.r_share;
+  const effectiveSeats = sandboxState ? sandboxState.total_seats : state.seats;
+  const dGain = projectedD - state.actual.d_seats;
 
   // "See also": find 3 states with the most similar PR distortion. Same
   // direction as the current state (both gain D, or both gain R), closest
@@ -154,7 +183,7 @@ export function StateDetailContent({
           <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{state.code}</div>
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-semibold text-stone-900 outline-none break-words">{state.name}</h2>
           <div className="text-sm text-stone-600">
-            {state.seats} {state.seats === 1 ? 'seat' : 'seats'}
+            {effectiveSeats} {effectiveSeats === 1 ? 'seat' : 'seats'}
           </div>
         </div>
         {showHeaderControls && (
@@ -216,7 +245,7 @@ export function StateDetailContent({
           </div>
         )}
 
-        {sandboxState ? (
+        {hasMinors ? (
           <div>
             <h3 className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">Delegation</h3>
             <div className="grid grid-cols-2 gap-3">
@@ -229,7 +258,7 @@ export function StateDetailContent({
               />
               <SeatStrip
                 heading="Projected under PR"
-                parties={sandboxState.parties.map((p) => ({
+                parties={sandboxState!.parties.map((p) => ({
                   id: p.party.id,
                   label: displayName(p.party),
                   color: p.party.color,
@@ -242,14 +271,14 @@ export function StateDetailContent({
           <Comparison
             label="Delegation"
             left={{ heading: 'Actual today', d: state.actual.d_seats, r: state.actual.r_seats }}
-            right={{ heading: 'Projected under PR', d: state.projected.d_seats, r: state.projected.r_seats }}
+            right={{ heading: 'Projected under PR', d: projectedD, r: projectedR }}
           />
         )}
 
-        {sandboxState ? (
+        {hasMinors ? (
           // Minor-party gains paragraph: list any non-D/R party with seats.
           (() => {
-            const minors = sandboxState.parties.filter(
+            const minors = sandboxState!.parties.filter(
               (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
             );
             if (minors.length === 0) return null;
@@ -283,11 +312,11 @@ export function StateDetailContent({
         <Section title="Vote share">
           <div className="grid grid-cols-2 gap-3 text-sm">
             <ShareBlock heading="2024 baseline" d={state.baseline_2024.d_share} r={state.baseline_2024.r_share} />
-            {sandboxState ? (
+            {hasMinors ? (
               <div>
                 <div className="text-xs text-stone-500">Projected (sandbox)</div>
                 <div className="mt-1 space-y-0.5">
-                  {sandboxState.parties.map((p) => (
+                  {sandboxState!.parties.map((p) => (
                     <div key={p.party.id} className="tabular-nums">
                       <span className="font-medium" style={{ color: p.party.color }}>
                         {displayName(p.party)}
@@ -298,7 +327,7 @@ export function StateDetailContent({
                 </div>
               </div>
             ) : (
-              <ShareBlock heading="Projected 2026" d={state.projected.d_share} r={state.projected.r_share} />
+              <ShareBlock heading="Projected 2026" d={projectedDShare} r={projectedRShare} />
             )}
           </div>
           <div className="text-xs text-stone-500 mt-2">
@@ -323,7 +352,10 @@ export function StateDetailContent({
           </div>
         </Section>
 
-        {state.seats > 1 && quotients.length > 0 && (
+        {/* The math demo is Sainte-Laguë-specific. Under other PR formulas
+          * (D'Hondt, Hamilton) or MMD/MMP, the quotients shown wouldn't
+          * match the actual allocation, so hide it outside Pure PR. */}
+        {state.seats > 1 && quotients.length > 0 && method === 'PR' && (
           <details className="text-sm">
             <summary className="cursor-pointer text-stone-700 font-medium">Show the math (Sainte-Laguë)</summary>
             <div className="mt-3 overflow-x-auto">

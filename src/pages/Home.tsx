@@ -435,26 +435,32 @@ export function Home({ onMetaChange }: HomeProps) {
     return recomputeWithSwing(payload, swing);
   }, [payload, viewMode, sandboxBallot]);
 
-  // Extended-mode sandbox payload (N-party). Built only when the user is
-  // in sandbox view AND has at least one minor active; otherwise null and
-  // the rest of the page renders via the existing two-party path.
+  // Sandbox payload: built whenever the user is in Sandbox view, so that
+  // method + house-size + minors + threshold + ballot ALL drive the map,
+  // tooltip, national totals, and state detail. When minors.length === 0
+  // and method === 'PR' and houseSize === 435 the seat counts here equal
+  // the two-party `effectivePayload` counts (the no-regression case).
+  //
+  // The threshold filter inside sandboxSwing zeroes any party below the
+  // cutoff. The threshold slider UI is hidden when no minors are active,
+  // so a stale 5% default could otherwise silently bite a major in an
+  // extreme state — pass threshold=0 when no minors are active to avoid.
   const sandboxPayload = useMemo<SandboxPayload | null>(() => {
-    if (!effectivePayload || viewMode !== 'sandbox' || minors.length === 0) return null;
+    if (!effectivePayload || viewMode !== 'sandbox') return null;
     const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
-    return buildSandboxPayload(effectivePayload, specs, threshold, method, houseSize);
+    const effectiveThreshold = minors.length > 0 ? threshold : 0;
+    return buildSandboxPayload(effectivePayload, specs, effectiveThreshold, method, houseSize);
   }, [effectivePayload, viewMode, minors, threshold, method, houseSize]);
 
   // Precompute every method's national totals for the comparison table.
-  // Only built in sandbox view; cheap because each call is O(states × parties)
-  // and we cap at 6 calls. Returns null outside sandbox so the table doesn't
-  // render in Current / Retrospective. House-expansion changes all method
-  // rows alike (Actual stays at 435 — it's a historical fact).
+  // Only built in sandbox view. Same threshold-safety guard as above.
   const methodComparison = useMemo(() => {
     if (!effectivePayload || viewMode !== 'sandbox') return null;
     const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
+    const effectiveThreshold = minors.length > 0 ? threshold : 0;
     return ALL_METHODS.map((m) => ({
       method: m,
-      payload: buildSandboxPayload(effectivePayload, specs, threshold, m, houseSize),
+      payload: buildSandboxPayload(effectivePayload, specs, effectiveThreshold, m, houseSize),
     }));
   }, [effectivePayload, viewMode, minors, threshold, houseSize]);
 
@@ -516,7 +522,13 @@ export function Home({ onMetaChange }: HomeProps) {
   return (
     <>
       <HomeHero payload={effectivePayload} viewMode={viewMode} />
-      <NationalSummary payload={effectivePayload} viewMode={viewMode} sandboxPayload={sandboxPayload} />
+      <NationalSummary
+        payload={effectivePayload}
+        viewMode={viewMode}
+        sandboxPayload={sandboxPayload}
+        method={method}
+        houseSize={houseSize}
+      />
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-5">
         <ModeToggle
@@ -615,6 +627,7 @@ export function Home({ onMetaChange }: HomeProps) {
             allStates={effectivePayload.states}
             onClose={handleDeselect}
             sandboxState={sandboxPayload?.states.find((s) => s.fips === selectedState.fips) ?? null}
+            method={method}
           />
         </div>,
         document.body

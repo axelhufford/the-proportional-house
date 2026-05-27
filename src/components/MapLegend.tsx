@@ -33,9 +33,11 @@ const LABELS: Record<ColorMode, { left: string; center: string; right: string; a
 
 export function MapLegend({ mode, sandboxPayload }: Props) {
   // Extended sandbox legend: party swatches instead of a diverging
-  // scale. Shows every party with at least one seat nationally; this is
-  // exactly what state fill colors map to (plurality party per state).
-  if (sandboxPayload) {
+  // scale. Only swap to swatches when minors are actually active —
+  // otherwise the map keeps painting balance/distortion (from sandbox
+  // data) and the diverging legend stays the right description.
+  const hasMinors = !!sandboxPayload && sandboxPayload.minors.length > 0;
+  if (hasMinors && sandboxPayload) {
     const activeParties = sandboxPayload.national.parties.filter((p) => p.seats > 0);
     return (
       <div className="mt-4">
