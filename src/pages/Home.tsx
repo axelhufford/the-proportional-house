@@ -347,31 +347,33 @@ export function Home({ onMetaChange }: HomeProps) {
   // this effect, clicking the logo from a Sandbox URL clears the URL but
   // leaves the user visually in Sandbox — confusing.
   //
-  // The fix: when the URL is fully bare (no view/sandbox/state params at
-  // all), reset every relevant state value to its default. Guards on
-  // each setter prevent infinite loops with the state-to-URL effect
-  // below. The effect also no-ops on initial mount with a clean URL
-  // because every value is already at its default.
+  // The effect only fires on the *transition* "URL went from has-params
+  // to bare" — that's the genuine logo-click signal. The previous-attempt
+  // version had every state value in the dep array, which made it fire
+  // on every toggle click, racing the state→URL effect below and
+  // reverting the user's click on the same frame (broke the Mode and
+  // Color toggles entirely). Using a ref to compare current vs prior
+  // searchParams avoids the race: the effect only runs reset when the
+  // URL actually became bare *after* having had params.
+  const prevSearchParamsStringRef = useRef<string>(searchParams.toString());
   useEffect(() => {
-    const hasParams = [
-      'view', 'color', 'ballot', 'minor1', 'minor2', 'minor3',
-      'threshold', 'method', 'house', 'state',
-    ].some((k) => searchParams.has(k));
-    if (hasParams) return;
-    if (viewMode !== 'current') setViewMode('current');
-    if (colorMode !== 'balance') setColorMode('balance');
-    if (minors.length > 0) setMinors([]);
-    if (Math.abs(threshold - DEFAULT_THRESHOLD) > 0.0001) setThreshold(DEFAULT_THRESHOLD);
-    if (method !== 'PR') setMethod('PR');
-    if (houseSize !== DEFAULT_HOUSE_SIZE) setHouseSize(DEFAULT_HOUSE_SIZE);
-    if (selectedFips !== null) setSelectedFips(null);
+    const current = searchParams.toString();
+    const prev = prevSearchParamsStringRef.current;
+    prevSearchParamsStringRef.current = current;
+    // Skip unless: URL is now bare AND was previously non-bare.
+    if (current !== '' || prev === '') return;
+    setViewMode('current');
+    setColorMode('balance');
+    setMinors([]);
+    setThreshold(DEFAULT_THRESHOLD);
+    setMethod('PR');
+    setHouseSize(DEFAULT_HOUSE_SIZE);
+    setSelectedFips(null);
     // sandboxBallot: snap back to the live polling margin so a future
     // visit to Sandbox starts at the headline number, not the last value
     // the user dragged the slider to.
-    if (payload && sandboxBallot !== null && Math.abs(sandboxBallot - payload.meta.generic_ballot_margin) > 0.05) {
-      setSandboxBallot(payload.meta.generic_ballot_margin);
-    }
-  }, [searchParams, viewMode, colorMode, minors, threshold, method, houseSize, selectedFips, sandboxBallot, payload]);
+    if (payload) setSandboxBallot(payload.meta.generic_ballot_margin);
+  }, [searchParams, payload]);
 
   // App state → URL: keep the URL in sync with the current view so links
   // are shareable. Crucially, `searchParams` is NOT a dep here — that
