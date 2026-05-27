@@ -205,14 +205,14 @@ export function StateDetailContent({
                 : `${state.imputed_district_count} districts imputed from presidential vote.`}
             </strong>{' '}
             {state.imputed_district_ids?.join(', ') ?? ''}{' '}
-            had no major-party opponent in 2024; we replaced the district's House two-party total with its 2024 presidential two-party split so the baseline reflects partisan lean rather than no-contest. See methodology.
+            had no major-party opponent in 2024; we replaced the district’s House two-party total with its 2024 presidential two-party split so the baseline reflects partisan lean rather than no-contest. See methodology.
           </div>
         )}
 
         {state.baseline_distortion_warning && (state.imputed_district_count ?? 0) === 0 && (
           <div className="text-sm border border-amber-200 bg-amber-50 text-amber-900 rounded-md px-3 py-2">
             <strong>Baseline distortion warning.</strong>{' '}
-            One major party fielded no candidate statewide in 2024, so the 2024 two-party share isn't meaningful for this state. The projection here assumes a neutral 50/50 baseline before applying the national swing.
+            One major party fielded no candidate statewide in 2024, so the 2024 two-party share isn’t meaningful for this state. The projection here assumes a neutral 50/50 baseline before applying the national swing.
           </div>
         )}
 
@@ -363,12 +363,12 @@ export function StateDetailContent({
             <PollingTrendChart currentAverageMargin={meta.generic_ballot_margin} />
           </Suspense>
           <p className="text-xs text-stone-500 mt-2">
-            Each dot is one poll; size scales with sample size. The navy line is the same 14-day weighted average we use in the projection. Source: Silver Bulletin's public generic-ballot database.
+            Each dot is one poll; size scales with sample size. The navy line is the same 14-day weighted average we use in the projection. Source: Silver Bulletin’s public generic-ballot database.
           </p>
         </Section>
 
         {similarStates.length > 0 && (
-          <Section title="See also — similar distortions">
+          <Section title="See also: similar distortions">
             <div className="flex flex-wrap gap-2">
               {similarStates.map((s) => {
                 const delta = s.projected.d_seats - s.actual.d_seats;

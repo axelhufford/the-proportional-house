@@ -37,16 +37,16 @@ export function Methodology(_props: MethodologyProps) {
       <p className="mt-3 text-stone-600">
         What would the U.S. House look like if every state allocated its seats by proportional
         representation, based on current generic-ballot polling? This page walks through exactly
-        how that projection is computed, what data feeds it, and what it does and doesn't tell you.
+        how that projection is computed, what data feeds it, and what it does and doesn’t tell you.
       </p>
 
       <Section title="The short version">
         <ol className="list-decimal pl-6 space-y-2">
           <li>For each state, take its 2024 two-party House vote share as a baseline.</li>
           <li>Compute the current national generic-ballot polling margin from a weighted average of recent polls.</li>
-          <li>The difference between today's generic-ballot margin and 2024's national House margin is the <em>swing</em>.</li>
-          <li>Shift each state's two-party shares by that swing, scaled by the state's elasticity (how much the state moved between 2020 and 2024 vs the nation as a whole).</li>
-          <li>Allocate the state's seats to the projected shares using Sainte-Laguë.</li>
+          <li>The difference between today’s generic-ballot margin and 2024’s national House margin is the <em>swing</em>.</li>
+          <li>Shift each state’s two-party shares by that swing, scaled by the state’s elasticity (how much the state moved between 2020 and 2024 vs. the nation as a whole).</li>
+          <li>Allocate the state’s seats to the projected shares using Sainte-Laguë.</li>
         </ol>
       </Section>
 
@@ -63,7 +63,7 @@ export function Methodology(_props: MethodologyProps) {
           <li>
             <strong>Generic-ballot polls.</strong>{' '}
             <a className="underline" href="https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls" target="_blank" rel="noreferrer">
-              Silver Bulletin's public poll database
+              Silver Bulletin’s public poll database
             </a>{' '}
             (Nate Silver). The CSV ships pre-adjusted columns that account for pollster house effects, so
             our weighted average inherits that correction. We additionally weight polls by recency
@@ -73,21 +73,21 @@ export function Methodology(_props: MethodologyProps) {
       </Section>
 
       <Section title="The math, written out">
-        <p>Each state's 2024 two-party D share is computed from the Clerk's recap as <code>d_share = D / (D + R)</code>. The national swing is</p>
+        <p>Each state’s 2024 two-party D share is computed from the Clerk’s recap as <code>d_share = D / (D + R)</code>. The national swing is</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`swing = current_generic_ballot_margin − baseline_2024_national_margin`}</pre>
         <p>where both terms are in margin points (positive = D advantage). For example, today the generic ballot sits at roughly D+{pipelineMeta?.generic_ballot?.margin?.toFixed(1) ?? '6.0'} and 2024 was R+{pipelineMeta?.baseline_2024_r_margin?.toFixed(2) ?? '2.55'}, giving a swing of about +{pipelineMeta?.swing?.toFixed(1) ?? '8.6'} points toward D.</p>
-        <p>States don't all respond to a national swing equally — California swung ~9 points toward Republicans between 2020 and 2024 while Pennsylvania barely moved. We capture that with a per-state <em>elasticity</em> coefficient: each state's D-margin shift between the 2020 and 2024 presidential elections, divided by the national average shift.</p>
+        <p>States don’t all respond to a national swing equally. California swung ~9 points toward Republicans between 2020 and 2024 while Pennsylvania barely moved. We capture that with a per-state <em>elasticity</em> coefficient: each state’s D-margin shift between the 2020 and 2024 presidential elections, divided by the national average shift.</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`state_swing  = national_swing × elasticity_state
 projected_d_share = baseline_d_share + (state_swing / 2 / 100)
 projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
-        <p>For example, California's elasticity is 1.70 (it moved 1.7× more than national), so today's +8.9 national swing toward Democrats becomes a +15.1 swing in California — but California is already heavily D, so the marginal seats gained are small. Pennsylvania's elasticity is 0.51, so the swing applied there is +4.5 points — more conservative, reflecting Pennsylvania's reputation as a tight, hard-to-move state. Source: unweighted mean of CD-level Biden/Harris vs Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (would otherwise yield unstable or negative elasticity).</p>
-        <p>The divide-by-2 in both formulas is because a swing of N points in the <em>margin</em> shifts each party's share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don't break Sainte-Laguë.</p>
+        <p>For example, California’s elasticity is 1.70 (it moved 1.7× more than national), so today’s +8.9 national swing toward Democrats becomes a +15.1 swing in California; but California is already heavily D, so the marginal seats gained are small. Pennsylvania’s elasticity is 0.51, so the swing applied there is +4.5 points, more conservative, reflecting Pennsylvania’s reputation as a tight, hard-to-move state. Source: unweighted mean of CD-level Biden/Harris vs. Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (which would otherwise yield unstable or negative elasticity).</p>
+        <p>The divide-by-2 in both formulas is because a swing of N points in the <em>margin</em> shifts each party’s share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don’t break Sainte-Laguë.</p>
       </Section>
 
       <Section title="Sainte-Laguë allocation (with an interactive demo)">
-        <p>To assign N seats given D and R vote totals, the Sainte-Laguë method computes a series of quotients for each party — votes divided by 1, 3, 5, 7, …, (2N−1) — and assigns seats to the N largest quotients across both parties.</p>
-        <p>This method is the most proportional of the common divisor methods. D'Hondt slightly favors larger parties; Hamilton/largest-remainder is also proportional but has known paradoxes. For two-party races the three methods usually agree; we use Sainte-Laguë as the default.</p>
-        <p>Try it yourself — the same function powers the projection.</p>
+        <p>To assign N seats given D and R vote totals, the Sainte-Laguë method computes a series of quotients for each party (votes divided by 1, 3, 5, 7, …, 2N−1) and assigns seats to the N largest quotients across both parties.</p>
+        <p>This method is the most proportional of the common divisor methods. D’Hondt slightly favors larger parties; Hamilton/largest-remainder is also proportional but has known paradoxes. For two-party races the three methods usually agree; we use Sainte-Laguë as the default.</p>
+        <p>Try it yourself. The same function powers the projection.</p>
         <div className="not-prose mt-4">
           <SainteLagueDemo />
         </div>
@@ -98,28 +98,28 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           Where the <Link to="/?view=current" className="underline hover:text-brand-navy">Current</Link>{' '}
           and <Link to="/?view=retrospective" className="underline hover:text-brand-navy">2024 Retrospective</Link>{' '}
           views each show one computed outcome, the <strong>Sandbox</strong> is the interactive
-          calculator. You set assumptions and every state's projected delegation, the national
+          calculator. You set assumptions, and every state’s projected delegation, the national
           totals, and the map all recompute on the fly. Three knobs are available:
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Hypothetical generic ballot</strong> — slide the national D-vs-R margin from
-            R+15 to D+15. The base D-R toggle that's always been in Sandbox.
+            <strong>Hypothetical generic ballot</strong>: slide the national D-vs-R margin from
+            R+15 to D+15. The base D-R toggle that’s always been in Sandbox.
           </li>
           <li>
-            <strong>Minor parties</strong> (up to three) — model a coalition split with a
+            <strong>Minor parties</strong> (up to three): model a coalition split with a
             preset like Progressive Left or America First, or build a Custom party with your own
             name, color, and draw ratio. Covered in detail in the next subsection.
           </li>
           <li>
-            <strong>Allocation method</strong> — toggle between Pure PR, multi-member districts
+            <strong>Allocation method</strong>: toggle between Pure PR, multi-member districts
             (MMD-3, MMD-5), or mixed-member proportional (MMP-50). Covered below in
-            "Allocation methods."
+            “Allocation methods.”
           </li>
         </ul>
         <p>
           A <strong>comparison table</strong> at the bottom of the Sandbox view shows national
-          seat totals under every allocation method side-by-side, given your current settings —
+          seat totals under every allocation method side-by-side, given your current settings,
           so you can compare reform models without flipping the picker.
         </p>
         <p>
@@ -129,53 +129,53 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
 
         <h3 className="font-serif text-lg text-brand-navy mt-6 mb-2">Minor-party scenarios</h3>
         <p>
-          You can add up to three minor parties to the projection — so up to five parties total
-          — and watch how the map, national totals, and every state's delegation recompute live.
+          You can add up to three minor parties to the projection (up to five parties total)
+          and watch how the map, national totals, and every state’s delegation recompute live.
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Progressive Left</strong> (emerald) — a Bernie/AOC-style breakaway from the
+            <strong>Progressive Left</strong> (emerald): a Bernie/AOC-style breakaway from the
             Democratic coalition. Defaults: 6% national share, draws 85% from D / 15% from R.
           </li>
           <li>
-            <strong>America First</strong> (mustard gold) — a Trump/MAGA-style breakaway from the
+            <strong>America First</strong> (mustard gold): a Trump/MAGA-style breakaway from the
             Republican coalition. Defaults: 8% national share, draws 15% from D / 85% from R.
           </li>
           <li>
-            <strong>Custom</strong> — give it any name, any color, and any draw ratio. Use this
+            <strong>Custom</strong>: give it any name, any color, and any draw ratio. Use this
             slot to model a Green Party, a Libertarian Party, a Centrist / Forward / No Labels
             party, a regional party, or anything else.
           </li>
         </ul>
         <p>
-          The two preset draw ratios are <em>defaults</em>, not constraints — every minor party
+          The two preset draw ratios are <em>defaults</em>, not constraints. Every minor party
           (preset or Custom) has a draw-bias slider you can adjust on the fly.
         </p>
         <p>
           A <strong>per-state threshold slider</strong> (0–10%, default 5%) sets the minimum vote
           share a party needs within a given state to win any seats. This matches how most real
-          PR systems work — Germany's 5%, New Zealand's 5% — and prevents 1% parties from
-          winning random seats in 50-seat states. Below the threshold, the party's share is
+          PR systems work (Germany’s 5%, New Zealand’s 5%) and prevents 1% parties from
+          winning random seats in 50-seat states. Below the threshold, the party’s share is
           zeroed and the remaining parties renormalize.
         </p>
         <p>
           <strong>Map under Sandbox extended mode:</strong> each state fills with its plurality
-          party's color. If a major party (D or R) holds plurality but a minor still won at least
-          one seat, the state gets diagonal stripes overlaying the major color — one stripe per
+          party’s color. If a major party (D or R) holds plurality but a minor still won at least
+          one seat, the state gets diagonal stripes overlaying the major color, one stripe per
           minor with seats. Hover a state for the full per-party breakdown.
         </p>
         <p>
           <strong>Per-state share is uniform-national in v1.</strong> The share you set is applied
-          to every state identically — a 6% Progressive Left means 6% of the two-party vote share
+          to every state identically: a 6% Progressive Left means 6% of the two-party vote share
           is reassigned in California, Wyoming, and everywhere in between. Real third parties
           cluster regionally (Greens stronger in Vermont, Libertarians stronger in the mountain
-          west), but modeling that would need per-state minor-party data we don't currently
+          west), but modeling that would need per-state minor-party data we don’t currently
           collect. Listed below under limitations.
         </p>
         <p>
           The Sandbox extended mode is a client-side <em>what-if</em> tool. Everything outside the
-          sandbox — the Current view, the 2024 Retrospective, the public API, share PNGs, and CSV
-          / JSON downloads — stays strictly two-party.
+          sandbox (the Current view, the 2024 Retrospective, the public API, share PNGs, and CSV
+          / JSON downloads) stays strictly two-party.
         </p>
       </Section>
 
@@ -185,8 +185,8 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           rarely the most politically viable in a US context. The Sandbox lets you toggle between
           four allocation models so you can compare across that spectrum. The comparison table at
           the bottom of the Sandbox view shows national seat totals under every method
-          side-by-side, given your current settings — handy for "which reform is most / least
-          proportional?" questions without flipping the picker.
+          side-by-side, given your current settings; handy for “which reform is most or least
+          proportional?” questions without flipping the picker.
         </p>
         <p className="text-sm text-stone-600 italic">
           A naming-convention note: the number after MMD is the <em>district size in seats</em>{' '}
@@ -204,21 +204,21 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <strong>Multi-member districts (MMD-3, MMD-5).</strong> Each state is chopped into
             smaller districts of <em>N seats</em> (the number in the method name), and PR runs
             within each district independently. Real-world precedent: Ireland uses 3–5 seat STV
-            districts; Illinois House elected by 3-seat cumulative voting from 1870–1980. Smaller
-            districts mean less proportionality: a 3-seat district can only meaningfully represent
-            two parties (a third party needs ~25% of the district vote to win even one of three
-            seats), and a 5-seat district lowers that threshold to roughly 17%. So <strong>MMD-3</strong>{' '}
-            sits between today's SMD and pure PR, and <strong>MMD-5</strong> sits closer to pure
-            PR. The Sandbox ships the two district sizes that show up most often in real
-            proposals.
+            districts; the Illinois House was elected by 3-seat cumulative voting from 1870 to 1980.
+            Smaller districts mean less proportionality: a 3-seat district can only meaningfully
+            represent two parties (a third party needs ~25% of the district vote to win even one of
+            three seats), and a 5-seat district lowers that threshold to roughly 17%.{' '}
+            <strong>MMD-3</strong> therefore sits between today’s SMD and pure PR, and{' '}
+            <strong>MMD-5</strong> sits closer to pure PR. The Sandbox ships the two district sizes
+            that show up most often in real proposals.
           </li>
           <li>
             <strong>Mixed-member proportional (MMP-50).</strong> The <strong>50</strong> is the
-            percentage of seats that come from single-member districts. Half of each state's seats
-            come from today's SMDs (we use the current actual delegation as the proxy for "who'd
-            win the district seats"); the other half are <em>list seats</em>, allocated to top
+            percentage of seats that come from single-member districts. Half of each state’s seats
+            come from today’s SMDs (we use the current actual delegation as the proxy for “who’d
+            win the district seats”); the other half are <em>list seats</em>, allocated to top
             each party up to its proportional target. Used in Germany, New Zealand, Scotland, and
-            Wales. Familiar to US voters because the local-district relationship survives — your
+            Wales. Familiar to US voters because the local-district relationship survives: your
             congressperson is still elected from your district, with the list seats added on top
             for proportionality. A future MMP-33 or MMP-66 slider could expose the same model at
             different SMD/list ratios; v1 ships the 50/50 split that most reform proposals use.
@@ -226,44 +226,45 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </ul>
         <p>
           <strong>Caveats for MMD:</strong> the v1 model assumes uniform partisan distribution
-          across all districts within a state. That's mathematically clean but underestimates
-          proportionality in real-world heterogeneous states — California's San Francisco
-          districts (heavily D) and Central Valley districts (heavily R) would cancel out
-          geographically in a way our uniform-share math doesn't capture. A geographic MMD model
-          using real congressional districts is on the roadmap.
+          across all districts within a state. That’s mathematically clean but underestimates
+          proportionality in real-world heterogeneous states. California’s San Francisco districts
+          (heavily D) and Central Valley districts (heavily R) would cancel out geographically in a
+          way our uniform-share math doesn’t capture. A geographic MMD model using real
+          congressional districts is on the roadmap.
         </p>
         <p>
-          <strong>Caveats for MMP:</strong> when a state's actual SMD delegation already
-          over-represents one party past its proportional target (the "overhang" case under heavy
-          gerrymandering), Germany would expand the legislature to compensate ("Ausgleichsmandate").
+          <strong>Caveats for MMP:</strong> when a state’s actual SMD delegation already
+          over-represents one party past its proportional target (the “overhang” case under heavy
+          gerrymandering), Germany would expand the legislature to compensate (“Ausgleichsmandate”).
           We keep total seats fixed at 435 for cleanliness, which means MMP can leave a small
           residual distortion in extreme overhang states. Minors get zero SMD seats by default
-          (they don't exist in today's actual House delegations) — their seats come entirely from
+          (they don’t exist in today’s actual House delegations), so their seats come entirely from
           the proportional list.
         </p>
 
         <h3 className="font-serif text-lg text-brand-navy mt-6 mb-2">
-          PR formula variants: Sainte-Laguë, D'Hondt, Hamilton
+          PR formula variants: Sainte-Laguë, D’Hondt, Hamilton
         </h3>
         <p>
-          "Pure PR" itself isn't fully specified — three standard formulas turn vote shares into
+          “Pure PR” itself isn’t fully specified: three standard formulas turn vote shares into
           seat counts, and they differ subtly. The Sandbox method picker exposes all three so you
           can see how the formula choice nudges the outcome (typically by 1–3 seats per state).
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Sainte-Laguë</strong> (our default). Each party's vote total is divided by the
+            <strong>Sainte-Laguë</strong> (our default). Each party’s vote total is divided by the
             sequence 1, 3, 5, 7, … (the arithmetic-mean divisors); seats go to the largest
-            quotients. The <em>most neutral</em> of the three — it neither favors nor penalizes
-            large parties. Used in Germany (state-list rounds), New Zealand, Sweden, Norway,
+            quotients. The <em>most neutral</em> of the three: it neither favors nor penalizes
+            large parties. Used in Germany (state-list rounds), New Zealand, Sweden, Norway, and
             Denmark.
           </li>
           <li>
-            <strong>D'Hondt</strong>. Divisors are 1, 2, 3, 4, … instead. The slightly smaller
-            first divisor (2 vs Sainte-Laguë's 3) makes the first-quotient race fiercer, so
+            <strong>D’Hondt</strong>. Divisors are 1, 2, 3, 4, … instead. The slightly smaller
+            first divisor (2 vs. Sainte-Laguë’s 3) makes the first-quotient race fiercer, so
             larger parties win marginal seats more often. <em>Slightly favors larger parties.</em>{' '}
-            Used in Spain, Portugal, Belgium, the Netherlands, and the European Parliament. A 12-seat
-            state at 55/45 might land 7-5 under Sainte-Laguë but 8-4 under D'Hondt — small but real.
+            Used in Spain, Portugal, Belgium, the Netherlands, and the European Parliament. A
+            12-seat state at 55/45 might land 7-5 under Sainte-Laguë but 8-4 under D’Hondt: small
+            but real.
           </li>
           <li>
             <strong>Hamilton / Largest Remainder</strong>. A quota method, not a divisor method:
@@ -278,23 +279,23 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </ul>
         <p className="text-sm text-stone-600">
           The Sandbox comparison table renders all three variants side-by-side in the
-          PR / PR (D'Hondt) / PR (Hamilton) rows, so you can see exactly where they diverge under
+          PR / PR (D’Hondt) / PR (Hamilton) rows, so you can see exactly where they diverge under
           your current settings.
         </p>
       </Section>
 
-      <Section title="House size: 435 isn't a constitutional number">
+      <Section title="House size: 435 isn’t a constitutional number">
         <p>
-          The House has been frozen at <strong>435 seats since 1929</strong>. The number isn't in
+          The House has been frozen at <strong>435 seats since 1929</strong>. The number isn’t in
           the Constitution. The Permanent Apportionment Act of that year fixed it after the
-          politically toxic 1920 census fight — in fact the House{' '}
+          politically toxic 1920 census fight. In fact the House{' '}
           <em>skipped reapportionment entirely after the 1920 census</em>, the only time in US
           history, because urban-rural balance shifts threatened too many incumbents. Before 1929,
           the House grew with the population.
         </p>
         <p>
           <strong>Why expansion matters.</strong> A larger House means smaller districts, more
-          competitive seats, a less extreme small-state bonus (Wyoming's single seat representing
+          competitive seats, a less extreme small-state bonus (Wyoming’s single seat representing
           ~578 K people becomes proportionally less over-representative), and more proportional
           outcomes under any allocation method. Many academic reformers argue district size is a
           bigger lever than the choice of allocation method. The Sandbox House-size slider lets you
@@ -305,49 +306,49 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>435</strong> — today's House. Frozen for nearly a century.
+            <strong>435</strong>: today’s House. Frozen for nearly a century.
           </li>
           <li>
             <strong>Wyoming Rule</strong> (≈ 573 today). Cap district population at the smallest
-            state's. With the 2020 census,{' '}
+            state’s. With the 2020 census,{' '}
             <code>331 M / 578 K ≈ 573</code> seats. Modest expansion; sharply equalizes the
-            "people per representative" ratio across states. Rep. Cohen's <em>Equal Voice Act</em>{' '}
+            “people per representative” ratio across states. Rep. Cohen’s <em>Equal Voice Act</em>{' '}
             (HR 2114) is the most recent legislative expression of this rule.
           </li>
           <li>
             <strong>Cube root rule</strong> (≈ 692 today). The size of a legislature scales roughly
-            as the cube root of population — proposed by Taagepera & Shugart in{' '}
+            as the cube root of population, proposed by Taagepera and Shugart in{' '}
             <em>Seats and Votes</em> (1989) after surveying democracies worldwide. With the 2020
             census, <code>∛331 M ≈ 692</code> seats. Bigger expansion; brings the US in line with
-            most peer democracies' legislators-per-capita.
+            most peer democracies’ legislators-per-capita.
           </li>
         </ul>
         <p>
           <strong>How seats redistribute under expansion.</strong> The Sandbox uses{' '}
-          <strong>Huntington-Hill</strong> (a.k.a. "Method of Equal Proportions") to apportion the
+          <strong>Huntington-Hill</strong> (a.k.a. “Method of Equal Proportions”) to apportion the
           new total among states. This is <em>the same method the real US House has used since
-          1941</em> — most reform proposals keep it. The algorithm: every state with population &gt;
-          0 starts with 1 seat, then the remaining seats are assigned one at a time to whichever
-          state has the highest "priority" of <code>population / √(n × (n+1))</code>, where{' '}
-          <em>n</em> is its current seat count.
+          1941</em>, and most reform proposals keep it. The algorithm: every state with
+          population &gt; 0 starts with 1 seat, then the remaining seats are assigned one at a time
+          to whichever state has the highest “priority” of <code>population / √(n × (n+1))</code>,
+          where <em>n</em> is its current seat count.
         </p>
         <p>
-          <strong>MMP caveat under expansion.</strong> When the House grows, each state's "actual
-          today" SMD delegation needs to be scaled up to fill the new seat count — but we don't
-          know how the new districts would have voted. We scale proportionally to the state's old
+          <strong>MMP caveat under expansion.</strong> When the House grows, each state’s “actual
+          today” SMD delegation needs to be scaled up to fill the new seat count, but we don’t
+          know how the new districts would have voted. We scale proportionally to the state’s old
           partisan ratio (an 8-D / 4-R state expanded from 12 → 16 seats becomes 11-D / 5-R as the
           MMP starting point). This is an assumption; document it when citing MMP results under
           House expansion.
         </p>
         <p className="text-sm text-stone-600">
-          The Sandbox "Actual today" row always stays at 435 seats — that's the historical fact —
+          The Sandbox “Actual today” row always stays at 435 seats (that’s the historical fact),
           while every reform row reflects your chosen House size.
         </p>
       </Section>
 
       <Section title="The reveal is more modest than you might expect">
         <p>
-          Under today's D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}
+          Under today’s D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}
           {pipelineMeta?.national && (
             <strong>
               D {pipelineMeta.national.projected.d_seats} / R {pipelineMeta.national.projected.r_seats}
@@ -355,16 +356,16 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           )}
           {pipelineMeta?.national && (
             <>
-              {' '}— enough to flip control from the current{' '}
+              , enough to flip control from the current{' '}
               <strong>{pipelineMeta.national.actual.d_seats}D / {pipelineMeta.national.actual.r_seats}R</strong>{' '}
-              House, but a smaller net shift than the "PR would help one side enormously" intuition suggests.
+              House, but a smaller net shift than the “PR would help one side enormously” intuition suggests.
             </>
           )}
         </p>
         <p>
           The reason: distortion goes <em>both ways</em>. R-gerrymandered states (TX, FL, OH) over-represent
           Republicans; D-gerrymandered states (CA, NY, IL, MD) over-represent Democrats. Under PR, both
-          effects shrink, and they largely cancel at the national level — what remains is mostly the
+          effects shrink, and they largely cancel at the national level. What remains is mostly the
           national-mood swing (today, toward Democrats) translating into seats more directly than the current map allows.
         </p>
         <p>
@@ -372,13 +373,13 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           {pipelineMeta?.retrospective_national && (
             <>
               {' '}D {pipelineMeta.retrospective_national.projected_pr.d_seats} / R {pipelineMeta.retrospective_national.projected_pr.r_seats}
-              {' '}vs actual D {pipelineMeta.retrospective_national.actual.d_seats} / R {pipelineMeta.retrospective_national.actual.r_seats}.
+              {' '}vs. actual D {pipelineMeta.retrospective_national.actual.d_seats} / R {pipelineMeta.retrospective_national.actual.r_seats}.
             </>
           )}
-          {' '}A small net swing in either direction is exactly what you'd expect from a roughly neutral national distortion.
+          {' '}A small net swing in either direction is exactly what you’d expect from a roughly neutral national distortion.
         </p>
         <p>
-          The interesting story is at the <em>state</em> level: nearly every state with more than ~5 seats has a significantly distorted delegation today. Click around the map to see for yourself — or jump straight to the{' '}
+          The interesting story is at the <em>state</em> level: nearly every state with more than ~5 seats has a significantly distorted delegation today. Click around the map to see for yourself, or jump straight to the{' '}
           <Link className="underline hover:text-brand-navy" to="/rankings#most-distorted-today">
             most distorted state delegations
           </Link>
@@ -389,19 +390,19 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
       <Section title="Assumptions and limitations">
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Single-cycle elasticity calibration.</strong> Per-state elasticities come from only one observation: the 2020→2024 presidential swing. That's the first full post-redistricting cycle, so it's the most representative single data point we have, but a single cycle is a small sample. Two real caveats follow from that. First, the model is linear: a state with elasticity 1.5 doesn't stop at the 100/0 boundary in extreme sandbox values (the clamp catches that, but the projection still saturates). Second, an idiosyncratic state event — a popular incumbent, a sudden scandal, a regional issue — shows up as elasticity but isn't really about national mood. We're not separating those signals here.
+            <strong>Single-cycle elasticity calibration.</strong> Per-state elasticities come from only one observation: the 2020→2024 presidential swing. That’s the first full post-redistricting cycle, so it’s the most representative single data point we have, but a single cycle is a small sample. Two real caveats follow from that. First, the model is linear: a state with elasticity 1.5 doesn’t stop at the 100/0 boundary in extreme sandbox values (the clamp catches that, but the projection still saturates). Second, an idiosyncratic state event (a popular incumbent, a sudden scandal, a regional issue) shows up as elasticity but isn’t really about national mood. We’re not separating those signals here.
           </li>
           <li>
-            <strong>Uncontested races, imputed from presidential vote.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don't reflect partisan lean (one party gets ~100% of the two-party vote). The 2024 cycle had unusually few such races: VT-AL (Becca Balint, D), LA-4 (Mike Johnson, R), WA-4 (Dan Newhouse, R), and WA-9 (Adam Smith, D). For each, we replace the district's House two-party total with its 2024 <em>presidential</em> two-party split (sourced from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>'s pres-by-CD calculations) so the state baseline reflects partisan lean rather than no-contest. One edge case is deferred: FL-20 (Sheila Cherfilus-McCormick, D) was re-elected without appearing on the ballot at all, so the Clerk PDF records no vote total to replace — imputing here would require estimating House turnout from outside data, which we're not doing yet. Each state-detail panel labels how many of its districts were imputed.
+            <strong>Uncontested races, imputed from presidential vote.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don’t reflect partisan lean (one party gets ~100% of the two-party vote). The 2024 cycle had unusually few such races: VT-AL (Becca Balint, D), LA-4 (Mike Johnson, R), WA-4 (Dan Newhouse, R), and WA-9 (Adam Smith, D). For each, we replace the district’s House two-party total with its 2024 <em>presidential</em> two-party split (sourced from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>’s pres-by-CD calculations) so the state baseline reflects partisan lean rather than no-contest. One edge case is deferred: FL-20 (Sheila Cherfilus-McCormick, D) was re-elected without appearing on the ballot at all, so the Clerk PDF records no vote total to replace; imputing here would require estimating House turnout from outside data, which we’re not doing yet. Each state-detail panel labels how many of its districts were imputed.
           </li>
           <li>
-            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/?view=sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em> — see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
+            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/?view=sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em>; see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
           </li>
           <li>
-            <strong>Sainte-Laguë is a choice.</strong> Most academic work on proportional representation favors it. Reasonable people can prefer D'Hondt (slightly larger-party-favoring) or Hamilton (largest-remainder, with known paradoxes). The interactive demo above lets you sanity-check edge cases.
+            <strong>Sainte-Laguë is a choice.</strong> Most academic work on proportional representation favors it. Reasonable people can prefer D’Hondt (slightly larger-party-favoring) or Hamilton (largest-remainder, with known paradoxes). The interactive demo above lets you sanity-check edge cases.
           </li>
           <li>
-            <strong>State-level polling is sparse.</strong> Most states have no recent House-specific polling at all; even the ~10 states with active Senate races get House polling rarely. Rather than weight state polls (mostly empty), we use the elasticity approach above — every state moves with the national tide, just at different multipliers calibrated from the 2020→2024 presidential shift. A state-poll overlay where data exists is a v3 possibility, not how the current projection works.
+            <strong>State-level polling is sparse.</strong> Most states have no recent House-specific polling at all; even the ~10 states with active Senate races get House polling rarely. Rather than weight state polls (mostly empty), we use the elasticity approach above: every state moves with the national tide, just at different multipliers calibrated from the 2020→2024 presidential shift. A state-poll overlay where data exists is a v3 possibility, not how the current projection works.
           </li>
         </ul>
       </Section>
@@ -414,13 +415,13 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <code>GET /api/v1/projection.json</code> — the full projection in a stable, documented
+            <code>GET /api/v1/projection.json</code>: the full projection in a stable, documented
             shape. Returns <code>api_version</code>, <code>generated_at</code>, <code>polling</code>{' '}
             (window, half-life, n_polls, swing), <code>national</code> totals, and one entry per
             state with both seat counts and underlying vote shares.
           </li>
           <li>
-            <code>GET /api/v1/projection.csv</code> — the same data flattened to one row per state,
+            <code>GET /api/v1/projection.csv</code>: the same data flattened to one row per state,
             alphabetical by postal code. Column order is documented and stable: <code>code, name,
             fips, total_seats, actual_D, actual_R, projected_D, projected_R, swing,
             vote_share_2024_D, vote_share_2024_R, vote_share_projected_D, vote_share_projected_R</code>.
@@ -429,7 +430,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         <p className="text-sm text-stone-600">
           <strong>Cache:</strong> 5 minutes at the edge and in the browser.{' '}
           <strong>CORS:</strong> any origin (read-only public data).{' '}
-          <strong>Version:</strong> the v1 contract is stable — breaking changes will ship under
+          <strong>Version:</strong> the v1 contract is stable; breaking changes will ship under
           <code> /api/v2/</code>. If you build something with it, a credit link to{' '}
           <a className="underline" href="https://proportionalhouse.org" target="_blank" rel="noreferrer">proportionalhouse.org</a>{' '}
           is appreciated.
@@ -442,13 +443,13 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <code>/embed/national</code> — the headline map + national totals. Optional URL params:{' '}
+            <code>/embed/national</code>: the headline map plus national totals. Optional URL params:{' '}
             <code>?view=current|retrospective|sandbox</code>,{' '}
             <code>?color=balance|distortion</code>,{' '}
             <code>?ballot=&lt;margin&gt;</code> (sandbox).
           </li>
           <li>
-            <code>/embed/state/:code</code> — a single state's card (replace <code>:code</code> with
+            <code>/embed/state/:code</code>: a single state’s card (replace <code>:code</code> with
             the two-letter postal abbreviation, e.g. <code>CA</code>).
           </li>
         </ul>
@@ -469,14 +470,14 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
 </script>`}</pre>
         <p className="text-sm text-stone-600">
           The embed posts its content height to the parent window on mount and whenever the
-          content reflows. The snippet listens for that message and resizes the iframe — no
+          content reflows. The snippet listens for that message and resizes the iframe; no
           fixed-height guessing.
         </p>
       </Section>
 
-      <Section title="Why the math doesn't favor one side">
+      <Section title="Why the math doesn’t favor one side">
         <p>
-          The pipeline doesn't look at partisan labels except to count votes. The same code runs whether
+          The pipeline doesn’t look at partisan labels except to count votes. The same code runs whether
           the swing is toward D or toward R. If the generic ballot flipped to R+6, the projection would
           gain seats for Republicans in blue states by exactly the same mechanism that gains them for
           Democrats today.

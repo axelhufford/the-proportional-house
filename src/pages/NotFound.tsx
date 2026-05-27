@@ -17,7 +17,7 @@ import { useDocumentTitle } from '../lib/useDocumentTitle';
 export function NotFound() {
   useDocumentTitle(
     'Page not found · The Proportional House',
-    'The page you requested doesn\'t exist. Try the map, the rankings, or the methodology.',
+    'The page you requested doesn’t exist. Try the map, the rankings, or the methodology.',
   );
 
   return (
@@ -26,7 +26,7 @@ export function NotFound() {
     <div className="max-w-3xl mx-auto px-6 py-16 text-center">
       <p className="text-xs uppercase tracking-wider text-stone-500 font-medium">404</p>
       <h1 className="mt-2 font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">
-        That page doesn't exist
+        That page doesn’t exist
       </h1>
       <p className="mt-4 text-stone-700 leading-relaxed">
         The link you followed may be broken, or the page may have been removed.

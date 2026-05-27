@@ -30,7 +30,7 @@ interface Leaderboard {
 
 export function Rankings() {
   useDocumentTitle(
-    'House rankings — most distorted delegations under proportional representation · The Proportional House',
+    'House rankings: most distorted delegations under proportional representation · The Proportional House',
     'Which state delegations diverge most from proportional representation? Leaderboards of the biggest D shifts, biggest R shifts, and most one-sided House delegations.',
     '/rankings',
   );
@@ -137,7 +137,7 @@ export function Rankings() {
       {
         id: 'most-one-sided',
         title: 'Most one-sided delegations',
-        blurb: 'States where one party holds 100% of the House seats even though the other party has a substantial share of the statewide vote — the starkest "wasted-vote" cases.',
+        blurb: 'States where one party holds 100% of the House seats even though the other party has a substantial share of the statewide vote: the starkest “wasted-vote” cases.',
         rows: oneSided,
       },
     ];
@@ -166,7 +166,7 @@ export function Rankings() {
     return (
       <div className="max-w-3xl mx-auto px-6 py-12">
         <div className="bg-white border border-red-200 rounded-lg shadow-sm p-5">
-          <h2 className="font-serif text-lg text-red-800">Couldn't load the rankings</h2>
+          <h2 className="font-serif text-lg text-red-800">Couldn’t load the rankings</h2>
           <p className="text-sm text-stone-600 mt-1">{error}</p>
         </div>
       </div>
@@ -191,7 +191,7 @@ export function Rankings() {
         House rankings under proportional representation
       </h1>
       <p className="mt-3 text-stone-700 leading-relaxed">
-        Which state delegations diverge most from their statewide vote? Below: the ten most distorted delegations today, the biggest projected gains for each party under proportional allocation, and the most one-sided "all-one-color" delegations. Tap any state to see its full projection.
+        Which state delegations diverge most from their statewide vote? Below: the ten most distorted delegations today, the biggest projected gains for each party under proportional allocation, and the most one-sided “all-one-color” delegations. Tap any state to see its full projection.
       </p>
       <nav aria-label="Rankings sections" className="mt-5 flex flex-wrap gap-2 text-sm">
         {leaderboards.map((b) => (

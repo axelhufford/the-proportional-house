@@ -43,7 +43,7 @@ export function EmbedState() {
   if (error) {
     return (
       <div ref={containerRef} className="p-6 text-sm text-red-700">
-        Couldn't load the projection: {error}
+        Couldn’t load the projection: {error}
       </div>
     );
   }

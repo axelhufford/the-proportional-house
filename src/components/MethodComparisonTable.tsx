@@ -58,7 +58,7 @@ export function MethodComparisonTable({ basePayload, comparison, currentMethod }
           {comparison[0] && comparison[0].payload.house_size !== 435 && (
             <>
               {' '}House expanded to <strong>{comparison[0].payload.house_size} seats</strong> via
-              Huntington-Hill apportionment; the "Actual today" row stays at 435 since that's the
+              Huntington-Hill apportionment; the “Actual today” row stays at 435 since that’s the
               current real House.
             </>
           )}
@@ -144,7 +144,7 @@ export function MethodComparisonTable({ basePayload, comparison, currentMethod }
       </div>
       <div className="px-4 py-2 border-t border-stone-200 bg-stone-50 text-[11px] text-stone-500">
         Hover a method label for a one-line definition. MMP totals may slightly exceed 435 in extreme
-        overhang cases — the model holds total seats fixed for cleanliness.{' '}
+        overhang cases; the model holds total seats fixed for cleanliness.{' '}
         {/* If we ever model Ausgleichsmandate (Germany's overhang-compensation seats), this caveat changes. */}
         D / R columns reference {PARTY_D.label} and {PARTY_R.label}.
       </div>

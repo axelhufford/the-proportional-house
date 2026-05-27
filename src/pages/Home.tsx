@@ -222,7 +222,7 @@ function buildSpec(m: MinorState, slot: MinorSlot): MinorPartySpec {
 
 export function Home({ onMetaChange }: HomeProps) {
   useDocumentTitle(
-    'The Proportional House — U.S. House under proportional representation',
+    'The Proportional House: U.S. House under proportional representation',
     'See how the U.S. House would look if every state allocated its seats by proportional representation, based on current generic-ballot polling.',
     '/',
   );
@@ -462,7 +462,7 @@ export function Home({ onMetaChange }: HomeProps) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-12">
         <div className="bg-white border border-red-200 rounded-lg shadow-sm p-5">
-          <h2 className="font-serif text-lg text-red-800">Couldn't load the projection</h2>
+          <h2 className="font-serif text-lg text-red-800">Couldn’t load the projection</h2>
           <p className="text-sm text-stone-600 mt-1">{error}</p>
           <p className="text-xs text-stone-500 mt-3">
             Try refreshing. If this keeps happening the pipeline may be mid-deploy.
@@ -557,7 +557,7 @@ export function Home({ onMetaChange }: HomeProps) {
         {viewMode === 'retrospective' && (
           <div className="mt-5 text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
             <strong>2024 Retrospective.</strong>{' '}
-            What if 2024's actual House votes had been allocated by proportional representation, with no swing applied? This isolates the distortion of the current map from the projection's polling assumption.
+            What if 2024’s actual House votes had been allocated by proportional representation, with no swing applied? This isolates the distortion of the current map from the projection’s polling assumption.
           </div>
         )}
 
@@ -599,7 +599,7 @@ export function Home({ onMetaChange }: HomeProps) {
           <MapLegend mode={colorMode} sandboxPayload={sandboxPayload} />
           <p className="mt-3 text-xs text-stone-500">
             Click any state to inspect its projected delegation and Sainte-Laguë allocation.
-            Color encodes {colorMode === 'balance' ? "the projected D-R margin of each state's delegation" : 'the per-seat shift (projected minus actual) under proportional allocation'}.
+            Color encodes {colorMode === 'balance' ? 'the projected D-R margin of each state’s delegation' : 'the per-seat shift (projected minus actual) under proportional allocation'}.
           </p>
         </div>
       </section>

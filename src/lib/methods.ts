@@ -31,7 +31,7 @@ export type AllocationMethodKind =
 /** Display labels — used by UI for buttons and table headings. */
 export const METHOD_LABELS: Record<AllocationMethodKind, string> = {
   PR: 'Pure PR',
-  'PR-DH': "PR (D'Hondt)",
+  'PR-DH': 'PR (D’Hondt)',
   'PR-HAM': 'PR (Hamilton)',
   'MMD-3': 'MMD-3',
   'MMD-5': 'MMD-5',
@@ -39,12 +39,12 @@ export const METHOD_LABELS: Record<AllocationMethodKind, string> = {
 };
 
 export const METHOD_DESCRIPTIONS: Record<AllocationMethodKind, string> = {
-  PR: 'Statewide PR using Sainte-Laguë — the most neutral divisor method; the default.',
-  'PR-DH': "Statewide PR using D'Hondt — divisors are 1, 2, 3, …; slightly favors larger parties. Used in Spain, Portugal, Belgium.",
-  'PR-HAM': 'Statewide PR using Hamilton / Largest Remainder — quota-based; proportional but has known paradoxes (Alabama paradox, population paradox).',
-  'MMD-3': '3-seat districts — each state is chopped into 3-seat districts, PR within each. Less proportional than statewide PR.',
-  'MMD-5': '5-seat districts — chunked into 5-seat districts (closer to statewide PR than MMD-3).',
-  'MMP-50': '50% single-member districts + 50% proportional list. List seats top each party up to its proportional target. German-style.',
+  PR: 'Statewide PR using Sainte-Laguë: the most neutral divisor method; the default.',
+  'PR-DH': 'Statewide PR using D’Hondt: divisors are 1, 2, 3, …; slightly favors larger parties. Used in Spain, Portugal, Belgium.',
+  'PR-HAM': 'Statewide PR using Hamilton / Largest Remainder: quota-based; proportional but has known paradoxes (Alabama paradox, population paradox).',
+  'MMD-3': '3-seat districts: each state is chopped into 3-seat districts, PR within each. Less proportional than statewide PR.',
+  'MMD-5': '5-seat districts: chunked into 5-seat districts (closer to statewide PR than MMD-3).',
+  'MMP-50': '50% single-member districts plus 50% proportional list. List seats top each party up to its proportional target. German-style.',
 };
 
 export const ALL_METHODS: AllocationMethodKind[] = [

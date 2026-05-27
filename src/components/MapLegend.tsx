@@ -54,7 +54,7 @@ export function MapLegend({ mode, sandboxPayload }: Props) {
           ))}
         </div>
         <div className="mt-1.5 text-[11px] text-stone-500">
-          Each state's fill = whichever party holds the most projected seats. Ties render gray.
+          Each state’s fill = whichever party holds the most projected seats. Ties render gray.
         </div>
       </div>
     );

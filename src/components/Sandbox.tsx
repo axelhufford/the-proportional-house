@@ -115,12 +115,12 @@ export function Sandbox({
           </div>
         </div>
         <div className="text-xs text-stone-600">
-          Resulting national swing vs 2024 baseline ({fmtMargin(baseline2024)}):{' '}
+          Resulting national swing vs. 2024 baseline ({fmtMargin(baseline2024)}):{' '}
           <span className={swing >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
             {swing >= 0 ? '+' : ''}{swing.toFixed(1)} pts toward {swing >= 0 ? 'D' : 'R'}
           </span>
           <div className="text-stone-500 mt-1">
-            Each state's projection uses this national swing × that state's elasticity.
+            Each state’s projection uses this national swing × that state’s elasticity.
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@ export function Sandbox({
               Add minor parties
             </div>
             <div className="text-xs text-stone-500 mt-0.5">
-              See how a coalition split would change every state's projected delegation.
+              See how a coalition split would change every state’s projected delegation.
             </div>
           </div>
           {minors.length < MAX_MINORS && (
@@ -277,8 +277,8 @@ export function Sandbox({
           <div className="flex flex-wrap gap-1.5">
             {[
               { label: '435 (today)', value: DEFAULT_HOUSE_SIZE, title: 'Current US House size, frozen by the 1929 Permanent Apportionment Act.' },
-              { label: `${wyomingRuleHouseSize} (Wyoming Rule)`, value: wyomingRuleHouseSize, title: "Cap district population at the smallest state's. ~573 today." },
-              { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: "House size ≈ ∛(US population). ~692 today (Taagepera & Shugart, 1989)." },
+              { label: `${wyomingRuleHouseSize} (Wyoming Rule)`, value: wyomingRuleHouseSize, title: 'Cap district population at the smallest state’s. ~573 today.' },
+              { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: 'House size ≈ ∛(US population). ~692 today (Taagepera and Shugart, 1989).' },
             ].map((p) => {
               const active = p.value === houseSize;
               return (
@@ -312,8 +312,8 @@ export function Sandbox({
             className="w-full accent-stone-900 mt-2"
           />
           <div className="text-[10px] text-stone-500 mt-1">
-            Seats reapportion among states via Huntington-Hill — the same method the real US
-            House uses. "Actual today" in the comparison table stays at 435; reform rows reflect
+            Seats reapportion among states via Huntington-Hill, the same method the real US
+            House uses. “Actual today” in the comparison table stays at 435; reform rows reflect
             the chosen size.
           </div>
         </div>

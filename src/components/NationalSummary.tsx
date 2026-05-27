@@ -122,7 +122,7 @@ export function NationalSummary({ payload, viewMode = 'current', sandboxPayload 
           {viewMode === 'retrospective' ? (
             <>
               <span className="font-medium text-stone-700">No swing applied</span>
-              {' '}— pure PR allocation of 2024's actual votes
+              {': pure PR allocation of 2024’s actual votes'}
               {' · '}2024 baseline:{' '}
               <span className="font-medium text-stone-700">{baselineLabel}</span>
               {' · '}Method:{' '}
@@ -164,7 +164,7 @@ export function NationalSummary({ payload, viewMode = 'current', sandboxPayload 
         <div className="mt-3 flex justify-end gap-1">
           {extendedParties ? (
             <span className="text-xs text-stone-400 italic self-center pr-2">
-              Share & export are two-party only — toggle off minor parties to enable.
+              Share &amp; export are two-party only; toggle off minor parties to enable.
             </span>
           ) : null}
           <button

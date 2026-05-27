@@ -51,7 +51,7 @@ export function Layout({ meta }: LayoutProps) {
                 )}
               </>
             ) : (
-              <span>The Proportional House — open source. Methodology and source data on the Methodology page.</span>
+              <span>The Proportional House: open source. Methodology and source data on the Methodology page.</span>
             )}
           </div>
           <nav className="flex flex-wrap gap-x-3 gap-y-1 justify-center sm:justify-start border-t border-stone-200/60 pt-2" aria-label="Footer">

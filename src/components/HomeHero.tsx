@@ -97,7 +97,7 @@ export function HomeHero({ payload, viewMode }: Props) {
         <>
           Right now, Republicans hold{' '}
           <strong className="text-red-700">{absGain} more House seats</strong>{' '}
-          than they would under proportional allocation of the projected statewide vote — a
+          than they would under proportional allocation of the projected statewide vote: a
           structural advantage built into single-member districts.
         </>
       );
@@ -106,7 +106,7 @@ export function HomeHero({ payload, viewMode }: Props) {
         <>
           Right now, Democrats hold{' '}
           <strong className="text-blue-700">{absGain} more House seats</strong>{' '}
-          than they would under proportional allocation of the projected statewide vote — a
+          than they would under proportional allocation of the projected statewide vote: a
           structural advantage built into single-member districts.
         </>
       );

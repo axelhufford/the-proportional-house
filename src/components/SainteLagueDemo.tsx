@@ -97,7 +97,7 @@ export function SainteLagueDemo() {
             </tbody>
           </table>
           <p className="mt-2 text-xs text-stone-500">
-            Each party's votes are divided by 1, 3, 5, …, (2N−1). The top {seats} quotients across both parties win seats (marked ✓). Ties go to the party with the larger vote total; perfect ties go to D alphabetically.
+            Each party’s votes are divided by 1, 3, 5, …, (2N−1). The top {seats} quotients across both parties win seats (marked ✓). Ties go to the party with the larger vote total; perfect ties go to D alphabetically.
           </p>
         </div>
       )}
@@ -150,5 +150,5 @@ function marginNote(dPct: number, _rPct: number, dSeats: number, _rSeats: number
   const expectedD = (dPct / 100) * seats;
   const drift = dSeats - expectedD;
   if (Math.abs(drift) < 0.01) return 'exactly proportional';
-  return `${drift > 0 ? '+' : ''}${drift.toFixed(2)} D seats vs strict proportionality`;
+  return `${drift > 0 ? '+' : ''}${drift.toFixed(2)} D seats vs. strict proportionality`;
 }

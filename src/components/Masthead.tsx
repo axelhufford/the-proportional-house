@@ -9,7 +9,7 @@ export function Masthead() {
   return (
     <header className="bg-brand-cream">
       <div className="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <Link to="/" className="flex items-center gap-4 flex-shrink-0 group" aria-label="The Proportional House — home">
+        <Link to="/" className="flex items-center gap-4 flex-shrink-0 group" aria-label="The Proportional House: home">
           <img
             src="/logomark.svg"
             alt=""
