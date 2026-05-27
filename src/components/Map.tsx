@@ -287,7 +287,14 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
               // view modes or drags the sandbox slider. The transition only
               // tweens solid color values — pattern-ref fills snap on/off
               // when stripes appear or disappear, which is fine for v1.
-              className="cursor-pointer transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none"
+              //
+              // [pointer-events:all] is load-bearing: SVG's default
+              // `visiblePainted` only catches clicks where the fill is
+              // currently opaque, so during a fill swap (especially
+              // url(#pattern) ↔ solid color), the path could be transiently
+              // unclickable. `all` makes it clickable anywhere on the
+              // element regardless of fill state.
+              className="cursor-pointer transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none [pointer-events:all]"
               data-fips={v.fips}
               onMouseEnter={() => setHoverFips(v.fips)}
               onMouseLeave={() => setHoverFips(null)}
