@@ -340,6 +340,39 @@ export function Home({ onMetaChange }: HomeProps) {
     }
   }, [payload, searchParams, selectedFips]);
 
+  // "Click logo → go home" reset. The masthead logo is a `<Link to="/">`
+  // which clears the URL but doesn't otherwise touch the React state above
+  // (viewMode, minors, threshold, method, houseSize are all useState
+  // values that stay stuck on whatever the user set them to). Without
+  // this effect, clicking the logo from a Sandbox URL clears the URL but
+  // leaves the user visually in Sandbox — confusing.
+  //
+  // The fix: when the URL is fully bare (no view/sandbox/state params at
+  // all), reset every relevant state value to its default. Guards on
+  // each setter prevent infinite loops with the state-to-URL effect
+  // below. The effect also no-ops on initial mount with a clean URL
+  // because every value is already at its default.
+  useEffect(() => {
+    const hasParams = [
+      'view', 'color', 'ballot', 'minor1', 'minor2', 'minor3',
+      'threshold', 'method', 'house', 'state',
+    ].some((k) => searchParams.has(k));
+    if (hasParams) return;
+    if (viewMode !== 'current') setViewMode('current');
+    if (colorMode !== 'balance') setColorMode('balance');
+    if (minors.length > 0) setMinors([]);
+    if (Math.abs(threshold - DEFAULT_THRESHOLD) > 0.0001) setThreshold(DEFAULT_THRESHOLD);
+    if (method !== 'PR') setMethod('PR');
+    if (houseSize !== DEFAULT_HOUSE_SIZE) setHouseSize(DEFAULT_HOUSE_SIZE);
+    if (selectedFips !== null) setSelectedFips(null);
+    // sandboxBallot: snap back to the live polling margin so a future
+    // visit to Sandbox starts at the headline number, not the last value
+    // the user dragged the slider to.
+    if (payload && sandboxBallot !== null && Math.abs(sandboxBallot - payload.meta.generic_ballot_margin) > 0.05) {
+      setSandboxBallot(payload.meta.generic_ballot_margin);
+    }
+  }, [searchParams, viewMode, colorMode, minors, threshold, method, houseSize, selectedFips, sandboxBallot, payload]);
+
   // App state → URL: keep the URL in sync with the current view so links
   // are shareable. Crucially, `searchParams` is NOT a dep here — that
   // would clobber external URL changes from the effect above. Uses
