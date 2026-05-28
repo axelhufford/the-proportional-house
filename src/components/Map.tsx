@@ -263,6 +263,18 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
             })}
           </defs>
         )}
+        {/* Visual layer: choropleth fill + selection/hover stroke. Tweens the
+          * fill on view/slider/method changes. This layer is NON-interactive
+          * ([pointer-events:none]); every click, hover, and focus is handled
+          * by the transparent hit layer rendered on top (below).
+          *
+          * Why the split: the interactive element's fill used to swap between
+          * a solid color and a url(#stripe-…) pattern (when a minor wins seats)
+          * mid-transition. SVG hit-testing keys off the fill's paint state, and
+          * Chromium can drop clicks on an element whose paint is changing —
+          * even with pointer-events:all (the prior fix, which wasn't enough).
+          * The hit layer's fill is always transparent and never transitions,
+          * so it stays reliably clickable regardless of the visual fill. */}
         {visuals.map((v) => {
           if (!v.state) {
             return (
@@ -284,18 +296,22 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
               fill={v.fillRef}
               stroke={isSelected ? '#111' : '#fff'}
               strokeWidth={isSelected ? 2 : isHover ? 1.5 : 0.75}
-              // Fill transition tweens the choropleth when the user switches
-              // view modes or drags the sandbox slider. The transition only
-              // tweens solid color values — pattern-ref fills snap on/off
-              // when stripes appear or disappear, which is fine for v1.
-              //
-              // [pointer-events:all] is load-bearing: SVG's default
-              // `visiblePainted` only catches clicks where the fill is
-              // currently opaque, so during a fill swap (especially
-              // url(#pattern) ↔ solid color), the path could be transiently
-              // unclickable. `all` makes it clickable anywhere on the
-              // element regardless of fill state.
-              className="cursor-pointer transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none [pointer-events:all]"
+              className="transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none [pointer-events:none]"
+            />
+          );
+        })}
+        {/* Hit layer: one transparent, never-transitioning path per state,
+          * stacked on top of the visual layer. Owns the interaction handlers
+          * and a11y. data-fips lives here (not on the visual paths) so the
+          * focus-restore selector in Home (svg path[data-fips=…]) targets the
+          * focusable element. */}
+        {visuals.map((v) =>
+          v.state ? (
+            <path
+              key={v.fips}
+              d={pathGen(v.feature) || ''}
+              fill="transparent"
+              className="cursor-pointer [pointer-events:all]"
               data-fips={v.fips}
               onMouseEnter={() => setHoverFips(v.fips)}
               onMouseLeave={() => setHoverFips(null)}
@@ -310,8 +326,8 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
                 }
               }}
             />
-          );
-        })}
+          ) : null,
+        )}
       </svg>
       {hovered && (
         <Tooltip state={hovered} sandboxState={sandboxByFips.get(hovered.fips) ?? null} />

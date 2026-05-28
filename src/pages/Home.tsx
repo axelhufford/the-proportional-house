@@ -628,6 +628,8 @@ export function Home({ onMetaChange }: HomeProps) {
             onClose={handleDeselect}
             sandboxState={sandboxPayload?.states.find((s) => s.fips === selectedState.fips) ?? null}
             method={method}
+            houseSize={houseSize}
+            threshold={threshold}
           />
         </div>,
         document.body

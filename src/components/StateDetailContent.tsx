@@ -1,8 +1,9 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
-import type { AllocationMethodKind } from '../lib/methods';
+import { METHOD_LABELS, type AllocationMethodKind } from '../lib/methods';
 import { PARTY_D, PARTY_R, displayName } from '../lib/parties';
+import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
@@ -57,11 +58,15 @@ export interface StateDetailContentProps {
    */
   sandboxState?: SandboxStateProjection | null;
   /**
-   * Active allocation method. Only affects the math-demo visibility today
-   * (hidden under non-PR methods because the Sainte-Laguë quotient table
-   * wouldn't match the actual allocation).
+   * Active allocation method. Affects the math-demo visibility (hidden under
+   * non-PR methods because the Sainte-Laguë quotient table wouldn't match the
+   * actual allocation) and the "Projected under …" headings + settings line.
    */
   method?: AllocationMethodKind;
+  /** Active sandbox House size — drives the settings-line badge when expanded past 435. */
+  houseSize?: number;
+  /** Active sandbox per-state threshold (0–1) — drives the settings-line badge when minors are active. */
+  threshold?: number;
 }
 
 export function StateDetailContent({
@@ -73,8 +78,14 @@ export function StateDetailContent({
   autoFocusHeading = true,
   sandboxState,
   method = 'PR',
+  houseSize = DEFAULT_HOUSE_SIZE,
+  threshold,
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
+
+  // Keep "PR" short so the embed view and default sandbox still read
+  // "Projected under PR"; reforms read "MMD-3", "MMP-50", "PR (D'Hondt)", etc.
+  const methodLabel = method === 'PR' ? 'PR' : METHOD_LABELS[method];
 
   const handleDownloadImage = useCallback(() => {
     // The pipeline pre-renders a clean 1200×630 brand card for each state at
@@ -226,6 +237,16 @@ export function StateDetailContent({
       </div>
 
       <div className="p-5 space-y-5">
+        {sandboxState && (
+          <div className="flex flex-wrap gap-1.5">
+            <Badge>{methodLabel}</Badge>
+            {houseSize !== DEFAULT_HOUSE_SIZE && <Badge>{houseSize}-seat House</Badge>}
+            {sandboxState.parties.length > 2 && threshold != null && (
+              <Badge>{+((threshold * 100).toFixed(1))}% threshold</Badge>
+            )}
+          </div>
+        )}
+
         {(state.imputed_district_count ?? 0) > 0 && (
           <div className="text-sm border border-blue-200 bg-blue-50 text-blue-900 rounded-md px-3 py-2">
             <strong>
@@ -257,7 +278,7 @@ export function StateDetailContent({
                 ]}
               />
               <SeatStrip
-                heading="Projected under PR"
+                heading={`Projected under ${methodLabel}`}
                 parties={sandboxState!.parties.map((p) => ({
                   id: p.party.id,
                   label: displayName(p.party),
@@ -271,7 +292,7 @@ export function StateDetailContent({
           <Comparison
             label="Delegation"
             left={{ heading: 'Actual today', d: state.actual.d_seats, r: state.actual.r_seats }}
-            right={{ heading: 'Projected under PR', d: projectedD, r: projectedR }}
+            right={{ heading: `Projected under ${methodLabel}`, d: projectedD, r: projectedR }}
           />
         )}
 
@@ -299,7 +320,7 @@ export function StateDetailContent({
         ) : (
           dGain !== 0 && (
             <div className="text-sm">
-              Under PR this state{' '}
+              Under {methodLabel} this state{' '}
               <span className={dGain > 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
                 {dGain > 0 ? `gains ${dGain} D seat${Math.abs(dGain) === 1 ? '' : 's'}`
                            : `gains ${Math.abs(dGain)} R seat${Math.abs(dGain) === 1 ? '' : 's'}`}
@@ -424,6 +445,14 @@ export function StateDetailContent({
         )}
       </div>
     </>
+  );
+}
+
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full bg-stone-100 text-stone-600 text-[11px] font-medium px-2 py-0.5 tabular-nums">
+      {children}
+    </span>
   );
 }
 
