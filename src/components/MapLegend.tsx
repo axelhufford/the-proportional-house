@@ -1,6 +1,7 @@
 import { balanceColor, distortionColor } from '../lib/colors';
 import type { ColorMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import { formatSeatPct } from '../lib/format';
 
 interface Props {
   mode: ColorMode;
@@ -39,6 +40,9 @@ export function MapLegend({ mode, sandboxPayload }: Props) {
   const hasMinors = !!sandboxPayload && sandboxPayload.minors.length > 0;
   if (hasMinors && sandboxPayload) {
     const activeParties = sandboxPayload.national.parties.filter((p) => p.seats > 0);
+    // Denominator for share-of-chamber: sum across all parties with seats
+    // (i.e., the (possibly expanded) total House size for this sandbox).
+    const totalSeats = activeParties.reduce((s, p) => s + p.seats, 0);
     return (
       <div className="mt-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-stone-600">
@@ -51,7 +55,9 @@ export function MapLegend({ mode, sandboxPayload }: Props) {
                 aria-hidden
               />
               <span className="text-stone-700">{p.party.label}</span>
-              <span className="text-stone-400 tabular-nums">{p.seats} seats</span>
+              <span className="text-stone-400 tabular-nums">
+                {p.seats} seats {formatSeatPct(p.seats, totalSeats)}
+              </span>
             </span>
           ))}
         </div>

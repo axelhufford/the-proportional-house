@@ -15,6 +15,7 @@ import {
   METHOD_LABELS,
 } from '../lib/methods';
 import { PARTY_D, PARTY_R, displayName } from '../lib/parties';
+import { formatSeatPct } from '../lib/format';
 
 interface MethodRow {
   method: AllocationMethodKind;
@@ -83,26 +84,35 @@ export function MethodComparisonTable({ basePayload, comparison, currentMethod }
             </tr>
           </thead>
           <tbody>
-            <tr className="border-t border-stone-200">
-              <th scope="row" className="text-left font-medium px-4 py-2 text-stone-700">
-                Actual today (SMD)
-              </th>
-              {columnParties.map((p) => {
-                const seats = actualSeats(p.party.id);
-                return (
-                  <td
-                    key={p.party.id}
-                    className="text-right px-3 py-2 tabular-nums"
-                    style={{ color: seats > 0 ? p.party.color : '#a8a29e' }}
-                  >
-                    {seats}
-                  </td>
-                );
-              })}
-              <td className="text-right px-4 py-2 tabular-nums text-stone-700">
-                {basePayload.national.actual.d_seats + basePayload.national.actual.r_seats}
-              </td>
-            </tr>
+            {(() => {
+              const actualTotal =
+                basePayload.national.actual.d_seats + basePayload.national.actual.r_seats;
+              return (
+                <tr className="border-t border-stone-200">
+                  <th scope="row" className="text-left font-medium px-4 py-2 text-stone-700">
+                    Actual today (SMD)
+                  </th>
+                  {columnParties.map((p) => {
+                    const seats = actualSeats(p.party.id);
+                    return (
+                      <td
+                        key={p.party.id}
+                        className="text-right px-3 py-2 tabular-nums"
+                        style={{ color: seats > 0 ? p.party.color : '#a8a29e' }}
+                      >
+                        {seats}
+                        {seats > 0 && (
+                          <span className="ml-1 text-[11px] font-normal text-stone-400">
+                            {formatSeatPct(seats, actualTotal)}
+                          </span>
+                        )}
+                      </td>
+                    );
+                  })}
+                  <td className="text-right px-4 py-2 tabular-nums text-stone-700">{actualTotal}</td>
+                </tr>
+              );
+            })()}
             {comparison.map((row) => {
               const total = row.payload.national.parties.reduce((s, p) => s + p.seats, 0);
               const isActive = row.method === currentMethod;
@@ -133,6 +143,11 @@ export function MethodComparisonTable({ basePayload, comparison, currentMethod }
                       style={{ color: p.seats > 0 ? p.party.color : '#a8a29e' }}
                     >
                       {p.seats}
+                      {p.seats > 0 && (
+                        <span className="ml-1 text-[11px] font-normal text-stone-400">
+                          {formatSeatPct(p.seats, total)}
+                        </span>
+                      )}
                     </td>
                   ))}
                   <td className="text-right px-4 py-2 tabular-nums text-stone-700">{total}</td>

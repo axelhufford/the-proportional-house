@@ -13,6 +13,7 @@ import {
   pluralityColor,
 } from '../lib/colors';
 import { displayName } from '../lib/parties';
+import { formatSeatPct } from '../lib/format';
 
 /**
  * Sanitize a hex color (or any string) into something safe for use in an
@@ -356,6 +357,7 @@ function Tooltip({
   const projectedD = sandboxState ? sandboxState.parties[0]?.seats ?? 0 : state.projected.d_seats;
   const projectedR = sandboxState ? sandboxState.parties[1]?.seats ?? 0 : state.projected.r_seats;
   const projectedTotal = sandboxState ? sandboxState.total_seats : state.seats;
+  const actualTotal = state.actual.d_seats + state.actual.r_seats;
   const dGain = projectedD - state.actual.d_seats;
   return (
     <div className="absolute top-2 right-2 bg-white/95 border border-stone-200 rounded-md px-3 py-2 shadow-sm text-sm pointer-events-none">
@@ -372,19 +374,39 @@ function Tooltip({
                 {i > 0 && <span className="text-stone-400">·</span>}
                 <span className="font-medium" style={{ color: p.party.color }}>
                   {displayName(p.party)} {p.seats}
+                  <span className="ml-1 text-[11px] font-normal text-stone-400 tabular-nums">
+                    {formatSeatPct(p.seats, projectedTotal)}
+                  </span>
                 </span>
               </span>
             ))}
         </div>
       ) : (
         <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-blue-700 font-medium">D {projectedD}</span>
+          <span className="text-blue-700 font-medium">
+            D {projectedD}
+            <span className="ml-1 text-[11px] font-normal text-stone-400 tabular-nums">
+              {formatSeatPct(projectedD, projectedTotal)}
+            </span>
+          </span>
           <span className="text-stone-400">·</span>
-          <span className="text-red-700 font-medium">R {projectedR}</span>
+          <span className="text-red-700 font-medium">
+            R {projectedR}
+            <span className="ml-1 text-[11px] font-normal text-stone-400 tabular-nums">
+              {formatSeatPct(projectedR, projectedTotal)}
+            </span>
+          </span>
         </div>
       )}
       <div className="text-xs text-stone-500 mt-0.5">
-        Now: D {state.actual.d_seats} / R {state.actual.r_seats}
+        Now: D {state.actual.d_seats}
+        {actualTotal > 0 && (
+          <span className="text-stone-400 tabular-nums"> {formatSeatPct(state.actual.d_seats, actualTotal)}</span>
+        )}
+        {' / '}R {state.actual.r_seats}
+        {actualTotal > 0 && (
+          <span className="text-stone-400 tabular-nums"> {formatSeatPct(state.actual.r_seats, actualTotal)}</span>
+        )}
         {/* Drop the "(+X D)" delta in extended mode — it's a two-party
           * concept and reads as misleading when minors are in the mix. */}
         {!hasMinorSeats && dGain !== 0 && (

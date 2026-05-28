@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { allocate, quotientTable } from '../lib/allocation';
+import { formatSeatPct } from '../lib/format';
 
 const PRESETS = [
   { label: 'Texas 2024 (38 seats, R-leaning)', d: 4310913, r: 6234918, seats: 38 },
@@ -54,9 +55,19 @@ export function SainteLagueDemo() {
           label="Allocation"
           value={
             <span>
-              <span className="text-blue-700 font-semibold">D {allocation.d_seats}</span>
+              <span className="text-blue-700 font-semibold">
+                D {allocation.d_seats}
+                <span className="ml-1 text-xs font-normal text-stone-400 tabular-nums">
+                  {formatSeatPct(allocation.d_seats, seats)}
+                </span>
+              </span>
               <span className="text-stone-400"> · </span>
-              <span className="text-red-700 font-semibold">R {allocation.r_seats}</span>
+              <span className="text-red-700 font-semibold">
+                R {allocation.r_seats}
+                <span className="ml-1 text-xs font-normal text-stone-400 tabular-nums">
+                  {formatSeatPct(allocation.r_seats, seats)}
+                </span>
+              </span>
             </span>
           }
         />

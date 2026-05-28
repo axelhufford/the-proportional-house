@@ -8,6 +8,7 @@ import {
 import { displayName } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
+import { formatSeatPct } from '../lib/format';
 
 const DEFAULT_HOUSE_SIZE = 435;
 
@@ -61,6 +62,12 @@ export function NationalSummary({
   // D and R are always slots 0 and 1 of the canonical parties array.
   const projectedD = sandboxTotals ? sandboxTotals.parties[0]?.seats ?? 0 : national.projected.d_seats;
   const projectedR = sandboxTotals ? sandboxTotals.parties[1]?.seats ?? 0 : national.projected.r_seats;
+  // Total seats for the "Projected" card — accounts for House expansion under
+  // sandbox. The "Actual" card uses its own (fixed-at-435) total below.
+  const projectedTotal = sandboxTotals
+    ? sandboxTotals.total_seats
+    : national.projected.d_seats + national.projected.r_seats;
+  const actualTotal = national.actual.d_seats + national.actual.r_seats;
   const dGain = projectedD - national.actual.d_seats;
   const generic = meta.generic_ballot_margin;
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
@@ -123,18 +130,39 @@ export function NationalSummary({
                       {i > 0 && <span className="text-stone-400 text-base">·</span>}
                       <span style={{ color: p.party.color }}>
                         {displayName(p.party)} {p.seats}
+                        <Pct value={formatSeatPct(p.seats, projectedTotal)} />
                       </span>
                     </span>
                   ))}
                 </span>
               ) : (
-                <><span className="text-blue-700">D {projectedD}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {projectedR}</span></>
+                <>
+                  <span className="text-blue-700">
+                    D {projectedD}<Pct value={formatSeatPct(projectedD, projectedTotal)} />
+                  </span>
+                  <span className="text-stone-400"> · </span>
+                  <span className="text-red-700">
+                    R {projectedR}<Pct value={formatSeatPct(projectedR, projectedTotal)} />
+                  </span>
+                </>
               )
             }
           />
           <SummaryStat
             label="Actual House today"
-            primary={<><span className="text-blue-700">D {national.actual.d_seats}</span><span className="text-stone-400"> · </span><span className="text-red-700">R {national.actual.r_seats}</span></>}
+            primary={
+              <>
+                <span className="text-blue-700">
+                  D {national.actual.d_seats}
+                  <Pct value={formatSeatPct(national.actual.d_seats, actualTotal)} />
+                </span>
+                <span className="text-stone-400"> · </span>
+                <span className="text-red-700">
+                  R {national.actual.r_seats}
+                  <Pct value={formatSeatPct(national.actual.r_seats, actualTotal)} />
+                </span>
+              </>
+            }
           />
           <SummaryStat
             label="Difference under PR"
@@ -282,5 +310,18 @@ function SummaryStat({ label, primary }: { label: string; primary: React.ReactNo
       <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{label}</div>
       <div className="text-2xl font-semibold mt-1 tabular-nums">{primary}</div>
     </div>
+  );
+}
+
+/**
+ * Small muted percentage next to a stat-card seat integer. Inherits the
+ * stat card's color via the wrapping <span>, but switches to a lighter
+ * weight + smaller size so the integer still reads as the headline.
+ * Renders nothing when the formatter returned "" (total <= 0).
+ */
+function Pct({ value }: { value: string }) {
+  if (!value) return null;
+  return (
+    <span className="ml-1.5 text-sm font-normal text-stone-400 tabular-nums">{value}</span>
   );
 }

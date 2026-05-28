@@ -1,10 +1,15 @@
+import { formatSeatPct } from '../lib/format';
+
 /**
  * Generic N-party seat strip.
  *
  * Renders:
  *   - Optional small heading line (e.g. "Today", "Projected under PR").
- *   - Numbers row, colored by party (e.g. "D 32 · R 21" or
- *     "D 28 · R 19 · PROG 3 · AF 2" in extended sandbox).
+ *   - Numbers row, colored by party (e.g. "D 32 (60%) · R 21 (40%)" or
+ *     "D 28 (53%) · R 19 (36%) · PROG 3 (6%) · AF 2 (4%)" in extended sandbox).
+ *     The parenthetical share is contextual to the strip's total (sum of all
+ *     parties shown here — i.e., the state's delegation size or the national
+ *     House size, depending on the caller).
  *   - A horizontal bar with one colored segment per party, width
  *     proportional to that party's seat count.
  *
@@ -50,6 +55,13 @@ export function SeatStrip({ heading, parties, size = 'default' }: Props) {
       : 'text-xs text-stone-500';
   const dotClass = size === 'compact' ? 'text-stone-300 text-xs' : 'text-stone-400 text-sm';
   const gap = size === 'compact' ? 'gap-1.5' : 'gap-2';
+  // Muted parenthetical % alongside the seat integer. Small + lower-contrast
+  // so the integer still reads as the headline number; the share is a
+  // secondary cue you can glance at without doing the division in your head.
+  const pctClass =
+    size === 'compact'
+      ? 'ml-1 text-[10px] font-normal text-stone-400 tabular-nums'
+      : 'ml-1 text-xs font-normal text-stone-400 tabular-nums';
 
   // Numbers row: skip parties with 0 seats so the line doesn't get noisy
   // when a threshold zeroes a minor (sandbox extended).
@@ -62,14 +74,18 @@ export function SeatStrip({ heading, parties, size = 'default' }: Props) {
         {visibleNumbers.length === 0 ? (
           <span className="text-stone-400 text-sm">—</span>
         ) : (
-          visibleNumbers.map((p, i) => (
-            <span key={p.id} className="inline-flex items-baseline gap-1.5">
-              {i > 0 && <span className={dotClass} aria-hidden>·</span>}
-              <span className={numberClass} style={{ color: p.color }}>
-                {(p.label ?? p.id)} {p.seats}
+          visibleNumbers.map((p, i) => {
+            const pct = formatSeatPct(p.seats, total);
+            return (
+              <span key={p.id} className="inline-flex items-baseline gap-1.5">
+                {i > 0 && <span className={dotClass} aria-hidden>·</span>}
+                <span className={numberClass} style={{ color: p.color }}>
+                  {(p.label ?? p.id)} {p.seats}
+                  {pct && <span className={pctClass}>{pct}</span>}
+                </span>
               </span>
-            </span>
-          ))
+            );
+          })
         )}
       </div>
       <div className={barClass}>
@@ -81,7 +97,7 @@ export function SeatStrip({ heading, parties, size = 'default' }: Props) {
               className="transition-[width] duration-[250ms] ease-out motion-reduce:transition-none"
               style={{ width: `${pct}%`, backgroundColor: p.color }}
               aria-hidden
-              title={`${p.label ?? p.id}: ${p.seats} ${p.seats === 1 ? 'seat' : 'seats'}`}
+              title={`${p.label ?? p.id}: ${p.seats} of ${total} ${total === 1 ? 'seat' : 'seats'}${total > 0 ? ` ${formatSeatPct(p.seats, total)}` : ''}`}
             />
           );
         })}
