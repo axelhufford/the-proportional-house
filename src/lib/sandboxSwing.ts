@@ -110,6 +110,10 @@ function buildStateProjection(
     name: state.name,
     total_seats: effectiveSeats,
     parties,
+    // Today's delegation scaled to the (possibly expanded) chamber — the
+    // like-for-like baseline for "shift under PR" so chamber growth isn't
+    // mistaken for a partisan swing. Equals the raw actual at 435.
+    actual_scaled: { d_seats: effectiveActualD, r_seats: effectiveActualR },
   };
 }
 
@@ -216,11 +220,15 @@ export function buildSandboxPayload(
   const partyCount = 2 + minors.length;
   const nationalSeats = new Array<number>(partyCount).fill(0);
   let nationalSeatTotal = 0;
+  let nationalActualScaledD = 0;
+  let nationalActualScaledR = 0;
   for (const st of states) {
     for (let i = 0; i < partyCount; i++) {
       nationalSeats[i] += st.parties[i].seats;
     }
     nationalSeatTotal += st.total_seats;
+    nationalActualScaledD += st.actual_scaled.d_seats;
+    nationalActualScaledR += st.actual_scaled.r_seats;
   }
 
   // National vote shares: weighted by state's total_seats (a proxy for
@@ -254,6 +262,7 @@ export function buildSandboxPayload(
     national: {
       total_seats: nationalSeatTotal,
       parties: nationalParties,
+      actual_scaled: { d_seats: nationalActualScaledD, r_seats: nationalActualScaledR },
     },
     states,
   };

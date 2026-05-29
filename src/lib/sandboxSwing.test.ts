@@ -160,3 +160,40 @@ describe('buildSandboxPayload — national totals', () => {
     expect(out.national.parties[1].party).toBe(PARTY_R);
   });
 });
+
+describe('buildSandboxPayload — actual_scaled baseline (House-size-correct difference)', () => {
+  it('equals the raw actual at House 435 (no expansion → no regression)', () => {
+    const out = buildSandboxPayload(FIXTURE, [], 0); // default house = 435
+    expect(out.states[0].actual_scaled).toEqual({ d_seats: 43, r_seats: 9 }); // CA
+    expect(out.states[1].actual_scaled).toEqual({ d_seats: 0, r_seats: 3 }); // WY
+    expect(out.national.actual_scaled).toEqual({ d_seats: 43, r_seats: 12 });
+  });
+
+  it('is zero-sum: scaled D + R equals total_seats, per state and nationally', () => {
+    const out = buildSandboxPayload(FIXTURE, [], 0, 'PR', 600);
+    for (const st of out.states) {
+      expect(st.actual_scaled.d_seats + st.actual_scaled.r_seats).toBe(st.total_seats);
+    }
+    expect(out.national.actual_scaled.d_seats + out.national.actual_scaled.r_seats).toBe(
+      out.national.total_seats,
+    );
+  });
+
+  it('makes the national difference zero-sum at an expanded House (+N D == −N R)', () => {
+    // This is the property that fixes the "+92 D / −92 R" bug: with the baseline
+    // scaled to the projected chamber, the D shift exactly mirrors the R shift,
+    // instead of attributing pure chamber growth to one party.
+    const out = buildSandboxPayload(FIXTURE, [], 0, 'PR', 600);
+    const dDiff = out.national.parties[0].seats - out.national.actual_scaled.d_seats;
+    const rDiff = out.national.parties[1].seats - out.national.actual_scaled.r_seats;
+    expect(dDiff).toBe(-rDiff);
+  });
+
+  it('grows the baseline with the House (it is not pinned to 435)', () => {
+    const small = buildSandboxPayload(FIXTURE, [], 0, 'PR', 435);
+    const big = buildSandboxPayload(FIXTURE, [], 0, 'PR', 600);
+    const smallTotal = small.national.actual_scaled.d_seats + small.national.actual_scaled.r_seats;
+    const bigTotal = big.national.actual_scaled.d_seats + big.national.actual_scaled.r_seats;
+    expect(bigTotal).toBeGreaterThan(smallTotal);
+  });
+});

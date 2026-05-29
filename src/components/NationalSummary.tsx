@@ -75,7 +75,14 @@ export function NationalSummary({
     ? sandboxTotals.total_seats
     : national.projected.d_seats + national.projected.r_seats;
   const actualTotal = national.actual.d_seats + national.actual.r_seats;
-  const dGain = projectedD - national.actual.d_seats;
+  // Baseline for the "shift under PR" difference. In sandbox we compare against
+  // today's delegation *scaled to the projected House size* (actual_scaled) so
+  // a bigger House isn't mistaken for a partisan swing; outside sandbox this is
+  // just the real 435-seat actual. Identical to the raw actual at House = 435.
+  const baselineD = sandboxTotals ? sandboxTotals.actual_scaled.d_seats : national.actual.d_seats;
+  const baselineR = sandboxTotals ? sandboxTotals.actual_scaled.r_seats : national.actual.r_seats;
+  const dGain = projectedD - baselineD;
+  const houseExpanded = !!sandboxPayload && sandboxPayload.house_size !== DEFAULT_HOUSE_SIZE;
   const generic = meta.generic_ballot_margin;
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
   const baseline = meta.baseline_2024_margin;
@@ -172,18 +179,20 @@ export function NationalSummary({
           />
           <SummaryStat
             label={viewMode === 'sandbox' ? `Difference under ${activeMethodLabel}` : 'Difference under PR'}
+            note={houseExpanded ? `vs. today’s split scaled to ${projectedTotal} seats` : undefined}
             primary={
               extendedParties ? (
                 <span className="inline-flex items-baseline gap-2 flex-wrap text-base">
                   {extendedParties.map((p, i) => {
                     // Compare each party's projected seats to its actual
-                    // baseline. For D/R, that's national.actual. For
-                    // minors, baseline is 0 (they don't exist today).
+                    // baseline scaled to the projected House size (so chamber
+                    // growth isn't read as a partisan shift). Minors are new,
+                    // so their baseline is 0.
                     const baseline =
                       p.party.id === 'D'
-                        ? national.actual.d_seats
+                        ? baselineD
                         : p.party.id === 'R'
-                          ? national.actual.r_seats
+                          ? baselineR
                           : 0;
                     const delta = p.seats - baseline;
                     return (
@@ -316,11 +325,14 @@ function SummaryStat({
   label,
   primary,
   emphasis = false,
+  note,
 }: {
   label: string;
   primary: React.ReactNode;
   /** The headline finding card — gets a navy left-accent so it reads as primary. */
   emphasis?: boolean;
+  /** Optional small caption under the value (e.g. a baseline clarification). */
+  note?: string;
 }) {
   return (
     <div
@@ -331,6 +343,7 @@ function SummaryStat({
     >
       <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{label}</div>
       <div className="text-2xl font-semibold mt-1 tabular-nums">{primary}</div>
+      {note && <div className="text-[11px] text-stone-500 mt-1">{note}</div>}
     </div>
   );
 }

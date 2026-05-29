@@ -56,13 +56,17 @@ function buildAriaLabel(
   projectedD: number = state.projected.d_seats,
   projectedR: number = state.projected.r_seats,
   projectedTotal: number = state.seats,
+  // Baseline D seats for the distortion "shift" — today's delegation scaled to
+  // the projected House size in Sandbox, so chamber growth isn't spoken as a
+  // partisan shift. Defaults to today's real actual.
+  baselineD: number = state.actual.d_seats,
 ): string {
   const totalLabel = `${projectedTotal} ${projectedTotal === 1 ? 'seat' : 'seats'}`;
   const base = `${state.name}, ${totalLabel}: ` +
     `currently ${state.actual.d_seats} Democratic, ${state.actual.r_seats} Republican; ` +
     `projected under PR ${projectedD} Democratic, ${projectedR} Republican.`;
   if (colorMode === 'distortion') {
-    const dShift = projectedD - state.actual.d_seats;
+    const dShift = projectedD - baselineD;
     if (dShift === 0) return `${base} No seat shift under PR.`;
     const direction = dShift > 0 ? 'Democrats' : 'Republicans';
     return `${base} Shifts ${Math.abs(dShift)} ${Math.abs(dShift) === 1 ? 'seat' : 'seats'} toward ${direction} under PR.`;
@@ -141,11 +145,18 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
       let projectedD = state.projected.d_seats;
       let projectedR = state.projected.r_seats;
       let projectedTotal = state.seats;
+      // Baseline for the distortion "shift" — today's delegation scaled to the
+      // projected House size in Sandbox (zero-sum, so growth isn't read as a
+      // partisan shift). Defaults to today's real actual.
+      let baselineD = state.actual.d_seats;
+      let baselineR = state.actual.r_seats;
 
       if (sandboxState) {
         projectedD = sandboxState.parties[0]?.seats ?? 0; // D is canonical slot 0
         projectedR = sandboxState.parties[1]?.seats ?? 0; // R is canonical slot 1
         projectedTotal = sandboxState.total_seats;
+        baselineD = sandboxState.actual_scaled.d_seats;
+        baselineR = sandboxState.actual_scaled.r_seats;
 
         const hasMinorSeats = sandboxState.parties.some(
           (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
@@ -174,8 +185,8 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
               : distortionMargin(
                   projectedD,
                   projectedR,
-                  state.actual.d_seats,
-                  state.actual.r_seats,
+                  baselineD,
+                  baselineR,
                   projectedTotal,
                 );
           bgColor = colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
@@ -210,7 +221,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
         feature: f,
         state,
         fillRef,
-        ariaLabel: buildAriaLabel(state, colorMode, projectedD, projectedR, projectedTotal),
+        ariaLabel: buildAriaLabel(state, colorMode, projectedD, projectedR, projectedTotal, baselineD),
       });
     }
 
@@ -374,7 +385,10 @@ function Tooltip({
   const projectedR = sandboxState ? sandboxState.parties[1]?.seats ?? 0 : state.projected.r_seats;
   const projectedTotal = sandboxState ? sandboxState.total_seats : state.seats;
   const actualTotal = state.actual.d_seats + state.actual.r_seats;
-  const dGain = projectedD - state.actual.d_seats;
+  // Compare against today's delegation scaled to the projected House size in
+  // Sandbox, so a bigger House isn't shown as a partisan gain.
+  const baselineD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
+  const dGain = projectedD - baselineD;
   return (
     <div className="absolute top-2 right-2 bg-white/95 border border-stone-200 rounded-md px-3 py-2 shadow-sm text-sm pointer-events-none">
       <div className="font-semibold text-stone-900">{state.name}</div>

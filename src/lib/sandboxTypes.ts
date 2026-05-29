@@ -54,6 +54,15 @@ export interface SandboxStateProjection {
    * Seats sum to total_seats.
    */
   parties: PartyShare[];
+  /**
+   * Today's actual D/R delegation, scaled to `total_seats` (the projected,
+   * possibly-expanded House size). Equals the raw 435-seat actual when the
+   * House isn't expanded. This is the correct, like-for-like baseline for
+   * "shift under PR" comparisons — subtracting it from the projected seats
+   * isolates the allocation distortion from chamber growth, and is exactly
+   * zero-sum (d_seats + r_seats === total_seats).
+   */
+  actual_scaled: { d_seats: number; r_seats: number };
 }
 
 export interface SandboxPayload {
@@ -74,6 +83,12 @@ export interface SandboxPayload {
     total_seats: number;
     /** Aggregated party totals; same order as state.parties. */
     parties: PartyShare[];
+    /**
+     * Today's actual national D/R delegation, scaled to `total_seats` (sum of
+     * the per-state `actual_scaled`). The like-for-like baseline for the
+     * national "Difference under PR" — d_seats + r_seats === total_seats.
+     */
+    actual_scaled: { d_seats: number; r_seats: number };
   };
   states: SandboxStateProjection[];
 }

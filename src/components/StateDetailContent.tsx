@@ -155,7 +155,14 @@ export function StateDetailContent({
     ? sandboxState.parties[1]?.vote_share ?? state.projected.r_share
     : state.projected.r_share;
   const effectiveSeats = sandboxState ? sandboxState.total_seats : state.seats;
-  const dGain = projectedD - state.actual.d_seats;
+  // Baseline for the "shift under PR" comparison: today's delegation scaled to
+  // the projected House size (so chamber growth isn't read as a partisan
+  // swing). Equals the real actual when the House isn't expanded.
+  const actualBaseD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
+  const actualBaseR = sandboxState ? sandboxState.actual_scaled.r_seats : state.actual.r_seats;
+  const houseExpanded = !!sandboxState && sandboxState.total_seats !== state.seats;
+  const actualHeading = houseExpanded ? `Today, scaled to ${effectiveSeats}` : 'Actual today';
+  const dGain = projectedD - actualBaseD;
 
   // "See also": find 3 states with the most similar PR distortion. Same
   // direction as the current state (both gain D, or both gain R), closest
@@ -279,10 +286,10 @@ export function StateDetailContent({
             <h3 className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">Delegation</h3>
             <div className="grid grid-cols-2 gap-3">
               <SeatStrip
-                heading="Actual today"
+                heading={actualHeading}
                 parties={[
-                  { id: 'D', label: 'D', color: PARTY_D.color, seats: state.actual.d_seats },
-                  { id: 'R', label: 'R', color: PARTY_R.color, seats: state.actual.r_seats },
+                  { id: 'D', label: 'D', color: PARTY_D.color, seats: actualBaseD },
+                  { id: 'R', label: 'R', color: PARTY_R.color, seats: actualBaseR },
                 ]}
               />
               <SeatStrip
@@ -299,7 +306,7 @@ export function StateDetailContent({
         ) : (
           <Comparison
             label="Delegation"
-            left={{ heading: 'Actual today', d: state.actual.d_seats, r: state.actual.r_seats }}
+            left={{ heading: actualHeading, d: actualBaseD, r: actualBaseR }}
             right={{ heading: `Projected under ${methodLabel}`, d: projectedD, r: projectedR }}
           />
         )}
