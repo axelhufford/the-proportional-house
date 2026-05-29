@@ -19,6 +19,12 @@ interface Props {
   sandboxPayload?: SandboxPayload | null;
   /** Active allocation method — affects label + share-disable rule. */
   method?: AllocationMethodKind;
+  /**
+   * Display label for the active method (e.g. "MMD-4" / "MMP-30" when a
+   * magnitude/share slider is dialed off a preset). Falls back to the
+   * method's canonical label when omitted.
+   */
+  methodLabel?: string;
   /** Active House size — affects label + share-disable rule. */
   houseSize?: number;
 }
@@ -28,6 +34,7 @@ export function NationalSummary({
   viewMode = 'current',
   sandboxPayload,
   method = 'PR',
+  methodLabel,
   houseSize = DEFAULT_HOUSE_SIZE,
 }: Props) {
   const { national, meta } = payload;
@@ -74,6 +81,11 @@ export function NationalSummary({
   const baseline = meta.baseline_2024_margin;
   const baselineLabel = baseline >= 0 ? `D+${baseline.toFixed(1)}` : `R+${Math.abs(baseline).toFixed(1)}`;
 
+  // The active method's display label. Prefer the explicit override (which
+  // carries slider-dialed values like "MMD-4"), keeping "PR" short for the
+  // default so the common case still reads "… under PR".
+  const activeMethodLabel = methodLabel ?? (method === 'PR' ? 'PR' : METHOD_LABELS[method]);
+
   // Projected stat-card label. In sandbox, surface the active method and
   // any house expansion so the user sees what's driving the numbers.
   let projectedLabel: string;
@@ -81,15 +93,8 @@ export function NationalSummary({
     projectedLabel = 'Projected under PR (2024)';
   } else if (viewMode === 'sandbox') {
     const parts = ['sandbox'];
-    if (method !== 'PR') parts.push(METHOD_LABELS[method]);
     if (houseSize !== DEFAULT_HOUSE_SIZE) parts.push(`${houseSize} seats`);
-    projectedLabel = `Projected under ${method === 'PR' ? 'PR' : METHOD_LABELS[method]} (${parts.join(' · ')})`;
-    // Avoid double-mentioning the method in the parenthetical.
-    if (method !== 'PR') {
-      const cleanedParts = ['sandbox'];
-      if (houseSize !== DEFAULT_HOUSE_SIZE) cleanedParts.push(`${houseSize} seats`);
-      projectedLabel = `Projected under ${METHOD_LABELS[method]} (${cleanedParts.join(' · ')})`;
-    }
+    projectedLabel = `Projected under ${activeMethodLabel} (${parts.join(' · ')})`;
   } else {
     projectedLabel = 'Projected under PR';
   }
@@ -111,7 +116,7 @@ export function NationalSummary({
   const disabledTooltip = hasMinors
     ? 'Disabled while minor parties are active'
     : method !== 'PR'
-      ? `Disabled under ${METHOD_LABELS[method]}`
+      ? `Disabled under ${activeMethodLabel}`
       : houseSize !== DEFAULT_HOUSE_SIZE
         ? `Disabled with House size = ${houseSize}`
         : '';
@@ -165,7 +170,7 @@ export function NationalSummary({
             }
           />
           <SummaryStat
-            label="Difference under PR"
+            label={viewMode === 'sandbox' ? `Difference under ${activeMethodLabel}` : 'Difference under PR'}
             primary={
               extendedParties ? (
                 <span className="inline-flex items-baseline gap-2 flex-wrap text-base">
@@ -224,7 +229,9 @@ export function NationalSummary({
                 {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
               </span>
               {' · '}Method:{' '}
-              <span className="font-medium text-stone-700">Sainte-Laguë</span>
+              <span className="font-medium text-stone-700">
+                {method === 'PR' ? 'Sainte-Laguë' : activeMethodLabel}
+              </span>
             </>
           ) : (
             <>

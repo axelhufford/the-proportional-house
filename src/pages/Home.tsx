@@ -608,6 +608,7 @@ export function Home({ onMetaChange }: HomeProps) {
         viewMode={viewMode}
         sandboxPayload={sandboxPayload}
         method={method}
+        methodLabel={effective.canonicalKey === null ? effective.label : undefined}
         houseSize={houseSize}
       />
 
