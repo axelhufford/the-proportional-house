@@ -510,6 +510,17 @@ export function Home({ onMetaChange }: HomeProps) {
     return recomputeWithSwing(payload, swing);
   }, [payload, viewMode, sandboxBallot]);
 
+  // Structural-distortion baseline for the Current-view headline decomposition.
+  // PR of the *actual 2024* vote (swing = 0) minus today's 2024-elected House —
+  // i.e. the pure SMD-vs-PR distortion, the same number the 2024 Retrospective
+  // shows (computed the same way). The Current gap then decomposes exactly as
+  // structural + swing-since-2024, so the headline can attribute each honestly.
+  const structuralDGain = useMemo<number | null>(() => {
+    if (!payload) return null;
+    const retro = recomputeWithSwing(payload, 0).national;
+    return retro.projected.d_seats - payload.national.actual.d_seats;
+  }, [payload]);
+
   // Sandbox payload: built whenever the user is in Sandbox view, so that
   // method + house-size + minors + threshold + ballot ALL drive the map,
   // tooltip, national totals, and state detail. When minors.length === 0
@@ -612,7 +623,11 @@ export function Home({ onMetaChange }: HomeProps) {
 
   return (
     <>
-      <HomeHero payload={effectivePayload} viewMode={viewMode} />
+      <HomeHero
+        payload={effectivePayload}
+        viewMode={viewMode}
+        structuralDGain={structuralDGain ?? undefined}
+      />
       <NationalSummary
         payload={effectivePayload}
         viewMode={viewMode}
@@ -620,6 +635,7 @@ export function Home({ onMetaChange }: HomeProps) {
         method={method}
         methodLabel={effective.canonicalKey === null ? effective.label : undefined}
         houseSize={houseSize}
+        structuralDGain={structuralDGain ?? undefined}
       />
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-5">

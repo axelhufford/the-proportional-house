@@ -27,6 +27,12 @@ interface Props {
   methodLabel?: string;
   /** Active House size — affects label + share-disable rule. */
   houseSize?: number;
+  /**
+   * Structural component of the Current-view gap (D seats): PR of the actual
+   * 2024 vote minus today's House. Used to annotate the "Difference under PR"
+   * card with the structural-vs-swing split. Current view only.
+   */
+  structuralDGain?: number;
 }
 
 export function NationalSummary({
@@ -36,6 +42,7 @@ export function NationalSummary({
   method = 'PR',
   methodLabel,
   houseSize = DEFAULT_HOUSE_SIZE,
+  structuralDGain,
 }: Props) {
   const { national, meta } = payload;
 
@@ -83,6 +90,17 @@ export function NationalSummary({
   const baselineR = sandboxTotals ? sandboxTotals.actual_scaled.r_seats : national.actual.r_seats;
   const dGain = projectedD - baselineD;
   const houseExpanded = !!sandboxPayload && sandboxPayload.house_size !== DEFAULT_HOUSE_SIZE;
+  // Current-view decomposition: the gap = structural (PR of the 2024 vote vs.
+  // today's House) + the swing since 2024. Annotate the Difference card so the
+  // gap isn't read as purely structural (it mostly isn't).
+  const showDecomposition = viewMode === 'current' && !sandboxPayload && structuralDGain != null;
+  const swingDGain = structuralDGain != null ? dGain - structuralDGain : 0;
+  const signedD = (v: number) => `${v >= 0 ? '+' : '−'}${Math.abs(v)} D`;
+  const differenceNote = houseExpanded
+    ? `vs. today’s split scaled to ${projectedTotal} seats`
+    : showDecomposition
+      ? `≈ ${signedD(structuralDGain as number)} structural · ${signedD(swingDGain)} since 2024`
+      : undefined;
   const generic = meta.generic_ballot_margin;
   const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
   const baseline = meta.baseline_2024_margin;
@@ -179,7 +197,7 @@ export function NationalSummary({
           />
           <SummaryStat
             label={viewMode === 'sandbox' ? `Difference under ${activeMethodLabel}` : 'Difference under PR'}
-            note={houseExpanded ? `vs. today’s split scaled to ${projectedTotal} seats` : undefined}
+            note={differenceNote}
             primary={
               extendedParties ? (
                 <span className="inline-flex items-baseline gap-2 flex-wrap text-base">

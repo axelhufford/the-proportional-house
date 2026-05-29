@@ -15,9 +15,17 @@ import type { ProjectionPayload, ViewMode } from '../lib/types';
 interface Props {
   payload: ProjectionPayload;
   viewMode: ViewMode;
+  /**
+   * Structural component of the Current-view gap (D seats): PR of the *actual
+   * 2024* vote minus today's 2024-elected House — the pure SMD-vs-PR
+   * distortion. The Current gap decomposes as structural + swing-since-2024,
+   * so the lede can attribute each piece honestly. Optional (absent until the
+   * payload loads); the lede falls back to a non-decomposed sentence.
+   */
+  structuralDGain?: number;
 }
 
-export function HomeHero({ payload, viewMode }: Props) {
+export function HomeHero({ payload, viewMode, structuralDGain }: Props) {
   const { national, meta } = payload;
   // Positive means PR gives more seats to Democrats than today; negative
   // means the current system already favors Democrats (so PR would shift
@@ -84,7 +92,11 @@ export function HomeHero({ payload, viewMode }: Props) {
       );
     }
   } else {
-    // Current: live projection.
+    // Current: live projection. The headline gap (today's 2024-elected House vs.
+    // PR of the *projected* vote) blends two effects, so we name both instead of
+    // calling it all "structural" — which it mostly isn't:
+    //   structural = PR of the 2024 vote − today's House (the SMD-vs-PR distortion)
+    //   swing      = the rest, from the generic-ballot move since 2024
     if (dGain === 0) {
       lede = (
         <>
@@ -92,24 +104,58 @@ export function HomeHero({ payload, viewMode }: Props) {
           projected statewide vote would deliver. The map shows state-by-state shifts.
         </>
       );
-    } else if (dGain > 0) {
-      lede = (
-        <>
-          Right now, Republicans hold{' '}
-          <strong className="text-red-700">{absGain} more House seats</strong>{' '}
-          than they would under proportional allocation of the projected statewide vote: a
-          structural advantage built into single-member districts.
-        </>
-      );
     } else {
-      lede = (
+      const overParty = dGain > 0 ? 'Republicans' : 'Democrats';
+      const overColor = dGain > 0 ? 'text-red-700' : 'text-blue-700';
+      const main = (
         <>
-          Right now, Democrats hold{' '}
-          <strong className="text-blue-700">{absGain} more House seats</strong>{' '}
-          than they would under proportional allocation of the projected statewide vote: a
-          structural advantage built into single-member districts.
+          Right now, the House — elected in 2024 — seats{' '}
+          <strong className={overColor}>{overParty} {absGain} more</strong>{' '}
+          than proportional allocation of the projected statewide vote would.
         </>
       );
+      if (structuralDGain == null) {
+        lede = main;
+      } else {
+        const swing = dGain - structuralDGain;
+        const absStruct = Math.abs(structuralDGain);
+        const absSwing = Math.abs(swing);
+        const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
+        const towardWord = (v: number) =>
+          v > 0 ? 'toward Democrats' : v < 0 ? 'toward Republicans' : '';
+        const partyWord = (v: number) =>
+          v > 0 ? 'Democratic' : v < 0 ? 'Republican' : '';
+        const structPhrase =
+          absStruct === 0
+            ? 'have left the seat split essentially unchanged'
+            : `have shifted only about ${absStruct} ${seats(absStruct)} ${towardWord(structuralDGain)}`;
+        lede = (
+          <>
+            {main}{' '}
+            That gap is mostly the{' '}
+            {absSwing >= absStruct
+              ? 'swing in the national mood since 2024, not the map itself'
+              : 'current map’s structural lean, not the swing since 2024'}
+            : proportional allocation of the <em>2024</em> vote alone — same election, no
+            swing — would {structPhrase} (the{' '}
+            <Link
+              to="/?view=retrospective"
+              className="underline underline-offset-2 hover:text-brand-navy"
+            >
+              2024 Retrospective
+            </Link>
+            )
+            {absSwing === 0 ? (
+              <>.</>
+            ) : (
+              <>
+                , with the remaining ~{absSwing} {seats(absSwing)} coming from the{' '}
+                {partyWord(swing)} swing in the generic ballot since 2024.
+              </>
+            )}
+          </>
+        );
+      }
     }
   }
 
