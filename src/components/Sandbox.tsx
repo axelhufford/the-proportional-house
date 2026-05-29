@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import {
   ALL_METHODS,
   METHOD_DESCRIPTIONS,
@@ -62,6 +63,7 @@ function fmtMargin(pts: number): string {
 const THRESHOLD_MIN = 0;
 const THRESHOLD_MAX = 0.1;
 const THRESHOLD_STEP = 0.005;
+const DEFAULT_THRESHOLD = 0.05;
 
 const HOUSE_SIZE_MIN = 435;
 const HOUSE_SIZE_MAX = 800;
@@ -118,84 +120,158 @@ export function Sandbox({
         ? '+ Add fourth party'
         : '+ Add fifth party';
 
+  // Quick scenarios — one click sets several knobs at once so a newcomer can
+  // see a real reform without first understanding every control. They compose
+  // the same callbacks the manual controls use; onMethodChange also clears any
+  // magnitude/share override, so these land on canonical methods. The
+  // generic-ballot margin is intentionally left untouched.
+  const SCENARIOS: { label: string; title: string; apply: () => void }[] = [
+    {
+      label: 'Two new parties',
+      title: 'Add a Progressive Left and America First party, with a 5% threshold.',
+      apply: () => {
+        onMinorsChange([defaultMinorState('PROG'), defaultMinorState('AF')]);
+        onThresholdChange(DEFAULT_THRESHOLD);
+        onMethodChange('PR');
+        onHouseSizeChange(DEFAULT_HOUSE_SIZE);
+      },
+    },
+    {
+      label: 'Mixed-member (Germany)',
+      title: 'Half single-member districts, half proportional list — the German/NZ system.',
+      apply: () => {
+        onMinorsChange([]);
+        onMethodChange('MMP-50');
+        onHouseSizeChange(DEFAULT_HOUSE_SIZE);
+      },
+    },
+    {
+      label: 'Multi-member districts',
+      title: 'Group seats into 5-seat districts with PR inside each.',
+      apply: () => {
+        onMinorsChange([]);
+        onMethodChange('MMD-5');
+        onHouseSizeChange(DEFAULT_HOUSE_SIZE);
+      },
+    },
+    {
+      label: 'Bigger House',
+      title: `Expand the House to ${wyomingRuleHouseSize} seats (the Wyoming Rule).`,
+      apply: () => {
+        onMinorsChange([]);
+        onMethodChange('PR');
+        onHouseSizeChange(wyomingRuleHouseSize);
+      },
+    },
+  ];
+  const resetSandbox = () => {
+    onMinorsChange([]);
+    onThresholdChange(DEFAULT_THRESHOLD);
+    onMethodChange('PR');
+    onHouseSizeChange(DEFAULT_HOUSE_SIZE);
+  };
+
   return (
     <div className="border border-stone-200 bg-stone-50 rounded-lg p-4">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <div>
-          <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">
-            Hypothetical generic ballot
-          </div>
-          <div className="text-2xl font-semibold tabular-nums mt-1">
+      {/* Orientation: what this is + that everything updates live. */}
+      <p className="text-sm text-stone-600 leading-relaxed">
+        Build a what-if. Adjust the national mood, the parties, how seats are awarded, and the
+        size of the House — the map, the totals above, and the comparison table all update instantly.
+      </p>
+
+      {/* Quick scenarios — the approachable entry point. Navy outline pills set
+        * them apart from the stone preset/method buttons below. */}
+      <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+        <span className="text-stone-500 font-medium self-center">New here? Try —</span>
+        {SCENARIOS.map((s) => (
+          <button
+            key={s.label}
+            type="button"
+            onClick={s.apply}
+            title={s.title}
+            className="px-3 py-1.5 sm:py-1 rounded-full border border-brand-navy/30 text-brand-navy hover:bg-brand-navy/5 transition-colors"
+          >
+            {s.label}
+          </button>
+        ))}
+        <button
+          type="button"
+          onClick={resetSandbox}
+          className="px-3 py-1.5 sm:py-1 rounded-full border border-stone-300 text-stone-600 hover:bg-stone-100 transition-colors"
+        >
+          Reset
+        </button>
+      </div>
+
+      {/* 1 — The national mood (generic ballot). */}
+      <Group
+        first
+        title="The national mood"
+        sub="hypothetical generic ballot"
+        description="Set a hypothetical national margin. Each state shifts from its 2024 result, scaled by how sharply it swings versus the nation (its elasticity)."
+      >
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <div className="text-2xl font-semibold tabular-nums">
             <span className={genericBallot >= 0 ? 'text-blue-700' : 'text-red-700'}>
               {fmtMargin(genericBallot)}
             </span>
           </div>
-        </div>
-        <div className="text-xs text-stone-600">
-          Resulting national swing vs. 2024 baseline ({fmtMargin(baseline2024)}):{' '}
-          <span className={swing >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
-            {swing >= 0 ? '+' : ''}{swing.toFixed(1)} pts toward {swing >= 0 ? 'D' : 'R'}
-          </span>
-          <div className="text-stone-500 mt-1">
-            Each state’s projection uses this national swing × that state’s elasticity.
+          <div className="text-xs text-stone-600">
+            Resulting national swing vs. 2024 baseline ({fmtMargin(baseline2024)}):{' '}
+            <span className={swing >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
+              {swing >= 0 ? '+' : ''}{swing.toFixed(1)} pts toward {swing >= 0 ? 'D' : 'R'}
+            </span>
           </div>
         </div>
-      </div>
 
-      <div className="mt-4 relative">
-        <input
-          type="range"
-          min={MIN}
-          max={MAX}
-          step={STEP}
-          value={genericBallot}
-          onChange={(e) => onChange(Number(e.target.value))}
-          aria-label="Hypothetical generic ballot margin"
-          aria-valuetext={fmtMargin(genericBallot)}
-          className="w-full accent-stone-900"
-        />
-        <div className="mt-1 flex justify-between text-xs text-stone-500 tabular-nums">
-          <span>R+{Math.abs(MIN)}</span>
-          <span>Tie</span>
-          <span>D+{MAX}</span>
-        </div>
-      </div>
-
-      <div className="mt-3 flex flex-wrap gap-2 text-xs">
-        <span className="text-stone-500 uppercase tracking-wider self-center">Presets:</span>
-        {PRESETS.map((p) => {
-          const active = Math.abs(p.value - genericBallot) < STEP / 2;
-          return (
-            <button
-              key={p.label}
-              type="button"
-              onClick={() => onChange(p.value)}
-              className={[
-                'px-3 py-1.5 sm:px-2 sm:py-1 rounded border',
-                active
-                  ? 'bg-stone-900 text-white border-stone-900'
-                  : 'border-stone-300 text-stone-700 hover:bg-stone-100',
-              ].join(' ')}
-            >
-              {p.label}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Extended-mode controls: minor parties + threshold. Additive — when
-        * no minors are active, the sandbox behaves exactly as before. */}
-      <div className="mt-5 pt-4 border-t border-stone-200 space-y-3">
-        <div className="flex items-baseline justify-between gap-2">
-          <div>
-            <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">
-              Add minor parties
-            </div>
-            <div className="text-xs text-stone-500 mt-0.5">
-              See how a coalition split would change every state’s projected delegation.
-            </div>
+        <div className="mt-3 relative">
+          <input
+            type="range"
+            min={MIN}
+            max={MAX}
+            step={STEP}
+            value={genericBallot}
+            onChange={(e) => onChange(Number(e.target.value))}
+            aria-label="Hypothetical generic ballot margin"
+            aria-valuetext={fmtMargin(genericBallot)}
+            className="w-full accent-stone-900"
+          />
+          <div className="mt-1 flex justify-between text-xs text-stone-500 tabular-nums">
+            <span>R+{Math.abs(MIN)}</span>
+            <span>Tie</span>
+            <span>D+{MAX}</span>
           </div>
-          {minors.length < MAX_MINORS && (
+        </div>
+
+        <div className="mt-3 flex flex-wrap gap-2 text-xs">
+          <span className="text-stone-500 uppercase tracking-wider self-center">Presets:</span>
+          {PRESETS.map((p) => {
+            const active = Math.abs(p.value - genericBallot) < STEP / 2;
+            return (
+              <button
+                key={p.label}
+                type="button"
+                onClick={() => onChange(p.value)}
+                className={[
+                  'px-3 py-1.5 sm:px-2 sm:py-1 rounded border',
+                  active
+                    ? 'bg-stone-900 text-white border-stone-900'
+                    : 'border-stone-300 text-stone-700 hover:bg-stone-100',
+                ].join(' ')}
+              >
+                {p.label}
+              </button>
+            );
+          })}
+        </div>
+      </Group>
+
+      {/* 2 — Add more parties (minors + threshold). */}
+      <Group
+        title="Add more parties"
+        description="Split the vote with up to three extra parties and watch the seats divide. The threshold below can shut out the smallest."
+        value={
+          minors.length < MAX_MINORS ? (
             <button
               type="button"
               onClick={addMinor}
@@ -203,202 +279,235 @@ export function Sandbox({
             >
               {addButtonLabel}
             </button>
-          )}
-        </div>
+          ) : undefined
+        }
+      >
+        {minors.length === 0 ? (
+          <p className="text-xs text-stone-500">
+            No extra parties yet — add one to model a coalition split.
+          </p>
+        ) : (
+          <div className="space-y-3">
+            {minors.map((m, i) => (
+              <MinorPartyControls
+                key={m.id ?? i}
+                slot={(i + 1) as 1 | 2 | 3}
+                state={m}
+                onChange={(next) => updateMinor(i, next)}
+                onRemove={() => removeMinor(i)}
+              />
+            ))}
 
-        {minors.map((m, i) => (
-          <MinorPartyControls
-            key={m.id ?? i}
-            slot={(i + 1) as 1 | 2 | 3}
-            state={m}
-            onChange={(next) => updateMinor(i, next)}
-            onRemove={() => removeMinor(i)}
-          />
-        ))}
-
-        {minors.length >= 1 && (
-          <div className="pt-1">
-            <div className="flex items-baseline justify-between text-xs text-stone-600 mb-1">
-              <span className="font-medium text-stone-700">Threshold (per state)</span>
-              <span className="tabular-nums font-medium text-stone-900">
-                {(threshold * 100).toFixed(1)}%
-              </span>
-            </div>
-            <input
-              type="range"
-              min={THRESHOLD_MIN}
-              max={THRESHOLD_MAX}
-              step={THRESHOLD_STEP}
-              value={threshold}
-              onChange={(e) => onThresholdChange(Number(e.target.value))}
-              aria-label="Minor party threshold"
-              aria-valuetext={`${(threshold * 100).toFixed(1)} percent`}
-              className="w-full accent-stone-900"
-            />
-            <div className="text-[10px] text-stone-500 mt-0.5">
-              Parties below this share within a state win no seats. Real PR systems usually
-              set this at 4–5%.
+            <div className="pt-1">
+              <div className="flex items-baseline justify-between text-xs text-stone-600 mb-1">
+                <span className="font-medium text-stone-700">Threshold (per state)</span>
+                <span className="tabular-nums font-medium text-stone-900">
+                  {(threshold * 100).toFixed(1)}%
+                </span>
+              </div>
+              <input
+                type="range"
+                min={THRESHOLD_MIN}
+                max={THRESHOLD_MAX}
+                step={THRESHOLD_STEP}
+                value={threshold}
+                onChange={(e) => onThresholdChange(Number(e.target.value))}
+                aria-label="Minor party threshold"
+                aria-valuetext={`${(threshold * 100).toFixed(1)} percent`}
+                className="w-full accent-stone-900"
+              />
+              <p className="text-xs text-stone-500 mt-1">
+                Parties below this share within a state win no seats. Real PR systems usually set
+                this at 4–5%.
+              </p>
             </div>
           </div>
         )}
+      </Group>
 
-        {/* Allocation method picker. Always visible in Sandbox — even without
-          * minor parties, swapping between Pure PR / MMD-3 / MMD-5 / MMP-50
-          * shows how reform models differ for the standard two-party scenario. */}
-        <div className="pt-2 border-t border-stone-200">
-          <div className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">
-            Allocation method
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {ALL_METHODS.map((m) => {
-              // Highlight keys off the *effective* method, so MMD-3 lights up
-              // only at magnitude 3, MMD-5 at 5, MMP-50 at 50% — and nothing
-              // lights up at off-grid slider values (the slider shows them).
-              const active = m === effective.canonicalKey;
-              return (
-                <button
-                  key={m}
-                  type="button"
-                  onClick={() => onMethodChange(m)}
-                  title={METHOD_DESCRIPTIONS[m]}
-                  className={[
-                    'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
-                    active
-                      ? 'bg-stone-900 text-white border-stone-900'
-                      : 'border-stone-300 text-stone-700 hover:bg-stone-100',
-                  ].join(' ')}
-                  aria-pressed={active}
-                >
-                  {METHOD_LABELS[m]}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Contextual refinement slider. MMD methods expose district
-            * magnitude; MMP exposes the single-member share. Dragging off a
-            * preset value (e.g. MMD-4, MMP-30) de-highlights the preset
-            * buttons and adds a "current" row to the comparison table. */}
-          {effective.family === 'MMD' && (
-            <div className="mt-3">
-              <div className="flex items-baseline justify-between gap-2">
-                <label htmlFor="mmd-magnitude" className="text-[11px] text-stone-600">
-                  District magnitude
-                </label>
-                <span className="tabular-nums text-xs font-medium text-stone-900">
-                  {effective.size}-seat districts
-                </span>
-              </div>
-              <input
-                id="mmd-magnitude"
-                type="range"
-                min={MMD_MIN}
-                max={MMD_MAX}
-                step={1}
-                value={effective.size ?? 3}
-                onChange={(e) => onMmdMagnitudeChange(Number(e.target.value))}
-                aria-label="District magnitude"
-                aria-valuetext={`${effective.size} seats per district`}
-                className="w-full accent-stone-900 mt-1"
-              />
-              <div className="text-[10px] text-stone-500 mt-1">
-                Bigger districts → more proportional. {MMD_MIN} approaches today’s single-member
-                map; {MMD_MAX} approaches statewide PR.
-              </div>
-            </div>
-          )}
-          {effective.family === 'MMP' && (
-            <div className="mt-3">
-              <div className="flex items-baseline justify-between gap-2">
-                <label htmlFor="mmp-smd-share" className="text-[11px] text-stone-600">
-                  Single-member share
-                </label>
-                <span className="tabular-nums text-xs font-medium text-stone-900">
-                  {Math.round((effective.smdShare ?? 0.5) * 100)}% district / {100 - Math.round((effective.smdShare ?? 0.5) * 100)}% list
-                </span>
-              </div>
-              <input
-                id="mmp-smd-share"
-                type="range"
-                min={MMP_PCT_MIN}
-                max={MMP_PCT_MAX}
-                step={MMP_PCT_STEP}
-                value={Math.round((effective.smdShare ?? 0.5) * 100)}
-                onChange={(e) => onMmpSmdShareChange(Number(e.target.value) / 100)}
-                aria-label="Single-member district share"
-                aria-valuetext={`${Math.round((effective.smdShare ?? 0.5) * 100)} percent single-member`}
-                className="w-full accent-stone-900 mt-1"
-              />
-              <div className="text-[10px] text-stone-500 mt-1">
-                Fewer single-member seats → more proportional (the list tier compensates further).
-              </div>
-            </div>
-          )}
-
-          <div className="text-[10px] text-stone-500 mt-1.5">
-            {METHOD_DESCRIPTIONS[method]}
-          </div>
+      {/* 3 — How seats are awarded (allocation method). */}
+      <Group
+        title="How seats are awarded"
+        description="From pure proportional to mixed-member districts. Pick a system — the note below explains what it does."
+      >
+        <div className="flex flex-wrap gap-1.5">
+          {ALL_METHODS.map((m) => {
+            // Highlight keys off the *effective* method, so MMD-3 lights up
+            // only at magnitude 3, MMD-5 at 5, MMP-50 at 50% — and nothing
+            // lights up at off-grid slider values (the slider shows them).
+            const active = m === effective.canonicalKey;
+            return (
+              <button
+                key={m}
+                type="button"
+                onClick={() => onMethodChange(m)}
+                title={METHOD_DESCRIPTIONS[m]}
+                className={[
+                  'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
+                  active
+                    ? 'bg-stone-900 text-white border-stone-900'
+                    : 'border-stone-300 text-stone-700 hover:bg-stone-100',
+                ].join(' ')}
+                aria-pressed={active}
+              >
+                {METHOD_LABELS[m]}
+              </button>
+            );
+          })}
         </div>
 
-        {/* House size control. The House has been frozen at 435 seats since
-          * the 1929 Permanent Apportionment Act — but the number isn't in
-          * the Constitution. Three presets cover the main reform proposals
-          * (Wyoming Rule, cube root rule), plus a fine-grained slider.
-          * "Actual today" in the comparison table always stays at 435; only
-          * the reform-method rows reflect the expanded size. */}
-        <div className="pt-2 border-t border-stone-200">
-          <div className="flex items-baseline justify-between gap-2 mb-2">
-            <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">
-              House size
+        {/* Contextual refinement slider. MMD methods expose district
+          * magnitude; MMP exposes the single-member share. Dragging off a
+          * preset value (e.g. MMD-4, MMP-30) de-highlights the preset
+          * buttons and adds a "current" row to the comparison table. */}
+        {effective.family === 'MMD' && (
+          <div className="mt-3">
+            <div className="flex items-baseline justify-between gap-2">
+              <label htmlFor="mmd-magnitude" className="text-xs text-stone-600">
+                District magnitude
+              </label>
+              <span className="tabular-nums text-xs font-medium text-stone-900">
+                {effective.size}-seat districts
+              </span>
             </div>
-            <span className="tabular-nums font-medium text-stone-900">
-              {houseSize} seats
-            </span>
+            <input
+              id="mmd-magnitude"
+              type="range"
+              min={MMD_MIN}
+              max={MMD_MAX}
+              step={1}
+              value={effective.size ?? 3}
+              onChange={(e) => onMmdMagnitudeChange(Number(e.target.value))}
+              aria-label="District magnitude"
+              aria-valuetext={`${effective.size} seats per district`}
+              className="w-full accent-stone-900 mt-1"
+            />
+            <p className="text-xs text-stone-500 mt-1">
+              Bigger districts → more proportional. {MMD_MIN} approaches today’s single-member
+              map; {MMD_MAX} approaches statewide PR.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {[
-              { label: '435 (today)', value: DEFAULT_HOUSE_SIZE, title: 'Current US House size, frozen by the 1929 Permanent Apportionment Act.' },
-              { label: `${wyomingRuleHouseSize} (Wyoming Rule)`, value: wyomingRuleHouseSize, title: 'Cap district population at the smallest state’s. ~573 today.' },
-              { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: 'House size ≈ ∛(US population). ~692 today (Taagepera and Shugart, 1989).' },
-            ].map((p) => {
-              const active = p.value === houseSize;
-              return (
-                <button
-                  key={p.label}
-                  type="button"
-                  onClick={() => onHouseSizeChange(p.value)}
-                  title={p.title}
-                  className={[
-                    'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
-                    active
-                      ? 'bg-stone-900 text-white border-stone-900'
-                      : 'border-stone-300 text-stone-700 hover:bg-stone-100',
-                  ].join(' ')}
-                  aria-pressed={active}
-                >
-                  {p.label}
-                </button>
-              );
-            })}
+        )}
+        {effective.family === 'MMP' && (
+          <div className="mt-3">
+            <div className="flex items-baseline justify-between gap-2">
+              <label htmlFor="mmp-smd-share" className="text-xs text-stone-600">
+                Single-member share
+              </label>
+              <span className="tabular-nums text-xs font-medium text-stone-900">
+                {Math.round((effective.smdShare ?? 0.5) * 100)}% district / {100 - Math.round((effective.smdShare ?? 0.5) * 100)}% list
+              </span>
+            </div>
+            <input
+              id="mmp-smd-share"
+              type="range"
+              min={MMP_PCT_MIN}
+              max={MMP_PCT_MAX}
+              step={MMP_PCT_STEP}
+              value={Math.round((effective.smdShare ?? 0.5) * 100)}
+              onChange={(e) => onMmpSmdShareChange(Number(e.target.value) / 100)}
+              aria-label="Single-member district share"
+              aria-valuetext={`${Math.round((effective.smdShare ?? 0.5) * 100)} percent single-member`}
+              className="w-full accent-stone-900 mt-1"
+            />
+            <p className="text-xs text-stone-500 mt-1">
+              Fewer single-member seats → more proportional (the list tier compensates further).
+            </p>
           </div>
-          <input
-            type="range"
-            min={HOUSE_SIZE_MIN}
-            max={HOUSE_SIZE_MAX}
-            step={1}
-            value={houseSize}
-            onChange={(e) => onHouseSizeChange(Number(e.target.value))}
-            aria-label="House size slider"
-            aria-valuetext={`${houseSize} seats`}
-            className="w-full accent-stone-900 mt-2"
-          />
-          <div className="text-[10px] text-stone-500 mt-1">
-            Seats reapportion among states via Huntington-Hill, the same method the real US
-            House uses. “Actual today” in the comparison table stays at 435; reform rows reflect
-            the chosen size.
-          </div>
+        )}
+
+        <p className="text-xs text-stone-600 mt-2">{METHOD_DESCRIPTIONS[method]}</p>
+      </Group>
+
+      {/* 4 — Size of the House. */}
+      <Group
+        title="Size of the House"
+        description="The 435 cap is a 1929 law, not the Constitution. A bigger chamber makes each state’s seats more proportional."
+        value={<span className="tabular-nums font-medium text-stone-900">{houseSize} seats</span>}
+      >
+        <div className="flex flex-wrap gap-1.5">
+          {[
+            { label: '435 (today)', value: DEFAULT_HOUSE_SIZE, title: 'Current US House size, frozen by the 1929 Permanent Apportionment Act.' },
+            { label: `${wyomingRuleHouseSize} (Wyoming Rule)`, value: wyomingRuleHouseSize, title: 'Cap district population at the smallest state’s. ~573 today.' },
+            { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: 'House size ≈ ∛(US population). ~692 today (Taagepera and Shugart, 1989).' },
+          ].map((p) => {
+            const active = p.value === houseSize;
+            return (
+              <button
+                key={p.label}
+                type="button"
+                onClick={() => onHouseSizeChange(p.value)}
+                title={p.title}
+                className={[
+                  'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
+                  active
+                    ? 'bg-stone-900 text-white border-stone-900'
+                    : 'border-stone-300 text-stone-700 hover:bg-stone-100',
+                ].join(' ')}
+                aria-pressed={active}
+              >
+                {p.label}
+              </button>
+            );
+          })}
         </div>
-      </div>
+        <input
+          type="range"
+          min={HOUSE_SIZE_MIN}
+          max={HOUSE_SIZE_MAX}
+          step={1}
+          value={houseSize}
+          onChange={(e) => onHouseSizeChange(Number(e.target.value))}
+          aria-label="House size slider"
+          aria-valuetext={`${houseSize} seats`}
+          className="w-full accent-stone-900 mt-2"
+        />
+        <p className="text-xs text-stone-500 mt-1">
+          Seats reapportion among states via Huntington-Hill, the same method the real US House
+          uses. “Actual today” in the comparison table stays at 435; reform rows reflect the chosen
+          size.
+        </p>
+      </Group>
     </div>
+  );
+}
+
+/**
+ * Consistent header + chrome for one Sandbox control group: a bold plain-English
+ * title (with an optional secondary technical label), an optional right-aligned
+ * value/action, and a readable one-line description. Sections after the first
+ * get a top border + spacing so the four levers read as parallel, scannable
+ * groups rather than a single wall of inputs.
+ */
+function Group({
+  title,
+  sub,
+  description,
+  value,
+  first = false,
+  children,
+}: {
+  title: string;
+  sub?: string;
+  description?: string;
+  value?: ReactNode;
+  first?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      aria-label={title}
+      className={first ? 'mt-5' : 'mt-5 pt-5 border-t border-stone-200'}
+    >
+      <div className="flex items-baseline justify-between gap-2">
+        <h3 className="text-sm font-semibold text-stone-900">
+          {title}
+          {sub && <span className="ml-2 text-xs font-normal text-stone-400">{sub}</span>}
+        </h3>
+        {value}
+      </div>
+      {description && <p className="text-xs text-stone-600 mt-1 mb-3 max-w-prose">{description}</p>}
+      {children}
+    </section>
   );
 }
