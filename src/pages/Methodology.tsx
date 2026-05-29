@@ -22,7 +22,7 @@ interface MetaJson {
 export function Methodology(_props: MethodologyProps) {
   useDocumentTitle(
     'Methodology · The Proportional House',
-    'How the projection works: data sources, Sainte-Laguë allocation, state elasticity, uncontested-race imputation, and limitations.',
+    'How the projection works: data sources, Sainte-Laguë allocation, state elasticity, the Sandbox’s allocation methods (PR, MMD, MMP) and House-size expansion, uncontested-race imputation, and limitations.',
     '/methodology',
   );
 
@@ -100,7 +100,10 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           and <Link to="/?view=retrospective" className="underline hover:text-brand-navy">2024 Retrospective</Link>{' '}
           views each show one computed outcome, the <strong>Sandbox</strong> is the interactive
           calculator. You set assumptions, and every state’s projected delegation, the national
-          totals, and the map all recompute on the fly. Three knobs are available:
+          totals, and the map all recompute on the fly. If you’d rather see a reform than build
+          one, a row of one-click <strong>Quick scenarios</strong> (Two new parties, Mixed-member,
+          Multi-member districts, Bigger House, Reset) sets several knobs at once. Four knobs are
+          available:
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
@@ -113,18 +116,26 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             name, color, and draw ratio. Covered in detail in the next subsection.
           </li>
           <li>
-            <strong>Allocation method</strong>: toggle between Pure PR, multi-member districts
-            (MMD-3, MMD-5), or mixed-member proportional (MMP-50). Covered below in
+            <strong>Allocation method</strong>: toggle between Pure PR (Sainte-Laguë, D’Hondt, or
+            Hamilton), multi-member districts, or mixed-member proportional. For MMD and MMP a
+            slider then fine-tunes the district size and the single-member share. Covered below in
             “Allocation methods.”
+          </li>
+          <li>
+            <strong>House size</strong>: keep today’s 435, jump to the Wyoming Rule (~573) or cube
+            root (~692) preset, or set any size with the slider. Covered below in “House size.”
           </li>
         </ul>
         <p>
           A <strong>comparison table</strong> at the bottom of the Sandbox view shows national
           seat totals under every allocation method side-by-side, given your current settings,
-          so you can compare reform models without flipping the picker.
+          so you can compare reform models without flipping the picker. When you dial an MMD/MMP
+          slider to a non-preset value, a labeled “current” row is inserted so your exact setting
+          appears alongside the named reference points.
         </p>
         <p>
-          Sandbox state is captured in the URL (<code>?view=sandbox&amp;ballot=…&amp;minor1=…&amp;method=…</code>),
+          Sandbox state is captured in the URL (e.g.{' '}
+          <code>?view=sandbox&amp;ballot=…&amp;minor1=…&amp;method=mmd-4&amp;house=wyoming</code>),
           so any scenario you set up is a sharable link.
         </p>
 
@@ -193,7 +204,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           A naming-convention note: the number after MMD is the <em>district size in seats</em>{' '}
           (MMD-3 = 3-seat districts, MMD-5 = 5-seat districts). The number after MMP is the{' '}
           <em>percentage of seats that come from single-member districts</em> (MMP-50 = 50% SMD +
-          50% list).
+          50% list). Both numbers are adjustable in the Sandbox with a slider — district magnitude
+          from 2 to 10 seats, single-member share from 10% to 90% — so MMD-3/MMD-5 and MMP-50 are
+          just the named presets, not the only options.
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
@@ -210,8 +223,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             represent two parties (a third party needs ~25% of the district vote to win even one of
             three seats), and a 5-seat district lowers that threshold to roughly 17%.{' '}
             <strong>MMD-3</strong> therefore sits between today’s SMD and pure PR, and{' '}
-            <strong>MMD-5</strong> sits closer to pure PR. The Sandbox ships the two district sizes
-            that show up most often in real proposals.
+            <strong>MMD-5</strong> sits closer to pure PR. A district-magnitude slider lets you
+            sweep the size from 2 (close to today’s single-member map) up to 10 (close to statewide
+            PR); MMD-3 and MMD-5 are the presets that show up most often in real proposals.
           </li>
           <li>
             <strong>Mixed-member proportional (MMP-50).</strong> The <strong>50</strong> is the
@@ -221,8 +235,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             each party up to its proportional target. Used in Germany, New Zealand, Scotland, and
             Wales. Familiar to US voters because the local-district relationship survives: your
             congressperson is still elected from your district, with the list seats added on top
-            for proportionality. A future MMP-33 or MMP-66 slider could expose the same model at
-            different SMD/list ratios; v1 ships the 50/50 split that most reform proposals use.
+            for proportionality. A single-member-share slider (10%–90%) exposes the same model at
+            any ratio — fewer district seats lets the list tier compensate further, so a lower
+            share is more proportional; MMP-50 is the 50/50 preset most reform proposals use.
           </li>
         </ul>
         <p>
@@ -237,7 +252,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           <strong>Caveats for MMP:</strong> when a state’s actual SMD delegation already
           over-represents one party past its proportional target (the “overhang” case under heavy
           gerrymandering), Germany would expand the legislature to compensate (“Ausgleichsmandate”).
-          We keep total seats fixed at 435 for cleanliness, which means MMP can leave a small
+          We keep total seats fixed at the chosen House size for cleanliness, which means MMP can leave a small
           residual distortion in extreme overhang states. Minors get zero SMD seats by default
           (they don’t exist in today’s actual House delegations), so their seats come entirely from
           the proportional list.
@@ -332,6 +347,20 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           population &gt; 0 starts with 1 seat, then the remaining seats are assigned one at a time
           to whichever state has the highest “priority” of <code>population / √(n × (n+1))</code>,
           where <em>n</em> is its current seat count.
+        </p>
+        <p>
+          <strong>Comparing to “today” when the House grows.</strong> A bigger House gives every
+          party more seats in raw terms, so a naïve “projected minus today” difference would be
+          dominated by the added seats rather than by proportional distortion — at 573 seats both
+          parties gain seats, yet a raw subtraction would wrongly imply one of them lost ~90. To
+          isolate the reform’s actual effect, every “vs. today” comparison (the national
+          “Difference under PR” card, each state’s seat-gain line, and the Distortion map color)
+          measures against today’s delegation <em>scaled to the chosen House size</em> — the same
+          proportional scaling described below for MMP. Because that scaled baseline sums to the
+          projected chamber size, the difference is exactly zero-sum (+N D ⇔ −N R) again, and reads
+          as the genuine partisan shift. At 435 seats the scaling is the identity, so nothing
+          changes there. When the House is expanded, the summary card notes the scaled baseline and
+          each state panel labels its “Today, scaled to N” strip.
         </p>
         <p>
           <strong>MMP caveat under expansion.</strong> When the House grows, each state’s “actual
