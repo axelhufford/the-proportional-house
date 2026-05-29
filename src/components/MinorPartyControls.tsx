@@ -21,6 +21,11 @@ import {
 export type MinorPresetSelector = PresetMinorId | 'CUSTOM';
 
 export interface MinorState {
+  /**
+   * Stable per-session id, used only as a React list key so reordering
+   * (removing a middle slot) reconciles cleanly. Not serialized to the URL.
+   */
+  id?: string;
   presetId: MinorPresetSelector;
   /** Only used (and rendered) for CUSTOM. */
   label?: string;
@@ -49,10 +54,18 @@ const SLOT_ORDINAL: Record<MinorSlot, string> = {
   3: 'fifth',
 };
 
+/** Generate a stable id for a minor-party row's React key. */
+function newMinorId(): string {
+  return typeof crypto !== 'undefined' && 'randomUUID' in crypto
+    ? crypto.randomUUID()
+    : `minor-${Math.random().toString(36).slice(2)}`;
+}
+
 /** Default state for a freshly-added minor of the given preset. */
 export function defaultMinorState(presetId: MinorPresetSelector): MinorState {
   if (presetId === 'CUSTOM') {
     return {
+      id: newMinorId(),
       presetId: 'CUSTOM',
       label: '',
       share: CUSTOM_DEFAULT_SHARE,
@@ -63,6 +76,7 @@ export function defaultMinorState(presetId: MinorPresetSelector): MinorState {
   // Initialize drawD from the preset's canonical ratio so the slider
   // (now always visible — see below) lands on the brand baseline.
   return {
+    id: newMinorId(),
     presetId,
     share: DEFAULT_SHARE[presetId],
     drawD: PRESET_MINORS[presetId].draw_from.D,
@@ -89,8 +103,9 @@ export function MinorPartyControls({ slot, state, onChange, onRemove }: Props) {
   const handlePresetChange = (next: MinorPresetSelector) => {
     if (next === state.presetId) return;
     // Pulling a fresh default for the new preset feels less surprising
-    // than carrying over the current share + label.
-    onChange(defaultMinorState(next));
+    // than carrying over the current share + label. Keep the row's id so
+    // it stays the same slot (no remount) when switching presets.
+    onChange({ ...defaultMinorState(next), id: state.id });
   };
 
   return (

@@ -249,7 +249,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
                   <rect width={width} height={period} fill={p.bg} />
                   {p.stripes.map((c, i) => (
                     <line
-                      key={i}
+                      key={`stripe-${i}-${c}`}
                       x1={i * period + stripeWidth / 2}
                       y1={0}
                       x2={i * period + stripeWidth / 2}

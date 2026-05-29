@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SainteLagueDemo } from '../components/SainteLagueDemo';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionMeta } from '../lib/types';
 
 interface MethodologyProps {
@@ -28,7 +29,7 @@ export function Methodology(_props: MethodologyProps) {
   const [pipelineMeta, setPipelineMeta] = useState<MetaJson | null>(null);
 
   useEffect(() => {
-    fetch('/data/meta.json').then((r) => r.json()).then(setPipelineMeta).catch(() => {});
+    fetchJson<MetaJson>('/data/meta.json').then(setPipelineMeta).catch(() => {});
   }, []);
 
   return (

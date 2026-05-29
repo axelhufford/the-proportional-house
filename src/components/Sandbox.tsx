@@ -208,7 +208,7 @@ export function Sandbox({
 
         {minors.map((m, i) => (
           <MinorPartyControls
-            key={i}
+            key={m.id ?? i}
             slot={(i + 1) as 1 | 2 | 3}
             state={m}
             onChange={(next) => updateMinor(i, next)}

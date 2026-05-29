@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { fetchJson } from '../lib/fetchJson';
 
 interface RawPoll {
   date: string;
@@ -39,10 +40,15 @@ const WINDOW_DAYS = 30;
 const MS_PER_DAY = 86_400_000;
 
 // Module-level cache so opening the panel for State A then State B doesn't refetch.
+// On failure we clear the cache and rethrow, so a transient error doesn't pin
+// the chart to a permanent "Loading…" — the next panel open retries.
 let cache: Promise<TrendPayload> | null = null;
 function fetchTrend(): Promise<TrendPayload> {
   if (cache) return cache;
-  cache = fetch('/data/polling_trend.json').then((r) => r.json());
+  cache = fetchJson<TrendPayload>('/data/polling_trend.json').catch((e) => {
+    cache = null;
+    throw e;
+  });
   return cache;
 }
 

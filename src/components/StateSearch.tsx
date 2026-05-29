@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload, StateProjection } from '../lib/types';
 
 /**
@@ -24,8 +25,7 @@ export function StateSearch() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch('/data/projection.json')
-      .then((r) => r.json() as Promise<ProjectionPayload>)
+    fetchJson<ProjectionPayload>('/data/projection.json')
       .then((payload) => {
         if (!cancelled) setStates(payload.states);
       })

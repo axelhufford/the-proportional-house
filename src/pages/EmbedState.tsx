@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { StateDetailContent } from '../components/StateDetailContent';
 import { useEmbedHeightSync } from '../lib/embedPostMessage';
+import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload } from '../lib/types';
 
 /**
@@ -25,8 +26,7 @@ export function EmbedState() {
   }, [code]);
 
   useEffect(() => {
-    fetch('/data/projection.json')
-      .then((r) => r.json() as Promise<ProjectionPayload>)
+    fetchJson<ProjectionPayload>('/data/projection.json')
       .then(setPayload)
       .catch((e) => setError(String(e)));
   }, []);

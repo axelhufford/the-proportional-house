@@ -22,6 +22,7 @@ import {
   wyomingRuleSize,
 } from '../lib/apportionment';
 import { ALL_METHODS, resolveEffectiveMethod, type AllocationMethodKind } from '../lib/methods';
+import { fetchJson } from '../lib/fetchJson';
 import {
   buildSandboxPayload,
   DEFAULT_HOUSE_SIZE,
@@ -79,6 +80,13 @@ const HEX_RE = /^[0-9A-Fa-f]{6}$/;
  * to interpret field 4 as a 6-char hex; if it doesn't match, treats it
  * as the label (legacy path) and defaults the color to gray.
  */
+/** Stable per-session id for a restored minor's React key (not serialized). */
+function newMinorId(): string {
+  return typeof crypto !== 'undefined' && 'randomUUID' in crypto
+    ? crypto.randomUUID()
+    : `minor-${Math.random().toString(36).slice(2)}`;
+}
+
 function parseMinor(raw: string | null): MinorState | null {
   if (!raw) return null;
   const parts = raw.split(':');
@@ -95,6 +103,7 @@ function parseMinor(raw: string | null): MinorState | null {
 
   if (presetRaw === 'PROG' || presetRaw === 'AF') {
     return {
+      id: newMinorId(),
       presetId: presetRaw as MinorPresetSelector,
       share,
       drawD: explicitDrawD ?? PRESET_MINORS[presetRaw].draw_from.D,
@@ -115,6 +124,7 @@ function parseMinor(raw: string | null): MinorState | null {
     }
     const label = labelField ? decodeURIComponent(labelField) : undefined;
     return {
+      id: newMinorId(),
       presetId: 'CUSTOM',
       share,
       drawD: explicitDrawD,
@@ -349,8 +359,8 @@ export function Home({ onMetaChange }: HomeProps) {
 
   useEffect(() => {
     Promise.all([
-      fetch('/data/projection.json').then((r) => r.json()) as Promise<ProjectionPayload>,
-      fetch('/data/states-10m.json').then((r) => r.json()) as Promise<Topology>,
+      fetchJson<ProjectionPayload>('/data/projection.json'),
+      fetchJson<Topology>('/data/states-10m.json'),
     ])
       .then(([proj, topo]) => {
         setPayload(proj);

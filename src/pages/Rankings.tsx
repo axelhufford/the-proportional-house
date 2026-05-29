@@ -4,6 +4,7 @@ import type { Topology } from 'topojson-specification';
 import { RankingRow } from '../components/RankingRow';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { buildStateSilhouettes } from '../lib/stateSilhouettes';
+import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload, StateProjection } from '../lib/types';
 
 /**
@@ -42,8 +43,7 @@ export function Rankings() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/data/projection.json')
-      .then((r) => r.json() as Promise<ProjectionPayload>)
+    fetchJson<ProjectionPayload>('/data/projection.json')
       .then(setPayload)
       .catch((e) => setError(String(e)));
   }, []);
@@ -52,8 +52,7 @@ export function Rankings() {
   // best-effort) so a slow/failed map file never blocks the leaderboards —
   // rows just render without their shape chip until it resolves.
   useEffect(() => {
-    fetch('/data/states-10m.json')
-      .then((r) => r.json() as Promise<Topology>)
+    fetchJson<Topology>('/data/states-10m.json')
       .then(setTopology)
       .catch(() => setTopology(null));
   }, []);

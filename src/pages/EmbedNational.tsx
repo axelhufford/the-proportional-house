@@ -5,6 +5,7 @@ import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
 import { useEmbedHeightSync } from '../lib/embedPostMessage';
 import { recomputeWithSwing } from '../lib/swing';
+import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload, ViewMode, ColorMode } from '../lib/types';
 
 /**
@@ -57,8 +58,8 @@ export function EmbedNational() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/data/projection.json').then((r) => r.json()) as Promise<ProjectionPayload>,
-      fetch('/data/states-10m.json').then((r) => r.json()) as Promise<Topology>,
+      fetchJson<ProjectionPayload>('/data/projection.json'),
+      fetchJson<Topology>('/data/states-10m.json'),
     ])
       .then(([proj, topo]) => {
         setPayload(proj);
