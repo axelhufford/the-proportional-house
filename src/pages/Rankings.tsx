@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import type { Topology } from 'topojson-specification';
 import { RankingRow } from '../components/RankingRow';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { buildStateSilhouettes } from '../lib/stateSilhouettes';
 import type { ProjectionPayload, StateProjection } from '../lib/types';
 
 /**
@@ -36,6 +38,7 @@ export function Rankings() {
   );
 
   const [payload, setPayload] = useState<ProjectionPayload | null>(null);
+  const [topology, setTopology] = useState<Topology | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -44,6 +47,21 @@ export function Rankings() {
       .then(setPayload)
       .catch((e) => setError(String(e)));
   }, []);
+
+  // Topology drives the per-row state silhouettes. Fetched separately (and
+  // best-effort) so a slow/failed map file never blocks the leaderboards —
+  // rows just render without their shape chip until it resolves.
+  useEffect(() => {
+    fetch('/data/states-10m.json')
+      .then((r) => r.json() as Promise<Topology>)
+      .then(setTopology)
+      .catch(() => setTopology(null));
+  }, []);
+
+  const silhouettes = useMemo(
+    () => (topology ? buildStateSilhouettes(topology) : null),
+    [topology],
+  );
 
   const leaderboards = useMemo<Leaderboard[] | null>(() => {
     if (!payload) return null;
@@ -217,7 +235,12 @@ export function Rankings() {
             <ol className="mt-4 space-y-2 list-none p-0">
               {board.rows.map((row, i) => (
                 <li key={row.state.fips}>
-                  <RankingRow rank={i + 1} state={row.state} caption={row.caption} />
+                  <RankingRow
+                    rank={i + 1}
+                    state={row.state}
+                    caption={row.caption}
+                    silhouette={silhouettes?.get(row.state.fips)}
+                  />
                 </li>
               ))}
             </ol>

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { PARTY_D, PARTY_R } from '../lib/parties';
 import { SeatStrip } from './SeatStrip';
+import { StateSilhouette } from './StateSilhouette';
+import type { StateSilhouette as StateSilhouetteData } from '../lib/stateSilhouettes';
 import type { StateProjection } from '../lib/types';
 
 /**
@@ -20,9 +22,15 @@ interface Props {
    * distorted today" board to surface the vote-share-vs-seat-share gap.
    */
   caption?: string;
+  /**
+   * Pre-computed geographic silhouette (path + viewBox) for this state, from
+   * `buildStateSilhouettes`. Optional so the row still renders before the
+   * topology loads; the shape simply fades in once it's available.
+   */
+  silhouette?: StateSilhouetteData;
 }
 
-export function RankingRow({ rank, state, caption }: Props) {
+export function RankingRow({ rank, state, caption, silhouette }: Props) {
   const dGain = state.projected.d_seats - state.actual.d_seats;
   const pillLabel = dGain === 0
     ? 'no change'
@@ -34,6 +42,9 @@ export function RankingRow({ rank, state, caption }: Props) {
     : dGain > 0
       ? 'bg-blue-50 text-blue-800 border border-blue-200'
       : 'bg-red-50 text-red-800 border border-red-200';
+  // Tint the silhouette by the PR shift, matching the pill: blue when the
+  // state gains D under PR, red when it gains R, neutral gray for no change.
+  const silhouetteFill = dGain === 0 ? '#a8a29e' : dGain > 0 ? PARTY_D.color : PARTY_R.color;
 
   return (
     <Link
@@ -76,6 +87,12 @@ export function RankingRow({ rank, state, caption }: Props) {
               ]}
             />
           </div>
+        </div>
+        {/* State shape chip, tinted by the PR shift. Fixed-size box is always
+         * reserved (even before the topology loads) so the row doesn't reflow
+         * when the silhouette appears. */}
+        <div className="flex h-10 w-12 flex-shrink-0 items-center justify-center" aria-hidden="true">
+          {silhouette && <StateSilhouette silhouette={silhouette} fill={silhouetteFill} className="h-full w-full" />}
         </div>
         <div className={`text-sm font-medium tabular-nums px-2.5 py-1 rounded-full flex-shrink-0 ${pillClass}`}>
           {pillLabel}
