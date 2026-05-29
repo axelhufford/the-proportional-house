@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
@@ -670,6 +670,14 @@ export function Home({ onMetaChange }: HomeProps) {
         )}
 
         <div className="mt-5 bg-white rounded-lg border border-stone-200 shadow-sm p-4">
+          {/* Read-first: a one-line how-to and the color key, placed above the
+           * map so newcomers know what they're looking at before they look. */}
+          <div className="mb-3 space-y-2">
+            <p className="text-xs text-stone-500">
+              Hover a state for its numbers · click any state for full detail.
+            </p>
+            <MapLegend mode={colorMode} sandboxPayload={sandboxPayload} />
+          </div>
           <USMap
             topology={topology}
             states={effectivePayload.states}
@@ -704,10 +712,12 @@ export function Home({ onMetaChange }: HomeProps) {
               ))}
             </tbody>
           </table>
-          <MapLegend mode={colorMode} sandboxPayload={sandboxPayload} />
           <p className="mt-3 text-xs text-stone-500">
-            Click any state to inspect its projected delegation and Sainte-Laguë allocation.
-            Color encodes {colorMode === 'balance' ? 'the projected D-R margin of each state’s delegation' : 'the per-seat shift (projected minus actual) under proportional allocation'}.
+            Each state’s seats are allocated by its projected statewide vote share.{' '}
+            <Link to="/methodology" className="underline underline-offset-2 hover:text-brand-navy">
+              How it’s calculated
+            </Link>
+            .
           </p>
         </div>
       </section>

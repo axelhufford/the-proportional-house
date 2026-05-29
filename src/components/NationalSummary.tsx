@@ -127,6 +127,7 @@ export function NationalSummary({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <SummaryStat
             label={projectedLabel}
+            emphasis
             primary={
               extendedParties ? (
                 <span className="inline-flex items-baseline gap-2 flex-wrap">
@@ -311,9 +312,23 @@ export function NationalSummary({
   );
 }
 
-function SummaryStat({ label, primary }: { label: string; primary: React.ReactNode }) {
+function SummaryStat({
+  label,
+  primary,
+  emphasis = false,
+}: {
+  label: string;
+  primary: React.ReactNode;
+  /** The headline finding card — gets a navy left-accent so it reads as primary. */
+  emphasis?: boolean;
+}) {
   return (
-    <div>
+    <div
+      className={[
+        'rounded-lg border border-stone-200 bg-white px-5 py-4 shadow-sm',
+        emphasis ? 'border-l-4 border-l-brand-navy' : '',
+      ].join(' ')}
+    >
       <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{label}</div>
       <div className="text-2xl font-semibold mt-1 tabular-nums">{primary}</div>
     </div>

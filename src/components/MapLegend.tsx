@@ -17,18 +17,23 @@ interface Props {
 // points across [-1, 1]. Guarantees the legend matches what the map renders.
 const STOPS = [-1, -0.66, -0.33, 0, 0.33, 0.66, 1];
 
-const LABELS: Record<ColorMode, { left: string; center: string; right: string; aria: string }> = {
+const LABELS: Record<
+  ColorMode,
+  { left: string; center: string; right: string; aria: string; caption: string }
+> = {
   balance: {
     left: 'Strong R delegation',
     center: 'Even',
     right: 'Strong D delegation',
     aria: 'Color scale: red for states with a Republican-leaning projected delegation, blue for Democratic-leaning, with grey for an even split.',
+    caption: 'Each state’s color shows which party controls its projected delegation.',
   },
   distortion: {
     left: 'PR shifts toward R',
     center: 'Same as today',
     right: 'PR shifts toward D',
     aria: 'Color scale: orange for states where proportional representation would shift seats toward Republicans relative to today, purple for shifts toward Democrats, grey for states unchanged.',
+    caption: 'Each state’s color shows which way its seats would move under PR, vs. today’s map.',
   },
 };
 
@@ -44,7 +49,7 @@ export function MapLegend({ mode, sandboxPayload }: Props) {
     // (i.e., the (possibly expanded) total House size for this sandbox).
     const totalSeats = activeParties.reduce((s, p) => s + p.seats, 0);
     return (
-      <div className="mt-4">
+      <div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-stone-600">
           <span className="text-stone-500 uppercase tracking-wider">Plurality color:</span>
           {activeParties.map((p) => (
@@ -74,18 +79,19 @@ export function MapLegend({ mode, sandboxPayload }: Props) {
   const labels = LABELS[mode];
 
   return (
-    <div className="mt-4">
+    <div>
       <div
-        className="h-3 w-full rounded-full"
+        className="h-4 w-full rounded-full"
         style={{ background: gradient }}
         role="img"
         aria-label={labels.aria}
       />
-      <div className="mt-1.5 flex justify-between text-xs text-stone-500 tabular-nums">
+      <div className="mt-1.5 flex justify-between text-xs text-stone-600 tabular-nums">
         <span>{labels.left}</span>
         <span className="text-stone-400">{labels.center}</span>
         <span>{labels.right}</span>
       </div>
+      <p className="mt-1.5 text-xs text-stone-500">{labels.caption}</p>
     </div>
   );
 }
