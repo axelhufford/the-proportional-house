@@ -63,6 +63,12 @@ export interface StateDetailContentProps {
    * actual allocation) and the "Projected under …" headings + settings line.
    */
   method?: AllocationMethodKind;
+  /**
+   * Display label override for the active method (e.g. "MMD-4" / "MMP-30"
+   * when a magnitude/share slider is dialed off a preset). When omitted the
+   * label is derived from `method`.
+   */
+  methodLabel?: string;
   /** Active sandbox House size — drives the settings-line badge when expanded past 435. */
   houseSize?: number;
   /** Active sandbox per-state threshold (0–1) — drives the settings-line badge when minors are active. */
@@ -78,6 +84,7 @@ export function StateDetailContent({
   autoFocusHeading = true,
   sandboxState,
   method = 'PR',
+  methodLabel: methodLabelOverride,
   houseSize = DEFAULT_HOUSE_SIZE,
   threshold,
 }: StateDetailContentProps) {
@@ -85,7 +92,8 @@ export function StateDetailContent({
 
   // Keep "PR" short so the embed view and default sandbox still read
   // "Projected under PR"; reforms read "MMD-3", "MMP-50", "PR (D'Hondt)", etc.
-  const methodLabel = method === 'PR' ? 'PR' : METHOD_LABELS[method];
+  // An explicit override (from a slider-dialed value, e.g. "MMD-4") wins.
+  const methodLabel = methodLabelOverride ?? (method === 'PR' ? 'PR' : METHOD_LABELS[method]);
 
   const handleDownloadImage = useCallback(() => {
     // The pipeline pre-renders a clean 1200×630 brand card for each state at

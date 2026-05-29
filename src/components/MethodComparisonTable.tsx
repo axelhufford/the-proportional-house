@@ -7,6 +7,7 @@
  * The row matching the currently-selected method gets a subtle highlight
  * to tie the table back to the map above.
  */
+import type { ReactNode } from 'react';
 import type { ProjectionPayload } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import {
@@ -25,13 +26,22 @@ interface MethodRow {
 interface Props {
   /** Base payload for the "Actual today" row (always two-party). */
   basePayload: ProjectionPayload;
-  /** One entry per method; produced by Home from buildSandboxPayload. */
+  /** One entry per canonical method; produced by Home from buildSandboxPayload. */
   comparison: MethodRow[];
-  /** The currently-selected method — its row gets highlighted. */
-  currentMethod: AllocationMethodKind;
+  /**
+   * The active canonical method (its row gets highlighted), or null when the
+   * user has dialed an off-grid magnitude/share — in which case no canonical
+   * row is highlighted and `currentRow` supplies the highlighted custom row.
+   */
+  activeKey: AllocationMethodKind | null;
+  /**
+   * Off-grid "current" row to insert + highlight (e.g. MMD-4 / MMP-30).
+   * Null when the live setting matches a canonical preset.
+   */
+  currentRow: { label: string; payload: SandboxPayload } | null;
 }
 
-export function MethodComparisonTable({ basePayload, comparison, currentMethod }: Props) {
+export function MethodComparisonTable({ basePayload, comparison, activeKey, currentRow }: Props) {
   // Column set: every party that has seats in at least one row. Ordered
   // canonical (D, R, then minors in the order the sandbox added them).
   // Using the first method's national.parties as the source of truth for
@@ -113,47 +123,82 @@ export function MethodComparisonTable({ basePayload, comparison, currentMethod }
                 </tr>
               );
             })()}
-            {comparison.map((row) => {
-              const total = row.payload.national.parties.reduce((s, p) => s + p.seats, 0);
-              const isActive = row.method === currentMethod;
-              return (
-                <tr
-                  key={row.method}
-                  className={[
-                    'border-t border-stone-200',
-                    isActive ? 'bg-amber-50/60' : '',
-                  ].join(' ')}
-                >
-                  <th
-                    scope="row"
-                    className="text-left px-4 py-2 font-medium text-stone-700"
-                    title={METHOD_DESCRIPTIONS[row.method]}
+            {(() => {
+              // Render a parties row (used for both canonical and the custom
+              // "current" row). `highlight` adds the amber active background;
+              // `label` is the row's method name; `marker` shows "← current
+              // view" when this is the active row.
+              const renderRow = (
+                key: string,
+                label: string,
+                parties: SandboxPayload['national']['parties'],
+                opts: { highlight: boolean; marker: boolean; title?: string },
+              ) => {
+                const total = parties.reduce((s, p) => s + p.seats, 0);
+                return (
+                  <tr
+                    key={key}
+                    className={['border-t border-stone-200', opts.highlight ? 'bg-amber-50/60' : ''].join(' ')}
                   >
-                    {METHOD_LABELS[row.method]}
-                    {isActive && (
-                      <span className="text-stone-500 text-xs font-normal ml-2">
-                        ← current view
-                      </span>
-                    )}
-                  </th>
-                  {row.payload.national.parties.map((p) => (
-                    <td
-                      key={p.party.id}
-                      className="text-right px-3 py-2 tabular-nums"
-                      style={{ color: p.seats > 0 ? p.party.color : '#a8a29e' }}
+                    <th
+                      scope="row"
+                      className="text-left px-4 py-2 font-medium text-stone-700"
+                      title={opts.title}
                     >
-                      {p.seats}
-                      {p.seats > 0 && (
-                        <span className="ml-1 text-[11px] font-normal text-stone-400">
-                          {formatSeatPct(p.seats, total)}
-                        </span>
+                      {label}
+                      {opts.marker && (
+                        <span className="text-stone-500 text-xs font-normal ml-2">← current view</span>
                       )}
-                    </td>
-                  ))}
-                  <td className="text-right px-4 py-2 tabular-nums text-stone-700">{total}</td>
-                </tr>
-              );
-            })}
+                    </th>
+                    {parties.map((p) => (
+                      <td
+                        key={p.party.id}
+                        className="text-right px-3 py-2 tabular-nums"
+                        style={{ color: p.seats > 0 ? p.party.color : '#a8a29e' }}
+                      >
+                        {p.seats}
+                        {p.seats > 0 && (
+                          <span className="ml-1 text-[11px] font-normal text-stone-400">
+                            {formatSeatPct(p.seats, total)}
+                          </span>
+                        )}
+                      </td>
+                    ))}
+                    <td className="text-right px-4 py-2 tabular-nums text-stone-700">{total}</td>
+                  </tr>
+                );
+              };
+
+              // Insert the off-grid "current" row right after its family's
+              // last canonical row (MMD → after MMD-5; MMP → after MMP-50).
+              const currentFamily = currentRow
+                ? currentRow.label.startsWith('MMD')
+                  ? 'MMD'
+                  : 'MMP'
+                : null;
+              const anchorMethod: AllocationMethodKind | null =
+                currentFamily === 'MMD' ? 'MMD-5' : currentFamily === 'MMP' ? 'MMP-50' : null;
+
+              const rows: ReactNode[] = [];
+              for (const row of comparison) {
+                rows.push(
+                  renderRow(row.method, METHOD_LABELS[row.method], row.payload.national.parties, {
+                    highlight: row.method === activeKey,
+                    marker: row.method === activeKey,
+                    title: METHOD_DESCRIPTIONS[row.method],
+                  }),
+                );
+                if (currentRow && row.method === anchorMethod) {
+                  rows.push(
+                    renderRow('__current__', currentRow.label, currentRow.payload.national.parties, {
+                      highlight: true,
+                      marker: true,
+                    }),
+                  );
+                }
+              }
+              return rows;
+            })()}
           </tbody>
         </table>
       </div>

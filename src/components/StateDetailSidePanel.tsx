@@ -11,6 +11,7 @@ interface Props {
   onClose: () => void;
   sandboxState?: SandboxStateProjection | null;
   method?: AllocationMethodKind;
+  methodLabel?: string;
   houseSize?: number;
   threshold?: number;
 }
@@ -24,7 +25,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  * Escape), we set phase='exiting' and only call the parent `onClose` after
  * the transform transition completes, so the panel doesn't pop out.
  */
-export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxState, method, houseSize, threshold }: Props) {
+export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
 
   // Flip from 'entering' to 'open' on the next frame so the transition has
@@ -98,6 +99,7 @@ export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxS
         onClose={startClose}
         sandboxState={sandboxState}
         method={method}
+        methodLabel={methodLabel}
         houseSize={houseSize}
         threshold={threshold}
       />

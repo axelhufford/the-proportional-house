@@ -14,6 +14,8 @@ interface Props {
   sandboxState?: SandboxStateProjection | null;
   /** Active allocation method — affects the panel's labels and the math-demo visibility. */
   method?: AllocationMethodKind;
+  /** Display label override for the active method (e.g. "MMD-4" when a slider is dialed off-preset). */
+  methodLabel?: string;
   /** Active sandbox House size — drives the settings-line badge. */
   houseSize?: number;
   /** Active sandbox per-state threshold — drives the settings-line badge when minors are active. */

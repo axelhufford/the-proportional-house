@@ -227,10 +227,24 @@ export function allocateMMP(input: MethodAllocationInput, smdFraction: number): 
   return smd.map((s, i) => s + list[i]);
 }
 
-/** Single entry point: dispatch by method id. */
+/**
+ * Optional overrides that let the Sandbox dial a non-preset district
+ * magnitude (MMD) or single-member share (MMP) without inventing a new
+ * `AllocationMethodKind` for every value. When omitted, each method uses
+ * its canonical preset (MMD-3 → 3, MMD-5 → 5, MMP-50 → 0.5).
+ */
+export interface MethodParams {
+  /** District magnitude for MMD methods. */
+  mmdMagnitude?: number;
+  /** Single-member-district fraction (0..1) for MMP. */
+  mmpSmdShare?: number;
+}
+
+/** Single entry point: dispatch by method id, with optional param overrides. */
 export function allocateByMethod(
   input: MethodAllocationInput,
   method: AllocationMethodKind,
+  params?: MethodParams,
 ): number[] {
   switch (method) {
     case 'PR':
@@ -240,10 +254,64 @@ export function allocateByMethod(
     case 'PR-HAM':
       return allocatePR(input, 'hamilton');
     case 'MMD-3':
-      return allocateMMD(input, 3);
+      return allocateMMD(input, params?.mmdMagnitude ?? 3);
     case 'MMD-5':
-      return allocateMMD(input, 5);
+      return allocateMMD(input, params?.mmdMagnitude ?? 5);
     case 'MMP-50':
-      return allocateMMP(input, 0.5);
+      return allocateMMP(input, params?.mmpSmdShare ?? 0.5);
+  }
+}
+
+/** Allocation "family" — a method ignoring its specific magnitude/share. */
+export type MethodFamily = 'PR' | 'PR-DH' | 'PR-HAM' | 'MMD' | 'MMP';
+
+/**
+ * The effective allocation in play, resolved from the picked preset plus
+ * any slider override. `canonicalKey` is the matching preset method when
+ * the (family, param) pair is one of the named presets (MMD-3/MMD-5/MMP-50
+ * or a PR variant), or `null` when the user has dialed an off-grid value
+ * (e.g. MMD-4, MMP-30). The Sandbox UI and comparison table use this to
+ * decide what to highlight and whether to show a custom "current" row.
+ */
+export interface EffectiveMethod {
+  family: MethodFamily;
+  /** District magnitude when family === 'MMD'. */
+  size?: number;
+  /** Single-member share (0..1) when family === 'MMP'. */
+  smdShare?: number;
+  /** Display label, e.g. "MMD-4", "MMP-30", or the canonical METHOD_LABELS value. */
+  label: string;
+  /** Matching preset method, or null when off-grid. */
+  canonicalKey: AllocationMethodKind | null;
+}
+
+/**
+ * Resolve the picked method + optional magnitude/SMD-share overrides into
+ * a single descriptor the UI can derive everything from. Pass `null`/
+ * `undefined` overrides to get the preset's canonical value.
+ */
+export function resolveEffectiveMethod(
+  method: AllocationMethodKind,
+  mmdMagnitude?: number | null,
+  mmpSmdShare?: number | null,
+): EffectiveMethod {
+  switch (method) {
+    case 'PR':
+    case 'PR-DH':
+    case 'PR-HAM':
+      return { family: method, label: METHOD_LABELS[method], canonicalKey: method };
+    case 'MMD-3':
+    case 'MMD-5': {
+      const size = mmdMagnitude ?? (method === 'MMD-5' ? 5 : 3);
+      const canonicalKey: AllocationMethodKind | null =
+        size === 3 ? 'MMD-3' : size === 5 ? 'MMD-5' : null;
+      return { family: 'MMD', size, label: `MMD-${size}`, canonicalKey };
+    }
+    case 'MMP-50': {
+      const smdShare = mmpSmdShare ?? 0.5;
+      const pct = Math.round(smdShare * 100);
+      const canonicalKey: AllocationMethodKind | null = pct === 50 ? 'MMP-50' : null;
+      return { family: 'MMP', smdShare, label: `MMP-${pct}`, canonicalKey };
+    }
   }
 }

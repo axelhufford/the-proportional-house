@@ -11,6 +11,7 @@ interface Props {
   onClose: () => void;
   sandboxState?: SandboxStateProjection | null;
   method?: AllocationMethodKind;
+  methodLabel?: string;
   houseSize?: number;
   threshold?: number;
 }
@@ -30,7 +31,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  * parent `onClose` is only invoked after the transform transition completes
  * so the sheet animates out instead of disappearing.
  */
-export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandboxState, method, houseSize, threshold }: Props) {
+export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
 
   useLayoutEffect(() => {
@@ -125,6 +126,7 @@ export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandbo
           onClose={startClose}
           sandboxState={sandboxState}
           method={method}
+          methodLabel={methodLabel}
           houseSize={houseSize}
           threshold={threshold}
         />

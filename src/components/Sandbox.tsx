@@ -3,6 +3,7 @@ import {
   METHOD_DESCRIPTIONS,
   METHOD_LABELS,
   type AllocationMethodKind,
+  type EffectiveMethod,
 } from '../lib/methods';
 import {
   defaultMinorState,
@@ -26,6 +27,12 @@ interface Props {
   /** Allocation method (Pure PR / MMD-3 / MMD-5 / MMP-50). */
   method: AllocationMethodKind;
   onMethodChange: (next: AllocationMethodKind) => void;
+  /** Resolved active method (family + magnitude/share + canonical key). */
+  effective: EffectiveMethod;
+  /** Set the MMD district magnitude (engaged when an MMD method is active). */
+  onMmdMagnitudeChange: (magnitude: number) => void;
+  /** Set the MMP single-member fraction 0..1 (engaged when MMP is active). */
+  onMmpSmdShareChange: (fraction: number) => void;
   /** Total House size — 435 default; reform proposals expand. */
   houseSize: number;
   /** Wyoming Rule preset (~573 today). */
@@ -60,6 +67,13 @@ const HOUSE_SIZE_MIN = 435;
 const HOUSE_SIZE_MAX = 800;
 const DEFAULT_HOUSE_SIZE = 435;
 
+// District-magnitude (MMD) and single-member-share (MMP) slider bounds.
+const MMD_MIN = 2;
+const MMD_MAX = 10;
+const MMP_PCT_MIN = 10;
+const MMP_PCT_MAX = 90;
+const MMP_PCT_STEP = 5;
+
 export function Sandbox({
   genericBallot,
   swing,
@@ -71,6 +85,9 @@ export function Sandbox({
   onThresholdChange,
   method,
   onMethodChange,
+  effective,
+  onMmdMagnitudeChange,
+  onMmpSmdShareChange,
   houseSize,
   wyomingRuleHouseSize,
   cubeRootHouseSize,
@@ -234,7 +251,10 @@ export function Sandbox({
           </div>
           <div className="flex flex-wrap gap-1.5">
             {ALL_METHODS.map((m) => {
-              const active = m === method;
+              // Highlight keys off the *effective* method, so MMD-3 lights up
+              // only at magnitude 3, MMD-5 at 5, MMP-50 at 50% — and nothing
+              // lights up at off-grid slider values (the slider shows them).
+              const active = m === effective.canonicalKey;
               return (
                 <button
                   key={m}
@@ -254,6 +274,67 @@ export function Sandbox({
               );
             })}
           </div>
+
+          {/* Contextual refinement slider. MMD methods expose district
+            * magnitude; MMP exposes the single-member share. Dragging off a
+            * preset value (e.g. MMD-4, MMP-30) de-highlights the preset
+            * buttons and adds a "current" row to the comparison table. */}
+          {effective.family === 'MMD' && (
+            <div className="mt-3">
+              <div className="flex items-baseline justify-between gap-2">
+                <label htmlFor="mmd-magnitude" className="text-[11px] text-stone-600">
+                  District magnitude
+                </label>
+                <span className="tabular-nums text-xs font-medium text-stone-900">
+                  {effective.size}-seat districts
+                </span>
+              </div>
+              <input
+                id="mmd-magnitude"
+                type="range"
+                min={MMD_MIN}
+                max={MMD_MAX}
+                step={1}
+                value={effective.size ?? 3}
+                onChange={(e) => onMmdMagnitudeChange(Number(e.target.value))}
+                aria-label="District magnitude"
+                aria-valuetext={`${effective.size} seats per district`}
+                className="w-full accent-stone-900 mt-1"
+              />
+              <div className="text-[10px] text-stone-500 mt-1">
+                Bigger districts → more proportional. {MMD_MIN} approaches today’s single-member
+                map; {MMD_MAX} approaches statewide PR.
+              </div>
+            </div>
+          )}
+          {effective.family === 'MMP' && (
+            <div className="mt-3">
+              <div className="flex items-baseline justify-between gap-2">
+                <label htmlFor="mmp-smd-share" className="text-[11px] text-stone-600">
+                  Single-member share
+                </label>
+                <span className="tabular-nums text-xs font-medium text-stone-900">
+                  {Math.round((effective.smdShare ?? 0.5) * 100)}% district / {100 - Math.round((effective.smdShare ?? 0.5) * 100)}% list
+                </span>
+              </div>
+              <input
+                id="mmp-smd-share"
+                type="range"
+                min={MMP_PCT_MIN}
+                max={MMP_PCT_MAX}
+                step={MMP_PCT_STEP}
+                value={Math.round((effective.smdShare ?? 0.5) * 100)}
+                onChange={(e) => onMmpSmdShareChange(Number(e.target.value) / 100)}
+                aria-label="Single-member district share"
+                aria-valuetext={`${Math.round((effective.smdShare ?? 0.5) * 100)} percent single-member`}
+                className="w-full accent-stone-900 mt-1"
+              />
+              <div className="text-[10px] text-stone-500 mt-1">
+                Fewer single-member seats → more proportional (the list tier compensates further).
+              </div>
+            </div>
+          )}
+
           <div className="text-[10px] text-stone-500 mt-1.5">
             {METHOD_DESCRIPTIONS[method]}
           </div>

@@ -21,7 +21,7 @@ import {
   cubeRootSize,
   wyomingRuleSize,
 } from '../lib/apportionment';
-import { ALL_METHODS, type AllocationMethodKind } from '../lib/methods';
+import { ALL_METHODS, resolveEffectiveMethod, type AllocationMethodKind } from '../lib/methods';
 import {
   buildSandboxPayload,
   DEFAULT_HOUSE_SIZE,
@@ -145,12 +145,52 @@ function serializeMinor(m: MinorState): string {
  * "pr" / "PR" / "mmd-3" / "MMP-50". Returns null for unknown values so
  * Home can fall back to the default (PR).
  */
-function parseMethod(raw: string | null): AllocationMethodKind | null {
+/** Sandbox slider bounds for the MMD magnitude and MMP single-member share. */
+const MMD_MIN = 2;
+const MMD_MAX = 10;
+const MMP_PCT_MIN = 10;
+const MMP_PCT_MAX = 90;
+
+interface ParsedMethod {
+  method: AllocationMethodKind;
+  /** Off-grid MMD magnitude override (null when canonical 3/5). */
+  mmdMagnitude: number | null;
+  /** Off-grid MMP single-member fraction override (null when canonical 0.5). */
+  mmpSmdShare: number | null;
+}
+
+/**
+ * Parse the ?method= param into a method + optional slider overrides.
+ * Accepts the canonical presets ("pr" / "mmd-3" / "mmp-50" …) plus
+ * off-grid forms "mmd-N" (N = magnitude) and "mmp-N" (N = SMD percent).
+ * Returns null for unknown values so Home falls back to PR.
+ */
+function parseMethod(raw: string | null): ParsedMethod | null {
   if (!raw) return null;
-  const normalized = raw.toUpperCase();
-  return (ALL_METHODS as string[]).includes(normalized)
-    ? (normalized as AllocationMethodKind)
-    : null;
+  const s = raw.toLowerCase().trim();
+  const upper = s.toUpperCase();
+  if ((ALL_METHODS as string[]).includes(upper)) {
+    return { method: upper as AllocationMethodKind, mmdMagnitude: null, mmpSmdShare: null };
+  }
+  const mmd = s.match(/^mmd-(\d+)$/);
+  if (mmd) {
+    const n = Number(mmd[1]);
+    if (n >= MMD_MIN && n <= MMD_MAX) {
+      return {
+        method: n === 5 ? 'MMD-5' : 'MMD-3',
+        mmdMagnitude: n === 3 || n === 5 ? null : n,
+        mmpSmdShare: null,
+      };
+    }
+  }
+  const mmp = s.match(/^mmp-(\d+)$/);
+  if (mmp) {
+    const pct = Number(mmp[1]);
+    if (pct >= MMP_PCT_MIN && pct <= MMP_PCT_MAX) {
+      return { method: 'MMP-50', mmdMagnitude: null, mmpSmdShare: pct === 50 ? null : pct / 100 };
+    }
+  }
+  return null;
 }
 
 function parseThreshold(raw: string | null): number | null {
@@ -254,10 +294,25 @@ export function Home({ onMetaChange }: HomeProps) {
     () => parseThreshold(searchParams.get('threshold')) ?? DEFAULT_THRESHOLD,
   );
   // Allocation method (PR | MMD-3 | MMD-5 | MMP-50). Defaults to PR so
-  // existing URLs without ?method= behave identically to before.
-  const [method, setMethod] = useState<AllocationMethodKind>(
-    () => parseMethod(searchParams.get('method')) ?? 'PR',
+  // existing URLs without ?method= behave identically to before. The two
+  // override states let an MMD/MMP method be dialed off its preset value
+  // (e.g. MMD-4, MMP-30); null means "use the preset's canonical value".
+  const initialMethod = parseMethod(searchParams.get('method'));
+  const [method, setMethod] = useState<AllocationMethodKind>(() => initialMethod?.method ?? 'PR');
+  const [mmdMagnitude, setMmdMagnitude] = useState<number | null>(
+    () => initialMethod?.mmdMagnitude ?? null,
   );
+  const [mmpSmdShare, setMmpSmdShare] = useState<number | null>(
+    () => initialMethod?.mmpSmdShare ?? null,
+  );
+
+  // Picking a preset method button clears any slider override so the slider
+  // snaps to that preset's canonical magnitude/share.
+  const handleMethodChange = useCallback((m: AllocationMethodKind) => {
+    setMethod(m);
+    setMmdMagnitude(null);
+    setMmpSmdShare(null);
+  }, []);
   // Total House size — 435 by default. Wyoming Rule ≈ 573, cube root ≈ 692.
   // Only meaningful in Sandbox; ignored in Current / Retrospective.
   const [houseSize, setHouseSize] = useState<number>(
@@ -367,6 +422,8 @@ export function Home({ onMetaChange }: HomeProps) {
     setMinors([]);
     setThreshold(DEFAULT_THRESHOLD);
     setMethod('PR');
+    setMmdMagnitude(null);
+    setMmpSmdShare(null);
     setHouseSize(DEFAULT_HOUSE_SIZE);
     setSelectedFips(null);
     // sandboxBallot: snap back to the live polling margin so a future
@@ -399,11 +456,19 @@ export function Home({ onMetaChange }: HomeProps) {
       if (minors.length > 0 && Math.abs(threshold - DEFAULT_THRESHOLD) > 0.0005) {
         next.set('threshold', (threshold * 100).toFixed(1));
       }
-      // Only emit ?method= when it differs from the default so URLs stay
-      // short for the common case (Pure PR).
-      if (method !== 'PR') {
-        next.set('method', method.toLowerCase());
-      }
+      // Emit ?method= as the *effective* method (including any slider
+      // override, e.g. "mmd-4" / "mmp-30") so dialed scenarios are
+      // shareable. Omitted for the default (Pure PR) to keep URLs short.
+      const eff = resolveEffectiveMethod(method, mmdMagnitude, mmpSmdShare);
+      const methodParam =
+        eff.family === 'MMD'
+          ? `mmd-${eff.size}`
+          : eff.family === 'MMP'
+            ? `mmp-${Math.round((eff.smdShare ?? 0.5) * 100)}`
+            : method !== 'PR'
+              ? method.toLowerCase()
+              : null;
+      if (methodParam) next.set('method', methodParam);
       // Emit ?house= when expanded. Use semantic shortcuts when the
       // size matches a recognized preset, otherwise the numeric value.
       if (houseSize !== DEFAULT_HOUSE_SIZE) {
@@ -417,7 +482,7 @@ export function Home({ onMetaChange }: HomeProps) {
       if (state) next.set('state', state.code);
     }
     setSearchParams(next, { replace: true });
-  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, method, houseSize, selectedFips, setSearchParams]);
+  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, setSearchParams]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection (no client recompute).
@@ -445,12 +510,28 @@ export function Home({ onMetaChange }: HomeProps) {
   // cutoff. The threshold slider UI is hidden when no minors are active,
   // so a stale 5% default could otherwise silently bite a major in an
   // extreme state — pass threshold=0 when no minors are active to avoid.
+  // The active allocation, resolving the picked preset + any slider override
+  // into a single descriptor (family, magnitude/share, label, canonical key).
+  const effective = resolveEffectiveMethod(method, mmdMagnitude, mmpSmdShare);
+
   const sandboxPayload = useMemo<SandboxPayload | null>(() => {
     if (!effectivePayload || viewMode !== 'sandbox') return null;
     const specs = minors.map((m, i) => buildSpec(m, (i + 1) as MinorSlot));
     const effectiveThreshold = minors.length > 0 ? threshold : 0;
-    return buildSandboxPayload(effectivePayload, specs, effectiveThreshold, method, houseSize);
-  }, [effectivePayload, viewMode, minors, threshold, method, houseSize]);
+    return buildSandboxPayload(effectivePayload, specs, effectiveThreshold, method, houseSize, {
+      mmdMagnitude: effective.size,
+      mmpSmdShare: effective.smdShare,
+    });
+  }, [effectivePayload, viewMode, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize]);
+
+  // When the live setting is dialed off a canonical preset (e.g. MMD-4),
+  // the comparison table gets one extra highlighted "current" row. Its
+  // payload is exactly the live sandboxPayload (already built with the
+  // override), so we reuse it rather than recompute.
+  const currentComparisonRow =
+    effective.canonicalKey === null && sandboxPayload
+      ? { label: effective.label, payload: sandboxPayload }
+      : null;
 
   // Precompute every method's national totals for the comparison table.
   // Only built in sandbox view. Same threshold-safety guard as above.
@@ -550,7 +631,10 @@ export function Home({ onMetaChange }: HomeProps) {
               onMinorsChange={setMinors}
               onThresholdChange={setThreshold}
               method={method}
-              onMethodChange={setMethod}
+              onMethodChange={handleMethodChange}
+              effective={effective}
+              onMmdMagnitudeChange={setMmdMagnitude}
+              onMmpSmdShareChange={setMmpSmdShare}
               houseSize={houseSize}
               wyomingRuleHouseSize={WYOMING_RULE_HOUSE_SIZE}
               cubeRootHouseSize={CUBE_ROOT_HOUSE_SIZE}
@@ -560,7 +644,8 @@ export function Home({ onMetaChange }: HomeProps) {
               <MethodComparisonTable
                 basePayload={effectivePayload}
                 comparison={methodComparison}
-                currentMethod={method}
+                activeKey={effective.canonicalKey}
+                currentRow={currentComparisonRow}
               />
             )}
           </div>
@@ -628,6 +713,7 @@ export function Home({ onMetaChange }: HomeProps) {
             onClose={handleDeselect}
             sandboxState={sandboxPayload?.states.find((s) => s.fips === selectedState.fips) ?? null}
             method={method}
+            methodLabel={effective.canonicalKey === null ? effective.label : undefined}
             houseSize={houseSize}
             threshold={threshold}
           />

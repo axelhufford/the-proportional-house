@@ -4,6 +4,7 @@ import {
   allocateMMD,
   allocateMMP,
   allocatePR,
+  resolveEffectiveMethod,
   type MethodAllocationInput,
 } from './methods';
 
@@ -161,5 +162,50 @@ describe('allocateByMethod dispatcher', () => {
     expect(allocateByMethod(i, 'MMD-3')).toEqual(allocateMMD(i, 3));
     expect(allocateByMethod(i, 'MMD-5')).toEqual(allocateMMD(i, 5));
     expect(allocateByMethod(i, 'MMP-50')).toEqual(allocateMMP(i, 0.5));
+  });
+
+  it('honors an mmdMagnitude override (MMD-4 differs from the MMD-3 preset)', () => {
+    // 50 seats at 60/40: MMD-4 = twelve 4-seat districts + one 2-seat.
+    // 4-seat at 60/40 → 2-2 (×12 = 24-24), 2-seat → 1-1. Total 25-25.
+    const i = inp({ total_seats: 50 });
+    expect(allocateByMethod(i, 'MMD-3', { mmdMagnitude: 4 })).toEqual(allocateMMD(i, 4));
+    expect(allocateByMethod(i, 'MMD-3', { mmdMagnitude: 4 })).not.toEqual(allocateByMethod(i, 'MMD-3'));
+  });
+
+  it('falls back to the preset magnitude when no override is given', () => {
+    const i = inp({ total_seats: 50 });
+    expect(allocateByMethod(i, 'MMD-3', {})).toEqual(allocateMMD(i, 3));
+    expect(allocateByMethod(i, 'MMD-5', { mmpSmdShare: 0.3 })).toEqual(allocateMMD(i, 5));
+  });
+
+  it('honors an mmpSmdShare override (MMP-30 differs from the MMP-50 preset)', () => {
+    // The override is plumbed for any input:
+    const i = inp({ total_seats: 12 });
+    expect(allocateByMethod(i, 'MMP-50', { mmpSmdShare: 0.3 })).toEqual(allocateMMP(i, 0.3));
+    // And the share actually changes the result in a gerrymandered/overhang
+    // state (30/70 vote, actual 10-2 D): MMP-30 → 4-8, MMP-50 → 5-7.
+    const j = inp({ vote_shares: [0.3, 0.7], actual_d_seats: 10, actual_r_seats: 2 });
+    expect(allocateByMethod(j, 'MMP-50', { mmpSmdShare: 0.3 })).not.toEqual(allocateByMethod(j, 'MMP-50'));
+  });
+});
+
+describe('resolveEffectiveMethod', () => {
+  it('PR variants are their own canonical key', () => {
+    expect(resolveEffectiveMethod('PR')).toMatchObject({ family: 'PR', label: 'Pure PR', canonicalKey: 'PR' });
+    expect(resolveEffectiveMethod('PR-DH')).toMatchObject({ family: 'PR-DH', canonicalKey: 'PR-DH' });
+  });
+
+  it('MMD presets resolve to their canonical key; off-grid is null', () => {
+    expect(resolveEffectiveMethod('MMD-3')).toMatchObject({ family: 'MMD', size: 3, label: 'MMD-3', canonicalKey: 'MMD-3' });
+    expect(resolveEffectiveMethod('MMD-5')).toMatchObject({ size: 5, label: 'MMD-5', canonicalKey: 'MMD-5' });
+    // override to 5 from an MMD-3 base still recognizes the canonical key
+    expect(resolveEffectiveMethod('MMD-3', 5)).toMatchObject({ size: 5, canonicalKey: 'MMD-5' });
+    // off-grid
+    expect(resolveEffectiveMethod('MMD-3', 4)).toMatchObject({ family: 'MMD', size: 4, label: 'MMD-4', canonicalKey: null });
+  });
+
+  it('MMP presets resolve to canonical; off-grid is null with a percent label', () => {
+    expect(resolveEffectiveMethod('MMP-50')).toMatchObject({ family: 'MMP', smdShare: 0.5, label: 'MMP-50', canonicalKey: 'MMP-50' });
+    expect(resolveEffectiveMethod('MMP-50', null, 0.3)).toMatchObject({ smdShare: 0.3, label: 'MMP-30', canonicalKey: null });
   });
 });

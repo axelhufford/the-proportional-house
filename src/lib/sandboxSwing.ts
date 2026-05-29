@@ -12,7 +12,7 @@
  * compute the D/R swing itself.
  */
 import { huntingtonHill } from './apportionment';
-import { allocateByMethod, type AllocationMethodKind } from './methods';
+import { allocateByMethod, type AllocationMethodKind, type MethodParams } from './methods';
 import { PARTY_D, PARTY_R } from './parties';
 import type { Party, PartyShare, SandboxPayload, SandboxStateProjection } from './sandboxTypes';
 import { STATE_POPULATIONS_2020 } from './statePopulations';
@@ -50,6 +50,8 @@ function buildStateProjection(
   /** Effective actual D/R for MMP — scaled if effectiveSeats !== state.seats. */
   effectiveActualD: number,
   effectiveActualR: number,
+  /** Optional MMD magnitude / MMP SMD-share overrides. */
+  params?: MethodParams,
 ): SandboxStateProjection {
   // Step 1: start from existing projected D/R shares.
   let dShare = state.projected.d_share;
@@ -91,6 +93,7 @@ function buildStateProjection(
           actual_r_seats: effectiveActualR,
         },
         method,
+        params,
       )
     : filtered.map(() => 0);
 
@@ -167,6 +170,8 @@ export function buildSandboxPayload(
   threshold: number,
   method: AllocationMethodKind = 'PR',
   houseSize: number = DEFAULT_HOUSE_SIZE,
+  /** Optional MMD magnitude / MMP SMD-share overrides (for slider-dialed values). */
+  params?: MethodParams,
 ): SandboxPayload {
   const clampedThreshold = Math.max(0, Math.min(0.1, threshold));
 
@@ -201,6 +206,7 @@ export function buildSandboxPayload(
       effectiveSeats,
       effectiveActualD,
       effectiveActualR,
+      params,
     );
   });
 
