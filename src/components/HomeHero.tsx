@@ -2,15 +2,13 @@ import { Link } from 'react-router-dom';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 
 /**
- * Homepage hero. Owns the page's <h1> (a single, topical phrase that
- * Google can index) and surfaces the headline finding as a punchy lede.
+ * Homepage hero. Owns the page's <h1> and surfaces the headline finding as a
+ * short, plain-language lede a first-time visitor can grasp in seconds.
  *
- * The lede is computed from the live national totals so it stays accurate
- * as the user toggles between view modes and drags the sandbox slider —
- * no stale copy that contradicts the visualization below it.
- *
- * Sits above NationalSummary in Home.tsx; the structured stat grid below
- * still does the heavy informational lifting for users who want numbers.
+ * The lede is computed from the live national totals so it stays accurate as
+ * the user toggles view modes and drags the sandbox slider. The exact D/R
+ * splits live in the NationalSummary cards just below, so the hook only states
+ * the magnitude + direction (no number duplication).
  */
 interface Props {
   payload: ProjectionPayload;
@@ -18,141 +16,107 @@ interface Props {
   /**
    * Structural component of the Current-view gap (D seats): PR of the *actual
    * 2024* vote minus today's 2024-elected House — the pure SMD-vs-PR
-   * distortion. The Current gap decomposes as structural + swing-since-2024,
-   * so the lede can attribute each piece honestly. Optional (absent until the
-   * payload loads); the lede falls back to a non-decomposed sentence.
+   * distortion. The Current gap = structural + swing-since-2024, so the caveat
+   * can honestly say which piece dominates. Optional (absent until the payload
+   * loads); without it the caveat is simply omitted.
    */
   structuralDGain?: number;
 }
 
 export function HomeHero({ payload, viewMode, structuralDGain }: Props) {
   const { national, meta } = payload;
-  // Positive means PR gives more seats to Democrats than today; negative
-  // means the current system already favors Democrats (so PR would shift
-  // seats to Republicans). We frame the lede around whichever party is
-  // currently *over-represented* — that's the structural distortion.
+  // Positive = PR gives Democrats more seats than today's House (today over-
+  // represents R); negative = the reverse.
   const dGain = national.projected.d_seats - national.actual.d_seats;
   const absGain = Math.abs(dGain);
 
+  const color = dGain > 0 ? 'text-red-700' : 'text-blue-700';
+  const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
+  const towardWord = (v: number) => (v > 0 ? 'toward Democrats' : 'toward Republicans');
+  const moreParty = (v: number) => (v > 0 ? 'Republican' : 'Democratic');
+
   let lede: React.ReactNode;
+  let caveat: React.ReactNode = null;
+
   if (viewMode === 'retrospective') {
-    // Retrospective: pure PR allocation of 2024's actual votes, no polling.
-    if (dGain === 0) {
-      lede = (
+    // The clean comparison: PR of the *actual* 2024 vote vs. the 2024 House.
+    lede =
+      dGain === 0 ? (
         <>
-          In 2024, the U.S. House delivered the same seat split as proportional
-          allocation of the statewide vote would have. The map below shows where
-          allocations did diverge state by state.
+          In the 2024 election, the House matched what proportional representation of the vote
+          would have produced. The map shows where individual states diverged.
+        </>
+      ) : (
+        <>
+          In the 2024 election, winner-take-all districts left the House about{' '}
+          <strong className={color}>
+            {absGain} {seats(absGain)} more {moreParty(dGain)}
+          </strong>{' '}
+          than proportional representation of the actual statewide vote would have — no polling or
+          projection, just the map.
         </>
       );
-    } else if (dGain > 0) {
-      lede = (
-        <>
-          In 2024, the U.S. House delivered{' '}
-          <strong className="text-red-700">{absGain} more Republican seats</strong>{' '}
-          than proportional allocation of the actual statewide vote would have.
-        </>
-      );
-    } else {
-      lede = (
-        <>
-          In 2024, the U.S. House delivered{' '}
-          <strong className="text-blue-700">{absGain} more Democratic seats</strong>{' '}
-          than proportional allocation of the actual statewide vote would have.
-        </>
-      );
-    }
   } else if (viewMode === 'sandbox') {
-    // Sandbox: hypothetical generic-ballot environment.
     const generic = meta.generic_ballot_margin;
     const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
-    if (dGain === 0) {
-      lede = (
+    lede =
+      dGain === 0 ? (
         <>
-          Under a hypothetical <strong>{genericLabel}</strong> generic ballot, single-member
-          districts deliver the same seat split as proportional allocation. Drag the slider
-          to see where they diverge.
+          In a hypothetical <strong>{genericLabel}</strong> national vote, proportional
+          representation produces the same split the House has today. Adjust the controls to explore.
+        </>
+      ) : (
+        <>
+          In a hypothetical <strong>{genericLabel}</strong> national vote, proportional
+          representation would shift the House about{' '}
+          <strong className={color}>
+            {absGain} {seats(absGain)} {towardWord(dGain)}
+          </strong>{' '}
+          from today’s. Adjust the controls to build your own scenario.
         </>
       );
-    } else if (dGain > 0) {
-      lede = (
-        <>
-          Under a hypothetical <strong>{genericLabel}</strong> generic ballot, Republicans would
-          hold <strong className="text-red-700">{absGain} more seats</strong> than proportional
-          allocation of the statewide vote would give them.
-        </>
-      );
-    } else {
-      lede = (
-        <>
-          Under a hypothetical <strong>{genericLabel}</strong> generic ballot, Democrats would
-          hold <strong className="text-blue-700">{absGain} more seats</strong> than proportional
-          allocation of the statewide vote would give them.
-        </>
-      );
-    }
   } else {
-    // Current: live projection. The headline gap (today's 2024-elected House vs.
-    // PR of the *projected* vote) blends two effects, so we name both instead of
-    // calling it all "structural" — which it mostly isn't:
-    //   structural = PR of the 2024 vote − today's House (the SMD-vs-PR distortion)
-    //   swing      = the rest, from the generic-ballot move since 2024
+    // Current: today's House vs. PR of the projected vote. We state the shift
+    // plainly, then (honestly) note it's mostly the polling move since 2024 —
+    // not the map. The precise structural/swing split is in the "Difference
+    // under PR" card below and on the Methodology page.
     if (dGain === 0) {
       lede = (
         <>
-          Right now, the current House delegation matches what proportional allocation of the
-          projected statewide vote would deliver. The map shows state-by-state shifts.
+          Right now, today’s House already matches what proportional representation of the vote
+          would produce. The map shows where individual states still differ.
         </>
       );
     } else {
-      const overParty = dGain > 0 ? 'Republicans' : 'Democrats';
-      const overColor = dGain > 0 ? 'text-red-700' : 'text-blue-700';
-      const main = (
+      lede = (
         <>
-          Right now, the House — elected in 2024 — seats{' '}
-          <strong className={overColor}>{overParty} {absGain} more</strong>{' '}
-          than proportional allocation of the projected statewide vote would.
+          Today’s U.S. House would shift about{' '}
+          <strong className={color}>
+            {absGain} {seats(absGain)} {towardWord(dGain)}
+          </strong>{' '}
+          if every state’s seats matched its statewide vote.
         </>
       );
-      if (structuralDGain == null) {
-        lede = main;
-      } else {
+      if (structuralDGain != null) {
         const swing = dGain - structuralDGain;
-        const absStruct = Math.abs(structuralDGain);
-        const absSwing = Math.abs(swing);
-        const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
-        const towardWord = (v: number) =>
-          v > 0 ? 'toward Democrats' : v < 0 ? 'toward Republicans' : '';
-        const partyWord = (v: number) =>
-          v > 0 ? 'Democratic' : v < 0 ? 'Republican' : '';
-        const structPhrase =
-          absStruct === 0
-            ? 'have left the seat split essentially unchanged'
-            : `have shifted only about ${absStruct} ${seats(absStruct)} ${towardWord(structuralDGain)}`;
-        lede = (
+        const biggerIsSwing = Math.abs(swing) >= Math.abs(structuralDGain);
+        const retroLink = (
+          <Link
+            to="/?view=retrospective"
+            className="underline underline-offset-2 hover:text-brand-navy"
+          >
+            2024 Retrospective
+          </Link>
+        );
+        caveat = biggerIsSwing ? (
           <>
-            {main}{' '}
-            That gap is mostly the{' '}
-            {absSwing >= absStruct
-              ? 'swing in the national mood since 2024, not the map itself'
-              : 'current map’s structural lean, not the swing since 2024'}
-            : proportional allocation of the <em>2024</em> vote alone — same election, no
-            swing — would {structPhrase} (the{' '}
-            <Link
-              to="/?view=retrospective"
-              className="underline underline-offset-2 hover:text-brand-navy"
-            >
-              2024 Retrospective
-            </Link>
-            )
-            {absSwing === 0 ? (
-              <>.</>
-            ) : (
-              <>
-                , with the remaining ~{absSwing} {seats(absSwing)} coming from the{' '}
-                {partyWord(swing)} swing in the generic ballot since 2024.
-              </>
-            )}
+            Most of that shift is the recent move {towardWord(swing)} in national polling, though —
+            not the district map. The {retroLink} shows the map’s effect on its own.
+          </>
+        ) : (
+          <>
+            Most of that is built into the district map itself, not recent polling — the {retroLink}{' '}
+            isolates it.
           </>
         );
       }
@@ -164,18 +128,29 @@ export function HomeHero({ payload, viewMode, structuralDGain }: Props) {
       <h1 className="font-serif text-3xl sm:text-5xl font-medium text-brand-navy tracking-tight leading-[1.05]">
         The U.S. House under proportional representation
       </h1>
-      <p className="mt-4 sm:mt-5 text-base sm:text-lg text-stone-800 leading-relaxed max-w-2xl">
-        {lede}
-      </p>
-      {/* Static plain-language framing — defines PR and what the map shows, so a
-       * first-time visitor isn't left to infer it from the dynamic finding above.
-       * Same across all view modes by design. */}
-      <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl">
-        Proportional representation ties each state’s House seats to its share of the statewide
-        vote. This map projects how that would reshape the chamber — and where today’s
-        winner-take-all districts bend the result.
-      </p>
-      <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
+
+      {/* Two columns on lg+: the finding (left) and a plain "what is PR?" aside
+        * (right) that fills what was empty space. Stacks on small screens. */}
+      <div className="mt-4 sm:mt-5 lg:grid lg:grid-cols-[1.6fr_1fr] lg:gap-10 lg:items-start">
+        <div>
+          <p className="text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
+          {caveat && (
+            <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">{caveat}</p>
+          )}
+        </div>
+
+        <aside className="mt-6 lg:mt-1 rounded-lg border border-stone-200/80 bg-white/60 p-4">
+          <div className="text-sm font-semibold text-stone-900">
+            What is proportional representation?
+          </div>
+          <p className="mt-1.5 text-sm text-stone-600 leading-relaxed">
+            It ties each party’s House seats to its share of the statewide vote, instead of the
+            winner-take-all districts we use now. This map projects what that would change.
+          </p>
+        </aside>
+      </div>
+
+      <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
         <Link
           to="/rankings"
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy text-white px-4 py-2 hover:bg-brand-navy-mid transition-colors"
