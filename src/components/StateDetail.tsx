@@ -33,12 +33,16 @@ interface Props {
  */
 export function StateDetail(props: Props) {
   const isMobile = useIsMobile();
-  // Keying on mobile-ness ensures the shell unmounts cleanly when the user
-  // crosses the breakpoint (e.g. rotating a tablet) instead of trying to
-  // re-anchor a partially-animated sheet.
+  // Key on shell kind *and* the selected state's fips. The shell-kind part
+  // unmounts cleanly when the user crosses the breakpoint (e.g. rotating a
+  // tablet) instead of re-anchoring a partially-animated sheet. The fips part
+  // ensures that selecting a *different* state always mounts a fresh shell
+  // that animates in from its closed phase — otherwise a single long-lived
+  // instance can carry a stale 'exiting' phase into the new selection and
+  // render off-screen, so the panel appears not to open.
   return isMobile ? (
-    <StateDetailBottomSheet key="sheet" {...props} />
+    <StateDetailBottomSheet key={`sheet-${props.state.fips}`} {...props} />
   ) : (
-    <StateDetailSidePanel key="panel" {...props} />
+    <StateDetailSidePanel key={`panel-${props.state.fips}`} {...props} />
   );
 }

@@ -71,6 +71,19 @@ export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandbo
     [phase, onClose],
   );
 
+  // Fallback so onClose always fires once we start exiting. The exit normally
+  // completes via onTransitionEnd above, but a transitionend isn't guaranteed:
+  // prefers-reduced-motion disables the transition (motion-reduce:transition-none),
+  // and a re-render can interrupt/cancel it. Without this, onClose would never
+  // run, selectedFips would never clear, and the sheet would stay mounted but
+  // stuck off-screen — silently swallowing the next state tap. If the
+  // transition does fire, the unmount clears this timer via the cleanup.
+  useEffect(() => {
+    if (phase !== 'exiting') return;
+    const id = setTimeout(onClose, 320); // just past the 250ms transform tween
+    return () => clearTimeout(id);
+  }, [phase, onClose]);
+
   const sheetTranslate = phase === 'open' ? 'translate-y-0' : 'translate-y-full';
   const backdropOpacity = phase === 'open' ? 'opacity-100' : 'opacity-0';
 

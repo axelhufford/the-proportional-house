@@ -62,6 +62,19 @@ export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxS
     [phase, onClose],
   );
 
+  // Fallback so onClose always fires once we start exiting. The exit normally
+  // completes via onTransitionEnd above, but a transitionend isn't guaranteed:
+  // prefers-reduced-motion disables the transition (motion-reduce:transition-none),
+  // and a re-render can interrupt/cancel it. Without this, onClose would never
+  // run, selectedFips would never clear, and the panel would stay mounted but
+  // stuck off-screen — silently swallowing the next state click. If the
+  // transition does fire, the unmount clears this timer via the cleanup.
+  useEffect(() => {
+    if (phase !== 'exiting') return;
+    const id = setTimeout(onClose, 260); // just past the 200ms transform tween
+    return () => clearTimeout(id);
+  }, [phase, onClose]);
+
   const translateClass = phase === 'open' ? 'translate-x-0' : 'translate-x-full';
 
   return (
