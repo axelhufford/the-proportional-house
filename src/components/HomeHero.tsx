@@ -37,7 +37,13 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
   const dGain = national.projected.d_seats - national.actual.d_seats;
   const absGain = Math.abs(dGain);
 
-  const color = dGain > 0 ? 'text-red-700' : 'text-blue-700';
+  // Color the highlighted phrase by the party it *names*. "toward Democrats /
+  // Republicans" (Current/Sandbox) follows the shift direction; "more
+  // Republican / Democratic" (Retrospective) follows the over-represented party
+  // — the opposite mapping, since dGain>0 means PR gives D more (so today over-
+  // represents R).
+  const towardColor = dGain > 0 ? 'text-blue-700' : 'text-red-700';
+  const moreColor = dGain > 0 ? 'text-red-700' : 'text-blue-700';
   const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
   const towardWord = (v: number) => (v > 0 ? 'toward Democrats' : 'toward Republicans');
   const moreParty = (v: number) => (v > 0 ? 'Republican' : 'Democratic');
@@ -56,7 +62,7 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
       ) : (
         <>
           In the 2024 election, winner-take-all districts left the House about{' '}
-          <strong className={color}>
+          <strong className={moreColor}>
             {absGain} {seats(absGain)} more {moreParty(dGain)}
           </strong>{' '}
           than proportional representation of the actual statewide vote would have — no polling or
@@ -76,7 +82,7 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
         <>
           In a hypothetical <strong>{genericLabel}</strong> national vote, proportional
           representation would shift the House about{' '}
-          <strong className={color}>
+          <strong className={towardColor}>
             {absGain} {seats(absGain)} {towardWord(dGain)}
           </strong>{' '}
           from today’s. Adjust the controls to build your own scenario.
@@ -98,7 +104,7 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
       lede = (
         <>
           Today’s U.S. House would shift about{' '}
-          <strong className={color}>
+          <strong className={towardColor}>
             {absGain} {seats(absGain)} {towardWord(dGain)}
           </strong>{' '}
           if every state’s seats matched its statewide vote.
