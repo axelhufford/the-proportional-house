@@ -21,9 +21,16 @@ interface Props {
    * loads); without it the caveat is simply omitted.
    */
   structuralDGain?: number;
+  /**
+   * Switch the active view (e.g. from the "2024 Retrospective" link in the
+   * caveat). Goes through the same state setter the mode toggle uses — a plain
+   * `<Link>` to `?view=…` wouldn't work, since Home only reads `view` from the
+   * URL on initial mount.
+   */
+  onSelectView?: (view: ViewMode) => void;
 }
 
-export function HomeHero({ payload, viewMode, structuralDGain }: Props) {
+export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: Props) {
   const { national, meta } = payload;
   // Positive = PR gives Democrats more seats than today's House (today over-
   // represents R); negative = the reverse.
@@ -101,21 +108,22 @@ export function HomeHero({ payload, viewMode, structuralDGain }: Props) {
         const swing = dGain - structuralDGain;
         const biggerIsSwing = Math.abs(swing) >= Math.abs(structuralDGain);
         const retroLink = (
-          <Link
-            to="/?view=retrospective"
+          <button
+            type="button"
+            onClick={() => onSelectView?.('retrospective')}
             className="underline underline-offset-2 hover:text-brand-navy"
           >
             2024 Retrospective
-          </Link>
+          </button>
         );
         caveat = biggerIsSwing ? (
           <>
-            Most of that shift is the recent move {towardWord(swing)} in national polling, though —
-            not the district map. The {retroLink} shows the map’s effect on its own.
+            Most of that shift is the recent move {towardWord(swing)} in national polling, not the
+            district map. The {retroLink} shows the map’s effect on its own.
           </>
         ) : (
           <>
-            Most of that is built into the district map itself, not recent polling — the {retroLink}{' '}
+            Most of that is built into the district map itself, not recent polling. The {retroLink}{' '}
             isolates it.
           </>
         );

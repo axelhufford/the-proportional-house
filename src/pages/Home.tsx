@@ -627,6 +627,7 @@ export function Home({ onMetaChange }: HomeProps) {
         payload={effectivePayload}
         viewMode={viewMode}
         structuralDGain={structuralDGain ?? undefined}
+        onSelectView={setViewMode}
       />
       <NationalSummary
         payload={effectivePayload}
