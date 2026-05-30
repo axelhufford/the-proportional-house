@@ -50,12 +50,37 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r data-pipeline/requirements.txt
 
-      - name: Run pipeline
+      - name: Run pipeline (best-effort; never breaks the deploy)
         run: |
+          # Snapshot the last-good committed data OUTSIDE public/ (so Vite never
+          # bundles it). If the pipeline errors — e.g. a data source is briefly
+          # down — we restore this clean snapshot and overlay the currently-live
+          # data, so the deploy still ships good data: never the stale committed
+          # copy, and never a half-written file. A code change can still ship
+          # during a data blip; the failure surfaces as a CI warning (and, if it
+          # persists >48h, the site's "data may be stale" banner).
+          cp -a public/data /tmp/data-committed
+
           if [ "${{ inputs.refresh_baseline }}" = "true" ]; then
-            python data-pipeline/update.py --refresh
+            args="--refresh"
           else
-            python data-pipeline/update.py
+            args=""
+          fi
+
+          if python data-pipeline/update.py $args; then
+            echo "Pipeline succeeded — fresh data."
+          else
+            echo "::warning title=Data pipeline failed::Pipeline errored; shipping the last-good data so the deploy still succeeds. Data won't refresh this run."
+            # Reset to the clean committed snapshot (drops any partial writes),
+            # then prefer the currently-live files for freshness.
+            rm -rf public/data && cp -a /tmp/data-committed public/data
+            for f in projection.json baseline_2024.json polling_trend.json meta.json; do
+              if curl -fsSL "https://proportionalhouse.org/data/$f" -o "/tmp/$f"; then
+                mv "/tmp/$f" "public/data/$f"
+              else
+                echo "::warning::Could not fetch live $f; keeping the committed copy."
+              fi
+            done
           fi
 
       - name: Upload data artifacts (for debugging on failure)
