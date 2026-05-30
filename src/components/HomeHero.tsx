@@ -131,25 +131,32 @@ export function HomeHero({
         );
     }
   } else {
-    // Current: today's House vs. PR of the projected vote. We state the shift
-    // plainly, then (honestly) note it's mostly the polling move since 2024 —
-    // not the map. The precise structural/swing split is in the "Difference
-    // under PR" card below and on the Methodology page.
+    // Current: today's House vs. PR of the projected statewide vote. Lead with
+    // the plain finding — under current polling, how many more seats PR would
+    // hand the favored party vs. what they hold now — then (honestly) note how
+    // much of that gap is the post-2024 polling swing vs. the district map. The
+    // precise structural/swing split is in the "Difference under PR" card below
+    // and on the Methodology page.
+    const generic = meta.generic_ballot_margin;
+    const genericLabel =
+      generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
     if (dGain === 0) {
       lede = (
         <>
-          Right now, today’s House already matches what proportional representation of the vote
-          would produce. The map shows where individual states still differ.
+          Under today’s polling (<strong>{genericLabel}</strong>), a proportional U.S. House would
+          give both parties about the same number of seats they hold now.
         </>
       );
     } else {
+      const gainParty = dGain > 0 ? 'Democrats' : 'Republicans';
       lede = (
         <>
-          Today’s U.S. House would shift about{' '}
+          Under today’s polling (<strong>{genericLabel}</strong>), a proportional U.S. House would
+          give{' '}
           <strong className={towardColor}>
-            {absGain} {seats(absGain)} {towardWord(dGain)}
+            {gainParty} about {absGain} more {seats(absGain)}
           </strong>{' '}
-          if every state’s seats matched its statewide vote.
+          than they hold now.
         </>
       );
       if (structuralDGain != null) {
