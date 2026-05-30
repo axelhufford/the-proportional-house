@@ -37,16 +37,12 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
   const dGain = national.projected.d_seats - national.actual.d_seats;
   const absGain = Math.abs(dGain);
 
-  // Color the highlighted phrase by the party it *names*. "toward Democrats /
-  // Republicans" (Current/Sandbox) follows the shift direction; "more
-  // Republican / Democratic" (Retrospective) follows the over-represented party
-  // — the opposite mapping, since dGain>0 means PR gives D more (so today over-
-  // represents R).
+  // All three views frame PR's effect as a shift *toward* a party, so the
+  // highlighted phrase is colored by that party: blue when PR helps Democrats
+  // (dGain > 0), red when it helps Republicans (dGain < 0).
   const towardColor = dGain > 0 ? 'text-blue-700' : 'text-red-700';
-  const moreColor = dGain > 0 ? 'text-red-700' : 'text-blue-700';
   const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
   const towardWord = (v: number) => (v > 0 ? 'toward Democrats' : 'toward Republicans');
-  const moreParty = (v: number) => (v > 0 ? 'Republican' : 'Democratic');
 
   let lede: React.ReactNode;
   let caveat: React.ReactNode = null;
@@ -61,12 +57,11 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
         </>
       ) : (
         <>
-          In the 2024 election, winner-take-all districts left the House about{' '}
-          <strong className={moreColor}>
-            {absGain} {seats(absGain)} more {moreParty(dGain)}
-          </strong>{' '}
-          than proportional representation of the actual statewide vote would have — no polling or
-          projection, just the map.
+          In the 2024 election, proportional representation would have shifted the House about{' '}
+          <strong className={towardColor}>
+            {absGain} {seats(absGain)} {towardWord(dGain)}
+          </strong>
+          : the pure effect of winner-take-all districts, with no polling or projection.
         </>
       );
   } else if (viewMode === 'sandbox') {
