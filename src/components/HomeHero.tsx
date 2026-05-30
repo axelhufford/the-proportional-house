@@ -161,25 +161,30 @@ export function HomeHero({
       );
       if (structuralDGain != null) {
         const swing = dGain - structuralDGain;
-        const biggerIsSwing = Math.abs(swing) >= Math.abs(structuralDGain);
-        const retroLink = (
-          <button
-            type="button"
-            onClick={() => onSelectView?.('retrospective')}
-            className="underline underline-offset-2 hover:text-brand-navy"
-          >
-            2024 Retrospective
-          </button>
-        );
-        caveat = biggerIsSwing ? (
+        // Signed in the same D-positive convention as the "Difference under PR"
+        // card (+ toward Democrats, − toward Republicans). Splitting the gap
+        // shows that it's mostly the post-2024 polling swing, while PR applied
+        // to the 2024 vote itself barely moves it.
+        const signed = (n: number) => `${n >= 0 ? '+' : '−'}${Math.abs(n)}`;
+        caveat = (
           <>
-            Most of that shift is the recent move {towardWord(swing)} in national polling, not the
-            district map. The {retroLink} shows the map’s effect on its own.
-          </>
-        ) : (
-          <>
-            Most of that is built into the district map itself, not recent polling. The {retroLink}{' '}
-            isolates it.
+            That splits into roughly{' '}
+            <strong className={swing > 0 ? 'text-blue-700' : 'text-red-700'}>
+              {signed(swing)} {seats(Math.abs(swing))}
+            </strong>{' '}
+            from the polling swing {towardWord(swing)} since 2024 and{' '}
+            <strong className={structuralDGain > 0 ? 'text-blue-700' : 'text-red-700'}>
+              {signed(structuralDGain)}
+            </strong>{' '}
+            from{' '}
+            <button
+              type="button"
+              onClick={() => onSelectView?.('retrospective')}
+              className="underline underline-offset-2 hover:text-brand-navy"
+            >
+              proportional representation itself
+            </button>
+            .
           </>
         );
       }
