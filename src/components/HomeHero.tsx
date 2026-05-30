@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
+import type { SandboxPayload } from '../lib/sandboxTypes';
 
 /**
  * Homepage hero. Owns the page's <h1> and surfaces the headline finding as a
@@ -28,13 +29,33 @@ interface Props {
    * URL on initial mount.
    */
   onSelectView?: (view: ViewMode) => void;
+  /**
+   * Sandbox N-party national totals. When in Sandbox, the hero must use these
+   * (not the two-party `payload`) so its shift matches the selected method /
+   * minors / House size shown in the cards below.
+   */
+  sandboxPayload?: SandboxPayload | null;
+  /** Active method label (e.g. "Pure PR", "MMD-5") — named in the Sandbox lede. */
+  methodLabel?: string;
 }
 
-export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: Props) {
+export function HomeHero({
+  payload,
+  viewMode,
+  structuralDGain,
+  onSelectView,
+  sandboxPayload,
+  methodLabel,
+}: Props) {
   const { national, meta } = payload;
-  // Positive = PR gives Democrats more seats than today's House (today over-
-  // represents R); negative = the reverse.
-  const dGain = national.projected.d_seats - national.actual.d_seats;
+  // The headline shift = projected D minus the baseline D. In Sandbox we read
+  // the N-party sandbox totals (the selected method/minors/House, scaled
+  // baseline) so the hero matches the "Difference under …" card exactly;
+  // otherwise the two-party `payload` (today's House) is the baseline.
+  const sandboxNational = viewMode === 'sandbox' ? sandboxPayload?.national ?? null : null;
+  const dGain = sandboxNational
+    ? (sandboxNational.parties[0]?.seats ?? 0) - sandboxNational.actual_scaled.d_seats
+    : national.projected.d_seats - national.actual.d_seats;
   const absGain = Math.abs(dGain);
 
   // All three views frame PR's effect as a shift *toward* a party, so the
@@ -67,22 +88,48 @@ export function HomeHero({ payload, viewMode, structuralDGain, onSelectView }: P
   } else if (viewMode === 'sandbox') {
     const generic = meta.generic_ballot_margin;
     const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
-    lede =
-      dGain === 0 ? (
+    const reform = methodLabel ?? 'proportional representation';
+    // With extra parties active, "toward Democrats/Republicans" is misleading
+    // (both majors can lose seats to a minor), so describe the multi-party
+    // result instead of a single two-party shift.
+    const minorsActive = !!sandboxNational && (sandboxPayload?.minors.length ?? 0) > 0;
+    const topMinor = sandboxNational
+      ? sandboxNational.parties.slice(2).filter((p) => p.seats > 0).sort((a, b) => b.seats - a.seats)[0]
+      : undefined;
+    if (minorsActive) {
+      lede = topMinor ? (
         <>
-          In a hypothetical <strong>{genericLabel}</strong> national vote, proportional
-          representation produces the same split the House has today. Adjust the controls to explore.
+          In a hypothetical <strong>{genericLabel}</strong> national vote, {reform} splits the House
+          across {sandboxNational!.parties.length} parties —{' '}
+          <strong style={{ color: topMinor.party.color }}>
+            {topMinor.party.label} would win about {topMinor.seats} {seats(topMinor.seats)}
+          </strong>
+          . Adjust the controls to build your own scenario.
         </>
       ) : (
         <>
-          In a hypothetical <strong>{genericLabel}</strong> national vote, proportional
-          representation would shift the House about{' '}
-          <strong className={towardColor}>
-            {absGain} {seats(absGain)} {towardWord(dGain)}
-          </strong>{' '}
-          from today’s. Adjust the controls to build your own scenario.
+          In a hypothetical <strong>{genericLabel}</strong> national vote with extra parties added,
+          none clears your threshold to win seats. Adjust the controls to build your own scenario.
         </>
       );
+    } else {
+      lede =
+        dGain === 0 ? (
+          <>
+            In a hypothetical <strong>{genericLabel}</strong> national vote, {reform} produces the
+            same split the House has today. Adjust the controls to explore.
+          </>
+        ) : (
+          <>
+            In a hypothetical <strong>{genericLabel}</strong> national vote, {reform} would shift the
+            House about{' '}
+            <strong className={towardColor}>
+              {absGain} {seats(absGain)} {towardWord(dGain)}
+            </strong>{' '}
+            from today’s. Adjust the controls to build your own scenario.
+          </>
+        );
+    }
   } else {
     // Current: today's House vs. PR of the projected vote. We state the shift
     // plainly, then (honestly) note it's mostly the polling move since 2024 —
