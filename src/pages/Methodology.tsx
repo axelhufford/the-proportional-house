@@ -477,6 +477,13 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           <a className="underline" href="https://proportionalhouse.org" target="_blank" rel="noreferrer">proportionalhouse.org</a>{' '}
           is appreciated.
         </p>
+        <p className="text-sm text-stone-600">
+          <strong>License:</strong> the projection data is released under{' '}
+          <a className="underline" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>{' '}
+          — free to reuse with attribution. The site’s source code is{' '}
+          <a className="underline" href="https://github.com/axelhufford/the-proportional-house/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT-licensed</a>.{' '}
+          Suggested citation: “The Proportional House (proportionalhouse.org), accessed [date].”
+        </p>
       </Section>
 
       <Section title="Embeddable widgets">
