@@ -730,6 +730,33 @@ export function Home({ onMetaChange }: HomeProps) {
                 onSelect={setRetroYear}
               />
             )}
+            {retros && (
+              <details className="text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
+                <summary className="cursor-pointer font-medium text-brand-navy">
+                  Why is 2016 such an outlier?
+                </summary>
+                <div className="mt-2 space-y-2 text-stone-600 leading-relaxed">
+                  <p>
+                    In 2016, Democrats won about 49% of the two-party House vote but only 45% of the
+                    seats — and proportional representation would have closed almost all of that gap
+                    (~+20 seats). The distortion was broad, not from any one state: a dozen
+                    Republican-drawn maps (Texas, Pennsylvania, Ohio, North Carolina, Michigan,
+                    Georgia…) each turned a near-even statewide vote into a lopsided delegation — the
+                    high-water mark of the 2010-census gerrymander, before courts redrew it. It
+                    compounds a structural fact PR keeps surfacing: Democratic votes are packed into
+                    cities, “wasting” large margins.
+                  </p>
+                  <p>
+                    By 2018, several of those maps were struck down or handed to independent
+                    commissions (Pennsylvania, Michigan), and a Democratic wave converted votes to
+                    seats efficiently. The 2020-census maps behind 2022–2024 are close to nationally
+                    neutral — new Democratic gerrymanders (Illinois) and Republican ones (Florida,
+                    Texas) roughly cancel — so proportional representation changes far fewer seats,
+                    the ±2 you see in the other cycles.
+                  </p>
+                </div>
+              </details>
+            )}
             <div className="text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
               <strong>{retroYear} Retrospective.</strong>{' '}
               What if {retroYear}’s actual House votes had been allocated by proportional

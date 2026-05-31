@@ -51,13 +51,13 @@ export function NationalSummary({
   const { national, meta } = payload;
 
   const handleDownload = useCallback(() => {
-    downloadNationalCard({ national, meta, viewMode });
-  }, [national, meta, viewMode]);
+    downloadNationalCard({ national, meta, viewMode, retroYear });
+  }, [national, meta, viewMode, retroYear]);
 
   const handleShareTwitter = useCallback(() => {
-    const url = buildNationalTweetIntent({ national, meta, viewMode });
+    const url = buildNationalTweetIntent({ national, meta, viewMode, retroYear });
     window.open(url, '_blank', 'noopener,noreferrer');
-  }, [national, meta, viewMode]);
+  }, [national, meta, viewMode, retroYear]);
 
   // Data download — always emits the *unmodified* pipeline payload, not the
   // effective (sandbox-mutated) one. Researchers want the canonical numbers,

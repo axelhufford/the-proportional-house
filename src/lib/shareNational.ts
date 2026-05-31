@@ -25,6 +25,8 @@ export interface NationalShareParams {
   national: NationalTotals;
   meta: ProjectionMeta;
   viewMode: ViewMode;
+  /** Selected cycle in the Retrospective view (labels + deep link). */
+  retroYear?: number;
 }
 
 function formatBallot(margin: number): string {
@@ -32,7 +34,7 @@ function formatBallot(margin: number): string {
   return `R+${Math.abs(margin).toFixed(1)}`;
 }
 
-function buildNationalCardSvg({ national, meta, viewMode }: NationalShareParams): string {
+function buildNationalCardSvg({ national, meta, viewMode, retroYear = 2024 }: NationalShareParams): string {
   const { projected, actual } = national;
   const dGain = projected.d_seats - actual.d_seats;
 
@@ -51,12 +53,15 @@ function buildNationalCardSvg({ national, meta, viewMode }: NationalShareParams)
 
   let modeLabel: string;
   if (viewMode === 'retrospective') {
-    modeLabel = '2024 RETROSPECTIVE';
+    modeLabel = `${retroYear} RETROSPECTIVE`;
   } else if (viewMode === 'sandbox') {
     modeLabel = `SANDBOX · ${formatBallot(meta.generic_ballot_margin)}`;
   } else {
     modeLabel = `CURRENT POLLING · ${formatBallot(meta.generic_ballot_margin)}`;
   }
+  // The left stat column is "today" in Current/Sandbox, but a past cycle's
+  // actual result in a Retrospective.
+  const actualLabel = viewMode === 'retrospective' ? `ACTUAL ${retroYear}` : 'ACTUAL TODAY';
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#F4EDE0"/>
@@ -64,7 +69,7 @@ function buildNationalCardSvg({ national, meta, viewMode }: NationalShareParams)
   <text x="480" y="190" font-family="Georgia,'Times New Roman',serif" font-size="52" font-weight="500" fill="#1F2E4D" letter-spacing="-0.01em">The Proportional House</text>
   <text x="480" y="228" font-family="system-ui,-apple-system,sans-serif" font-size="14" letter-spacing="2" fill="#888780">${modeLabel}</text>
 
-  <text x="480" y="315" font-family="system-ui,-apple-system,sans-serif" font-size="14" letter-spacing="2" fill="#888780">ACTUAL TODAY</text>
+  <text x="480" y="315" font-family="system-ui,-apple-system,sans-serif" font-size="14" letter-spacing="2" fill="#888780">${actualLabel}</text>
   <text x="480" y="365" font-family="system-ui,-apple-system,sans-serif" font-size="48" font-weight="600" xml:space="preserve"><tspan fill="#2166ac">D ${actual.d_seats}</tspan><tspan fill="#5C5C5A" font-weight="400">  ·  </tspan><tspan fill="#B2182B">R ${actual.r_seats}</tspan></text>
 
   <text x="820" y="315" font-family="system-ui,-apple-system,sans-serif" font-size="14" letter-spacing="2" fill="#888780">PROJECTED UNDER PR</text>
@@ -92,7 +97,9 @@ export function downloadNationalCard(params: NationalShareParams): void {
     URL.revokeObjectURL(url);
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/png');
-    link.download = `proportional-house-national-${params.viewMode}.png`;
+    const suffix =
+      params.viewMode === 'retrospective' ? `retrospective-${params.retroYear ?? 2024}` : params.viewMode;
+    link.download = `proportional-house-national-${suffix}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -100,20 +107,29 @@ export function downloadNationalCard(params: NationalShareParams): void {
   img.src = url;
 }
 
-export function buildNationalTweetIntent({ national, meta, viewMode }: NationalShareParams): string {
+export function buildNationalTweetIntent({ national, meta, viewMode, retroYear = 2024 }: NationalShareParams): string {
   const { projected, actual } = national;
   const dGain = projected.d_seats - actual.d_seats;
+  const absGain = Math.abs(dGain);
 
+  // "from today" framing fits Current/Sandbox; a Retrospective compares the
+  // PR allocation to what was actually elected *that* cycle, not to today.
   const shiftPhrase =
     dGain > 0
       ? `+${dGain} Democratic / −${dGain} Republican from today`
       : dGain < 0
-        ? `−${Math.abs(dGain)} Democratic / +${Math.abs(dGain)} Republican from today`
+        ? `−${absGain} Democratic / +${absGain} Republican from today`
         : 'no net change from today';
 
   let text: string;
   if (viewMode === 'retrospective') {
-    text = `If 2024’s House votes had used proportional representation: Democrats ${projected.d_seats} seats, Republicans ${projected.r_seats} — ${shiftPhrase}:`;
+    if (dGain > 0) {
+      text = `In ${retroYear}, a proportional U.S. House would have given Democrats about ${absGain} more seats than they won — D ${projected.d_seats}/R ${projected.r_seats} vs. the actual D ${actual.d_seats}/R ${actual.r_seats}:`;
+    } else if (dGain < 0) {
+      text = `In ${retroYear}, a proportional U.S. House would have given Republicans about ${absGain} more seats than they won — D ${projected.d_seats}/R ${projected.r_seats} vs. the actual D ${actual.d_seats}/R ${actual.r_seats}:`;
+    } else {
+      text = `In ${retroYear}, the U.S. House matched what proportional representation of the vote would have produced (D ${projected.d_seats}/R ${projected.r_seats}):`;
+    }
   } else if (viewMode === 'sandbox') {
     text = `Under a ${formatBallot(meta.generic_ballot_margin)} generic ballot with proportional representation: Democrats ${projected.d_seats} seats, Republicans ${projected.r_seats} — ${shiftPhrase}:`;
   } else {
@@ -123,7 +139,7 @@ export function buildNationalTweetIntent({ national, meta, viewMode }: NationalS
   const SITE = 'https://proportionalhouse.org';
   let deepLink: string;
   if (viewMode === 'retrospective') {
-    deepLink = `${SITE}/?view=retrospective`;
+    deepLink = retroYear === 2024 ? `${SITE}/?view=retrospective` : `${SITE}/?view=retrospective&year=${retroYear}`;
   } else if (viewMode === 'sandbox') {
     deepLink = `${SITE}/?view=sandbox&ballot=${meta.generic_ballot_margin.toFixed(1)}`;
   } else {
