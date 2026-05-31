@@ -635,6 +635,10 @@ export function Home({ onMetaChange }: HomeProps) {
     description: 'State-by-state projection of the U.S. House of Representatives under proportional representation, based on 2024 House election results, current generic-ballot polling, and Sainte-Laguë seat allocation.',
     url: 'https://proportionalhouse.org/',
     isAccessibleForFree: true,
+    // Data license (CC BY 4.0): free to reuse with attribution. Clears the
+    // "missing field license" Dataset warning and lets Google Dataset Search
+    // filter/surface it by license.
+    license: 'https://creativecommons.org/licenses/by/4.0/',
     creator: {
       '@type': 'Person',
       name: 'Axel Hufford',
