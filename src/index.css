@@ -5,8 +5,8 @@
   --color-brand-navy-mid: #5670A6;
   --color-brand-navy-light: #9CACC4;
   --color-brand-cream: #F4EDE0;
-  --font-serif: 'Source Serif 4', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', Georgia, serif;
+  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 :root {
@@ -22,8 +22,8 @@
   --text-tertiary: #888780;
 
   /* Fonts */
-  --font-serif: 'Source Serif 4', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', Georgia, serif;
+  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   font-family: var(--font-sans);
   color-scheme: light;

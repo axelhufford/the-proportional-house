@@ -146,142 +146,130 @@ export function NationalSummary({
         ? `Disabled with House size = ${houseSize}`
         : '';
 
+  // The three stat values, extracted so the scoreboard markup stays readable.
+  const projectedValue = extendedParties ? (
+    <span className="inline-flex items-baseline gap-2 flex-wrap">
+      {extendedParties.map((p, i) => (
+        <span key={p.party.id} className="inline-flex items-baseline gap-2">
+          {i > 0 && <span className="text-stone-400 text-base">·</span>}
+          <span style={{ color: p.party.color }}>
+            {displayName(p.party)} {p.seats}
+            <Pct value={formatSeatPct(p.seats, projectedTotal)} />
+          </span>
+        </span>
+      ))}
+    </span>
+  ) : (
+    <>
+      <span className="text-blue-700">
+        D {projectedD}<Pct value={formatSeatPct(projectedD, projectedTotal)} />
+      </span>
+      <span className="text-stone-400"> · </span>
+      <span className="text-red-700">
+        R {projectedR}<Pct value={formatSeatPct(projectedR, projectedTotal)} />
+      </span>
+    </>
+  );
+
+  const actualValue = (
+    <>
+      <span className="text-blue-700">
+        D {national.actual.d_seats}
+        <Pct value={formatSeatPct(national.actual.d_seats, actualTotal)} />
+      </span>
+      <span className="text-stone-400"> · </span>
+      <span className="text-red-700">
+        R {national.actual.r_seats}
+        <Pct value={formatSeatPct(national.actual.r_seats, actualTotal)} />
+      </span>
+    </>
+  );
+
+  const diffValue = extendedParties ? (
+    <span className="inline-flex items-baseline gap-2 flex-wrap text-base">
+      {extendedParties.map((p, i) => {
+        // Compare each party's projected seats to its actual baseline scaled to
+        // the projected House size (so chamber growth isn't read as a partisan
+        // shift). Minors are new, so their baseline is 0.
+        const base = p.party.id === 'D' ? baselineD : p.party.id === 'R' ? baselineR : 0;
+        const delta = p.seats - base;
+        return (
+          <span key={p.party.id} className="inline-flex items-baseline gap-1">
+            {i > 0 && <span className="text-stone-400 text-sm">·</span>}
+            <span className="text-stone-500 text-xs uppercase tracking-wider">{displayName(p.party)}</span>
+            <span className="font-semibold" style={{ color: delta === 0 ? '#888780' : p.party.color }}>
+              {delta > 0 ? '+' : ''}{delta}
+            </span>
+          </span>
+        );
+      })}
+    </span>
+  ) : (
+    <span className={dGain >= 0 ? 'text-blue-700' : 'text-red-700'}>
+      {dGain > 0 ? '+' : ''}{dGain} D / {dGain > 0 ? '-' : '+'}{Math.abs(dGain)} R
+    </span>
+  );
+
+  const diffLabel = viewMode === 'sandbox' ? `Difference under ${activeMethodLabel}` : 'Difference under PR';
+
   return (
     <section aria-label="National summary">
-      <div className="max-w-6xl mx-auto px-6 pt-5 pb-2">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <SummaryStat
-            label={projectedLabel}
-            emphasis
-            primary={
-              extendedParties ? (
-                <span className="inline-flex items-baseline gap-2 flex-wrap">
-                  {extendedParties.map((p, i) => (
-                    <span key={p.party.id} className="inline-flex items-baseline gap-2">
-                      {i > 0 && <span className="text-stone-400 text-base">·</span>}
-                      <span style={{ color: p.party.color }}>
-                        {displayName(p.party)} {p.seats}
-                        <Pct value={formatSeatPct(p.seats, projectedTotal)} />
-                      </span>
-                    </span>
-                  ))}
-                </span>
-              ) : (
-                <>
-                  <span className="text-blue-700">
-                    D {projectedD}<Pct value={formatSeatPct(projectedD, projectedTotal)} />
-                  </span>
-                  <span className="text-stone-400"> · </span>
-                  <span className="text-red-700">
-                    R {projectedR}<Pct value={formatSeatPct(projectedR, projectedTotal)} />
-                  </span>
-                </>
-              )
-            }
-          />
-          <SummaryStat
-            label="Actual House today"
-            primary={
+      <div className="max-w-6xl mx-auto px-6 pt-3 pb-2">
+        {/* Compact scoreboard: the three national stats in one divided row
+          * (stacks on mobile) so the map below sits higher. A navy left spine
+          * marks it as the key readout; the projected total leads. */}
+        <div className="rounded-lg border border-stone-200 border-l-4 border-l-brand-navy bg-white shadow-sm overflow-hidden grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200">
+          <ScoreCell label={projectedLabel} value={projectedValue} />
+          <ScoreCell label="Actual House today" value={actualValue} />
+          <ScoreCell label={diffLabel} value={diffValue} note={differenceNote} />
+        </div>
+
+        {/* Settings line + share/export on one row to keep the band compact.
+          * Exports disable in extended sandbox (minors / non-PR / resized
+          * House) — the share PNG, CSV, JSON, and tweet are two-party-only. */}
+        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+          <div className="text-xs text-stone-500 min-w-0">
+            {viewMode === 'retrospective' ? (
               <>
-                <span className="text-blue-700">
-                  D {national.actual.d_seats}
-                  <Pct value={formatSeatPct(national.actual.d_seats, actualTotal)} />
+                <span className="font-medium text-stone-700">No swing applied</span>
+                {': pure PR allocation of 2024’s actual votes'}
+                {' · '}2024 baseline:{' '}
+                <span className="font-medium text-stone-700">{baselineLabel}</span>
+                {' · '}Method:{' '}
+                <span className="font-medium text-stone-700">Sainte-Laguë</span>
+              </>
+            ) : viewMode === 'sandbox' ? (
+              <>
+                Hypothetical generic ballot:{' '}
+                <span className="font-medium text-stone-700">{genericLabel}</span>
+                {' · '}2024 baseline:{' '}
+                <span className="font-medium text-stone-700">{baselineLabel}</span>
+                {' · '}Swing applied:{' '}
+                <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
+                  {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
                 </span>
-                <span className="text-stone-400"> · </span>
-                <span className="text-red-700">
-                  R {national.actual.r_seats}
-                  <Pct value={formatSeatPct(national.actual.r_seats, actualTotal)} />
+                {' · '}Method:{' '}
+                <span className="font-medium text-stone-700">
+                  {method === 'PR' ? 'Sainte-Laguë' : activeMethodLabel}
                 </span>
               </>
-            }
-          />
-          <SummaryStat
-            label={viewMode === 'sandbox' ? `Difference under ${activeMethodLabel}` : 'Difference under PR'}
-            note={differenceNote}
-            primary={
-              extendedParties ? (
-                <span className="inline-flex items-baseline gap-2 flex-wrap text-base">
-                  {extendedParties.map((p, i) => {
-                    // Compare each party's projected seats to its actual
-                    // baseline scaled to the projected House size (so chamber
-                    // growth isn't read as a partisan shift). Minors are new,
-                    // so their baseline is 0.
-                    const baseline =
-                      p.party.id === 'D'
-                        ? baselineD
-                        : p.party.id === 'R'
-                          ? baselineR
-                          : 0;
-                    const delta = p.seats - baseline;
-                    return (
-                      <span key={p.party.id} className="inline-flex items-baseline gap-1">
-                        {i > 0 && <span className="text-stone-400 text-sm">·</span>}
-                        <span className="text-stone-500 text-xs uppercase tracking-wider">{displayName(p.party)}</span>
-                        <span
-                          className="font-semibold"
-                          style={{ color: delta === 0 ? '#888780' : p.party.color }}
-                        >
-                          {delta > 0 ? '+' : ''}{delta}
-                        </span>
-                      </span>
-                    );
-                  })}
+            ) : (
+              <>
+                Generic ballot today:{' '}
+                <span className="font-medium text-stone-700">{genericLabel}</span>
+                {' · '}2024 baseline:{' '}
+                <span className="font-medium text-stone-700">{baselineLabel}</span>
+                {' · '}Swing applied:{' '}
+                <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
+                  {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
                 </span>
-              ) : (
-                <span className={dGain >= 0 ? 'text-blue-700' : 'text-red-700'}>
-                  {dGain > 0 ? '+' : ''}{dGain} D / {dGain > 0 ? '-' : '+'}{Math.abs(dGain)} R
-                </span>
-              )
-            }
-          />
-        </div>
+                {' · '}Method:{' '}
+                <span className="font-medium text-stone-700">Sainte-Laguë</span>
+              </>
+            )}
+          </div>
 
-        <div className="mt-4 text-xs text-stone-500">
-          {viewMode === 'retrospective' ? (
-            <>
-              <span className="font-medium text-stone-700">No swing applied</span>
-              {': pure PR allocation of 2024’s actual votes'}
-              {' · '}2024 baseline:{' '}
-              <span className="font-medium text-stone-700">{baselineLabel}</span>
-              {' · '}Method:{' '}
-              <span className="font-medium text-stone-700">Sainte-Laguë</span>
-            </>
-          ) : viewMode === 'sandbox' ? (
-            <>
-              Hypothetical generic ballot:{' '}
-              <span className="font-medium text-stone-700">{genericLabel}</span>
-              {' · '}2024 baseline:{' '}
-              <span className="font-medium text-stone-700">{baselineLabel}</span>
-              {' · '}Swing applied:{' '}
-              <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
-                {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
-              </span>
-              {' · '}Method:{' '}
-              <span className="font-medium text-stone-700">
-                {method === 'PR' ? 'Sainte-Laguë' : activeMethodLabel}
-              </span>
-            </>
-          ) : (
-            <>
-              Generic ballot today:{' '}
-              <span className="font-medium text-stone-700">{genericLabel}</span>
-              {' · '}2024 baseline:{' '}
-              <span className="font-medium text-stone-700">{baselineLabel}</span>
-              {' · '}Swing applied:{' '}
-              <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
-                {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
-              </span>
-              {' · '}Method:{' '}
-              <span className="font-medium text-stone-700">Sainte-Laguë</span>
-            </>
-          )}
-        </div>
-
-        {/* Share / download buttons. In extended sandbox (minors active),
-          * disable them — the share PNGs, CSV, JSON, and tweet text are
-          * all hardcoded two-party right now; emitting them with a 3- or
-          * 4-party projection would be misleading. */}
-        <div className="mt-3 flex justify-end gap-1">
+          <div className="flex items-center gap-1 shrink-0">
           {inExtendedSandbox ? (
             <span className="text-xs text-stone-400 italic self-center pr-2">
               Share &amp; export use the canonical two-party Pure PR projection.
@@ -333,35 +321,28 @@ export function NationalSummary({
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
           </button>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function SummaryStat({
+function ScoreCell({
   label,
-  primary,
-  emphasis = false,
+  value,
   note,
 }: {
   label: string;
-  primary: React.ReactNode;
-  /** The headline finding card — gets a navy left-accent so it reads as primary. */
-  emphasis?: boolean;
-  /** Optional small caption under the value (e.g. a baseline clarification). */
+  value: React.ReactNode;
+  /** Optional small caption under the value (e.g. the structural/swing split). */
   note?: string;
 }) {
   return (
-    <div
-      className={[
-        'rounded-lg border border-stone-200 bg-white px-5 py-4 shadow-sm',
-        emphasis ? 'border-l-4 border-l-brand-navy' : '',
-      ].join(' ')}
-    >
-      <div className="text-xs uppercase tracking-wider text-stone-500 font-medium">{label}</div>
-      <div className="text-2xl font-semibold mt-1 tabular-nums">{primary}</div>
-      {note && <div className="text-[11px] text-stone-500 mt-1">{note}</div>}
+    <div className="px-4 py-2.5">
+      <div className="text-[11px] uppercase tracking-wider text-stone-500 font-medium">{label}</div>
+      <div className="text-xl font-semibold mt-0.5 tabular-nums">{value}</div>
+      {note && <div className="text-[11px] text-stone-500 mt-0.5 leading-snug">{note}</div>}
     </div>
   );
 }

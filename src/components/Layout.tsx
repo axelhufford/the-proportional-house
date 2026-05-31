@@ -63,16 +63,38 @@ export function Layout({ meta }: LayoutProps) {
             <span aria-hidden="true" className="text-stone-300">·</span>
             <Link to="/about" className="hover:text-brand-navy">About</Link>
           </nav>
-          <div className="text-center sm:text-right text-stone-500">
-            A website by Axel Hufford ·{' '}
-            <a
-              href="https://axelhufford.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:text-brand-navy"
-            >
-              axelhufford.com
-            </a>
+          <div className="flex flex-wrap items-center justify-center sm:justify-between gap-x-3 gap-y-1 text-stone-500">
+            <span>
+              Open source ·{' '}
+              <a
+                href="https://github.com/axelhufford/the-proportional-house"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-brand-navy"
+              >
+                View source on GitHub
+              </a>
+              {' · '}
+              <a
+                href="https://github.com/axelhufford/the-proportional-house/blob/main/LICENSE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-brand-navy"
+              >
+                MIT License
+              </a>
+            </span>
+            <span>
+              A website by Axel Hufford ·{' '}
+              <a
+                href="https://axelhufford.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-brand-navy"
+              >
+                axelhufford.com
+              </a>
+            </span>
           </div>
         </div>
       </footer>

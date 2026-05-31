@@ -641,7 +641,7 @@ export function Home({ onMetaChange }: HomeProps) {
         structuralDGain={structuralDGain ?? undefined}
       />
 
-      <section id="main" className="max-w-6xl mx-auto w-full px-6 py-5">
+      <section id="main" className="max-w-6xl mx-auto w-full px-6 py-3">
         <ModeToggle
           viewMode={viewMode}
           onViewModeChange={setViewMode}
@@ -688,7 +688,7 @@ export function Home({ onMetaChange }: HomeProps) {
           </div>
         )}
 
-        <div className="mt-5 bg-white rounded-lg border border-stone-200 shadow-sm p-4">
+        <div className="mt-4 bg-white rounded-lg border border-stone-200 shadow-sm p-4">
           {/* Read-first: a one-line how-to and the color key, placed above the
            * map so newcomers know what they're looking at before they look. */}
           <div className="mb-3 space-y-2">

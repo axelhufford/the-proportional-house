@@ -192,14 +192,14 @@ export function HomeHero({
   }
 
   return (
-    <section className="max-w-6xl mx-auto w-full px-6 pt-7 sm:pt-9">
+    <section className="max-w-6xl mx-auto w-full px-6 pt-4 sm:pt-6">
       <h1 className="font-serif text-3xl sm:text-5xl font-medium text-brand-navy tracking-tight leading-[1.05]">
         The U.S. House under proportional representation
       </h1>
 
       {/* Two columns on lg+: the finding (left) and a plain "what is PR?" aside
         * (right) that fills what was empty space. Stacks on small screens. */}
-      <div className="mt-4 sm:mt-5 lg:grid lg:grid-cols-[1.6fr_1fr] lg:gap-10 lg:items-start">
+      <div className="mt-3 sm:mt-4 lg:grid lg:grid-cols-[1.6fr_1fr] lg:gap-10 lg:items-start">
         <div>
           <p className="text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
           {caveat && (
@@ -218,7 +218,7 @@ export function HomeHero({
         </aside>
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+      <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <Link
           to="/rankings"
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy text-white px-4 py-2 hover:bg-brand-navy-mid transition-colors"
