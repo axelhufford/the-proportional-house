@@ -63,18 +63,10 @@
     }
     </script>
 
-    <!-- Cloudflare Web Analytics — cookie-free, GDPR-safe, free with CF Pages.
-       Two ways to enable:
-         A) Dashboard auto-inject: Cloudflare → the-proportional-house →
-            Settings → Web Analytics → Enable. CF injects the beacon on the
-            edge; no code change needed. Leave the script tag below commented.
-         B) Manual: copy the <script> from Web Analytics → "Add a site",
-            paste the token below, and uncomment the tag.
-    -->
-    <!--
+    <!-- Cloudflare Web Analytics — cookie-free, GDPR-safe (no consent banner).
+       The beacon token is a public site identifier, not a secret. -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "REPLACE_WITH_WEB_ANALYTICS_TOKEN"}'></script>
-    -->
+      data-cf-beacon='{"token": "e3153a5143774f29a6f735ff545a8502"}'></script>
 
     <!-- Fonts are self-hosted: imported in src/main.tsx via @fontsource-variable
          (Inter + Source Serif 4), bundled and served same-origin by Vite. No
