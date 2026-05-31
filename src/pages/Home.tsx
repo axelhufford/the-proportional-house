@@ -737,22 +737,23 @@ export function Home({ onMetaChange }: HomeProps) {
                 </summary>
                 <div className="mt-2 space-y-2 text-stone-600 leading-relaxed">
                   <p>
-                    In 2016, Democrats won about 49% of the two-party House vote but only 45% of the
-                    seats — and proportional representation would have closed almost all of that gap
-                    (~+20 seats). The distortion was broad, not from any one state: a dozen
+                    In 2016, Democrats won about 49% of the House vote nationwide but only 45% of the
+                    seats. Proportional representation would have closed almost all of that gap, adding
+                    roughly 20 Democratic seats. And it wasn’t one rogue state. A dozen states with
                     Republican-drawn maps (Texas, Pennsylvania, Ohio, North Carolina, Michigan,
-                    Georgia…) each turned a near-even statewide vote into a lopsided delegation — the
-                    high-water mark of the 2010-census gerrymander, before courts redrew it. It
-                    compounds a structural fact PR keeps surfacing: Democratic votes are packed into
-                    cities, “wasting” large margins.
+                    Georgia, and more) each turned a near-even statewide vote into a lopsided
+                    delegation. Those were the most aggressive maps of the decade, drawn after the
+                    2010 census and not yet thrown out by courts.
                   </p>
                   <p>
-                    By 2018, several of those maps were struck down or handed to independent
-                    commissions (Pennsylvania, Michigan), and a Democratic wave converted votes to
-                    seats efficiently. The 2020-census maps behind 2022–2024 are close to nationally
-                    neutral — new Democratic gerrymanders (Illinois) and Republican ones (Florida,
-                    Texas) roughly cancel — so proportional representation changes far fewer seats,
-                    the ±2 you see in the other cycles.
+                    It also reflects something the map keeps showing: Democratic voters cluster in
+                    cities, so the party piles up big margins in a few districts and “wastes” a lot of
+                    votes. By 2018 several of those maps had been struck down or handed to independent
+                    commissions (including Pennsylvania and Michigan), and a strong Democratic year
+                    turned votes into seats more efficiently. The maps used in 2022 and 2024 are close
+                    to nationally balanced, because new Democratic gerrymanders (Illinois) and
+                    Republican ones (Florida, Texas) roughly cancel out. So proportional representation
+                    changes far fewer seats now, the gap you see in the other years.
                   </p>
                 </div>
               </details>
