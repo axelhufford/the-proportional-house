@@ -34,6 +34,8 @@ interface Props {
    * card with the structural-vs-swing split. Current view only.
    */
   structuralDGain?: number;
+  /** Selected cycle for the Retrospective view (labels the settings line). */
+  retroYear?: number;
 }
 
 export function NationalSummary({
@@ -44,6 +46,7 @@ export function NationalSummary({
   methodLabel,
   houseSize = DEFAULT_HOUSE_SIZE,
   structuralDGain,
+  retroYear = 2024,
 }: Props) {
   const { national, meta } = payload;
 
@@ -132,7 +135,7 @@ export function NationalSummary({
   // any house expansion so the user sees what's driving the numbers.
   let projectedLabel: string;
   if (viewMode === 'retrospective') {
-    projectedLabel = 'Projected under PR (2024)';
+    projectedLabel = `Projected under PR (${retroYear})`;
   } else if (viewMode === 'sandbox') {
     const parts = ['sandbox'];
     if (houseSize !== DEFAULT_HOUSE_SIZE) parts.push(`${houseSize} seats`);
@@ -237,7 +240,10 @@ export function NationalSummary({
           * marks it as the key readout; the projected total leads. */}
         <div className="rounded-lg border border-stone-200 border-l-4 border-l-brand-navy bg-white shadow-sm overflow-hidden grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200">
           <ScoreCell label={projectedLabel} value={projectedValue} />
-          <ScoreCell label="Actual House today" value={actualValue} />
+          <ScoreCell
+            label={viewMode === 'retrospective' ? `Actual ${retroYear} House` : 'Actual House today'}
+            value={actualValue}
+          />
           <ScoreCell label={diffLabel} value={diffValue} note={differenceNote} />
         </div>
 
@@ -249,8 +255,8 @@ export function NationalSummary({
             {viewMode === 'retrospective' ? (
               <>
                 <span className="font-medium text-stone-700">No swing applied</span>
-                {': pure PR allocation of 2024’s actual votes'}
-                {' · '}<Term id="baseline-2024">2024 baseline</Term>:{' '}
+                {`: pure PR allocation of ${retroYear}’s actual votes`}
+                {' · '}{retroYear} national House vote:{' '}
                 <span className="font-medium text-stone-700">{baselineLabel}</span>
                 {' · '}Method:{' '}
                 <span className="font-medium text-stone-700"><Term id="sainte-lague">Sainte-Laguë</Term></span>

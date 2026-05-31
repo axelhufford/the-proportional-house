@@ -1,0 +1,1020 @@
+{
+  "meta": {
+    "year": 2016,
+    "source": "MIT Election Data and Science Lab, U.S. House 1976\u20132024",
+    "source_url": "https://doi.org/10.7910/DVN/IG0UN2",
+    "national_house_popular_vote": {
+      "republican": 63171718,
+      "democratic": 61776188,
+      "total": 124947906,
+      "d_margin_points": -1.117
+    },
+    "national_composition": {
+      "d_seats": 194,
+      "r_seats": 241,
+      "total": 435
+    }
+  },
+  "states": [
+    {
+      "fips": "01",
+      "code": "AL",
+      "name": "Alabama",
+      "seats": 7,
+      "actual_d_seats": 1,
+      "actual_r_seats": 6,
+      "uncontested_district_count": 3,
+      "votes": {
+        "republican": 1222018,
+        "democratic": 621911,
+        "other": 0,
+        "total": 1843929
+      },
+      "two_party_share": {
+        "d_share": 0.337275,
+        "r_share": 0.662725
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "02",
+      "code": "AK",
+      "name": "Alaska",
+      "seats": 1,
+      "actual_d_seats": 0,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 155088,
+        "democratic": 111019,
+        "other": 40863,
+        "total": 306970
+      },
+      "two_party_share": {
+        "d_share": 0.417197,
+        "r_share": 0.582803
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "04",
+      "code": "AZ",
+      "name": "Arizona",
+      "seats": 9,
+      "actual_d_seats": 4,
+      "actual_r_seats": 5,
+      "uncontested_district_count": 2,
+      "votes": {
+        "republican": 1264378,
+        "democratic": 1034687,
+        "other": 110700,
+        "total": 2409765
+      },
+      "two_party_share": {
+        "d_share": 0.450047,
+        "r_share": 0.549953
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "05",
+      "code": "AR",
+      "name": "Arkansas",
+      "seats": 4,
+      "actual_d_seats": 0,
+      "actual_r_seats": 4,
+      "uncontested_district_count": 3,
+      "votes": {
+        "republican": 760415,
+        "democratic": 111347,
+        "other": 196512,
+        "total": 1068274
+      },
+      "two_party_share": {
+        "d_share": 0.127726,
+        "r_share": 0.872274
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "seats": 53,
+      "actual_d_seats": 39,
+      "actual_r_seats": 14,
+      "uncontested_district_count": 9,
+      "votes": {
+        "republican": 4682033,
+        "democratic": 8624432,
+        "other": 107553,
+        "total": 13414018
+      },
+      "two_party_share": {
+        "d_share": 0.648138,
+        "r_share": 0.351862
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "08",
+      "code": "CO",
+      "name": "Colorado",
+      "seats": 7,
+      "actual_d_seats": 3,
+      "actual_r_seats": 4,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 1288618,
+        "democratic": 1263791,
+        "other": 149029,
+        "total": 2701438
+      },
+      "two_party_share": {
+        "d_share": 0.495137,
+        "r_share": 0.504863
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "09",
+      "code": "CT",
+      "name": "Connecticut",
+      "seats": 5,
+      "actual_d_seats": 5,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 568134,
+        "democratic": 990139,
+        "other": 16844,
+        "total": 1575117
+      },
+      "two_party_share": {
+        "d_share": 0.635408,
+        "r_share": 0.364592
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "10",
+      "code": "DE",
+      "name": "Delaware",
+      "seats": 1,
+      "actual_d_seats": 1,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 172301,
+        "democratic": 233554,
+        "other": 14762,
+        "total": 420617
+      },
+      "two_party_share": {
+        "d_share": 0.575462,
+        "r_share": 0.424538
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "12",
+      "code": "FL",
+      "name": "Florida",
+      "seats": 27,
+      "actual_d_seats": 11,
+      "actual_r_seats": 16,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 4733630,
+        "democratic": 3985050,
+        "other": 118561,
+        "total": 8837241
+      },
+      "two_party_share": {
+        "d_share": 0.45707,
+        "r_share": 0.54293
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "13",
+      "code": "GA",
+      "name": "Georgia",
+      "seats": 14,
+      "actual_d_seats": 4,
+      "actual_r_seats": 10,
+      "uncontested_district_count": 5,
+      "votes": {
+        "republican": 2272460,
+        "democratic": 1498437,
+        "other": 0,
+        "total": 3770897
+      },
+      "two_party_share": {
+        "d_share": 0.397369,
+        "r_share": 0.602631
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "15",
+      "code": "HI",
+      "name": "Hawaii",
+      "seats": 2,
+      "actual_d_seats": 2,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 85626,
+        "democratic": 316265,
+        "other": 10982,
+        "total": 412873
+      },
+      "two_party_share": {
+        "d_share": 0.786942,
+        "r_share": 0.213058
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "16",
+      "code": "ID",
+      "name": "Idaho",
+      "seats": 2,
+      "actual_d_seats": 0,
+      "actual_r_seats": 2,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 447544,
+        "democratic": 208992,
+        "other": 25005,
+        "total": 681541
+      },
+      "two_party_share": {
+        "d_share": 0.318325,
+        "r_share": 0.681675
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "17",
+      "code": "IL",
+      "name": "Illinois",
+      "seats": 18,
+      "actual_d_seats": 11,
+      "actual_r_seats": 7,
+      "uncontested_district_count": 4,
+      "votes": {
+        "republican": 2397436,
+        "democratic": 2810536,
+        "other": 33437,
+        "total": 5241409
+      },
+      "two_party_share": {
+        "d_share": 0.53966,
+        "r_share": 0.46034
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "18",
+      "code": "IN",
+      "name": "Indiana",
+      "seats": 9,
+      "actual_d_seats": 2,
+      "actual_r_seats": 7,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 1442989,
+        "democratic": 1052901,
+        "other": 162460,
+        "total": 2658350
+      },
+      "two_party_share": {
+        "d_share": 0.421854,
+        "r_share": 0.578146
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "19",
+      "code": "IA",
+      "name": "Iowa",
+      "seats": 4,
+      "actual_d_seats": 1,
+      "actual_r_seats": 3,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 813153,
+        "democratic": 673969,
+        "other": 26238,
+        "total": 1513360
+      },
+      "two_party_share": {
+        "d_share": 0.453204,
+        "r_share": 0.546796
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "20",
+      "code": "KS",
+      "name": "Kansas",
+      "seats": 4,
+      "actual_d_seats": 0,
+      "actual_r_seats": 4,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 694240,
+        "democratic": 317635,
+        "other": 160987,
+        "total": 1172862
+      },
+      "two_party_share": {
+        "d_share": 0.313907,
+        "r_share": 0.686093
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "21",
+      "code": "KY",
+      "name": "Kentucky",
+      "seats": 6,
+      "actual_d_seats": 1,
+      "actual_r_seats": 5,
+      "uncontested_district_count": 2,
+      "votes": {
+        "republican": 1248140,
+        "democratic": 516904,
+        "other": 0,
+        "total": 1765044
+      },
+      "two_party_share": {
+        "d_share": 0.292856,
+        "r_share": 0.707144
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "22",
+      "code": "LA",
+      "name": "Louisiana",
+      "seats": 6,
+      "actual_d_seats": 1,
+      "actual_r_seats": 5,
+      "uncontested_district_count": 2,
+      "votes": {
+        "republican": 1177543,
+        "democratic": 530050,
+        "other": 41428,
+        "total": 1749021
+      },
+      "two_party_share": {
+        "d_share": 0.310408,
+        "r_share": 0.689592
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "23",
+      "code": "ME",
+      "name": "Maine",
+      "seats": 2,
+      "actual_d_seats": 1,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 357447,
+        "democratic": 386627,
+        "other": 0,
+        "total": 744074
+      },
+      "two_party_share": {
+        "d_share": 0.519608,
+        "r_share": 0.480392
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "seats": 8,
+      "actual_d_seats": 7,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 962088,
+        "democratic": 1636200,
+        "other": 104897,
+        "total": 2703185
+      },
+      "two_party_share": {
+        "d_share": 0.629722,
+        "r_share": 0.370278
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "25",
+      "code": "MA",
+      "name": "Massachusetts",
+      "seats": 9,
+      "actual_d_seats": 9,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 5,
+      "votes": {
+        "republican": 451121,
+        "democratic": 2344518,
+        "other": 124906,
+        "total": 2920545
+      },
+      "two_party_share": {
+        "d_share": 0.838634,
+        "r_share": 0.161366
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "26",
+      "code": "MI",
+      "name": "Michigan",
+      "seats": 14,
+      "actual_d_seats": 5,
+      "actual_r_seats": 9,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 2243402,
+        "democratic": 2193980,
+        "other": 233414,
+        "total": 4670796
+      },
+      "two_party_share": {
+        "d_share": 0.494431,
+        "r_share": 0.505569
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "27",
+      "code": "MN",
+      "name": "Minnesota",
+      "seats": 8,
+      "actual_d_seats": 5,
+      "actual_r_seats": 3,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 1334679,
+        "democratic": 1434559,
+        "other": 86781,
+        "total": 2856019
+      },
+      "two_party_share": {
+        "d_share": 0.518034,
+        "r_share": 0.481966
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "28",
+      "code": "MS",
+      "name": "Mississippi",
+      "seats": 4,
+      "actual_d_seats": 1,
+      "actual_r_seats": 3,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 680810,
+        "democratic": 449896,
+        "other": 51567,
+        "total": 1182273
+      },
+      "two_party_share": {
+        "d_share": 0.397889,
+        "r_share": 0.602111
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "29",
+      "code": "MO",
+      "name": "Missouri",
+      "seats": 8,
+      "actual_d_seats": 2,
+      "actual_r_seats": 6,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 1600524,
+        "democratic": 1041306,
+        "other": 108233,
+        "total": 2750063
+      },
+      "two_party_share": {
+        "d_share": 0.394161,
+        "r_share": 0.605839
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "30",
+      "code": "MT",
+      "name": "Montana",
+      "seats": 1,
+      "actual_d_seats": 0,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 285358,
+        "democratic": 205919,
+        "other": 16554,
+        "total": 507831
+      },
+      "two_party_share": {
+        "d_share": 0.41915,
+        "r_share": 0.58085
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "31",
+      "code": "NE",
+      "name": "Nebraska",
+      "seats": 3,
+      "actual_d_seats": 0,
+      "actual_r_seats": 3,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 557557,
+        "democratic": 221069,
+        "other": 9640,
+        "total": 788266
+      },
+      "two_party_share": {
+        "d_share": 0.283922,
+        "r_share": 0.716078
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "32",
+      "code": "NV",
+      "name": "Nevada",
+      "seats": 4,
+      "actual_d_seats": 3,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 498104,
+        "democratic": 508113,
+        "other": 72280,
+        "total": 1078497
+      },
+      "two_party_share": {
+        "d_share": 0.504974,
+        "r_share": 0.495026
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "33",
+      "code": "NH",
+      "name": "New Hampshire",
+      "seats": 2,
+      "actual_d_seats": 2,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 316001,
+        "democratic": 336451,
+        "other": 63392,
+        "total": 715844
+      },
+      "two_party_share": {
+        "d_share": 0.515672,
+        "r_share": 0.484328
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "seats": 12,
+      "actual_d_seats": 7,
+      "actual_r_seats": 5,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 1541631,
+        "democratic": 1821620,
+        "other": 100060,
+        "total": 3463311
+      },
+      "two_party_share": {
+        "d_share": 0.541625,
+        "r_share": 0.458375
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "35",
+      "code": "NM",
+      "name": "New Mexico",
+      "seats": 3,
+      "actual_d_seats": 2,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 343124,
+        "democratic": 436932,
+        "other": 0,
+        "total": 780056
+      },
+      "two_party_share": {
+        "d_share": 0.560129,
+        "r_share": 0.439871
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "36",
+      "code": "NY",
+      "name": "New York",
+      "seats": 27,
+      "actual_d_seats": 18,
+      "actual_r_seats": 9,
+      "uncontested_district_count": 4,
+      "votes": {
+        "republican": 2530437,
+        "democratic": 4464934,
+        "other": 113737,
+        "total": 7109108
+      },
+      "two_party_share": {
+        "d_share": 0.63827,
+        "r_share": 0.36173
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "37",
+      "code": "NC",
+      "name": "North Carolina",
+      "seats": 13,
+      "actual_d_seats": 3,
+      "actual_r_seats": 10,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 2447326,
+        "democratic": 2142661,
+        "other": 8471,
+        "total": 4598458
+      },
+      "two_party_share": {
+        "d_share": 0.466812,
+        "r_share": 0.533188
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "38",
+      "code": "ND",
+      "name": "North Dakota",
+      "seats": 1,
+      "actual_d_seats": 0,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 233980,
+        "democratic": 80377,
+        "other": 23528,
+        "total": 337885
+      },
+      "two_party_share": {
+        "d_share": 0.255687,
+        "r_share": 0.744313
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "39",
+      "code": "OH",
+      "name": "Ohio",
+      "seats": 16,
+      "actual_d_seats": 4,
+      "actual_r_seats": 12,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 2996017,
+        "democratic": 2154523,
+        "other": 59937,
+        "total": 5210477
+      },
+      "two_party_share": {
+        "d_share": 0.41831,
+        "r_share": 0.58169
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "40",
+      "code": "OK",
+      "name": "Oklahoma",
+      "seats": 5,
+      "actual_d_seats": 0,
+      "actual_r_seats": 5,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 781692,
+        "democratic": 305222,
+        "other": 46331,
+        "total": 1133245
+      },
+      "two_party_share": {
+        "d_share": 0.280815,
+        "r_share": 0.719185
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "41",
+      "code": "OR",
+      "name": "Oregon",
+      "seats": 5,
+      "actual_d_seats": 4,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 730894,
+        "democratic": 1026851,
+        "other": 149652,
+        "total": 1907397
+      },
+      "two_party_share": {
+        "d_share": 0.584187,
+        "r_share": 0.415813
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "42",
+      "code": "PA",
+      "name": "Pennsylvania",
+      "seats": 18,
+      "actual_d_seats": 5,
+      "actual_r_seats": 13,
+      "uncontested_district_count": 3,
+      "votes": {
+        "republican": 3096576,
+        "democratic": 2625157,
+        "other": 22245,
+        "total": 5743978
+      },
+      "two_party_share": {
+        "d_share": 0.458805,
+        "r_share": 0.541195
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "44",
+      "code": "RI",
+      "name": "Rhode Island",
+      "seats": 2,
+      "actual_d_seats": 2,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 141324,
+        "democratic": 263642,
+        "other": 25195,
+        "total": 430161
+      },
+      "two_party_share": {
+        "d_share": 0.651023,
+        "r_share": 0.348977
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "45",
+      "code": "SC",
+      "name": "South Carolina",
+      "seats": 7,
+      "actual_d_seats": 1,
+      "actual_r_seats": 6,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 1177365,
+        "democratic": 790303,
+        "other": 41953,
+        "total": 2009621
+      },
+      "two_party_share": {
+        "d_share": 0.401644,
+        "r_share": 0.598356
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "46",
+      "code": "SD",
+      "name": "South Dakota",
+      "seats": 1,
+      "actual_d_seats": 0,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 237163,
+        "democratic": 132810,
+        "other": 0,
+        "total": 369973
+      },
+      "two_party_share": {
+        "d_share": 0.358972,
+        "r_share": 0.641028
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "47",
+      "code": "TN",
+      "name": "Tennessee",
+      "seats": 9,
+      "actual_d_seats": 2,
+      "actual_r_seats": 7,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 1493740,
+        "democratic": 814181,
+        "other": 83134,
+        "total": 2391055
+      },
+      "two_party_share": {
+        "d_share": 0.352777,
+        "r_share": 0.647223
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "48",
+      "code": "TX",
+      "name": "Texas",
+      "seats": 36,
+      "actual_d_seats": 11,
+      "actual_r_seats": 25,
+      "uncontested_district_count": 10,
+      "votes": {
+        "republican": 4877605,
+        "democratic": 3160535,
+        "other": 490320,
+        "total": 8528460
+      },
+      "two_party_share": {
+        "d_share": 0.393192,
+        "r_share": 0.606808
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "49",
+      "code": "UT",
+      "name": "Utah",
+      "seats": 4,
+      "actual_d_seats": 0,
+      "actual_r_seats": 4,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 710635,
+        "democratic": 356287,
+        "other": 47222,
+        "total": 1114144
+      },
+      "two_party_share": {
+        "d_share": 0.333939,
+        "r_share": 0.666061
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "50",
+      "code": "VT",
+      "name": "Vermont",
+      "seats": 1,
+      "actual_d_seats": 1,
+      "actual_r_seats": 0,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 0,
+        "democratic": 264414,
+        "other": 29410,
+        "total": 293824
+      },
+      "two_party_share": {
+        "d_share": 1.0,
+        "r_share": 0.0
+      },
+      "baseline_distortion_warning": true
+    },
+    {
+      "fips": "51",
+      "code": "VA",
+      "name": "Virginia",
+      "seats": 11,
+      "actual_d_seats": 4,
+      "actual_r_seats": 7,
+      "uncontested_district_count": 1,
+      "votes": {
+        "republican": 1843010,
+        "democratic": 1859426,
+        "other": 36580,
+        "total": 3739016
+      },
+      "two_party_share": {
+        "d_share": 0.502217,
+        "r_share": 0.497783
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "53",
+      "code": "WA",
+      "name": "Washington",
+      "seats": 10,
+      "actual_d_seats": 6,
+      "actual_r_seats": 4,
+      "uncontested_district_count": 2,
+      "votes": {
+        "republican": 1404890,
+        "democratic": 1736145,
+        "other": 0,
+        "total": 3141035
+      },
+      "two_party_share": {
+        "d_share": 0.55273,
+        "r_share": 0.44727
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "54",
+      "code": "WV",
+      "name": "West Virginia",
+      "seats": 3,
+      "actual_d_seats": 0,
+      "actual_r_seats": 3,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 445017,
+        "democratic": 224449,
+        "other": 16883,
+        "total": 686349
+      },
+      "two_party_share": {
+        "d_share": 0.335266,
+        "r_share": 0.664734
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "55",
+      "code": "WI",
+      "name": "Wisconsin",
+      "seats": 8,
+      "actual_d_seats": 3,
+      "actual_r_seats": 5,
+      "uncontested_district_count": 2,
+      "votes": {
+        "republican": 1270279,
+        "democratic": 1379996,
+        "other": 117632,
+        "total": 2767907
+      },
+      "two_party_share": {
+        "d_share": 0.520699,
+        "r_share": 0.479301
+      },
+      "baseline_distortion_warning": false
+    },
+    {
+      "fips": "56",
+      "code": "WY",
+      "name": "Wyoming",
+      "seats": 1,
+      "actual_d_seats": 0,
+      "actual_r_seats": 1,
+      "uncontested_district_count": 0,
+      "votes": {
+        "republican": 156176,
+        "democratic": 75466,
+        "other": 19395,
+        "total": 251037
+      },
+      "two_party_share": {
+        "d_share": 0.325787,
+        "r_share": 0.674213
+      },
+      "baseline_distortion_warning": false
+    }
+  ]
+}

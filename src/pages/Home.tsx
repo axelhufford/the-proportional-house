@@ -9,6 +9,8 @@ import { MethodComparisonTable } from '../components/MethodComparisonTable';
 import type { MinorState, MinorPresetSelector } from '../components/MinorPartyControls';
 import { NationalSummary } from '../components/NationalSummary';
 import { ModeToggle } from '../components/ModeToggle';
+import { SegmentedControl } from '../components/SegmentedControl';
+import { RetrospectiveTrend } from '../components/RetrospectiveTrend';
 import { Sandbox } from '../components/Sandbox';
 import { StateDetail } from '../components/StateDetail';
 import {
@@ -34,8 +36,9 @@ import {
 } from '../lib/statePopulations';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
+import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
-import type { ProjectionPayload, ViewMode, ColorMode } from '../lib/types';
+import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload } from '../lib/types';
 
 interface HomeProps {
   onMetaChange?: (payload: ProjectionPayload) => void;
@@ -43,6 +46,16 @@ interface HomeProps {
 
 const VIEW_MODES: ViewMode[] = ['current', 'retrospective', 'sandbox'];
 const COLOR_MODES: ColorMode[] = ['balance', 'distortion'];
+
+// Retrospective cycles (rolling window of the 5 most recent). The latest is the
+// default; the data-driven selector renders whatever retrospectives.json carries.
+const RETRO_YEARS = [2016, 2018, 2020, 2022, 2024];
+const RETRO_DEFAULT_YEAR = RETRO_YEARS[RETRO_YEARS.length - 1];
+
+function parseRetroYear(raw: string | null): number {
+  const n = raw ? Number(raw) : NaN;
+  return RETRO_YEARS.includes(n) ? n : RETRO_DEFAULT_YEAR;
+}
 
 function parseViewMode(raw: string | null): ViewMode {
   return raw && (VIEW_MODES as string[]).includes(raw) ? (raw as ViewMode) : 'current';
@@ -287,6 +300,9 @@ export function Home({ onMetaChange }: HomeProps) {
   // the right mode without an intermediate flash.
   const [viewMode, setViewMode] = useState<ViewMode>(() => parseViewMode(searchParams.get('view')));
   const [colorMode, setColorMode] = useState<ColorMode>(() => parseColorMode(searchParams.get('color')));
+  // Multi-cycle retrospectives + the selected cycle (Retrospective view only).
+  const [retros, setRetros] = useState<RetrospectivesPayload | null>(null);
+  const [retroYear, setRetroYear] = useState<number>(() => parseRetroYear(searchParams.get('year')));
   // Sandbox slider state: hypothetical generic-ballot margin in points.
   // Initialized from URL `ballot=` if present; otherwise from the pipeline
   // value once the payload loads.
@@ -361,10 +377,14 @@ export function Home({ onMetaChange }: HomeProps) {
     Promise.all([
       fetchJson<ProjectionPayload>('/data/projection.json'),
       fetchJson<Topology>('/data/states-10m.json'),
+      // Multi-cycle retrospectives. Non-fatal if it 404s (older deploy): the
+      // Retrospective view falls back to the 2024-from-projection computation.
+      fetchJson<RetrospectivesPayload>('/data/retrospectives.json').catch(() => null),
     ])
-      .then(([proj, topo]) => {
+      .then(([proj, topo, retro]) => {
         setPayload(proj);
         setTopology(topo);
+        if (retro) setRetros(retro);
         setSandboxBallot((cur) => (cur === null ? proj.meta.generic_ballot_margin : cur));
         // Resolve any ?state=XX URL param to its FIPS now that the payload
         // is loaded. Invalid codes are silently ignored.
@@ -451,6 +471,11 @@ export function Home({ onMetaChange }: HomeProps) {
     const next = new URLSearchParams();
     if (viewMode !== 'current') next.set('view', viewMode);
     if (colorMode !== 'balance') next.set('color', colorMode);
+    // Emit ?year= in retrospective mode for any non-default cycle so a specific
+    // retrospective is shareable (the latest cycle stays a clean URL).
+    if (viewMode === 'retrospective' && retroYear !== RETRO_DEFAULT_YEAR) {
+      next.set('year', String(retroYear));
+    }
     if (viewMode === 'sandbox' && sandboxBallot !== null) {
       const liveBallot = payload.meta.generic_ballot_margin;
       if (Math.abs(sandboxBallot - liveBallot) > 0.05) {
@@ -492,7 +517,7 @@ export function Home({ onMetaChange }: HomeProps) {
       if (state) next.set('state', state.code);
     }
     setSearchParams(next, { replace: true });
-  }, [payload, viewMode, colorMode, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, setSearchParams]);
+  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, setSearchParams]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection (no client recompute).
@@ -502,13 +527,17 @@ export function Home({ onMetaChange }: HomeProps) {
     if (!payload) return null;
     if (viewMode === 'current') return payload;
     if (viewMode === 'retrospective') {
-      return recomputeWithSwing(payload, 0);
+      // Adapt the selected cycle from retrospectives.json. Falls back to the
+      // 2024-from-projection computation if the data hasn't loaded (or 404s on
+      // an older deploy) — that path equals retrospectives.json's 2024 cycle.
+      const cycle = retros?.cycles[String(retroYear)];
+      return cycle ? cycleToProjectionPayload(cycle, retroYear) : recomputeWithSwing(payload, 0);
     }
     // sandbox
     const ballot = sandboxBallot ?? payload.meta.generic_ballot_margin;
     const swing = ballot - payload.meta.baseline_2024_margin;
     return recomputeWithSwing(payload, swing);
-  }, [payload, viewMode, sandboxBallot]);
+  }, [payload, viewMode, sandboxBallot, retros, retroYear]);
 
   // Structural-distortion baseline for the Current-view headline decomposition.
   // PR of the *actual 2024* vote (swing = 0) minus today's 2024-elected House —
@@ -630,6 +659,7 @@ export function Home({ onMetaChange }: HomeProps) {
         onSelectView={setViewMode}
         sandboxPayload={sandboxPayload}
         methodLabel={effective.label}
+        retroYear={retroYear}
       />
       <NationalSummary
         payload={effectivePayload}
@@ -639,6 +669,7 @@ export function Home({ onMetaChange }: HomeProps) {
         methodLabel={effective.canonicalKey === null ? effective.label : undefined}
         houseSize={houseSize}
         structuralDGain={structuralDGain ?? undefined}
+        retroYear={retroYear}
       />
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-3">
@@ -682,9 +713,31 @@ export function Home({ onMetaChange }: HomeProps) {
         )}
 
         {viewMode === 'retrospective' && (
-          <div className="mt-5 text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
-            <strong>2024 Retrospective.</strong>{' '}
-            What if 2024’s actual House votes had been allocated by proportional representation, with no swing applied? This isolates the distortion of the current map from the projection’s polling assumption.
+          <div className="mt-5 space-y-4">
+            <SegmentedControl
+              label="Cycle"
+              value={String(retroYear)}
+              options={(retros?.meta.cycles ?? RETRO_YEARS).map((y) => ({
+                value: String(y),
+                label: String(y),
+              }))}
+              onChange={(v) => setRetroYear(Number(v))}
+            />
+            {retros && (
+              <RetrospectiveTrend
+                series={retros.series}
+                selectedYear={retroYear}
+                onSelect={setRetroYear}
+              />
+            )}
+            <div className="text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
+              <strong>{retroYear} Retrospective.</strong>{' '}
+              What if {retroYear}’s actual House votes had been allocated by proportional
+              representation, with no swing applied? This isolates the distortion of that election’s
+              district map from any polling or projection.
+              {retroYear !== 2024 &&
+                ' Prior-cycle vote totals come from the MIT Election Lab; 2024 from the U.S. House Clerk.'}
+            </div>
           </div>
         )}
 

@@ -61,6 +61,17 @@ export function Methodology(_props: MethodologyProps) {
             (published March 10, 2025). We parse the per-state recapitulation on page 86. National total:
             R {pipelineMeta?.baseline_2024_r_margin ? `+${pipelineMeta.baseline_2024_r_margin.toFixed(2)}` : '+2.55'} points.
           </li>
+          <li id="retrospectives" className="scroll-mt-24">
+            <strong>Prior-cycle retrospectives (2016–2022).</strong>{' '}
+            <a className="underline" href="https://doi.org/10.7910/DVN/IG0UN2" target="_blank" rel="noreferrer">
+              MIT Election Data and Science Lab, <em>U.S. House 1976–2024</em>
+            </a>. For each cycle we sum the reported Democratic and Republican votes per state to a
+            two-party share, take the winner of each district for the actual seat counts, and apply the
+            same Sainte-Laguë allocation. Note: prior cycles use the <em>reported</em> statewide vote
+            (uncontested districts included), not the per-district imputation the 2024 baseline uses —
+            so states with many uncontested races are approximate. 2024 stays sourced from the Clerk
+            (above) so it matches the Current view’s structural baseline.
+          </li>
           <li>
             <strong>Generic-ballot polls.</strong>{' '}
             <a className="underline" href="https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls" target="_blank" rel="noreferrer">

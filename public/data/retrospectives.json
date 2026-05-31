@@ -1,0 +1,5166 @@
+{
+  "meta": {
+    "generated_at": "2026-05-31T18:53:53.873918+00:00",
+    "cycles": [
+      2016,
+      2018,
+      2020,
+      2022,
+      2024
+    ],
+    "method": "sainte-lague",
+    "sources": {
+      "2024": "U.S. House Clerk, Statistics of the Congressional Election of 2024",
+      "prior": "MIT Election Data and Science Lab, U.S. House 1976\u20132024 (doi:10.7910/DVN/IG0UN2)"
+    }
+  },
+  "cycles": {
+    "2016": {
+      "national": {
+        "seats": 435,
+        "projected_pr": {
+          "d_seats": 214,
+          "r_seats": 221
+        },
+        "actual": {
+          "d_seats": 194,
+          "r_seats": 241
+        },
+        "popular_vote_d_margin": -1.12
+      },
+      "states": [
+        {
+          "fips": "01",
+          "code": "AL",
+          "name": "Alabama",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3373,
+            "r_share": 0.6627
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 3
+        },
+        {
+          "fips": "02",
+          "code": "AK",
+          "name": "Alaska",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4172,
+            "r_share": 0.5828
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "04",
+          "code": "AZ",
+          "name": "Arizona",
+          "seats": 9,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.45,
+            "r_share": 0.55
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "05",
+          "code": "AR",
+          "name": "Arkansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.1277,
+            "r_share": 0.8723
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 3
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "seats": 53,
+          "actual": {
+            "d_seats": 39,
+            "r_seats": 14
+          },
+          "projected_pr": {
+            "d_seats": 34,
+            "r_seats": 19
+          },
+          "two_party_share": {
+            "d_share": 0.6481,
+            "r_share": 0.3519
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 9
+        },
+        {
+          "fips": "08",
+          "code": "CO",
+          "name": "Colorado",
+          "seats": 7,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4951,
+            "r_share": 0.5049
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "09",
+          "code": "CT",
+          "name": "Connecticut",
+          "seats": 5,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.6354,
+            "r_share": 0.3646
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "10",
+          "code": "DE",
+          "name": "Delaware",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5755,
+            "r_share": 0.4245
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "seats": 27,
+          "actual": {
+            "d_seats": 11,
+            "r_seats": 16
+          },
+          "projected_pr": {
+            "d_seats": 12,
+            "r_seats": 15
+          },
+          "two_party_share": {
+            "d_share": 0.4571,
+            "r_share": 0.5429
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "13",
+          "code": "GA",
+          "name": "Georgia",
+          "seats": 14,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.3974,
+            "r_share": 0.6026
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 5
+        },
+        {
+          "fips": "15",
+          "code": "HI",
+          "name": "Hawaii",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.7869,
+            "r_share": 0.2131
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "16",
+          "code": "ID",
+          "name": "Idaho",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3183,
+            "r_share": 0.6817
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "17",
+          "code": "IL",
+          "name": "Illinois",
+          "seats": 18,
+          "actual": {
+            "d_seats": 11,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 10,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.5397,
+            "r_share": 0.4603
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 4
+        },
+        {
+          "fips": "18",
+          "code": "IN",
+          "name": "Indiana",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4219,
+            "r_share": 0.5781
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "19",
+          "code": "IA",
+          "name": "Iowa",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4532,
+            "r_share": 0.5468
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "20",
+          "code": "KS",
+          "name": "Kansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3139,
+            "r_share": 0.6861
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "21",
+          "code": "KY",
+          "name": "Kentucky",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.2929,
+            "r_share": 0.7071
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "22",
+          "code": "LA",
+          "name": "Louisiana",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3104,
+            "r_share": 0.6896
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "23",
+          "code": "ME",
+          "name": "Maine",
+          "seats": 2,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5196,
+            "r_share": 0.4804
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "seats": 8,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.6297,
+            "r_share": 0.3703
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "25",
+          "code": "MA",
+          "name": "Massachusetts",
+          "seats": 9,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.8386,
+            "r_share": 0.1614
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 5
+        },
+        {
+          "fips": "26",
+          "code": "MI",
+          "name": "Michigan",
+          "seats": 14,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4944,
+            "r_share": 0.5056
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "27",
+          "code": "MN",
+          "name": "Minnesota",
+          "seats": 8,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.518,
+            "r_share": 0.482
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "28",
+          "code": "MS",
+          "name": "Mississippi",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3979,
+            "r_share": 0.6021
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "29",
+          "code": "MO",
+          "name": "Missouri",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3942,
+            "r_share": 0.6058
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "30",
+          "code": "MT",
+          "name": "Montana",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4192,
+            "r_share": 0.5808
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "31",
+          "code": "NE",
+          "name": "Nebraska",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.2839,
+            "r_share": 0.7161
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "32",
+          "code": "NV",
+          "name": "Nevada",
+          "seats": 4,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.505,
+            "r_share": 0.495
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "33",
+          "code": "NH",
+          "name": "New Hampshire",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5157,
+            "r_share": 0.4843
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "seats": 12,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.5416,
+            "r_share": 0.4584
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "35",
+          "code": "NM",
+          "name": "New Mexico",
+          "seats": 3,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5601,
+            "r_share": 0.4399
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "seats": 27,
+          "actual": {
+            "d_seats": 18,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 17,
+            "r_seats": 10
+          },
+          "two_party_share": {
+            "d_share": 0.6383,
+            "r_share": 0.3617
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 4
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "seats": 13,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4668,
+            "r_share": 0.5332
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "38",
+          "code": "ND",
+          "name": "North Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2557,
+            "r_share": 0.7443
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "39",
+          "code": "OH",
+          "name": "Ohio",
+          "seats": 16,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 12
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 9
+          },
+          "two_party_share": {
+            "d_share": 0.4183,
+            "r_share": 0.5817
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "40",
+          "code": "OK",
+          "name": "Oklahoma",
+          "seats": 5,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.2808,
+            "r_share": 0.7192
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "41",
+          "code": "OR",
+          "name": "Oregon",
+          "seats": 5,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5842,
+            "r_share": 0.4158
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "42",
+          "code": "PA",
+          "name": "Pennsylvania",
+          "seats": 18,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 13
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 10
+          },
+          "two_party_share": {
+            "d_share": 0.4588,
+            "r_share": 0.5412
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 3
+        },
+        {
+          "fips": "44",
+          "code": "RI",
+          "name": "Rhode Island",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.651,
+            "r_share": 0.349
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "45",
+          "code": "SC",
+          "name": "South Carolina",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4016,
+            "r_share": 0.5984
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "46",
+          "code": "SD",
+          "name": "South Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.359,
+            "r_share": 0.641
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "47",
+          "code": "TN",
+          "name": "Tennessee",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.3528,
+            "r_share": 0.6472
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "48",
+          "code": "TX",
+          "name": "Texas",
+          "seats": 36,
+          "actual": {
+            "d_seats": 11,
+            "r_seats": 25
+          },
+          "projected_pr": {
+            "d_seats": 14,
+            "r_seats": 22
+          },
+          "two_party_share": {
+            "d_share": 0.3932,
+            "r_share": 0.6068
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 10
+        },
+        {
+          "fips": "49",
+          "code": "UT",
+          "name": "Utah",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3339,
+            "r_share": 0.6661
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "50",
+          "code": "VT",
+          "name": "Vermont",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5,
+            "r_share": 0.5
+          },
+          "baseline_distortion_warning": true,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "51",
+          "code": "VA",
+          "name": "Virginia",
+          "seats": 11,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.5022,
+            "r_share": 0.4978
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "53",
+          "code": "WA",
+          "name": "Washington",
+          "seats": 10,
+          "actual": {
+            "d_seats": 6,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5527,
+            "r_share": 0.4473
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "54",
+          "code": "WV",
+          "name": "West Virginia",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3353,
+            "r_share": 0.6647
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "55",
+          "code": "WI",
+          "name": "Wisconsin",
+          "seats": 8,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5207,
+            "r_share": 0.4793
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "56",
+          "code": "WY",
+          "name": "Wyoming",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3258,
+            "r_share": 0.6742
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        }
+      ]
+    },
+    "2018": {
+      "national": {
+        "seats": 435,
+        "projected_pr": {
+          "d_seats": 233,
+          "r_seats": 202
+        },
+        "actual": {
+          "d_seats": 235,
+          "r_seats": 200
+        },
+        "popular_vote_d_margin": 8.72
+      },
+      "states": [
+        {
+          "fips": "01",
+          "code": "AL",
+          "name": "Alabama",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4102,
+            "r_share": 0.5898
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "02",
+          "code": "AK",
+          "name": "Alaska",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4669,
+            "r_share": 0.5331
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "04",
+          "code": "AZ",
+          "name": "Arizona",
+          "seats": 9,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5086,
+            "r_share": 0.4914
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "05",
+          "code": "AR",
+          "name": "Arkansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.36,
+            "r_share": 0.64
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "seats": 53,
+          "actual": {
+            "d_seats": 46,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 35,
+            "r_seats": 18
+          },
+          "two_party_share": {
+            "d_share": 0.6684,
+            "r_share": 0.3316
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 9
+        },
+        {
+          "fips": "08",
+          "code": "CO",
+          "name": "Colorado",
+          "seats": 7,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.5544,
+            "r_share": 0.4456
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "09",
+          "code": "CT",
+          "name": "Connecticut",
+          "seats": 5,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.62,
+            "r_share": 0.38
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "10",
+          "code": "DE",
+          "name": "Delaware",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.6445,
+            "r_share": 0.3555
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "seats": 27,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 14
+          },
+          "projected_pr": {
+            "d_seats": 13,
+            "r_seats": 14
+          },
+          "two_party_share": {
+            "d_share": 0.4736,
+            "r_share": 0.5264
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 5
+        },
+        {
+          "fips": "13",
+          "code": "GA",
+          "name": "Georgia",
+          "seats": 14,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4773,
+            "r_share": 0.5227
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "15",
+          "code": "HI",
+          "name": "Hawaii",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.7672,
+            "r_share": 0.2328
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "16",
+          "code": "ID",
+          "name": "Idaho",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3603,
+            "r_share": 0.6397
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "17",
+          "code": "IL",
+          "name": "Illinois",
+          "seats": 18,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 11,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.6112,
+            "r_share": 0.3888
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "18",
+          "code": "IN",
+          "name": "Indiana",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4449,
+            "r_share": 0.5551
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "19",
+          "code": "IA",
+          "name": "Iowa",
+          "seats": 4,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5205,
+            "r_share": 0.4795
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "20",
+          "code": "KS",
+          "name": "Kansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4519,
+            "r_share": 0.5481
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "21",
+          "code": "KY",
+          "name": "Kentucky",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3959,
+            "r_share": 0.6041
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "22",
+          "code": "LA",
+          "name": "Louisiana",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3983,
+            "r_share": 0.6017
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "23",
+          "code": "ME",
+          "name": "Maine",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.579,
+            "r_share": 0.421
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "seats": 8,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.6692,
+            "r_share": 0.3308
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "25",
+          "code": "MA",
+          "name": "Massachusetts",
+          "seats": 9,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.7961,
+            "r_share": 0.2039
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 4
+        },
+        {
+          "fips": "26",
+          "code": "MI",
+          "name": "Michigan",
+          "seats": 14,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.5399,
+            "r_share": 0.4601
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "27",
+          "code": "MN",
+          "name": "Minnesota",
+          "seats": 8,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.558,
+            "r_share": 0.442
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "28",
+          "code": "MS",
+          "name": "Mississippi",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4584,
+            "r_share": 0.5416
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "29",
+          "code": "MO",
+          "name": "Missouri",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4358,
+            "r_share": 0.5642
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "30",
+          "code": "MT",
+          "name": "Montana",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4761,
+            "r_share": 0.5239
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "31",
+          "code": "NE",
+          "name": "Nebraska",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3797,
+            "r_share": 0.6203
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "32",
+          "code": "NV",
+          "name": "Nevada",
+          "seats": 4,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5277,
+            "r_share": 0.4723
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "33",
+          "code": "NH",
+          "name": "New Hampshire",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5556,
+            "r_share": 0.4444
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "seats": 12,
+          "actual": {
+            "d_seats": 11,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.6077,
+            "r_share": 0.3923
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "35",
+          "code": "NM",
+          "name": "New Mexico",
+          "seats": 3,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.6042,
+            "r_share": 0.3958
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "seats": 27,
+          "actual": {
+            "d_seats": 21,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 18,
+            "r_seats": 9
+          },
+          "two_party_share": {
+            "d_share": 0.6822,
+            "r_share": 0.3178
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 6
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "seats": 13,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4896,
+            "r_share": 0.5104
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "38",
+          "code": "ND",
+          "name": "North Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3714,
+            "r_share": 0.6286
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "39",
+          "code": "OH",
+          "name": "Ohio",
+          "seats": 16,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 12
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.4761,
+            "r_share": 0.5239
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "40",
+          "code": "OK",
+          "name": "Oklahoma",
+          "seats": 5,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3697,
+            "r_share": 0.6303
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "41",
+          "code": "OR",
+          "name": "Oregon",
+          "seats": 5,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.6017,
+            "r_share": 0.3983
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "42",
+          "code": "PA",
+          "name": "Pennsylvania",
+          "seats": 18,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 10,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.5515,
+            "r_share": 0.4485
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "44",
+          "code": "RI",
+          "name": "Rhode Island",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.6514,
+            "r_share": 0.3486
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "45",
+          "code": "SC",
+          "name": "South Carolina",
+          "seats": 7,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4498,
+            "r_share": 0.5502
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "46",
+          "code": "SD",
+          "name": "South Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3737,
+            "r_share": 0.6263
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "47",
+          "code": "TN",
+          "name": "Tennessee",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3981,
+            "r_share": 0.6019
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "48",
+          "code": "TX",
+          "name": "Texas",
+          "seats": 36,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 23
+          },
+          "projected_pr": {
+            "d_seats": 17,
+            "r_seats": 19
+          },
+          "two_party_share": {
+            "d_share": 0.4823,
+            "r_share": 0.5177
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 4
+        },
+        {
+          "fips": "49",
+          "code": "UT",
+          "name": "Utah",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3773,
+            "r_share": 0.6227
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "50",
+          "code": "VT",
+          "name": "Vermont",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.7273,
+            "r_share": 0.2727
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "51",
+          "code": "VA",
+          "name": "Virginia",
+          "seats": 11,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.57,
+            "r_share": 0.43
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "53",
+          "code": "WA",
+          "name": "Washington",
+          "seats": 10,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.643,
+            "r_share": 0.357
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "54",
+          "code": "WV",
+          "name": "West Virginia",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4103,
+            "r_share": 0.5897
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "55",
+          "code": "WI",
+          "name": "Wisconsin",
+          "seats": 8,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5383,
+            "r_share": 0.4617
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "56",
+          "code": "WY",
+          "name": "Wyoming",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3189,
+            "r_share": 0.6811
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        }
+      ]
+    },
+    "2020": {
+      "national": {
+        "seats": 435,
+        "projected_pr": {
+          "d_seats": 224,
+          "r_seats": 211
+        },
+        "actual": {
+          "d_seats": 222,
+          "r_seats": 213
+        },
+        "popular_vote_d_margin": 3.03
+      },
+      "states": [
+        {
+          "fips": "01",
+          "code": "AL",
+          "name": "Alabama",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3007,
+            "r_share": 0.6993
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 3
+        },
+        {
+          "fips": "02",
+          "code": "AK",
+          "name": "Alaska",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4542,
+            "r_share": 0.5458
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "04",
+          "code": "AZ",
+          "name": "Arizona",
+          "seats": 9,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4986,
+            "r_share": 0.5014
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "05",
+          "code": "AR",
+          "name": "Arkansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.2852,
+            "r_share": 0.7148
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "seats": 53,
+          "actual": {
+            "d_seats": 42,
+            "r_seats": 11
+          },
+          "projected_pr": {
+            "d_seats": 35,
+            "r_seats": 18
+          },
+          "two_party_share": {
+            "d_share": 0.6627,
+            "r_share": 0.3373
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 7
+        },
+        {
+          "fips": "08",
+          "code": "CO",
+          "name": "Colorado",
+          "seats": 7,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.5492,
+            "r_share": 0.4508
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "09",
+          "code": "CT",
+          "name": "Connecticut",
+          "seats": 5,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.6085,
+            "r_share": 0.3915
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "10",
+          "code": "DE",
+          "name": "Delaware",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5889,
+            "r_share": 0.4111
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "seats": 27,
+          "actual": {
+            "d_seats": 11,
+            "r_seats": 16
+          },
+          "projected_pr": {
+            "d_seats": 13,
+            "r_seats": 14
+          },
+          "two_party_share": {
+            "d_share": 0.4747,
+            "r_share": 0.5253
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "13",
+          "code": "GA",
+          "name": "Georgia",
+          "seats": 14,
+          "actual": {
+            "d_seats": 6,
+            "r_seats": 8
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.49,
+            "r_share": 0.51
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "15",
+          "code": "HI",
+          "name": "Hawaii",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.6956,
+            "r_share": 0.3044
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "16",
+          "code": "ID",
+          "name": "Idaho",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3128,
+            "r_share": 0.6872
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "17",
+          "code": "IL",
+          "name": "Illinois",
+          "seats": 18,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 10,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.5813,
+            "r_share": 0.4187
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "18",
+          "code": "IN",
+          "name": "Indiana",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4073,
+            "r_share": 0.5927
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "19",
+          "code": "IA",
+          "name": "Iowa",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.47,
+            "r_share": 0.53
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "20",
+          "code": "KS",
+          "name": "Kansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.418,
+            "r_share": 0.582
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "21",
+          "code": "KY",
+          "name": "Kentucky",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3503,
+            "r_share": 0.6497
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "22",
+          "code": "LA",
+          "name": "Louisiana",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3468,
+            "r_share": 0.6532
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "23",
+          "code": "ME",
+          "name": "Maine",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5795,
+            "r_share": 0.4205
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "seats": 8,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.6504,
+            "r_share": 0.3496
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "25",
+          "code": "MA",
+          "name": "Massachusetts",
+          "seats": 9,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.7803,
+            "r_share": 0.2197
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 4
+        },
+        {
+          "fips": "26",
+          "code": "MI",
+          "name": "Michigan",
+          "seats": 14,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.5067,
+            "r_share": 0.4933
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "27",
+          "code": "MN",
+          "name": "Minnesota",
+          "seats": 8,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5131,
+            "r_share": 0.4869
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "28",
+          "code": "MS",
+          "name": "Mississippi",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3429,
+            "r_share": 0.6571
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "29",
+          "code": "MO",
+          "name": "Missouri",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4047,
+            "r_share": 0.5953
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "30",
+          "code": "MT",
+          "name": "Montana",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4361,
+            "r_share": 0.5639
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "31",
+          "code": "NE",
+          "name": "Nebraska",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3578,
+            "r_share": 0.6422
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "32",
+          "code": "NV",
+          "name": "Nevada",
+          "seats": 4,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5122,
+            "r_share": 0.4878
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "33",
+          "code": "NH",
+          "name": "New Hampshire",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.539,
+            "r_share": 0.461
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "seats": 12,
+          "actual": {
+            "d_seats": 10,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.5794,
+            "r_share": 0.4206
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "35",
+          "code": "NM",
+          "name": "New Mexico",
+          "seats": 3,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5487,
+            "r_share": 0.4513
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "seats": 27,
+          "actual": {
+            "d_seats": 19,
+            "r_seats": 8
+          },
+          "projected_pr": {
+            "d_seats": 17,
+            "r_seats": 10
+          },
+          "two_party_share": {
+            "d_share": 0.6307,
+            "r_share": 0.3693
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "seats": 13,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 8
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.5028,
+            "r_share": 0.4972
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "38",
+          "code": "ND",
+          "name": "North Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2855,
+            "r_share": 0.7145
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "39",
+          "code": "OH",
+          "name": "Ohio",
+          "seats": 16,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 12
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 9
+          },
+          "two_party_share": {
+            "d_share": 0.4298,
+            "r_share": 0.5702
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "40",
+          "code": "OK",
+          "name": "Oklahoma",
+          "seats": 5,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.313,
+            "r_share": 0.687
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "41",
+          "code": "OR",
+          "name": "Oregon",
+          "seats": 5,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5707,
+            "r_share": 0.4293
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "42",
+          "code": "PA",
+          "name": "Pennsylvania",
+          "seats": 18,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 9,
+            "r_seats": 9
+          },
+          "two_party_share": {
+            "d_share": 0.4937,
+            "r_share": 0.5063
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "44",
+          "code": "RI",
+          "name": "Rhode Island",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.7399,
+            "r_share": 0.2601
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "45",
+          "code": "SC",
+          "name": "South Carolina",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4325,
+            "r_share": 0.5675
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "46",
+          "code": "SD",
+          "name": "South Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5,
+            "r_share": 0.5
+          },
+          "baseline_distortion_warning": true,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "47",
+          "code": "TN",
+          "name": "Tennessee",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3961,
+            "r_share": 0.6039
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "48",
+          "code": "TX",
+          "name": "Texas",
+          "seats": 36,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 23
+          },
+          "projected_pr": {
+            "d_seats": 16,
+            "r_seats": 20
+          },
+          "two_party_share": {
+            "d_share": 0.4524,
+            "r_share": 0.5476
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "49",
+          "code": "UT",
+          "name": "Utah",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3668,
+            "r_share": 0.6332
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "50",
+          "code": "VT",
+          "name": "Vermont",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.7136,
+            "r_share": 0.2864
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "51",
+          "code": "VA",
+          "name": "Virginia",
+          "seats": 11,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.5229,
+            "r_share": 0.4771
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "53",
+          "code": "WA",
+          "name": "Washington",
+          "seats": 10,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.6023,
+            "r_share": 0.3977
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "54",
+          "code": "WV",
+          "name": "West Virginia",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3244,
+            "r_share": 0.6756
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "55",
+          "code": "WI",
+          "name": "Wisconsin",
+          "seats": 8,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4853,
+            "r_share": 0.5147
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "56",
+          "code": "WY",
+          "name": "Wyoming",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2639,
+            "r_share": 0.7361
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        }
+      ]
+    },
+    "2022": {
+      "national": {
+        "seats": 435,
+        "projected_pr": {
+          "d_seats": 215,
+          "r_seats": 220
+        },
+        "actual": {
+          "d_seats": 213,
+          "r_seats": 222
+        },
+        "popular_vote_d_margin": -2.9
+      },
+      "states": [
+        {
+          "fips": "01",
+          "code": "AL",
+          "name": "Alabama",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.2526,
+            "r_share": 0.7474
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "02",
+          "code": "AK",
+          "name": "Alaska",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4984,
+            "r_share": 0.5016
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "04",
+          "code": "AZ",
+          "name": "Arizona",
+          "seats": 9,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4312,
+            "r_share": 0.5688
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "05",
+          "code": "AR",
+          "name": "Arkansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3125,
+            "r_share": 0.6875
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "seats": 52,
+          "actual": {
+            "d_seats": 40,
+            "r_seats": 12
+          },
+          "projected_pr": {
+            "d_seats": 33,
+            "r_seats": 19
+          },
+          "two_party_share": {
+            "d_share": 0.636,
+            "r_share": 0.364
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 7
+        },
+        {
+          "fips": "08",
+          "code": "CO",
+          "name": "Colorado",
+          "seats": 8,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.5651,
+            "r_share": 0.4349
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "09",
+          "code": "CT",
+          "name": "Connecticut",
+          "seats": 5,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5776,
+            "r_share": 0.4224
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "10",
+          "code": "DE",
+          "name": "Delaware",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5635,
+            "r_share": 0.4365
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "seats": 28,
+          "actual": {
+            "d_seats": 8,
+            "r_seats": 20
+          },
+          "projected_pr": {
+            "d_seats": 11,
+            "r_seats": 17
+          },
+          "two_party_share": {
+            "d_share": 0.4049,
+            "r_share": 0.5951
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 3
+        },
+        {
+          "fips": "13",
+          "code": "GA",
+          "name": "Georgia",
+          "seats": 14,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4769,
+            "r_share": 0.5231
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "15",
+          "code": "HI",
+          "name": "Hawaii",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.6867,
+            "r_share": 0.3133
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "16",
+          "code": "ID",
+          "name": "Idaho",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.314,
+            "r_share": 0.686
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "17",
+          "code": "IL",
+          "name": "Illinois",
+          "seats": 17,
+          "actual": {
+            "d_seats": 14,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 10,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.5622,
+            "r_share": 0.4378
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "18",
+          "code": "IN",
+          "name": "Indiana",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3926,
+            "r_share": 0.6074
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "19",
+          "code": "IA",
+          "name": "Iowa",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4371,
+            "r_share": 0.5629
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "20",
+          "code": "KS",
+          "name": "Kansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4275,
+            "r_share": 0.5725
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "21",
+          "code": "KY",
+          "name": "Kentucky",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3399,
+            "r_share": 0.6601
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "22",
+          "code": "LA",
+          "name": "Louisiana",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.2919,
+            "r_share": 0.7081
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "23",
+          "code": "ME",
+          "name": "Maine",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5829,
+            "r_share": 0.4171
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "seats": 8,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.6516,
+            "r_share": 0.3484
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "25",
+          "code": "MA",
+          "name": "Massachusetts",
+          "seats": 9,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.6984,
+            "r_share": 0.3016
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "26",
+          "code": "MI",
+          "name": "Michigan",
+          "seats": 13,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.5118,
+            "r_share": 0.4882
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "27",
+          "code": "MN",
+          "name": "Minnesota",
+          "seats": 8,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5101,
+            "r_share": 0.4899
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "28",
+          "code": "MS",
+          "name": "Mississippi",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.356,
+            "r_share": 0.644
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "29",
+          "code": "MO",
+          "name": "Missouri",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3938,
+            "r_share": 0.6062
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "30",
+          "code": "MT",
+          "name": "Montana",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3931,
+            "r_share": 0.6069
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "31",
+          "code": "NE",
+          "name": "Nebraska",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3623,
+            "r_share": 0.6377
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "32",
+          "code": "NV",
+          "name": "Nevada",
+          "seats": 4,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4826,
+            "r_share": 0.5174
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "33",
+          "code": "NH",
+          "name": "New Hampshire",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5496,
+            "r_share": 0.4504
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "seats": 12,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.5497,
+            "r_share": 0.4503
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "35",
+          "code": "NM",
+          "name": "New Mexico",
+          "seats": 3,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5506,
+            "r_share": 0.4494
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "seats": 26,
+          "actual": {
+            "d_seats": 15,
+            "r_seats": 11
+          },
+          "projected_pr": {
+            "d_seats": 15,
+            "r_seats": 11
+          },
+          "two_party_share": {
+            "d_share": 0.5586,
+            "r_share": 0.4414
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "seats": 14,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4784,
+            "r_share": 0.5216
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "38",
+          "code": "ND",
+          "name": "North Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5,
+            "r_share": 0.5
+          },
+          "baseline_distortion_warning": true,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "39",
+          "code": "OH",
+          "name": "Ohio",
+          "seats": 15,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.4357,
+            "r_share": 0.5643
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "40",
+          "code": "OK",
+          "name": "Oklahoma",
+          "seats": 5,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3194,
+            "r_share": 0.6806
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "41",
+          "code": "OR",
+          "name": "Oregon",
+          "seats": 6,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.5431,
+            "r_share": 0.4569
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "42",
+          "code": "PA",
+          "name": "Pennsylvania",
+          "seats": 17,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 8
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 9
+          },
+          "two_party_share": {
+            "d_share": 0.4742,
+            "r_share": 0.5258
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 3
+        },
+        {
+          "fips": "44",
+          "code": "RI",
+          "name": "Rhode Island",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5735,
+            "r_share": 0.4265
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "45",
+          "code": "SC",
+          "name": "South Carolina",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3287,
+            "r_share": 0.6713
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "46",
+          "code": "SD",
+          "name": "South Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5,
+            "r_share": 0.5
+          },
+          "baseline_distortion_warning": true,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "47",
+          "code": "TN",
+          "name": "Tennessee",
+          "seats": 9,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 8
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.3461,
+            "r_share": 0.6539
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "48",
+          "code": "TX",
+          "name": "Texas",
+          "seats": 38,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 25
+          },
+          "projected_pr": {
+            "d_seats": 15,
+            "r_seats": 23
+          },
+          "two_party_share": {
+            "d_share": 0.3968,
+            "r_share": 0.6032
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 6
+        },
+        {
+          "fips": "49",
+          "code": "UT",
+          "name": "Utah",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3377,
+            "r_share": 0.6623
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "50",
+          "code": "VT",
+          "name": "Vermont",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.6924,
+            "r_share": 0.3076
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "51",
+          "code": "VA",
+          "name": "Virginia",
+          "seats": 11,
+          "actual": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.5182,
+            "r_share": 0.4818
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "53",
+          "code": "WA",
+          "name": "Washington",
+          "seats": 10,
+          "actual": {
+            "d_seats": 8,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5812,
+            "r_share": 0.4188
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "54",
+          "code": "WV",
+          "name": "West Virginia",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3242,
+            "r_share": 0.6758
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "55",
+          "code": "WI",
+          "name": "Wisconsin",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4193,
+            "r_share": 0.5807
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "56",
+          "code": "WY",
+          "name": "Wyoming",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2633,
+            "r_share": 0.7367
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        }
+      ]
+    },
+    "2024": {
+      "national": {
+        "seats": 435,
+        "projected_pr": {
+          "d_seats": 213,
+          "r_seats": 222
+        },
+        "actual": {
+          "d_seats": 215,
+          "r_seats": 220
+        },
+        "popular_vote_d_margin": -2.51
+      },
+      "states": [
+        {
+          "fips": "02",
+          "code": "AK",
+          "name": "Alaska",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.4948,
+            "r_share": 0.5052
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "01",
+          "code": "AL",
+          "name": "Alabama",
+          "seats": 7,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.2557,
+            "r_share": 0.7443
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "05",
+          "code": "AR",
+          "name": "Arkansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3194,
+            "r_share": 0.6806
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "04",
+          "code": "AZ",
+          "name": "Arizona",
+          "seats": 9,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.4799,
+            "r_share": 0.5201
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "seats": 52,
+          "actual": {
+            "d_seats": 43,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 32,
+            "r_seats": 20
+          },
+          "two_party_share": {
+            "d_share": 0.6065,
+            "r_share": 0.3935
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "08",
+          "code": "CO",
+          "name": "Colorado",
+          "seats": 8,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5607,
+            "r_share": 0.4393
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "09",
+          "code": "CT",
+          "name": "Connecticut",
+          "seats": 5,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.5897,
+            "r_share": 0.4103
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "10",
+          "code": "DE",
+          "name": "Delaware",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.5786,
+            "r_share": 0.4214
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "seats": 28,
+          "actual": {
+            "d_seats": 8,
+            "r_seats": 20
+          },
+          "projected_pr": {
+            "d_seats": 12,
+            "r_seats": 16
+          },
+          "two_party_share": {
+            "d_share": 0.4207,
+            "r_share": 0.5793
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "13",
+          "code": "GA",
+          "name": "Georgia",
+          "seats": 14,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 9
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.474,
+            "r_share": 0.526
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "15",
+          "code": "HI",
+          "name": "Hawaii",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.7027,
+            "r_share": 0.2973
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "19",
+          "code": "IA",
+          "name": "Iowa",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4349,
+            "r_share": 0.5651
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "16",
+          "code": "ID",
+          "name": "Idaho",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2965,
+            "r_share": 0.7035
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "17",
+          "code": "IL",
+          "name": "Illinois",
+          "seats": 17,
+          "actual": {
+            "d_seats": 14,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 9,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.5292,
+            "r_share": 0.4708
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "18",
+          "code": "IN",
+          "name": "Indiana",
+          "seats": 9,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3981,
+            "r_share": 0.6019
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "20",
+          "code": "KS",
+          "name": "Kansas",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4125,
+            "r_share": 0.5875
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "21",
+          "code": "KY",
+          "name": "Kentucky",
+          "seats": 6,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.2689,
+            "r_share": 0.7311
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "22",
+          "code": "LA",
+          "name": "Louisiana",
+          "seats": 6,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3806,
+            "r_share": 0.6194
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "25",
+          "code": "MA",
+          "name": "Massachusetts",
+          "seats": 9,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.8868,
+            "r_share": 0.1132
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "seats": 8,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 5,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.6468,
+            "r_share": 0.3532
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "23",
+          "code": "ME",
+          "name": "Maine",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5613,
+            "r_share": 0.4387
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "26",
+          "code": "MI",
+          "name": "Michigan",
+          "seats": 13,
+          "actual": {
+            "d_seats": 6,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 7
+          },
+          "two_party_share": {
+            "d_share": 0.4936,
+            "r_share": 0.5064
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "27",
+          "code": "MN",
+          "name": "Minnesota",
+          "seats": 8,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5047,
+            "r_share": 0.4953
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "29",
+          "code": "MO",
+          "name": "Missouri",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.3968,
+            "r_share": 0.6032
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "28",
+          "code": "MS",
+          "name": "Mississippi",
+          "seats": 4,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3012,
+            "r_share": 0.6988
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "30",
+          "code": "MT",
+          "name": "Montana",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.404,
+            "r_share": 0.596
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "seats": 14,
+          "actual": {
+            "d_seats": 4,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.4484,
+            "r_share": 0.5516
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "38",
+          "code": "ND",
+          "name": "North Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.3048,
+            "r_share": 0.6952
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "31",
+          "code": "NE",
+          "name": "Nebraska",
+          "seats": 3,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.3638,
+            "r_share": 0.6362
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "33",
+          "code": "NH",
+          "name": "New Hampshire",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5351,
+            "r_share": 0.4649
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "seats": 12,
+          "actual": {
+            "d_seats": 9,
+            "r_seats": 3
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.5364,
+            "r_share": 0.4636
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "35",
+          "code": "NM",
+          "name": "New Mexico",
+          "seats": 3,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.5507,
+            "r_share": 0.4493
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "32",
+          "code": "NV",
+          "name": "Nevada",
+          "seats": 4,
+          "actual": {
+            "d_seats": 3,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 2
+          },
+          "two_party_share": {
+            "d_share": 0.4354,
+            "r_share": 0.5646
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "seats": 26,
+          "actual": {
+            "d_seats": 19,
+            "r_seats": 7
+          },
+          "projected_pr": {
+            "d_seats": 15,
+            "r_seats": 11
+          },
+          "two_party_share": {
+            "d_share": 0.5875,
+            "r_share": 0.4125
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "39",
+          "code": "OH",
+          "name": "Ohio",
+          "seats": 15,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 7,
+            "r_seats": 8
+          },
+          "two_party_share": {
+            "d_share": 0.4342,
+            "r_share": 0.5658
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "40",
+          "code": "OK",
+          "name": "Oklahoma",
+          "seats": 5,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 2,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3228,
+            "r_share": 0.6772
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "41",
+          "code": "OR",
+          "name": "Oregon",
+          "seats": 6,
+          "actual": {
+            "d_seats": 5,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.5579,
+            "r_share": 0.4421
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "42",
+          "code": "PA",
+          "name": "Pennsylvania",
+          "seats": 17,
+          "actual": {
+            "d_seats": 7,
+            "r_seats": 10
+          },
+          "projected_pr": {
+            "d_seats": 8,
+            "r_seats": 9
+          },
+          "two_party_share": {
+            "d_share": 0.4895,
+            "r_share": 0.5105
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "44",
+          "code": "RI",
+          "name": "Rhode Island",
+          "seats": 2,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.6191,
+            "r_share": 0.3809
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "45",
+          "code": "SC",
+          "name": "South Carolina",
+          "seats": 7,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.3953,
+            "r_share": 0.6047
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "46",
+          "code": "SD",
+          "name": "South Dakota",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2796,
+            "r_share": 0.7204
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "47",
+          "code": "TN",
+          "name": "Tennessee",
+          "seats": 9,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 8
+          },
+          "projected_pr": {
+            "d_seats": 3,
+            "r_seats": 6
+          },
+          "two_party_share": {
+            "d_share": 0.3416,
+            "r_share": 0.6584
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "48",
+          "code": "TX",
+          "name": "Texas",
+          "seats": 38,
+          "actual": {
+            "d_seats": 13,
+            "r_seats": 25
+          },
+          "projected_pr": {
+            "d_seats": 16,
+            "r_seats": 22
+          },
+          "two_party_share": {
+            "d_share": 0.4088,
+            "r_share": 0.5912
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "49",
+          "code": "UT",
+          "name": "Utah",
+          "seats": 4,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 4
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 3
+          },
+          "two_party_share": {
+            "d_share": 0.3412,
+            "r_share": 0.6588
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "51",
+          "code": "VA",
+          "name": "Virginia",
+          "seats": 11,
+          "actual": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 5
+          },
+          "two_party_share": {
+            "d_share": 0.519,
+            "r_share": 0.481
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "50",
+          "code": "VT",
+          "name": "Vermont",
+          "seats": 1,
+          "actual": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 0
+          },
+          "two_party_share": {
+            "d_share": 0.6598,
+            "r_share": 0.3402
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 1
+        },
+        {
+          "fips": "53",
+          "code": "WA",
+          "name": "Washington",
+          "seats": 10,
+          "actual": {
+            "d_seats": 8,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 6,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.5844,
+            "r_share": 0.4156
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 2
+        },
+        {
+          "fips": "55",
+          "code": "WI",
+          "name": "Wisconsin",
+          "seats": 8,
+          "actual": {
+            "d_seats": 2,
+            "r_seats": 6
+          },
+          "projected_pr": {
+            "d_seats": 4,
+            "r_seats": 4
+          },
+          "two_party_share": {
+            "d_share": 0.4851,
+            "r_share": 0.5149
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "54",
+          "code": "WV",
+          "name": "West Virginia",
+          "seats": 2,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 2
+          },
+          "projected_pr": {
+            "d_seats": 1,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2879,
+            "r_share": 0.7121
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        },
+        {
+          "fips": "56",
+          "code": "WY",
+          "name": "Wyoming",
+          "seats": 1,
+          "actual": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "projected_pr": {
+            "d_seats": 0,
+            "r_seats": 1
+          },
+          "two_party_share": {
+            "d_share": 0.2476,
+            "r_share": 0.7524
+          },
+          "baseline_distortion_warning": false,
+          "uncontested_district_count": 0
+        }
+      ]
+    }
+  },
+  "series": [
+    {
+      "year": 2016,
+      "seats": 435,
+      "actual": {
+        "d_seats": 194,
+        "r_seats": 241
+      },
+      "projected_pr": {
+        "d_seats": 214,
+        "r_seats": 221
+      },
+      "d_gain": 20
+    },
+    {
+      "year": 2018,
+      "seats": 435,
+      "actual": {
+        "d_seats": 235,
+        "r_seats": 200
+      },
+      "projected_pr": {
+        "d_seats": 233,
+        "r_seats": 202
+      },
+      "d_gain": -2
+    },
+    {
+      "year": 2020,
+      "seats": 435,
+      "actual": {
+        "d_seats": 222,
+        "r_seats": 213
+      },
+      "projected_pr": {
+        "d_seats": 224,
+        "r_seats": 211
+      },
+      "d_gain": 2
+    },
+    {
+      "year": 2022,
+      "seats": 435,
+      "actual": {
+        "d_seats": 213,
+        "r_seats": 222
+      },
+      "projected_pr": {
+        "d_seats": 215,
+        "r_seats": 220
+      },
+      "d_gain": 2
+    },
+    {
+      "year": 2024,
+      "seats": 435,
+      "actual": {
+        "d_seats": 215,
+        "r_seats": 220
+      },
+      "projected_pr": {
+        "d_seats": 213,
+        "r_seats": 222
+      },
+      "d_gain": -2
+    }
+  ]
+}

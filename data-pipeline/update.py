@@ -304,6 +304,15 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) sitemap generation failed: {e}")
 
+    # Rebuild the multi-cycle retrospectives (offline — reads committed
+    # house_{year}.json baselines, no network). 2024 here matches the
+    # baseline_2024.json computed above (same Sainte-Laguë over the same data).
+    try:
+        from build_retrospectives import main as build_retrospectives
+        build_retrospectives()
+    except Exception as e:
+        print(f"  (warn) retrospectives build failed: {e}")
+
     # Sanity-check: print the plan's Phase 2 "done when" criteria.
     proj_gain_d = nat_proj_d - nat_actual_d
     retro_gain_d = nat_retro_d - nat_actual_d

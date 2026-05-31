@@ -37,6 +37,8 @@ interface Props {
   sandboxPayload?: SandboxPayload | null;
   /** Active method label (e.g. "Pure PR", "MMD-5") — named in the Sandbox lede. */
   methodLabel?: string;
+  /** Selected cycle for the Retrospective view (e.g. 2016…2024). */
+  retroYear?: number;
 }
 
 export function HomeHero({
@@ -46,6 +48,7 @@ export function HomeHero({
   onSelectView,
   sandboxPayload,
   methodLabel,
+  retroYear = 2024,
 }: Props) {
   const { national, meta } = payload;
   // The headline shift = projected D minus the baseline D. In Sandbox we read
@@ -73,12 +76,12 @@ export function HomeHero({
     lede =
       dGain === 0 ? (
         <>
-          In the 2024 election, the House matched what proportional representation of the vote
+          In the {retroYear} election, the House matched what proportional representation of the vote
           would have produced. The map shows where individual states diverged.
         </>
       ) : (
         <>
-          In the 2024 election, proportional representation would have shifted the House about{' '}
+          In the {retroYear} election, proportional representation would have shifted the House about{' '}
           <strong className={towardColor}>
             {absGain} {seats(absGain)} {towardWord(dGain)}
           </strong>
