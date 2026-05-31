@@ -9,6 +9,7 @@ import { displayName } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 import { formatSeatPct } from '../lib/format';
+import { Term } from './Term';
 
 const DEFAULT_HOUSE_SIZE = 435;
 
@@ -249,18 +250,18 @@ export function NationalSummary({
               <>
                 <span className="font-medium text-stone-700">No swing applied</span>
                 {': pure PR allocation of 2024’s actual votes'}
-                {' · '}2024 baseline:{' '}
+                {' · '}<Term id="baseline-2024">2024 baseline</Term>:{' '}
                 <span className="font-medium text-stone-700">{baselineLabel}</span>
                 {' · '}Method:{' '}
-                <span className="font-medium text-stone-700">Sainte-Laguë</span>
+                <span className="font-medium text-stone-700"><Term id="sainte-lague">Sainte-Laguë</Term></span>
               </>
             ) : viewMode === 'sandbox' ? (
               <>
-                Hypothetical generic ballot:{' '}
+                Hypothetical <Term id="generic-ballot">generic ballot</Term>:{' '}
                 <span className="font-medium text-stone-700">{genericLabel}</span>
-                {' · '}2024 baseline:{' '}
+                {' · '}<Term id="baseline-2024">2024 baseline</Term>:{' '}
                 <span className="font-medium text-stone-700">{baselineLabel}</span>
-                {' · '}Swing applied:{' '}
+                {' · '}<Term id="swing">Swing</Term> applied:{' '}
                 <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
                   {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
                 </span>
@@ -271,16 +272,16 @@ export function NationalSummary({
               </>
             ) : (
               <>
-                Generic ballot today:{' '}
+                <Term id="generic-ballot">Generic ballot</Term> today:{' '}
                 <span className="font-medium text-stone-700">{genericLabel}</span>
-                {' · '}2024 baseline:{' '}
+                {' · '}<Term id="baseline-2024">2024 baseline</Term>:{' '}
                 <span className="font-medium text-stone-700">{baselineLabel}</span>
-                {' · '}Swing applied:{' '}
+                {' · '}<Term id="swing">Swing</Term> applied:{' '}
                 <span className={meta.swing >= 0 ? 'font-medium text-blue-700' : 'font-medium text-red-700'}>
                   {meta.swing >= 0 ? '+' : ''}{meta.swing.toFixed(1)} pts toward {meta.swing >= 0 ? 'D' : 'R'}
                 </span>
                 {' · '}Method:{' '}
-                <span className="font-medium text-stone-700">Sainte-Laguë</span>
+                <span className="font-medium text-stone-700"><Term id="sainte-lague">Sainte-Laguë</Term></span>
               </>
             )}
           </div>

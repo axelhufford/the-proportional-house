@@ -22,20 +22,37 @@ export function ScrollManager() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Defer to next frame so the new route has rendered and any
-    // hash-target element exists in the DOM.
-    requestAnimationFrame(() => {
+    let cancelled = false;
+    let timer = 0;
+    const start =
+      typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const now = () =>
+      typeof performance !== 'undefined' ? performance.now() : Date.now();
+    // The hash target may not be in the DOM yet: React Router v7 renders the new
+    // route in a transition, so the route component can commit after the
+    // location (and ScrollManager) update. Poll briefly until it appears, then
+    // honor its scroll-mt-* offset. Time-based so it's robust to slow commits.
+    const run = () => {
+      if (cancelled) return;
       if (hash) {
-        const id = hash.slice(1);
-        const el = document.getElementById(id);
+        const el = document.getElementById(hash.slice(1));
         if (el) {
           el.scrollIntoView({ behavior: 'auto', block: 'start' });
           return;
         }
-        // Hash target not found — fall through to scroll-to-top.
+        if (now() - start < 1500) {
+          timer = window.setTimeout(run, 50);
+          return;
+        }
+        // Target never showed up (e.g. stale anchor) — fall through.
       }
       window.scrollTo({ top: 0, behavior: 'auto' });
-    });
+    };
+    run();
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [pathname, hash]);
 
   return null;

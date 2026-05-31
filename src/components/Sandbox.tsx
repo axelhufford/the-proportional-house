@@ -6,6 +6,7 @@ import {
   type AllocationMethodKind,
   type EffectiveMethod,
 } from '../lib/methods';
+import { Term } from './Term';
 import {
   defaultMinorState,
   MinorPartyControls,
@@ -208,7 +209,12 @@ export function Sandbox({
         first
         title="The national mood"
         sub="hypothetical generic ballot"
-        description="Set a hypothetical national margin. Each state shifts from its 2024 result, scaled by how sharply it swings versus the nation (its elasticity)."
+        description={
+          <>
+            Set a hypothetical national margin. Each state shifts from its 2024 result, scaled by
+            how sharply it swings versus the nation (its <Term id="elasticity">elasticity</Term>).
+          </>
+        }
       >
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div className="text-2xl font-semibold tabular-nums">
@@ -300,7 +306,7 @@ export function Sandbox({
 
             <div className="pt-1">
               <div className="flex items-baseline justify-between text-xs text-stone-600 mb-1">
-                <span className="font-medium text-stone-700">Threshold (per state)</span>
+                <span className="font-medium text-stone-700"><Term id="threshold">Threshold</Term> (per state)</span>
                 <span className="tabular-nums font-medium text-stone-900">
                   {(threshold * 100).toFixed(1)}%
                 </span>
@@ -489,7 +495,7 @@ function Group({
 }: {
   title: string;
   sub?: string;
-  description?: string;
+  description?: ReactNode;
   value?: ReactNode;
   first?: boolean;
   children: ReactNode;

@@ -73,7 +73,7 @@ export function Methodology(_props: MethodologyProps) {
         </ul>
       </Section>
 
-      <Section title="The math, written out">
+      <Section id="the-math" title="The math, written out">
         <p>Each state’s 2024 two-party D share is computed from the Clerk’s recap as <code>d_share = D / (D + R)</code>. The national swing is</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`swing = current_generic_ballot_margin − baseline_2024_national_margin`}</pre>
         <p>where both terms are in margin points (positive = D advantage). For example, today the generic ballot sits at roughly D+{pipelineMeta?.generic_ballot?.margin?.toFixed(1) ?? '6.0'} and 2024 was R+{pipelineMeta?.baseline_2024_r_margin?.toFixed(2) ?? '2.55'}, giving a swing of about +{pipelineMeta?.swing?.toFixed(1) ?? '8.6'} points toward D.</p>
@@ -85,7 +85,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         <p>The divide-by-2 in both formulas is because a swing of N points in the <em>margin</em> shifts each party’s share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don’t break Sainte-Laguë.</p>
       </Section>
 
-      <Section title="Sainte-Laguë allocation (with an interactive demo)">
+      <Section id="sainte-lague" title="Sainte-Laguë allocation (with an interactive demo)">
         <p>To assign N seats given D and R vote totals, the Sainte-Laguë method computes a series of quotients for each party (votes divided by 1, 3, 5, 7, …, 2N−1) and assigns seats to the N largest quotients across both parties.</p>
         <p>This method is the most proportional of the common divisor methods. D’Hondt slightly favors larger parties; Hamilton/largest-remainder is also proportional but has known paradoxes. For two-party races the three methods usually agree; we use Sainte-Laguë as the default.</p>
         <p>Try it yourself. The same function powers the projection.</p>
@@ -191,7 +191,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="Sandbox: allocation methods (MMD and MMP)">
+      <Section id="methods" title="Sandbox: allocation methods (MMD and MMP)">
         <p>
           Pure statewide proportional representation is the cleanest reform on the spectrum but
           rarely the most politically viable in a US context. The Sandbox lets you toggle between
@@ -300,7 +300,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="House size: 435 isn’t a constitutional number">
+      <Section id="house-size" title="House size: 435 isn’t a constitutional number">
         <p>
           The House has been frozen at <strong>435 seats since 1929</strong>. The number isn’t in
           the Constitution. The Permanent Apportionment Act of that year fixed it after the
@@ -518,9 +518,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ id, title, children }: { id?: string; title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-8">
+    <section id={id} className="mt-8 scroll-mt-24">
       <h2 className="font-serif text-xl sm:text-2xl font-medium text-brand-navy tracking-tight">{title}</h2>
       <div className="mt-3 space-y-3">{children}</div>
     </section>
