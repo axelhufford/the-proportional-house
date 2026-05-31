@@ -5,6 +5,8 @@ Reads:
   - public/data/projection.json (per-state projected + actual seats)
 
 Writes:
+  - public/og-card.png                 — 1200×630 home OG image with the live
+                                          national headline (seat shift + splits).
   - public/og/state-{CODE}.png         — 1200×630 OG image, brand chrome.
   - public/state/{code}.html           — static HTML page with proper OG
                                           meta tags + meta-refresh to the
@@ -29,6 +31,9 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
 OG_DIR = REPO_ROOT / "public" / "og"
 STATE_HTML_DIR = REPO_ROOT / "public" / "state"
+# Home share card. index.html points og:image at /og-card.png, so we overwrite
+# that committed file with a freshly-rendered one carrying the live headline.
+HOME_OG_PATH = REPO_ROOT / "public" / "og-card.png"
 
 SITE_URL = "https://proportionalhouse.org"
 
@@ -100,6 +105,55 @@ def build_card_svg(state: dict) -> str:
 
   <text x="500" y="555" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="20" fill="#1F2E4D">The Proportional House</text>
   <text x="500" y="585" font-family="'Inter', -apple-system, sans-serif" font-size="14" fill="#888780">proportionalhouse.org/state/{code.lower()}</text>
+</svg>"""
+
+
+def build_home_card_svg(national: dict, meta: dict) -> str:
+    """Return the 1200x630 home OG card carrying the live national headline.
+
+    Mirrors build_card_svg's frame/colors but shows the national finding:
+    the seat shift under PR, plus the Actual-today and Projected-under-PR
+    splits and the current polling margin.
+    """
+    actual = national["actual"]
+    projected = national["projected"]
+    d_gain = projected["d_seats"] - actual["d_seats"]
+    if d_gain == 0:
+        headline = "No shift under PR"
+        headline_color = "#5C5C5A"
+    elif d_gain > 0:
+        headline = f"+{d_gain} seats toward Democrats"
+        headline_color = "#2166ac"
+    else:
+        headline = f"+{abs(d_gain)} seats toward Republicans"
+        headline_color = "#B2182B"
+
+    margin = meta.get("generic_ballot_margin", 0.0)
+    polling = f"D+{margin:.1f}" if margin >= 0 else f"R+{abs(margin):.1f}"
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F4EDE0"/>
+  {LOGOMARK_SVG}
+  <text x="500" y="150" font-family="'Inter', -apple-system, sans-serif" font-size="16" letter-spacing="3" fill="#888780">THE PROPORTIONAL HOUSE</text>
+  <text x="500" y="218" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="46" font-weight="600" fill="{headline_color}" letter-spacing="-0.01em">{headline}</text>
+  <text x="500" y="258" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="22" font-style="italic" fill="#5C5C5A">under today's polling ({polling})</text>
+
+  <text x="500" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">ACTUAL TODAY</text>
+  <text x="500" y="395" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
+    <tspan fill="#2166ac">D {actual['d_seats']}</tspan>
+    <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
+    <tspan fill="#B2182B">R {actual['r_seats']}</tspan>
+  </text>
+
+  <text x="820" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">PROJECTED UNDER PR</text>
+  <text x="820" y="395" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
+    <tspan fill="#2166ac">D {projected['d_seats']}</tspan>
+    <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
+    <tspan fill="#B2182B">R {projected['r_seats']}</tspan>
+  </text>
+
+  <text x="500" y="555" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="20" fill="#1F2E4D">The Proportional House</text>
+  <text x="500" y="585" font-family="'Inter', -apple-system, sans-serif" font-size="14" fill="#888780">proportionalhouse.org</text>
 </svg>"""
 
 
@@ -186,6 +240,14 @@ def main() -> None:
         payload = json.load(f)
     OG_DIR.mkdir(parents=True, exist_ok=True)
     STATE_HTML_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Home share card (live national headline) → public/og-card.png.
+    national = payload.get("national")
+    if national:
+        home_svg = build_home_card_svg(national, payload.get("meta", {}))
+        home_png = resvg_py.svg_to_bytes(svg_string=home_svg, width=1200, height=630)
+        HOME_OG_PATH.write_bytes(home_png)
+        print(f"Wrote home OG card to {HOME_OG_PATH.relative_to(REPO_ROOT)}")
 
     n = 0
     for state in payload["states"]:

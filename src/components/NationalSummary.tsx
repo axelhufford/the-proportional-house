@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import {
@@ -65,6 +65,22 @@ export function NationalSummary({
   const handleDownloadJson = useCallback(() => {
     downloadProjectionJson(payload);
   }, [payload]);
+
+  // Copy a link to the current view. The whole scenario (view, color, sandbox
+  // ballot/minors/threshold/method/house, open state) round-trips through the
+  // URL — Home syncs it on every change — so window.location.href captures it
+  // exactly. Unlike the PNG/CSV/JSON/tweet, this works for ANY scenario, so
+  // it's never disabled. (localhost + https are both secure clipboard contexts.)
+  const [copied, setCopied] = useState(false);
+  const handleCopyLink = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Clipboard unavailable (insecure context / denied) — no-op.
+    }
+  }, []);
   // "Has minors" controls UI shape (N-party stat cards vs. two-party).
   // "Sandbox totals" controls DATA SOURCE — when in sandbox mode we always
   // want projected seat counts to come from sandboxPayload (so method +
@@ -270,6 +286,28 @@ export function NationalSummary({
           </div>
 
           <div className="flex items-center gap-1 shrink-0">
+          <button
+            type="button"
+            onClick={handleCopyLink}
+            className={[
+              'rounded-full h-9 px-2.5 flex items-center gap-1.5 text-xs font-medium tracking-wide',
+              copied ? 'text-green-700' : 'text-stone-500 hover:text-stone-900 hover:bg-stone-100',
+            ].join(' ')}
+            aria-label="Copy a link to this view"
+            title="Copy a link to this view (captures the current scenario)"
+          >
+            {copied ? (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            ) : (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+            )}
+            {copied ? 'Copied!' : 'Copy link'}
+          </button>
           {inExtendedSandbox ? (
             <span className="text-xs text-stone-400 italic self-center pr-2">
               Share &amp; export use the canonical two-party Pure PR projection.
