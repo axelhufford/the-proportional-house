@@ -63,10 +63,11 @@
     }
     </script>
 
-    <!-- Cloudflare Web Analytics — cookie-free, GDPR-safe (no consent banner).
-       The beacon token is a public site identifier, not a secret. -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "e3153a5143774f29a6f735ff545a8502"}'></script>
+    <!-- Cloudflare Web Analytics is enabled via the dashboard's AUTOMATIC
+       edge-injection for this zone (the beacon is added at Cloudflare's edge,
+       so there's no <script> here). Do NOT add a manual beacon too — running
+       both double-counts every page view. Site token (public id, for ref):
+       e3153a5143774f29a6f735ff545a8502 -->
 
     <!-- Fonts are self-hosted: imported in src/main.tsx via @fontsource-variable
          (Inter + Source Serif 4), bundled and served same-origin by Vite. No
