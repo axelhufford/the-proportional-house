@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { ROUTE_META } from '../lib/routeMeta';
 
 /**
  * /about — short About section + FAQ. Two SEO purposes:
@@ -76,9 +77,9 @@ const FAQS: FaqItem[] = [
 
 export function About() {
   useDocumentTitle(
-    'About · The Proportional House',
-    'About The Proportional House: a non-partisan visualization of how the U.S. House would look under proportional representation. Plus a FAQ on the methodology and politics.',
-    '/about',
+    ROUTE_META['/about'].title,
+    ROUTE_META['/about'].description,
+    ROUTE_META['/about'].canonicalPath,
   );
 
   // FAQPage JSON-LD. Mirror of the FAQS array — Google parses the Question

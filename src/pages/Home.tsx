@@ -38,6 +38,7 @@ import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
 import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { ROUTE_META } from '../lib/routeMeta';
 import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload } from '../lib/types';
 
 interface HomeProps {
@@ -284,11 +285,7 @@ function buildSpec(m: MinorState, slot: MinorSlot): MinorPartySpec {
 }
 
 export function Home({ onMetaChange }: HomeProps) {
-  useDocumentTitle(
-    'The Proportional House: U.S. House under proportional representation',
-    'See how the U.S. House would look if every state allocated its seats by proportional representation, based on current generic-ballot polling.',
-    '/',
-  );
+  useDocumentTitle(ROUTE_META['/'].title, ROUTE_META['/'].description, ROUTE_META['/'].canonicalPath);
 
   const [searchParams, setSearchParams] = useSearchParams();
 

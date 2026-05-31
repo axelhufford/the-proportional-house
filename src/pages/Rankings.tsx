@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { RankingRow } from '../components/RankingRow';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { ROUTE_META } from '../lib/routeMeta';
 import { buildStateSilhouettes } from '../lib/stateSilhouettes';
 import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload, StateProjection } from '../lib/types';
@@ -33,9 +34,9 @@ interface Leaderboard {
 
 export function Rankings() {
   useDocumentTitle(
-    'House rankings: most distorted delegations under proportional representation · The Proportional House',
-    'Which state delegations diverge most from proportional representation? Leaderboards of the biggest D shifts, biggest R shifts, and most one-sided House delegations.',
-    '/rankings',
+    ROUTE_META['/rankings'].title,
+    ROUTE_META['/rankings'].description,
+    ROUTE_META['/rankings'].canonicalPath,
   );
 
   const [payload, setPayload] = useState<ProjectionPayload | null>(null);

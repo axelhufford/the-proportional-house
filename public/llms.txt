@@ -1,0 +1,28 @@
+# The Proportional House
+
+> The Proportional House (proportionalhouse.org) is a non-partisan, daily-updated
+> visualization of how the U.S. House of Representatives would look under proportional
+> representation (PR) instead of today's winner-take-all districts. It projects, state by
+> state, how seats would be allocated if each state's delegation matched its statewide vote:
+> using current generic-ballot polling for the live projection, and actual results for
+> historical retrospectives covering the last five cycles (2016, 2018, 2020, 2022, 2024).
+> Built by Axel Hufford; open source under the MIT license.
+
+## Key pages
+- [Home / interactive map](https://proportionalhouse.org/): the national projection plus a clickable 50-state map. Three views: Current Projection (today's House vs. PR of the projected statewide vote), Retrospective (PR of the actual vote in 2016–2024), and an interactive Sandbox.
+- [Rankings](https://proportionalhouse.org/rankings): leaderboards of the most distorted state delegations — biggest Democratic shifts, biggest Republican shifts, and the most one-sided delegations under PR.
+- [Methodology](https://proportionalhouse.org/methodology): data sources, Sainte-Laguë allocation, state elasticity, the Sandbox's allocation methods (Pure PR, multi-member districts, mixed-member proportional), House-size expansion, uncontested-race handling, and limitations.
+- [About / FAQ](https://proportionalhouse.org/about): what the project is, why the House (not the Senate), whether it's partisan, and a detailed FAQ.
+
+## Per-state pages
+- `https://proportionalhouse.org/state/{code}` — one page per state (e.g. /state/tx, /state/ca, /state/pa) showing that state's actual delegation vs. its proportional allocation.
+
+## Data + sitemap
+- [Projection data (JSON)](https://proportionalhouse.org/data/projection.json)
+- [Retrospectives data (JSON)](https://proportionalhouse.org/data/retrospectives.json)
+- [Sitemap](https://proportionalhouse.org/sitemap.xml)
+
+## Sources
+- 2024 House baseline: U.S. House Clerk, official election statistics.
+- Prior cycles (2016–2022): MIT Election Data and Science Lab, U.S. House 1976–2024 (doi:10.7910/DVN/IG0UN2).
+- Generic-ballot polling: Silver Bulletin (Nate Silver).

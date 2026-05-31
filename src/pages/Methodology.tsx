@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SainteLagueDemo } from '../components/SainteLagueDemo';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { ROUTE_META } from '../lib/routeMeta';
 import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionMeta } from '../lib/types';
 
@@ -21,9 +22,9 @@ interface MetaJson {
 
 export function Methodology(_props: MethodologyProps) {
   useDocumentTitle(
-    'Methodology · The Proportional House',
-    'How the projection works: data sources, Sainte-Laguë allocation, state elasticity, the Sandbox’s allocation methods (PR, MMD, MMP) and House-size expansion, uncontested-race imputation, and limitations.',
-    '/methodology',
+    ROUTE_META['/methodology'].title,
+    ROUTE_META['/methodology'].description,
+    ROUTE_META['/methodology'].canonicalPath,
   );
 
   const [pipelineMeta, setPipelineMeta] = useState<MetaJson | null>(null);
