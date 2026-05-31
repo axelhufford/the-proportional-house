@@ -63,11 +63,13 @@
     }
     </script>
 
-    <!-- Cloudflare Web Analytics is enabled via the dashboard's AUTOMATIC
-       edge-injection for this zone (the beacon is added at Cloudflare's edge,
-       so there's no <script> here). Do NOT add a manual beacon too — running
-       both double-counts every page view. Site token (public id, for ref):
-       e3153a5143774f29a6f735ff545a8502 -->
+    <!-- Cloudflare Web Analytics (manual beacon). The site is in MANUAL mode in
+       the CF dashboard (automatic edge-injection is off), so this snippet is
+       required for analytics to collect. Token is a public site id, not a
+       secret. Don't also turn on automatic injection — running both would
+       double-count page views. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "e3153a5143774f29a6f735ff545a8502"}'></script>
 
     <!-- Fonts are self-hosted: imported in src/main.tsx via @fontsource-variable
          (Inter + Source Serif 4), bundled and served same-origin by Vite. No
