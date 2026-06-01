@@ -210,7 +210,7 @@ export function HomeHero({
           )}
         </div>
 
-        <aside className="mt-6 lg:mt-1 rounded-lg border border-stone-200/80 bg-white/60 p-4">
+        <aside className="mt-6 lg:mt-1 rounded-lg border border-stone-200 bg-white shadow-sm p-4">
           <div className="text-sm font-semibold text-stone-900">
             What is proportional representation?
           </div>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 /**
@@ -27,14 +26,6 @@ export function StateRedirect() {
   // Light safety: only redirect for plausible 2-letter codes. Bogus paths
   // fall through to the NotFound catch-all via the early return.
   const isValid = /^[A-Z]{2}$/.test(upper);
-
-  // Render a brief loading state in the (unlikely) frame before the
-  // navigation effect fires — same look as the page-load spinner.
-  useEffect(() => {
-    // The <Navigate> below handles the actual redirect declaratively,
-    // but this effect is here so the comment above is the only thing
-    // someone reading the file has to understand. Nothing to do.
-  }, []);
 
   if (!isValid) {
     return <Navigate to="/" replace />;

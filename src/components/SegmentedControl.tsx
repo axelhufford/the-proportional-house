@@ -42,8 +42,8 @@ export function SegmentedControl<T extends string>({
               aria-pressed={active}
               onClick={() => onChange(opt.value)}
               className={[
-                'px-3 py-1.5 sm:py-1 text-sm rounded',
-                active ? 'bg-stone-900 text-white' : 'text-stone-700 hover:bg-stone-100',
+                'px-3 py-1.5 sm:py-1 text-sm rounded transition-colors',
+                active ? 'bg-brand-navy text-white' : 'text-stone-700 hover:bg-stone-100',
                 opt.disabled ? 'opacity-40 cursor-not-allowed hover:bg-transparent' : '',
               ].join(' ')}
               title={opt.disabled ? 'Coming in a later phase' : opt.title}

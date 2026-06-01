@@ -1,4 +1,5 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { ErrorBoundary } from './ErrorBoundary';
 import { Masthead } from './Masthead';
 import type { ProjectionMeta } from '../lib/types';
 
@@ -10,6 +11,7 @@ const STALE_AFTER_HOURS = 48;
 
 export function Layout({ meta }: LayoutProps) {
   const isStale = meta ? isStaleData(meta.generated_at, STALE_AFTER_HOURS) : false;
+  const { pathname } = useLocation();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -34,7 +36,11 @@ export function Layout({ meta }: LayoutProps) {
       <Masthead />
 
       <main className="flex-1">
-        <Outlet />
+        {/* Keyed by pathname so navigating to a new route clears any caught
+            error and remounts the routed view. */}
+        <ErrorBoundary key={pathname}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
 
       <footer className="py-4 text-xs text-stone-600">
@@ -55,13 +61,13 @@ export function Layout({ meta }: LayoutProps) {
             )}
           </div>
           <nav className="flex flex-wrap gap-x-3 gap-y-1 justify-center sm:justify-start border-t border-stone-200/60 pt-2" aria-label="Footer">
-            <Link to="/" className="hover:text-brand-navy">Map</Link>
+            <Link to="/" className="hover:text-brand-navy transition-colors">Map</Link>
             <span aria-hidden="true" className="text-stone-300">·</span>
-            <Link to="/rankings" className="hover:text-brand-navy">Rankings</Link>
+            <Link to="/rankings" className="hover:text-brand-navy transition-colors">Rankings</Link>
             <span aria-hidden="true" className="text-stone-300">·</span>
-            <Link to="/methodology" className="hover:text-brand-navy">Methodology</Link>
+            <Link to="/methodology" className="hover:text-brand-navy transition-colors">Methodology</Link>
             <span aria-hidden="true" className="text-stone-300">·</span>
-            <Link to="/about" className="hover:text-brand-navy">About</Link>
+            <Link to="/about" className="hover:text-brand-navy transition-colors">About</Link>
           </nav>
           <div className="flex flex-wrap items-center justify-center sm:justify-between gap-x-3 gap-y-1 text-stone-500">
             <span>
@@ -70,7 +76,7 @@ export function Layout({ meta }: LayoutProps) {
                 href="https://github.com/axelhufford/the-proportional-house"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2 hover:text-brand-navy"
+                className="underline underline-offset-2 hover:text-brand-navy transition-colors"
               >
                 View source on GitHub
               </a>
@@ -79,7 +85,7 @@ export function Layout({ meta }: LayoutProps) {
                 href="https://github.com/axelhufford/the-proportional-house/blob/main/LICENSE"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2 hover:text-brand-navy"
+                className="underline underline-offset-2 hover:text-brand-navy transition-colors"
               >
                 MIT License
               </a>
@@ -90,7 +96,7 @@ export function Layout({ meta }: LayoutProps) {
                 href="https://axelhufford.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2 hover:text-brand-navy"
+                className="underline underline-offset-2 hover:text-brand-navy transition-colors"
               >
                 axelhufford.com
               </a>

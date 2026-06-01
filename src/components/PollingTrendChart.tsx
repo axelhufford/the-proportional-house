@@ -236,8 +236,19 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
 
   const xMin = points[0].ts;
   const xMax = points[points.length - 1].ts;
-  const yMin = Math.min(-2, Math.floor(Math.min(...points.map((p) => p.margin)) - 1));
-  const yMax = Math.max(10, Math.ceil(Math.max(...points.map((p) => p.margin)) + 1));
+  const margins = points.map((p) => p.margin);
+  const lo = Math.min(...margins);
+  const hi = Math.max(...margins);
+  const yMin = Math.min(-2, Math.floor(lo - 1));
+  const yMax = Math.max(10, Math.ceil(hi + 1));
+
+  // Screen-reader equivalent of the scatter (which is otherwise opaque to AT).
+  // Mirrors the sr-only table fallback the map uses.
+  const srSummary =
+    `Generic-ballot polling over the last 180 days, ${fmtDate(xMin)} to ${fmtDate(xMax)}: ` +
+    `${points.length} polls. Current 14-day weighted average ${fmtMargin(currentAverageMargin)}. ` +
+    `Individual polls range from ${fmtMargin(lo)} to ${fmtMargin(hi)}. ` +
+    `Positive values favor Democrats; negative favor Republicans.`;
 
   // Tooltip placement: centered above the dot, clamped to the wrapper width so
   // it can't run off the edges; flips below when the dot is near the top.
@@ -252,6 +263,10 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
 
   return (
     <div ref={wrapRef} className="w-full relative">
+      <p className="sr-only">{srSummary}</p>
+      {/* The SVG scatter is conveyed to assistive tech by the sr-only summary
+          above; hide the visual chart from AT to avoid a flood of unlabeled nodes. */}
+      <div aria-hidden="true">
       <ResponsiveContainer width="100%" height={height}>
         <ComposedChart
           data={points}
@@ -310,6 +325,7 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
           />
         </ComposedChart>
       </ResponsiveContainer>
+      </div>
       {active && tip && (
         <div
           className="pointer-events-none absolute z-10"

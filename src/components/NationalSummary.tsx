@@ -297,7 +297,7 @@ export function NationalSummary({
             type="button"
             onClick={handleCopyLink}
             className={[
-              'rounded-full h-9 px-2.5 flex items-center gap-1.5 text-xs font-medium tracking-wide',
+              'rounded-full h-9 px-2.5 flex items-center gap-1.5 text-xs font-medium tracking-wide transition-colors',
               copied ? 'text-green-700' : 'text-stone-500 hover:text-stone-900 hover:bg-stone-100',
             ].join(' ')}
             aria-label="Copy a link to this view"
@@ -324,7 +324,7 @@ export function NationalSummary({
             type="button"
             onClick={handleDownloadCsv}
             disabled={inExtendedSandbox}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
+            className="text-stone-500 transition-colors hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
             aria-label="Download projection as CSV"
             title={inExtendedSandbox ? disabledTooltip : 'Download projection as CSV'}
           >
@@ -334,7 +334,7 @@ export function NationalSummary({
             type="button"
             onClick={handleDownloadJson}
             disabled={inExtendedSandbox}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
+            className="text-stone-500 transition-colors hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide"
             aria-label="Download projection as JSON"
             title={inExtendedSandbox ? disabledTooltip : 'Download projection as JSON'}
           >
@@ -344,7 +344,7 @@ export function NationalSummary({
             type="button"
             onClick={handleShareTwitter}
             disabled={inExtendedSandbox}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 w-9 flex items-center justify-center"
+            className="text-stone-500 transition-colors hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 w-9 flex items-center justify-center"
             aria-label="Share on X (Twitter)"
             title={inExtendedSandbox ? disabledTooltip : 'Share on X (Twitter)'}
           >
@@ -356,7 +356,7 @@ export function NationalSummary({
             type="button"
             onClick={handleDownload}
             disabled={inExtendedSandbox}
-            className="text-stone-500 hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 w-9 flex items-center justify-center"
+            className="text-stone-500 transition-colors hover:text-stone-900 hover:bg-stone-100 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 w-9 flex items-center justify-center"
             aria-label="Save as image"
             title={inExtendedSandbox ? disabledTooltip : 'Save as image'}
           >

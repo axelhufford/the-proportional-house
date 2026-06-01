@@ -18,7 +18,7 @@ export function Masthead() {
             className="w-10 h-10 sm:w-14 sm:h-14"
           />
           <div>
-            <span className="block font-serif text-[22px] sm:text-[32px] font-medium text-brand-navy leading-[1.05] tracking-tight group-hover:opacity-90">
+            <span className="block font-serif text-[22px] sm:text-[32px] font-medium text-brand-navy leading-[1.05] tracking-tight transition-opacity group-hover:opacity-90">
               The Proportional House
             </span>
             <span className="block font-serif italic text-xs sm:text-sm text-stone-600 leading-snug mt-0.5">
@@ -51,7 +51,7 @@ function MastheadNavLink({ to, children }: { to: string; children: React.ReactNo
       end={to === '/'}
       className={({ isActive }) =>
         [
-          'px-3 py-1 rounded',
+          'px-3 py-1 rounded transition-colors',
           isActive
             ? 'bg-brand-navy text-white'
             : 'text-stone-600 hover:bg-stone-200/60',

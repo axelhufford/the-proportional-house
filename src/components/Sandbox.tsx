@@ -259,9 +259,9 @@ export function Sandbox({
                 type="button"
                 onClick={() => onChange(p.value)}
                 className={[
-                  'px-3 py-1.5 sm:px-2 sm:py-1 rounded border',
+                  'px-3 py-1.5 sm:px-2 sm:py-1 rounded border transition-colors',
                   active
-                    ? 'bg-stone-900 text-white border-stone-900'
+                    ? 'bg-brand-navy text-white border-brand-navy'
                     : 'border-stone-300 text-stone-700 hover:bg-stone-100',
                 ].join(' ')}
               >
@@ -349,9 +349,9 @@ export function Sandbox({
                 onClick={() => onMethodChange(m)}
                 title={METHOD_DESCRIPTIONS[m]}
                 className={[
-                  'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
+                  'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums transition-colors',
                   active
-                    ? 'bg-stone-900 text-white border-stone-900'
+                    ? 'bg-brand-navy text-white border-brand-navy'
                     : 'border-stone-300 text-stone-700 hover:bg-stone-100',
                 ].join(' ')}
                 aria-pressed={active}
@@ -445,9 +445,9 @@ export function Sandbox({
                 onClick={() => onHouseSizeChange(p.value)}
                 title={p.title}
                 className={[
-                  'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums',
+                  'text-xs px-3 py-1.5 sm:py-1 rounded border tabular-nums transition-colors',
                   active
-                    ? 'bg-stone-900 text-white border-stone-900'
+                    ? 'bg-brand-navy text-white border-brand-navy'
                     : 'border-stone-300 text-stone-700 hover:bg-stone-100',
                 ].join(' ')}
                 aria-pressed={active}
