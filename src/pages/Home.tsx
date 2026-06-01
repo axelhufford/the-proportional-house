@@ -848,7 +848,7 @@ export function Home({ onMetaChange }: HomeProps) {
           <div className="mt-4 bg-white rounded-lg border border-stone-200 shadow-sm p-4 sm:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <div>
-                <h2 className="font-serif text-lg sm:text-xl text-brand-navy">
+                <h2 className="font-serif text-xl sm:text-2xl text-brand-navy">
                   National generic-ballot polling
                 </h2>
                 <p className="text-xs text-stone-500">Last 180 days</p>

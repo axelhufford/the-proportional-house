@@ -97,13 +97,17 @@ function fmtMargin(m: number | null | undefined): string {
   return m >= 0 ? `D+${m.toFixed(1)}` : `R+${Math.abs(m).toFixed(1)}`;
 }
 
+// Poll dates are ISO date-only strings, so Date.parse() anchors them to UTC
+// midnight; the monthly ticks are likewise UTC first-of-month. Format both in
+// UTC so labels land on the true 1st (not shifted a day/month by the local
+// timezone — e.g. May 1 00:00 UTC would otherwise read "Apr 30" / "Apr").
 function fmtDate(ts: number | string): string {
   const d = typeof ts === 'number' ? new Date(ts) : new Date(Date.parse(ts));
-  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', timeZone: 'UTC' });
 }
 
 function fmtMonth(ts: number): string {
-  return new Date(ts).toLocaleDateString(undefined, { month: 'short' });
+  return new Date(ts).toLocaleDateString(undefined, { month: 'short', timeZone: 'UTC' });
 }
 
 /** Return ~5 evenly-spaced first-of-month timestamps spanning [xMin, xMax]. */
@@ -135,6 +139,16 @@ function PollDot({ cx, cy, payload }: DotProps) {
   const r = Math.min(Math.max(Math.sqrt(payload.sample_size || 1000) / 14, 2), 6);
   const fill = payload.margin >= 0 ? '#2563EB' : '#DC2626';
   return <circle cx={cx} cy={cy} r={r} fill={fill} fillOpacity={0.45} />;
+}
+
+// Emphasized dot for the hovered poll (the Scatter's activeShape), so the
+// point that lights up is the raw poll the tooltip is describing — full
+// opacity, slightly larger, with a navy ring to make it pop.
+function ActivePollDot({ cx, cy, payload }: DotProps) {
+  if (cx == null || cy == null || !payload) return null;
+  const r = Math.min(Math.max(Math.sqrt(payload.sample_size || 1000) / 14, 2), 6) + 1.5;
+  const fill = payload.margin >= 0 ? '#2563EB' : '#DC2626';
+  return <circle cx={cx} cy={cy} r={r} fill={fill} fillOpacity={0.95} stroke="#1F2E4D" strokeWidth={1.5} />;
 }
 
 interface TooltipPayload {
@@ -226,13 +240,19 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
               fill: '#1F2E4D',
             }}
           />
-          <Scatter dataKey="margin" shape={<PollDot />} isAnimationActive={false} />
+          <Scatter
+            dataKey="margin"
+            shape={<PollDot />}
+            activeShape={<ActivePollDot />}
+            isAnimationActive={false}
+          />
           <Line
             type="monotone"
             dataKey="smoothed"
             stroke="#1F2E4D"
             strokeWidth={2}
             dot={false}
+            activeDot={false}
             isAnimationActive={false}
             connectNulls
           />
