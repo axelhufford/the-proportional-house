@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import { PARTY_D, PARTY_R } from '../lib/parties';
+import { useCountUp } from '../lib/useCountUp';
+import { Hemicycle } from './Hemicycle';
 
 /**
  * Homepage hero. Owns the page's <h1> and surfaces the headline finding as a
@@ -67,6 +70,35 @@ export function HomeHero({
   const towardColor = dGain > 0 ? 'text-blue-700' : 'text-red-700';
   const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
   const towardWord = (v: number) => (v > 0 ? 'toward Democrats' : 'toward Republicans');
+  const towardParty = dGain > 0 ? 'Democrats' : 'Republicans';
+  const animatedGain = useCountUp(absGain);
+
+  // Hemicycle composition for the active view: Sandbox uses the N-party totals;
+  // otherwise the two-party projected-under-PR split. Drives the hero diagram.
+  const hemiParties = sandboxNational
+    ? sandboxNational.parties
+        .filter((p) => p.seats > 0)
+        .map((p) => ({ id: p.party.id, color: p.party.color, seats: p.seats }))
+    : [
+        { id: 'D', color: PARTY_D.color, seats: national.projected.d_seats },
+        { id: 'R', color: PARTY_R.color, seats: national.projected.r_seats },
+      ];
+  const hemiAria =
+    'Projected U.S. House composition under proportional representation: ' +
+    hemiParties.map((p) => `${p.id} ${p.seats}`).join(', ') +
+    '.';
+  const hemiCaption =
+    viewMode === 'retrospective'
+      ? `Projected ${retroYear} House under PR`
+      : viewMode === 'sandbox'
+        ? 'Projected House — your scenario'
+        : 'Projected U.S. House under PR';
+  const subLabel =
+    viewMode === 'retrospective'
+      ? `${retroYear} election, under PR`
+      : viewMode === 'sandbox'
+        ? 'In your sandbox scenario'
+        : 'Under proportional representation';
 
   let lede: React.ReactNode;
   let caveat: React.ReactNode = null;
@@ -196,49 +228,87 @@ export function HomeHero({
 
   return (
     <section className="max-w-6xl mx-auto w-full px-6 pt-4 sm:pt-6">
-      <h1 className="font-serif text-3xl sm:text-5xl font-medium text-brand-navy tracking-tight leading-[1.05]">
+      <h1 className="font-serif text-4xl sm:text-6xl font-medium text-brand-navy tracking-tight leading-[1.03]">
         The U.S. House under proportional representation
       </h1>
 
-      {/* Two columns on lg+: the finding (left) and a plain "what is PR?" aside
-        * (right) that fills what was empty space. Stacks on small screens. */}
-      <div className="mt-3 sm:mt-4 lg:grid lg:grid-cols-[1.6fr_1fr] lg:gap-10 lg:items-start">
+      {/* Two columns on lg+: the finding + CTAs (left), the hemicycle (right).
+        * Stacks on small screens (number → diagram → lede → CTAs). */}
+      <div className="mt-4 sm:mt-6 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-center">
         <div>
-          <p className="text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
+          {/* Headline shift as a big display number, colored by the party PR favors. */}
+          <div className="flex items-end gap-3">
+            <span
+              className={`font-serif font-semibold tabular-nums leading-[0.85] text-6xl sm:text-7xl ${
+                dGain === 0 ? 'text-stone-500' : towardColor
+              }`}
+            >
+              {animatedGain}
+            </span>
+            <span className="pb-1.5 text-sm sm:text-base font-medium leading-snug">
+              {dGain === 0 ? (
+                <span className="text-stone-600">seats — no net shift under PR</span>
+              ) : (
+                <>
+                  <span className="text-stone-700">{seats(absGain)}</span>{' '}
+                  <span className={towardColor}>toward {towardParty}</span>
+                </>
+              )}
+            </span>
+          </div>
+          <p className="mt-2 text-[11px] uppercase tracking-wider text-stone-500">{subLabel}</p>
+
+          <p className="mt-4 text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
           {caveat && (
             <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">{caveat}</p>
           )}
+
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+            <Link
+              to="/rankings"
+              className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy text-white px-4 py-2 hover:bg-brand-navy-mid transition-colors"
+            >
+              {/* Shorter label on mobile so the button doesn't overflow on
+               * iPhone-SE-class widths; full descriptive label on sm+. */}
+              <span className="sm:hidden">See state rankings</span>
+              <span className="hidden sm:inline">See the most distorted state delegations</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              to="/methodology"
+              className="text-stone-600 hover:text-brand-navy underline underline-offset-2"
+            >
+              How this is calculated
+            </Link>
+          </div>
         </div>
 
-        <aside className="mt-6 lg:mt-1 rounded-lg border border-stone-200 bg-white shadow-sm p-4">
-          <div className="text-sm font-semibold text-stone-900">
-            What is proportional representation?
-          </div>
-          <p className="mt-1.5 text-sm text-stone-600 leading-relaxed">
-            It ties each party’s House seats to its share of the statewide vote, instead of the
-            winner-take-all districts we use now. This map projects what that would change.
-          </p>
-        </aside>
+        {/* Signature visual: the projected chamber rendered as its 435 seats. */}
+        <figure className="mt-8 lg:mt-0">
+          <Hemicycle parties={hemiParties} ariaLabel={hemiAria} className="w-full max-w-md mx-auto" />
+          <figcaption className="mt-2 flex items-center justify-center gap-x-3 gap-y-1 flex-wrap text-xs text-stone-500">
+            <span>{hemiCaption}</span>
+            <span aria-hidden="true" className="text-stone-300">·</span>
+            <span className="inline-flex flex-wrap items-baseline gap-x-2">
+              {hemiParties.map((p, i) => (
+                <span key={p.id} className="inline-flex items-baseline gap-1">
+                  {i > 0 && <span aria-hidden="true" className="text-stone-300">·</span>}
+                  <span className="font-semibold tabular-nums" style={{ color: p.color }}>
+                    {p.id} {p.seats}
+                  </span>
+                </span>
+              ))}
+            </span>
+          </figcaption>
+        </figure>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
-        <Link
-          to="/rankings"
-          className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy text-white px-4 py-2 hover:bg-brand-navy-mid transition-colors"
-        >
-          {/* Shorter label on mobile so the button doesn't overflow on
-           * iPhone-SE-class widths; full descriptive label on sm+. */}
-          <span className="sm:hidden">See state rankings</span>
-          <span className="hidden sm:inline">See the most distorted state delegations</span>
-          <span aria-hidden="true">→</span>
-        </Link>
-        <Link
-          to="/methodology"
-          className="text-stone-600 hover:text-brand-navy underline underline-offset-2"
-        >
-          How this is calculated
-        </Link>
-      </div>
+      {/* Newcomer hook, kept but compact, spanning under the hero. */}
+      <aside className="mt-5 rounded-xl border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-600 leading-relaxed">
+        <span className="font-semibold text-stone-900">What is proportional representation?</span>{' '}
+        It ties each party’s House seats to its share of the statewide vote, instead of the
+        winner-take-all districts we use now — this map projects what that would change.
+      </aside>
     </section>
   );
 }

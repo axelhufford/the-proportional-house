@@ -5,10 +5,11 @@ import {
   type AllocationMethodKind,
   METHOD_LABELS,
 } from '../lib/methods';
-import { displayName } from '../lib/parties';
+import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 import { formatSeatPct } from '../lib/format';
+import { SeatBar } from './SeatBar';
 import { Term } from './Term';
 
 const DEFAULT_HOUSE_SIZE = 435;
@@ -232,17 +233,36 @@ export function NationalSummary({
 
   const diffLabel = viewMode === 'sandbox' ? `Difference under ${activeMethodLabel}` : 'Difference under PR';
 
+  // Proportional seat bars under the Projected + Actual numbers, so the split
+  // reads visually. Projected mirrors the (possibly N-party) sandbox totals;
+  // Actual is always two-party (House membership is D/R).
+  const projectedBarParties = extendedParties
+    ? extendedParties.map((p) => ({ id: p.party.id, color: p.party.color, seats: p.seats, label: displayName(p.party) }))
+    : [
+        { id: 'D', color: PARTY_D.color, seats: projectedD, label: 'D' },
+        { id: 'R', color: PARTY_R.color, seats: projectedR, label: 'R' },
+      ];
+  const actualBarParties = [
+    { id: 'D', color: PARTY_D.color, seats: national.actual.d_seats, label: 'D' },
+    { id: 'R', color: PARTY_R.color, seats: national.actual.r_seats, label: 'R' },
+  ];
+
   return (
     <section aria-label="National summary">
       <div className="max-w-6xl mx-auto px-6 pt-3 pb-2">
         {/* Compact scoreboard: the three national stats in one divided row
           * (stacks on mobile) so the map below sits higher. A navy left spine
           * marks it as the key readout; the projected total leads. */}
-        <div className="rounded-lg border border-stone-200 border-l-4 border-l-brand-navy bg-white shadow-sm overflow-hidden grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200">
-          <ScoreCell label={projectedLabel} value={projectedValue} />
+        <div className="rounded-xl border border-stone-200 border-l-4 border-l-brand-navy bg-white shadow-sm overflow-hidden grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200">
+          <ScoreCell
+            label={projectedLabel}
+            value={projectedValue}
+            bar={<SeatBar parties={projectedBarParties} className="h-1.5" />}
+          />
           <ScoreCell
             label={viewMode === 'retrospective' ? `Actual ${retroYear} House` : 'Actual House today'}
             value={actualValue}
+            bar={<SeatBar parties={actualBarParties} className="h-1.5" />}
           />
           <ScoreCell label={diffLabel} value={diffValue} note={differenceNote} />
         </div>
@@ -377,16 +397,20 @@ function ScoreCell({
   label,
   value,
   note,
+  bar,
 }: {
   label: string;
   value: React.ReactNode;
   /** Optional small caption under the value (e.g. the structural/swing split). */
   note?: string;
+  /** Optional proportional seat bar rendered under the value. */
+  bar?: React.ReactNode;
 }) {
   return (
     <div className="px-4 py-2.5">
       <div className="text-[11px] uppercase tracking-wider text-stone-500 font-medium">{label}</div>
       <div className="text-xl font-semibold mt-0.5 tabular-nums">{value}</div>
+      {bar && <div className="mt-1.5">{bar}</div>}
       {note && <div className="text-[11px] text-stone-500 mt-0.5 leading-snug">{note}</div>}
     </div>
   );

@@ -15,6 +15,8 @@ export function Layout({ meta }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Thin masthead accent rule — a small editorial cue at the very top. */}
+      <div className="h-1 bg-brand-navy" aria-hidden="true" />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-brand-navy focus:text-white focus:px-3 focus:py-2 focus:rounded focus:no-underline"

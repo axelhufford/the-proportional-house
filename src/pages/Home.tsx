@@ -840,7 +840,7 @@ export function Home({ onMetaChange }: HomeProps) {
           </div>
         )}
 
-        <div className="mt-4 bg-white rounded-lg border border-stone-200 shadow-sm p-4">
+        <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4">
           {/* Read-first: a one-line how-to and the color key, placed above the
            * map so newcomers know what they're looking at before they look. */}
           <div className="mb-3 space-y-2">
@@ -896,7 +896,7 @@ export function Home({ onMetaChange }: HomeProps) {
          * projection, so it lives under the map in that view only — not in the
          * historical Retrospective or the hypothetical Sandbox. */}
         {viewMode === 'current' && (
-          <div className="mt-4 bg-white rounded-lg border border-stone-200 shadow-sm p-4 sm:p-6">
+          <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <div>
                 <h2 className="font-serif text-xl sm:text-2xl text-brand-navy">
