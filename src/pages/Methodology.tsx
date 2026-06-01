@@ -108,8 +108,8 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
 
       <Section title="The Sandbox view: what-if scenarios">
         <p>
-          Where the <Link to="/?view=current" className="underline hover:text-brand-navy">Current</Link>{' '}
-          and <Link to="/?view=retrospective" className="underline hover:text-brand-navy">2024 Retrospective</Link>{' '}
+          Where the <Link to="/" className="underline hover:text-brand-navy">Current</Link>{' '}
+          and <Link to="/retrospective" className="underline hover:text-brand-navy">Retrospective</Link>{' '}
           views each show one computed outcome, the <strong>Sandbox</strong> is the interactive
           calculator. You set assumptions, and every state’s projected delegation, the national
           totals, and the map all recompute on the fly. If you’d rather see a reform than build
@@ -147,7 +147,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
         <p>
           Sandbox state is captured in the URL (e.g.{' '}
-          <code>?view=sandbox&amp;ballot=…&amp;minor1=…&amp;method=mmd-4&amp;house=wyoming</code>),
+          <code>/sandbox?ballot=…&amp;minor1=…&amp;method=mmd-4&amp;house=wyoming</code>),
           so any scenario you set up is a sharable link.
         </p>
 
@@ -438,7 +438,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <strong>Uncontested races, imputed from presidential vote.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don’t reflect partisan lean (one party gets ~100% of the two-party vote). The 2024 cycle had unusually few such races: VT-AL (Becca Balint, D), LA-4 (Mike Johnson, R), WA-4 (Dan Newhouse, R), and WA-9 (Adam Smith, D). For each, we replace the district’s House two-party total with its 2024 <em>presidential</em> two-party split (sourced from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>’s pres-by-CD calculations) so the state baseline reflects partisan lean rather than no-contest. One edge case is deferred: FL-20 (Sheila Cherfilus-McCormick, D) was re-elected without appearing on the ballot at all, so the Clerk PDF records no vote total to replace; imputing here would require estimating House turnout from outside data, which we’re not doing yet. Each state-detail panel labels how many of its districts were imputed.
           </li>
           <li>
-            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/?view=sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em>; see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
+            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em>; see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
           </li>
           <li>
             <strong>Sainte-Laguë is a choice.</strong> Most academic work on proportional representation favors it. Reasonable people can prefer D’Hondt (slightly larger-party-favoring) or Hamilton (largest-remainder, with known paradoxes). The interactive demo above lets you sanity-check edge cases.

@@ -139,9 +139,9 @@ export function buildNationalTweetIntent({ national, meta, viewMode, retroYear =
   const SITE = 'https://proportionalhouse.org';
   let deepLink: string;
   if (viewMode === 'retrospective') {
-    deepLink = retroYear === 2024 ? `${SITE}/?view=retrospective` : `${SITE}/?view=retrospective&year=${retroYear}`;
+    deepLink = retroYear === 2024 ? `${SITE}/retrospective` : `${SITE}/retrospective?year=${retroYear}`;
   } else if (viewMode === 'sandbox') {
-    deepLink = `${SITE}/?view=sandbox&ballot=${meta.generic_ballot_margin.toFixed(1)}`;
+    deepLink = `${SITE}/sandbox?ballot=${meta.generic_ballot_margin.toFixed(1)}`;
   } else {
     deepLink = SITE;
   }

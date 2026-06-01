@@ -1,6 +1,6 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { ChartSkeleton } from '../components/ChartSkeleton';
 import { HomeHero } from '../components/HomeHero';
@@ -66,6 +66,19 @@ function parseRetroYear(raw: string | null): number {
 
 function parseViewMode(raw: string | null): ViewMode {
   return raw && (VIEW_MODES as string[]).includes(raw) ? (raw as ViewMode) : 'current';
+}
+
+// The view is a real, shareable route path; scenario controls stay query params.
+const VIEW_PATH: Record<ViewMode, string> = {
+  current: '/',
+  retrospective: '/retrospective',
+  sandbox: '/sandbox',
+};
+function pathToView(pathname: string): ViewMode | null {
+  if (pathname === '/retrospective') return 'retrospective';
+  if (pathname === '/sandbox') return 'sandbox';
+  if (pathname === '/') return 'current';
+  return null;
 }
 function parseColorMode(raw: string | null): ColorMode {
   return raw && (COLOR_MODES as string[]).includes(raw) ? (raw as ColorMode) : 'balance';
@@ -291,18 +304,47 @@ function buildSpec(m: MinorState, slot: MinorSlot): MinorPartySpec {
 }
 
 export function Home({ onMetaChange }: HomeProps) {
-  useDocumentTitle(ROUTE_META['/'].title, ROUTE_META['/'].description, ROUTE_META['/'].canonicalPath);
-
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [payload, setPayload] = useState<ProjectionPayload | null>(null);
   const [topology, setTopology] = useState<Topology | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedFips, setSelectedFips] = useState<string | null>(null);
   // Initialize view + color from URL on first render so deep links land in
-  // the right mode without an intermediate flash.
-  const [viewMode, setViewMode] = useState<ViewMode>(() => parseViewMode(searchParams.get('view')));
+  // the right mode without an intermediate flash. View comes from the path
+  // (/retrospective, /sandbox); legacy `?view=` links are honored as a fallback.
+  const [viewMode, setViewMode] = useState<ViewMode>(() => {
+    // Path is canonical (/retrospective, /sandbox). On the bare home path,
+    // honor a legacy ?view= deep link (the sync effect auto-upgrades it to the
+    // clean path); otherwise default to Current.
+    if (location.pathname === '/retrospective') return 'retrospective';
+    if (location.pathname === '/sandbox') return 'sandbox';
+    return parseViewMode(searchParams.get('view'));
+  });
   const [colorMode, setColorMode] = useState<ColorMode>(() => parseColorMode(searchParams.get('color')));
+
+  // Per-view document title/description/canonical (each view path has its own).
+  const routeMeta = ROUTE_META[VIEW_PATH[viewMode]] ?? ROUTE_META['/'];
+  useDocumentTitle(routeMeta.title, routeMeta.description, routeMeta.canonicalPath);
+
+  // Path → view: keep the active view in sync when the URL path changes
+  // externally (browser back/forward, or a direct/cross-page link). Home is
+  // reused (not remounted) across the /, /retrospective, /sandbox routes, so
+  // the initializer above only runs once — this effect handles later changes.
+  // React to *changes* in the path (back/forward, or links between the view
+  // routes — Home is reused, not remounted). A value-based ref (not a
+  // "first run" flag) so it's correct under StrictMode's double-invoked
+  // effects, and so the mount path '/' of a legacy `?view=` link isn't
+  // mistaken for Current before the sync effect upgrades it to the clean path.
+  const lastPathRef = useRef(location.pathname);
+  useEffect(() => {
+    if (location.pathname === lastPathRef.current) return;
+    lastPathRef.current = location.pathname;
+    const v = pathToView(location.pathname);
+    if (v && v !== viewMode) setViewMode(v);
+  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
   // Multi-cycle retrospectives + the selected cycle (Retrospective view only).
   const [retros, setRetros] = useState<RetrospectivesPayload | null>(null);
   const [retroYear, setRetroYear] = useState<number>(() => parseRetroYear(searchParams.get('year')));
@@ -443,13 +485,18 @@ export function Home({ onMetaChange }: HomeProps) {
   // Color toggles entirely). Using a ref to compare current vs prior
   // searchParams avoids the race: the effect only runs reset when the
   // URL actually became bare *after* having had params.
-  const prevSearchParamsStringRef = useRef<string>(searchParams.toString());
+  const prevUrlRef = useRef<string>(
+    location.pathname + (searchParams.toString() ? `?${searchParams.toString()}` : ''),
+  );
   useEffect(() => {
-    const current = searchParams.toString();
-    const prev = prevSearchParamsStringRef.current;
-    prevSearchParamsStringRef.current = current;
-    // Skip unless: URL is now bare AND was previously non-bare.
-    if (current !== '' || prev === '') return;
+    const search = searchParams.toString();
+    const url = location.pathname + (search ? `?${search}` : '');
+    const prev = prevUrlRef.current;
+    prevUrlRef.current = url;
+    // Skip unless the URL just became the bare home '/' after being something
+    // else. With path-based views, '/retrospective' and '/sandbox' are NOT bare
+    // — so switching between views (which clears the query) must not reset.
+    if (url !== '/' || prev === '/') return;
     setViewMode('current');
     setColorMode('balance');
     setMinors([]);
@@ -463,7 +510,7 @@ export function Home({ onMetaChange }: HomeProps) {
     // visit to Sandbox starts at the headline number, not the last value
     // the user dragged the slider to.
     if (payload) setSandboxBallot(payload.meta.generic_ballot_margin);
-  }, [searchParams, payload]);
+  }, [location.pathname, searchParams, payload]);
 
   // App state → URL: keep the URL in sync with the current view so links
   // are shareable. Crucially, `searchParams` is NOT a dep here — that
@@ -472,7 +519,7 @@ export function Home({ onMetaChange }: HomeProps) {
   useEffect(() => {
     if (!payload) return;
     const next = new URLSearchParams();
-    if (viewMode !== 'current') next.set('view', viewMode);
+    // The view is carried by the path (VIEW_PATH), not a query param.
     if (colorMode !== 'balance') next.set('color', colorMode);
     // Emit ?year= in retrospective mode for any non-default cycle so a specific
     // retrospective is shareable (the latest cycle stays a clean URL).
@@ -519,8 +566,12 @@ export function Home({ onMetaChange }: HomeProps) {
       const state = payload.states.find((s) => s.fips === selectedFips);
       if (state) next.set('state', state.code);
     }
-    setSearchParams(next, { replace: true });
-  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, setSearchParams]);
+    const search = next.toString();
+    navigate(
+      { pathname: VIEW_PATH[viewMode], search: search ? `?${search}` : '' },
+      { replace: true },
+    );
+  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, navigate]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection (no client recompute).

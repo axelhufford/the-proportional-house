@@ -49,7 +49,7 @@ def build_html(retro: dict) -> str:
         pd, pr = r["projected_pr"]["d_seats"], r["projected_pr"]["r_seats"]
         label, cls = _shift(r["d_gain"])
         rows += (
-            f'    <tr><th scope="row"><a href="/?view=retrospective&amp;year={r["year"]}">{r["year"]}</a></th>'
+            f'    <tr><th scope="row"><a href="/retrospective?year={r["year"]}">{r["year"]}</a></th>'
             f'<td><span class="d">D {ad}</span> / <span class="r">R {ar}</span></td>'
             f'<td><span class="d">D {pd}</span> / <span class="r">R {pr}</span></td>'
             f'<td class="{cls}">{label}</td></tr>\n'
@@ -140,7 +140,7 @@ def build_html(retro: dict) -> str:
     Republican ones (Florida, Texas) roughly cancel out &mdash; so proportional representation changes
     far fewer seats, the small gaps you see in the other cycles.</p>
 
-  <p><a class="cta" href="/?view=retrospective">Explore the retrospectives on the interactive map &rarr;</a></p>
+  <p><a class="cta" href="/retrospective">Explore the retrospectives on the interactive map &rarr;</a></p>
 
   <p class="note">Prior-cycle vote totals come from the MIT Election Lab (U.S. House 1976&ndash;2024);
     2024 from the U.S. House Clerk. See the <a href="/methodology#retrospectives">methodology</a>, the

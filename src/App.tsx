@@ -29,6 +29,10 @@ export default function App() {
         <Route path="/embed/state/:code" element={<EmbedState />} />
         <Route element={<Layout meta={meta} />}>
           <Route path="/" element={<Home onMetaChange={handleMetaChange} />} />
+          {/* Clean, shareable URLs for the two non-default views. All three
+              render the same Home; the active view is derived from the path. */}
+          <Route path="/retrospective" element={<Home onMetaChange={handleMetaChange} />} />
+          <Route path="/sandbox" element={<Home onMetaChange={handleMetaChange} />} />
           <Route path="/rankings" element={<Rankings />} />
           <Route path="/methodology" element={<Methodology meta={meta} />} />
           <Route path="/about" element={<About />} />

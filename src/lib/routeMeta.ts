@@ -24,6 +24,19 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       'See how the U.S. House would look if every state allocated its seats by proportional representation, based on current generic-ballot polling.',
     canonicalPath: '/',
   },
+  '/retrospective': {
+    title:
+      'Retrospective: how past U.S. House elections would look under proportional representation · The Proportional House',
+    description:
+      'Apply proportional representation to the actual votes of the 2016–2024 U.S. House elections. See, cycle by cycle, how many seats winner-take-all districts shifted from a proportional result.',
+    canonicalPath: '/retrospective',
+  },
+  '/sandbox': {
+    title: 'Sandbox: build your own proportional U.S. House · The Proportional House',
+    description:
+      'Experiment with the U.S. House: change the national vote, add third parties, switch the allocation method (Pure PR, MMD, MMP), set a threshold, and resize the chamber — and watch the seats recompute live.',
+    canonicalPath: '/sandbox',
+  },
   '/rankings': {
     title:
       'House rankings: most distorted delegations under proportional representation · The Proportional House',
