@@ -34,7 +34,9 @@ export function Methodology(_props: MethodologyProps) {
   }, []);
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-8 prose-stone text-stone-800 leading-relaxed">
+    <div className="max-w-5xl mx-auto px-6 py-8 lg:grid lg:grid-cols-[208px_minmax(0,1fr)] lg:gap-10">
+      <MethodologyToc />
+      <article className="min-w-0 max-w-3xl prose-stone text-stone-800 leading-relaxed">
       <h1 className="font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">Methodology</h1>
       <p className="mt-3 text-stone-600">
         What would the U.S. House look like if every state allocated its seats by proportional
@@ -42,7 +44,7 @@ export function Methodology(_props: MethodologyProps) {
         how that projection is computed, what data feeds it, and what it does and doesn’t tell you.
       </p>
 
-      <Section title="The short version">
+      <Section id="short-version" title="The short version">
         <ol className="list-decimal pl-6 space-y-2">
           <li>For each state, take its 2024 two-party House vote share as a baseline.</li>
           <li>Compute the current national generic-ballot polling margin from a weighted average of recent polls.</li>
@@ -52,7 +54,7 @@ export function Methodology(_props: MethodologyProps) {
         </ol>
       </Section>
 
-      <Section title="Data sources">
+      <Section id="data-sources" title="Data sources">
         <ul className="list-disc pl-6 space-y-2">
           <li>
             <strong>2024 House baseline.</strong>{' '}
@@ -106,7 +108,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </div>
       </Section>
 
-      <Section title="The Sandbox view: what-if scenarios">
+      <Section id="sandbox-view" title="The Sandbox view: what-if scenarios">
         <p>
           Where the <Link to="/" className="underline hover:text-brand-navy">Current</Link>{' '}
           and <Link to="/retrospective" className="underline hover:text-brand-navy">Retrospective</Link>{' '}
@@ -388,7 +390,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="The reveal is more modest than you might expect">
+      <Section id="the-reveal" title="The reveal is more modest than you might expect">
         <p>
           Under today’s D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}
           {pipelineMeta?.national && (
@@ -429,7 +431,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="Assumptions and limitations">
+      <Section id="limitations" title="Assumptions and limitations">
         <ul className="list-disc pl-6 space-y-2">
           <li>
             <strong>Single-cycle elasticity calibration.</strong> Per-state elasticities come from only one observation: the 2020→2024 presidential swing. That’s the first full post-redistricting cycle, so it’s the most representative single data point we have, but a single cycle is a small sample. Two real caveats follow from that. First, the model is linear: a state with elasticity 1.5 doesn’t stop at the 100/0 boundary in extreme sandbox values (the clamp catches that, but the projection still saturates). Second, an idiosyncratic state event (a popular incumbent, a sudden scandal, a regional issue) shows up as elasticity but isn’t really about national mood. We’re not separating those signals here.
@@ -449,7 +451,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </ul>
       </Section>
 
-      <Section title="API and data downloads">
+      <Section id="api" title="API and data downloads">
         <p>
           The full projection is available as a public, versioned JSON API and as direct CSV/JSON
           downloads. The download buttons sit beside the share buttons in the national summary
@@ -486,7 +488,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="Embeddable widgets">
+      <Section id="embeds" title="Embeddable widgets">
         <p>
           Two iframe-ready views let you drop the projection into a story or post:
         </p>
@@ -524,7 +526,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
-      <Section title="Why the math doesn’t favor one side">
+      <Section id="neutrality" title="Why the math doesn’t favor one side">
         <p>
           The pipeline doesn’t look at partisan labels except to count votes. The same code runs whether
           the swing is toward D or toward R. If the generic ballot flipped to R+6, the projection would
@@ -533,7 +535,66 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
         <p>Source code: <a className="underline" href="https://github.com/axelhufford/the-proportional-house" target="_blank" rel="noreferrer">github.com/axelhufford/the-proportional-house</a>.</p>
       </Section>
-    </article>
+      </article>
+    </div>
+  );
+}
+
+// Table-of-contents entries — keep in sync with the <Section id=…> values + order.
+const SECTIONS: { id: string; label: string }[] = [
+  { id: 'short-version', label: 'The short version' },
+  { id: 'data-sources', label: 'Data sources' },
+  { id: 'the-math', label: 'The math' },
+  { id: 'sainte-lague', label: 'Sainte-Laguë' },
+  { id: 'sandbox-view', label: 'The Sandbox' },
+  { id: 'methods', label: 'Allocation methods' },
+  { id: 'house-size', label: 'House size' },
+  { id: 'the-reveal', label: 'How modest the change is' },
+  { id: 'limitations', label: 'Assumptions & limits' },
+  { id: 'api', label: 'API & downloads' },
+  { id: 'embeds', label: 'Embeds' },
+  { id: 'neutrality', label: 'Why it’s neutral' },
+];
+
+/**
+ * Page table of contents. Sticky rail on lg+ (first column of the page grid);
+ * a collapsible "On this page" on mobile. Links are in-page hashes; the global
+ * ScrollManager smooth-scrolls to them and each Section has scroll-mt-24 to
+ * clear the masthead.
+ */
+function MethodologyToc() {
+  return (
+    <div>
+      <details className="lg:hidden mb-6 rounded-xl border border-stone-200 bg-white/70 px-4 py-3">
+        <summary className="cursor-pointer text-sm font-semibold text-brand-navy">On this page</summary>
+        <ul className="mt-2 space-y-1.5 text-sm">
+          {SECTIONS.map((s) => (
+            <li key={s.id}>
+              <a href={`#${s.id}`} className="text-stone-600 hover:text-brand-navy transition-colors">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+      <nav aria-label="On this page" className="hidden lg:block">
+        <div className="sticky top-24">
+          <div className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">On this page</div>
+          <ul className="space-y-0.5 text-sm border-l border-stone-200">
+            {SECTIONS.map((s) => (
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  className="block -ml-px border-l border-transparent pl-3 py-1 text-stone-600 hover:text-brand-navy hover:border-brand-navy transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </div>
   );
 }
 

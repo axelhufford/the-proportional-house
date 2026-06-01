@@ -49,10 +49,15 @@ export function RankingRow({ rank, state, caption, silhouette }: Props) {
   return (
     <Link
       to={`/state/${state.code.toLowerCase()}`}
-      className="block rounded-lg border border-stone-200 bg-white px-4 py-3 hover:border-brand-navy/40 hover:shadow-sm transition-[border,box-shadow]"
+      className="block rounded-lg border border-stone-200 bg-white px-4 py-3 hover:border-brand-navy/40 hover:shadow-md transition-[border,box-shadow]"
     >
       <div className="flex items-center gap-4">
-        <div className="text-stone-400 font-medium tabular-nums w-6 text-right flex-shrink-0">
+        {/* Rank badge — top 3 filled navy to emphasize the leaders. */}
+        <div
+          className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold tabular-nums ${
+            rank <= 3 ? 'bg-brand-navy text-white' : 'bg-stone-100 text-stone-600'
+          }`}
+        >
           {rank}
         </div>
         <div className="flex-1 min-w-0">

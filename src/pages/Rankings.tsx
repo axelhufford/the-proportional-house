@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { RankingRow } from '../components/RankingRow';
+import { Reveal } from '../components/Reveal';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
 import { buildStateSilhouettes } from '../lib/stateSilhouettes';
@@ -225,26 +226,28 @@ export function Rankings() {
 
       {leaderboards.map((board) => (
         <section key={board.id} id={board.id} className="mt-10 scroll-mt-6">
-          <h2 className="font-serif text-2xl text-brand-navy tracking-tight">{board.title}</h2>
-          <p className="text-sm text-stone-600 mt-1.5 leading-relaxed">{board.blurb}</p>
-          {board.rows.length === 0 ? (
-            <p className="mt-4 text-sm text-stone-500 italic">
-              No states meet this criterion in the current projection.
-            </p>
-          ) : (
-            <ol className="mt-4 space-y-2 list-none p-0">
-              {board.rows.map((row, i) => (
-                <li key={row.state.fips}>
-                  <RankingRow
-                    rank={i + 1}
-                    state={row.state}
-                    caption={row.caption}
-                    silhouette={silhouettes?.get(row.state.fips)}
-                  />
-                </li>
-              ))}
-            </ol>
-          )}
+          <Reveal>
+            <h2 className="font-serif text-2xl text-brand-navy tracking-tight">{board.title}</h2>
+            <p className="text-sm text-stone-600 mt-1.5 leading-relaxed">{board.blurb}</p>
+            {board.rows.length === 0 ? (
+              <p className="mt-4 text-sm text-stone-500 italic">
+                No states meet this criterion in the current projection.
+              </p>
+            ) : (
+              <ol className="mt-4 space-y-2 list-none p-0">
+                {board.rows.map((row, i) => (
+                  <li key={row.state.fips}>
+                    <RankingRow
+                      rank={i + 1}
+                      state={row.state}
+                      caption={row.caption}
+                      silhouette={silhouettes?.get(row.state.fips)}
+                    />
+                  </li>
+                ))}
+              </ol>
+            )}
+          </Reveal>
         </section>
       ))}
 

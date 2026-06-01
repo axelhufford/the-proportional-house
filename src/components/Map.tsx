@@ -12,8 +12,9 @@ import {
   distortionMargin,
   pluralityColor,
 } from '../lib/colors';
-import { displayName } from '../lib/parties';
+import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { formatSeatPct } from '../lib/format';
+import { SeatBar } from './SeatBar';
 
 /**
  * Sanitize a hex color (or any string) into something safe for use in an
@@ -305,7 +306,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
               key={v.fips}
               d={pathGen(v.feature) || ''}
               fill={v.fillRef}
-              stroke={isSelected ? '#111' : '#fff'}
+              stroke={isSelected ? '#1F2E4D' : '#fff'}
               strokeWidth={isSelected ? 2 : isHover ? 1.5 : 0.75}
               className="transition-[fill,stroke-width] duration-200 ease-out motion-reduce:transition-none [pointer-events:none]"
             />
@@ -390,7 +391,7 @@ function Tooltip({
   const baselineD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
   const dGain = projectedD - baselineD;
   return (
-    <div className="absolute top-2 right-2 bg-white/95 border border-stone-200 rounded-md px-3 py-2 shadow-sm text-sm pointer-events-none">
+    <div className="absolute top-2 right-2 w-52 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
       <div className="font-semibold text-stone-900">{state.name}</div>
       <div className="text-stone-600 text-xs">{projectedTotal} {projectedTotal === 1 ? 'seat' : 'seats'}</div>
       {hasMinorSeats ? (
@@ -428,7 +429,20 @@ function Tooltip({
           </span>
         </div>
       )}
-      <div className="text-xs text-stone-500 mt-0.5">
+      <SeatBar
+        className="h-1.5 mt-1.5"
+        parties={
+          hasMinorSeats
+            ? sandboxState!.parties
+                .filter((p) => p.seats > 0)
+                .map((p) => ({ id: p.party.id, color: p.party.color, seats: p.seats, label: displayName(p.party) }))
+            : [
+                { id: 'D', color: PARTY_D.color, seats: projectedD, label: 'D' },
+                { id: 'R', color: PARTY_R.color, seats: projectedR, label: 'R' },
+              ]
+        }
+      />
+      <div className="text-xs text-stone-500 mt-1.5">
         Now: D {state.actual.d_seats}
         {actualTotal > 0 && (
           <span className="text-stone-400 tabular-nums"> {formatSeatPct(state.actual.d_seats, actualTotal)}</span>

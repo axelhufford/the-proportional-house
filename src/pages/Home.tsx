@@ -3,6 +3,8 @@ import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { ChartSkeleton } from '../components/ChartSkeleton';
+import { HomeSkeleton } from '../components/HomeSkeleton';
+import { Reveal } from '../components/Reveal';
 import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
@@ -664,15 +666,7 @@ export function Home({ onMetaChange }: HomeProps) {
   }
 
   if (!payload || !topology || !effectivePayload) {
-    return (
-      <div className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <div
-          className="inline-block h-6 w-6 rounded-full border-2 border-stone-300 border-t-brand-navy animate-spin"
-          aria-hidden="true"
-        />
-        <p className="mt-3 text-sm text-stone-500">Loading projection…</p>
-      </div>
-    );
+    return <HomeSkeleton />;
   }
 
   const selectedState = selectedFips
@@ -896,6 +890,7 @@ export function Home({ onMetaChange }: HomeProps) {
          * projection, so it lives under the map in that view only — not in the
          * historical Retrospective or the hypothetical Sandbox. */}
         {viewMode === 'current' && (
+          <Reveal>
           <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <div>
@@ -926,6 +921,7 @@ export function Home({ onMetaChange }: HomeProps) {
               generic-ballot database.
             </p>
           </div>
+          </Reveal>
         )}
       </section>
 
