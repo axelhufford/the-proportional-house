@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ComposedChart,
   Line,
   ReferenceLine,
   ResponsiveContainer,
   Scatter,
-  Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
@@ -25,6 +24,7 @@ interface TrendPayload {
 }
 
 interface ChartPoint {
+  id: number;             // stable index, so the hovered dot can be identified
   ts: number;             // poll midpoint as ms epoch (Recharts numeric X)
   margin: number;         // raw or adjusted net (D - R) in points
   smoothed: number | null; // 14-day weighted moving average up to this point
@@ -72,7 +72,7 @@ function smoothTrend(polls: RawPoll[]): ChartPoint[] {
     .filter((p) => Number.isFinite(p.ts))
     .sort((a, b) => a.ts - b.ts);
 
-  return points.map((p) => {
+  return points.map((p, i) => {
     const cutoff = p.ts - WINDOW_DAYS * MS_PER_DAY;
     let wSum = 0;
     let wxSum = 0;
@@ -87,7 +87,7 @@ function smoothTrend(polls: RawPoll[]): ChartPoint[] {
       wxSum += w * q.margin;
     }
     const smoothed = wSum > 0 ? wxSum / wSum : null;
-    return { ...p, smoothed };
+    return { ...p, smoothed, id: i };
   });
 }
 
@@ -128,42 +128,68 @@ function monthlyTicks(xMin: number, xMax: number, count = 5): number[] {
   return ticks.filter((_, i) => i % step === 0);
 }
 
+/** Visible dot radius — scales gently with sample size, clamped to 2–6 px. */
+function visibleRadius(sampleSize: number): number {
+  return Math.min(Math.max(Math.sqrt(sampleSize || 1000) / 14, 2), 6);
+}
+
 interface DotProps {
   cx?: number;
   cy?: number;
   payload?: ChartPoint;
+  activeId?: number | null;
+  onHover?: (point: ChartPoint, cx: number, cy: number) => void;
+  onLeave?: () => void;
 }
 
-function PollDot({ cx, cy, payload }: DotProps) {
+// Each poll is its own dot with a generous transparent hit area, so any single
+// poll can be hovered or tapped directly — even when several share a date and
+// stack vertically (up to ~8 on busy weeks). Hover/tap drives the tooltip and
+// highlight from THIS dot, rather than recharts' axis tooltip which can only
+// surface one poll per date. The hovered dot gets a navy ring + full opacity.
+function PollDot({ cx, cy, payload, activeId, onHover, onLeave }: DotProps) {
   if (cx == null || cy == null || !payload) return null;
-  const r = Math.min(Math.max(Math.sqrt(payload.sample_size || 1000) / 14, 2), 6);
+  const r = visibleRadius(payload.sample_size);
   const fill = payload.margin >= 0 ? '#2563EB' : '#DC2626';
-  return <circle cx={cx} cy={cy} r={r} fill={fill} fillOpacity={0.45} />;
-}
-
-// Emphasized dot for the hovered poll (the Scatter's activeShape), so the
-// point that lights up is the raw poll the tooltip is describing — full
-// opacity, slightly larger, with a navy ring to make it pop.
-function ActivePollDot({ cx, cy, payload }: DotProps) {
-  if (cx == null || cy == null || !payload) return null;
-  const r = Math.min(Math.max(Math.sqrt(payload.sample_size || 1000) / 14, 2), 6) + 1.5;
-  const fill = payload.margin >= 0 ? '#2563EB' : '#DC2626';
-  return <circle cx={cx} cy={cy} r={r} fill={fill} fillOpacity={0.95} stroke="#1F2E4D" strokeWidth={1.5} />;
-}
-
-interface TooltipPayload {
-  payload: ChartPoint;
-}
-
-function ChartTooltip({ active, payload }: { active?: boolean; payload?: TooltipPayload[] }) {
-  if (!active || !payload?.length) return null;
-  const p = payload[0].payload;
+  const isActive = payload.id === activeId;
+  // Comfortable target, but small enough that stacked neighbors stay reachable.
+  const hitR = Math.max(r + 4, 7);
   return (
-    <div className="bg-white border border-stone-200 rounded-md px-2 py-1.5 text-xs shadow-sm">
-      <div className="font-medium text-stone-900">{p.pollster}</div>
-      <div className="text-stone-600">{fmtDate(p.ts)} · n={p.sample_size.toLocaleString()} {p.population}</div>
-      <div className={p.margin >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
-        {fmtMargin(p.margin)}
+    <g>
+      <circle
+        cx={cx}
+        cy={cy}
+        r={hitR}
+        fill="transparent"
+        style={{ pointerEvents: 'all', cursor: 'pointer' }}
+        onMouseEnter={() => onHover?.(payload, cx, cy)}
+        onMouseMove={() => onHover?.(payload, cx, cy)}
+        onMouseLeave={() => onLeave?.()}
+        onClick={() => onHover?.(payload, cx, cy)}
+      />
+      <circle
+        cx={cx}
+        cy={cy}
+        r={isActive ? r + 1.5 : r}
+        fill={fill}
+        fillOpacity={isActive ? 0.95 : 0.45}
+        stroke={isActive ? '#1F2E4D' : 'none'}
+        strokeWidth={isActive ? 1.5 : 0}
+        style={{ pointerEvents: 'none' }}
+      />
+    </g>
+  );
+}
+
+function PollTooltipCard({ point }: { point: ChartPoint }) {
+  return (
+    <div className="bg-white border border-stone-200 rounded-md px-2 py-1.5 text-xs shadow-md">
+      <div className="font-medium text-stone-900">{point.pollster}</div>
+      <div className="text-stone-600">
+        {fmtDate(point.ts)} · n={point.sample_size.toLocaleString()} {point.population}
+      </div>
+      <div className={point.margin >= 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
+        {fmtMargin(point.margin)}
       </div>
     </div>
   );
@@ -177,6 +203,16 @@ interface Props {
 
 export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props) {
   const [raw, setRaw] = useState<RawPoll[] | null>(null);
+  // The hovered/tapped poll drives the tooltip + highlight. cx/cy are SVG
+  // pixel coords (the surface fills the wrapper at 0,0), so they double as the
+  // tooltip's position inside the relative wrapper.
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<{ point: ChartPoint; cx: number; cy: number } | null>(null);
+  const handleHover = useCallback(
+    (point: ChartPoint, cx: number, cy: number) => setActive({ point, cx, cy }),
+    [],
+  );
+  const handleLeave = useCallback(() => setActive(null), []);
 
   useEffect(() => {
     let alive = true;
@@ -203,10 +239,25 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
   const yMin = Math.min(-2, Math.floor(Math.min(...points.map((p) => p.margin)) - 1));
   const yMax = Math.max(10, Math.ceil(Math.max(...points.map((p) => p.margin)) + 1));
 
+  // Tooltip placement: centered above the dot, clamped to the wrapper width so
+  // it can't run off the edges; flips below when the dot is near the top.
+  let tip: { left: number; top: number; below: boolean } | null = null;
+  if (active) {
+    const w = wrapRef.current?.clientWidth ?? 0;
+    const half = 90;
+    const left = w ? Math.min(Math.max(active.cx, half), w - half) : active.cx;
+    const below = active.cy < 64;
+    tip = { left, top: below ? active.cy + 14 : active.cy - 10, below };
+  }
+
   return (
-    <div className="w-full">
+    <div ref={wrapRef} className="w-full relative">
       <ResponsiveContainer width="100%" height={height}>
-        <ComposedChart data={points} margin={{ top: 8, right: 16, bottom: 4, left: 0 }}>
+        <ComposedChart
+          data={points}
+          margin={{ top: 8, right: 16, bottom: 4, left: 0 }}
+          onMouseLeave={handleLeave}
+        >
           <XAxis
             dataKey="ts"
             type="number"
@@ -240,12 +291,6 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
               fill: '#1F2E4D',
             }}
           />
-          <Scatter
-            dataKey="margin"
-            shape={<PollDot />}
-            activeShape={<ActivePollDot />}
-            isAnimationActive={false}
-          />
           <Line
             type="monotone"
             dataKey="smoothed"
@@ -256,9 +301,27 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
             isAnimationActive={false}
             connectNulls
           />
-          <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#d6d3d1', strokeDasharray: '3 3' }} />
+          <Scatter
+            dataKey="margin"
+            shape={
+              <PollDot activeId={active?.point.id ?? null} onHover={handleHover} onLeave={handleLeave} />
+            }
+            isAnimationActive={false}
+          />
         </ComposedChart>
       </ResponsiveContainer>
+      {active && tip && (
+        <div
+          className="pointer-events-none absolute z-10"
+          style={{
+            left: tip.left,
+            top: tip.top,
+            transform: tip.below ? 'translate(-50%, 0)' : 'translate(-50%, -100%)',
+          }}
+        >
+          <PollTooltipCard point={active.point} />
+        </div>
+      )}
     </div>
   );
 }
