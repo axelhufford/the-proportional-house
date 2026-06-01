@@ -157,9 +157,11 @@ function ChartTooltip({ active, payload }: { active?: boolean; payload?: Tooltip
 
 interface Props {
   currentAverageMargin: number;
+  /** Chart height in px. Compact (160) in panels; taller on the homepage. */
+  height?: number;
 }
 
-export function PollingTrendChart({ currentAverageMargin }: Props) {
+export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props) {
   const [raw, setRaw] = useState<RawPoll[] | null>(null);
 
   useEffect(() => {
@@ -189,7 +191,7 @@ export function PollingTrendChart({ currentAverageMargin }: Props) {
 
   return (
     <div className="w-full">
-      <ResponsiveContainer width="100%" height={160}>
+      <ResponsiveContainer width="100%" height={height}>
         <ComposedChart data={points} margin={{ top: 8, right: 16, bottom: 4, left: 0 }}>
           <XAxis
             dataKey="ts"

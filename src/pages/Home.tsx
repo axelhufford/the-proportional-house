@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
+import { ChartSkeleton } from '../components/ChartSkeleton';
 import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
@@ -40,6 +41,11 @@ import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
 import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload } from '../lib/types';
+
+// recharts is ~110 KB gzipped. Lazy-load the polling chart so it lands in its
+// own chunk after first paint — keeps it out of the initial bundle and off the
+// homepage LCP path. The chunk fetches as soon as the Current view renders.
+const PollingTrendChart = lazy(() => import('../components/PollingTrendChart'));
 
 interface HomeProps {
   onMetaChange?: (payload: ProjectionPayload) => void;
@@ -625,6 +631,15 @@ export function Home({ onMetaChange }: HomeProps) {
   const ballot = sandboxBallot ?? payload.meta.generic_ballot_margin;
   const sandboxSwing = ballot - payload.meta.baseline_2024_margin;
 
+  // Current generic-ballot average, for the polling-trend card under the map.
+  const pollMargin = payload.meta.generic_ballot_margin;
+  const pollLabel =
+    Math.abs(pollMargin) < 0.05
+      ? 'Tie'
+      : pollMargin >= 0
+        ? `D+${pollMargin.toFixed(1)}`
+        : `R+${Math.abs(pollMargin).toFixed(1)}`;
+
   // Dataset JSON-LD for the homepage — declares the projection as a public
   // dataset that Google Dataset Search and other crawlers can index. Kept
   // page-scoped (only emitted on /) so it doesn't pollute every route.
@@ -825,6 +840,42 @@ export function Home({ onMetaChange }: HomeProps) {
             .
           </p>
         </div>
+
+        {/* National generic-ballot polling trend. It's the input to the Current
+         * projection, so it lives under the map in that view only — not in the
+         * historical Retrospective or the hypothetical Sandbox. */}
+        {viewMode === 'current' && (
+          <div className="mt-4 bg-white rounded-lg border border-stone-200 shadow-sm p-4 sm:p-6">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <div>
+                <h2 className="font-serif text-lg sm:text-xl text-brand-navy">
+                  National generic-ballot polling
+                </h2>
+                <p className="text-xs text-stone-500">Last 180 days</p>
+              </div>
+              <div className="text-right">
+                <div
+                  className={`text-2xl font-semibold tabular-nums ${
+                    pollMargin >= 0 ? 'text-blue-700' : 'text-red-700'
+                  }`}
+                >
+                  {pollLabel}
+                </div>
+                <div className="text-xs text-stone-500">14-day weighted average</div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <Suspense fallback={<ChartSkeleton className="h-[300px]" />}>
+                <PollingTrendChart currentAverageMargin={pollMargin} height={300} />
+              </Suspense>
+            </div>
+            <p className="mt-3 text-xs text-stone-500">
+              Each dot is one poll; size scales with sample size. The navy line is the same 14-day
+              weighted average we use in the projection. Source: Silver Bulletin’s public
+              generic-ballot database.
+            </p>
+          </div>
+        )}
       </section>
 
       {selectedState && createPortal(

@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
 import { METHOD_LABELS, type AllocationMethodKind } from '../lib/methods';
@@ -7,22 +7,6 @@ import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
 import type { StateProjection, ProjectionMeta } from '../lib/types';
-
-// Recharts is ~150 KB gzipped and only renders inside this panel — keep it
-// out of the initial bundle so the homepage LCP doesn't pay for it. The
-// chunk loads the first time a user opens any state detail.
-const PollingTrendChart = lazy(() => import('./PollingTrendChart'));
-
-function ChartSkeleton() {
-  // Matches the actual chart's container height + a soft pulse so there's
-  // no layout shift when the chunk resolves.
-  return (
-    <div
-      className="w-full h-48 rounded-md bg-stone-100 animate-pulse"
-      aria-hidden="true"
-    />
-  );
-}
 
 export interface StateDetailContentProps {
   state: StateProjection;
@@ -425,15 +409,6 @@ export function StateDetailContent({
             </div>
           </details>
         )}
-
-        <Section title="National polling trend, last 180 days">
-          <Suspense fallback={<ChartSkeleton />}>
-            <PollingTrendChart currentAverageMargin={meta.generic_ballot_margin} />
-          </Suspense>
-          <p className="text-xs text-stone-500 mt-2">
-            Each dot is one poll; size scales with sample size. The navy line is the same 14-day weighted average we use in the projection. Source: Silver Bulletin’s public generic-ballot database.
-          </p>
-        </Section>
 
         {similarStates.length > 0 && (
           <Section title="See also: similar distortions">
