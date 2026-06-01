@@ -8,9 +8,12 @@ Writes:
   - public/og-card.png                 — 1200×630 home OG image with the live
                                           national headline (seat shift + splits).
   - public/og/state-{CODE}.png         — 1200×630 OG image, brand chrome.
-  - public/state/{code}.html           — static HTML page with proper OG
-                                          meta tags + meta-refresh to the
-                                          SPA route /?state={CODE}.
+  - public/state/{code}.html           — a real, indexable static content page:
+                                          the state's actual vs. proportional
+                                          delegation in readable HTML, with a
+                                          link into the interactive map. No
+                                          redirect, so search + AI crawlers can
+                                          read it.
 
 Run from repo root:
     python data-pipeline/generate_state_og.py
@@ -22,10 +25,13 @@ Called from update.py after projection.json is written, so a normal
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 
-import resvg_py
+# NOTE: resvg_py (a binary wheel for SVG→PNG) is imported lazily inside main(),
+# not here. It isn't installed in CI, and a top-level import would make the
+# whole module fail to import there — skipping the HTML pages too. Importing it
+# lazily lets the (pure-Python) per-state HTML content pages regenerate on every
+# deploy, while the PNG share-cards render only where resvg is available.
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
@@ -158,35 +164,44 @@ def build_home_card_svg(national: dict, meta: dict) -> str:
 
 
 def build_html_page(state: dict) -> str:
-    """Return the static /state/{code}.html page content."""
+    """Return the static /state/{code}.html page — a real, indexable content
+    page (no redirect) that search + AI crawlers can read, with a link into the
+    interactive SPA map."""
     name = state["name"]
     code = state["code"]
     code_lower = code.lower()
+    seats = state["seats"]
     actual = state["actual"]
     projected = state["projected"]
-    d_gain = projected["d_seats"] - actual["d_seats"]
+    ad, ar = actual["d_seats"], actual["r_seats"]
+    pd, pr = projected["d_seats"], projected["r_seats"]
+    d_gain = pd - ad
     if d_gain > 0:
+        n = d_gain
+        shift = f"a shift of {n} {'seat' if n == 1 else 'seats'} toward Democrats"
         change_desc = f"+{d_gain} Democratic seats"
     elif d_gain < 0:
-        change_desc = f"+{abs(d_gain)} Republican seats"
+        n = abs(d_gain)
+        shift = f"a shift of {n} {'seat' if n == 1 else 'seats'} toward Republicans"
+        change_desc = f"+{n} Republican seats"
     else:
+        shift = "no net change in the partisan split"
         change_desc = "no net seat change"
     description = (
-        f"{name} under proportional representation: actual D {actual['d_seats']}/R {actual['r_seats']}, "
-        f"projected D {projected['d_seats']}/R {projected['r_seats']} ({change_desc})."
+        f"{name} under proportional representation: its {seats}-seat U.S. House delegation is "
+        f"actually D {ad}/R {ar}; allocated proportionally to the statewide vote it would be "
+        f"D {pd}/R {pr} ({change_desc})."
     )
     og_image = f"{SITE_URL}/og/state-{code}.png"
     spa_url = f"/?state={code}"
-    # Canonical must match the URL the bot fetched (and og:url below). When
-    # canonical pointed at the SPA-with-state URL, Google treated every
-    # /state/{code} page as a duplicate of the homepage and refused to index
-    # them individually. Self-canonical keeps each page as its own indexable
-    # surface — the sitemap has them listed for that exact reason.
+    # Self-canonical keeps each /state/{code} page indexable in its own right
+    # (the sitemap lists them for exactly this reason).
     canonical_url = f"{SITE_URL}/state/{code_lower}"
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{name} under proportional representation · The Proportional House</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{canonical_url}">
@@ -194,7 +209,7 @@ def build_html_page(state: dict) -> str:
 <meta property="og:type" content="website">
 <meta property="og:title" content="{name} under proportional representation">
 <meta property="og:description" content="{description}">
-<meta property="og:url" content="{SITE_URL}/state/{code_lower}">
+<meta property="og:url" content="{canonical_url}">
 <meta property="og:image" content="{og_image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -207,25 +222,48 @@ def build_html_page(state: dict) -> str:
 <meta name="theme-color" content="#1F2E4D">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<meta http-equiv="refresh" content="0; url={spa_url}">
-
 <style>
-  body {{
-    font-family: system-ui, -apple-system, sans-serif;
-    background: #F4EDE0;
-    color: #5C5C5A;
-    padding: 4rem 2rem;
-    text-align: center;
-    margin: 0;
-  }}
-  h1 {{ font-family: 'Source Serif 4', Georgia, serif; color: #1F2E4D; font-weight: 500; font-size: 2rem; margin: 0 0 0.5rem; }}
-  a {{ color: #1F2E4D; }}
+  :root {{ --navy:#1F2E4D; --cream:#F4EDE0; --d:#2166ac; --r:#b2182b; --ink:#3f3f46; --mut:#71717a; }}
+  body {{ font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+          background: var(--cream); color: var(--ink); margin: 0; line-height: 1.6; }}
+  main {{ max-width: 640px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }}
+  .kicker {{ font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--mut); margin: 0 0 .75rem; }}
+  .kicker a {{ color: var(--mut); text-decoration: none; }}
+  h1 {{ font-family: Georgia, "Times New Roman", serif; color: var(--navy);
+        font-weight: 600; font-size: 2rem; line-height: 1.15; margin: 0 0 1rem; }}
+  .lede {{ font-size: 1.1rem; color: var(--navy); margin: 0 0 1.5rem; }}
+  .d {{ color: var(--d); font-weight: 700; }} .r {{ color: var(--r); font-weight: 700; }}
+  .stats {{ display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 1.5rem; }}
+  .stat {{ flex: 1 1 200px; background: #fff; border: 1px solid #e7e5e4; border-radius: .5rem; padding: .85rem 1rem; }}
+  .stat .lab {{ font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }}
+  .stat .val {{ font-size: 1.5rem; font-weight: 700; margin-top: .15rem; }}
+  .cta {{ display: inline-block; background: var(--navy); color: #fff; text-decoration: none;
+          padding: .6rem 1.1rem; border-radius: 999px; font-weight: 600; }}
+  .note {{ font-size: .9rem; color: var(--mut); margin-top: 2rem; }}
+  a {{ color: var(--navy); }}
 </style>
 </head>
 <body>
-<h1>{name}</h1>
-<p>Loading the interactive map…</p>
-<p>If you aren't redirected, <a href="{spa_url}">view {name} under PR &rarr;</a></p>
+<main>
+  <p class="kicker"><a href="/">The Proportional House</a></p>
+  <h1>{name} under proportional representation</h1>
+  <p class="lede">{name}&rsquo;s {seats}-seat U.S. House delegation is currently
+    <span class="d">D&nbsp;{ad}</span> &middot; <span class="r">R&nbsp;{ar}</span>.
+    Allocated in proportion to its statewide House vote, it would be
+    <span class="d">D&nbsp;{pd}</span> &middot; <span class="r">R&nbsp;{pr}</span> &mdash; {shift}.</p>
+  <div class="stats">
+    <div class="stat"><div class="lab">Actual today</div>
+      <div class="val"><span class="d">D&nbsp;{ad}</span> &middot; <span class="r">R&nbsp;{ar}</span></div></div>
+    <div class="stat"><div class="lab">Under proportional representation</div>
+      <div class="val"><span class="d">D&nbsp;{pd}</span> &middot; <span class="r">R&nbsp;{pr}</span></div></div>
+  </div>
+  <p><a class="cta" href="{spa_url}">Explore {name} on the interactive map &rarr;</a></p>
+  <p class="note">{name} is one of 50 states in an interactive map of the U.S. House under
+    proportional representation, updated daily from current polling. See the
+    <a href="/rankings">most distorted delegations</a>, the
+    <a href="/methodology">methodology and data sources</a>, or the
+    <a href="/">national map</a>.</p>
+</main>
 </body>
 </html>
 """
@@ -241,29 +279,36 @@ def main() -> None:
     OG_DIR.mkdir(parents=True, exist_ok=True)
     STATE_HTML_DIR.mkdir(parents=True, exist_ok=True)
 
+    # PNG cards need resvg_py (a binary wheel not installed in CI). Render cards
+    # only when it imports; the HTML content pages below always regenerate.
+    try:
+        import resvg_py
+    except Exception as e:  # noqa: BLE001 — any import failure → skip PNGs
+        resvg_py = None
+        print(f"  (note) resvg_py unavailable ({e}); writing HTML pages only, skipping PNG cards.")
+
     # Home share card (live national headline) → public/og-card.png.
     national = payload.get("national")
-    if national:
+    if resvg_py and national:
         home_svg = build_home_card_svg(national, payload.get("meta", {}))
-        home_png = resvg_py.svg_to_bytes(svg_string=home_svg, width=1200, height=630)
-        HOME_OG_PATH.write_bytes(home_png)
+        HOME_OG_PATH.write_bytes(resvg_py.svg_to_bytes(svg_string=home_svg, width=1200, height=630))
         print(f"Wrote home OG card to {HOME_OG_PATH.relative_to(REPO_ROOT)}")
 
-    n = 0
+    n_html = 0
+    n_png = 0
     for state in payload["states"]:
-        svg = build_card_svg(state)
-        png_bytes = resvg_py.svg_to_bytes(svg_string=svg, width=1200, height=630)
-        png_path = OG_DIR / f"state-{state['code']}.png"
-        png_path.write_bytes(png_bytes)
+        # HTML content page — always written (pure Python, no resvg).
+        (STATE_HTML_DIR / f"{state['code'].lower()}.html").write_text(build_html_page(state))
+        n_html += 1
+        # PNG share-card — only when resvg is available.
+        if resvg_py:
+            png = resvg_py.svg_to_bytes(svg_string=build_card_svg(state), width=1200, height=630)
+            (OG_DIR / f"state-{state['code']}.png").write_bytes(png)
+            n_png += 1
 
-        html = build_html_page(state)
-        html_path = STATE_HTML_DIR / f"{state['code'].lower()}.html"
-        html_path.write_text(html)
-
-        n += 1
-
-    print(f"Wrote {n} per-state OG cards to {OG_DIR.relative_to(REPO_ROOT)}/")
-    print(f"Wrote {n} per-state HTML pages to {STATE_HTML_DIR.relative_to(REPO_ROOT)}/")
+    print(f"Wrote {n_html} per-state HTML pages to {STATE_HTML_DIR.relative_to(REPO_ROOT)}/")
+    if n_png:
+        print(f"Wrote {n_png} per-state OG cards to {OG_DIR.relative_to(REPO_ROOT)}/")
 
 
 if __name__ == "__main__":

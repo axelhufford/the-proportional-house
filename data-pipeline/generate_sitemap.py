@@ -74,6 +74,8 @@ def build_sitemap(state_codes: list[str]) -> str:
     parts.append(_url_entry(f"{SITE_URL}/", lastmod, "1.0", "daily"))
     # Rankings — fresh content every pipeline run (numbers re-sort), high priority.
     parts.append(_url_entry(f"{SITE_URL}/rankings", lastmod, "0.9", "daily"))
+    # Retrospectives — static long-form article (PR vs. actual, 2016–2024).
+    parts.append(_url_entry(f"{SITE_URL}/retrospectives", lastmod, "0.8", "monthly"))
     # Methodology — stable content, changes rarely.
     parts.append(_url_entry(f"{SITE_URL}/methodology", lastmod, "0.7", "monthly"))
     # About — very stable, rarely changes.
@@ -97,9 +99,9 @@ def main() -> None:
     state_codes = sorted(s["code"] for s in payload["states"])
     sitemap = build_sitemap(state_codes)
     SITEMAP_PATH.write_text(sitemap)
-    # 4 fixed routes (/, /rankings, /methodology, /about) + one per state.
+    # 5 fixed routes (/, /rankings, /retrospectives, /methodology, /about) + one per state.
     print(
-        f"Wrote sitemap with {len(state_codes) + 4} URLs to "
+        f"Wrote sitemap with {len(state_codes) + 5} URLs to "
         f"{SITEMAP_PATH.relative_to(REPO_ROOT)}"
     )
 

@@ -766,6 +766,10 @@ export function Home({ onMetaChange }: HomeProps) {
               district map from any polling or projection.
               {retroYear !== 2024 &&
                 ' Prior-cycle vote totals come from the MIT Election Lab; 2024 from the U.S. House Clerk.'}
+              {' '}
+              <a href="/retrospectives" className="underline underline-offset-2 hover:text-brand-navy whitespace-nowrap">
+                Read the write-up →
+              </a>
             </div>
           </div>
         )}

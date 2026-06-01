@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Louisiana under proportional representation · The Proportional House</title>
-<meta name="description" content="Louisiana under proportional representation: actual D 2/R 4, projected D 2/R 4 (no net seat change).">
+<meta name="description" content="Louisiana under proportional representation: its 6-seat U.S. House delegation is actually D 2/R 4; allocated proportionally to the statewide vote it would be D 2/R 4 (no net seat change).">
 <link rel="canonical" href="https://proportionalhouse.org/state/la">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Louisiana under proportional representation">
-<meta property="og:description" content="Louisiana under proportional representation: actual D 2/R 4, projected D 2/R 4 (no net seat change).">
+<meta property="og:description" content="Louisiana under proportional representation: its 6-seat U.S. House delegation is actually D 2/R 4; allocated proportionally to the statewide vote it would be D 2/R 4 (no net seat change).">
 <meta property="og:url" content="https://proportionalhouse.org/state/la">
 <meta property="og:image" content="https://proportionalhouse.org/og/state-LA.png">
 <meta property="og:image:width" content="1200">
@@ -16,30 +17,53 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Louisiana under proportional representation">
-<meta name="twitter:description" content="Louisiana under proportional representation: actual D 2/R 4, projected D 2/R 4 (no net seat change).">
+<meta name="twitter:description" content="Louisiana under proportional representation: its 6-seat U.S. House delegation is actually D 2/R 4; allocated proportionally to the statewide vote it would be D 2/R 4 (no net seat change).">
 <meta name="twitter:image" content="https://proportionalhouse.org/og/state-LA.png">
 
 <meta name="theme-color" content="#1F2E4D">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<meta http-equiv="refresh" content="0; url=/?state=LA">
-
 <style>
-  body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background: #F4EDE0;
-    color: #5C5C5A;
-    padding: 4rem 2rem;
-    text-align: center;
-    margin: 0;
-  }
-  h1 { font-family: 'Source Serif 4', Georgia, serif; color: #1F2E4D; font-weight: 500; font-size: 2rem; margin: 0 0 0.5rem; }
-  a { color: #1F2E4D; }
+  :root { --navy:#1F2E4D; --cream:#F4EDE0; --d:#2166ac; --r:#b2182b; --ink:#3f3f46; --mut:#71717a; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+          background: var(--cream); color: var(--ink); margin: 0; line-height: 1.6; }
+  main { max-width: 640px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  .kicker { font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--mut); margin: 0 0 .75rem; }
+  .kicker a { color: var(--mut); text-decoration: none; }
+  h1 { font-family: Georgia, "Times New Roman", serif; color: var(--navy);
+        font-weight: 600; font-size: 2rem; line-height: 1.15; margin: 0 0 1rem; }
+  .lede { font-size: 1.1rem; color: var(--navy); margin: 0 0 1.5rem; }
+  .d { color: var(--d); font-weight: 700; } .r { color: var(--r); font-weight: 700; }
+  .stats { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 1.5rem; }
+  .stat { flex: 1 1 200px; background: #fff; border: 1px solid #e7e5e4; border-radius: .5rem; padding: .85rem 1rem; }
+  .stat .lab { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
+  .stat .val { font-size: 1.5rem; font-weight: 700; margin-top: .15rem; }
+  .cta { display: inline-block; background: var(--navy); color: #fff; text-decoration: none;
+          padding: .6rem 1.1rem; border-radius: 999px; font-weight: 600; }
+  .note { font-size: .9rem; color: var(--mut); margin-top: 2rem; }
+  a { color: var(--navy); }
 </style>
 </head>
 <body>
-<h1>Louisiana</h1>
-<p>Loading the interactive map…</p>
-<p>If you aren't redirected, <a href="/?state=LA">view Louisiana under PR &rarr;</a></p>
+<main>
+  <p class="kicker"><a href="/">The Proportional House</a></p>
+  <h1>Louisiana under proportional representation</h1>
+  <p class="lede">Louisiana&rsquo;s 6-seat U.S. House delegation is currently
+    <span class="d">D&nbsp;2</span> &middot; <span class="r">R&nbsp;4</span>.
+    Allocated in proportion to its statewide House vote, it would be
+    <span class="d">D&nbsp;2</span> &middot; <span class="r">R&nbsp;4</span> &mdash; no net change in the partisan split.</p>
+  <div class="stats">
+    <div class="stat"><div class="lab">Actual today</div>
+      <div class="val"><span class="d">D&nbsp;2</span> &middot; <span class="r">R&nbsp;4</span></div></div>
+    <div class="stat"><div class="lab">Under proportional representation</div>
+      <div class="val"><span class="d">D&nbsp;2</span> &middot; <span class="r">R&nbsp;4</span></div></div>
+  </div>
+  <p><a class="cta" href="/?state=LA">Explore Louisiana on the interactive map &rarr;</a></p>
+  <p class="note">Louisiana is one of 50 states in an interactive map of the U.S. House under
+    proportional representation, updated daily from current polling. See the
+    <a href="/rankings">most distorted delegations</a>, the
+    <a href="/methodology">methodology and data sources</a>, or the
+    <a href="/">national map</a>.</p>
+</main>
 </body>
 </html>

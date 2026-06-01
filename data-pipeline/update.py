@@ -313,6 +313,14 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) retrospectives build failed: {e}")
 
+    # Static long-form content pages (e.g. /retrospectives) — reads
+    # retrospectives.json (written just above); pure Python, no resvg.
+    try:
+        from generate_content_pages import main as generate_content_pages
+        generate_content_pages()
+    except Exception as e:
+        print(f"  (warn) content-page generation failed: {e}")
+
     # Sanity-check: print the plan's Phase 2 "done when" criteria.
     proj_gain_d = nat_proj_d - nat_actual_d
     retro_gain_d = nat_retro_d - nat_actual_d
