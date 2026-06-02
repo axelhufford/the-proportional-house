@@ -74,7 +74,7 @@ jobs:
             # Reset to the clean committed snapshot (drops any partial writes),
             # then prefer the currently-live files for freshness.
             rm -rf public/data && cp -a /tmp/data-committed public/data
-            for f in projection.json baseline_2024.json polling_trend.json meta.json; do
+            for f in projection.json baseline_2024.json polling_trend.json meta.json history.json; do
               if curl -fsSL "https://proportionalhouse.org/data/$f" -o "/tmp/$f"; then
                 mv "/tmp/$f" "public/data/$f"
               else

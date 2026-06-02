@@ -321,6 +321,15 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) content-page generation failed: {e}")
 
+    # Append today's snapshot to the projection-over-time series. Fetches the
+    # live history.json (accumulates across deploys without committing data),
+    # falls back to the committed file; never breaks the build.
+    try:
+        from build_history import main as build_history
+        build_history()
+    except Exception as e:
+        print(f"  (warn) history build failed: {e}")
+
     # Sanity-check: print the plan's Phase 2 "done when" criteria.
     proj_gain_d = nat_proj_d - nat_actual_d
     retro_gain_d = nat_retro_d - nat_actual_d

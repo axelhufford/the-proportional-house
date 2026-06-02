@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { RankingRow } from '../components/RankingRow';
 import { Reveal } from '../components/Reveal';
+import { StateTable } from '../components/StateTable';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
 import { buildStateSilhouettes } from '../lib/stateSilhouettes';
@@ -217,11 +218,17 @@ export function Rankings() {
           <a
             key={b.id}
             href={`#${b.id}`}
-            className="px-3 py-1.5 rounded-full border border-stone-200 bg-white text-stone-700 hover:border-brand-navy/40 hover:text-brand-navy"
+            className="px-3 py-1.5 rounded-full border border-stone-200 bg-white text-stone-700 hover:border-brand-navy/40 hover:text-brand-navy transition-colors"
           >
             {b.title}
           </a>
         ))}
+        <a
+          href="#all-states"
+          className="px-3 py-1.5 rounded-full border border-stone-200 bg-white text-stone-700 hover:border-brand-navy/40 hover:text-brand-navy transition-colors"
+        >
+          All 50 delegations
+        </a>
       </nav>
 
       {leaderboards.map((board) => (
@@ -250,6 +257,18 @@ export function Rankings() {
           </Reveal>
         </section>
       ))}
+
+      <section id="all-states" className="mt-12 scroll-mt-6">
+        <Reveal>
+          <h2 className="font-serif text-2xl text-brand-navy tracking-tight">All 50 delegations</h2>
+          <p className="text-sm text-stone-600 mt-1.5 leading-relaxed">
+            Every state, sortable and filterable. Click a column header to sort; click a state for its full projection.
+          </p>
+          <div className="mt-4">
+            <StateTable states={payload.states} />
+          </div>
+        </Reveal>
+      </section>
 
       <p className="mt-10 text-sm text-stone-500">
         Curious about the math? See the{' '}

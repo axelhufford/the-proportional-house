@@ -3,7 +3,7 @@ import { StateDetailSidePanel } from './StateDetailSidePanel';
 import { useIsMobile } from '../lib/useIsMobile';
 import type { AllocationMethodKind } from '../lib/methods';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
-import type { StateProjection, ProjectionMeta } from '../lib/types';
+import type { StateProjection, ProjectionMeta, StateRetroPoint } from '../lib/types';
 
 interface Props {
   state: StateProjection;
@@ -20,6 +20,8 @@ interface Props {
   houseSize?: number;
   /** Active sandbox per-state threshold — drives the settings-line badge when minors are active. */
   threshold?: number;
+  /** Per-cycle PR-vs-actual history for this state (2016–2024). */
+  retroHistory?: StateRetroPoint[];
 }
 
 /**

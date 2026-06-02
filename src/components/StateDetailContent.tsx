@@ -6,7 +6,8 @@ import { PARTY_D, PARTY_R, displayName } from '../lib/parties';
 import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
-import type { StateProjection, ProjectionMeta } from '../lib/types';
+import { StateRetroHistory } from './StateRetroHistory';
+import type { StateProjection, ProjectionMeta, StateRetroPoint } from '../lib/types';
 
 export interface StateDetailContentProps {
   state: StateProjection;
@@ -57,6 +58,12 @@ export interface StateDetailContentProps {
   houseSize?: number;
   /** Active sandbox per-state threshold (0–1) — drives the settings-line badge when minors are active. */
   threshold?: number;
+  /**
+   * Per-cycle PR-vs-actual history for this state (2016–2024), from
+   * retrospectives.json. Optional — only the Home views pass it; the embed
+   * route and Sandbox leave it undefined, hiding the section.
+   */
+  retroHistory?: StateRetroPoint[];
 }
 
 export function StateDetailContent({
@@ -71,6 +78,7 @@ export function StateDetailContent({
   methodLabel: methodLabelOverride,
   houseSize = DEFAULT_HOUSE_SIZE,
   threshold,
+  retroHistory,
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -408,6 +416,12 @@ export function StateDetailContent({
               </div>
             </div>
           </details>
+        )}
+
+        {retroHistory && retroHistory.length > 0 && (
+          <Section title="Under PR, 2016–2024">
+            <StateRetroHistory points={retroHistory} />
+          </Section>
         )}
 
         {similarStates.length > 0 && (

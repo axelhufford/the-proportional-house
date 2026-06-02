@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "generated_at": "2026-06-02T00:19:49.884608+00:00"
+  },
+  "points": [
+    {
+      "date": "2026-06-02",
+      "projected_d": 234,
+      "projected_r": 201,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 7.15,
+      "swing": 9.66
+    }
+  ]
+}

@@ -42,12 +42,14 @@ import { recomputeWithSwing } from '../lib/swing';
 import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
-import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload } from '../lib/types';
+import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload, StateRetroPoint, HistoryPayload } from '../lib/types';
 
 // recharts is ~110 KB gzipped. Lazy-load the polling chart so it lands in its
 // own chunk after first paint — keeps it out of the initial bundle and off the
 // homepage LCP path. The chunk fetches as soon as the Current view renders.
 const PollingTrendChart = lazy(() => import('../components/PollingTrendChart'));
+// The projection-over-time chart is also recharts — its own lazy chunk.
+const ProjectionHistoryChart = lazy(() => import('../components/ProjectionHistoryChart'));
 
 interface HomeProps {
   onMetaChange?: (payload: ProjectionPayload) => void;
@@ -349,6 +351,8 @@ export function Home({ onMetaChange }: HomeProps) {
   }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
   // Multi-cycle retrospectives + the selected cycle (Retrospective view only).
   const [retros, setRetros] = useState<RetrospectivesPayload | null>(null);
+  // Projection-over-time series (accumulates daily). Non-fatal if absent.
+  const [history, setHistory] = useState<HistoryPayload | null>(null);
   const [retroYear, setRetroYear] = useState<number>(() => parseRetroYear(searchParams.get('year')));
   // Sandbox slider state: hypothetical generic-ballot margin in points.
   // Initialized from URL `ballot=` if present; otherwise from the pipeline
@@ -427,11 +431,14 @@ export function Home({ onMetaChange }: HomeProps) {
       // Multi-cycle retrospectives. Non-fatal if it 404s (older deploy): the
       // Retrospective view falls back to the 2024-from-projection computation.
       fetchJson<RetrospectivesPayload>('/data/retrospectives.json').catch(() => null),
+      // Projection-over-time series. Non-fatal if it 404s (pre-launch / older deploy).
+      fetchJson<HistoryPayload>('/data/history.json').catch(() => null),
     ])
-      .then(([proj, topo, retro]) => {
+      .then(([proj, topo, retro, hist]) => {
         setPayload(proj);
         setTopology(topo);
         if (retro) setRetros(retro);
+        if (hist) setHistory(hist);
         setSandboxBallot((cur) => (cur === null ? proj.meta.generic_ballot_margin : cur));
         // Resolve any ?state=XX URL param to its FIPS now that the payload
         // is loaded. Invalid codes are silently ignored.
@@ -629,6 +636,30 @@ export function Home({ onMetaChange }: HomeProps) {
       mmpSmdShare: effective.smdShare,
     });
   }, [effectivePayload, viewMode, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize]);
+
+  // Per-cycle PR-vs-actual history for the selected state, from the loaded
+  // retrospectives — shown in the state panel (Current/Retrospective views),
+  // omitted in Sandbox. Declared here (before the loading early-return) so the
+  // hook order stays stable; derives the state code from selectedFips.
+  const selectedRetroHistory = useMemo<StateRetroPoint[] | undefined>(() => {
+    if (!retros || !selectedFips || viewMode === 'sandbox') return undefined;
+    const code = payload?.states.find((s) => s.fips === selectedFips)?.code;
+    if (!code) return undefined;
+    const out: StateRetroPoint[] = [];
+    for (const year of retros.meta.cycles) {
+      const st = retros.cycles[String(year)]?.states.find((s) => s.code === code);
+      if (!st) continue;
+      out.push({
+        year,
+        actual_d: st.actual.d_seats,
+        actual_r: st.actual.r_seats,
+        pr_d: st.projected_pr.d_seats,
+        pr_r: st.projected_pr.r_seats,
+        d_gain: st.projected_pr.d_seats - st.actual.d_seats,
+      });
+    }
+    return out.length ? out : undefined;
+  }, [retros, selectedFips, viewMode, payload]);
 
   // When the live setting is dialed off a canonical preset (e.g. MMD-4),
   // the comparison table gets one extra highlighted "current" row. Its
@@ -923,6 +954,39 @@ export function Home({ onMetaChange }: HomeProps) {
           </div>
           </Reveal>
         )}
+
+        {/* How the projection has moved over time — the *output* over time, a
+         * companion to the polling-trend (the *input*). Accumulates daily, so it
+         * appears once there are at least two days of points. Current view only. */}
+        {viewMode === 'current' && history && history.points.length >= 2 && (
+          <Reveal>
+          <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
+            <div>
+              <h2 className="font-serif text-xl sm:text-2xl text-brand-navy">
+                How the projection has moved
+              </h2>
+              <p className="text-xs text-stone-500">
+                Projected Democratic seats, daily since{' '}
+                {new Date(`${history.points[0].date}T00:00:00Z`).toLocaleDateString(undefined, {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                  timeZone: 'UTC',
+                })}
+              </p>
+            </div>
+            <div className="mt-4">
+              <Suspense fallback={<ChartSkeleton className="h-[260px]" />}>
+                <ProjectionHistoryChart points={history.points} height={260} />
+              </Suspense>
+            </div>
+            <p className="mt-3 text-xs text-stone-500">
+              Each point is that day’s Current projection of Democratic seats; the dashed line marks 218,
+              a House majority. The series fills in as the daily projection updates.
+            </p>
+          </div>
+          </Reveal>
+        )}
       </section>
 
       {selectedState && createPortal(
@@ -940,6 +1004,7 @@ export function Home({ onMetaChange }: HomeProps) {
             methodLabel={effective.canonicalKey === null ? effective.label : undefined}
             houseSize={houseSize}
             threshold={threshold}
+            retroHistory={selectedRetroHistory}
           />
         </div>,
         document.body

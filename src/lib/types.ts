@@ -90,3 +90,35 @@ export interface RetrospectivesPayload {
   cycles: Record<string, RetroCyclePayload>;
   series: RetroSeriesPoint[];
 }
+
+// One day's snapshot of the live Current projection, accumulated by the daily
+// pipeline into public/data/history.json so the site can chart how the
+// projection has moved over time.
+export interface HistoryPoint {
+  /** UTC calendar date, YYYY-MM-DD. */
+  date: string;
+  projected_d: number;
+  projected_r: number;
+  actual_d: number;
+  actual_r: number;
+  /** Generic-ballot margin that day (positive = D advantage). */
+  generic_ballot_margin: number;
+  /** Swing vs. the 2024 baseline that day. */
+  swing: number;
+}
+export interface HistoryPayload {
+  meta: { generated_at: string };
+  points: HistoryPoint[];
+}
+
+// One completed cycle's PR-vs-actual outcome for a single state, derived from
+// retrospectives.json for the per-state "Under PR, 2016–2024" mini-history.
+export interface StateRetroPoint {
+  year: number;
+  actual_d: number;
+  actual_r: number;
+  pr_d: number;
+  pr_r: number;
+  /** PR D seats − actual D seats (positive = PR favors Democrats). */
+  d_gain: number;
+}
