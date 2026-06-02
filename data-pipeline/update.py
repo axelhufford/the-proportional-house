@@ -129,11 +129,11 @@ def retrospective_states(baseline_states: list[dict], method: str = "sainte-lagu
         d = clamp(d); r = clamp(r)
         norm = d + r
         d /= norm; r /= norm
-        if s.get("baseline_distortion_warning"):
-            # Same caveat: if no R candidate existed statewide in 2024, the share
-            # isn't meaningful. Treat as 50/50 for the retrospective so the seat
-            # split reflects "what if there had been a contested race."
-            d = r = 0.5
+        # NOTE: no 50/50 imputation for baseline_distortion_warning states here.
+        # This is a retrospective of the actual votes: if a major party fielded
+        # no statewide candidate, PR of the real vote goes to the party that ran
+        # (a 50/50 counterfactual would flip a single-seat state to the missing
+        # party). The warning flag is still emitted for the per-state note.
         result = allocate(
             AllocationInput(seats=seats, d_votes=d * 1_000_000, r_votes=r * 1_000_000),
             method=method,

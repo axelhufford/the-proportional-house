@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-31T18:53:53.873918+00:00",
+    "generated_at": "2026-06-02T00:54:31.821858+00:00",
     "cycles": [
       2016,
       2018,
@@ -923,8 +923,8 @@
             "r_seats": 0
           },
           "two_party_share": {
-            "d_share": 0.5,
-            "r_share": 0.5
+            "d_share": 1.0,
+            "r_share": 0.0
           },
           "baseline_distortion_warning": true,
           "uncontested_district_count": 1
@@ -2051,8 +2051,8 @@
       "national": {
         "seats": 435,
         "projected_pr": {
-          "d_seats": 224,
-          "r_seats": 211
+          "d_seats": 223,
+          "r_seats": 212
         },
         "actual": {
           "d_seats": 222,
@@ -2871,12 +2871,12 @@
             "r_seats": 1
           },
           "projected_pr": {
-            "d_seats": 1,
-            "r_seats": 0
+            "d_seats": 0,
+            "r_seats": 1
           },
           "two_party_share": {
-            "d_share": 0.5,
-            "r_share": 0.5
+            "d_share": 0.0,
+            "r_share": 1.0
           },
           "baseline_distortion_warning": true,
           "uncontested_district_count": 1
@@ -3067,8 +3067,8 @@
       "national": {
         "seats": 435,
         "projected_pr": {
-          "d_seats": 215,
-          "r_seats": 220
+          "d_seats": 213,
+          "r_seats": 222
         },
         "actual": {
           "d_seats": 213,
@@ -3747,12 +3747,12 @@
             "r_seats": 1
           },
           "projected_pr": {
-            "d_seats": 1,
-            "r_seats": 0
+            "d_seats": 0,
+            "r_seats": 1
           },
           "two_party_share": {
-            "d_share": 0.5,
-            "r_share": 0.5
+            "d_share": 0.0,
+            "r_share": 1.0
           },
           "baseline_distortion_warning": true,
           "uncontested_district_count": 1
@@ -3887,12 +3887,12 @@
             "r_seats": 1
           },
           "projected_pr": {
-            "d_seats": 1,
-            "r_seats": 0
+            "d_seats": 0,
+            "r_seats": 1
           },
           "two_party_share": {
-            "d_share": 0.5,
-            "r_share": 0.5
+            "d_share": 0.0,
+            "r_share": 1.0
           },
           "baseline_distortion_warning": true,
           "uncontested_district_count": 1
@@ -5131,10 +5131,10 @@
         "r_seats": 213
       },
       "projected_pr": {
-        "d_seats": 224,
-        "r_seats": 211
+        "d_seats": 223,
+        "r_seats": 212
       },
-      "d_gain": 2
+      "d_gain": 1
     },
     {
       "year": 2022,
@@ -5144,10 +5144,10 @@
         "r_seats": 222
       },
       "projected_pr": {
-        "d_seats": 215,
-        "r_seats": 220
+        "d_seats": 213,
+        "r_seats": 222
       },
-      "d_gain": 2
+      "d_gain": 0
     },
     {
       "year": 2024,

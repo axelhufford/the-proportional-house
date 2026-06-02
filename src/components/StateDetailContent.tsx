@@ -268,8 +268,12 @@ export function StateDetailContent({
 
         {state.baseline_distortion_warning && (state.imputed_district_count ?? 0) === 0 && (
           <div className="text-sm border border-amber-200 bg-amber-50 text-amber-900 rounded-md px-3 py-2">
-            <strong>Baseline distortion warning.</strong>{' '}
-            One major party fielded no candidate statewide in 2024, so the 2024 two-party share isn’t meaningful for this state. The projection here assumes a neutral 50/50 baseline before applying the national swing.
+            <strong>Uncontested statewide.</strong>{' '}
+            {state.baseline_2024.d_share < 0.02
+              ? 'No Democratic candidate ran statewide this cycle, so there’s no two-party contest to redistribute — proportional allocation matches the actual all-Republican result.'
+              : state.baseline_2024.r_share < 0.02
+                ? 'No Republican candidate ran statewide this cycle, so there’s no two-party contest to redistribute — proportional allocation matches the actual all-Democratic result.'
+                : 'One major party fielded no candidate statewide, so the two-party share isn’t a real contest; it’s treated as a neutral 50/50 baseline.'}
           </div>
         )}
 

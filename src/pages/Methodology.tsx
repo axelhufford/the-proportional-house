@@ -72,8 +72,11 @@ export function Methodology(_props: MethodologyProps) {
             two-party share, take the winner of each district for the actual seat counts, and apply the
             same Sainte-Laguë allocation. Note: prior cycles use the <em>reported</em> statewide vote
             (uncontested districts included), not the per-district imputation the 2024 baseline uses —
-            so states with many uncontested races are approximate. 2024 stays sourced from the Clerk
-            (above) so it matches the Current view’s structural baseline.
+            so states with many uncontested races are approximate. Where a major party fielded
+            <em> no</em> statewide candidate (e.g. North Dakota 2022, where the only challenger ran as an
+            independent), the retrospective allocates the actual votes as cast — the seat goes to the
+            party that ran, with no 50/50 “what if it were contested” counterfactual. 2024 stays sourced
+            from the Clerk (above) so it matches the Current view’s structural baseline.
           </li>
           <li>
             <strong>Generic-ballot polls.</strong>{' '}

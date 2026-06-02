@@ -64,10 +64,14 @@ def build_cycle(baseline: dict) -> dict:
     for s in baseline["states"]:
         seats = int(s["seats"])
         d_share, r_share = _share(s)
-        # Same caveat as the 2024 retrospective: if one major party had no
-        # statewide vote, the share is meaningless — use a neutral 50/50.
-        if s.get("baseline_distortion_warning"):
-            d_share = r_share = 0.5
+        # NOTE: we deliberately do NOT impute a 50/50 share for states flagged
+        # baseline_distortion_warning (one major party fielded no statewide
+        # candidate). This is a *retrospective* of the actual votes — if no
+        # Democrat ran, proportional allocation of the real vote keeps the seat
+        # Republican (no distortion to show). A 50/50 counterfactual would, on a
+        # single-seat state, hand the lone seat to the missing party (e.g. it
+        # gave North Dakota 2022 a phantom Democratic seat). The warning flag is
+        # still emitted for the per-state note.
         norm = d_share + r_share
         if norm:
             d_share, r_share = d_share / norm, r_share / norm
