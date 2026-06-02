@@ -150,7 +150,11 @@ def weighted_average(polls: list[Poll], as_of: datetime, use_adjusted: bool = Tr
     recent: list[tuple[Poll, float, float]] = []  # poll, weight, margin
     cutoff = as_of.timestamp() - RECENT_WINDOW_DAYS * 86400
     for p in polls:
-        if p.midpoint.timestamp() < cutoff:
+        # Window: drop polls older than the recent window, and (for a historical
+        # as_of, e.g. the hindcast backfill) any poll conducted *after* as_of —
+        # otherwise future polls leak in with negative `days_ago` and an
+        # exploding recency weight. Harmless when as_of=now (no future polls).
+        if p.midpoint.timestamp() < cutoff or p.midpoint > as_of:
             continue
         margin = (p.adjusted_net if (use_adjusted and p.adjusted_net is not None) else p.raw_net)
         # Recency: exponential decay from poll midpoint.

@@ -1,29 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-05-28T22:08:43.275043+00:00",
+    "generated_at": "2026-06-02T21:18:06.616504+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
-    "n_polls": 202,
+    "n_polls": 203,
     "uses_house_effect_adjustment": true
   },
   "polls": [
-    {
-      "date": "2025-12-02",
-      "pollster": "RMG Research",
-      "margin": -1.09,
-      "sample_size": 2000,
-      "population": "RV",
-      "url": "https://napolitannews.org/posts/generic-ballot-gop-45-percent-dem-41"
-    },
-    {
-      "date": "2025-12-04",
-      "pollster": "Morning Consult",
-      "margin": 3.75,
-      "sample_size": 19970,
-      "population": "RV",
-      "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
-    },
     {
       "date": "2025-12-05",
       "pollster": "Ipsos",
@@ -51,7 +35,7 @@
     {
       "date": "2025-12-06",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1380,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_qLhWxpK.pdf"
@@ -75,7 +59,7 @@
     {
       "date": "2025-12-07",
       "pollster": "Clarity Campaign Labs",
-      "margin": 4.54,
+      "margin": 4.53,
       "sample_size": 1000,
       "population": "RV",
       "url": "https://www.claritycampaigns.com/clarity-omnibus-dec-2025"
@@ -115,7 +99,7 @@
     {
       "date": "2025-12-13",
       "pollster": "Quinnipiac University",
-      "margin": 2.34,
+      "margin": 2.33,
       "sample_size": 1035,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3943"
@@ -123,7 +107,7 @@
     {
       "date": "2025-12-13",
       "pollster": "Echelon Insights",
-      "margin": 4.45,
+      "margin": 4.44,
       "sample_size": 1011,
       "population": "LV",
       "url": "https://echelonin.wpenginepowered.com/wp-content/uploads/December-2025-Omnibus-Topline-External.pdf"
@@ -139,7 +123,7 @@
     {
       "date": "2025-12-13",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1453,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_FJyfDu9.pdf"
@@ -163,7 +147,7 @@
     {
       "date": "2025-12-15",
       "pollster": "McLaughlin & Associates",
-      "margin": 4.42,
+      "margin": 4.41,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/2025/12/23/national-monthly-december-2025/"
@@ -203,7 +187,7 @@
     {
       "date": "2025-12-21",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1425,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_nBgFw7w.pdf"
@@ -211,7 +195,7 @@
     {
       "date": "2025-12-27",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1420,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_h1aYmmb.pdf"
@@ -235,7 +219,7 @@
     {
       "date": "2026-01-03",
       "pollster": "YouGov",
-      "margin": 6.59,
+      "margin": 6.62,
       "sample_size": 1389,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_aY8mpiN.pdf"
@@ -307,7 +291,7 @@
     {
       "date": "2026-01-10",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1437,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_qsNv5iE.pdf"
@@ -315,7 +299,7 @@
     {
       "date": "2026-01-10",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1149,
       "population": "RV",
       "url": "https://www.yahoo.com/news/world/article/poll-most-americans-dont-want-the-us-to-be-in-charge-of-venezuela-154611401.html?guccounter=1&guce_referrer=aHR0cHM6Ly9maWZ0eXBsdXNvbmUubmV3cy8&guce_referrer_sig=AQAAADuswAe9tXhPxz19FPFnpXDmszH_5A1WoB4vOY-7U0IjGPU3fLrwbmCyUwF8ynb_I9N0n4Rc39un9yZA5xjnYbwG42YEmutuZQ25dTi16lYuweaJ1AIGD79NFwnTA60flTfUA5IlNW9zxaBJiRd0rgTmTKbyUDqhKc0Wx3s0etNG"
@@ -395,7 +379,7 @@
     {
       "date": "2026-01-17",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1549,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_z9wtNZI.pdf"
@@ -419,7 +403,7 @@
     {
       "date": "2026-01-18",
       "pollster": "Clarity Campaign Labs",
-      "margin": 8.54,
+      "margin": 8.53,
       "sample_size": 1147,
       "population": "LV",
       "url": "https://www.claritycampaigns.com/clarity-omnibus-jan-2026"
@@ -451,7 +435,7 @@
     {
       "date": "2026-01-24",
       "pollster": "Echelon Insights",
-      "margin": 6.45,
+      "margin": 6.44,
       "sample_size": 1029,
       "population": "LV",
       "url": "https://echelonin.wpenginepowered.com/wp-content/uploads/January-2026-Voter-Omnibus-Topline.pdf"
@@ -467,7 +451,7 @@
     {
       "date": "2026-01-24",
       "pollster": "McLaughlin & Associates",
-      "margin": 5.42,
+      "margin": 5.41,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/02/National-January-2026-Presentation-RELEASE-1-1.pdf"
@@ -483,7 +467,7 @@
     {
       "date": "2026-01-24",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1520,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_8FWGyNz.pdf"
@@ -523,7 +507,7 @@
     {
       "date": "2026-01-28",
       "pollster": "HarrisX",
-      "margin": 5.4,
+      "margin": 5.47,
       "sample_size": 1508,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-january-6/"
@@ -547,7 +531,7 @@
     {
       "date": "2026-01-31",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1504,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_DDIQ8jz.pdf"
@@ -595,7 +579,7 @@
     {
       "date": "2026-02-07",
       "pollster": "YouGov",
-      "margin": 6.59,
+      "margin": 6.62,
       "sample_size": 1551,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_vNnwPx2.pdf"
@@ -627,7 +611,7 @@
     {
       "date": "2026-02-10",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1149,
       "population": "RV",
       "url": "https://www.yahoo.com/news/politics/article/poll-trumps-approval-rating-hits-new-low-as-immigration-backlash-grows-and-ice-withdraws-from-minnesota-204723473.html"
@@ -667,7 +651,7 @@
     {
       "date": "2026-02-14",
       "pollster": "YouGov",
-      "margin": 7.59,
+      "margin": 7.62,
       "sample_size": 1512,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_usZL1Jt.pdf"
@@ -683,7 +667,7 @@
     {
       "date": "2026-02-15",
       "pollster": "YouGov",
-      "margin": 8.59,
+      "margin": 8.62,
       "sample_size": 1200,
       "population": "RV",
       "url": "https://scholarworks.bgsu.edu/cgi/viewcontent.cgi?article=1017&context=depo"
@@ -731,7 +715,7 @@
     {
       "date": "2026-02-20",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 824,
       "population": "RV",
       "url": "https://democracy.psu.edu/poll-report-archive/democrats-have-edge-in-congressional-generic-ballot/"
@@ -755,7 +739,7 @@
     {
       "date": "2026-02-21",
       "pollster": "Echelon Insights",
-      "margin": 5.45,
+      "margin": 5.44,
       "sample_size": 1002,
       "population": "LV",
       "url": "https://echeloninsights.com/in-the-news/february-2026-verified-voter-omnibus/"
@@ -763,7 +747,7 @@
     {
       "date": "2026-02-21",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1402,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_5ZLQm8s.pdf"
@@ -795,7 +779,7 @@
     {
       "date": "2026-02-25",
       "pollster": "HarrisX",
-      "margin": 1.9,
+      "margin": 1.97,
       "sample_size": 1560,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-february-2026/"
@@ -811,7 +795,7 @@
     {
       "date": "2026-02-28",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1366,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ubu5DXD.pdf"
@@ -867,7 +851,7 @@
     {
       "date": "2026-03-06",
       "pollster": "McLaughlin & Associates",
-      "margin": 7.42,
+      "margin": 7.41,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/03/National-March-Presentation-RELEASE-03-10-26.pdf"
@@ -875,7 +859,7 @@
     {
       "date": "2026-03-07",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1405,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_EcCnfRV.pdf"
@@ -907,7 +891,7 @@
     {
       "date": "2026-03-10",
       "pollster": "McLaughlin & Associates",
-      "margin": 7.4,
+      "margin": 7.39,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://www.teapartypatriots.org/save-america-act-poll/"
@@ -923,7 +907,7 @@
     {
       "date": "2026-03-12",
       "pollster": "YouGov",
-      "margin": 4.59,
+      "margin": 4.62,
       "sample_size": 1148,
       "population": "RV",
       "url": "https://www.yahoo.com/news/politics/article/poll-66-of-americans-disapprove-of-trump-on-gas-prices-as-they-feel-effects-of-iran-war-120000483.html"
@@ -939,7 +923,7 @@
     {
       "date": "2026-03-14",
       "pollster": "Echelon Insights",
-      "margin": 6.45,
+      "margin": 6.44,
       "sample_size": 1033,
       "population": "LV",
       "url": "https://echelonin.wpenginepowered.com/wp-content/uploads/March-2026-Omnibus-Topline-External.pdf"
@@ -955,7 +939,7 @@
     {
       "date": "2026-03-14",
       "pollster": "YouGov",
-      "margin": 2.59,
+      "margin": 2.62,
       "sample_size": 1429,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_CwWXhS2.pdf"
@@ -1051,7 +1035,7 @@
     {
       "date": "2026-03-21",
       "pollster": "Quinnipiac University",
-      "margin": 9.34,
+      "margin": 9.33,
       "sample_size": 1191,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3953"
@@ -1067,7 +1051,7 @@
     {
       "date": "2026-03-21",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1502,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_o84FoNw.pdf"
@@ -1075,7 +1059,7 @@
     {
       "date": "2026-03-25",
       "pollster": "Quantus Insights",
-      "margin": 6.21,
+      "margin": 6.2,
       "sample_size": 1472,
       "population": "LV",
       "url": "https://quantusinsights.org/f/new-quantus-survey-a-sour-national-mood-and-a-midterm-warning"
@@ -1083,7 +1067,7 @@
     {
       "date": "2026-03-25",
       "pollster": "HarrisX",
-      "margin": 5.9,
+      "margin": 5.97,
       "sample_size": 1475,
       "population": "LV",
       "url": "https://harvardharrispoll.com/wp-content/uploads/2026/03/HHP_Mar2026_KeyResults.pdf"
@@ -1107,7 +1091,7 @@
     {
       "date": "2026-03-28",
       "pollster": "YouGov",
-      "margin": 6.59,
+      "margin": 6.62,
       "sample_size": 1505,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_3wplfYX.pdf"
@@ -1115,7 +1099,7 @@
     {
       "date": "2026-03-28",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1000,
       "population": "A",
       "url": "https://www.uml.edu/Research/public-opinion/polls/default.aspx"
@@ -1139,7 +1123,7 @@
     {
       "date": "2026-04-04",
       "pollster": "YouGov",
-      "margin": 2.59,
+      "margin": 2.62,
       "sample_size": 1560,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_SVRZJH8.pdf"
@@ -1163,7 +1147,7 @@
     {
       "date": "2026-04-06",
       "pollster": "Echelon Insights",
-      "margin": 6.45,
+      "margin": 6.44,
       "sample_size": 2880,
       "population": "LV",
       "url": "https://netchoice.org/wp-content/uploads/2026/04/NetChoice-Apr-2026-National-Antitrust-Survey-Topline.pdf"
@@ -1171,7 +1155,7 @@
     {
       "date": "2026-04-07",
       "pollster": "Tavern Research",
-      "margin": 2.15,
+      "margin": 2.14,
       "sample_size": 502,
       "population": "LV",
       "url": "https://www.tavernresearch.com/research-and-writings/cutting-room-floor-april-10-2026"
@@ -1211,7 +1195,7 @@
     {
       "date": "2026-04-11",
       "pollster": "McLaughlin & Associates",
-      "margin": 7.42,
+      "margin": 7.41,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/04/National-April-Release-Presentation-4-16-26.pdf"
@@ -1219,7 +1203,7 @@
     {
       "date": "2026-04-11",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1573,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_G1zNgZq.pdf"
@@ -1291,7 +1275,7 @@
     {
       "date": "2026-04-18",
       "pollster": "Echelon Insights",
-      "margin": 7.45,
+      "margin": 7.44,
       "sample_size": 1012,
       "population": "LV",
       "url": "https://echeloninsights.com/insights/april-2026-verified-voter-omnibus"
@@ -1299,7 +1283,7 @@
     {
       "date": "2026-04-18",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1553,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_I24AWdp.pdf"
@@ -1315,7 +1299,7 @@
     {
       "date": "2026-04-19",
       "pollster": "Clarity Campaign Labs",
-      "margin": 4.54,
+      "margin": 4.53,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://www.claritycampaigns.com/clarity-omnibus-2026-april"
@@ -1331,7 +1315,7 @@
     {
       "date": "2026-04-22",
       "pollster": "Quantus Insights",
-      "margin": 4.71,
+      "margin": 4.7,
       "sample_size": 1452,
       "population": "LV",
       "url": "https://quantusinsights.org/f/quantus-survey-a-divided-electorate-a-narrow-democratic-edge"
@@ -1355,7 +1339,7 @@
     {
       "date": "2026-04-24",
       "pollster": "HarrisX",
-      "margin": 1.9,
+      "margin": 1.97,
       "sample_size": 1963,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-april-2026/"
@@ -1379,7 +1363,7 @@
     {
       "date": "2026-04-25",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1647,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_Ty7ikPd.pdf"
@@ -1427,7 +1411,7 @@
     {
       "date": "2026-05-02",
       "pollster": "HarrisX",
-      "margin": 7.9,
+      "margin": 7.97,
       "sample_size": 1891,
       "population": "LV",
       "url": "https://www.harrisx.com/posts/forbes-and-harrisx-partner-on-new-american-confidence-survey-as-gallup-ends-approval-polling"
@@ -1435,7 +1419,7 @@
     {
       "date": "2026-05-02",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1409,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_i4K4elJ.pdf"
@@ -1491,7 +1475,7 @@
     {
       "date": "2026-05-10",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1410,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ONiR6Nb.pdf"
@@ -1515,7 +1499,7 @@
     {
       "date": "2026-05-14",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1397,
       "population": "LV",
       "url": "https://www.cbsnews.com/news/redistricting-elections-opinion-poll-19-may-2026/"
@@ -1531,7 +1515,7 @@
     {
       "date": "2026-05-15",
       "pollster": "McLaughlin & Associates",
-      "margin": 7.42,
+      "margin": 7.41,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/2026/05/22/national-monthly-may-2026/"
@@ -1539,7 +1523,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Quinnipiac University",
-      "margin": 9.34,
+      "margin": 9.33,
       "sample_size": 1106,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3959"
@@ -1547,7 +1531,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Echelon Insights",
-      "margin": 9.45,
+      "margin": 9.44,
       "sample_size": 1008,
       "population": "LV",
       "url": "https://echeloninsights.com/insights/may-2026-verified-voter-omnibus"
@@ -1571,7 +1555,7 @@
     {
       "date": "2026-05-16",
       "pollster": "YouGov",
-      "margin": 3.59,
+      "margin": 3.62,
       "sample_size": 1380,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_YTE4G2g.pdf"
@@ -1609,6 +1593,14 @@
       "url": "https://johnzogbystrategies.com/the-latest-zogby-political-poll-trump-economic-concerns-war-trends-05-22-26/"
     },
     {
+      "date": "2026-05-21",
+      "pollster": "Morning Consult",
+      "margin": 6.35,
+      "sample_size": 24849,
+      "population": "RV",
+      "url": "https://intel.morningconsult.com/mc-content/trackers/2026-midterm-election-generic-ballot-polls"
+    },
+    {
       "date": "2026-05-24",
       "pollster": "Emerson College",
       "margin": 8.31,
@@ -1619,10 +1611,26 @@
     {
       "date": "2026-05-24",
       "pollster": "YouGov",
-      "margin": 5.59,
+      "margin": 5.62,
       "sample_size": 1397,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_aWdgoE7.pdf"
+    },
+    {
+      "date": "2026-05-30",
+      "pollster": "HarrisX/Harris Poll",
+      "margin": 5.97,
+      "sample_size": null,
+      "population": "LV",
+      "url": "https://harvardharrispoll.com/key-results-may-2026/"
+    },
+    {
+      "date": "2026-05-30",
+      "pollster": "YouGov",
+      "margin": 4.62,
+      "sample_size": 1453,
+      "population": "RV",
+      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AvLU7vY.pdf"
     }
   ]
 }

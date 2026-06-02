@@ -2,6 +2,7 @@ import {
   CartesianGrid,
   Line,
   LineChart,
+  ReferenceArea,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
@@ -15,6 +16,17 @@ function fmtDate(iso: string): string {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString(undefined, {
     month: 'short',
     day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+// X-axis ticks: month + year (the series spans multiple years, and "Feb 24"
+// day-of-month ticks read ambiguously like a year).
+function fmtAxis(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString(undefined, {
+    month: 'short',
+    year: 'numeric',
     timeZone: 'UTC',
   });
 }
@@ -29,6 +41,7 @@ interface Row {
   d: number;
   r: number;
   margin: number;
+  reconstructed: boolean;
 }
 
 function HistTooltip({ active, payload }: { active?: boolean; payload?: { payload: Row }[] }) {
@@ -43,6 +56,9 @@ function HistTooltip({ active, payload }: { active?: boolean; payload?: { payloa
         <span className="text-red-700 font-medium">R {p.r}</span>
       </div>
       <div className="text-stone-500">Generic ballot: {fmtMargin(p.margin)}</div>
+      {p.reconstructed && (
+        <div className="mt-0.5 text-stone-400 italic">Reconstructed from poll archive</div>
+      )}
     </div>
   );
 }
@@ -64,10 +80,17 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
     d: p.projected_d,
     r: p.projected_r,
     margin: p.generic_ballot_margin,
+    reconstructed: p.reconstructed === true,
   }));
   const ds = data.map((d) => d.d);
   const yMin = Math.min(212, Math.min(...ds) - 4);
   const yMax = Math.max(224, Math.max(...ds) + 4);
+
+  // The hindcast (reconstructed) span is the leading run of points; shade it so
+  // it reads as distinct from live, forward-collected days.
+  const reconDates = data.filter((d) => d.reconstructed).map((d) => d.date);
+  const reconStart = reconDates[0];
+  const reconEnd = reconDates[reconDates.length - 1];
 
   return (
     <div className="w-full">
@@ -76,11 +99,11 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
           <CartesianGrid stroke="#f0ede6" vertical={false} />
           <XAxis
             dataKey="date"
-            tickFormatter={fmtDate}
+            tickFormatter={fmtAxis}
             tick={{ fontSize: 10, fill: '#888' }}
             stroke="#d6d3d1"
             tickLine={false}
-            minTickGap={28}
+            minTickGap={44}
           />
           <YAxis
             domain={[yMin, yMax]}
@@ -90,6 +113,15 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
             width={36}
             allowDecimals={false}
           />
+          {reconStart && reconEnd && (
+            <ReferenceArea
+              x1={reconStart}
+              x2={reconEnd}
+              fill="#1c2c4c"
+              fillOpacity={0.05}
+              label={{ value: 'reconstructed', position: 'insideTopLeft', fontSize: 9, fill: '#a8a29e' }}
+            />
+          )}
           <ReferenceLine
             y={218}
             stroke="#a8a29e"

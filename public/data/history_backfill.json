@@ -1,6 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-06-02T21:18:07.821398+00:00"
+    "generated_at": "2026-06-02T21:03:50.692386+00:00",
+    "reconstructed": true,
+    "source": "Silver Bulletin generic-ballot poll archive (house-effect-adjusted margins)",
+    "method": "current Sainte-Lagu\u00eb projection model run as-of each date",
+    "window_days": 30,
+    "half_life_days": 14,
+    "min_polls": 8,
+    "note": "Hindcast: the current model applied to the poll archive as of each date, not archived live snapshots. See /methodology#limitations for the house-effect-leakage and database-revision caveats."
   },
   "points": [
     {
@@ -4851,7 +4858,7 @@
       "actual_r": 220,
       "generic_ballot_margin": 6.94,
       "swing": 9.45,
-      "reconstructed": false
+      "reconstructed": true
     }
   ]
 }

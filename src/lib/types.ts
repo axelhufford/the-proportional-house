@@ -105,6 +105,12 @@ export interface HistoryPoint {
   generic_ballot_margin: number;
   /** Swing vs. the 2024 baseline that day. */
   swing: number;
+  /**
+   * True for hindcast points reconstructed from the poll archive (the current
+   * model run as-of that date) rather than live daily snapshots. Absent/false
+   * on forward-collected points. See Methodology → Assumptions and limitations.
+   */
+  reconstructed?: boolean;
 }
 export interface HistoryPayload {
   meta: { generated_at: string };

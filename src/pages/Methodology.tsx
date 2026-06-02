@@ -451,6 +451,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           <li>
             <strong>State-level polling is sparse.</strong> Most states have no recent House-specific polling at all; even the ~10 states with active Senate races get House polling rarely. Rather than weight state polls (mostly empty), we use the elasticity approach above: every state moves with the national tide, just at different multipliers calibrated from the 2020→2024 presidential shift. A state-poll overlay where data exists is a v3 possibility, not how the current projection works.
           </li>
+          <li id="reconstructed-history" className="scroll-mt-24">
+            <strong>The early “How the projection has moved” history is reconstructed, not live.</strong> The projection is a deterministic function of one moving input — the 30-day weighted generic-ballot average — so we can run <em>today’s</em> model backwards over Nate Silver’s poll archive: for each past day we recompute the average from only the polls conducted on or before that day (adjusted margins, exactly as the live number is built), derive the swing, and allocate seats. That fills the shaded span on the homepage chart; from there, daily live snapshots take over. It is an honest <em>hindcast</em> — every point traces to real, dated polls, and we never fabricate numbers — but two caveats keep it from being a literal archived snapshot. <em>House-effect leakage</em>: Silver recomputes his pollster house-effect adjustments over his entire dataset, so a past poll’s adjusted value carries a sliver of hindsight it wouldn’t have had on the day. <em>Database revisions</em>: today’s poll file may include surveys added after the fact; we filter by each poll’s field date, the best available proxy for “what was known then.” Reconstructed points are flagged as such in the data and shaded on the chart.
+          </li>
         </ul>
       </Section>
 
