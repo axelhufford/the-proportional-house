@@ -840,12 +840,13 @@ export function Home({ onMetaChange }: HomeProps) {
                   <p>
                     It also reflects something the map keeps showing: Democratic voters cluster in
                     cities, so the party piles up big margins in a few districts and “wastes” a lot of
-                    votes. By 2018 several of those maps had been struck down or handed to independent
-                    commissions (including Pennsylvania and Michigan), and a strong Democratic year
-                    turned votes into seats more efficiently. The maps used in 2022 and 2024 are close
-                    to nationally balanced, because new Democratic gerrymanders (Illinois) and
-                    Republican ones (Florida, Texas) roughly cancel out. So proportional representation
-                    changes far fewer seats now, the gap you see in the other years.
+                    votes. By 2018 Pennsylvania’s map had been struck down and redrawn, and a strong
+                    Democratic year turned votes into seats more efficiently. The maps behind 2022 and
+                    2024 are close to nationally balanced: independent-commission and court-ordered
+                    redraws (Michigan, North Carolina) landed alongside offsetting new gerrymanders —
+                    Democratic in Illinois, Republican in Florida and Texas — so they roughly cancel
+                    out. That’s why proportional representation changes far fewer seats now — the small
+                    gaps you see in the other cycles.
                   </p>
                 </div>
               </details>

@@ -349,6 +349,15 @@ def main(refresh_clerk: bool = False) -> None:
     else:
         print(f"  ⚠ Retrospective net swing {retro_gain_d:+d} is larger than expected (>15). Math may be off.")
 
+    # Hard data-integrity gate (NOT guarded): if the generated data violates an
+    # invariant — wrong seat totals, wrong apportionment, a PR seat majority
+    # going to the two-party loser (the ND-2022 bug), etc. — this raises and
+    # fails the pipeline step, so the deploy ships the last-good data instead of
+    # a regression.
+    print()
+    from validate_data import main as validate_data
+    validate_data()
+
 
 if __name__ == "__main__":
     main(refresh_clerk="--refresh" in sys.argv)
