@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
-import { ROUTE_META } from '../lib/routeMeta';
+import { ROUTE_META, SITE_ORIGIN } from '../lib/routeMeta';
 
 /**
  * /about — short About section + FAQ. Two SEO purposes:
@@ -14,6 +14,9 @@ import { ROUTE_META } from '../lib/routeMeta';
 interface FaqItem {
   q: string;
   a: string;
+  /** Optional in-app link rendered as a CTA below the answer (the answer text
+   *  itself is a plain string so it can mirror cleanly into the FAQ JSON-LD). */
+  link?: { to: string; label: string };
 }
 
 const FAQS: FaqItem[] = [
@@ -62,6 +65,11 @@ const FAQS: FaqItem[] = [
     a: 'The Senate gives every state two senators regardless of population. That’s a fixed feature of the Constitution that can’t be changed without a constitutional amendment. The House is allocated proportionally by population already; the gap between current single-member-district allocation and full PR is a statutory choice, not a constitutional one. So the House is the realistic surface where PR could happen.',
   },
   {
+    q: 'What about the presidency — could you apply this to the Electoral College?',
+    a: 'Yes. A companion experiment recomputes every presidential election since 1976 as if each state awarded its electoral votes in proportion to its popular vote instead of winner-take-all. The striking finding: in 4 of those 13 elections — 1992, 1996, 2000, and 2016 — no candidate would have reached 270, which under the Constitution would throw the choice to a contingent vote in the House.',
+    link: { to: '/electoral-college', label: 'Explore the Proportional Electoral College →' },
+  },
+  {
     q: 'How are states with only one seat handled?',
     a: 'There’s no proportional way to split a single seat between two parties; whoever wins the statewide vote gets it. Seven states have a single House seat: Alaska, Delaware, North Dakota, South Dakota, Vermont, Wyoming, and (after the 2020 reapportionment) Montana shifted up to 2. For these states the projection just records the winner.',
   },
@@ -92,7 +100,7 @@ export function About() {
       name: f.q,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: f.a,
+        text: f.link ? `${f.a} ${SITE_ORIGIN}${f.link.to}` : f.a,
       },
     })),
   };
@@ -179,6 +187,13 @@ export function About() {
               </summary>
               <div className="px-4 pb-4 text-stone-700 leading-relaxed text-sm">
                 {faq.a}
+                {faq.link && (
+                  <div className="mt-2">
+                    <Link to={faq.link.to} className="underline font-medium hover:text-brand-navy">
+                      {faq.link.label}
+                    </Link>
+                  </div>
+                )}
               </div>
             </details>
           ))}
