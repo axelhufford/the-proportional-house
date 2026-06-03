@@ -56,4 +56,10 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       'About The Proportional House: a non-partisan visualization of how the U.S. House would look under proportional representation. Plus a FAQ on the methodology and politics.',
     canonicalPath: '/about',
   },
+  '/electoral-college': {
+    title: 'The proportional Electoral College, 1976–2024 · The Proportional House',
+    description:
+      'What if each state split its electoral votes proportionally instead of winner-take-all? Applied to every presidential election since 1976 — including how often no candidate would reach 270, sending the election to the House.',
+    canonicalPath: '/electoral-college',
+  },
 };

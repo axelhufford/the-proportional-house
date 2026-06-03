@@ -127,6 +127,14 @@ export function About() {
           page surfaces which delegations are most distorted today, and which states
           would shift the most under proportional allocation.
         </p>
+        <p>
+          A side experiment applies the same idea to the presidency: the{' '}
+          <Link to="/electoral-college" className="underline hover:text-brand-navy">
+            proportional Electoral College
+          </Link>{' '}
+          recomputes every election since 1976 as if each state split its electoral votes
+          by popular vote — and finds how often nobody reaches 270.
+        </p>
         <p className="text-sm text-stone-600 pt-2 border-t border-stone-200/60">
           Built by{' '}
           <a

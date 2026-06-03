@@ -1,0 +1,1778 @@
+{
+  "meta": {
+    "year": 2004,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 311808,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 190889
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 111025
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5069
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 2092
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1675
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1058
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1870327,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1176394
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 693933
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 1054945,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 572898
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 469953
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6171
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 2352
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 2083
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1488
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 10,
+      "total_votes": 2009674,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1104294
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 893524
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 11856
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 55,
+      "total_votes": 12400499,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 6745485
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 5509826
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 50165
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 40771
+        },
+        {
+          "name": "Leonard Peltier",
+          "party": "O",
+          "votes": 27607
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 26645
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 9,
+      "total_votes": 2129630,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1101255
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1001732
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 12718
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 7664
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 2562
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1591
+        },
+        {
+          "name": "Stanford Andress",
+          "party": "O",
+          "votes": 804
+        },
+        {
+          "name": "Gene Amondson",
+          "party": "O",
+          "votes": 378
+        },
+        {
+          "name": "Bill Van Auken",
+          "party": "O",
+          "votes": 329
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 241
+        },
+        {
+          "name": "Walt Brown",
+          "party": "O",
+          "votes": 216
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 140
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 7,
+      "total_votes": 1578769,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 857488
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 693826
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 12969
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 9564
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 3367
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 1543
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 12
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 227080,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 202970
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 21256
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 1485
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 737
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 502
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 130
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 375190,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 200152
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 171660
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 2153
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 586
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 289
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 250
+        },
+        {
+          "name": "Walt Brown",
+          "party": "O",
+          "votes": 100
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 27,
+      "total_votes": 7609810,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 3964522
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 3583544
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 32971
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 11996
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 6626
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 3917
+        },
+        {
+          "name": "Walt Brown",
+          "party": "O",
+          "votes": 3502
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 2732
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 15,
+      "total_votes": 3298790,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1914254
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1366149
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 18387
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 429013,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 231708
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 194191
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1737
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1377
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 7,
+      "total_votes": 1499665,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 751957
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 741898
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 2992
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 1304
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1141
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 373
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 598376,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 409235
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 181098
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 3844
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 3084
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 1115
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 21,
+      "total_votes": 5269938,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 2891550
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2345946
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 32442
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 11,
+      "total_votes": 2466507,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1479438
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 969011
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 18058
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1187709,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 736456
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 434993
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 9348
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 4013
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 2899
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1795860,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1069439
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 712733
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 8856
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 2619
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 2213
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 9,
+      "total_votes": 1943106,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1102169
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 820299
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 7032
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 5203
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 2781
+        },
+        {
+          "name": "Walt Brown",
+          "party": "O",
+          "votes": 1795
+        },
+        {
+          "name": "Gene Amondson",
+          "party": "O",
+          "votes": 1566
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1276
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 985
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 12,
+      "total_votes": 2905360,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1803800
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1071109
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 15022
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 10623
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4806
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 2384197,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1334493
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1024703
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 11854
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 6094
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 3632
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 3421
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 740748,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 396842
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 330201
+        },
+        {
+          "name": "The Better Life",
+          "party": "O",
+          "votes": 8069
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 2936
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1965
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 735
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 17,
+      "total_votes": 4839252,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 2479183
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2313746
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 24035
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 10552
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 5325
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 4980
+        },
+        {
+          "name": "Walt Brown",
+          "party": "O",
+          "votes": 1431
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2825855,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1445014
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1346695
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 18683
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 4639
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 4408
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 3074
+        },
+        {
+          "name": "Thomas Harens",
+          "party": "O",
+          "votes": 2387
+        },
+        {
+          "name": "Bill Van Auken",
+          "party": "O",
+          "votes": 539
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 416
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2731364,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1455713
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1259171
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 9831
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 5355
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 1294
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 6,
+      "total_votes": 1139824,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 672660
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 457766
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3175
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1793
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 1758
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 1599
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1073
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 450434,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 266063
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 173710
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6168
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 1764
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1733
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 996
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 15,
+      "total_votes": 3498746,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1961166
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1525849
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 11731
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 312824,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 196651
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 111052
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3756
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 851
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 514
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 775941,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 512814
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 254328
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5780
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 2041
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 978
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 676227,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 340511
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 331237
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4479
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 15,
+      "total_votes": 3581433,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1911430
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1670003
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 756304,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 376930
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 370942
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4053
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 2382
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1226
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 771
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 5,
+      "total_votes": 825899,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 418690
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 397190
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4838
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 3176
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 1152
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 853
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 31,
+      "total_votes": 7390732,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 4314280
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2962567
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 99873
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 11607
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 2405
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 20,
+      "total_votes": 5600929,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2859764
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 2741165
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 7,
+      "total_votes": 1463758,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 959792
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 503966
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1827826,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 943163
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 866831
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 7260
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 5315
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 5257
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 21,
+      "total_votes": 5768420,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 2938095
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2793847
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 21185
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 6319
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 6318
+        },
+        {
+          "name": "Independent Party Candidate",
+          "party": "O",
+          "votes": 2656
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 437134,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 259760
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 169046
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4651
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1333
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 907
+        },
+        {
+          "name": "Nonpartisan",
+          "party": "O",
+          "votes": 845
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 339
+        },
+        {
+          "name": "Workers World",
+          "party": "O",
+          "votes": 253
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 1617700,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 937974
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 661669
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5520
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 5317
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 3608
+        },
+        {
+          "name": "Walt Brown",
+          "party": "O",
+          "votes": 2124
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 1488
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 388215,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 232584
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 149244
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4320
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 1103
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 964
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 2420852,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1384375
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1036477
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 34,
+      "total_votes": 7398408,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 4526917
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 2832704
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 38787
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 927801,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 663742
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 241199
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 11305
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 6841
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 3375
+        },
+        {
+          "name": "Charles Jay",
+          "party": "O",
+          "votes": 946
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 393
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 3192894,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1716959
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1454742
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 11032
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 10161
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 311352,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 184067
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 121180
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4494
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1102
+        },
+        {
+          "name": "John Parker",
+          "party": "O",
+          "votes": 265
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 244
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 11,
+      "total_votes": 2859084,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1510201
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1304894
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 23283
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 11955
+        },
+        {
+          "name": "Michael Peroutka",
+          "party": "O",
+          "votes": 3922
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 2974
+        },
+        {
+          "name": "John Parker",
+          "party": "O",
+          "votes": 1077
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 547
+        },
+        {
+          "name": "Bill Van Auken",
+          "party": "O",
+          "votes": 231
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 10,
+      "total_votes": 2994021,
+      "candidates": [
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 1489504
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1478120
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 17272
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 6464
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 2661
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 755792,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 423778
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 326541
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4063
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1405
+        },
+        {
+          "name": "David Cobb",
+          "party": "O",
+          "votes": 5
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 242948,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 167629
+        },
+        {
+          "name": "John Kerry",
+          "party": "D",
+          "votes": 70776
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3372
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 1171
+        }
+      ]
+    }
+  ]
+}

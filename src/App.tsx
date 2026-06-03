@@ -9,6 +9,7 @@ import { EmbedState } from './pages/EmbedState';
 import { Methodology } from './pages/Methodology';
 import { NotFound } from './pages/NotFound';
 import { Rankings } from './pages/Rankings';
+import { ElectoralCollege } from './pages/ElectoralCollege';
 import { StateRedirect } from './pages/StateRedirect';
 import type { ProjectionMeta, ProjectionPayload } from './lib/types';
 
@@ -35,6 +36,8 @@ export default function App() {
           <Route path="/sandbox" element={<Home onMetaChange={handleMetaChange} />} />
           <Route path="/rankings" element={<Rankings />} />
           <Route path="/methodology" element={<Methodology meta={meta} />} />
+          {/* Quieter companion page — linked from the About FAQ, not the nav. */}
+          <Route path="/electoral-college" element={<ElectoralCollege />} />
           <Route path="/about" element={<About />} />
           <Route path="/state/:code" element={<StateRedirect />} />
           <Route path="*" element={<NotFound />} />

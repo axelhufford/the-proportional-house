@@ -313,6 +313,14 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) retrospectives build failed: {e}")
 
+    # Proportional Electoral College (1976-2024) — offline, reads committed
+    # president_{year}.json baselines (distilled once by fetch_president.py).
+    try:
+        from build_electoral_college import main as build_electoral_college
+        build_electoral_college()
+    except Exception as e:
+        print(f"  (warn) electoral-college build failed: {e}")
+
     # Static long-form content pages (e.g. /retrospectives) — reads
     # retrospectives.json (written just above); pure Python, no resvg.
     try:

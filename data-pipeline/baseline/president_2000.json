@@ -1,0 +1,1978 @@
+{
+  "meta": {
+    "year": 2000,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 284492,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 167398
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 79004
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 28747
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 5192
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2636
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 919
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 596
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1639677,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 941173
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 692611
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 5893
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 921781,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 472940
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 422768
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 13421
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 7358
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2781
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1415
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1098
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 8,
+      "total_votes": 1531906,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 781652
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 685341
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 45645
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 12373
+        },
+        {
+          "name": "Smith L. Neil",
+          "party": "O",
+          "votes": 5775
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1120
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 54,
+      "total_votes": 10965822,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 5861203
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 4567429
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 418707
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 45520
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 44987
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 17042
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 10934
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 8,
+      "total_votes": 1741368,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 883748
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 738227
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 91434
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 12799
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 12705
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1319
+        },
+        {
+          "name": "David McReynolds",
+          "party": "O",
+          "votes": 712
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 216
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 208
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 8,
+      "total_votes": 1459471,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 816015
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 561094
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 64452
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 9695
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 4731
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3484
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 201355,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 171923
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 18073
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 10576
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 669
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 114
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 327529,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 180068
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 137288
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 8307
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 777
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 774
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 208
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 107
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 25,
+      "total_votes": 5963070,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2912790
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 2912253
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 97488
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 17484
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 16415
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2281
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 1804
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1371
+        },
+        {
+          "name": "David McReynolds",
+          "party": "O",
+          "votes": 622
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 562
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 13,
+      "total_votes": 2583208,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1419720
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1116230
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 36332
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 10926
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 367951,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 205286
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 137845
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 21623
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1477
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 1071
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 343
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 306
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 7,
+      "total_votes": 1314395,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 638517
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 634373
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 29374
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 5731
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3209
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2281
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 613
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 190
+        },
+        {
+          "name": "David McReynolds",
+          "party": "O",
+          "votes": 107
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 501615,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 336937
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 138637
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 12292
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 7615
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3488
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1469
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1177
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 22,
+      "total_votes": 4725956,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 2589026
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2019421
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 103759
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 11623
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 2127
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 12,
+      "total_votes": 2180305,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1245836
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 901980
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 16959
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 15530
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1034757,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 622332
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 399276
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 7370
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4525
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1254
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1543111,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 872520
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 638923
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 23118
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 4152
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2885
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1513
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 9,
+      "total_votes": 1765656,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 927871
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 792344
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 20473
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 14356
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 5483
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2951
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 1103
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1075
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 12,
+      "total_votes": 2698952,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1616487
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 878502
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 173564
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 16366
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 11149
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2884
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 2022079,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1144008
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 813827
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 53768
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 5310
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 4248
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 918
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 651790,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 319951
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 286616
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 37127
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 4443
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3074
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 579
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 18,
+      "total_votes": 4230650,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 2170418
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1953139
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 84165
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 16711
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3791
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2426
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2438657,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1168266
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1109659
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 126696
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 24460
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 5282
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3272
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 1022
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2359892,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1189924
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1111138
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 38515
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 9818
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 7436
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1957
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1104
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 7,
+      "total_votes": 985449,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 572844
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 404614
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3267
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 2265
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2009
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 450
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 410986,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 240178
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 137126
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 24437
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 5697
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1718
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1155
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 675
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 14,
+      "total_votes": 2914990,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1631163
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1257692
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 13891
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 8874
+        },
+        {
+          "name": "Not Designated",
+          "party": "O",
+          "votes": 3370
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 277797,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 174852
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 95284
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 7288
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 373
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 692427,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 433862
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 231780
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 24540
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2245
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 567477,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 273559
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 266348
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 22198
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2757
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 2615
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 15,
+      "total_votes": 3073023,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1788850
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1284173
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 598605,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 286783
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 286417
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 21251
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2058
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 1392
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 361
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 343
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 4,
+      "total_votes": 605829,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 301575
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 279978
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 15008
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 4747
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3311
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 621
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 415
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 174
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 33,
+      "total_votes": 6821997,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 4107697
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2403374
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 244030
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 31599
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 24361
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 7649
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 1789
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1498
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 21,
+      "total_votes": 4701998,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2350363
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 2183628
+        },
+        {
+          "name": "Not Designated",
+          "party": "O",
+          "votes": 148353
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 13473
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 6181
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 8,
+      "total_votes": 1234229,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 744337
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 474276
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 9014
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 6602
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1530549,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 720342
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 713577
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 77357
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 9637
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 7447
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2189
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 23,
+      "total_votes": 4912185,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 2485967
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 2281127
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 103392
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 16023
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 14428
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 11248
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 408697,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 249508
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 130555
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 25052
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 2273
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 742
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 271
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 199
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 97
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 1382220,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 786892
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 566037
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 20279
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4760
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 3309
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 943
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 316269,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 190700
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 118804
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 3322
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1781
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1662
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 2043669,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1061949
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 981720
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 32,
+      "total_votes": 6394539,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 3799639
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 2433746
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 137994
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 23160
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 770592,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 515096
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 203053
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 35850
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 9319
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3616
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2709
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 763
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 186
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 2736640,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1437490
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1217290
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 59398
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 15198
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 5455
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1809
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 293794,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 149022
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 119775
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 20374
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 2192
+        },
+        {
+          "name": "Lane Dennis Denny",
+          "party": "O",
+          "votes": 1044
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 784
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 219
+        },
+        {
+          "name": "David McReynolds",
+          "party": "O",
+          "votes": 161
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 153
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 70
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 11,
+      "total_votes": 2487433,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1247652
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1108864
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 103002
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 13135
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 7171
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2927
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1989
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 1729
+        },
+        {
+          "name": "David McReynolds",
+          "party": "O",
+          "votes": 660
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 304
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 11,
+      "total_votes": 2580976,
+      "candidates": [
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 1242987
+        },
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 1237279
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 94070
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 6640
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 648100,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 336475
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 295497
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 10680
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 3169
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1912
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 367
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 213726,
+      "candidates": [
+        {
+          "name": "George W. Bush",
+          "party": "R",
+          "votes": 147947
+        },
+        {
+          "name": "Al Gore",
+          "party": "D",
+          "votes": 60481
+        },
+        {
+          "name": "Patrick Pat Buchanan",
+          "party": "O",
+          "votes": 2724
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1443
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 720
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 411
+        }
+      ]
+    }
+  ]
+}

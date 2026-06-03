@@ -1,0 +1,2638 @@
+{
+  "meta": {
+    "year": 2024,
+    "source": "FiveThirtyEight election-results; certified state totals (FEC/states)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 338177,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 184458
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 140026
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 5670
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 3040
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2342
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 1127
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 812
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 702
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 2256352,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1462616
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 772412
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 12075
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 4930
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4319
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 1182676,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 759241
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 396905
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 13255
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 5715
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4275
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 2141
+        },
+        {
+          "name": "Michael Wood",
+          "party": "O",
+          "votes": 1144
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 11,
+      "total_votes": 3390161,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1770242
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1582860
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 18319
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 17898
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 689
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 77
+        },
+        {
+          "name": "Joel Skousen",
+          "party": "O",
+          "votes": 53
+        },
+        {
+          "name": "DaWanda Shelton",
+          "party": "O",
+          "votes": 19
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 4
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 54,
+      "total_votes": 15865475,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 9276179
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 6081697
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 197645
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 167814
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 72539
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 66662
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 2939
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 10,
+      "total_votes": 3192745,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1728159
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1377441
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 35623
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 21439
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 17344
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 5149
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 3522
+        },
+        {
+          "name": "Blake Huber",
+          "party": "O",
+          "votes": 2196
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 910
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 905
+        },
+        {
+          "name": "Christopher Garrity",
+          "party": "O",
+          "votes": 30
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 15
+        },
+        {
+          "name": "Bill Frankel",
+          "party": "O",
+          "votes": 10
+        },
+        {
+          "name": "Brian Anthony Perry",
+          "party": "O",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 7,
+      "total_votes": 1759010,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 992053
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 736918
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 14281
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 8448
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 6729
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 264
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 162
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 128
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 21
+        },
+        {
+          "name": "Cherunda L. Fox",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 318039,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 294185
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 21076
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 2778
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 511697,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 289758
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 214351
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 4636
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 2038
+        },
+        {
+          "name": "Vermin Love Supreme",
+          "party": "O",
+          "votes": 914
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 30,
+      "total_votes": 10893752,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 6110125
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 4683038
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 43155
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 31972
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 11969
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 7454
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 5834
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 199
+        },
+        {
+          "name": "Cherunda L. Fox",
+          "party": "O",
+          "votes": 6
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 16,
+      "total_votes": 5250047,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2663117
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2548017
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 20684
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 18229
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 516701,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 313044
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 193661
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4387
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 2733
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1940
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 936
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 6,
+      "total_votes": 1656849,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 927019
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 707278
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 13122
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 7218
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1427
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 424
+        },
+        {
+          "name": "William P. Stodden",
+          "party": "O",
+          "votes": 361
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 905053,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 605246
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 274972
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 12812
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 4462
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2973
+        },
+        {
+          "name": "Joel Skousen",
+          "party": "O",
+          "votes": 1577
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1230
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 1026
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 514
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 238
+        },
+        {
+          "name": "Brian Kienitz",
+          "party": "O",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 19,
+      "total_votes": 5633310,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 3062863
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2449079
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 80426
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 31023
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 3510
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 2877
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 1569
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 1391
+        },
+        {
+          "name": "Rudolph Ware",
+          "party": "O",
+          "votes": 322
+        },
+        {
+          "name": "Mike ter Maat",
+          "party": "O",
+          "votes": 90
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 42
+        },
+        {
+          "name": "Heather Lynn Stone",
+          "party": "O",
+          "votes": 30
+        },
+        {
+          "name": "Melina Abdullah",
+          "party": "O",
+          "votes": 21
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "James Timothy Struck",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Andre Ramon McNeil",
+          "party": "O",
+          "votes": 7
+        },
+        {
+          "name": "Gordan Hlavenka",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "David J. Nash",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Kevin P. McKee",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "John P. Albers",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Cherunda L. Fox",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Garry Hubbard",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Jerome Samuel White",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Brian Kienitz",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Richard Mayers",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Susan Maude Buchser-Lochocki",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 11,
+      "total_votes": 2936677,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1720347
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1163603
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 29325
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 20425
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 1347
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 832
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 722
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 34
+        },
+        {
+          "name": "Paij Boring",
+          "party": "O",
+          "votes": 18
+        },
+        {
+          "name": "Doug Jenkins",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "William Nalbach",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Andre Ramon McNeil",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Carol Asher",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Shondra Irving",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Nala Baozun Scott Johnson",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Cherunda L. Fox",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Susan Maude Buchser-Lochocki",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1327591,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 758802
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 544853
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 16322
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 7614
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 2074530,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1337494
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 704043
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 16769
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 7566
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 6422
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 1015
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 611
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 391
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 177
+        },
+        {
+          "name": "James D. Soderna",
+          "party": "O",
+          "votes": 14
+        },
+        {
+          "name": "Jay Bowman",
+          "party": "O",
+          "votes": 10
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "John Cheng",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Billy Kelley",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Cherunda L. Fox",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 8,
+      "total_votes": 2006975,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1208505
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 766870
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 7138
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 6835
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 6641
+        },
+        {
+          "name": "Mattie Preston",
+          "party": "O",
+          "votes": 2857
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 2623
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 2240
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1481
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 1424
+        },
+        {
+          "name": "Rachele Fruit",
+          "party": "O",
+          "votes": 361
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 11,
+      "total_votes": 3453960,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2126545
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1251308
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 26544
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 18419
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 17734
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 12887
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 280
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 243
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 3018951,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1902579
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1035550
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 33134
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 28819
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 15570
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1136
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 1012
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 918
+        },
+        {
+          "name": "Paij Boring",
+          "party": "O",
+          "votes": 104
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 31
+        },
+        {
+          "name": "Ralph W. Jaffe",
+          "party": "O",
+          "votes": 25
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "Doug Jenkins",
+          "party": "O",
+          "votes": 9
+        },
+        {
+          "name": "Brian Kienitz",
+          "party": "O",
+          "votes": 7
+        },
+        {
+          "name": "John Cheng",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Michael F. Yost",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Shondra Irving",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Lester H. Waller",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Benjamin Schwalb",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "William P. Stodden",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "John R. Gibb",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Susan Maude Buchser-Lochocki",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Andre Ramon McNeil",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Carol Asher",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Garry Hubbard",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Richard Mayers",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Jokie Beckett Jr.",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Sethatina Newman",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 830794,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 435652
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 377977
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8967
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 5286
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 2912
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 15,
+      "total_votes": 5662504,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2816636
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2736533
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 44607
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 26785
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 22440
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 6664
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 6509
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 2330
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 3240916,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1656979
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1519032
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 24001
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 16275
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 15155
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 3136
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 2996
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 2885
+        },
+        {
+          "name": "Rachele Fruit",
+          "party": "O",
+          "votes": 457
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 10,
+      "total_votes": 2995327,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1751986
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1200599
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 23876
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 17135
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 1069
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 618
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 34
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 10
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 6,
+      "total_votes": 1227165,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 747744
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 466668
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 5387
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 2536
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1075
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 1030
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 1030
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 1007
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 688
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 4,
+      "total_votes": 602984,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 352079
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 231906
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 11825
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 4275
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2878
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 21
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 16,
+      "total_votes": 5680205,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2898423
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2715375
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 24762
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 22125
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 12099
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 6863
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 528
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 30
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 365059,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 246505
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 112327
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 6227
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 947159,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 564816
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 369995
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 6399
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 3062
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2887
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 822132,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 418496
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 395531
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 4425
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3680
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 14,
+      "total_votes": 4272725,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2220713
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1968215
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 39041
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 23479
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 10500
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 5105
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 3024
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 1371
+        },
+        {
+          "name": "Rachele Fruit",
+          "party": "O",
+          "votes": 1277
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 923403,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 478802
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 423391
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 9553
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4611
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 3745
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 2442
+        },
+        {
+          "name": "Laura Ebke",
+          "party": "O",
+          "votes": 859
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 6,
+      "total_votes": 1465215,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 751205
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 705197
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 6059
+        },
+        {
+          "name": "Joel Skousen",
+          "party": "O",
+          "votes": 2754
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 28,
+      "total_votes": 8262495,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 4619195
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 3578899
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 46698
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 6327
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 5338
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 4152
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 1544
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 134
+        },
+        {
+          "name": "Christopher Garrity",
+          "party": "O",
+          "votes": 108
+        },
+        {
+          "name": "Raymond Anthony Scollin",
+          "party": "O",
+          "votes": 51
+        },
+        {
+          "name": "Andrew O'Donnell",
+          "party": "O",
+          "votes": 20
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 18
+        },
+        {
+          "name": "Garry Hubbard",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Andre Ramon McNeil",
+          "party": "O",
+          "votes": 5
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 17,
+      "total_votes": 5767788,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 3180116
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2533699
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 28200
+        },
+        {
+          "name": "Richard Austing Duncan",
+          "party": "O",
+          "votes": 12805
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 10197
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1794
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 852
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 74
+        },
+        {
+          "name": "John Cheng",
+          "party": "O",
+          "votes": 24
+        },
+        {
+          "name": "Christopher Garrity",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "Jay Bowman",
+          "party": "O",
+          "votes": 7
+        },
+        {
+          "name": "Brian Kienitz",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "William Nalbach",
+          "party": "O",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 7,
+      "total_votes": 1566173,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1036213
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 499599
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 16020
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 9198
+        },
+        {
+          "name": "Christopher Garrity",
+          "party": "O",
+          "votes": 5143
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 8,
+      "total_votes": 2229467,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1240600
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 919480
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 33733
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 19099
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 9061
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 5644
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 1850
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 19,
+      "total_votes": 7034206,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 3543308
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 3423042
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 34538
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 33318
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 510659,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 285156
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 214406
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 5045
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2900
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 1617
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1176
+        },
+        {
+          "name": "Robert Wells",
+          "party": "O",
+          "votes": 359
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 9,
+      "total_votes": 2548140,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1483747
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1028452
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 12669
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8117
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 6744
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 5352
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 3059
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 428922,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 272081
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 146859
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 7204
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 2778
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 3063942,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1966865
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1056265
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 21535
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8967
+        },
+        {
+          "name": "Jay Bowman",
+          "party": "O",
+          "votes": 5865
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 3457
+        },
+        {
+          "name": "Rachele Fruit",
+          "party": "O",
+          "votes": 988
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 40,
+      "total_votes": 11388674,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 6393597
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 4835250
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 82701
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 68557
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 3780
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 2374
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 1858
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 433
+        },
+        {
+          "name": "Jesse Cuellar",
+          "party": "O",
+          "votes": 98
+        },
+        {
+          "name": "Cherunda L. Fox",
+          "party": "O",
+          "votes": 26
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 6,
+      "total_votes": 1488494,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 883818
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 562566
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 16902
+        },
+        {
+          "name": "Joel Skousen",
+          "party": "O",
+          "votes": 8402
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8222
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 3189
+        },
+        {
+          "name": "Lucifer Everylove",
+          "party": "O",
+          "votes": 2653
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 2199
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 441
+        },
+        {
+          "name": "Jay Bowman",
+          "party": "O",
+          "votes": 59
+        },
+        {
+          "name": "Steve M. Johnson",
+          "party": "O",
+          "votes": 33
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 9
+        },
+        {
+          "name": "Andrew Romon McNeil",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 4479940,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2333778
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2074097
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 34880
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 19802
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 8975
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 8408
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 366389,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 235791
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 119395
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 5905
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 1828
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 1710
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 1549
+        },
+        {
+          "name": "Rachele Fruit",
+          "party": "O",
+          "votes": 211
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 12,
+      "total_votes": 3898932,
+      "candidates": [
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 2245849
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1530923
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 54868
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 29754
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 16428
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 8695
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 7254
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 3323
+        },
+        {
+          "name": "Rachele Fruit",
+          "party": "O",
+          "votes": 924
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 914
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 10,
+      "total_votes": 3415787,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1697626
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 1668229
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 17740
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 12275
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 10511
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 4044
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 2753
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 2035
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 561
+        },
+        {
+          "name": "Doug Jenkins",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 4,
+      "total_votes": 762584,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 533556
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 214309
+        },
+        {
+          "name": "Robert F. Kennedy",
+          "party": "O",
+          "votes": 8947
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 3047
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2531
+        },
+        {
+          "name": "Claudia De La Cruz",
+          "party": "O",
+          "votes": 73
+        },
+        {
+          "name": "Peter Sonski",
+          "party": "O",
+          "votes": 63
+        },
+        {
+          "name": "Cornel West",
+          "party": "O",
+          "votes": 39
+        },
+        {
+          "name": "Shiva Ayyadurai",
+          "party": "O",
+          "votes": 10
+        },
+        {
+          "name": "Angela J. Dwyer",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Doug Bell",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Rick Mattox",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Doug Jenkins",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Future Madam Potus",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 266353,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 192633
+        },
+        {
+          "name": "Kamala Harris",
+          "party": "D",
+          "votes": 69527
+        },
+        {
+          "name": "Chase Oliver",
+          "party": "O",
+          "votes": 4193
+        }
+      ]
+    }
+  ]
+}

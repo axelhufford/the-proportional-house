@@ -993,6 +993,24 @@ export function Home({ onMetaChange }: HomeProps) {
           </div>
           </Reveal>
         )}
+
+        {/* A low-key pointer to the proportional Electoral College page — shown
+         * at the very bottom of every home view for the curious, not in the nav. */}
+        <Reveal>
+          <div className="mt-8 pt-6 border-t border-stone-200/70 text-center">
+            <p className="text-sm text-stone-500 max-w-xl mx-auto">
+              Curious about the presidency? See what every election since 1976 would look like if each
+              state split its electoral votes proportionally instead of winner-take-all.
+            </p>
+            <Link
+              to="/electoral-college"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-brand-navy hover:border-brand-navy hover:bg-stone-50 transition-colors"
+            >
+              The proportional Electoral College
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </Reveal>
       </section>
 
       {selectedState && createPortal(

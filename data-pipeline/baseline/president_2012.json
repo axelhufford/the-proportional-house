@@ -1,0 +1,1743 @@
+{
+  "meta": {
+    "year": 2012,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 297625,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 164676
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 122640
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 7392
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2917
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 2051621,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1255925
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 795696
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 1069468,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 647744
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 394409
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 16276
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 9305
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 1734
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 11,
+      "total_votes": 2298802,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1233654
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1025232
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 32100
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 7816
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 55,
+      "total_votes": 13015298,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 7854285
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 4839958
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 143221
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 85638
+        },
+        {
+          "name": "Roseanne Barr",
+          "party": "O",
+          "votes": 53824
+        },
+        {
+          "name": "Thomas Conrad Tom Hoefling",
+          "party": "O",
+          "votes": 38372
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 9,
+      "total_votes": 2569516,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1323101
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1185243
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 35545
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 7508
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 6234
+        },
+        {
+          "name": "Roseanne Barr",
+          "party": "O",
+          "votes": 5057
+        },
+        {
+          "name": "Jill Ann Reed",
+          "party": "O",
+          "votes": 2588
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 1262
+        },
+        {
+          "name": "Sheila Samm Tittle",
+          "party": "O",
+          "votes": 791
+        },
+        {
+          "name": "Thomas Conrad Tom Hoefling",
+          "party": "O",
+          "votes": 679
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 317
+        },
+        {
+          "name": "Stewart Alexander",
+          "party": "O",
+          "votes": 308
+        },
+        {
+          "name": "Merlin Miller",
+          "party": "O",
+          "votes": 267
+        },
+        {
+          "name": "Thomas Robert Tom Stevens",
+          "party": "O",
+          "votes": 235
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 192
+        },
+        {
+          "name": "Jerry White",
+          "party": "O",
+          "votes": 189
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 7,
+      "total_votes": 1552315,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 905083
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 634892
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 12340
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 292992,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 267070
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 21381
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2458
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 2083
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 413890,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 242584
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 165484
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 3882
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 1940
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 29,
+      "total_votes": 8474134,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 4237756
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 4163447
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 44726
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8947
+        },
+        {
+          "name": "Roseanne Barr",
+          "party": "O",
+          "votes": 8154
+        },
+        {
+          "name": "Thomas Robert Tom Stevens",
+          "party": "O",
+          "votes": 3856
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2607
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 1754
+        },
+        {
+          "name": "Thomas Conrad Tom Hoefling",
+          "party": "O",
+          "votes": 946
+        },
+        {
+          "name": "Andre Barnett",
+          "party": "O",
+          "votes": 820
+        },
+        {
+          "name": "Stewart Alexander",
+          "party": "O",
+          "votes": 799
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 322
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 16,
+      "total_votes": 3897839,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2078688
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1773827
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 45324
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 434932,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 306658
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 121015
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 3840
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3184
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 235
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 6,
+      "total_votes": 1573711,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 822544
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 730617
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 12926
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3769
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 3038
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 445
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 372
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 645373,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 420911
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 212787
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 9453
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2222
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 20,
+      "total_votes": 5241179,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 3019512
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2135216
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 56229
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 30222
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 11,
+      "total_votes": 2623541,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1420543
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1152887
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 50111
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1158833,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 692634
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 440726
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 20456
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 5017
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1796832,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1087190
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 679370
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 17063
+        },
+        {
+          "name": "Randall Terry",
+          "party": "O",
+          "votes": 6872
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6337
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 8,
+      "total_votes": 1994065,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1152262
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 809141
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 18157
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6978
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2508
+        },
+        {
+          "name": "Sheila Samm Tittle",
+          "party": "O",
+          "votes": 1767
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 1368
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 622
+        },
+        {
+          "name": "Lowell Jackson Jack Fellure",
+          "party": "O",
+          "votes": 518
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 389
+        },
+        {
+          "name": "Jerome Jerry White",
+          "party": "O",
+          "votes": 355
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 11,
+      "total_votes": 3161215,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1921290
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1188314
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 30920
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 20691
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 2697018,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1677844
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 971869
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 30195
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 17110
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 711053,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 401306
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 292276
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 9352
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8119
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 16,
+      "total_votes": 4722988,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2564569
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2115256
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 21897
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 16119
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 5147
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2925920,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1546167
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1320225
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 35098
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 13023
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 3722
+        },
+        {
+          "name": "Jim Carlson",
+          "party": "O",
+          "votes": 3149
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 1996
+        },
+        {
+          "name": "Dean Morstad",
+          "party": "O",
+          "votes": 1092
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 1051
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 397
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 10,
+      "total_votes": 2757323,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1482440
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1223796
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 43151
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 7936
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 6,
+      "total_votes": 1285584,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 710746
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 562949
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 6676
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2609
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 1588
+        },
+        {
+          "name": "Barbara Dale Washer",
+          "party": "O",
+          "votes": 1016
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 483932,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 267928
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 201839
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 14165
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 15,
+      "total_votes": 4493301,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2270395
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2178391
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 44515
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 321072,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 188320
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 124966
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 5238
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 1362
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 1186
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 788254,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 475064
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 302081
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 11109
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 708399,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 369561
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 329918
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 8212
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 708
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 14,
+      "total_votes": 3638499,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2122786
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1478088
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 21035
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 9886
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2063
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 1723
+        },
+        {
+          "name": "Jeffery Boss",
+          "party": "O",
+          "votes": 1024
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 709
+        },
+        {
+          "name": "Merlin Miller",
+          "party": "O",
+          "votes": 664
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 521
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 782584,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 415335
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 335788
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 27788
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2691
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 982
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 6,
+      "total_votes": 1009148,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 531373
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 463567
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 10968
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 3240
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 29,
+      "total_votes": 7052560,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 4471871
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2485432
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 47092
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 39856
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 6270
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 2039
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 18,
+      "total_votes": 5580715,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2827621
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2661407
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 49493
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 18574
+        },
+        {
+          "name": "Richard Duncan",
+          "party": "O",
+          "votes": 12502
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 8151
+        },
+        {
+          "name": "Stewart Alexander",
+          "party": "O",
+          "votes": 2967
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 7,
+      "total_votes": 1334872,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 891325
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 443547
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1775995,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 970488
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 754175
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 24089
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 19427
+        },
+        {
+          "name": "Will Christensen",
+          "party": "O",
+          "votes": 4432
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 3384
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 20,
+      "total_votes": 5742040,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2990274
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 2680434
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 49991
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 21341
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 444668,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 279677
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 157204
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 4388
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 2421
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 430
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 416
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 132
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 9,
+      "total_votes": 1964118,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1071645
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 865941
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 16321
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 5446
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 4765
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 363815,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 210610
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 145039
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 5795
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2371
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 2435576,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1462330
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 960709
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6515
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 6022
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 38,
+      "total_votes": 7991204,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 4569843
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 3308124
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 88580
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 24657
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 6,
+      "total_votes": 1017008,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 740600
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 251813
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 12572
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 5335
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3817
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 2871
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 3847243,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1971820
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1822522
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 31216
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 13058
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8627
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 297247,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 199239
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 92698
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 3487
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 1128
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 695
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 12,
+      "total_votes": 3125516,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1755396
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1290670
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 42202
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 20928
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 8851
+        },
+        {
+          "name": "Ross Carl Rocky Anderson",
+          "party": "O",
+          "votes": 4946
+        },
+        {
+          "name": "Peta Lindsay",
+          "party": "O",
+          "votes": 1318
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 1205
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 10,
+      "total_votes": 3036881,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1620985
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 1410966
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 4930
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 666632,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 417655
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 238269
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 6302
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4406
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 247299,
+      "candidates": [
+        {
+          "name": "Mitt Romney",
+          "party": "R",
+          "votes": 170962
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 69286
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 5326
+        },
+        {
+          "name": "Virgil Hamlin, Jr. Goode",
+          "party": "O",
+          "votes": 1452
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 273
+        }
+      ]
+    }
+  ]
+}

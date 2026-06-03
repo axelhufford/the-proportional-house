@@ -117,6 +117,68 @@ export interface HistoryPayload {
   points: HistoryPoint[];
 }
 
+// --- Proportional Electoral College (1976-2024) ---------------------------
+// public/data/electoral_college.json, built offline by build_electoral_college.py.
+export type ECParty = 'D' | 'R' | 'O';
+
+export interface ECCandidate {
+  name: string;
+  party: ECParty;
+  votes: number;
+  /** Electors under the canonical (Sainte-Laguë) proportional allocation. */
+  electors: number;
+}
+
+export interface ECStateResult {
+  code: string;
+  name: string;
+  ev: number;
+  actual_winner_party: ECParty;
+  /** Maine/Nebraska district split for the actual result, else null. */
+  actual_split: Record<string, number> | null;
+  candidates: ECCandidate[];
+}
+
+export interface ECCycle {
+  year: number;
+  total_ev: number;
+  majority: number;
+  actual: { by_party: Record<ECParty, number>; winner_party: ECParty };
+  proportional: {
+    by_party: Record<ECParty, number>;
+    by_candidate: { name: string; party: ECParty; electors: number }[];
+    leader: { name: string; party: ECParty; electors: number };
+    no_majority: boolean;
+    majority_gap: number;
+  };
+  states: ECStateResult[];
+}
+
+export interface ECSeriesPoint {
+  year: number;
+  no_majority: boolean;
+  pr_d: number;
+  pr_r: number;
+  pr_other: number;
+  actual_d: number;
+  actual_r: number;
+  leader_party: ECParty;
+  leader_electors: number;
+}
+
+export interface ElectoralCollegePayload {
+  meta: {
+    generated_at: string;
+    canonical_method: string;
+    majority: number;
+    cycles: number[];
+    sources: Record<string, string>;
+    note: string;
+  };
+  cycles: Record<string, ECCycle>;
+  series: ECSeriesPoint[];
+}
+
 // One completed cycle's PR-vs-actual outcome for a single state, derived from
 // retrospectives.json for the per-state "Under PR, 2016–2024" mini-history.
 export interface StateRetroPoint {

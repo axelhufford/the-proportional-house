@@ -1,0 +1,2023 @@
+{
+  "meta": {
+    "year": 1992,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 258141,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 102000
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 78294
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 73481
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 1379
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1378
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 469
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 433
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 377
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 330
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1683209,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 804283
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 690080
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 183109
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 5737
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 942279,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 505823
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 337324
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 99132
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 8,
+      "total_votes": 1486967,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 572086
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 543050
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 353741
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 8141
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 6759
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2267
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 923
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 54,
+      "total_votes": 11127352,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 5121325
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 3630574
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 2296006
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 48139
+        },
+        {
+          "name": "Ron Daniels",
+          "party": "O",
+          "votes": 18597
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 12711
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 8,
+      "total_votes": 1569180,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 629681
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 562850
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 366010
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 8669
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1608
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 274
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 47
+        },
+        {
+          "name": "Prohibition",
+          "party": "O",
+          "votes": 21
+        },
+        {
+          "name": "Unaffiliated",
+          "party": "O",
+          "votes": 20
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 8,
+      "total_votes": 1616156,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 682318
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 578313
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 348771
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 5391
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1363
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 226600,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 192619
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 20698
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 9681
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1459
+        },
+        {
+          "name": "Ronald Daniels",
+          "party": "O",
+          "votes": 1446
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 467
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 230
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 289620,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 126054
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 102313
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 59213
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1105
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 935
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 25,
+      "total_votes": 5313154,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2173310
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2071698
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 1053067
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 15079
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 13,
+      "total_votes": 2320985,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1008966
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 995252
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 309657
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 7110
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 372842,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 179310
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 136822
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 53003
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 1452
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1119
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 720
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 416
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 7,
+      "total_votes": 1351901,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 586353
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 504891
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 253468
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 3079
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 1177
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1076
+        },
+        {
+          "name": "Jack Herer",
+          "party": "O",
+          "votes": 669
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 480
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 273
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 238
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 197
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 482114,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 202645
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 137013
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 130395
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 10894
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1167
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 22,
+      "total_votes": 5050135,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2453350
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1734096
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 840515
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 9218
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 5267
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 3577
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2751
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 1361
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 12,
+      "total_votes": 2304248,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 989375
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 848420
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 455934
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 7936
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2583
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1157057,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 449951
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 390434
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 312358
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 4314
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1492853,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 665104
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 617178
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 203944
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 4513
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 989
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 695
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 430
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 9,
+      "total_votes": 1788354,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 815971
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 733386
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 211478
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 18545
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 3155
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1552
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1434
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1136
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 889
+        },
+        {
+          "name": "John Yiamouyiannis",
+          "party": "O",
+          "votes": 808
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 12,
+      "total_votes": 2769456,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1318639
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 805039
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 630731
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 9021
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 3172
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1812
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1027
+        },
+        {
+          "name": "J. Quinn Brisben",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 1984580,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 988571
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 707094
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 281414
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 4715
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2786
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 679408,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 263420
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 206820
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 206504
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1681
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 519
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 464
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 18,
+      "total_votes": 4273759,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1871182
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1554940
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 824813
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 10175
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 8263
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2954
+        },
+        {
+          "name": "Helen Halyard",
+          "party": "O",
+          "votes": 1432
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2345449,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1020997
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 747841
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 562506
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 3374
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 3363
+        },
+        {
+          "name": "Jack Herer",
+          "party": "O",
+          "votes": 2659
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1406
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 990
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 958
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 733
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 622
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2391270,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1053873
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 811159
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 518741
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 7497
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 7,
+      "total_votes": 977483,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 487793
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 400258
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 85626
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 2154
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1652
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 406925,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 154507
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 144207
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 107225
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 986
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 14,
+      "total_votes": 2611850,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1134661
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1114042
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 357864
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 5171
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 59
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 41
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 12
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 306496,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 136244
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 99168
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 71084
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 735986,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 343678
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 216864
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 174104
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1340
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 537215,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 209040
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 202484
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 121337
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 3548
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 512
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 294
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 15,
+      "total_votes": 3343594,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1436206
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1356865
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 521829
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 6822
+        },
+        {
+          "name": "Drew Bradford",
+          "party": "O",
+          "votes": 4749
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 3513
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2670
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 2095
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 2011
+        },
+        {
+          "name": "Ron Daniels",
+          "party": "O",
+          "votes": 1996
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 1867
+        },
+        {
+          "name": "Helen Haylard",
+          "party": "O",
+          "votes": 1618
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1353
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 569986,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 261617
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 212824
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 91895
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1615
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 620
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 562
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 369
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 183
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 181
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 120
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 4,
+      "total_votes": 503781,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 189148
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 175828
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 132580
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 2892
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1835
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 677
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 483
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 338
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 33,
+      "total_votes": 6926481,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 3444450
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2346649
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 1090721
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 15472
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 13451
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 11318
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 4420
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 21,
+      "total_votes": 4915678,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1984942
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1894310
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 1036426
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 8,
+      "total_votes": 1390359,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 592929
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 473066
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 319878
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 4486
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1458469,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 621314
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 475757
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 354091
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 4277
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 3030
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 23,
+      "total_votes": 4959810,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2239164
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1791841
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 902667
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 21477
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 4661
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 453365,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 213299
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 131601
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 105045
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1878
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 571
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 494
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 262
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 215
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 1228912,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 577507
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 525514
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 119257
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 2719
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2680
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1235
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 335715,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 136718
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 124888
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 73295
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 814
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 1974789,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 933521
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 841300
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 199968
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 32,
+      "total_votes": 6152366,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2496071
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2281815
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 1354781
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 19699
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 743706,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 322632
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 203400
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 183429
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 28602
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1900
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1319
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1089
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 414
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 393
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 200
+        },
+        {
+          "name": "Ron Daniels",
+          "party": "O",
+          "votes": 177
+        },
+        {
+          "name": "J. Quinn Brisben",
+          "party": "O",
+          "votes": 151
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 2543536,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1150517
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1038650
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 348639
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 5730
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 288884,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 133592
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 88122
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 65991
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 501
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 315
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 124
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 100
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 82
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 57
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 11,
+      "total_votes": 2285539,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 993037
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 731234
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 541780
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 7533
+        },
+        {
+          "name": "James Bo Gritz",
+          "party": "O",
+          "votes": 4854
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2456
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2354
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1776
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 515
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 11,
+      "total_votes": 2522585,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1041066
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 930855
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 544479
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 2877
+        },
+        {
+          "name": "Ron Daniels",
+          "party": "O",
+          "votes": 1833
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1070
+        },
+        {
+          "name": "Roland Hem",
+          "party": "O",
+          "votes": 405
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 683677,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 331001
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 241974
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 108829
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 1873
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 199884,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 79347
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 68160
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 51263
+        },
+        {
+          "name": "Andre Marrou",
+          "party": "O",
+          "votes": 844
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 270
+        }
+      ]
+    }
+  ]
+}

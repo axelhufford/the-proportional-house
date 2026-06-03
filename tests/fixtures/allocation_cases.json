@@ -120,5 +120,63 @@
         "hamilton":     { "d_seats": 0, "r_seats": 0 }
       }
     }
+  ],
+  "$comment_n": "N-party parity cases for allocate_n (Python) / allocateN (TS). `votes` order is preserved in `expected[method]`. Hand-verified — used by the Electoral College build (electors across all presidential candidates).",
+  "cases_n": [
+    {
+      "name": "N: 3-party clean 50/30/20 over 10 seats",
+      "input": { "seats": 10, "votes": [50, 30, 20] },
+      "expected": {
+        "sainte-lague": [5, 3, 2],
+        "dhondt":       [5, 3, 2],
+        "hamilton":     [5, 3, 2]
+      }
+    },
+    {
+      "name": "N: 4-party 400/250/200/150 over 10 seats",
+      "input": { "seats": 10, "votes": [400, 250, 200, 150] },
+      "expected": {
+        "sainte-lague": [4, 3, 2, 1],
+        "dhondt":       [4, 3, 2, 1],
+        "hamilton":     [4, 3, 2, 1]
+      }
+    },
+    {
+      "name": "N: 4-party with a zero — methods diverge",
+      "$note": "8 seats, votes [500,400,100,0]. SL & Hamilton seat the 100-vote party (giving 4/3/1/0); D'Hondt's larger-party bias instead gives the majority a 5th seat (5/3/0/0). The zero-vote party gets nothing under all methods.",
+      "input": { "seats": 8, "votes": [500, 400, 100, 0] },
+      "expected": {
+        "sainte-lague": [4, 3, 1, 0],
+        "dhondt":       [5, 3, 0, 0],
+        "hamilton":     [4, 3, 1, 0]
+      }
+    },
+    {
+      "name": "N: two-party shape via votes[] matches 3-seat 60/40",
+      "input": { "seats": 3, "votes": [600, 400] },
+      "expected": {
+        "sainte-lague": [2, 1],
+        "dhondt":       [2, 1],
+        "hamilton":     [2, 1]
+      }
+    },
+    {
+      "name": "N: all-zero votes return all zeros",
+      "input": { "seats": 5, "votes": [0, 0, 0] },
+      "expected": {
+        "sainte-lague": [0, 0, 0],
+        "dhondt":       [0, 0, 0],
+        "hamilton":     [0, 0, 0]
+      }
+    },
+    {
+      "name": "N: zero seats return all zeros",
+      "input": { "seats": 0, "votes": [50, 30, 20] },
+      "expected": {
+        "sainte-lague": [0, 0, 0],
+        "dhondt":       [0, 0, 0],
+        "hamilton":     [0, 0, 0]
+      }
+    }
   ]
 }

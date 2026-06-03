@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { allocate, allocateN, type AllocationMethod } from './allocation';
+import fixture from '../../tests/fixtures/allocation_cases.json';
 
 const METHODS: AllocationMethod[] = ['sainte-lague', 'dhondt', 'hamilton'];
+
+interface NCase {
+  name: string;
+  input: { seats: number; votes: number[] };
+  expected: Record<AllocationMethod, number[]>;
+}
 
 describe('allocateN parity with two-party allocate()', () => {
   // Every method, on every two-party fixture-style case, should yield
@@ -67,4 +74,20 @@ describe('allocateN with 3+ parties', () => {
   it('All zero votes returns all zero seats', () => {
     expect(allocateN({ seats: 5, votes: [0, 0, 0] }, 'sainte-lague')).toEqual([0, 0, 0]);
   });
+});
+
+describe('allocateN parity with shared fixture (cases_n)', () => {
+  // The same JSON drives data-pipeline/allocation.py's parity test, so the
+  // Python (Electoral College build) and TS (interactive method toggle)
+  // allocators provably agree on every multiparty case.
+  const nCases = (fixture as unknown as { cases_n: NCase[] }).cases_n;
+  for (const c of nCases) {
+    for (const method of METHODS) {
+      it(`${c.name} — ${method}`, () => {
+        expect(allocateN({ seats: c.input.seats, votes: c.input.votes }, method)).toEqual(
+          c.expected[method],
+        );
+      });
+    }
+  }
 });

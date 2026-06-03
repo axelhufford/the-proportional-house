@@ -1,0 +1,1828 @@
+{
+  "meta": {
+    "year": 2016,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 309407,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 163387
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 116454
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 18725
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 5735
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 3866
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1240
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 2101660,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1318255
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 729547
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 44467
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 9391
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 1130635,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 684872
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 380494
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 29829
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 13255
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 9473
+        },
+        {
+          "name": "Jim Hedges",
+          "party": "O",
+          "votes": 4709
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 4613
+        },
+        {
+          "name": "Lynn S. Kahn",
+          "party": "O",
+          "votes": 3390
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 11,
+      "total_votes": 2555339,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1252401
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1161167
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 106327
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 34345
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 1058
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 29
+        },
+        {
+          "name": "Sheila Samm Tittle",
+          "party": "O",
+          "votes": 12
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 55,
+      "total_votes": 14060856,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 8753788
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 4483810
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 478500
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 278657
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 66101
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 9,
+      "total_votes": 2748735,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1338870
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1202484
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 144121
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 38437
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 11699
+        },
+        {
+          "name": "Chris Keniston",
+          "party": "O",
+          "votes": 5028
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1255
+        },
+        {
+          "name": "Kyle Kenley Kopitke",
+          "party": "O",
+          "votes": 1096
+        },
+        {
+          "name": "Joseph Allen Maldonado",
+          "party": "O",
+          "votes": 872
+        },
+        {
+          "name": "Michael A. Maturen",
+          "party": "O",
+          "votes": 862
+        },
+        {
+          "name": "Rod Silva",
+          "party": "O",
+          "votes": 751
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 710
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 531
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 452
+        },
+        {
+          "name": "Laurence Kotlikoff",
+          "party": "O",
+          "votes": 392
+        },
+        {
+          "name": "Bradford Lyttle",
+          "party": "O",
+          "votes": 382
+        },
+        {
+          "name": "Frank Atwood",
+          "party": "O",
+          "votes": 337
+        },
+        {
+          "name": "Soltysik Emidio Mimi",
+          "party": "O",
+          "votes": 271
+        },
+        {
+          "name": "James Hedges",
+          "party": "O",
+          "votes": 185
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 7,
+      "total_votes": 1642304,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 897572
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 673215
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 48676
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 22841
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 304960,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 282830
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 12723
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 4906
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4258
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 243
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 441590,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 235603
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 185127
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 14757
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6103
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 29,
+      "total_votes": 9419886,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 4617886
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 4504975
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 207043
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 64399
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 16475
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 9108
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 16,
+      "total_votes": 4092373,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2089104
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1877963
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 125306
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 429375,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 266891
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 128847
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 15954
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 12737
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 4508
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 438
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 6,
+      "total_votes": 1547834,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 800983
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 653669
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 59186
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 12366
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 11479
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 5335
+        },
+        {
+          "name": "Lynn S. Kahn",
+          "party": "O",
+          "votes": 2247
+        },
+        {
+          "name": "Dan Vacek",
+          "party": "O",
+          "votes": 2246
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 323
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 690255,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 409055
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 189765
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 60748
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 28331
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 2356
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 20,
+      "total_votes": 5523142,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 3090729
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2146015
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 209596
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 76802
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 11,
+      "total_votes": 2726399,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1557286
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1033126
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 133993
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 1937
+        },
+        {
+          "name": "Soltysik Emidio Mimi",
+          "party": "O",
+          "votes": 57
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1176935,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 671018
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 427005
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 55406
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 23506
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1923398,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1202971
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 628854
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 53752
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 22780
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 13913
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1128
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 8,
+      "total_votes": 2010801,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1178638
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 780154
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 37978
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 14031
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 11,
+      "total_votes": 3271768,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1995196
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1090893
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 138018
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 47661
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 2736984,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1678006
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 943428
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 79605
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 35945
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 745684,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 357735
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 335593
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 38105
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 14251
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 16,
+      "total_votes": 4790329,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2279543
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 2268839
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 172136
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 51463
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 16139
+        },
+        {
+          "name": "Soltysik Emidio Mimi",
+          "party": "O",
+          "votes": 2209
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2917535,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1367705
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1322949
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 112972
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 53075
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 36986
+        },
+        {
+          "name": "Dan Vacek",
+          "party": "O",
+          "votes": 11291
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 9456
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 1671
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1430
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 10,
+      "total_votes": 2801449,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1594511
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1071068
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 97359
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 25419
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 13092
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 6,
+      "total_votes": 1209357,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 700714
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 485131
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 14435
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 3987
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3731
+        },
+        {
+          "name": "James Hedges",
+          "party": "O",
+          "votes": 715
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 644
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 494526,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 279240
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 177709
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 28037
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 7970
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1570
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 15,
+      "total_votes": 4682073,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2362631
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 2189316
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 130126
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 337963,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 216794
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 93758
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 21434
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3780
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 1833
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 364
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 828176,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 495961
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 284494
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 38946
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8775
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 732267,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 348526
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 345790
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 30777
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6496
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 678
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 14,
+      "total_votes": 3874046,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 2148278
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1601933
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 72477
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 37772
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 6161
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 2156
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1838
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 1749
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 1682
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 798319,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 385234
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 319667
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 74541
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 9879
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 5825
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 1514
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 1184
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 475
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 6,
+      "total_votes": 1096522,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 539260
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 512058
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 37384
+        },
+        {
+          "name": "Kyle Kenley Kopitke",
+          "party": "O",
+          "votes": 5268
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 2552
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 29,
+      "total_votes": 7663642,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 4556124
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2819534
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 176598
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 107934
+        },
+        {
+          "name": "Void Vote",
+          "party": "O",
+          "votes": 3452
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 18,
+      "total_votes": 5281440,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2841005
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 2394164
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 46271
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 7,
+      "total_votes": 1452992,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 949136
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 420375
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 83481
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1928742,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1002106
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 782403
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 94231
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 50002
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 20,
+      "total_votes": 6115402,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2970733
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 2926441
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 146715
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 49941
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 21572
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 454705,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 252525
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 180543
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 14746
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6220
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 671
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 9,
+      "total_votes": 2103027,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1155389
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 855373
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 49204
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 21016
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 13034
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 5765
+        },
+        {
+          "name": "Peter Skewes",
+          "party": "O",
+          "votes": 3246
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 370093,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 227721
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 117458
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 20850
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 4064
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 2393620,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1522925
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 870695
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 38,
+      "total_votes": 8917965,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 4685047
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 3877868
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 283492
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 71558
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 6,
+      "total_votes": 1131317,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 515211
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 310674
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 255060
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 39608
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 8032
+        },
+        {
+          "name": "Kyle Kenley Kopitke",
+          "party": "O",
+          "votes": 2732
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 3950882,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1981473
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1769443
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 118274
+        },
+        {
+          "name": "Evan McMullin",
+          "party": "O",
+          "votes": 54054
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 27638
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 292994,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 178573
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 95369
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 10078
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 6758
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1063
+        },
+        {
+          "name": "Void Vote",
+          "party": "O",
+          "votes": 826
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 327
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 12,
+      "total_votes": 3209214,
+      "candidates": [
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1742718
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1221747
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 160879
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 58417
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 17623
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 4307
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 3523
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 10,
+      "total_votes": 2941000,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1405284
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 1382536
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 106674
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 31072
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 12162
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 1770
+        },
+        {
+          "name": "Roque Rocky De La Fuente",
+          "party": "O",
+          "votes": 1502
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 713051,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 489371
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 188794
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 23004
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 8075
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 3807
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 245999,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 174419
+        },
+        {
+          "name": "Hillary Clinton",
+          "party": "D",
+          "votes": 55973
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 13287
+        },
+        {
+          "name": "Darrell L. Castle",
+          "party": "O",
+          "votes": 2042
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 278
+        }
+      ]
+    }
+  ]
+}

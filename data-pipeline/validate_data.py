@@ -152,17 +152,40 @@ def check_history(errors: list[str]) -> None:
         seen.add(d); last = d
 
 
+def check_electoral_college(errors: list[str]) -> None:
+    path = PUBLIC_DATA / "electoral_college.json"
+    if not path.exists():
+        return  # optional / built offline from committed baselines
+    ec = _load("electoral_college.json")
+    for year, c in ec.get("cycles", {}).items():
+        total = c["total_ev"]
+        # Per-state PR electors sum to the state's EV.
+        for s in c["states"]:
+            if sum(cand["electors"] for cand in s["candidates"]) != s["ev"]:
+                errors.append(f"EC {year} {s['code']}: PR electors != ev {s['ev']}")
+        # National actual + proportional both sum to the cycle total.
+        if sum(c["actual"]["by_party"].values()) != total:
+            errors.append(f"EC {year}: actual EV sum != {total}")
+        if sum(c["proportional"]["by_party"].values()) != total:
+            errors.append(f"EC {year}: PR EV sum != {total}")
+        # No candidate can be flagged a majority winner unless they clear it.
+        prop = c["proportional"]
+        if prop["no_majority"] and prop["leader"]["electors"] >= c["majority"]:
+            errors.append(f"EC {year}: no_majority set but leader has a majority")
+
+
 def main() -> None:
     errors: list[str] = []
     check_projection(errors)
     check_retrospectives(errors)
     check_history(errors)
+    check_electoral_college(errors)
     if errors:
         print(f"DATA VALIDATION FAILED ({len(errors)} issue(s)):")
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
-    print("Data validation passed: projection + retrospectives + history invariants hold.")
+    print("Data validation passed: projection + retrospectives + history + EC invariants hold.")
 
 
 if __name__ == "__main__":

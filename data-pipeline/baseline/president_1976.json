@@ -1,0 +1,1923 @@
+{
+  "meta": {
+    "year": 1976,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 122398,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 71555
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 44058
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 6785
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1182542,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 659170
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 504070
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 9198
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 6669
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1954
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1481
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 766896,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 498604
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 267903
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 389
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 6,
+      "total_votes": 742697,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 418642
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 295602
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 19229
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 7647
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 928
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 564
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 85
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 45,
+      "total_votes": 7803770,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 3882244
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 3742284
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 56388
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 51098
+        },
+        {
+          "name": "Margaret Wright",
+          "party": "O",
+          "votes": 41731
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 17259
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 12766
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 7,
+      "total_votes": 1081440,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 584278
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 460801
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 26047
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 5338
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 2886
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 1122
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 565
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 403
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 8,
+      "total_votes": 1376046,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 719261
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 647895
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 7101
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1789
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 165691,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 137818
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 27873
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 233124,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 122461
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 109780
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 645
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 135
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 103
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 17,
+      "total_votes": 3150499,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1636000
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1469531
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 23643
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 21325
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 12,
+      "total_votes": 1463152,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 979409
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 483743
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 291301,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 147375
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 140003
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 3923
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 8,
+      "total_votes": 1278794,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 632864
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 619931
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 20057
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 3041
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1454
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 551
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 262
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 241
+        },
+        {
+          "name": "Frank Zeidler",
+          "party": "O",
+          "votes": 233
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 160
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 340932,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 204151
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 126549
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 5935
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 3558
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 739
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 26,
+      "total_votes": 4716865,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 2364269
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 2271295
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 55939
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 9250
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 8057
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 3615
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 2422
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 2018
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 13,
+      "total_votes": 2220362,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1183958
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1014714
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 14048
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 5695
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1947
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 7,
+      "total_votes": 957845,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 502752
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 430421
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 13185
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 4724
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 3242
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 2118
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 1403
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 9,
+      "total_votes": 1167142,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 615717
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 531852
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 8308
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 6837
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 2328
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 814
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 510
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 426
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 350
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 10,
+      "total_votes": 1277383,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 661365
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 587446
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 10058
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 7417
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 6490
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 3134
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 1473
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 14,
+      "total_votes": 2546157,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1429475
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1030276
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 65637
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 8138
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 7555
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 4922
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 135
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 19
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 1432273,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 759612
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 672661
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 482968,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 236320
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 232279
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 10874
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 3495
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 21,
+      "total_votes": 3651590,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1893742
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1696714
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 47905
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 5407
+        },
+        {
+          "name": "Margaret Wright",
+          "party": "O",
+          "votes": 3504
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 1804
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1366
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 1148
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 1949589,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1070440
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 819395
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 35490
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 13592
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 4149
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 3529
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1092
+        },
+        {
+          "name": "Margaret Wright",
+          "party": "O",
+          "votes": 635
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 543
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 370
+        },
+        {
+          "name": "Frank Zeidler",
+          "party": "O",
+          "votes": 354
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 12,
+      "total_votes": 1949859,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 998387
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 927443
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 24029
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 7,
+      "total_votes": 768390,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 381329
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 366846
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 6678
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 4074
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 4049
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 2805
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 2609
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 4,
+      "total_votes": 328734,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 173703
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 149259
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 5772
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 13,
+      "total_votes": 1677906,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 927365
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 741960
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 5607
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 2219
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 755
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 297308,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 153684
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 136078
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 3698
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 2952
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 269
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 256
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 142
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 85
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 63
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 43
+        },
+        {
+          "name": "Frank Zeidler",
+          "party": "O",
+          "votes": 38
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 606749,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 359219
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 233293
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 9383
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 3378
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1476
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 339024,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 185935
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 147645
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 4095
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 936
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 186
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 161
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 66
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 17,
+      "total_votes": 3014472,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1509688
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1444653
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 32717
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 9449
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 7716
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 3686
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1662
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1650
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 1184
+        },
+        {
+          "name": "Margaret Wright",
+          "party": "O",
+          "votes": 1044
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 554
+        },
+        {
+          "name": "Frank Zeidler",
+          "party": "O",
+          "votes": 469
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 4,
+      "total_votes": 416590,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 211419
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 201148
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 2462
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1110
+        },
+        {
+          "name": "Frank Zeidler",
+          "party": "O",
+          "votes": 240
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 211
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 3,
+      "total_votes": 196768,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 101273
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 92479
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1519
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 1497
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 41,
+      "total_votes": 6525225,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 3389558
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 3100791
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 12197
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 10270
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 6996
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 5413
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 25,
+      "total_votes": 4110456,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 2009959
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 2000626
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 58267
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 15508
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 8952
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 7817
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 4833
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 4364
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 68
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 62
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 8,
+      "total_votes": 1092251,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 545708
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 532442
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 14101
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 6,
+      "total_votes": 1023769,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 492120
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 490407
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 40207
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 1035
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 27,
+      "total_votes": 4617853,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 2328677
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 2205604
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 50584
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 25344
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 3009
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 2744
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1891
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 410584,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 227636
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 181249
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 715
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 462
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 334
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 188
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 801902,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 450807
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 346149
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 2996
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 1950
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 4,
+      "total_votes": 300678,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 151505
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 147068
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1619
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 318
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 168
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 10,
+      "total_votes": 1475800,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 825879
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 633969
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 5769
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 5004
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 2303
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 1375
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 547
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 512
+        },
+        {
+          "name": "Benjamin Ben Bubar",
+          "party": "O",
+          "votes": 442
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 26,
+      "total_votes": 4068902,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 2082319
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1953300
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 20118
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 11442
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 1723
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 4,
+      "total_votes": 541218,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 337908
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 182110
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 13304
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 3907
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 2438
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 1162
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 268
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 121
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 12,
+      "total_votes": 1697094,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 836554
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 813896
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 17802
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 16686
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 7508
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 4648
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 182812,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 100387
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 77798
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 4001
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 430
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 196
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 9,
+      "total_votes": 1550052,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 777732
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 717323
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 36986
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 8585
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 5042
+        },
+        {
+          "name": "Thomas J. Anderson",
+          "party": "O",
+          "votes": 1046
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 905
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 903
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 817
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 713
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 11,
+      "total_votes": 2098906,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 1040232
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 1004987
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 34943
+        },
+        {
+          "name": "Lester Maddox",
+          "party": "O",
+          "votes": 8552
+        },
+        {
+          "name": "Frank Zeidler",
+          "party": "O",
+          "votes": 4298
+        },
+        {
+          "name": "Roger Macbride",
+          "party": "O",
+          "votes": 3814
+        },
+        {
+          "name": "Peter Camejo",
+          "party": "O",
+          "votes": 1691
+        },
+        {
+          "name": "Levin Julius Jules",
+          "party": "O",
+          "votes": 389
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 6,
+      "total_votes": 750590,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 435864
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 314726
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 154956,
+      "candidates": [
+        {
+          "name": "Gerald Ford",
+          "party": "R",
+          "votes": 92717
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "D",
+          "votes": 62239
+        }
+      ]
+    }
+  ]
+}

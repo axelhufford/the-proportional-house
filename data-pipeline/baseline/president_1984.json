@@ -1,0 +1,1923 @@
+{
+  "meta": {
+    "year": 1984,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 206762,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 138377
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 62007
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 6378
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1441713,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 872849
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 551899
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 9504
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 4671
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 1401
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 730
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 659
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 884406,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 534774
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 338646
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2221
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1890
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1499
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 1461
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 1291
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 960
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 842
+        },
+        {
+          "name": "Arthur Lowery",
+          "party": "O",
+          "votes": 822
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 7,
+      "total_votes": 1025855,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 681416
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 333854
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 10585
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 47,
+      "total_votes": 9505041,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 5467009
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 3922519
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 49951
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 39265
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 26297
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 8,
+      "total_votes": 1295357,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 821817
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 454975
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 11257
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 4662
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 978
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 858
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 810
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 8,
+      "total_votes": 1466674,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 890877
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 569597
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 4826
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 1374
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 210479,
+      "candidates": [
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 180408
+        },
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 29009
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 279
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 257
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 165
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 127
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 127
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 107
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 254572,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 152190
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 101656
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 269
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 268
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 121
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 68
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 21,
+      "total_votes": 4179166,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 2730350
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1448816
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 12,
+      "total_votes": 1775350,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1068722
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 706628
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 335846,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 185050
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 147154
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2167
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 821
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 654
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 8,
+      "total_votes": 1318754,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 703088
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 605620
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 6248
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 1844
+        },
+        {
+          "name": "Gerald Baker",
+          "party": "O",
+          "votes": 892
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 463
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 313
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 286
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 411144,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 297523
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 108510
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2823
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 2288
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 24,
+      "total_votes": 4818226,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 2707103
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 2086499
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 10086
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 4672
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 2716
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 2632
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 2386
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 2132
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 12,
+      "total_votes": 2233069,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1377230
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 841481
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 7617
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 6741
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 7,
+      "total_votes": 1021991,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 677296
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 333149
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 3564
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 3329
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 2544
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 2109
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 9,
+      "total_votes": 1369345,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 821702
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 539539
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 3129
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1776
+        },
+        {
+          "name": "John B. Anderson",
+          "party": "O",
+          "votes": 1479
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 599
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 428
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 365
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 328
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 10,
+      "total_votes": 1706822,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1037299
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 651586
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 9502
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 3552
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 1876
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 1310
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 1164
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 533
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 13,
+      "total_votes": 2558540,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1310936
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1239606
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 7998
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 1675873,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 879918
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 787935
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 5721
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 898
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 745
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 656
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 553062,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 336500
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 214515
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1292
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 755
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 20,
+      "total_votes": 3801056,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 2251571
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1529638
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 10055
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 3862
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 1416
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 1191
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 1049
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1048
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 665
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 561
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2083726,
+      "candidates": [
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1036364
+        },
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1032603
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 3865
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 3180
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2996
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 2377
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 1219
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 630
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 260
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 232
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2122771,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1274188
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 848583
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 7,
+      "total_votes": 941104,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 582377
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 352192
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2336
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 1169
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 1032
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1001
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 641
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 356
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 4,
+      "total_votes": 384377,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 232450
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 146742
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 5185
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 13,
+      "total_votes": 2175361,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1346481
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 824287
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 3794
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 799
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 308971,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 200336
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 104429
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1278
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 1077
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 703
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 368
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 239
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 220
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 169
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 152
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 652090,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 460054
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 187866
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2079
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 1066
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 1025
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 388904,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 267050
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 120347
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 735
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 467
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 305
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 16,
+      "total_votes": 3217862,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1933630
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1261323
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 8404
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 6416
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 2293
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 1721
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1564
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 1264
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 1247
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 514369,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 307101
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 201769
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 4459
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 455
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 224
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 206
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 155
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 4,
+      "total_votes": 282717,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 188770
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 91655
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2292
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 36,
+      "total_votes": 6805973,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 3664763
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 3119609
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 11949
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 4226
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 3200
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 2226
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 23,
+      "total_votes": 4563235,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 2678559
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1825440
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 24180
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 10693
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 7130
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 5886
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 4438
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 4344
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 2565
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 8,
+      "total_votes": 1255676,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 861530
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 385080
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 9066
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1222179,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 685700
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 536479
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 25,
+      "total_votes": 4844903,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 2584323
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 2228131
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 21628
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 6982
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 2059
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1780
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 410489,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 212080
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 197106
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 510
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 277
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 240
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 91
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 75
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 61
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 49
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 968529,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 615539
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 344459
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 4359
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 3490
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 682
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 317867,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 200267
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 116113
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 1150
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 337
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 1711866,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 990212
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 711714
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 3072
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1852
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 1763
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 1036
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 978
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 715
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 524
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 29,
+      "total_votes": 5397317,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 3433428
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 1949276
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 14613
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 629656,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 469105
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 155369
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2447
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 1345
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 844
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 220
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 184
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 142
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 12,
+      "total_votes": 2146635,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1337078
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 796250
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 13307
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 233849,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 135865
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 95730
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 1002
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 423
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 323
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 264
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 127
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 115
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 10,
+      "total_votes": 1874910,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1051670
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 798352
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 8844
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 5724
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 4712
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 1891
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 1654
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 814
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 641
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 608
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 11,
+      "total_votes": 2210983,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 1198584
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 995740
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 4883
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 3864
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 3791
+        },
+        {
+          "name": "Sonia Johnson",
+          "party": "O",
+          "votes": 1456
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 1006
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 619
+        },
+        {
+          "name": "Gus Hall",
+          "party": "O",
+          "votes": 596
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 444
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 6,
+      "total_votes": 735742,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 405483
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 328125
+        },
+        {
+          "name": "Bob Richards",
+          "party": "O",
+          "votes": 996
+        },
+        {
+          "name": "Melvin Mason",
+          "party": "O",
+          "votes": 645
+        },
+        {
+          "name": "Dennis Serrette",
+          "party": "O",
+          "votes": 493
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 188968,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "R",
+          "votes": 133241
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "D",
+          "votes": 53370
+        },
+        {
+          "name": "David Bergland",
+          "party": "O",
+          "votes": 2357
+        }
+      ]
+    }
+  ]
+}

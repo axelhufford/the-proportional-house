@@ -1,0 +1,1668 @@
+{
+  "meta": {
+    "year": 1988,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 199159,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 119251
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 72584
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 5484
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1024
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 816
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1377970,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 815576
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 549506
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 8460
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 4428
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 827738,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 466578
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 349237
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 6465
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 3297
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2161
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 7,
+      "total_votes": 1171583,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 702541
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 454029
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 13351
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1662
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 47,
+      "total_votes": 9886254,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 5054917
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 4702233
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 70105
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 58999
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 8,
+      "total_votes": 1372255,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 728177
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 621453
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 15482
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 4604
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2539
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 8,
+      "total_votes": 1443387,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 750241
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 676584
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 14071
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2491
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 188024,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 159407
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 27590
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 554
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 208
+        },
+        {
+          "name": "Willa Kenoyer",
+          "party": "O",
+          "votes": 142
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 123
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 249891,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 139639
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 108647
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 1162
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 443
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 21,
+      "total_votes": 4302037,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2618885
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1656701
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 19796
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 6655
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 12,
+      "total_votes": 1809657,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1081331
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 714792
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 8435
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 5099
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 354461,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 192364
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 158625
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 1999
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1003
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 470
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 8,
+      "total_votes": 1224001,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 670557
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 545355
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 3526
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 2494
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 755
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 540
+        },
+        {
+          "name": "Willa Kenoyer",
+          "party": "O",
+          "votes": 334
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 235
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 205
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 408968,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 253881
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 147272
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 5313
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2502
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 24,
+      "total_votes": 4559120,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2310939
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 2215940
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 14944
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 10276
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 7021
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 12,
+      "total_votes": 2168621,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1297763
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 860643
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 10215
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 7,
+      "total_votes": 976685,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 554049
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 422636
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 9,
+      "total_votes": 1322517,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 734281
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 580368
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 4494
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 2118
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1256
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 10,
+      "total_votes": 1628202,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 883702
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 717460
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 18612
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 4115
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2355
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1958
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 13,
+      "total_votes": 2629862,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1401415
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1194635
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 24251
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 9561
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 1714334,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 876167
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 826304
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 6748
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 5115
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 554805,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 307131
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 243569
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 2700
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1405
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 20,
+      "total_votes": 3661563,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1965486
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1675783
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 18336
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 1958
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2093176,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1109471
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 962337
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 5403
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 5109
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 2155
+        },
+        {
+          "name": "Jack Herer",
+          "party": "O",
+          "votes": 1949
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1734
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 1702
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 1529
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 1298
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 489
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2093228,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1084953
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1001619
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 6656
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 7,
+      "total_votes": 925140,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 557890
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 363921
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 3329
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 4,
+      "total_votes": 365674,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 190412
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 168936
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 5047
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1279
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 13,
+      "total_votes": 2134370,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1237258
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 890167
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 5682
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 1263
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 297261,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 166559
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 127739
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 1315
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 905
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 396
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 347
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 661465,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 397956
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 259235
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 2534
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 1740
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 450525,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 281537
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 163696
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 4502
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 790
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 16,
+      "total_votes": 3099553,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1743192
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1320352
+        },
+        {
+          "name": "Lewin Herberg G.",
+          "party": "O",
+          "votes": 9953
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 8421
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 5139
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 3454
+        },
+        {
+          "name": "Willa Kenoyer",
+          "party": "O",
+          "votes": 2587
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 2446
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 2298
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 1020
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 691
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 521294,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 270341
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 244497
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 3368
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2237
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 344
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 258
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 249
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 4,
+      "total_votes": 343133,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 206040
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 132738
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 3520
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 835
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 36,
+      "total_votes": 6485670,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 3347882
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 3081871
+        },
+        {
+          "name": "William A. Marra",
+          "party": "O",
+          "votes": 20497
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 15845
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 12109
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 4179
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 3287
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 23,
+      "total_votes": 4385522,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2416549
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1939629
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 12017
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 11926
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 5401
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 8,
+      "total_votes": 1171036,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 678367
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 483423
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 6261
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2985
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1197630,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 616206
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 560126
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 14811
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 6487
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 25,
+      "total_votes": 4536251,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 2300087
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 2194944
+        },
+        {
+          "name": "Eugene Gene McCarthy",
+          "party": "O",
+          "votes": 19158
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 12051
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 4379
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 3444
+        },
+        {
+          "name": "Edward Winn",
+          "party": "O",
+          "votes": 2188
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 404569,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 225123
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 177761
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 825
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 280
+        },
+        {
+          "name": "Lewin Herberg G.",
+          "party": "O",
+          "votes": 195
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 159
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 130
+        },
+        {
+          "name": "Willa Kenoyer",
+          "party": "O",
+          "votes": 96
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 986009,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 606443
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 370554
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 4935
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 4077
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 310975,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 165415
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 145560
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 1627027,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 947233
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 679794
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 29,
+      "total_votes": 5427140,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 3036829
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 2352748
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 30355
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 7208
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 647008,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 428442
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 207343
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 7473
+        },
+        {
+          "name": "Delmar Dennis",
+          "party": "O",
+          "votes": 2158
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 455
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 427
+        },
+        {
+          "name": "Louie G. Youngkeit",
+          "party": "O",
+          "votes": 372
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 209
+        },
+        {
+          "name": "Willa Kenoyer",
+          "party": "O",
+          "votes": 129
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 12,
+      "total_votes": 2191609,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1309162
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 859799
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 14312
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 8336
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 242194,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 124331
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 115775
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 1000
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 275
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 205
+        },
+        {
+          "name": "David Duke",
+          "party": "O",
+          "votes": 189
+        },
+        {
+          "name": "Lewin Herberg G.",
+          "party": "O",
+          "votes": 164
+        },
+        {
+          "name": "Willa Kenoyer",
+          "party": "O",
+          "votes": 142
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 113
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 10,
+      "total_votes": 1865253,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 933516
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 903835
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 17240
+        },
+        {
+          "name": "Lyndon, Jr. Larouche",
+          "party": "O",
+          "votes": 4412
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 3520
+        },
+        {
+          "name": "Larry Holmes",
+          "party": "O",
+          "votes": 1440
+        },
+        {
+          "name": "James Mac Warren",
+          "party": "O",
+          "votes": 1290
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 11,
+      "total_votes": 2174293,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 1126794
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 1047499
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 6,
+      "total_votes": 653311,
+      "candidates": [
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 341016
+        },
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 310065
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 2230
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 176551,
+      "candidates": [
+        {
+          "name": "George H. W. Bush",
+          "party": "R",
+          "votes": 106867
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "D",
+          "votes": 67113
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 2026
+        },
+        {
+          "name": "Lenora Fulani",
+          "party": "O",
+          "votes": 545
+        }
+      ]
+    }
+  ]
+}

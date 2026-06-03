@@ -1,0 +1,1943 @@
+{
+  "meta": {
+    "year": 2008,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 324467,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 193841
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 123594
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3783
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 1660
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1589
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 2080025,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1266546
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 813479
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 1086617,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 638017
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 422310
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 12882
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 4776
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 4023
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 3470
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 1139
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 10,
+      "total_votes": 2292080,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1230111
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1034707
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 12555
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 11301
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 3406
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 55,
+      "total_votes": 13541664,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 8274473
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 5011781
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 108381
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 67582
+        },
+        {
+          "name": "Alan Keyes",
+          "party": "O",
+          "votes": 40673
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 38774
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 9,
+      "total_votes": 2401361,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1288576
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1073589
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 13350
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 10897
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 6233
+        },
+        {
+          "name": "Alan Keyes",
+          "party": "O",
+          "votes": 3051
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 2822
+        },
+        {
+          "name": "Frank McEnulty",
+          "party": "O",
+          "votes": 828
+        },
+        {
+          "name": "Charles Jay",
+          "party": "O",
+          "votes": 598
+        },
+        {
+          "name": "Jonathan Allen",
+          "party": "O",
+          "votes": 348
+        },
+        {
+          "name": "Thomas R. Stevens",
+          "party": "O",
+          "votes": 336
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 226
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 158
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 154
+        },
+        {
+          "name": "Bradford Lyttle",
+          "party": "O",
+          "votes": 110
+        },
+        {
+          "name": "Gene Amondson",
+          "party": "O",
+          "votes": 85
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 7,
+      "total_votes": 1646362,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 997772
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 629428
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 19162
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 264715,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 245800
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 17367
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 958
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 590
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 412412,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 255459
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 152374
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 2401
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1109
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 626
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 385
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 58
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 27,
+      "total_votes": 8390353,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 4282074
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 4045624
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 28124
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 17218
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 7915
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 2887
+        },
+        {
+          "name": "Alan Keyes",
+          "party": "O",
+          "votes": 2550
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 1516
+        },
+        {
+          "name": "Charles Jay",
+          "party": "O",
+          "votes": 795
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 533
+        },
+        {
+          "name": "Thomas R. Stevens",
+          "party": "O",
+          "votes": 419
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 405
+        },
+        {
+          "name": "Gene Amondson",
+          "party": "O",
+          "votes": 293
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 15,
+      "total_votes": 3921613,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2048759
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1844123
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 28731
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 453871,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 325871
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 120566
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3825
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1314
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 1013
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 979
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 303
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 7,
+      "total_votes": 1530386,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 828940
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 682379
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 8014
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 4590
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 4445
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 1423
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 292
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 182
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 121
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 655032,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 403012
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 236440
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 7175
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 4747
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 3658
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 21,
+      "total_votes": 5521211,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 3419348
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2031179
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 30948
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 19642
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 11838
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 8256
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 11,
+      "total_votes": 2749853,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1374039
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1345648
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 29257
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 909
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1235872,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 699655
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 514765
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 10598
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 6706
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 4148
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1826508,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1048462
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 751985
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 15378
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 5989
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 4694
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 9,
+      "total_votes": 1960761,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1148275
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 782989
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 9368
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 9187
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6997
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 2581
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 735
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 354
+        },
+        {
+          "name": "Gene Amondson",
+          "party": "O",
+          "votes": 275
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 12,
+      "total_votes": 3066502,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1904097
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1108854
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 28841
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 13189
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 6550
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 4971
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 2622391,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1629467
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 959862
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 14713
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 9842
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 4747
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 3760
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 730732,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 421923
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 295273
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 10636
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 2900
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 17,
+      "total_votes": 5001596,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2872579
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2048639
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 33085
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 23716
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 14685
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 8892
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2900840,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1573354
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1275409
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 30152
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 9174
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 6787
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 5174
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 790
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2925205,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1445814
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1441911
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 17813
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 11386
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 8201
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 80
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 6,
+      "total_votes": 1289865,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 724597
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 554662
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4011
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 2551
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 2529
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 1034
+        },
+        {
+          "name": "Ted Weill",
+          "party": "O",
+          "votes": 481
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 490109,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 242763
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 231667
+        },
+        {
+          "name": "Ronald Ron Paul",
+          "party": "O",
+          "votes": 10638
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3686
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1355
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 15,
+      "total_votes": 4298357,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2142651
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2128474
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 25722
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 1510
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 316621,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 168601
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 141278
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4189
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1354
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 1199
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 798444,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 452979
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 333319
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5406
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 2972
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 2740
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 1028
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 707611,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 384826
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 316534
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3503
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 2748
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 15,
+      "total_votes": 3868237,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2215422
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1613207
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 21298
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 8441
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 3956
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 3636
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 699
+        },
+        {
+          "name": "Jeffery Boss",
+          "party": "O",
+          "votes": 639
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 523
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 416
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 830158,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 472422
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 346832
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5327
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 2428
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 1597
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 1552
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 5,
+      "total_votes": 961581,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 533736
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 412827
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6150
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 4263
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 3194
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 1411
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 31,
+      "total_votes": 7636616,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 4804945
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2752771
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 41249
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 19596
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 12801
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 3615
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 1639
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 20,
+      "total_votes": 5707841,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 2940044
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2677820
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 46242
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 19917
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 12565
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 8518
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 2735
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 7,
+      "total_votes": 1462661,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 960165
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 502496
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1806616,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1037291
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 738475
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 18614
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 7693
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 4543
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 21,
+      "total_votes": 5995137,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 3276363
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 2655885
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 42977
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 19912
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 469767,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 296571
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 165391
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4829
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1382
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 797
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 675
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 122
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 1920969,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1034896
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 862449
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 7283
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 6827
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5053
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 4461
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 381975,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 203054
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 170924
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4267
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 1895
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1835
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 2566615,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1479178
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1087437
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 34,
+      "total_votes": 8069828,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 4479328
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 3528633
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 56116
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5751
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 952338,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 596030
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 327670
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 12012
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 8416
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 6966
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 982
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 262
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 3716905,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1959532
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1725005
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 11483
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 11067
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 7474
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 2344
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 323582,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 219262
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 98974
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3339
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1067
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 500
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 150
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 149
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 141
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 11,
+      "total_votes": 3036878,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1750848
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1229216
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 29489
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 12728
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 9432
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 3819
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 705
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 641
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 10,
+      "total_votes": 2976896,
+      "candidates": [
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 1677211
+        },
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 1262393
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 17605
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 8858
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 5072
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 4216
+        },
+        {
+          "name": "Jeffrey Wamboldt",
+          "party": "O",
+          "votes": 764
+        },
+        {
+          "name": "Brian Moore",
+          "party": "O",
+          "votes": 540
+        },
+        {
+          "name": "Gloria Estella La Riva",
+          "party": "O",
+          "votes": 237
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 713362,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 397466
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 303857
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 7219
+        },
+        {
+          "name": "Charles Chuck Baldwin",
+          "party": "O",
+          "votes": 2465
+        },
+        {
+          "name": "Cynthia McKinney",
+          "party": "O",
+          "votes": 2355
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 249666,
+      "candidates": [
+        {
+          "name": "John McCain",
+          "party": "R",
+          "votes": 164958
+        },
+        {
+          "name": "Barack Obama",
+          "party": "D",
+          "votes": 82868
+        },
+        {
+          "name": "Bob Barr",
+          "party": "O",
+          "votes": 1594
+        },
+        {
+          "name": "Over Vote",
+          "party": "O",
+          "votes": 246
+        }
+      ]
+    }
+  ]
+}

@@ -12,16 +12,23 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "data-pipeline"))
 
-from allocation import AllocationInput, allocate  # noqa: E402
+from allocation import AllocationInput, AllocationInputN, allocate, allocate_n  # noqa: E402
 
 FIXTURE_PATH = REPO_ROOT / "tests" / "fixtures" / "allocation_cases.json"
 METHODS = ("sainte-lague", "dhondt", "hamilton")
 
 
-def _load_cases():
+def _load_fixture():
     with FIXTURE_PATH.open() as f:
-        data = json.load(f)
-    return data["cases"]
+        return json.load(f)
+
+
+def _load_cases():
+    return _load_fixture()["cases"]
+
+
+def _load_cases_n():
+    return _load_fixture()["cases_n"]
 
 
 @pytest.mark.parametrize("case", _load_cases(), ids=lambda c: c["name"])
@@ -39,4 +46,15 @@ def test_allocation_parity(case, method):
     )
     assert result.r_seats == expected["r_seats"], (
         f"{case['name']} [{method}]: expected R={expected['r_seats']}, got R={result.r_seats}"
+    )
+
+
+@pytest.mark.parametrize("case", _load_cases_n(), ids=lambda c: c["name"])
+@pytest.mark.parametrize("method", METHODS)
+def test_allocation_n_parity(case, method):
+    inp = AllocationInputN(seats=case["input"]["seats"], votes=list(case["input"]["votes"]))
+    expected = case["expected"][method]
+    result = allocate_n(inp, method)
+    assert result == expected, (
+        f"{case['name']} [{method}]: expected {expected}, got {result}"
     )

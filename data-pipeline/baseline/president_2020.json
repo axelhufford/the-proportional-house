@@ -1,0 +1,2978 @@
+{
+  "meta": {
+    "year": 2020,
+    "source": "FiveThirtyEight election-results; certified state totals (FEC/states)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 357569,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 189951
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 153778
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 8897
+        },
+        {
+          "name": "Jesse Ventura",
+          "party": "O",
+          "votes": 2673
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 1127
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 825
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 318
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 2315970,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1441170
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 849624
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 25176
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 1219069,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 760647
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 423932
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 13133
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 4099
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 2980
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 2812
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 2141
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 2108
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 1713
+        },
+        {
+          "name": "Connie L. Gammon",
+          "party": "O",
+          "votes": 1475
+        },
+        {
+          "name": "John Richard Myers",
+          "party": "O",
+          "votes": 1372
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 1336
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 1321
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 11,
+      "total_votes": 3387326,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1672143
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1661686
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 51465
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 1557
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 236
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 190
+        },
+        {
+          "name": "Daniel Clyde Cummings",
+          "party": "O",
+          "votes": 36
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 13
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 55,
+      "total_votes": 17500881,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 11110250
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 6006429
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 187895
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 81029
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 60160
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 51037
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 2605
+        },
+        {
+          "name": "Jesse Ventura",
+          "party": "O",
+          "votes": 611
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 559
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 185
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 121
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 9,
+      "total_votes": 3256980,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1804352
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1364607
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 52460
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 8986
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 8089
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 5061
+        },
+        {
+          "name": "William Robert Hammons",
+          "party": "O",
+          "votes": 2730
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 2515
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 2011
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 1035
+        },
+        {
+          "name": "Kyle Kenley Kopitke",
+          "party": "O",
+          "votes": 762
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 636
+        },
+        {
+          "name": "Joseph W. McHugh",
+          "party": "O",
+          "votes": 614
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 572
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 568
+        },
+        {
+          "name": "Princess Khadajah M. Jacob-Fambro",
+          "party": "O",
+          "votes": 495
+        },
+        {
+          "name": "Dario David Hunter",
+          "party": "O",
+          "votes": 379
+        },
+        {
+          "name": "Blake Huber",
+          "party": "O",
+          "votes": 355
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 354
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 196
+        },
+        {
+          "name": "Jordan Scott",
+          "party": "O",
+          "votes": 175
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 24
+        },
+        {
+          "name": "Todd Cella",
+          "party": "O",
+          "votes": 4
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 7,
+      "total_votes": 1823835,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1080831
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 714717
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 20230
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 7538
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 235
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 219
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 22
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 11
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Karynn Weinstein",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 341219,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 317323
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 18586
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 2036
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 1726
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 855
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 693
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 504325,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 296268
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 200603
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 5000
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 2139
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 169
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 87
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 28
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 14
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Princess Khadajah M. Jacob-Fambro",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 29,
+      "total_votes": 11067456,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 5668731
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 5297045
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 70324
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 14721
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 5966
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 5712
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 3902
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 854
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 181
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 9
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Angela Marie Walls-Windhauser",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Michael A. Laboch",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 16,
+      "total_votes": 4999960,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2473633
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2461854
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 62229
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 1013
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 701
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 181
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 159
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 65
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 61
+        },
+        {
+          "name": "Loren Collins",
+          "party": "O",
+          "votes": 11
+        },
+        {
+          "name": "Barbara Ruth Bellar",
+          "party": "O",
+          "votes": 10
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Peter William Sherrill",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Princess Khadajah M. Jacob-Fambro",
+          "party": "O",
+          "votes": 7
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "David C. Byrne",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Kathryn Gibson",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Deborah Rouse",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 574469,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 366130
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 196864
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 5539
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 3822
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 1183
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 931
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 6,
+      "total_votes": 1686534,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 897672
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 759061
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 19637
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 3210
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 3075
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 1707
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 1082
+        },
+        {
+          "name": "Ricki Sue King",
+          "party": "O",
+          "votes": 546
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 544
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 868008,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 554119
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 287021
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 16404
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 3632
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 2808
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 1886
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 1491
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 407
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 163
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 49
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 21
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 7
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 20,
+      "total_votes": 6033744,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 3471915
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2446891
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 66544
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 30494
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 9548
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 8046
+        },
+        {
+          "name": "John Farney",
+          "party": "O",
+          "votes": 84
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 78
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 75
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 18
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 18
+        },
+        {
+          "name": "Andy Williams",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Barbara Ruth Bellar",
+          "party": "O",
+          "votes": 7
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Kevin P. McKee",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "James Timothy Struck",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Mary Ruth Caro Simmons",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Jeremy Higgs",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Deborah Rouse",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Dennis Andrew Ball",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 11,
+      "total_votes": 3033121,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1729519
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1242416
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 59232
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 989
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 895
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 23
+        },
+        {
+          "name": "Valerie McCray",
+          "party": "O",
+          "votes": 17
+        },
+        {
+          "name": "Joseph Charles Schriner",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "James Johnson",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Charles Mitchell Williams",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Deborah Rouse",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Christopher Ryan Stried",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Randall Foltyniewkz",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1372303,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 771406
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 570323
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 30574
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 2136768,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1326646
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 772474
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 26234
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 6483
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 3599
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 716
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 408
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 98
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 43
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 29
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 20
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 9
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 7
+        },
+        {
+          "name": "Timothy Allen Stevens",
+          "party": "O",
+          "votes": 1
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 8,
+      "total_votes": 2148062,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1255776
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 856034
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 21645
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 4897
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 2497
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 1626
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 1125
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 987
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 860
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 749
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 668
+        },
+        {
+          "name": "William Robert Hammons",
+          "party": "O",
+          "votes": 662
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 536
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 11,
+      "total_votes": 3615075,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2382202
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1167202
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 47013
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 18658
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 3018985,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1985023
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 976414
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 33488
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 15799
+        },
+        {
+          "name": "Jerome Michael Segal",
+          "party": "O",
+          "votes": 5884
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 1117
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 795
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 131
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 125
+        },
+        {
+          "name": "Albert Raley",
+          "party": "O",
+          "votes": 32
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 30
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 26
+        },
+        {
+          "name": "Barbara Ruth Bellar",
+          "party": "O",
+          "votes": 23
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 20
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 16
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 11
+        },
+        {
+          "name": "Todd Cella",
+          "party": "O",
+          "votes": 11
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 10
+        },
+        {
+          "name": "Dennis Andrew Ball",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Deborah Rouse",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 4
+        },
+        {
+          "name": "Peter William Sherrill",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Benjamin Schwalb",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Johnson Lee",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 819374,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 435072
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 360737
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 14152
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 8230
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 1183
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 16,
+      "total_votes": 5539302,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2804040
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2649852
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 60381
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 13718
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 7235
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 2986
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 963
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 89
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 32
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Tara Renee Hunter",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 3268443,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1717077
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1484065
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 34976
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 10033
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 7940
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 5651
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 5611
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 1210
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 1037
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 643
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 112
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 75
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "Dario David Hunter",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 10,
+      "total_votes": 3025962,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1718736
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1253014
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 41205
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 8283
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 3919
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 664
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 74
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 64
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 6,
+      "total_votes": 1313759,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 756764
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 539398
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 8026
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 3657
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 1498
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 1317
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 1279
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 1161
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 659
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 603672,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 343602
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 244786
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 15252
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 23
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 15,
+      "total_votes": 5511608,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 2758775
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2684292
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 48678
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 12195
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 7549
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 119
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 359890,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 235595
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 114902
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 9393
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 951712,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 556846
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 374583
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 20283
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 805047,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 424937
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 365660
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 13236
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 217
+        },
+        {
+          "name": "Bernie Sanders",
+          "party": "O",
+          "votes": 192
+        },
+        {
+          "name": "Mitt Romney",
+          "party": "O",
+          "votes": 170
+        },
+        {
+          "name": "Tulsi Gabbard",
+          "party": "O",
+          "votes": 142
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 82
+        },
+        {
+          "name": "John Richard Kasich",
+          "party": "O",
+          "votes": 67
+        },
+        {
+          "name": "Andrew Yang",
+          "party": "O",
+          "votes": 58
+        },
+        {
+          "name": "Mike Pence",
+          "party": "O",
+          "votes": 56
+        },
+        {
+          "name": "Pete Buttigieg",
+          "party": "O",
+          "votes": 47
+        },
+        {
+          "name": "Chris Sununu",
+          "party": "O",
+          "votes": 46
+        },
+        {
+          "name": "William F. Weld",
+          "party": "O",
+          "votes": 23
+        },
+        {
+          "name": "Vermin Love Supreme",
+          "party": "O",
+          "votes": 22
+        },
+        {
+          "name": "Amy Klobuchar",
+          "party": "O",
+          "votes": 19
+        },
+        {
+          "name": "Andrew Cuomo",
+          "party": "O",
+          "votes": 14
+        },
+        {
+          "name": "Jeanne Shaheen",
+          "party": "O",
+          "votes": 14
+        },
+        {
+          "name": "Ron Paul",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "Condoleezza Rice",
+          "party": "O",
+          "votes": 12
+        },
+        {
+          "name": "Michelle Obama",
+          "party": "O",
+          "votes": 10
+        },
+        {
+          "name": "Mike Huckabee",
+          "party": "O",
+          "votes": 10
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 14,
+      "total_votes": 4549353,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2608335
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1883274
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 31677
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 14202
+        },
+        {
+          "name": "William Robert Hammons",
+          "party": "O",
+          "votes": 3255
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 2954
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 2928
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 2728
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 923965,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 501614
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 401894
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 12585
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 4426
+        },
+        {
+          "name": "Sheila Tittle",
+          "party": "O",
+          "votes": 1806
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 1640
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 6,
+      "total_votes": 1391297,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 703486
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 669890
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 14783
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 3138
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 29,
+      "total_votes": 8594826,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 5230985
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 3244798
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 60234
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 32753
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 22587
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 1897
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 805
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 376
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 155
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 98
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 43
+        },
+        {
+          "name": "Joseph Kishore",
+          "party": "O",
+          "votes": 28
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 20
+        },
+        {
+          "name": "Paul Hodges",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 9
+        },
+        {
+          "name": "Dario David Hunter",
+          "party": "O",
+          "votes": 8
+        },
+        {
+          "name": "Shawn W. Howard",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "David A. Martin",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 3
+        },
+        {
+          "name": "Barbara Ruth Bellar",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "John Manimas",
+          "party": "O",
+          "votes": 2
+        },
+        {
+          "name": "Richard Charles Montanye",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 18,
+      "total_votes": 5922202,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 3154834
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2679165
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 67569
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 18812
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 1450
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 212
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 114
+        },
+        {
+          "name": "Dario David Hunter",
+          "party": "O",
+          "votes": 27
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 16
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 7,
+      "total_votes": 1560699,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1020280
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 503890
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 24731
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 5597
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 3654
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 2547
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 2357232,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1340383
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 958448
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 41582
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 11831
+        },
+        {
+          "name": "Dario David Hunter",
+          "party": "O",
+          "votes": 4988
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 20,
+      "total_votes": 6915283,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 3458229
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 3377674
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 79380
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 514998,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 307486
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 199922
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 5053
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 923
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 847
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 767
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 9,
+      "total_votes": 2513329,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1385103
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1091541
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 27916
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 6907
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 1862
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 422609,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 261043
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 150471
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 11095
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 3053851,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1852475
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1143711
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 29877
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 10279
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 5365
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 4545
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 2576
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 2301
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 1860
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 762
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 68
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 31
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 38,
+      "total_votes": 11315056,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 5890347
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 5259126
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 126243
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 33396
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 2785
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 2012
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 350
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 337
+        },
+        {
+          "name": "Todd Cella",
+          "party": "O",
+          "votes": 205
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 114
+        },
+        {
+          "name": "Robert Morrow",
+          "party": "O",
+          "votes": 56
+        },
+        {
+          "name": "Jesse Cuellar",
+          "party": "O",
+          "votes": 49
+        },
+        {
+          "name": "Abram Loeb",
+          "party": "O",
+          "votes": 36
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 6,
+      "total_votes": 1488289,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 865140
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 560282
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 38447
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 7213
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 5551
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 5053
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 2623
+        },
+        {
+          "name": "Joseph W. McHugh",
+          "party": "O",
+          "votes": 2229
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 1139
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 368
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 186
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 51
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Katherine Forbes",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 4440759,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2413568
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1962430
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 64761
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 365486,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 242820
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 112704
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 3608
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 1310
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 1269
+        },
+        {
+          "name": "Brooke Paige",
+          "party": "O",
+          "votes": 1175
+        },
+        {
+          "name": "Christopher Lafontaine",
+          "party": "O",
+          "votes": 856
+        },
+        {
+          "name": "Richard Austing Duncan",
+          "party": "O",
+          "votes": 213
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 209
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 208
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 195
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 166
+        },
+        {
+          "name": "Gary Swing",
+          "party": "O",
+          "votes": 141
+        },
+        {
+          "name": "Phil Collins",
+          "party": "O",
+          "votes": 137
+        },
+        {
+          "name": "Keith C. McCormic",
+          "party": "O",
+          "votes": 126
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 100
+        },
+        {
+          "name": "Jerome Michael Segal",
+          "party": "O",
+          "votes": 65
+        },
+        {
+          "name": "Blake Huber",
+          "party": "O",
+          "votes": 54
+        },
+        {
+          "name": "Kyle Kenley Kopitke",
+          "party": "O",
+          "votes": 53
+        },
+        {
+          "name": "Roque De La Fuente",
+          "party": "O",
+          "votes": 48
+        },
+        {
+          "name": "Zachary Scalf",
+          "party": "O",
+          "votes": 29
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 12,
+      "total_votes": 4060379,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 2369612
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1584651
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 80500
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 18289
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 4840
+        },
+        {
+          "name": "Alyson Kennedy",
+          "party": "O",
+          "votes": 2487
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 10,
+      "total_votes": 3291674,
+      "candidates": [
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 1630866
+        },
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 1610184
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 38491
+        },
+        {
+          "name": "Brian T. Carroll",
+          "party": "O",
+          "votes": 5259
+        },
+        {
+          "name": "Don Blankenship",
+          "party": "O",
+          "votes": 5146
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 1089
+        },
+        {
+          "name": "Kanye West",
+          "party": "O",
+          "votes": 411
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 110
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 52
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 36
+        },
+        {
+          "name": "Kasey Wells",
+          "party": "O",
+          "votes": 25
+        },
+        {
+          "name": "President R. Boddie",
+          "party": "O",
+          "votes": 5
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 794690,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 545382
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 235984
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 10687
+        },
+        {
+          "name": "Howie Hawkins",
+          "party": "O",
+          "votes": 2599
+        },
+        {
+          "name": "Mark R. Charles",
+          "party": "O",
+          "votes": 11
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 9
+        },
+        {
+          "name": "Jade Simmons",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 6
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 5
+        },
+        {
+          "name": "Princess Khadajah M. Jacob-Fambro",
+          "party": "O",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 275026,
+      "candidates": [
+        {
+          "name": "Donald Trump",
+          "party": "R",
+          "votes": 193559
+        },
+        {
+          "name": "Joe Biden",
+          "party": "D",
+          "votes": 73491
+        },
+        {
+          "name": "Jo Jorgensen",
+          "party": "O",
+          "votes": 5768
+        },
+        {
+          "name": "Brock Pierce",
+          "party": "O",
+          "votes": 2208
+        }
+      ]
+    }
+  ]
+}

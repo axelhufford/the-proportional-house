@@ -1,0 +1,2048 @@
+{
+  "meta": {
+    "year": 1996,
+    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "total_ev": 538,
+    "n_states": 51
+  },
+  "states": [
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "ev": 3,
+      "total_votes": 240986,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 122746
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 80380
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 26333
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 7597
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2276
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 925
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 729
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "ev": 9,
+      "total_votes": 1438196,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 769044
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 662165
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 5290
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1697
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "ev": 6,
+      "total_votes": 884262,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 475171
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 325416
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 69884
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3649
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3076
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2065
+        },
+        {
+          "name": "Ralph Forbes",
+          "party": "O",
+          "votes": 932
+        },
+        {
+          "name": "Charles Collins",
+          "party": "O",
+          "votes": 823
+        },
+        {
+          "name": "Isabell Masters",
+          "party": "O",
+          "votes": 749
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 747
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 729
+        },
+        {
+          "name": "Mary Cal Hollis",
+          "party": "O",
+          "votes": 538
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 483
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "ev": 8,
+      "total_votes": 1401791,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 653288
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 622073
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 112072
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 14358
+        }
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "ev": 54,
+      "total_votes": 10018616,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 5119835
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 3828381
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 697847
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 237016
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 73600
+        },
+        {
+          "name": "Marsha Feinland",
+          "party": "O",
+          "votes": 25332
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 21202
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 15403
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "ev": 8,
+      "total_votes": 1510702,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 691848
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 671152
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 99629
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 25070
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 12392
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2813
+        },
+        {
+          "name": "Charles Collins",
+          "party": "O",
+          "votes": 2809
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2545
+        },
+        {
+          "name": "Mary Cal Hollis",
+          "party": "O",
+          "votes": 669
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 599
+        },
+        {
+          "name": "Diane Templin",
+          "party": "O",
+          "votes": 557
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 375
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 244
+        }
+      ]
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "ev": 8,
+      "total_votes": 1392609,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 735740
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 483109
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 139523
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 24321
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 5788
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2425
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1703
+        }
+      ]
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "ev": 3,
+      "total_votes": 185078,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 158220
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 17339
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4780
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 3611
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 588
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 283
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 257
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "ev": 3,
+      "total_votes": 270810,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 140355
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 99062
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 28719
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2052
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 348
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 274
+        }
+      ]
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "ev": 25,
+      "total_votes": 5298602,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2546870
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 2244536
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 483870
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 23326
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "ev": 13,
+      "total_votes": 2298899,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1080843
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1053849
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 146337
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 17870
+        }
+      ]
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "ev": 4,
+      "total_votes": 360120,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 205012
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 113943
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 27358
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 10386
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2493
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 570
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 358
+        }
+      ]
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "ev": 7,
+      "total_votes": 1232835,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 620258
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 492644
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 105159
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6550
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 3349
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2315
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2229
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 331
+        }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "ev": 4,
+      "total_votes": 491711,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 256595
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 165443
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 62518
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3325
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2230
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1600
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "ev": 22,
+      "total_votes": 4309933,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2341744
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1587021
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 346408
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 22548
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 7606
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 4606
+        }
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "ev": 12,
+      "total_votes": 2134048,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1006693
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 887424
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 224299
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 15632
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "ev": 6,
+      "total_votes": 1068100,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 583245
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 387659
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 92639
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4557
+        }
+      ]
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "ev": 8,
+      "total_votes": 1387999,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 636614
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 623283
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 120396
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4009
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2204
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1493
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "ev": 9,
+      "total_votes": 1783959,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 927837
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 712586
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 123293
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 7499
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4719
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3366
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2981
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 1678
+        }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "ev": 12,
+      "total_votes": 2545656,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1571509
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 718058
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 227206
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 20424
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 5183
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 3276
+        }
+      ]
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "ev": 10,
+      "total_votes": 1778233,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 966207
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 681530
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 115812
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 8765
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3402
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2517
+        }
+      ]
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "ev": 4,
+      "total_votes": 605753,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 312788
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 186378
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 85970
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 15279
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2996
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1517
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 825
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "ev": 18,
+      "total_votes": 3844166,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1989653
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1481212
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 336670
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 27670
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 4254
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 3153
+        },
+        {
+          "name": "Jerome Jerry White",
+          "party": "O",
+          "votes": 1554
+        }
+      ]
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "ev": 10,
+      "total_votes": 2189589,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1120380
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 766395
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 257698
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 24906
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 8271
+        },
+        {
+          "name": "Dennis Peron",
+          "party": "O",
+          "votes": 4898
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3415
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1808
+        },
+        {
+          "name": "John Birrenback",
+          "party": "O",
+          "votes": 787
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 684
+        },
+        {
+          "name": "Jerome Jerry White",
+          "party": "O",
+          "votes": 347
+        }
+      ]
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "ev": 11,
+      "total_votes": 2157469,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1025935
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 890016
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 217188
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 11521
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 10522
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2287
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "ev": 7,
+      "total_votes": 840430,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 439838
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 394022
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2809
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2314
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1447
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "ev": 3,
+      "total_votes": 407083,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 179652
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 167922
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 55229
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2526
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1754
+        }
+      ]
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "ev": 14,
+      "total_votes": 2513357,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1225938
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1107849
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 168059
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 8740
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2771
+        }
+      ]
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "ev": 3,
+      "total_votes": 266411,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 125050
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 106905
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 32515
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 847
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 745
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 349
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "ev": 5,
+      "total_votes": 677415,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 363467
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 236761
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 71278
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2792
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1928
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1189
+        }
+      ]
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "ev": 4,
+      "total_votes": 496597,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 246166
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 196486
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 48387
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4214
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1344
+        }
+      ]
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "ev": 15,
+      "total_votes": 2755460,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1652361
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1103099
+        }
+      ]
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "ev": 5,
+      "total_votes": 556074,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 273495
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 232751
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 32257
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 13218
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 2996
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 713
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 644
+        }
+      ]
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "ev": 4,
+      "total_votes": 458671,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 203974
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 199244
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 43986
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4730
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4460
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1732
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 545
+        }
+      ]
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "ev": 33,
+      "total_votes": 6316129,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 3756177
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1933492
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 503458
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 75956
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 23580
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 12220
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 5011
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 3473
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 2762
+        }
+      ]
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "ev": 21,
+      "total_votes": 4534419,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2148222
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1859883
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 483207
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 12851
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 10813
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 9120
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 7361
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 2962
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "ev": 8,
+      "total_votes": 1206713,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 582315
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 488105
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 130788
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 5505
+        }
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "ev": 7,
+      "total_votes": 1375431,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 649641
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 538152
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 121221
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 49415
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 8903
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3379
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2798
+        },
+        {
+          "name": "Mary Cal Hollis",
+          "party": "O",
+          "votes": 1922
+        }
+      ]
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "ev": 23,
+      "total_votes": 4501307,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2215819
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1801169
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 430984
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 28000
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 19552
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 5783
+        }
+      ]
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "ev": 4,
+      "total_votes": 390247,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 233050
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 104683
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 43723
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6040
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1109
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1021
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 435
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 186
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "ev": 8,
+      "total_votes": 1150182,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 573339
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 506152
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 64377
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4271
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2043
+        }
+      ]
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "ev": 3,
+      "total_votes": 291348,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 150543
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 139333
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1472
+        }
+      ]
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "ev": 11,
+      "total_votes": 1772676,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 909146
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 863530
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "ev": 32,
+      "total_votes": 5606537,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 2736167
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 2459683
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 378537
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 20256
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 7472
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 4422
+        }
+      ]
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "ev": 5,
+      "total_votes": 665470,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 361911
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 221633
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 66461
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 4615
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4129
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2601
+        },
+        {
+          "name": "Diane Templin",
+          "party": "O",
+          "votes": 1290
+        },
+        {
+          "name": "Peter Crane",
+          "party": "O",
+          "votes": 1101
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1085
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 298
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 235
+        },
+        {
+          "name": "Earl Dodge",
+          "party": "O",
+          "votes": 111
+        }
+      ]
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "ev": 13,
+      "total_votes": 2416642,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 1138350
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1091060
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 159861
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 13687
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 9174
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 4510
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "ev": 3,
+      "total_votes": 257889,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 137894
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 80352
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 31024
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5585
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1183
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 498
+        },
+        {
+          "name": "Dennis Peron",
+          "party": "O",
+          "votes": 480
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 382
+        },
+        {
+          "name": "Mary Cal Hollis",
+          "party": "O",
+          "votes": 292
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 199
+        }
+      ]
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "ev": 11,
+      "total_votes": 2191141,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1123323
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 840712
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 201003
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 12522
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 6076
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 4578
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 2189
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 738
+        }
+      ]
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "ev": 11,
+      "total_votes": 2161079,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 1071971
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 845029
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 227339
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 8811
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 7929
+        }
+      ]
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "ev": 5,
+      "total_votes": 636459,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 327812
+        },
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 233946
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 71639
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 3062
+        }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "ev": 3,
+      "total_votes": 211571,
+      "candidates": [
+        {
+          "name": "Bob Dole",
+          "party": "R",
+          "votes": 105388
+        },
+        {
+          "name": "Bill Clinton",
+          "party": "D",
+          "votes": 77934
+        },
+        {
+          "name": "Ross Perot",
+          "party": "O",
+          "votes": 25928
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 1739
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 582
+        }
+      ]
+    }
+  ]
+}
