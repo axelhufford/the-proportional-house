@@ -1,7 +1,7 @@
 {
   "meta": {
     "year": 2000,
-    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "source": "FiveThirtyEight election-results; certified state totals (FEC/states)",
     "total_ev": 538,
     "n_states": 51
   },
@@ -28,7 +28,7 @@
           "votes": 28747
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 5192
         },
@@ -53,22 +53,42 @@
       "code": "AL",
       "name": "Alabama",
       "ev": 9,
-      "total_votes": 1639677,
+      "total_votes": 3331146,
       "candidates": [
         {
           "name": "George W. Bush",
           "party": "R",
-          "votes": 941173
+          "votes": 1882346
         },
         {
           "name": "Al Gore",
           "party": "D",
-          "votes": 692611
+          "votes": 1385222
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 36646
+        },
+        {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 12702
         },
         {
           "name": "Harry Browne",
           "party": "O",
-          "votes": 5893
+          "votes": 11786
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1550
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 894
         }
       ]
     },
@@ -94,7 +114,7 @@
           "votes": 13421
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 7358
         },
@@ -137,12 +157,12 @@
           "votes": 45645
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 12373
         },
         {
-          "name": "Smith L. Neil",
+          "name": "Harry Browne",
           "party": "O",
           "votes": 5775
         },
@@ -180,7 +200,7 @@
           "votes": 45520
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 44987
         },
@@ -223,9 +243,14 @@
           "votes": 12799
         },
         {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 10465
+        },
+        {
           "name": "John Hagelin",
           "party": "O",
-          "votes": 12705
+          "votes": 2240
         },
         {
           "name": "Howard Phillips",
@@ -233,7 +258,7 @@
           "votes": 1319
         },
         {
-          "name": "David McReynolds",
+          "name": "David E. McReynolds",
           "party": "O",
           "votes": 712
         },
@@ -243,7 +268,7 @@
           "votes": 216
         },
         {
-          "name": "Earl Dodge",
+          "name": "Earl F. Dodge",
           "party": "O",
           "votes": 208
         }
@@ -276,7 +301,7 @@
           "votes": 9695
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 4731
         },
@@ -342,7 +367,7 @@
           "votes": 8307
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 777
         },
@@ -385,7 +410,7 @@
           "votes": 97488
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 17484
         },
@@ -410,7 +435,7 @@
           "votes": 1371
         },
         {
-          "name": "David McReynolds",
+          "name": "David E. McReynolds",
           "party": "O",
           "votes": 622
         },
@@ -425,7 +450,7 @@
       "code": "GA",
       "name": "Georgia",
       "ev": 13,
-      "total_votes": 2583208,
+      "total_votes": 2596780,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -443,9 +468,19 @@
           "votes": 36332
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 13432
+        },
+        {
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 10926
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 140
         }
       ]
     },
@@ -476,7 +511,7 @@
           "votes": 1477
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 1071
         },
@@ -514,7 +549,7 @@
           "votes": 29374
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 5731
         },
@@ -539,7 +574,7 @@
           "votes": 190
         },
         {
-          "name": "David McReynolds",
+          "name": "David E. McReynolds",
           "party": "O",
           "votes": 107
         }
@@ -567,7 +602,7 @@
           "votes": 12292
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 7615
         },
@@ -592,7 +627,7 @@
       "code": "IL",
       "name": "Illinois",
       "ev": 22,
-      "total_votes": 4725956,
+      "total_votes": 4742062,
       "candidates": [
         {
           "name": "Al Gore",
@@ -610,12 +645,17 @@
           "votes": 103759
         },
         {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 16106
+        },
+        {
           "name": "Harry Browne",
           "party": "O",
           "votes": 11623
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "John Hagelin",
           "party": "O",
           "votes": 2127
         }
@@ -625,7 +665,7 @@
       "code": "IN",
       "name": "Indiana",
       "ev": 12,
-      "total_votes": 2180305,
+      "total_votes": 2199203,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -638,7 +678,12 @@
           "votes": 901980
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 18531
+        },
+        {
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 16959
         },
@@ -646,6 +691,16 @@
           "name": "Harry Browne",
           "party": "O",
           "votes": 15530
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 200
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 167
         }
       ]
     },
@@ -653,7 +708,7 @@
       "code": "KS",
       "name": "Kansas",
       "ev": 6,
-      "total_votes": 1034757,
+      "total_votes": 1072216,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -666,7 +721,12 @@
           "votes": 399276
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 36086
+        },
+        {
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 7370
         },
@@ -674,6 +734,11 @@
           "name": "Harry Browne",
           "party": "O",
           "votes": 4525
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 1373
         },
         {
           "name": "Howard Phillips",
@@ -686,7 +751,7 @@
       "code": "KY",
       "name": "Kentucky",
       "ev": 8,
-      "total_votes": 1543111,
+      "total_votes": 1544026,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -704,7 +769,7 @@
           "votes": 23118
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 4152
         },
@@ -717,6 +782,11 @@
           "name": "John Hagelin",
           "party": "O",
           "votes": 1513
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 915
         }
       ]
     },
@@ -742,7 +812,7 @@
           "votes": 20473
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 14356
         },
@@ -795,7 +865,7 @@
           "votes": 16366
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 11149
         },
@@ -833,7 +903,7 @@
           "votes": 5310
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 4248
         },
@@ -866,7 +936,7 @@
           "votes": 37127
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 4443
         },
@@ -942,9 +1012,9 @@
           "votes": 126696
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
-          "votes": 24460
+          "votes": 22166
         },
         {
           "name": "Harry Browne",
@@ -955,6 +1025,11 @@
           "name": "Howard Phillips",
           "party": "O",
           "votes": 3272
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2294
         },
         {
           "name": "James Harris",
@@ -985,7 +1060,7 @@
           "votes": 38515
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 9818
         },
@@ -1010,7 +1085,7 @@
       "code": "MS",
       "name": "Mississippi",
       "ev": 7,
-      "total_votes": 985449,
+      "total_votes": 994184,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1023,12 +1098,17 @@
           "votes": 404614
         },
         {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 8122
+        },
+        {
           "name": "Howard Phillips",
           "party": "O",
           "votes": 3267
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 2265
         },
@@ -1036,6 +1116,11 @@
           "name": "Harry Browne",
           "party": "O",
           "votes": 2009
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 613
         },
         {
           "name": "John Hagelin",
@@ -1066,7 +1151,7 @@
           "votes": 24437
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 5697
         },
@@ -1109,12 +1194,12 @@
           "votes": 13891
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 8874
         },
         {
-          "name": "Not Designated",
+          "name": "David E. McReynolds",
           "party": "O",
           "votes": 3370
         }
@@ -1124,7 +1209,7 @@
       "code": "ND",
       "name": "North Dakota",
       "ev": 3,
-      "total_votes": 277797,
+      "total_votes": 288256,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1137,14 +1222,29 @@
           "votes": 95284
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 9486
+        },
+        {
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 7288
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 660
         },
         {
           "name": "Howard Phillips",
           "party": "O",
           "votes": 373
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 313
         }
       ]
     },
@@ -1152,7 +1252,7 @@
       "code": "NE",
       "name": "Nebraska",
       "ev": 5,
-      "total_votes": 692427,
+      "total_votes": 697019,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1170,9 +1270,24 @@
           "votes": 24540
         },
         {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 3646
+        },
+        {
           "name": "Harry Browne",
           "party": "O",
           "votes": 2245
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 478
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 468
         }
       ]
     },
@@ -1180,7 +1295,7 @@
       "code": "NH",
       "name": "New Hampshire",
       "ev": 4,
-      "total_votes": 567477,
+      "total_votes": 567805,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1203,9 +1318,14 @@
           "votes": 2757
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 2615
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 328
         }
       ]
     },
@@ -1213,7 +1333,7 @@
       "code": "NJ",
       "name": "New Jersey",
       "ev": 15,
-      "total_votes": 3073023,
+      "total_votes": 3187226,
       "candidates": [
         {
           "name": "Al Gore",
@@ -1224,6 +1344,41 @@
           "name": "George W. Bush",
           "party": "R",
           "votes": 1284173
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 94554
+        },
+        {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 6989
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 6312
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2215
+        },
+        {
+          "name": "David E. McReynolds",
+          "party": "O",
+          "votes": 1880
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1409
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 844
         }
       ]
     },
@@ -1254,7 +1409,7 @@
           "votes": 2058
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 1392
         },
@@ -1274,7 +1429,7 @@
       "code": "NV",
       "name": "Nevada",
       "ev": 4,
-      "total_votes": 605829,
+      "total_votes": 605655,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1292,7 +1447,7 @@
           "votes": 15008
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 4747
         },
@@ -1310,11 +1465,6 @@
           "name": "John Hagelin",
           "party": "O",
           "votes": 415
-        },
-        {
-          "name": "Over Vote",
-          "party": "O",
-          "votes": 174
         }
       ]
     },
@@ -1340,7 +1490,7 @@
           "votes": 244030
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 31599
         },
@@ -1383,9 +1533,14 @@
           "votes": 2183628
         },
         {
-          "name": "Not Designated",
+          "name": "Ralph Nader",
           "party": "O",
-          "votes": 148353
+          "votes": 117799
+        },
+        {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 26721
         },
         {
           "name": "Harry Browne",
@@ -1396,6 +1551,16 @@
           "name": "John Hagelin",
           "party": "O",
           "votes": 6181
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 3823
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 10
         }
       ]
     },
@@ -1416,7 +1581,7 @@
           "votes": 474276
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 9014
         },
@@ -1449,14 +1614,19 @@
           "votes": 77357
         },
         {
-          "name": "Patrick Pat Buchanan",
-          "party": "O",
-          "votes": 9637
-        },
-        {
           "name": "Harry Browne",
           "party": "O",
           "votes": 7447
+        },
+        {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 7063
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 2574
         },
         {
           "name": "Howard Phillips",
@@ -1487,7 +1657,7 @@
           "votes": 103392
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 16023
         },
@@ -1507,7 +1677,7 @@
       "code": "RI",
       "name": "Rhode Island",
       "ev": 4,
-      "total_votes": 408697,
+      "total_votes": 408783,
       "candidates": [
         {
           "name": "Al Gore",
@@ -1525,7 +1695,7 @@
           "votes": 25052
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 2273
         },
@@ -1548,6 +1718,16 @@
           "name": "Howard Phillips",
           "party": "O",
           "votes": 97
+        },
+        {
+          "name": "David E. McReynolds",
+          "party": "O",
+          "votes": 52
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 34
         }
       ]
     },
@@ -1555,7 +1735,7 @@
       "code": "SC",
       "name": "South Carolina",
       "ev": 8,
-      "total_votes": 1382220,
+      "total_votes": 1383902,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1578,9 +1758,14 @@
           "votes": 4760
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 3309
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1682
         },
         {
           "name": "John Hagelin",
@@ -1606,7 +1791,7 @@
           "votes": 118804
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 3322
         },
@@ -1626,7 +1811,7 @@
       "code": "TN",
       "name": "Tennessee",
       "ev": 11,
-      "total_votes": 2043669,
+      "total_votes": 2075753,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1637,6 +1822,41 @@
           "name": "Al Gore",
           "party": "D",
           "votes": 981720
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 19781
+        },
+        {
+          "name": "Harry Browne",
+          "party": "O",
+          "votes": 4284
+        },
+        {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 4250
+        },
+        {
+          "name": "Cathy Gordon Brown",
+          "party": "O",
+          "votes": 1606
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 1015
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 613
+        },
+        {
+          "name": "Randall Venson",
+          "party": "O",
+          "votes": 535
         }
       ]
     },
@@ -1644,7 +1864,7 @@
       "code": "TX",
       "name": "Texas",
       "ev": 32,
-      "total_votes": 6394539,
+      "total_votes": 6407563,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1665,6 +1885,21 @@
           "name": "Harry Browne",
           "party": "O",
           "votes": 23160
+        },
+        {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 12394
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 567
+        },
+        {
+          "name": "David E. McReynolds",
+          "party": "O",
+          "votes": 63
         }
       ]
     },
@@ -1672,7 +1907,7 @@
       "code": "UT",
       "name": "Utah",
       "ev": 5,
-      "total_votes": 770592,
+      "total_votes": 770753,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1690,7 +1925,7 @@
           "votes": 35850
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 9319
         },
@@ -1713,6 +1948,11 @@
           "name": "James Harris",
           "party": "O",
           "votes": 186
+        },
+        {
+          "name": "Louis G. Youngkeit",
+          "party": "O",
+          "votes": 161
         }
       ]
     },
@@ -1743,7 +1983,7 @@
           "votes": 15198
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 5455
         },
@@ -1776,12 +2016,12 @@
           "votes": 20374
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 2192
         },
         {
-          "name": "Lane Dennis Denny",
+          "name": "Dennis I. Lane",
           "party": "O",
           "votes": 1044
         },
@@ -1796,7 +2036,7 @@
           "votes": 219
         },
         {
-          "name": "David McReynolds",
+          "name": "David E. McReynolds",
           "party": "O",
           "votes": 161
         },
@@ -1839,7 +2079,7 @@
           "votes": 13135
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 7171
         },
@@ -1859,7 +2099,7 @@
           "votes": 1729
         },
         {
-          "name": "David McReynolds",
+          "name": "David E. McReynolds",
           "party": "O",
           "votes": 660
         },
@@ -1874,7 +2114,7 @@
       "code": "WI",
       "name": "Wisconsin",
       "ev": 11,
-      "total_votes": 2580976,
+      "total_votes": 2596711,
       "candidates": [
         {
           "name": "Al Gore",
@@ -1892,9 +2132,34 @@
           "votes": 94070
         },
         {
+          "name": "Patrick J. Buchanan",
+          "party": "O",
+          "votes": 11446
+        },
+        {
           "name": "Harry Browne",
           "party": "O",
           "votes": 6640
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 2042
+        },
+        {
+          "name": "Monica Moorehead",
+          "party": "O",
+          "votes": 1063
+        },
+        {
+          "name": "John Hagelin",
+          "party": "O",
+          "votes": 878
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 306
         }
       ]
     },
@@ -1902,7 +2167,7 @@
       "code": "WV",
       "name": "West Virginia",
       "ev": 5,
-      "total_votes": 648100,
+      "total_votes": 648123,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1920,7 +2185,7 @@
           "votes": 10680
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 3169
         },
@@ -1933,6 +2198,11 @@
           "name": "John Hagelin",
           "party": "O",
           "votes": 367
+        },
+        {
+          "name": "Howard Phillips",
+          "party": "O",
+          "votes": 23
         }
       ]
     },
@@ -1953,7 +2223,7 @@
           "votes": 60481
         },
         {
-          "name": "Patrick Pat Buchanan",
+          "name": "Patrick J. Buchanan",
           "party": "O",
           "votes": 2724
         },

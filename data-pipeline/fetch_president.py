@@ -41,8 +41,12 @@ MEDSL_SOURCE = "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi
 FTE_URL = "https://raw.githubusercontent.com/fivethirtyeight/election-results/main/election_results_presidential.csv"
 FTE_SOURCE = "FiveThirtyEight election-results; certified state totals (FEC/states)"
 
-MEDSL_YEARS = [1976, 1980, 1984, 1988, 1992, 1996, 2000, 2004, 2008, 2012, 2016]
-FTE_YEARS = [2020, 2024]
+# 2000 comes from FiveThirtyEight, not MEDSL: MEDSL's Ohio 2000 returns lump
+# Nader/Buchanan/etc. under a placeholder candidate "Not Designated" instead of
+# naming them. 538 itemizes every candidate (and matches MEDSL on the majors), so
+# sourcing 2000 from 538 fixes the label without changing any totals.
+MEDSL_YEARS = [1976, 1980, 1984, 1988, 1992, 1996, 2004, 2008, 2012, 2016]
+FTE_YEARS = [2000, 2020, 2024]
 
 # Identify the two major-party nominees each cycle by SURNAME, not party label.
 # This is robust to: state party-label quirks (MN labels its Democrats
