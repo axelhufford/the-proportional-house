@@ -130,7 +130,7 @@ export function About() {
         <p>
           A side experiment applies the same idea to the presidency: the{' '}
           <Link to="/electoral-college" className="underline hover:text-brand-navy">
-            proportional Electoral College
+            Proportional Electoral College
           </Link>{' '}
           recomputes every election since 1976 as if each state split its electoral votes
           by popular vote — and finds how often nobody reaches 270.

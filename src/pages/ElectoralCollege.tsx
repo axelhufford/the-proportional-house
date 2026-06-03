@@ -103,6 +103,26 @@ function hemicycleParties(c: Computed): HemicycleParty[] {
   return [...d, ...o, ...r].map((x) => ({ id: x.name, color: x.color, seats: x.electors, label: x.name }));
 }
 
+type ECView = 'proportional' | 'actual';
+
+/** Segmented Proportional⇄Actual switch (used independently by the hemicycle and the map). */
+function ViewToggle({ value, onChange, label }: { value: ECView; onChange: (v: ECView) => void; label: string }) {
+  return (
+    <div className="inline-flex rounded-md border border-stone-200 overflow-hidden text-xs" role="group" aria-label={label}>
+      {(['proportional', 'actual'] as const).map((v) => (
+        <button
+          key={v}
+          onClick={() => onChange(v)}
+          aria-pressed={value === v}
+          className={'px-3 py-1 transition-colors ' + (value === v ? 'bg-brand-navy text-white' : 'bg-white text-stone-600 hover:bg-stone-50')}
+        >
+          {v === 'proportional' ? 'Proportional' : 'Actual'}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function ElectoralCollege() {
   useDocumentTitle(
     ROUTE_META['/electoral-college'].title,
@@ -115,6 +135,9 @@ export function ElectoralCollege() {
   const [error, setError] = useState<string | null>(null);
   const [year, setYear] = useState<number | null>(null);
   const [method, setMethod] = useState<AllocationMethod>('sainte-lague');
+  // Independent Proportional⇄Actual toggles for the hemicycle and the map.
+  const [hemiView, setHemiView] = useState<'proportional' | 'actual'>('proportional');
+  const [mapView, setMapView] = useState<'proportional' | 'actual'>('proportional');
 
   useEffect(() => {
     fetchJson<ElectoralCollegePayload>('/data/electoral_college.json')
@@ -146,12 +169,25 @@ export function ElectoralCollege() {
   const leadTie =
     computed.candidates.length >= 2 && computed.candidates[0].electors === computed.candidates[1].electors;
 
+  // Actual (winner-take-all) view: only D and R ever won electoral votes 1976-2024.
+  const dCand = computed.candidates.find((c) => c.party === 'D');
+  const rCand = computed.candidates.find((c) => c.party === 'R');
+  const dName = dCand?.name ?? 'Democrat';
+  const rName = rCand?.name ?? 'Republican';
+  const aD = cycle.actual.by_party.D;
+  const aR = cycle.actual.by_party.R;
+  const actualWinnerD = cycle.actual.winner_party === 'D';
+  const actualParties: HemicycleParty[] = [
+    { id: 'D', color: D_COLOR, seats: aD, label: dName },
+    { id: 'R', color: R_COLOR, seats: aR, label: rName },
+  ];
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 sm:py-10">
       <header className="max-w-3xl">
         <p className="text-xs uppercase tracking-wider text-stone-500 font-medium">An experiment</p>
         <h1 className="mt-1 font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">
-          The proportional Electoral College
+          The Proportional Electoral College
         </h1>
         <p className="mt-3 text-stone-600 leading-relaxed">
           What if every state split its electoral votes in proportion to its popular vote, instead of
@@ -203,38 +239,53 @@ export function ElectoralCollege() {
       {/* Result summary + hemicycle */}
       <Reveal>
         <div className="mt-6 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
             <div>
               <h2 className="font-serif text-2xl text-brand-navy">{year}</h2>
               <p className="text-sm text-stone-500 mt-0.5">
-                Actual:{' '}
-                <span className={cycle.actual.winner_party === 'D' ? 'text-blue-700' : 'text-red-700'}>
-                  {cycle.actual.winner_party === 'D' ? 'Democratic' : 'Republican'} win
+                Actual result:{' '}
+                <span className={actualWinnerD ? 'text-blue-700' : 'text-red-700'}>
+                  {actualWinnerD ? 'Democratic' : 'Republican'} win
                 </span>{' '}
-                — {cycle.actual.by_party.D} D / {cycle.actual.by_party.R} R (winner-take-all)
+                — {aD} D / {aR} R (winner-take-all)
               </p>
             </div>
-            {/* Method toggle */}
-            <div className="flex items-center gap-1 text-xs" role="group" aria-label="Allocation method">
-              {METHODS.map((m) => (
-                <button
-                  key={m.id}
-                  onClick={() => setMethod(m.id)}
-                  className={
-                    'px-2 py-1 rounded-md border transition-colors ' +
-                    (method === m.id
-                      ? 'bg-brand-navy text-white border-brand-navy'
-                      : 'bg-white text-stone-600 border-stone-200 hover:border-brand-navy')
-                  }
-                  aria-pressed={method === m.id}
-                >
-                  {m.label}
-                </button>
-              ))}
+            <div className="flex flex-col items-start sm:items-end gap-2">
+              <ViewToggle value={hemiView} onChange={setHemiView} label="Hemicycle: proportional or actual" />
+              {hemiView === 'proportional' && (
+                <div className="flex items-center gap-1 text-xs" role="group" aria-label="Allocation method">
+                  <span className="text-stone-400 mr-0.5">Method</span>
+                  {METHODS.map((m) => (
+                    <button
+                      key={m.id}
+                      onClick={() => setMethod(m.id)}
+                      className={
+                        'px-2 py-1 rounded-md border transition-colors ' +
+                        (method === m.id
+                          ? 'bg-brand-navy text-white border-brand-navy'
+                          : 'bg-white text-stone-600 border-stone-200 hover:border-brand-navy')
+                      }
+                      aria-pressed={method === m.id}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          {computed.noMajority ? (
+          {hemiView === 'actual' ? (
+            <div className="mt-4 rounded-lg bg-stone-50 border border-stone-200 px-4 py-3">
+              <p className="text-stone-800">
+                <span className={(actualWinnerD ? 'text-blue-700' : 'text-red-700') + ' font-semibold'}>
+                  {actualWinnerD ? dName : rName}
+                </span>{' '}
+                won the Electoral College with {actualWinnerD ? aD : aR} electoral votes ({actualWinnerD ? rName : dName}{' '}
+                {actualWinnerD ? aR : aD}).
+              </p>
+            </div>
+          ) : computed.noMajority ? (
             <div className="mt-4 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
               <p className="text-amber-900 font-medium">
                 No 270 majority — the election would go to the U.S. House.
@@ -268,16 +319,26 @@ export function ElectoralCollege() {
 
           <div className="mt-4">
             <Hemicycle
-              parties={hemicycleParties(computed)}
-              ariaLabel={`Proportional Electoral College, ${year}: ${computed.candidates
-                .map((c) => `${c.name} ${c.electors}`)
-                .join(', ')}. 270 needed for a majority.`}
+              parties={hemiView === 'proportional' ? hemicycleParties(computed) : actualParties}
+              ariaLabel={
+                hemiView === 'proportional'
+                  ? `Proportional Electoral College, ${year}: ${computed.candidates
+                      .map((c) => `${c.name} ${c.electors}`)
+                      .join(', ')}. 270 needed for a majority.`
+                  : `Actual Electoral College, ${year}: ${dName} ${aD}, ${rName} ${aR}.`
+              }
             />
           </div>
 
           {/* National per-candidate breakdown */}
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-sm">
-            {computed.candidates.map((c) => (
+            {(hemiView === 'proportional'
+              ? computed.candidates
+              : [
+                  { name: dName, color: D_COLOR, electors: aD, party: 'D' as const },
+                  { name: rName, color: R_COLOR, electors: aR, party: 'R' as const },
+                ].sort((a, b) => b.electors - a.electors)
+            ).map((c) => (
               <span key={c.name} className="inline-flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: c.color }} aria-hidden="true" />
                 <span className="text-stone-700">{c.name}</span>
@@ -292,12 +353,25 @@ export function ElectoralCollege() {
       {/* Map + table */}
       <Reveal>
         <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
-          <h2 className="font-serif text-xl text-brand-navy">State by state</h2>
+          <div className="flex items-start justify-between gap-3">
+            <h2 className="font-serif text-xl text-brand-navy">State by state</h2>
+            <ViewToggle value={mapView} onChange={setMapView} label="Map: proportional or actual" />
+          </div>
           <p className="text-xs text-stone-500 mt-0.5">
-            Shaded by the proportional Democratic–Republican elector margin; hover for each state’s split.
-            Maine and Nebraska are allocated statewide here (the actual result splits them by district).
+            {mapView === 'proportional' ? (
+              <>
+                Shaded by the proportional Democratic–Republican elector margin; hover for each state’s
+                split. Maine and Nebraska are allocated statewide here (the actual result splits them by
+                district).
+              </>
+            ) : (
+              <>
+                Each state’s actual winner, winner-take-all. Maine and Nebraska are shown by their statewide
+                winner (they split their electoral votes by district in reality).
+              </>
+            )}
           </p>
-          {topology && <ECMap topology={topology} states={computed.states} />}
+          {topology && <ECMap topology={topology} states={computed.states} view={mapView} />}
           <ECTable states={computed.states} />
         </div>
       </Reveal>
@@ -322,7 +396,7 @@ export function ElectoralCollege() {
 const MAP_W = 975;
 const MAP_H = 610;
 
-function ECMap({ topology, states }: { topology: Topology; states: ComputedState[] }) {
+function ECMap({ topology, states, view }: { topology: Topology; states: ComputedState[]; view: ECView }) {
   const [hover, setHover] = useState<string | null>(null);
   const byName = useMemo(() => new Map(states.map((s) => [s.name, s])), [states]);
 
@@ -333,14 +407,34 @@ function ECMap({ topology, states }: { topology: Topology; states: ComputedState
   const pathGen = useMemo(() => geoPath(geoAlbersUsa().fitSize([MAP_W, MAP_H], geojson)), [geojson]);
 
   const hovered = hover ? byName.get(hover) ?? null : null;
+  const actualFill = (p: 'D' | 'R' | 'O') => (p === 'D' ? D_COLOR : p === 'R' ? R_COLOR : '#d6d3d1');
 
   return (
     <div className="relative mt-3">
-      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full h-auto" role="img" aria-label="Map of the proportional Electoral College result by state">
+      <svg
+        viewBox={`0 0 ${MAP_W} ${MAP_H}`}
+        className="w-full h-auto"
+        role="img"
+        aria-label={
+          view === 'proportional'
+            ? 'Map of the Proportional Electoral College result by state'
+            : 'Map of the actual Electoral College result by state'
+        }
+      >
         {geojson.features.map((f, i) => {
           const st = byName.get(f.properties.name);
-          const margin = st && st.ev > 0 ? (st.dEl - st.rEl) / st.ev : 0;
-          const fill = st ? balanceColor(margin) : '#e5e7eb';
+          let fill = '#e5e7eb';
+          if (st) {
+            fill =
+              view === 'actual'
+                ? actualFill(st.actual_winner_party)
+                : balanceColor(st.ev > 0 ? (st.dEl - st.rEl) / st.ev : 0);
+          }
+          const aria = !st
+            ? undefined
+            : view === 'actual'
+              ? `${st.name}: ${st.actual_winner_party === 'D' ? 'Democratic' : st.actual_winner_party === 'R' ? 'Republican' : 'split'} won (${st.ev} electoral votes)`
+              : `${st.name}: ${st.dEl} Democratic, ${st.rEl} Republican electors of ${st.ev}`;
           return (
             <path
               key={i}
@@ -348,11 +442,11 @@ function ECMap({ topology, states }: { topology: Topology; states: ComputedState
               fill={fill}
               stroke={hover === f.properties.name ? '#1F2E4D' : '#fff'}
               strokeWidth={hover === f.properties.name ? 1.5 : 0.75}
-              className="cursor-pointer transition-[stroke-width] duration-150"
+              className="cursor-pointer transition-[stroke-width,fill] duration-150"
               onMouseEnter={() => setHover(f.properties.name)}
               onMouseLeave={() => setHover(null)}
               tabIndex={st ? 0 : -1}
-              aria-label={st ? `${st.name}: ${st.dEl} Democratic, ${st.rEl} Republican electors of ${st.ev}` : undefined}
+              aria-label={aria}
             />
           );
         })}
@@ -361,14 +455,23 @@ function ECMap({ topology, states }: { topology: Topology; states: ComputedState
         <div className="absolute top-2 right-2 w-52 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
           <div className="font-semibold text-stone-900">{hovered.name}</div>
           <div className="text-xs text-stone-500">{hovered.ev} electoral votes</div>
-          <div className="mt-1 space-y-0.5">
-            {hovered.candidates.filter((c) => c.electors > 0).map((c) => (
-              <div key={c.name} className="flex justify-between gap-3">
-                <span className="text-stone-700">{c.name}</span>
-                <span className="font-semibold tabular-nums">{c.electors}</span>
-              </div>
-            ))}
-          </div>
+          {view === 'actual' ? (
+            <div className="mt-1 text-stone-700">
+              Won by{' '}
+              <span className={hovered.actual_winner_party === 'D' ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
+                {hovered.actual_winner_party === 'D' ? 'Democrat' : hovered.actual_winner_party === 'R' ? 'Republican' : '—'}
+              </span>
+            </div>
+          ) : (
+            <div className="mt-1 space-y-0.5">
+              {hovered.candidates.filter((c) => c.electors > 0).map((c) => (
+                <div key={c.name} className="flex justify-between gap-3">
+                  <span className="text-stone-700">{c.name}</span>
+                  <span className="font-semibold tabular-nums">{c.electors}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

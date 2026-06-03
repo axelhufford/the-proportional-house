@@ -57,7 +57,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     canonicalPath: '/about',
   },
   '/electoral-college': {
-    title: 'The proportional Electoral College, 1976–2024 · The Proportional House',
+    title: 'The Proportional Electoral College, 1976–2024 · The Proportional House',
     description:
       'What if each state split its electoral votes proportionally instead of winner-take-all? Applied to every presidential election since 1976 — including how often no candidate would reach 270, sending the election to the House.',
     canonicalPath: '/electoral-college',
