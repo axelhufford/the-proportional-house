@@ -304,11 +304,13 @@ export function ElectoralCollege() {
 
       <footer className="mt-6 text-xs text-stone-400 leading-relaxed max-w-3xl">
         <p>
-          Sources: {payload.meta.sources['1976-2016']}; {payload.meta.sources['2020-2024']}; electoral
+          Sources: {payload.meta.sources['1976-1996']}; {payload.meta.sources['2000-2024']}; electoral
           votes from the {payload.meta.sources['electoral_votes']}. Winner-take-all over this data
-          reproduces the actual Electoral College result of every cycle. Faithless electors (which made a
-          few real tallies differ by an elector or two) are not modeled. Tiny candidates that win no
-          electors are omitted from the breakdown.
+          reproduces the actual Electoral College result of every cycle. Electors are allocated only
+          among named candidates; a small number of ballots the source records as blank, scattered, or
+          unattributed (“other”) are excluded, since an elector can’t be cast for them. Faithless
+          electors (which made a few real tallies differ by an elector or two) are not modeled. Tiny
+          candidates that win no electors are omitted from the breakdown.
         </p>
       </footer>
     </div>

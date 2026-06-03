@@ -27,6 +27,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -41,12 +42,14 @@ MEDSL_SOURCE = "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi
 FTE_URL = "https://raw.githubusercontent.com/fivethirtyeight/election-results/main/election_results_presidential.csv"
 FTE_SOURCE = "FiveThirtyEight election-results; certified state totals (FEC/states)"
 
-# 2000 comes from FiveThirtyEight, not MEDSL: MEDSL's Ohio 2000 returns lump
-# Nader/Buchanan/etc. under a placeholder candidate "Not Designated" instead of
-# naming them. 538 itemizes every candidate (and matches MEDSL on the majors), so
-# sourcing 2000 from 538 fixes the label without changing any totals.
-MEDSL_YEARS = [1976, 1980, 1984, 1988, 1992, 1996, 2004, 2008, 2012, 2016]
-FTE_YEARS = [2000, 2020, 2024]
+# All of 2000-2024 comes from FiveThirtyEight, not MEDSL. MEDSL's older returns
+# sometimes record minor-candidate / spoiled-ballot votes under generic labels
+# ("Not Designated", "Other", "Blank Vote/Scattering", empty names) rather than
+# naming candidates — which leaked a phantom elector (Ohio 2000). 538 itemizes
+# every candidate for 2000-2024, matches MEDSL on the majors, and is more complete
+# on third parties. MEDSL is still the only source for 1976-1996.
+MEDSL_YEARS = [1976, 1980, 1984, 1988, 1992, 1996]
+FTE_YEARS = [2000, 2004, 2008, 2012, 2016, 2020, 2024]
 
 # Identify the two major-party nominees each cycle by SURNAME, not party label.
 # This is robust to: state party-label quirks (MN labels its Democrats
@@ -114,12 +117,31 @@ def _fetch_csv(url: str) -> list[dict]:
 
 
 def _flip_name(medsl_name: str) -> str:
-    """'Reagan, Ronald' -> 'Ronald Reagan'; strip ""nickname"" quoting."""
-    name = medsl_name.replace('""', '"').replace('"', "").strip()
+    """'Reagan, Ronald' -> 'Ronald Reagan'. Drops a quoted nickname token entirely
+    ('Clark, Edward ""Ed""' -> 'Edward Clark') rather than inlining it."""
+    # Remove ""Nick"" / "Nick" tokens (MEDSL quotes nicknames), then leftover quotes.
+    name = re.sub(r'"{1,2}[^"]*"{1,2}', "", medsl_name).replace('"', "")
+    name = re.sub(r"\s+", " ", name).strip()
     if "," in name:
         last, first = name.split(",", 1)
         return f"{first.strip()} {last.strip()}".strip()
     return name
+
+
+_NON_CANDIDATE_PREFIXES = (
+    "other", "not designated", "blank", "scatter", "void", "over vote", "under vote",
+    "write", "none", "miscell", "unknown", "all other", "no candidate", "n/a", "undervote",
+    "overvote",
+)
+
+
+def is_non_candidate(name: str) -> bool:
+    """True for source rows that aren't an actual named candidate — empty, or a
+    generic/spoiled-ballot bucket ('Other', 'Not Designated', 'Blank Vote/Scattering',
+    'Void Vote', 'None of These Candidates', write-in aggregates). Such rows are
+    excluded so electoral votes are allocated only among real, named candidates."""
+    n = (name or "").strip().lower()
+    return (not n) or n.startswith(_NON_CANDIDATE_PREFIXES)
 
 
 def _to_int(s: str) -> int:
@@ -149,7 +171,7 @@ def parse_medsl(rows: list[dict], agg: dict) -> None:
         if state not in JURISDICTIONS:
             continue
         cand = (row.get("candidate") or "").strip()
-        if not cand or cand.lower().startswith(("blank vote", "scattering", "other", "none of")):
+        if is_non_candidate(cand):
             continue
         votes = _to_int(row.get("candidatevotes"))
         if votes <= 0:
@@ -159,6 +181,12 @@ def parse_medsl(rows: list[dict], agg: dict) -> None:
 
 
 def parse_fte(rows: list[dict], agg: dict) -> None:
+    # 538 occasionally carries exact-duplicate records — e.g. every Alabama 2000
+    # candidate appears twice, doubling the state. Drop rows identical on
+    # (state, candidate, ballot line, votes). Fusion rows (a candidate on multiple
+    # ballot lines, e.g. NY) differ by ballot_party/votes, so they're NOT deduped
+    # and still sum correctly.
+    seen: set = set()
     for row in rows:
         if row.get("office_name") != "U.S. President" or row.get("stage") != "general":
             continue
@@ -173,11 +201,15 @@ def parse_fte(rows: list[dict], agg: dict) -> None:
         if rnd not in ("", "1"):
             continue
         cand = (row.get("candidate_name") or "").strip()
-        if not cand:
+        if is_non_candidate(cand):
             continue
         votes = _to_int(row.get("votes"))
         if votes <= 0:
             continue
+        key = (year, state, row.get("candidate_id"), (row.get("ballot_party") or ""), row.get("votes"))
+        if key in seen:
+            continue
+        seen.add(key)
         pc, display = classify(year, cand)
         _accumulate(agg, year, state, display, votes, pc)
 
@@ -186,7 +218,7 @@ def main() -> None:
     ev_by_cycle = _ev_by_cycle()
     agg: dict = {}
 
-    print(f"Fetching MEDSL 1976-2016 …")
+    print(f"Fetching MEDSL 1976-1996 …")
     parse_medsl(_fetch_csv(MEDSL_URL), agg)
     print(f"Fetching FiveThirtyEight 2020/2024 …")
     parse_fte(_fetch_csv(FTE_URL), agg)

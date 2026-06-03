@@ -1,7 +1,7 @@
 {
   "meta": {
     "year": 2004,
-    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "source": "FiveThirtyEight election-results; certified state totals (FEC/states)",
     "total_ev": 538,
     "n_states": 51
   },
@@ -28,7 +28,7 @@
           "votes": 5069
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 2092
         },
@@ -38,7 +38,7 @@
           "votes": 1675
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1058
         }
@@ -48,7 +48,7 @@
       "code": "AL",
       "name": "Alabama",
       "ev": 9,
-      "total_votes": 1870327,
+      "total_votes": 1882517,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -59,6 +59,21 @@
           "name": "John Kerry",
           "party": "D",
           "votes": 693933
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 6701
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 3495
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 1994
         }
       ]
     },
@@ -89,12 +104,12 @@
           "votes": 2352
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 2083
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1488
         }
@@ -104,7 +119,7 @@
       "code": "AZ",
       "name": "Arizona",
       "ev": 10,
-      "total_votes": 2009674,
+      "total_votes": 2012585,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -120,6 +135,16 @@
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 11856
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 2773
+        },
+        {
+          "name": "David Keith Cobb",
+          "party": "O",
+          "votes": 138
         }
       ]
     },
@@ -127,7 +152,7 @@
       "code": "CA",
       "name": "California",
       "ev": 55,
-      "total_votes": 12400499,
+      "total_votes": 12421712,
       "candidates": [
         {
           "name": "John Kerry",
@@ -145,7 +170,7 @@
           "votes": 50165
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 40771
         },
@@ -155,9 +180,14 @@
           "votes": 27607
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 26645
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 21213
         }
       ]
     },
@@ -188,17 +218,17 @@
           "votes": 7664
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 2562
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1591
         },
         {
-          "name": "Stanford Andress",
+          "name": "Stanford E. Andress",
           "party": "O",
           "votes": 804
         },
@@ -208,22 +238,22 @@
           "votes": 378
         },
         {
-          "name": "Bill Van Auken",
+          "name": "William Van Auken",
           "party": "O",
           "votes": 329
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 241
         },
         {
-          "name": "Walt Brown",
+          "name": "Walter F. Brown",
           "party": "O",
           "votes": 216
         },
         {
-          "name": "Earl Dodge",
+          "name": "Earl F. Dodge",
           "party": "O",
           "votes": 140
         }
@@ -251,7 +281,7 @@
           "votes": 12969
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 9564
         },
@@ -261,7 +291,7 @@
           "votes": 3367
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 1543
         },
@@ -294,7 +324,7 @@
           "votes": 1485
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 737
         },
@@ -304,7 +334,7 @@
           "votes": 502
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 130
         }
@@ -337,17 +367,17 @@
           "votes": 586
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 289
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 250
         },
         {
-          "name": "Walt Brown",
+          "name": "Walter F. Brown",
           "party": "O",
           "votes": 100
         }
@@ -380,22 +410,22 @@
           "votes": 11996
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 6626
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 3917
         },
         {
-          "name": "Walt Brown",
+          "name": "Walter F. Brown",
           "party": "O",
           "votes": 3502
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 2732
         }
@@ -405,7 +435,7 @@
       "code": "GA",
       "name": "Georgia",
       "ev": 15,
-      "total_votes": 3298790,
+      "total_votes": 3301829,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -421,6 +451,21 @@
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 18387
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 2231
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 580
+        },
+        {
+          "name": "David Keith Cobb",
+          "party": "O",
+          "votes": 228
         }
       ]
     },
@@ -441,7 +486,7 @@
           "votes": 194191
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1737
         },
@@ -456,7 +501,7 @@
       "code": "IA",
       "name": "Iowa",
       "ev": 7,
-      "total_votes": 1499665,
+      "total_votes": 1505814,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -469,24 +514,34 @@
           "votes": 741898
         },
         {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 5973
+        },
+        {
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 2992
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 1304
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1141
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 373
+        },
+        {
+          "name": "William Van Auken",
+          "party": "O",
+          "votes": 176
         }
       ]
     },
@@ -512,7 +567,7 @@
           "votes": 3844
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 3084
         },
@@ -527,7 +582,7 @@
       "code": "IL",
       "name": "Illinois",
       "ev": 21,
-      "total_votes": 5269938,
+      "total_votes": 5274190,
       "candidates": [
         {
           "name": "John Kerry",
@@ -543,6 +598,21 @@
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 32442
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 3571
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 440
+        },
+        {
+          "name": "David Keith Cobb",
+          "party": "O",
+          "votes": 241
         }
       ]
     },
@@ -550,7 +620,7 @@
       "code": "IN",
       "name": "Indiana",
       "ev": 11,
-      "total_votes": 2466507,
+      "total_votes": 2467835,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -566,6 +636,11 @@
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 18058
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 1328
         }
       ]
     },
@@ -596,7 +671,7 @@
           "votes": 4013
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 2899
         }
@@ -629,7 +704,7 @@
           "votes": 2619
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 2213
         }
@@ -657,7 +732,7 @@
           "votes": 7032
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 5203
         },
@@ -667,7 +742,7 @@
           "votes": 2781
         },
         {
-          "name": "Walt Brown",
+          "name": "Walter F. Brown",
           "party": "O",
           "votes": 1795
         },
@@ -677,12 +752,12 @@
           "votes": 1566
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1276
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 985
         }
@@ -710,7 +785,7 @@
           "votes": 15022
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 10623
         },
@@ -748,12 +823,12 @@
           "votes": 6094
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 3632
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 3421
         }
@@ -776,12 +851,12 @@
           "votes": 330201
         },
         {
-          "name": "The Better Life",
+          "name": "Ralph Nader",
           "party": "O",
           "votes": 8069
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 2936
         },
@@ -791,7 +866,7 @@
           "votes": 1965
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 735
         }
@@ -824,17 +899,17 @@
           "votes": 10552
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 5325
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 4980
         },
         {
-          "name": "Walt Brown",
+          "name": "Walter F. Brown",
           "party": "O",
           "votes": 1431
         }
@@ -867,22 +942,22 @@
           "votes": 4639
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 4408
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 3074
         },
         {
-          "name": "Thomas Harens",
+          "name": "Thomas J. Harens",
           "party": "O",
           "votes": 2387
         },
         {
-          "name": "Bill Van Auken",
+          "name": "William Van Auken",
           "party": "O",
           "votes": 539
         },
@@ -915,7 +990,7 @@
           "votes": 9831
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 5355
         },
@@ -930,22 +1005,22 @@
       "code": "MS",
       "name": "Mississippi",
       "ev": 6,
-      "total_votes": 1139824,
+      "total_votes": 1152145,
       "candidates": [
         {
           "name": "George W. Bush",
           "party": "R",
-          "votes": 672660
+          "votes": 684981
         },
         {
           "name": "John Kerry",
           "party": "D",
-          "votes": 457766
+          "votes": 458094
         },
         {
           "name": "Ralph Nader",
           "party": "O",
-          "votes": 3175
+          "votes": 3177
         },
         {
           "name": "Michael Badnarik",
@@ -953,17 +1028,17 @@
           "votes": 1793
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
-          "votes": 1758
+          "votes": 1759
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
-          "votes": 1599
+          "votes": 1268
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1073
         }
@@ -991,7 +1066,7 @@
           "votes": 6168
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 1764
         },
@@ -1001,7 +1076,7 @@
           "votes": 1733
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 996
         }
@@ -1011,7 +1086,7 @@
       "code": "NC",
       "name": "North Carolina",
       "ev": 15,
-      "total_votes": 3498746,
+      "total_votes": 3501007,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1027,6 +1102,21 @@
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 11731
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 1805
+        },
+        {
+          "name": "Walter F. Brown",
+          "party": "O",
+          "votes": 348
+        },
+        {
+          "name": "David Keith Cobb",
+          "party": "O",
+          "votes": 108
         }
       ]
     },
@@ -1034,7 +1124,7 @@
       "code": "ND",
       "name": "North Dakota",
       "ev": 3,
-      "total_votes": 312824,
+      "total_votes": 312833,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1057,9 +1147,14 @@
           "votes": 851
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 514
+        },
+        {
+          "name": "Martin Wishnatsky",
+          "party": "O",
+          "votes": 9
         }
       ]
     },
@@ -1067,7 +1162,7 @@
       "code": "NE",
       "name": "Nebraska",
       "ev": 5,
-      "total_votes": 775941,
+      "total_votes": 777255,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1082,7 +1177,7 @@
         {
           "name": "Ralph Nader",
           "party": "O",
-          "votes": 5780
+          "votes": 5698
         },
         {
           "name": "Michael Badnarik",
@@ -1090,9 +1185,19 @@
           "votes": 2041
         },
         {
-          "name": "David Cobb",
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 1314
+        },
+        {
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 978
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 82
         }
       ]
     },
@@ -1100,7 +1205,7 @@
       "code": "NH",
       "name": "New Hampshire",
       "ev": 4,
-      "total_votes": 676227,
+      "total_votes": 677117,
       "candidates": [
         {
           "name": "John Kerry",
@@ -1116,6 +1221,21 @@
           "name": "Ralph Nader",
           "party": "O",
           "votes": 4479
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 372
+        },
+        {
+          "name": "John McCain",
+          "party": "O",
+          "votes": 357
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 161
         }
       ]
     },
@@ -1123,7 +1243,7 @@
       "code": "NJ",
       "name": "New Jersey",
       "ev": 15,
-      "total_votes": 3581433,
+      "total_votes": 3611691,
       "candidates": [
         {
           "name": "John Kerry",
@@ -1134,6 +1254,41 @@
           "name": "George W. Bush",
           "party": "R",
           "votes": 1670003
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 19418
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 4514
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 2750
+        },
+        {
+          "name": "David Keith Cobb",
+          "party": "O",
+          "votes": 1807
+        },
+        {
+          "name": "Walter F. Brown",
+          "party": "O",
+          "votes": 664
+        },
+        {
+          "name": "William Van Auken",
+          "party": "O",
+          "votes": 575
+        },
+        {
+          "name": "Roger Calero",
+          "party": "O",
+          "votes": 530
         }
       ]
     },
@@ -1164,12 +1319,12 @@
           "votes": 2382
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1226
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 771
         }
@@ -1202,12 +1357,12 @@
           "votes": 3176
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 1152
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 853
         }
@@ -1250,7 +1405,7 @@
       "code": "OH",
       "name": "Ohio",
       "ev": 20,
-      "total_votes": 5600929,
+      "total_votes": 5627545,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1261,6 +1416,16 @@
           "name": "John Kerry",
           "party": "D",
           "votes": 2741165
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 14676
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 11940
         }
       ]
     },
@@ -1304,12 +1469,12 @@
           "votes": 7260
         },
         {
-          "name": "David Cobb",
+          "name": "Ralph Nader",
           "party": "O",
           "votes": 5315
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 5257
         }
@@ -1337,17 +1502,17 @@
           "votes": 21185
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 6319
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 6318
         },
         {
-          "name": "Independent Party Candidate",
+          "name": "Ralph Nader",
           "party": "O",
           "votes": 2656
         }
@@ -1357,7 +1522,7 @@
       "code": "RI",
       "name": "Rhode Island",
       "ev": 4,
-      "total_votes": 437134,
+      "total_votes": 436289,
       "candidates": [
         {
           "name": "John Kerry",
@@ -1375,7 +1540,7 @@
           "votes": 4651
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1333
         },
@@ -1385,17 +1550,12 @@
           "votes": 907
         },
         {
-          "name": "Nonpartisan",
-          "party": "O",
-          "votes": 845
-        },
-        {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 339
         },
         {
-          "name": "Workers World",
+          "name": "John T. Parker",
           "party": "O",
           "votes": 253
         }
@@ -1405,7 +1565,7 @@
       "code": "SC",
       "name": "South Carolina",
       "ev": 8,
-      "total_votes": 1617700,
+      "total_votes": 1617730,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1415,7 +1575,7 @@
         {
           "name": "John Kerry",
           "party": "D",
-          "votes": 661669
+          "votes": 661699
         },
         {
           "name": "Ralph Nader",
@@ -1423,7 +1583,7 @@
           "votes": 5520
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 5317
         },
@@ -1433,12 +1593,12 @@
           "votes": 3608
         },
         {
-          "name": "Walt Brown",
+          "name": "Walter F. Brown",
           "party": "O",
           "votes": 2124
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 1488
         }
@@ -1466,7 +1626,7 @@
           "votes": 4320
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 1103
         },
@@ -1481,7 +1641,7 @@
       "code": "TN",
       "name": "Tennessee",
       "ev": 11,
-      "total_votes": 2420852,
+      "total_votes": 2437280,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1492,6 +1652,21 @@
           "name": "John Kerry",
           "party": "D",
           "votes": 1036477
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 8992
+        },
+        {
+          "name": "Michael Badnarik",
+          "party": "O",
+          "votes": 4866
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 2570
         }
       ]
     },
@@ -1499,7 +1674,7 @@
       "code": "TX",
       "name": "Texas",
       "ev": 34,
-      "total_votes": 7398408,
+      "total_votes": 7410436,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1515,6 +1690,26 @@
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 38787
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 9159
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 1636
+        },
+        {
+          "name": "David Keith Cobb",
+          "party": "O",
+          "votes": 1014
+        },
+        {
+          "name": "Andrew J. Falk",
+          "party": "O",
+          "votes": 219
         }
       ]
     },
@@ -1540,7 +1735,7 @@
           "votes": 11305
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 6841
         },
@@ -1555,7 +1750,7 @@
           "votes": 946
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 393
         }
@@ -1565,7 +1760,7 @@
       "code": "VA",
       "name": "Virginia",
       "ev": 13,
-      "total_votes": 3192894,
+      "total_votes": 3195287,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1583,9 +1778,14 @@
           "votes": 11032
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 10161
+        },
+        {
+          "name": "Ralph Nader",
+          "party": "O",
+          "votes": 2393
         }
       ]
     },
@@ -1616,7 +1816,7 @@
           "votes": 1102
         },
         {
-          "name": "John Parker",
+          "name": "John T. Parker",
           "party": "O",
           "votes": 265
         },
@@ -1654,27 +1854,27 @@
           "votes": 11955
         },
         {
-          "name": "Michael Peroutka",
+          "name": "Michael Anthony Peroutka",
           "party": "O",
           "votes": 3922
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 2974
         },
         {
-          "name": "John Parker",
+          "name": "John T. Parker",
           "party": "O",
           "votes": 1077
         },
         {
-          "name": "Roger Calero",
+          "name": "James Harris",
           "party": "O",
           "votes": 547
         },
         {
-          "name": "Bill Van Auken",
+          "name": "William Van Auken",
           "party": "O",
           "votes": 231
         }
@@ -1699,7 +1899,7 @@
         {
           "name": "Ralph Nader",
           "party": "O",
-          "votes": 17272
+          "votes": 16390
         },
         {
           "name": "Michael Badnarik",
@@ -1707,9 +1907,19 @@
           "votes": 6464
         },
         {
-          "name": "David Cobb",
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 2661
+        },
+        {
+          "name": "Walter F. Brown",
+          "party": "O",
+          "votes": 471
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 411
         }
       ]
     },
@@ -1717,7 +1927,7 @@
       "code": "WV",
       "name": "West Virginia",
       "ev": 5,
-      "total_votes": 755792,
+      "total_votes": 755887,
       "candidates": [
         {
           "name": "George W. Bush",
@@ -1740,7 +1950,17 @@
           "votes": 1405
         },
         {
-          "name": "David Cobb",
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 82
+        },
+        {
+          "name": "John Kennedy",
+          "party": "O",
+          "votes": 13
+        },
+        {
+          "name": "David Keith Cobb",
           "party": "O",
           "votes": 5
         }
@@ -1765,12 +1985,17 @@
         {
           "name": "Ralph Nader",
           "party": "O",
-          "votes": 3372
+          "votes": 2741
         },
         {
           "name": "Michael Badnarik",
           "party": "O",
           "votes": 1171
+        },
+        {
+          "name": "Michael Anthony Peroutka",
+          "party": "O",
+          "votes": 631
         }
       ]
     }

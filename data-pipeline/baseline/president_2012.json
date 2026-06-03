@@ -1,7 +1,7 @@
 {
   "meta": {
     "year": 2012,
-    "source": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+    "source": "FiveThirtyEight election-results; certified state totals (FEC/states)",
     "total_ev": 538,
     "n_states": 51
   },
@@ -38,7 +38,7 @@
       "code": "AL",
       "name": "Alabama",
       "ev": 9,
-      "total_votes": 2051621,
+      "total_votes": 2070327,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -49,6 +49,21 @@
           "name": "Barack Obama",
           "party": "D",
           "votes": 795696
+        },
+        {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 12328
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 3397
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 2981
         }
       ]
     },
@@ -79,7 +94,7 @@
           "votes": 9305
         },
         {
-          "name": "Gloria Estella La Riva",
+          "name": "Peta Lindsay",
           "party": "O",
           "votes": 1734
         }
@@ -89,7 +104,7 @@
       "code": "AZ",
       "name": "Arizona",
       "ev": 11,
-      "total_votes": 2298802,
+      "total_votes": 2299210,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -110,6 +125,16 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 7816
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 289
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 119
         }
       ]
     },
@@ -117,7 +142,7 @@
       "code": "CA",
       "name": "California",
       "ev": 55,
-      "total_votes": 13015298,
+      "total_votes": 13038254,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -140,14 +165,29 @@
           "votes": 85638
         },
         {
-          "name": "Roseanne Barr",
+          "name": "Roseanne Cherie Barr",
           "party": "O",
           "votes": 53824
         },
         {
-          "name": "Thomas Conrad Tom Hoefling",
+          "name": "Tom Hoefling",
           "party": "O",
           "votes": 38372
+        },
+        {
+          "name": "Ron Paul",
+          "party": "O",
+          "votes": 21461
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 992
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 503
         }
       ]
     },
@@ -155,12 +195,12 @@
       "code": "CO",
       "name": "Colorado",
       "ev": 9,
-      "total_votes": 2569516,
+      "total_votes": 2569522,
       "candidates": [
         {
           "name": "Barack Obama",
           "party": "D",
-          "votes": 1323101
+          "votes": 1323102
         },
         {
           "name": "Mitt Romney",
@@ -178,52 +218,52 @@
           "votes": 7508
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 6234
         },
         {
-          "name": "Roseanne Barr",
+          "name": "Roseanne Cherie Barr",
           "party": "O",
-          "votes": 5057
+          "votes": 5059
         },
         {
           "name": "Jill Ann Reed",
           "party": "O",
-          "votes": 2588
+          "votes": 2589
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
-          "votes": 1262
+          "votes": 1260
         },
         {
-          "name": "Sheila Samm Tittle",
+          "name": "Sheila Tittle",
           "party": "O",
-          "votes": 791
+          "votes": 792
         },
         {
-          "name": "Thomas Conrad Tom Hoefling",
+          "name": "Tom Hoefling",
           "party": "O",
           "votes": 679
         },
         {
-          "name": "Gloria Estella La Riva",
+          "name": "Gloria La Riva",
           "party": "O",
           "votes": 317
         },
         {
-          "name": "Stewart Alexander",
+          "name": "Stewart A. Alexander",
           "party": "O",
           "votes": 308
         },
         {
           "name": "Merlin Miller",
           "party": "O",
-          "votes": 267
+          "votes": 266
         },
         {
-          "name": "Thomas Robert Tom Stevens",
+          "name": "Thomas Robert Stevens",
           "party": "O",
           "votes": 235
         },
@@ -233,9 +273,14 @@
           "votes": 192
         },
         {
-          "name": "Jerry White",
+          "name": "Jerome Samuel White",
           "party": "O",
           "votes": 189
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 4
         }
       ]
     },
@@ -243,7 +288,7 @@
       "code": "CT",
       "name": "Connecticut",
       "ev": 7,
-      "total_votes": 1552315,
+      "total_votes": 1558935,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -258,7 +303,27 @@
         {
           "name": "Gary Johnson",
           "party": "O",
-          "votes": 12340
+          "votes": 12580
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 5487
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 863
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 25
+        },
+        {
+          "name": "James Harris",
+          "party": "O",
+          "votes": 5
         }
       ]
     },
@@ -345,37 +410,37 @@
           "votes": 8947
         },
         {
-          "name": "Roseanne Barr",
+          "name": "Roseanne Cherie Barr",
           "party": "O",
           "votes": 8154
         },
         {
-          "name": "Thomas Robert Tom Stevens",
+          "name": "Thomas Robert Stevens",
           "party": "O",
           "votes": 3856
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2607
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 1754
         },
         {
-          "name": "Thomas Conrad Tom Hoefling",
+          "name": "Tom Hoefling",
           "party": "O",
           "votes": 946
         },
         {
-          "name": "Andre Barnett",
+          "name": "Andre N. Barnett",
           "party": "O",
           "votes": 820
         },
         {
-          "name": "Stewart Alexander",
+          "name": "Stewart A. Alexander",
           "party": "O",
           "votes": 799
         },
@@ -390,7 +455,7 @@
       "code": "GA",
       "name": "Georgia",
       "ev": 16,
-      "total_votes": 3897839,
+      "total_votes": 3899941,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -406,6 +471,21 @@
           "name": "Gary Johnson",
           "party": "O",
           "votes": 45324
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 1516
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 432
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 154
         }
       ]
     },
@@ -413,7 +493,7 @@
       "code": "HI",
       "name": "Hawaii",
       "ev": 4,
-      "total_votes": 434932,
+      "total_votes": 434697,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -434,11 +514,6 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 3184
-        },
-        {
-          "name": "Over Vote",
-          "party": "O",
-          "votes": 235
         }
       ]
     },
@@ -446,7 +521,7 @@
       "code": "IA",
       "name": "Iowa",
       "ev": 6,
-      "total_votes": 1573711,
+      "total_votes": 1574738,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -469,9 +544,14 @@
           "votes": 3769
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 3038
+        },
+        {
+          "name": "Jerry Litzel",
+          "party": "O",
+          "votes": 1027
         },
         {
           "name": "James Harris",
@@ -479,7 +559,7 @@
           "votes": 445
         },
         {
-          "name": "Gloria Estella La Riva",
+          "name": "Gloria La Riva",
           "party": "O",
           "votes": 372
         }
@@ -489,7 +569,7 @@
       "code": "ID",
       "name": "Idaho",
       "ev": 4,
-      "total_votes": 645373,
+      "total_votes": 652274,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -507,7 +587,17 @@
           "votes": 9453
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 4402
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 2499
+        },
+        {
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2222
         }
@@ -517,7 +607,7 @@
       "code": "IL",
       "name": "Illinois",
       "ev": 20,
-      "total_votes": 5241179,
+      "total_votes": 5241900,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -538,6 +628,21 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 30222
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 415
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 185
+        },
+        {
+          "name": "Jill Ann Reed",
+          "party": "O",
+          "votes": 121
         }
       ]
     },
@@ -545,7 +650,7 @@
       "code": "IN",
       "name": "Indiana",
       "ev": 11,
-      "total_votes": 2623541,
+      "total_votes": 2624456,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -561,6 +666,16 @@
           "name": "Gary Johnson",
           "party": "O",
           "votes": 50111
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 625
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 290
         }
       ]
     },
@@ -568,7 +683,7 @@
       "code": "KS",
       "name": "Kansas",
       "ev": 6,
-      "total_votes": 1158833,
+      "total_votes": 1159734,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -586,9 +701,19 @@
           "votes": 20456
         },
         {
-          "name": "Charles Chuck Baldwin",
+          "name": "Charles O. Baldwin",
           "party": "O",
           "votes": 5017
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 714
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 187
         }
       ]
     },
@@ -596,7 +721,7 @@
       "code": "KY",
       "name": "Kentucky",
       "ev": 8,
-      "total_votes": 1796832,
+      "total_votes": 1797077,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -614,7 +739,7 @@
           "votes": 17063
         },
         {
-          "name": "Randall Terry",
+          "name": "Randall A. Terry",
           "party": "O",
           "votes": 6872
         },
@@ -622,6 +747,11 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 6337
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 245
         }
       ]
     },
@@ -652,17 +782,17 @@
           "votes": 6978
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2508
         },
         {
-          "name": "Sheila Samm Tittle",
+          "name": "Sheila Tittle",
           "party": "O",
           "votes": 1767
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 1368
         },
@@ -672,7 +802,7 @@
           "votes": 622
         },
         {
-          "name": "Lowell Jackson Jack Fellure",
+          "name": "Lowell Jackson Fellure",
           "party": "O",
           "votes": 518
         },
@@ -682,7 +812,7 @@
           "votes": 389
         },
         {
-          "name": "Jerome Jerry White",
+          "name": "Jerome Samuel White",
           "party": "O",
           "votes": 355
         }
@@ -720,7 +850,7 @@
       "code": "MD",
       "name": "Maryland",
       "ev": 10,
-      "total_votes": 2697018,
+      "total_votes": 2698265,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -741,6 +871,21 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 17110
+        },
+        {
+          "name": "Santa Claus",
+          "party": "O",
+          "votes": 625
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 418
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 204
         }
       ]
     },
@@ -748,7 +893,7 @@
       "code": "ME",
       "name": "Maine",
       "ev": 4,
-      "total_votes": 711053,
+      "total_votes": 713088,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -769,6 +914,11 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 8119
+        },
+        {
+          "name": "Ron Paul",
+          "party": "O",
+          "votes": 2035
         }
       ]
     },
@@ -776,7 +926,7 @@
       "code": "MI",
       "name": "Michigan",
       "ev": 16,
-      "total_votes": 4722988,
+      "total_votes": 4730762,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -794,12 +944,17 @@
           "votes": 21897
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 16119
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 7774
+        },
+        {
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 5147
         }
@@ -832,7 +987,7 @@
           "votes": 13023
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 3722
         },
@@ -842,12 +997,12 @@
           "votes": 3149
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 1996
         },
         {
-          "name": "Dean Morstad",
+          "name": "Dean D. Morstad",
           "party": "O",
           "votes": 1092
         },
@@ -885,7 +1040,7 @@
           "votes": 43151
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 7936
         }
@@ -913,7 +1068,7 @@
           "votes": 6676
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2609
         },
@@ -956,7 +1111,7 @@
       "code": "NC",
       "name": "North Carolina",
       "ev": 15,
-      "total_votes": 4493301,
+      "total_votes": 4493835,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -972,6 +1127,11 @@
           "name": "Gary Johnson",
           "party": "O",
           "votes": 44515
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 534
         }
       ]
     },
@@ -1002,7 +1162,7 @@
           "votes": 1362
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 1186
         }
@@ -1012,7 +1172,7 @@
       "code": "NE",
       "name": "Nebraska",
       "ev": 5,
-      "total_votes": 788254,
+      "total_votes": 790662,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -1028,6 +1188,11 @@
           "name": "Gary Johnson",
           "party": "O",
           "votes": 11109
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 2408
         }
       ]
     },
@@ -1035,7 +1200,7 @@
       "code": "NH",
       "name": "New Hampshire",
       "ev": 4,
-      "total_votes": 708399,
+      "total_votes": 710097,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1053,9 +1218,19 @@
           "votes": 8212
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Ron Paul",
+          "party": "O",
+          "votes": 1374
+        },
+        {
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 708
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 324
         }
       ]
     },
@@ -1086,17 +1261,17 @@
           "votes": 9886
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2063
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 1723
         },
         {
-          "name": "Jeffery Boss",
+          "name": "Jeffrey Harlan Boss",
           "party": "O",
           "votes": 1024
         },
@@ -1121,7 +1296,7 @@
       "code": "NM",
       "name": "New Mexico",
       "ev": 5,
-      "total_votes": 782584,
+      "total_votes": 783758,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1144,7 +1319,12 @@
           "votes": 2691
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 1174
+        },
+        {
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 982
         }
@@ -1172,7 +1352,7 @@
           "votes": 10968
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 3240
         }
@@ -1182,7 +1362,7 @@
       "code": "NY",
       "name": "New York",
       "ev": 29,
-      "total_votes": 7052560,
+      "total_votes": 7052777,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1205,7 +1385,7 @@
           "votes": 39856
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 6270
         },
@@ -1213,6 +1393,11 @@
           "name": "Peta Lindsay",
           "party": "O",
           "votes": 2039
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 217
         }
       ]
     },
@@ -1243,17 +1428,17 @@
           "votes": 18574
         },
         {
-          "name": "Richard Duncan",
+          "name": "Richard Austing Duncan",
           "party": "O",
           "votes": 12502
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 8151
         },
         {
-          "name": "Stewart Alexander",
+          "name": "Stewart A. Alexander",
           "party": "O",
           "votes": 2967
         }
@@ -1309,7 +1494,7 @@
           "votes": 4432
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 3384
         }
@@ -1319,7 +1504,7 @@
       "code": "PA",
       "name": "Pennsylvania",
       "ev": 20,
-      "total_votes": 5742040,
+      "total_votes": 5742451,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1340,6 +1525,16 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 21341
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 383
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 28
         }
       ]
     },
@@ -1347,7 +1542,7 @@
       "code": "RI",
       "name": "Rhode Island",
       "ev": 4,
-      "total_votes": 444668,
+      "total_votes": 445285,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1370,12 +1565,17 @@
           "votes": 2421
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Ron Paul",
+          "party": "O",
+          "votes": 617
+        },
+        {
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 430
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 416
         },
@@ -1413,7 +1613,7 @@
           "votes": 5446
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 4765
         }
@@ -1441,7 +1641,7 @@
           "votes": 5795
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2371
         }
@@ -1451,7 +1651,7 @@
       "code": "TN",
       "name": "Tennessee",
       "ev": 11,
-      "total_votes": 2435576,
+      "total_votes": 2458577,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -1464,14 +1664,29 @@
           "votes": 960709
         },
         {
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 18623
+        },
+        {
           "name": "Jill Stein",
           "party": "O",
           "votes": 6515
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 6022
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 2639
+        },
+        {
+          "name": "Merlin Miller",
+          "party": "O",
+          "votes": 1739
         }
       ]
     },
@@ -1479,7 +1694,7 @@
       "code": "TX",
       "name": "Texas",
       "ev": 38,
-      "total_votes": 7991204,
+      "total_votes": 7993851,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -1500,6 +1715,41 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 24657
+        },
+        {
+          "name": "Virgil H. Goode",
+          "party": "O",
+          "votes": 1287
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 426
+        },
+        {
+          "name": "Tom Hoefling",
+          "party": "O",
+          "votes": 374
+        },
+        {
+          "name": "Avery L. Ayers",
+          "party": "O",
+          "votes": 209
+        },
+        {
+          "name": "Stewart A. Alexander",
+          "party": "O",
+          "votes": 162
+        },
+        {
+          "name": "Thaddaus Hill",
+          "party": "O",
+          "votes": 102
+        },
+        {
+          "name": "Andre N. Barnett",
+          "party": "O",
+          "votes": 87
         }
       ]
     },
@@ -1507,7 +1757,7 @@
       "code": "UT",
       "name": "Utah",
       "ev": 6,
-      "total_votes": 1017008,
+      "total_votes": 1017401,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -1525,7 +1775,7 @@
           "votes": 12572
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 5335
         },
@@ -1535,9 +1785,14 @@
           "votes": 3817
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 2871
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 393
         }
       ]
     },
@@ -1563,7 +1818,7 @@
           "votes": 31216
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 13058
         },
@@ -1578,7 +1833,7 @@
       "code": "VT",
       "name": "Vermont",
       "ev": 3,
-      "total_votes": 297247,
+      "total_votes": 298558,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1596,14 +1851,24 @@
           "votes": 3487
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 1128
+        },
+        {
+          "name": "Ron Paul",
+          "party": "O",
+          "votes": 717
         },
         {
           "name": "Peta Lindsay",
           "party": "O",
           "votes": 695
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 594
         }
       ]
     },
@@ -1634,12 +1899,12 @@
           "votes": 20928
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 8851
         },
         {
-          "name": "Ross Carl Rocky Anderson",
+          "name": "Ross C. Anderson",
           "party": "O",
           "votes": 4946
         },
@@ -1659,7 +1924,7 @@
       "code": "WI",
       "name": "Wisconsin",
       "ev": 10,
-      "total_votes": 3036881,
+      "total_votes": 3066264,
       "candidates": [
         {
           "name": "Barack Obama",
@@ -1672,9 +1937,39 @@
           "votes": 1410966
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Gary Johnson",
+          "party": "O",
+          "votes": 20439
+        },
+        {
+          "name": "Jill Stein",
+          "party": "O",
+          "votes": 7665
+        },
+        {
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 4930
+        },
+        {
+          "name": "Jerome Samuel White",
+          "party": "O",
+          "votes": 553
+        },
+        {
+          "name": "Gloria La Riva",
+          "party": "O",
+          "votes": 526
+        },
+        {
+          "name": "Ross C. Anderson",
+          "party": "O",
+          "votes": 112
+        },
+        {
+          "name": "Roseanne Cherie Barr",
+          "party": "O",
+          "votes": 88
         }
       ]
     },
@@ -1682,7 +1977,7 @@
       "code": "WV",
       "name": "West Virginia",
       "ev": 5,
-      "total_votes": 666632,
+      "total_votes": 670438,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -1703,6 +1998,11 @@
           "name": "Jill Stein",
           "party": "O",
           "votes": 4406
+        },
+        {
+          "name": "Randall A. Terry",
+          "party": "O",
+          "votes": 3806
         }
       ]
     },
@@ -1710,7 +2010,7 @@
       "code": "WY",
       "name": "Wyoming",
       "ev": 3,
-      "total_votes": 247299,
+      "total_votes": 247026,
       "candidates": [
         {
           "name": "Mitt Romney",
@@ -1728,14 +2028,9 @@
           "votes": 5326
         },
         {
-          "name": "Virgil Hamlin, Jr. Goode",
+          "name": "Virgil H. Goode",
           "party": "O",
           "votes": 1452
-        },
-        {
-          "name": "Over Vote",
-          "party": "O",
-          "votes": 273
         }
       ]
     }

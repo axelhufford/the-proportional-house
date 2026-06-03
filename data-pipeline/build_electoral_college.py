@@ -191,8 +191,8 @@ def main() -> None:
             "majority": 270,
             "cycles": CYCLES,
             "sources": {
-                "1976-2016": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
-                "2020-2024": "FiveThirtyEight election-results (certified state totals)",
+                "1976-1996": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+                "2000-2024": "FiveThirtyEight election-results (certified state totals)",
                 "electoral_votes": "U.S. National Archives; apportionment by decennial census",
             },
             "note": (

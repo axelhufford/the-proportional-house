@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-03T22:09:24.527351+00:00",
+    "generated_at": "2026-06-03T22:27:42.654770+00:00",
     "canonical_method": "sainte-lague",
     "majority": 270,
     "cycles": [
@@ -19,8 +19,8 @@
       2024
     ],
     "sources": {
-      "1976-2016": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
-      "2020-2024": "FiveThirtyEight election-results (certified state totals)",
+      "1976-1996": "MIT Election Data and Science Lab, U.S. President 1976-2020 (doi:10.7910/DVN/42MVDX)",
+      "2000-2024": "FiveThirtyEight election-results (certified state totals)",
       "electoral_votes": "U.S. National Archives; apportionment by decennial census"
     },
     "note": "Proportional allocation of each state's electoral votes across all candidates (Sainte-Lagu\u00eb), vs. the actual winner-take-all result. Maine/Nebraska are split by district in the actual column and allocated statewide in the proportional one."
@@ -118,7 +118,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 6669,
               "electors": 0
@@ -184,7 +184,7 @@
               "electors": 2
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 19229,
               "electors": 0
@@ -286,7 +286,7 @@
               "electors": 3
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 26047,
               "electors": 0
@@ -298,7 +298,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 2886,
               "electors": 0
@@ -409,7 +409,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 103,
               "electors": 0
@@ -436,7 +436,7 @@
               "electors": 8
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 23643,
               "electors": 0
@@ -517,7 +517,7 @@
               "electors": 4
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 20057,
               "electors": 0
@@ -559,7 +559,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 160,
               "electors": 0
@@ -625,7 +625,7 @@
               "electors": 13
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 55939,
               "electors": 0
@@ -649,7 +649,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 2422,
               "electors": 0
@@ -721,7 +721,7 @@
               "electors": 3
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 13185,
               "electors": 0
@@ -745,7 +745,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 1403,
               "electors": 0
@@ -778,7 +778,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 6837,
               "electors": 0
@@ -847,7 +847,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 6490,
               "electors": 0
@@ -886,7 +886,7 @@
               "electors": 6
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 65637,
               "electors": 0
@@ -916,7 +916,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 19,
               "electors": 0
@@ -964,13 +964,13 @@
               "electors": 2
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 10874,
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 3495,
               "electors": 0
@@ -997,7 +997,7 @@
               "electors": 10
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 47905,
               "electors": 0
@@ -1027,7 +1027,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 1148,
               "electors": 0
@@ -1054,7 +1054,7 @@
               "electors": 4
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 35490,
               "electors": 0
@@ -1096,7 +1096,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 370,
               "electors": 0
@@ -1129,7 +1129,7 @@
               "electors": 6
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 24029,
               "electors": 0
@@ -1162,7 +1162,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 4074,
               "electors": 0
@@ -1279,7 +1279,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 2952,
               "electors": 0
@@ -1309,7 +1309,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 63,
               "electors": 0
@@ -1348,7 +1348,7 @@
               "electors": 2
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 9383,
               "electors": 0
@@ -1387,7 +1387,7 @@
               "electors": 2
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 4095,
               "electors": 0
@@ -1411,7 +1411,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 66,
               "electors": 0
@@ -1438,7 +1438,7 @@
               "electors": 8
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 32717,
               "electors": 0
@@ -1456,7 +1456,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 3686,
               "electors": 0
@@ -1486,7 +1486,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 554,
               "electors": 0
@@ -1537,7 +1537,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 211,
               "electors": 0
@@ -1642,7 +1642,7 @@
               "electors": 12
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 58267,
               "electors": 0
@@ -1678,13 +1678,13 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 68,
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 62,
               "electors": 0
@@ -1711,7 +1711,7 @@
               "electors": 4
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 14101,
               "electors": 0
@@ -1738,7 +1738,7 @@
               "electors": 3
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 40207,
               "electors": 0
@@ -1771,7 +1771,7 @@
               "electors": 13
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 50584,
               "electors": 0
@@ -1840,7 +1840,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 188,
               "electors": 0
@@ -1945,7 +1945,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 5004,
               "electors": 0
@@ -1975,7 +1975,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 442,
               "electors": 0
@@ -2002,7 +2002,7 @@
               "electors": 13
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 20118,
               "electors": 0
@@ -2047,7 +2047,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 3907,
               "electors": 0
@@ -2143,7 +2143,7 @@
               "electors": 1
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 4001,
               "electors": 0
@@ -2182,7 +2182,7 @@
               "electors": 4
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 36986,
               "electors": 0
@@ -2224,7 +2224,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 713,
               "electors": 0
@@ -2251,7 +2251,7 @@
               "electors": 5
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 34943,
               "electors": 0
@@ -2281,7 +2281,7 @@
               "electors": 0
             },
             {
-              "name": "Levin Julius Jules",
+              "name": "Levin Julius",
               "party": "O",
               "votes": 389,
               "electors": 0
@@ -2367,7 +2367,7 @@
             "electors": 35
           },
           {
-            "name": "Edward Ed Clark",
+            "name": "Edward Clark",
             "party": "O",
             "electors": 1
           }
@@ -2401,7 +2401,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 18479,
               "electors": 0
@@ -2446,13 +2446,13 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 13318,
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 1743,
               "electors": 0
@@ -2509,7 +2509,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 8970,
               "electors": 0
@@ -2521,7 +2521,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 1350,
               "electors": 0
@@ -2560,7 +2560,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 18784,
               "electors": 0
@@ -2617,7 +2617,7 @@
               "electors": 4
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 148390,
               "electors": 1
@@ -2668,7 +2668,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 25744,
               "electors": 0
@@ -2680,7 +2680,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 1180,
               "electors": 0
@@ -2725,7 +2725,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 8570,
               "electors": 0
@@ -2770,7 +2770,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 1104,
               "electors": 0
@@ -2821,7 +2821,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 1974,
               "electors": 0
@@ -2860,7 +2860,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 30524,
               "electors": 0
@@ -2893,7 +2893,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 15627,
               "electors": 0
@@ -2926,7 +2926,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 3269,
               "electors": 0
@@ -2971,7 +2971,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 13123,
               "electors": 0
@@ -3007,7 +3007,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 150,
               "electors": 0
@@ -3040,7 +3040,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 8425,
               "electors": 0
@@ -3079,7 +3079,7 @@
               "electors": 2
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 38939,
               "electors": 0
@@ -3136,7 +3136,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 19627,
               "electors": 0
@@ -3193,7 +3193,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 14470,
               "electors": 0
@@ -3211,7 +3211,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 821,
               "electors": 0
@@ -3250,7 +3250,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 5531,
               "electors": 0
@@ -3313,7 +3313,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 8240,
               "electors": 0
@@ -3358,7 +3358,7 @@
               "electors": 2
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 22038,
               "electors": 0
@@ -3403,7 +3403,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 14192,
               "electors": 0
@@ -3436,7 +3436,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 5119,
               "electors": 0
@@ -3481,7 +3481,7 @@
               "electors": 2
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 41597,
               "electors": 0
@@ -3526,7 +3526,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 31593,
               "electors": 0
@@ -3589,7 +3589,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 14422,
               "electors": 0
@@ -3628,7 +3628,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 4702,
               "electors": 0
@@ -3673,7 +3673,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 9825,
               "electors": 0
@@ -3706,7 +3706,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 9677,
               "electors": 0
@@ -3751,7 +3751,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 3743,
               "electors": 0
@@ -3787,7 +3787,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 54,
               "electors": 0
@@ -3820,7 +3820,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 9041,
               "electors": 0
@@ -3853,7 +3853,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 2064,
               "electors": 0
@@ -3910,7 +3910,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 20652,
               "electors": 0
@@ -3952,7 +3952,7 @@
               "electors": 0
             },
             {
-              "name": "William Bill Gahres",
+              "name": "William Gahres",
               "party": "O",
               "votes": 1718,
               "electors": 0
@@ -3997,7 +3997,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 4365,
               "electors": 0
@@ -4009,7 +4009,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 1281,
               "electors": 0
@@ -4048,7 +4048,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 4358,
               "electors": 0
@@ -4081,7 +4081,7 @@
               "electors": 3
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 52648,
               "electors": 0
@@ -4144,7 +4144,7 @@
               "electors": 2
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 49033,
               "electors": 0
@@ -4174,7 +4174,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 27,
               "electors": 0
@@ -4207,7 +4207,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 13828,
               "electors": 0
@@ -4240,7 +4240,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 25838,
               "electors": 0
@@ -4279,7 +4279,7 @@
               "electors": 2
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 33263,
               "electors": 0
@@ -4330,7 +4330,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 2458,
               "electors": 0
@@ -4387,7 +4387,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 4807,
               "electors": 0
@@ -4426,7 +4426,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 3824,
               "electors": 0
@@ -4465,7 +4465,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 7116,
               "electors": 0
@@ -4477,7 +4477,7 @@
               "electors": 0
             },
             {
-              "name": "Benjamin Ben Bubar",
+              "name": "Benjamin Bubar",
               "party": "O",
               "votes": 521,
               "electors": 0
@@ -4534,7 +4534,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 37643,
               "electors": 0
@@ -4567,7 +4567,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 7156,
               "electors": 0
@@ -4636,7 +4636,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 12821,
               "electors": 0
@@ -4681,7 +4681,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 1900,
               "electors": 0
@@ -4732,7 +4732,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 29213,
               "electors": 0
@@ -4795,7 +4795,7 @@
               "electors": 1
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 29135,
               "electors": 0
@@ -4864,7 +4864,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 4356,
               "electors": 0
@@ -4897,7 +4897,7 @@
               "electors": 0
             },
             {
-              "name": "Edward Ed Clark",
+              "name": "Edward Clark",
               "party": "O",
               "votes": 4514,
               "electors": 0
@@ -7271,7 +7271,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 5484,
               "electors": 0
@@ -7310,7 +7310,7 @@
               "electors": 4
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 8460,
               "electors": 0
@@ -7349,7 +7349,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 3297,
               "electors": 0
@@ -7382,7 +7382,7 @@
               "electors": 3
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 13351,
               "electors": 0
@@ -7415,7 +7415,7 @@
               "electors": 23
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 70105,
               "electors": 0
@@ -7448,7 +7448,7 @@
               "electors": 4
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 15482,
               "electors": 0
@@ -7487,7 +7487,7 @@
               "electors": 4
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 14071,
               "electors": 0
@@ -7520,7 +7520,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 554,
               "electors": 0
@@ -7538,7 +7538,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 123,
               "electors": 0
@@ -7565,7 +7565,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 1162,
               "electors": 0
@@ -7598,7 +7598,7 @@
               "electors": 8
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 19796,
               "electors": 0
@@ -7631,7 +7631,7 @@
               "electors": 5
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 8435,
               "electors": 0
@@ -7664,7 +7664,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 1999,
               "electors": 0
@@ -7709,7 +7709,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 2494,
               "electors": 0
@@ -7739,7 +7739,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 205,
               "electors": 0
@@ -7766,7 +7766,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 5313,
               "electors": 0
@@ -7799,7 +7799,7 @@
               "electors": 12
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 14944,
               "electors": 0
@@ -7892,7 +7892,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 2118,
               "electors": 0
@@ -7931,7 +7931,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 4115,
               "electors": 0
@@ -7970,7 +7970,7 @@
               "electors": 6
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 24251,
               "electors": 0
@@ -8003,7 +8003,7 @@
               "electors": 5
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 6748,
               "electors": 0
@@ -8036,7 +8036,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 2700,
               "electors": 0
@@ -8069,7 +8069,7 @@
               "electors": 9
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 18336,
               "electors": 0
@@ -8102,19 +8102,19 @@
               "electors": 5
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 5403,
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 5109,
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 2155,
               "electors": 0
@@ -8204,7 +8204,7 @@
               "electors": 3
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 3329,
               "electors": 0
@@ -8231,7 +8231,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 5047,
               "electors": 0
@@ -8270,7 +8270,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 1263,
               "electors": 0
@@ -8297,7 +8297,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 1315,
               "electors": 0
@@ -8315,7 +8315,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 347,
               "electors": 0
@@ -8342,7 +8342,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 2534,
               "electors": 0
@@ -8375,7 +8375,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 4502,
               "electors": 0
@@ -8414,7 +8414,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 8421,
               "electors": 0
@@ -8426,7 +8426,7 @@
               "electors": 0
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 3454,
               "electors": 0
@@ -8444,7 +8444,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 2298,
               "electors": 0
@@ -8483,7 +8483,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 3368,
               "electors": 0
@@ -8495,7 +8495,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 344,
               "electors": 0
@@ -8534,7 +8534,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 3520,
               "electors": 0
@@ -8579,7 +8579,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 12109,
               "electors": 0
@@ -8591,7 +8591,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 3287,
               "electors": 0
@@ -8624,7 +8624,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 11926,
               "electors": 0
@@ -8657,7 +8657,7 @@
               "electors": 3
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 6261,
               "electors": 0
@@ -8690,7 +8690,7 @@
               "electors": 3
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 14811,
               "electors": 0
@@ -8723,13 +8723,13 @@
               "electors": 12
             },
             {
-              "name": "Eugene Gene McCarthy",
+              "name": "Eugene McCarthy",
               "party": "O",
               "votes": 19158,
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 12051,
               "electors": 0
@@ -8774,7 +8774,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 825,
               "electors": 0
@@ -8798,7 +8798,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 130,
               "electors": 0
@@ -8831,7 +8831,7 @@
               "electors": 3
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 4935,
               "electors": 0
@@ -8906,7 +8906,7 @@
               "electors": 13
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 30355,
               "electors": 0
@@ -8939,7 +8939,7 @@
               "electors": 2
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 7473,
               "electors": 0
@@ -8969,7 +8969,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 209,
               "electors": 0
@@ -9008,7 +9008,7 @@
               "electors": 0
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 8336,
               "electors": 0
@@ -9035,7 +9035,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 1000,
               "electors": 0
@@ -9071,7 +9071,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 113,
               "electors": 0
@@ -9098,7 +9098,7 @@
               "electors": 5
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 17240,
               "electors": 0
@@ -9122,7 +9122,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 1290,
               "electors": 0
@@ -9197,7 +9197,7 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ronald Paul",
               "party": "O",
               "votes": 2026,
               "electors": 0
@@ -9282,7 +9282,7 @@
               "electors": 1
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 1379,
               "electors": 0
@@ -9405,7 +9405,7 @@
               "electors": 2
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 8141,
               "electors": 0
@@ -9513,7 +9513,7 @@
               "electors": 0
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 274,
               "electors": 0
@@ -9759,7 +9759,7 @@
               "electors": 1
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 1452,
               "electors": 0
@@ -9816,7 +9816,7 @@
               "electors": 0
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 1177,
               "electors": 0
@@ -9840,7 +9840,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 273,
               "electors": 0
@@ -9885,7 +9885,7 @@
               "electors": 1
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 10894,
               "electors": 0
@@ -9936,7 +9936,7 @@
               "electors": 0
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 3577,
               "electors": 0
@@ -9948,7 +9948,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 1361,
               "electors": 0
@@ -10104,7 +10104,7 @@
               "electors": 1
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 18545,
               "electors": 0
@@ -10377,7 +10377,7 @@
               "electors": 0
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 3363,
               "electors": 0
@@ -10395,7 +10395,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 990,
               "electors": 0
@@ -10569,7 +10569,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 12,
               "electors": 0
@@ -10737,7 +10737,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 2011,
               "electors": 0
@@ -10749,7 +10749,7 @@
               "electors": 0
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 1867,
               "electors": 0
@@ -10818,7 +10818,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 183,
               "electors": 0
@@ -10863,7 +10863,7 @@
               "electors": 1
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 2892,
               "electors": 0
@@ -10920,7 +10920,7 @@
               "electors": 5
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 15472,
               "electors": 0
@@ -11304,7 +11304,7 @@
               "electors": 1
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 28602,
               "electors": 0
@@ -11340,7 +11340,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 200,
               "electors": 0
@@ -11442,7 +11442,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 82,
               "electors": 0
@@ -11487,7 +11487,7 @@
               "electors": 0
             },
             {
-              "name": "James Bo Gritz",
+              "name": "James Gritz",
               "party": "O",
               "votes": 4854,
               "electors": 0
@@ -11511,7 +11511,7 @@
               "electors": 0
             },
             {
-              "name": "James Mac Warren",
+              "name": "James Warren",
               "party": "O",
               "votes": 515,
               "electors": 0
@@ -12804,7 +12804,7 @@
               "electors": 0
             },
             {
-              "name": "Jerome Jerry White",
+              "name": "Jerome White",
               "party": "O",
               "votes": 1554,
               "electors": 0
@@ -12879,7 +12879,7 @@
               "electors": 0
             },
             {
-              "name": "Jerome Jerry White",
+              "name": "Jerome White",
               "party": "O",
               "votes": 347,
               "electors": 0
@@ -14214,43 +14214,43 @@
             {
               "name": "George W. Bush",
               "party": "R",
-              "votes": 1882346,
+              "votes": 941173,
               "electors": 5
             },
             {
               "name": "Al Gore",
               "party": "D",
-              "votes": 1385222,
+              "votes": 692611,
               "electors": 4
             },
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 36646,
+              "votes": 18323,
               "electors": 0
             },
             {
               "name": "Patrick J. Buchanan",
               "party": "O",
-              "votes": 12702,
+              "votes": 6351,
               "electors": 0
             },
             {
               "name": "Harry Browne",
               "party": "O",
-              "votes": 11786,
+              "votes": 5893,
               "electors": 0
             },
             {
               "name": "Howard Phillips",
               "party": "O",
-              "votes": 1550,
+              "votes": 775,
               "electors": 0
             },
             {
               "name": "John Hagelin",
               "party": "O",
-              "votes": 894,
+              "votes": 447,
               "electors": 0
             }
           ]
@@ -16875,7 +16875,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 2092,
               "electors": 0
@@ -16887,7 +16887,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1058,
               "electors": 0
@@ -16912,6 +16912,24 @@
               "party": "D",
               "votes": 693933,
               "electors": 3
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 6701,
+              "electors": 0
+            },
+            {
+              "name": "Michael Badnarik",
+              "party": "O",
+              "votes": 3495,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 1994,
+              "electors": 0
             }
           ]
         },
@@ -16947,13 +16965,13 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 2083,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1488,
               "electors": 0
@@ -16984,6 +17002,18 @@
               "party": "O",
               "votes": 11856,
               "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 2773,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
+              "party": "O",
+              "votes": 138,
+              "electors": 0
             }
           ]
         },
@@ -17013,7 +17043,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 40771,
               "electors": 0
@@ -17025,9 +17055,15 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 26645,
+              "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 21213,
               "electors": 0
             }
           ]
@@ -17064,19 +17100,19 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 2562,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1591,
               "electors": 0
             },
             {
-              "name": "Stanford Andress",
+              "name": "Stanford E. Andress",
               "party": "O",
               "votes": 804,
               "electors": 0
@@ -17088,25 +17124,25 @@
               "electors": 0
             },
             {
-              "name": "Bill Van Auken",
+              "name": "William Van Auken",
               "party": "O",
               "votes": 329,
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 241,
               "electors": 0
             },
             {
-              "name": "Walt Brown",
+              "name": "Walter F. Brown",
               "party": "O",
               "votes": 216,
               "electors": 0
             },
             {
-              "name": "Earl Dodge",
+              "name": "Earl F. Dodge",
               "party": "O",
               "votes": 140,
               "electors": 0
@@ -17139,7 +17175,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 9564,
               "electors": 0
@@ -17151,7 +17187,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 1543,
               "electors": 0
@@ -17190,7 +17226,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 737,
               "electors": 0
@@ -17202,7 +17238,7 @@
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 130,
               "electors": 0
@@ -17241,19 +17277,19 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 289,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 250,
               "electors": 0
             },
             {
-              "name": "Walt Brown",
+              "name": "Walter F. Brown",
               "party": "O",
               "votes": 100,
               "electors": 0
@@ -17292,25 +17328,25 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 6626,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 3917,
               "electors": 0
             },
             {
-              "name": "Walt Brown",
+              "name": "Walter F. Brown",
               "party": "O",
               "votes": 3502,
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 2732,
               "electors": 0
@@ -17341,6 +17377,24 @@
               "party": "O",
               "votes": 18387,
               "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 2231,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 580,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
+              "party": "O",
+              "votes": 228,
+              "electors": 0
             }
           ]
         },
@@ -17364,7 +17418,7 @@
               "electors": 2
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1737,
               "electors": 0
@@ -17397,27 +17451,39 @@
               "electors": 3
             },
             {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 5973,
+              "electors": 0
+            },
+            {
               "name": "Michael Badnarik",
               "party": "O",
               "votes": 2992,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 1304,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1141,
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 373,
+              "electors": 0
+            },
+            {
+              "name": "William Van Auken",
+              "party": "O",
+              "votes": 176,
               "electors": 0
             }
           ]
@@ -17448,7 +17514,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 3084,
               "electors": 0
@@ -17485,6 +17551,24 @@
               "party": "O",
               "votes": 32442,
               "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 3571,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 440,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
+              "party": "O",
+              "votes": 241,
+              "electors": 0
             }
           ]
         },
@@ -17511,6 +17595,12 @@
               "name": "Michael Badnarik",
               "party": "O",
               "votes": 18058,
+              "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 1328,
               "electors": 0
             }
           ]
@@ -17547,7 +17637,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 2899,
               "electors": 0
@@ -17586,7 +17676,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 2213,
               "electors": 0
@@ -17619,7 +17709,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 5203,
               "electors": 0
@@ -17631,7 +17721,7 @@
               "electors": 0
             },
             {
-              "name": "Walt Brown",
+              "name": "Walter F. Brown",
               "party": "O",
               "votes": 1795,
               "electors": 0
@@ -17643,13 +17733,13 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1276,
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 985,
               "electors": 0
@@ -17682,7 +17772,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 10623,
               "electors": 0
@@ -17727,13 +17817,13 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 3632,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 3421,
               "electors": 0
@@ -17760,13 +17850,13 @@
               "electors": 2
             },
             {
-              "name": "The Better Life",
+              "name": "Ralph Nader",
               "party": "O",
               "votes": 8069,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 2936,
               "electors": 0
@@ -17778,7 +17868,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 735,
               "electors": 0
@@ -17817,19 +17907,19 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 5325,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 4980,
               "electors": 0
             },
             {
-              "name": "Walt Brown",
+              "name": "Walter F. Brown",
               "party": "O",
               "votes": 1431,
               "electors": 0
@@ -17868,25 +17958,25 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 4408,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 3074,
               "electors": 0
             },
             {
-              "name": "Thomas Harens",
+              "name": "Thomas J. Harens",
               "party": "O",
               "votes": 2387,
               "electors": 0
             },
             {
-              "name": "Bill Van Auken",
+              "name": "William Van Auken",
               "party": "O",
               "votes": 539,
               "electors": 0
@@ -17925,7 +18015,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 5355,
               "electors": 0
@@ -17948,19 +18038,19 @@
             {
               "name": "George W. Bush",
               "party": "R",
-              "votes": 672660,
+              "votes": 684981,
               "electors": 4
             },
             {
               "name": "John Kerry",
               "party": "D",
-              "votes": 457766,
+              "votes": 458094,
               "electors": 2
             },
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 3175,
+              "votes": 3177,
               "electors": 0
             },
             {
@@ -17970,19 +18060,19 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
-              "votes": 1758,
+              "votes": 1759,
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
-              "votes": 1599,
+              "votes": 1268,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1073,
               "electors": 0
@@ -18015,7 +18105,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 1764,
               "electors": 0
@@ -18027,7 +18117,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 996,
               "electors": 0
@@ -18057,6 +18147,24 @@
               "name": "Michael Badnarik",
               "party": "O",
               "votes": 11731,
+              "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 1805,
+              "electors": 0
+            },
+            {
+              "name": "Walter F. Brown",
+              "party": "O",
+              "votes": 348,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
+              "party": "O",
+              "votes": 108,
               "electors": 0
             }
           ]
@@ -18093,9 +18201,15 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 514,
+              "electors": 0
+            },
+            {
+              "name": "Martin Wishnatsky",
+              "party": "O",
+              "votes": 9,
               "electors": 0
             }
           ]
@@ -18122,7 +18236,7 @@
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 5780,
+              "votes": 5698,
               "electors": 0
             },
             {
@@ -18132,9 +18246,21 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 1314,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 978,
+              "electors": 0
+            },
+            {
+              "name": "Roger Calero",
+              "party": "O",
+              "votes": 82,
               "electors": 0
             }
           ]
@@ -18163,6 +18289,24 @@
               "party": "O",
               "votes": 4479,
               "electors": 0
+            },
+            {
+              "name": "Michael Badnarik",
+              "party": "O",
+              "votes": 372,
+              "electors": 0
+            },
+            {
+              "name": "John McCain",
+              "party": "O",
+              "votes": 357,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 161,
+              "electors": 0
             }
           ]
         },
@@ -18184,6 +18328,48 @@
               "party": "R",
               "votes": 1670003,
               "electors": 7
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 19418,
+              "electors": 0
+            },
+            {
+              "name": "Michael Badnarik",
+              "party": "O",
+              "votes": 4514,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 2750,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
+              "party": "O",
+              "votes": 1807,
+              "electors": 0
+            },
+            {
+              "name": "Walter F. Brown",
+              "party": "O",
+              "votes": 664,
+              "electors": 0
+            },
+            {
+              "name": "William Van Auken",
+              "party": "O",
+              "votes": 575,
+              "electors": 0
+            },
+            {
+              "name": "Roger Calero",
+              "party": "O",
+              "votes": 530,
+              "electors": 0
             }
           ]
         },
@@ -18219,13 +18405,13 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1226,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 771,
               "electors": 0
@@ -18264,13 +18450,13 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 1152,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 853,
               "electors": 0
@@ -18334,6 +18520,18 @@
               "party": "D",
               "votes": 2741165,
               "electors": 10
+            },
+            {
+              "name": "Michael Badnarik",
+              "party": "O",
+              "votes": 14676,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 11940,
+              "electors": 0
             }
           ]
         },
@@ -18384,13 +18582,13 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "Ralph Nader",
               "party": "O",
               "votes": 5315,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 5257,
               "electors": 0
@@ -18423,19 +18621,19 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 6319,
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 6318,
               "electors": 0
             },
             {
-              "name": "Independent Party Candidate",
+              "name": "Ralph Nader",
               "party": "O",
               "votes": 2656,
               "electors": 0
@@ -18468,7 +18666,7 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1333,
               "electors": 0
@@ -18480,19 +18678,13 @@
               "electors": 0
             },
             {
-              "name": "Nonpartisan",
-              "party": "O",
-              "votes": 845,
-              "electors": 0
-            },
-            {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 339,
               "electors": 0
             },
             {
-              "name": "Workers World",
+              "name": "John T. Parker",
               "party": "O",
               "votes": 253,
               "electors": 0
@@ -18515,7 +18707,7 @@
             {
               "name": "John Kerry",
               "party": "D",
-              "votes": 661669,
+              "votes": 661699,
               "electors": 3
             },
             {
@@ -18525,7 +18717,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 5317,
               "electors": 0
@@ -18537,13 +18729,13 @@
               "electors": 0
             },
             {
-              "name": "Walt Brown",
+              "name": "Walter F. Brown",
               "party": "O",
               "votes": 2124,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 1488,
               "electors": 0
@@ -18576,7 +18768,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 1103,
               "electors": 0
@@ -18607,6 +18799,24 @@
               "party": "D",
               "votes": 1036477,
               "electors": 5
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 8992,
+              "electors": 0
+            },
+            {
+              "name": "Michael Badnarik",
+              "party": "O",
+              "votes": 4866,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 2570,
+              "electors": 0
             }
           ]
         },
@@ -18633,6 +18843,30 @@
               "name": "Michael Badnarik",
               "party": "O",
               "votes": 38787,
+              "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 9159,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 1636,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
+              "party": "O",
+              "votes": 1014,
+              "electors": 0
+            },
+            {
+              "name": "Andrew J. Falk",
+              "party": "O",
+              "votes": 219,
               "electors": 0
             }
           ]
@@ -18663,7 +18897,7 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 6841,
               "electors": 0
@@ -18681,7 +18915,7 @@
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 393,
               "electors": 0
@@ -18714,9 +18948,15 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 10161,
+              "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 2393,
               "electors": 0
             }
           ]
@@ -18753,7 +18993,7 @@
               "electors": 0
             },
             {
-              "name": "John Parker",
+              "name": "John T. Parker",
               "party": "O",
               "votes": 265,
               "electors": 0
@@ -18798,31 +19038,31 @@
               "electors": 0
             },
             {
-              "name": "Michael Peroutka",
+              "name": "Michael Anthony Peroutka",
               "party": "O",
               "votes": 3922,
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 2974,
               "electors": 0
             },
             {
-              "name": "John Parker",
+              "name": "John T. Parker",
               "party": "O",
               "votes": 1077,
               "electors": 0
             },
             {
-              "name": "Roger Calero",
+              "name": "James Harris",
               "party": "O",
               "votes": 547,
               "electors": 0
             },
             {
-              "name": "Bill Van Auken",
+              "name": "William Van Auken",
               "party": "O",
               "votes": 231,
               "electors": 0
@@ -18851,7 +19091,7 @@
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 17272,
+              "votes": 16390,
               "electors": 0
             },
             {
@@ -18861,9 +19101,21 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 2661,
+              "electors": 0
+            },
+            {
+              "name": "Walter F. Brown",
+              "party": "O",
+              "votes": 471,
+              "electors": 0
+            },
+            {
+              "name": "James Harris",
+              "party": "O",
+              "votes": 411,
               "electors": 0
             }
           ]
@@ -18900,7 +19152,19 @@
               "electors": 0
             },
             {
-              "name": "David Cobb",
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 82,
+              "electors": 0
+            },
+            {
+              "name": "John Kennedy",
+              "party": "O",
+              "votes": 13,
+              "electors": 0
+            },
+            {
+              "name": "David Keith Cobb",
               "party": "O",
               "votes": 5,
               "electors": 0
@@ -18929,13 +19193,19 @@
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 3372,
+              "votes": 2741,
               "electors": 0
             },
             {
               "name": "Michael Badnarik",
               "party": "O",
               "votes": 1171,
+              "electors": 0
+            },
+            {
+              "name": "Michael Anthony Peroutka",
+              "party": "O",
+              "votes": 631,
               "electors": 0
             }
           ]
@@ -19007,7 +19277,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 1660,
               "electors": 0
@@ -19038,6 +19308,24 @@
               "party": "D",
               "votes": 813479,
               "electors": 4
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 6788,
+              "electors": 0
+            },
+            {
+              "name": "Bob Barr",
+              "party": "O",
+              "votes": 4991,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 4310,
+              "electors": 0
             }
           ]
         },
@@ -19073,19 +19361,19 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 4023,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 3470,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 1139,
               "electors": 0
@@ -19124,9 +19412,15 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 3406,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 1371,
               "electors": 0
             }
           ]
@@ -19169,9 +19463,21 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 38774,
+              "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 17006,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 3145,
               "electors": 0
             }
           ]
@@ -19208,7 +19514,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 6233,
               "electors": 0
@@ -19220,13 +19526,13 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 2822,
               "electors": 0
             },
             {
-              "name": "Frank McEnulty",
+              "name": "Frank Edward McEnulty",
               "party": "O",
               "votes": 828,
               "electors": 0
@@ -19238,25 +19544,25 @@
               "electors": 0
             },
             {
-              "name": "Jonathan Allen",
+              "name": "Jonathan E. Allen",
               "party": "O",
               "votes": 348,
               "electors": 0
             },
             {
-              "name": "Thomas R. Stevens",
+              "name": "Thomas Robert Stevens",
               "party": "O",
               "votes": 336,
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 226,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 158,
               "electors": 0
@@ -19305,6 +19611,12 @@
               "party": "O",
               "votes": 19162,
               "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 311,
+              "electors": 0
             }
           ]
         },
@@ -19334,7 +19646,7 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 590,
               "electors": 0
@@ -19373,13 +19685,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 626,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 385,
               "electors": 0
@@ -19424,13 +19736,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 7915,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 2887,
               "electors": 0
@@ -19442,7 +19754,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 1516,
               "electors": 0
@@ -19460,15 +19772,21 @@
               "electors": 0
             },
             {
-              "name": "Thomas R. Stevens",
+              "name": "Thomas Robert Stevens",
               "party": "O",
               "votes": 419,
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 405,
+              "electors": 0
+            },
+            {
+              "name": "Gary Nettles",
+              "party": "O",
+              "votes": 391,
               "electors": 0
             },
             {
@@ -19502,6 +19820,24 @@
               "name": "Bob Barr",
               "party": "O",
               "votes": 28731,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 1402,
+              "electors": 0
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 1158,
+              "electors": 0
+            },
+            {
+              "name": "Cynthia Ann McKinney",
+              "party": "O",
+              "votes": 250,
               "electors": 0
             }
           ]
@@ -19538,21 +19874,15 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 1013,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 979,
-              "electors": 0
-            },
-            {
-              "name": "Over Vote",
-              "party": "O",
-              "votes": 303,
               "electors": 0
             }
           ]
@@ -19589,13 +19919,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 4445,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 1423,
               "electors": 0
@@ -19607,13 +19937,13 @@
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 182,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 121,
               "electors": 0
@@ -19646,7 +19976,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 4747,
               "electors": 0
@@ -19691,15 +20021,21 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 11838,
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 8256,
+              "electors": 0
+            },
+            {
+              "name": "John Joseph Polachek",
+              "party": "O",
+              "votes": 1149,
               "electors": 0
             }
           ]
@@ -19727,6 +20063,12 @@
               "name": "Bob Barr",
               "party": "O",
               "votes": 29257,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 1024,
               "electors": 0
             },
             {
@@ -19759,7 +20101,7 @@
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 10598,
+              "votes": 10527,
               "electors": 0
             },
             {
@@ -19769,7 +20111,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 4148,
               "electors": 0
@@ -19808,7 +20150,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 4694,
               "electors": 0
@@ -19835,13 +20177,13 @@
               "electors": 4
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Ron Paul",
               "party": "O",
               "votes": 9368,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 9187,
               "electors": 0
@@ -19853,7 +20195,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 2581,
               "electors": 0
@@ -19865,7 +20207,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 354,
               "electors": 0
@@ -19910,13 +20252,13 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 6550,
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 4971,
               "electors": 0
@@ -19955,15 +20297,21 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 4747,
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 3760,
+              "electors": 0
+            },
+            {
+              "name": "Alan Keyes",
+              "party": "O",
+              "votes": 103,
               "electors": 0
             }
           ]
@@ -19994,9 +20342,27 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 2900,
+              "electors": 0
+            },
+            {
+              "name": "Bob Barr",
+              "party": "O",
+              "votes": 251,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 177,
+              "electors": 0
+            },
+            {
+              "name": "Jonathan E. Allen",
+              "party": "O",
+              "votes": 3,
               "electors": 0
             }
           ]
@@ -20033,15 +20399,27 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 14685,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 8892,
+              "electors": 0
+            },
+            {
+              "name": "Alan Keyes",
+              "party": "O",
+              "votes": 129,
+              "electors": 0
+            },
+            {
+              "name": "Brian Patrick Moore",
+              "party": "O",
+              "votes": 41,
               "electors": 0
             }
           ]
@@ -20078,13 +20456,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 6787,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 5174,
               "electors": 0
@@ -20129,13 +20507,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 8201,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 80,
               "electors": 0
@@ -20168,7 +20546,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 2551,
               "electors": 0
@@ -20180,13 +20558,13 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 1034,
               "electors": 0
             },
             {
-              "name": "Ted Weill",
+              "name": "Ted C. Weill",
               "party": "O",
               "votes": 481,
               "electors": 0
@@ -20213,9 +20591,9 @@
               "electors": 1
             },
             {
-              "name": "Ronald Ron Paul",
+              "name": "Charles O. Baldwin",
               "party": "O",
-              "votes": 10638,
+              "votes": 10781,
               "electors": 0
             },
             {
@@ -20260,7 +20638,13 @@
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 1510,
+              "votes": 1448,
+              "electors": 0
+            },
+            {
+              "name": "Cynthia Ann McKinney",
+              "party": "O",
+              "votes": 158,
               "electors": 0
             }
           ]
@@ -20297,7 +20681,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 1199,
               "electors": 0
@@ -20333,7 +20717,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 2972,
               "electors": 0
@@ -20345,7 +20729,7 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 1028,
               "electors": 0
@@ -20380,7 +20764,37 @@
             {
               "name": "Bob Barr",
               "party": "O",
-              "votes": 2748,
+              "votes": 2217,
+              "electors": 0
+            },
+            {
+              "name": "Hillary Rodham Clinton",
+              "party": "O",
+              "votes": 1124,
+              "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 1092,
+              "electors": 0
+            },
+            {
+              "name": "George David Joseph Phillies",
+              "party": "O",
+              "votes": 531,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 226,
+              "electors": 0
+            },
+            {
+              "name": "Mitt Romney",
+              "party": "O",
+              "votes": 112,
               "electors": 0
             }
           ]
@@ -20417,25 +20831,25 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 3956,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 3636,
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 699,
               "electors": 0
             },
             {
-              "name": "Jeffery Boss",
+              "name": "Jeffrey Harlan Boss",
               "party": "O",
               "votes": 639,
               "electors": 0
@@ -20447,7 +20861,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 416,
               "electors": 0
@@ -20486,13 +20900,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 1597,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 1552,
               "electors": 0
@@ -20531,13 +20945,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 3194,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 1411,
               "electors": 0
@@ -20576,21 +20990,27 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 12801,
               "electors": 0
             },
             {
-              "name": "James Harris",
+              "name": "Roger Calero",
               "party": "O",
               "votes": 3615,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 1639,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 634,
               "electors": 0
             }
           ]
@@ -20617,7 +21037,7 @@
             {
               "name": "Ralph Nader",
               "party": "O",
-              "votes": 46242,
+              "votes": 42337,
               "electors": 0
             },
             {
@@ -20627,21 +21047,39 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 12565,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 8518,
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Richard Austing Duncan",
+              "party": "O",
+              "votes": 3905,
+              "electors": 0
+            },
+            {
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 2735,
+              "electors": 0
+            },
+            {
+              "name": "Donald Kenneth Allen",
+              "party": "O",
+              "votes": 212,
+              "electors": 0
+            },
+            {
+              "name": "Alan Keyes",
+              "party": "O",
+              "votes": 160,
               "electors": 0
             }
           ]
@@ -20693,13 +21131,19 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 7693,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Bob Barr",
+              "party": "O",
+              "votes": 7635,
+              "electors": 0
+            },
+            {
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 4543,
               "electors": 0
@@ -20736,6 +21180,24 @@
               "party": "O",
               "votes": 19912,
               "electors": 0
+            },
+            {
+              "name": "Hillary Rodham Clinton",
+              "party": "O",
+              "votes": 5014,
+              "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 3849,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 1092,
+              "electors": 0
             }
           ]
         },
@@ -20771,19 +21233,31 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 797,
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 675,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Hillary Rodham Clinton",
+              "party": "O",
+              "votes": 655,
+              "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 472,
+              "electors": 0
+            },
+            {
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 122,
               "electors": 0
@@ -20816,7 +21290,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 6827,
               "electors": 0
@@ -20828,7 +21302,7 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 4461,
               "electors": 0
@@ -20861,7 +21335,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 1895,
               "electors": 0
@@ -20892,6 +21366,42 @@
               "party": "D",
               "votes": 1087437,
               "electors": 5
+            },
+            {
+              "name": "Ralph Nader",
+              "party": "O",
+              "votes": 11560,
+              "electors": 0
+            },
+            {
+              "name": "Bob Barr",
+              "party": "O",
+              "votes": 8547,
+              "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 8191,
+              "electors": 0
+            },
+            {
+              "name": "Cynthia Ann McKinney",
+              "party": "O",
+              "votes": 2499,
+              "electors": 0
+            },
+            {
+              "name": "Brian Patrick Moore",
+              "party": "O",
+              "votes": 1326,
+              "electors": 0
+            },
+            {
+              "name": "Charles Jay",
+              "party": "O",
+              "votes": 1011,
+              "electors": 0
             }
           ]
         },
@@ -20925,6 +21435,42 @@
               "party": "O",
               "votes": 5751,
               "electors": 0
+            },
+            {
+              "name": "Charles O. Baldwin",
+              "party": "O",
+              "votes": 5708,
+              "electors": 0
+            },
+            {
+              "name": "Cynthia Ann McKinney",
+              "party": "O",
+              "votes": 909,
+              "electors": 0
+            },
+            {
+              "name": "Alan Keyes",
+              "party": "O",
+              "votes": 895,
+              "electors": 0
+            },
+            {
+              "name": "Thaddaus Hill",
+              "party": "O",
+              "votes": 216,
+              "electors": 0
+            },
+            {
+              "name": "Brian Patrick Moore",
+              "party": "O",
+              "votes": 135,
+              "electors": 0
+            },
+            {
+              "name": "Jonathan E. Allen",
+              "party": "O",
+              "votes": 104,
+              "electors": 0
             }
           ]
         },
@@ -20948,7 +21494,7 @@
               "electors": 2
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 12012,
               "electors": 0
@@ -20966,13 +21512,13 @@
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 982,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 262,
               "electors": 0
@@ -21011,13 +21557,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 7474,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 2344,
               "electors": 0
@@ -21056,7 +21602,7 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 500,
               "electors": 0
@@ -21068,15 +21614,21 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 149,
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 141,
+              "electors": 0
+            },
+            {
+              "name": "Cynthia Ann McKinney",
+              "party": "O",
+              "votes": 66,
               "electors": 0
             }
           ]
@@ -21113,25 +21665,25 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 9432,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 3819,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 705,
               "electors": 0
             },
             {
-              "name": "James Harris",
+              "name": "Roger Calero",
               "party": "O",
               "votes": 641,
               "electors": 0
@@ -21170,31 +21722,31 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 5072,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 4216,
               "electors": 0
             },
             {
-              "name": "Jeffrey Wamboldt",
+              "name": "Jeffrey J. Wamboldt",
               "party": "O",
               "votes": 764,
               "electors": 0
             },
             {
-              "name": "Brian Moore",
+              "name": "Brian Patrick Moore",
               "party": "O",
               "votes": 540,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 237,
               "electors": 0
@@ -21227,13 +21779,13 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 2465,
               "electors": 0
             },
             {
-              "name": "Cynthia McKinney",
+              "name": "Cynthia Ann McKinney",
               "party": "O",
               "votes": 2355,
               "electors": 0
@@ -21260,15 +21812,15 @@
               "electors": 1
             },
             {
-              "name": "Bob Barr",
+              "name": "Ralph Nader",
               "party": "O",
-              "votes": 1594,
+              "votes": 3717,
               "electors": 0
             },
             {
-              "name": "Over Vote",
+              "name": "Bob Barr",
               "party": "O",
-              "votes": 246,
+              "votes": 1594,
               "electors": 0
             }
           ]
@@ -21370,6 +21922,24 @@
               "party": "D",
               "votes": 795696,
               "electors": 3
+            },
+            {
+              "name": "Gary Johnson",
+              "party": "O",
+              "votes": 12328,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 3397,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 2981,
+              "electors": 0
             }
           ]
         },
@@ -21405,7 +21975,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Peta Lindsay",
               "party": "O",
               "votes": 1734,
               "electors": 0
@@ -21442,6 +22012,18 @@
               "party": "O",
               "votes": 7816,
               "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 289,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 119,
+              "electors": 0
             }
           ]
         },
@@ -21477,15 +22059,33 @@
               "electors": 0
             },
             {
-              "name": "Roseanne Barr",
+              "name": "Roseanne Cherie Barr",
               "party": "O",
               "votes": 53824,
               "electors": 0
             },
             {
-              "name": "Thomas Conrad Tom Hoefling",
+              "name": "Tom Hoefling",
               "party": "O",
               "votes": 38372,
+              "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 21461,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 992,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 503,
               "electors": 0
             }
           ]
@@ -21500,7 +22100,7 @@
             {
               "name": "Barack Obama",
               "party": "D",
-              "votes": 1323101,
+              "votes": 1323102,
               "electors": 5
             },
             {
@@ -21522,49 +22122,49 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 6234,
               "electors": 0
             },
             {
-              "name": "Roseanne Barr",
+              "name": "Roseanne Cherie Barr",
               "party": "O",
-              "votes": 5057,
+              "votes": 5059,
               "electors": 0
             },
             {
               "name": "Jill Ann Reed",
               "party": "O",
-              "votes": 2588,
+              "votes": 2589,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
-              "votes": 1262,
+              "votes": 1260,
               "electors": 0
             },
             {
-              "name": "Sheila Samm Tittle",
+              "name": "Sheila Tittle",
               "party": "O",
-              "votes": 791,
+              "votes": 792,
               "electors": 0
             },
             {
-              "name": "Thomas Conrad Tom Hoefling",
+              "name": "Tom Hoefling",
               "party": "O",
               "votes": 679,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 317,
               "electors": 0
             },
             {
-              "name": "Stewart Alexander",
+              "name": "Stewart A. Alexander",
               "party": "O",
               "votes": 308,
               "electors": 0
@@ -21572,11 +22172,11 @@
             {
               "name": "Merlin Miller",
               "party": "O",
-              "votes": 267,
+              "votes": 266,
               "electors": 0
             },
             {
-              "name": "Thomas Robert Tom Stevens",
+              "name": "Thomas Robert Stevens",
               "party": "O",
               "votes": 235,
               "electors": 0
@@ -21588,9 +22188,15 @@
               "electors": 0
             },
             {
-              "name": "Jerry White",
+              "name": "Jerome Samuel White",
               "party": "O",
               "votes": 189,
+              "electors": 0
+            },
+            {
+              "name": "Randall A. Terry",
+              "party": "O",
+              "votes": 4,
               "electors": 0
             }
           ]
@@ -21617,7 +22223,31 @@
             {
               "name": "Gary Johnson",
               "party": "O",
-              "votes": 12340,
+              "votes": 12580,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 5487,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 863,
+              "electors": 0
+            },
+            {
+              "name": "Tom Hoefling",
+              "party": "O",
+              "votes": 25,
+              "electors": 0
+            },
+            {
+              "name": "James Harris",
+              "party": "O",
+              "votes": 5,
               "electors": 0
             }
           ]
@@ -21720,43 +22350,43 @@
               "electors": 0
             },
             {
-              "name": "Roseanne Barr",
+              "name": "Roseanne Cherie Barr",
               "party": "O",
               "votes": 8154,
               "electors": 0
             },
             {
-              "name": "Thomas Robert Tom Stevens",
+              "name": "Thomas Robert Stevens",
               "party": "O",
               "votes": 3856,
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2607,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 1754,
               "electors": 0
             },
             {
-              "name": "Thomas Conrad Tom Hoefling",
+              "name": "Tom Hoefling",
               "party": "O",
               "votes": 946,
               "electors": 0
             },
             {
-              "name": "Andre Barnett",
+              "name": "Andre N. Barnett",
               "party": "O",
               "votes": 820,
               "electors": 0
             },
             {
-              "name": "Stewart Alexander",
+              "name": "Stewart A. Alexander",
               "party": "O",
               "votes": 799,
               "electors": 0
@@ -21793,6 +22423,24 @@
               "party": "O",
               "votes": 45324,
               "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 1516,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 432,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 154,
+              "electors": 0
             }
           ]
         },
@@ -21825,12 +22473,6 @@
               "name": "Jill Stein",
               "party": "O",
               "votes": 3184,
-              "electors": 0
-            },
-            {
-              "name": "Over Vote",
-              "party": "O",
-              "votes": 235,
               "electors": 0
             }
           ]
@@ -21867,9 +22509,15 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 3038,
+              "electors": 0
+            },
+            {
+              "name": "Jerry Litzel",
+              "party": "O",
+              "votes": 1027,
               "electors": 0
             },
             {
@@ -21879,7 +22527,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 372,
               "electors": 0
@@ -21912,7 +22560,19 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 4402,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 2499,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2222,
               "electors": 0
@@ -21949,6 +22609,24 @@
               "party": "O",
               "votes": 30222,
               "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 415,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 185,
+              "electors": 0
+            },
+            {
+              "name": "Jill Ann Reed",
+              "party": "O",
+              "votes": 121,
+              "electors": 0
             }
           ]
         },
@@ -21975,6 +22653,18 @@
               "name": "Gary Johnson",
               "party": "O",
               "votes": 50111,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 625,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 290,
               "electors": 0
             }
           ]
@@ -22005,9 +22695,21 @@
               "electors": 0
             },
             {
-              "name": "Charles Chuck Baldwin",
+              "name": "Charles O. Baldwin",
               "party": "O",
               "votes": 5017,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 714,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 187,
               "electors": 0
             }
           ]
@@ -22038,7 +22740,7 @@
               "electors": 0
             },
             {
-              "name": "Randall Terry",
+              "name": "Randall A. Terry",
               "party": "O",
               "votes": 6872,
               "electors": 0
@@ -22047,6 +22749,12 @@
               "name": "Jill Stein",
               "party": "O",
               "votes": 6337,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 245,
               "electors": 0
             }
           ]
@@ -22083,19 +22791,19 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2508,
               "electors": 0
             },
             {
-              "name": "Sheila Samm Tittle",
+              "name": "Sheila Tittle",
               "party": "O",
               "votes": 1767,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 1368,
               "electors": 0
@@ -22107,7 +22815,7 @@
               "electors": 0
             },
             {
-              "name": "Lowell Jackson Jack Fellure",
+              "name": "Lowell Jackson Fellure",
               "party": "O",
               "votes": 518,
               "electors": 0
@@ -22119,7 +22827,7 @@
               "electors": 0
             },
             {
-              "name": "Jerome Jerry White",
+              "name": "Jerome Samuel White",
               "party": "O",
               "votes": 355,
               "electors": 0
@@ -22189,6 +22897,24 @@
               "party": "O",
               "votes": 17110,
               "electors": 0
+            },
+            {
+              "name": "Santa Claus",
+              "party": "O",
+              "votes": 625,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 418,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 204,
+              "electors": 0
             }
           ]
         },
@@ -22222,6 +22948,12 @@
               "party": "O",
               "votes": 8119,
               "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 2035,
+              "electors": 0
             }
           ]
         },
@@ -22251,13 +22983,19 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 16119,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Gary Johnson",
+              "party": "O",
+              "votes": 7774,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 5147,
               "electors": 0
@@ -22296,7 +23034,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 3722,
               "electors": 0
@@ -22308,13 +23046,13 @@
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 1996,
               "electors": 0
             },
             {
-              "name": "Dean Morstad",
+              "name": "Dean D. Morstad",
               "party": "O",
               "votes": 1092,
               "electors": 0
@@ -22359,7 +23097,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 7936,
               "electors": 0
@@ -22392,7 +23130,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2609,
               "electors": 0
@@ -22462,6 +23200,12 @@
               "party": "O",
               "votes": 44515,
               "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 534,
+              "electors": 0
             }
           ]
         },
@@ -22497,7 +23241,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 1186,
               "electors": 0
@@ -22528,6 +23272,12 @@
               "party": "O",
               "votes": 11109,
               "electors": 0
+            },
+            {
+              "name": "Randall A. Terry",
+              "party": "O",
+              "votes": 2408,
+              "electors": 0
             }
           ]
         },
@@ -22557,9 +23307,21 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 1374,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 708,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 324,
               "electors": 0
             }
           ]
@@ -22596,19 +23358,19 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2063,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 1723,
               "electors": 0
             },
             {
-              "name": "Jeffery Boss",
+              "name": "Jeffrey Harlan Boss",
               "party": "O",
               "votes": 1024,
               "electors": 0
@@ -22665,7 +23427,13 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 1174,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 982,
               "electors": 0
@@ -22698,7 +23466,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 3240,
               "electors": 0
@@ -22737,7 +23505,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 6270,
               "electors": 0
@@ -22746,6 +23514,12 @@
               "name": "Peta Lindsay",
               "party": "O",
               "votes": 2039,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 217,
               "electors": 0
             }
           ]
@@ -22782,19 +23556,19 @@
               "electors": 0
             },
             {
-              "name": "Richard Duncan",
+              "name": "Richard Austing Duncan",
               "party": "O",
               "votes": 12502,
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 8151,
               "electors": 0
             },
             {
-              "name": "Stewart Alexander",
+              "name": "Stewart A. Alexander",
               "party": "O",
               "votes": 2967,
               "electors": 0
@@ -22860,7 +23634,7 @@
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 3384,
               "electors": 0
@@ -22897,6 +23671,18 @@
               "party": "O",
               "votes": 21341,
               "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 383,
+              "electors": 0
+            },
+            {
+              "name": "Tom Hoefling",
+              "party": "O",
+              "votes": 28,
+              "electors": 0
             }
           ]
         },
@@ -22932,13 +23718,19 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 617,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 430,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 416,
               "electors": 0
@@ -22983,7 +23775,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 4765,
               "electors": 0
@@ -23016,7 +23808,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2371,
               "electors": 0
@@ -23043,15 +23835,33 @@
               "electors": 4
             },
             {
+              "name": "Gary Johnson",
+              "party": "O",
+              "votes": 18623,
+              "electors": 0
+            },
+            {
               "name": "Jill Stein",
               "party": "O",
               "votes": 6515,
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 6022,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 2639,
+              "electors": 0
+            },
+            {
+              "name": "Merlin Miller",
+              "party": "O",
+              "votes": 1739,
               "electors": 0
             }
           ]
@@ -23086,6 +23896,48 @@
               "party": "O",
               "votes": 24657,
               "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
+              "party": "O",
+              "votes": 1287,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 426,
+              "electors": 0
+            },
+            {
+              "name": "Tom Hoefling",
+              "party": "O",
+              "votes": 374,
+              "electors": 0
+            },
+            {
+              "name": "Avery L. Ayers",
+              "party": "O",
+              "votes": 209,
+              "electors": 0
+            },
+            {
+              "name": "Stewart A. Alexander",
+              "party": "O",
+              "votes": 162,
+              "electors": 0
+            },
+            {
+              "name": "Thaddaus Hill",
+              "party": "O",
+              "votes": 102,
+              "electors": 0
+            },
+            {
+              "name": "Andre N. Barnett",
+              "party": "O",
+              "votes": 87,
+              "electors": 0
             }
           ]
         },
@@ -23115,7 +23967,7 @@
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 5335,
               "electors": 0
@@ -23127,9 +23979,15 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 2871,
+              "electors": 0
+            },
+            {
+              "name": "Gloria La Riva",
+              "party": "O",
+              "votes": 393,
               "electors": 0
             }
           ]
@@ -23160,7 +24018,7 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 13058,
               "electors": 0
@@ -23199,15 +24057,27 @@
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 1128,
+              "electors": 0
+            },
+            {
+              "name": "Ron Paul",
+              "party": "O",
+              "votes": 717,
               "electors": 0
             },
             {
               "name": "Peta Lindsay",
               "party": "O",
               "votes": 695,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 594,
               "electors": 0
             }
           ]
@@ -23244,13 +24114,13 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 8851,
               "electors": 0
             },
             {
-              "name": "Ross Carl Rocky Anderson",
+              "name": "Ross C. Anderson",
               "party": "O",
               "votes": 4946,
               "electors": 0
@@ -23289,9 +24159,45 @@
               "electors": 5
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Gary Johnson",
+              "party": "O",
+              "votes": 20439,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 7665,
+              "electors": 0
+            },
+            {
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 4930,
+              "electors": 0
+            },
+            {
+              "name": "Jerome Samuel White",
+              "party": "O",
+              "votes": 553,
+              "electors": 0
+            },
+            {
+              "name": "Gloria La Riva",
+              "party": "O",
+              "votes": 526,
+              "electors": 0
+            },
+            {
+              "name": "Ross C. Anderson",
+              "party": "O",
+              "votes": 112,
+              "electors": 0
+            },
+            {
+              "name": "Roseanne Cherie Barr",
+              "party": "O",
+              "votes": 88,
               "electors": 0
             }
           ]
@@ -23326,6 +24232,12 @@
               "party": "O",
               "votes": 4406,
               "electors": 0
+            },
+            {
+              "name": "Randall A. Terry",
+              "party": "O",
+              "votes": 3806,
+              "electors": 0
             }
           ]
         },
@@ -23355,15 +24267,9 @@
               "electors": 0
             },
             {
-              "name": "Virgil Hamlin, Jr. Goode",
+              "name": "Virgil H. Goode",
               "party": "O",
               "votes": 1452,
-              "electors": 0
-            },
-            {
-              "name": "Over Vote",
-              "party": "O",
-              "votes": 273,
               "electors": 0
             }
           ]
@@ -23385,24 +24291,24 @@
       "proportional": {
         "by_party": {
           "D": 263,
-          "R": 263,
-          "O": 12
+          "R": 262,
+          "O": 13
         },
         "by_candidate": [
-          {
-            "name": "Donald Trump",
-            "party": "R",
-            "electors": 263
-          },
           {
             "name": "Hillary Clinton",
             "party": "D",
             "electors": 263
           },
           {
+            "name": "Donald Trump",
+            "party": "R",
+            "electors": 262
+          },
+          {
             "name": "Gary Johnson",
             "party": "O",
-            "electors": 10
+            "electors": 11
           },
           {
             "name": "Jill Stein",
@@ -23416,8 +24322,8 @@
           }
         ],
         "leader": {
-          "name": "Donald Trump",
-          "party": "R",
+          "name": "Hillary Clinton",
+          "party": "D",
           "electors": 263
         },
         "no_majority": true,
@@ -23456,13 +24362,13 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 3866,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1240,
               "electors": 0
@@ -23540,19 +24446,19 @@
               "electors": 0
             },
             {
-              "name": "Jim Hedges",
+              "name": "James Arthur Hedges",
               "party": "O",
               "votes": 4709,
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 4613,
               "electors": 0
             },
             {
-              "name": "Lynn S. Kahn",
+              "name": "Lynn Sandra Kahn",
               "party": "O",
               "votes": 3390,
               "electors": 0
@@ -23591,21 +24497,15 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 17449,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 1058,
-              "electors": 0
-            },
-            {
-              "name": "Roque Rocky De La Fuente",
-              "party": "O",
-              "votes": 29,
-              "electors": 0
-            },
-            {
-              "name": "Sheila Samm Tittle",
-              "party": "O",
-              "votes": 12,
               "electors": 0
             }
           ]
@@ -23620,13 +24520,13 @@
             {
               "name": "Hillary Clinton",
               "party": "D",
-              "votes": 8753788,
+              "votes": 8753792,
               "electors": 34
             },
             {
               "name": "Donald Trump",
               "party": "R",
-              "votes": 4483810,
+              "votes": 4483814,
               "electors": 18
             },
             {
@@ -23638,13 +24538,43 @@
             {
               "name": "Jill Stein",
               "party": "O",
-              "votes": 278657,
+              "votes": 278658,
               "electors": 1
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Bernie Sanders",
+              "party": "O",
+              "votes": 79341,
+              "electors": 0
+            },
+            {
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 66101,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 39596,
+              "electors": 0
+            },
+            {
+              "name": "Michael A. Maturen",
+              "party": "O",
+              "votes": 1316,
+              "electors": 0
+            },
+            {
+              "name": "Laurence J. Kotlikoff",
+              "party": "O",
+              "votes": 402,
+              "electors": 0
+            },
+            {
+              "name": "Jerome Samuel White",
+              "party": "O",
+              "votes": 84,
               "electors": 0
             }
           ]
@@ -23681,19 +24611,31 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 28917,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 11699,
               "electors": 0
             },
             {
-              "name": "Chris Keniston",
+              "name": "Christopher Robert Keniston",
               "party": "O",
               "votes": 5028,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Mike Smith",
+              "party": "O",
+              "votes": 1819,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1255,
               "electors": 0
@@ -23723,13 +24665,19 @@
               "electors": 0
             },
             {
+              "name": "Ryan Alan Scott",
+              "party": "O",
+              "votes": 749,
+              "electors": 0
+            },
+            {
               "name": "Tom Hoefling",
               "party": "O",
               "votes": 710,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 531,
               "electors": 0
@@ -23741,7 +24689,7 @@
               "electors": 0
             },
             {
-              "name": "Laurence Kotlikoff",
+              "name": "Laurence J. Kotlikoff",
               "party": "O",
               "votes": 392,
               "electors": 0
@@ -23759,13 +24707,13 @@
               "electors": 0
             },
             {
-              "name": "Soltysik Emidio Mimi",
+              "name": "Emidio Mimi Soltysik",
               "party": "O",
               "votes": 271,
               "electors": 0
             },
             {
-              "name": "James Hedges",
+              "name": "James Arthur Hedges",
               "party": "O",
               "votes": 185,
               "electors": 0
@@ -23802,6 +24750,12 @@
               "party": "O",
               "votes": 22841,
               "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 2108,
+              "electors": 0
             }
           ]
         },
@@ -23835,12 +24789,6 @@
               "party": "O",
               "votes": 4258,
               "electors": 0
-            },
-            {
-              "name": "Over Vote",
-              "party": "O",
-              "votes": 243,
-              "electors": 0
             }
           ]
         },
@@ -23873,6 +24821,12 @@
               "name": "Jill Stein",
               "party": "O",
               "votes": 6103,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 706,
               "electors": 0
             }
           ]
@@ -23909,13 +24863,13 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 16475,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 9108,
               "electors": 0
@@ -23946,6 +24900,24 @@
               "party": "O",
               "votes": 125306,
               "electors": 1
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 13017,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 7674,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 1110,
+              "electors": 0
             }
           ]
         },
@@ -23981,15 +24953,9 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 4508,
-              "electors": 0
-            },
-            {
-              "name": "Over Vote",
-              "party": "O",
-              "votes": 438,
               "electors": 0
             }
           ]
@@ -24032,25 +24998,25 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 5335,
               "electors": 0
             },
             {
-              "name": "Lynn S. Kahn",
+              "name": "Lynn Sandra Kahn",
               "party": "O",
               "votes": 2247,
               "electors": 0
             },
             {
-              "name": "Dan Vacek",
+              "name": "Dan R. Vacek",
               "party": "O",
               "votes": 2246,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 323,
               "electors": 0
@@ -24079,7 +25045,7 @@
             {
               "name": "Evan McMullin",
               "party": "O",
-              "votes": 60748,
+              "votes": 46476,
               "electors": 0
             },
             {
@@ -24089,9 +25055,27 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 8496,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 4403,
+              "electors": 0
+            },
+            {
+              "name": "Arlon Scott Copeland",
               "party": "O",
               "votes": 2356,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
+              "party": "O",
+              "votes": 1373,
               "electors": 0
             }
           ]
@@ -24126,6 +25110,12 @@
               "party": "O",
               "votes": 76802,
               "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 11655,
+              "electors": 0
             }
           ]
         },
@@ -24155,13 +25145,19 @@
               "electors": 1
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 7841,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 1937,
               "electors": 0
             },
             {
-              "name": "Soltysik Emidio Mimi",
+              "name": "Emidio Mimi Soltysik",
               "party": "O",
               "votes": 57,
               "electors": 0
@@ -24197,6 +25193,18 @@
               "name": "Jill Stein",
               "party": "O",
               "votes": 23506,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 6520,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 646,
               "electors": 0
             }
           ]
@@ -24239,9 +25247,15 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1128,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 438,
               "electors": 0
             }
           ]
@@ -24276,6 +25290,60 @@
               "party": "O",
               "votes": 14031,
               "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 8547,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 3129,
+              "electors": 0
+            },
+            {
+              "name": "Christopher Robert Keniston",
+              "party": "O",
+              "votes": 1881,
+              "electors": 0
+            },
+            {
+              "name": "Tom Hoefling",
+              "party": "O",
+              "votes": 1581,
+              "electors": 0
+            },
+            {
+              "name": "Laurence J. Kotlikoff",
+              "party": "O",
+              "votes": 1048,
+              "electors": 0
+            },
+            {
+              "name": "Princess Khadajah M. Jacob-Fambro",
+              "party": "O",
+              "votes": 749,
+              "electors": 0
+            },
+            {
+              "name": "Alyson Kennedy",
+              "party": "O",
+              "votes": 480,
+              "electors": 0
+            },
+            {
+              "name": "Gloria La Riva",
+              "party": "O",
+              "votes": 446,
+              "electors": 0
+            },
+            {
+              "name": "Jerome Samuel White",
+              "party": "O",
+              "votes": 370,
+              "electors": 0
             }
           ]
         },
@@ -24309,6 +25377,30 @@
               "party": "O",
               "votes": 47661,
               "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 2719,
+              "electors": 0
+            },
+            {
+              "name": "William B. Feegbeh",
+              "party": "O",
+              "votes": 28,
+              "electors": 0
+            },
+            {
+              "name": "Laurence J. Kotlikoff",
+              "party": "O",
+              "votes": 28,
+              "electors": 0
+            },
+            {
+              "name": "Monica Moorehead",
+              "party": "O",
+              "votes": 15,
+              "electors": 0
             }
           ]
         },
@@ -24322,13 +25414,13 @@
             {
               "name": "Hillary Clinton",
               "party": "D",
-              "votes": 1678006,
+              "votes": 1677928,
               "electors": 6
             },
             {
               "name": "Donald Trump",
               "party": "R",
-              "votes": 943428,
+              "votes": 943169,
               "electors": 4
             },
             {
@@ -24341,6 +25433,24 @@
               "name": "Jill Stein",
               "party": "O",
               "votes": 35945,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 9630,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 566,
+              "electors": 0
+            },
+            {
+              "name": "Michael A. Maturen",
+              "party": "O",
+              "votes": 504,
               "electors": 0
             }
           ]
@@ -24378,6 +25488,30 @@
               "party": "O",
               "votes": 14251,
               "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 1887,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 333,
+              "electors": 0
+            },
+            {
+              "name": "Laurence J. Kotlikoff",
+              "party": "O",
+              "votes": 16,
+              "electors": 0
+            },
+            {
+              "name": "Cherunda L. Fox",
+              "party": "O",
+              "votes": 7,
+              "electors": 0
             }
           ]
         },
@@ -24413,15 +25547,27 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 16139,
               "electors": 0
             },
             {
-              "name": "Soltysik Emidio Mimi",
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 8177,
+              "electors": 0
+            },
+            {
+              "name": "Emidio Mimi Soltysik",
               "party": "O",
               "votes": 2209,
+              "electors": 0
+            },
+            {
+              "name": "Michael A. Maturen",
+              "party": "O",
+              "votes": 517,
               "electors": 0
             }
           ]
@@ -24464,13 +25610,13 @@
               "electors": 0
             },
             {
-              "name": "Dan Vacek",
+              "name": "Dan R. Vacek",
               "party": "O",
               "votes": 11291,
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 9456,
               "electors": 0
@@ -24482,7 +25628,7 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1430,
               "electors": 0
@@ -24517,13 +25663,19 @@
             {
               "name": "Jill Stein",
               "party": "O",
-              "votes": 25419,
+              "votes": 25416,
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 13092,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 7071,
               "electors": 0
             }
           ]
@@ -24554,7 +25706,7 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 3987,
               "electors": 0
@@ -24566,13 +25718,13 @@
               "electors": 0
             },
             {
-              "name": "James Hedges",
+              "name": "James Arthur Hedges",
               "party": "O",
               "votes": 715,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 644,
               "electors": 0
@@ -24611,9 +25763,21 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 2297,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1570,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 296,
               "electors": 0
             }
           ]
@@ -24641,6 +25805,12 @@
               "name": "Gary Johnson",
               "party": "O",
               "votes": 130126,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 12105,
               "electors": 0
             }
           ]
@@ -24677,13 +25847,13 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 1833,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 364,
               "electors": 0
@@ -24755,9 +25925,99 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Bernie Sanders",
+              "party": "O",
+              "votes": 4493,
+              "electors": 0
+            },
+            {
+              "name": "John Richard Kasich",
+              "party": "O",
+              "votes": 1365,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 1064,
+              "electors": 0
+            },
+            {
+              "name": "Mike Pence",
+              "party": "O",
+              "votes": 937,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 678,
+              "electors": 0
+            },
+            {
+              "name": "Mitt Romney",
+              "party": "O",
+              "votes": 540,
+              "electors": 0
+            },
+            {
+              "name": "Paul Ryan",
+              "party": "O",
+              "votes": 280,
+              "electors": 0
+            },
+            {
+              "name": "Jeb Bush",
+              "party": "O",
+              "votes": 230,
+              "electors": 0
+            },
+            {
+              "name": "Marco Rubio",
+              "party": "O",
+              "votes": 136,
+              "electors": 0
+            },
+            {
+              "name": "Ted Cruz",
+              "party": "O",
+              "votes": 129,
+              "electors": 0
+            },
+            {
+              "name": "John McCain",
+              "party": "O",
+              "votes": 127,
+              "electors": 0
+            },
+            {
+              "name": "Rand Paul",
+              "party": "O",
+              "votes": 98,
+              "electors": 0
+            },
+            {
+              "name": "Benjamin S. Carson",
+              "party": "O",
+              "votes": 83,
+              "electors": 0
+            },
+            {
+              "name": "Vermin Love Supreme",
+              "party": "O",
+              "votes": 58,
+              "electors": 0
+            },
+            {
+              "name": "Joe Biden",
+              "party": "O",
+              "votes": 55,
+              "electors": 0
+            },
+            {
+              "name": "Chris Christie",
+              "party": "O",
+              "votes": 23,
               "electors": 0
             }
           ]
@@ -24794,7 +26054,7 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 6161,
               "electors": 0
@@ -24806,7 +26066,7 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1838,
               "electors": 0
@@ -24818,7 +26078,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 1682,
               "electors": 0
@@ -24863,19 +26123,19 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 1514,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 1184,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 475,
               "electors": 0
@@ -24908,13 +26168,13 @@
               "electors": 0
             },
             {
-              "name": "Kyle Kenley Kopitke",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 5268,
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 2552,
               "electors": 0
@@ -24953,9 +26213,9 @@
               "electors": 0
             },
             {
-              "name": "Void Vote",
+              "name": "Evan McMullin",
               "party": "O",
-              "votes": 3452,
+              "votes": 10397,
               "electors": 0
             }
           ]
@@ -24971,7 +26231,7 @@
               "name": "Donald Trump",
               "party": "R",
               "votes": 2841005,
-              "electors": 10
+              "electors": 9
             },
             {
               "name": "Hillary Clinton",
@@ -24980,9 +26240,51 @@
               "electors": 8
             },
             {
+              "name": "Gary Johnson",
+              "party": "O",
+              "votes": 174498,
+              "electors": 1
+            },
+            {
               "name": "Jill Stein",
               "party": "O",
               "votes": 46271,
+              "electors": 0
+            },
+            {
+              "name": "Richard Austing Duncan",
+              "party": "O",
+              "votes": 24235,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 12574,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 1887,
+              "electors": 0
+            },
+            {
+              "name": "Ben Hartnell",
+              "party": "O",
+              "votes": 589,
+              "electors": 0
+            },
+            {
+              "name": "Michael A. Maturen",
+              "party": "O",
+              "votes": 552,
+              "electors": 0
+            },
+            {
+              "name": "Tom Hoefling",
+              "party": "O",
+              "votes": 268,
               "electors": 0
             }
           ]
@@ -25079,9 +26381,33 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 21572,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 6472,
+              "electors": 0
+            },
+            {
+              "name": "Bernie Sanders",
+              "party": "O",
+              "votes": 6060,
+              "electors": 0
+            },
+            {
+              "name": "John Richard Kasich",
+              "party": "O",
+              "votes": 302,
+              "electors": 0
+            },
+            {
+              "name": "Lynn Sandra Kahn",
+              "party": "O",
+              "votes": 3,
               "electors": 0
             }
           ]
@@ -25102,7 +26428,7 @@
             {
               "name": "Donald Trump",
               "party": "R",
-              "votes": 180543,
+              "votes": 180453,
               "electors": 2
             },
             {
@@ -25118,9 +26444,45 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Bernie Sanders",
+              "party": "O",
+              "votes": 3497,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 773,
+              "electors": 0
+            },
+            {
+              "name": "John Richard Kasich",
+              "party": "O",
+              "votes": 695,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 671,
+              "electors": 0
+            },
+            {
+              "name": "Mike Pence",
+              "party": "O",
+              "votes": 291,
+              "electors": 0
+            },
+            {
+              "name": "Mitt Romney",
+              "party": "O",
+              "votes": 273,
+              "electors": 0
+            },
+            {
+              "name": "Paul Ryan",
+              "party": "O",
+              "votes": 249,
               "electors": 0
             }
           ]
@@ -25163,13 +26525,13 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 5765,
               "electors": 0
             },
             {
-              "name": "Peter Skewes",
+              "name": "Peter Alan Skewes",
               "party": "O",
               "votes": 3246,
               "electors": 0
@@ -25202,7 +26564,7 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 4064,
               "electors": 0
@@ -25227,6 +26589,48 @@
               "party": "D",
               "votes": 870695,
               "electors": 4
+            },
+            {
+              "name": "Gary Johnson",
+              "party": "O",
+              "votes": 70397,
+              "electors": 0
+            },
+            {
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 15993,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 11991,
+              "electors": 0
+            },
+            {
+              "name": "Mike Smith",
+              "party": "O",
+              "votes": 7276,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
+              "party": "O",
+              "votes": 4075,
+              "electors": 0
+            },
+            {
+              "name": "Alyson Kennedy",
+              "party": "O",
+              "votes": 2877,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 1584,
+              "electors": 0
             }
           ]
         },
@@ -25260,6 +26664,48 @@
               "party": "O",
               "votes": 71558,
               "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 42366,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
+              "party": "O",
+              "votes": 4261,
+              "electors": 0
+            },
+            {
+              "name": "Michael A. Maturen",
+              "party": "O",
+              "votes": 1401,
+              "electors": 0
+            },
+            {
+              "name": "Laurence J. Kotlikoff",
+              "party": "O",
+              "votes": 1037,
+              "electors": 0
+            },
+            {
+              "name": "Tom Hoefling",
+              "party": "O",
+              "votes": 932,
+              "electors": 0
+            },
+            {
+              "name": "Anthony Valdivia",
+              "party": "O",
+              "votes": 428,
+              "electors": 0
+            },
+            {
+              "name": "Scott Cubbler",
+              "party": "O",
+              "votes": 314,
+              "electors": 0
             }
           ]
         },
@@ -25285,7 +26731,7 @@
             {
               "name": "Evan McMullin",
               "party": "O",
-              "votes": 255060,
+              "votes": 243690,
               "electors": 1
             },
             {
@@ -25295,15 +26741,39 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 9438,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 8032,
               "electors": 0
             },
             {
-              "name": "Kyle Kenley Kopitke",
+              "name": "Rocky Giordani",
               "party": "O",
               "votes": 2732,
+              "electors": 0
+            },
+            {
+              "name": "Roque De La Fuente",
+              "party": "O",
+              "votes": 883,
+              "electors": 0
+            },
+            {
+              "name": "Monica Moorehead",
+              "party": "O",
+              "votes": 544,
+              "electors": 0
+            },
+            {
+              "name": "Alyson Kennedy",
+              "party": "O",
+              "votes": 521,
               "electors": 0
             }
           ]
@@ -25367,6 +26837,12 @@
               "electors": 1
             },
             {
+              "name": "Bernie Sanders",
+              "party": "O",
+              "votes": 18218,
+              "electors": 0
+            },
+            {
               "name": "Gary Johnson",
               "party": "O",
               "votes": 10078,
@@ -25379,21 +26855,39 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1063,
               "electors": 0
             },
             {
-              "name": "Void Vote",
+              "name": "John Richard Kasich",
               "party": "O",
-              "votes": 826,
+              "votes": 827,
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 640,
+              "electors": 0
+            },
+            {
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 327,
+              "electors": 0
+            },
+            {
+              "name": "Mike Pence",
+              "party": "O",
+              "votes": 298,
+              "electors": 0
+            },
+            {
+              "name": "Paul Ryan",
+              "party": "O",
+              "votes": 208,
               "electors": 0
             }
           ]
@@ -25430,7 +26924,7 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 17623,
               "electors": 0
@@ -25442,7 +26936,7 @@
               "electors": 0
             },
             {
-              "name": "Gloria Estella La Riva",
+              "name": "Gloria La Riva",
               "party": "O",
               "votes": 3523,
               "electors": 0
@@ -25481,9 +26975,15 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 12162,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 11855,
               "electors": 0
             },
             {
@@ -25493,9 +26993,15 @@
               "electors": 0
             },
             {
-              "name": "Roque Rocky De La Fuente",
+              "name": "Roque De La Fuente",
               "party": "O",
               "votes": 1502,
+              "electors": 0
+            },
+            {
+              "name": "Michael A. Maturen",
+              "party": "O",
+              "votes": 284,
               "electors": 0
             }
           ]
@@ -25532,9 +27038,21 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 3807,
+              "electors": 0
+            },
+            {
+              "name": "Evan McMullin",
+              "party": "O",
+              "votes": 1104,
+              "electors": 0
+            },
+            {
+              "name": "Kevin Moreau",
+              "party": "O",
+              "votes": 216,
               "electors": 0
             }
           ]
@@ -25565,15 +27083,21 @@
               "electors": 0
             },
             {
-              "name": "Darrell L. Castle",
+              "name": "Jill Stein",
+              "party": "O",
+              "votes": 2515,
+              "electors": 0
+            },
+            {
+              "name": "Darrell Castle",
               "party": "O",
               "votes": 2042,
               "electors": 0
             },
             {
-              "name": "Over Vote",
+              "name": "Roque De La Fuente",
               "party": "O",
-              "votes": 278,
+              "votes": 709,
               "electors": 0
             }
           ]
@@ -32459,11 +33983,11 @@
       "year": 2016,
       "no_majority": true,
       "pr_d": 263,
-      "pr_r": 263,
-      "pr_other": 12,
+      "pr_r": 262,
+      "pr_other": 13,
       "actual_d": 232,
       "actual_r": 306,
-      "leader_party": "R",
+      "leader_party": "D",
       "leader_electors": 263
     },
     {

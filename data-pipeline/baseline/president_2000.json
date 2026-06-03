@@ -53,42 +53,42 @@
       "code": "AL",
       "name": "Alabama",
       "ev": 9,
-      "total_votes": 3331146,
+      "total_votes": 1665573,
       "candidates": [
         {
           "name": "George W. Bush",
           "party": "R",
-          "votes": 1882346
+          "votes": 941173
         },
         {
           "name": "Al Gore",
           "party": "D",
-          "votes": 1385222
+          "votes": 692611
         },
         {
           "name": "Ralph Nader",
           "party": "O",
-          "votes": 36646
+          "votes": 18323
         },
         {
           "name": "Patrick J. Buchanan",
           "party": "O",
-          "votes": 12702
+          "votes": 6351
         },
         {
           "name": "Harry Browne",
           "party": "O",
-          "votes": 11786
+          "votes": 5893
         },
         {
           "name": "Howard Phillips",
           "party": "O",
-          "votes": 1550
+          "votes": 775
         },
         {
           "name": "John Hagelin",
           "party": "O",
-          "votes": 894
+          "votes": 447
         }
       ]
     },
