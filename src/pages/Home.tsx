@@ -994,21 +994,30 @@ export function Home({ onMetaChange }: HomeProps) {
           </Reveal>
         )}
 
-        {/* A low-key pointer to the proportional Electoral College page — shown
-         * at the very bottom of every home view for the curious, not in the nav. */}
+        {/* Low-key pointers to the companion experiment pages — at the very bottom
+         * of every home view for the curious, not in the nav. */}
         <Reveal>
           <div className="mt-8 pt-6 border-t border-stone-200/70 text-center">
             <p className="text-sm text-stone-500 max-w-xl mx-auto">
-              Curious about the presidency? See what every election since 1976 would look like if each
-              state split its electoral votes proportionally instead of winner-take-all.
+              Two more experiments, beyond the House: the same structural lens turned on the presidency
+              and the Senate.
             </p>
-            <Link
-              to="/electoral-college"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-brand-navy hover:border-brand-navy hover:bg-stone-50 transition-colors"
-            >
-              The Proportional Electoral College
-              <span aria-hidden="true">→</span>
-            </Link>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              <Link
+                to="/electoral-college"
+                className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-brand-navy hover:border-brand-navy hover:bg-stone-50 transition-colors"
+              >
+                The Proportional Electoral College
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                to="/senate"
+                className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-brand-navy hover:border-brand-navy hover:bg-stone-50 transition-colors"
+              >
+                The Senate’s malapportionment
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </Reveal>
       </section>
