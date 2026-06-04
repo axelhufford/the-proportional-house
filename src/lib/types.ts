@@ -179,6 +179,43 @@ export interface ElectoralCollegePayload {
   series: ECSeriesPoint[];
 }
 
+// --- Senate malapportionment ----------------------------------------------
+// public/data/senate.json, built offline from the 2020 Census by build_senate.py.
+export interface SenateState {
+  fips: string;
+  code: string;
+  name: string;
+  population: number;
+  senators: number;
+  people_per_senator: number;
+  /** National avg people-per-senator ÷ this state's; >1 = overrepresented. */
+  representation_index: number;
+}
+
+export interface SenatePayload {
+  meta: {
+    generated_at: string;
+    source: string;
+    source_url?: string;
+    census_year: number;
+    total_population: number;
+    total_senators: number;
+    national_people_per_senator: number;
+    most_overrepresented: string;
+    most_underrepresented: string;
+    ratio_extremes: number;
+  };
+  states: SenateState[];
+  /** Smallest states whose senators add up to a 51-seat majority. */
+  majority: {
+    states_needed: number;
+    senators: number;
+    population: number;
+    population_share: number;
+    state_codes: string[];
+  };
+}
+
 // One completed cycle's PR-vs-actual outcome for a single state, derived from
 // retrospectives.json for the per-state "Under PR, 2016–2024" mini-history.
 export interface StateRetroPoint {

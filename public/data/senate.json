@@ -1,0 +1,500 @@
+{
+  "meta": {
+    "generated_at": "2026-06-04T02:52:45.954894+00:00",
+    "source": "U.S. Census Bureau, 2020 Census resident population (apportionment release, Table 2)",
+    "source_url": "https://www2.census.gov/programs-surveys/decennial/2020/data/apportionment/apportionment-2020-table02.xlsx",
+    "census_year": 2020,
+    "total_population": 330759736,
+    "total_senators": 100,
+    "national_people_per_senator": 3307597,
+    "most_overrepresented": "WY",
+    "most_underrepresented": "CA",
+    "ratio_extremes": 68.5
+  },
+  "states": [
+    {
+      "fips": "02",
+      "code": "AK",
+      "name": "Alaska",
+      "population": 733391,
+      "senators": 2,
+      "people_per_senator": 366696,
+      "representation_index": 9.02
+    },
+    {
+      "fips": "01",
+      "code": "AL",
+      "name": "Alabama",
+      "population": 5024279,
+      "senators": 2,
+      "people_per_senator": 2512140,
+      "representation_index": 1.317
+    },
+    {
+      "fips": "05",
+      "code": "AR",
+      "name": "Arkansas",
+      "population": 3011524,
+      "senators": 2,
+      "people_per_senator": 1505762,
+      "representation_index": 2.197
+    },
+    {
+      "fips": "04",
+      "code": "AZ",
+      "name": "Arizona",
+      "population": 7151502,
+      "senators": 2,
+      "people_per_senator": 3575751,
+      "representation_index": 0.925
+    },
+    {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "population": 39538223,
+      "senators": 2,
+      "people_per_senator": 19769112,
+      "representation_index": 0.167
+    },
+    {
+      "fips": "08",
+      "code": "CO",
+      "name": "Colorado",
+      "population": 5773714,
+      "senators": 2,
+      "people_per_senator": 2886857,
+      "representation_index": 1.146
+    },
+    {
+      "fips": "09",
+      "code": "CT",
+      "name": "Connecticut",
+      "population": 3605944,
+      "senators": 2,
+      "people_per_senator": 1802972,
+      "representation_index": 1.835
+    },
+    {
+      "fips": "10",
+      "code": "DE",
+      "name": "Delaware",
+      "population": 989948,
+      "senators": 2,
+      "people_per_senator": 494974,
+      "representation_index": 6.682
+    },
+    {
+      "fips": "12",
+      "code": "FL",
+      "name": "Florida",
+      "population": 21538187,
+      "senators": 2,
+      "people_per_senator": 10769094,
+      "representation_index": 0.307
+    },
+    {
+      "fips": "13",
+      "code": "GA",
+      "name": "Georgia",
+      "population": 10711908,
+      "senators": 2,
+      "people_per_senator": 5355954,
+      "representation_index": 0.618
+    },
+    {
+      "fips": "15",
+      "code": "HI",
+      "name": "Hawaii",
+      "population": 1455271,
+      "senators": 2,
+      "people_per_senator": 727636,
+      "representation_index": 4.546
+    },
+    {
+      "fips": "19",
+      "code": "IA",
+      "name": "Iowa",
+      "population": 3190369,
+      "senators": 2,
+      "people_per_senator": 1595184,
+      "representation_index": 2.073
+    },
+    {
+      "fips": "16",
+      "code": "ID",
+      "name": "Idaho",
+      "population": 1839106,
+      "senators": 2,
+      "people_per_senator": 919553,
+      "representation_index": 3.597
+    },
+    {
+      "fips": "17",
+      "code": "IL",
+      "name": "Illinois",
+      "population": 12812508,
+      "senators": 2,
+      "people_per_senator": 6406254,
+      "representation_index": 0.516
+    },
+    {
+      "fips": "18",
+      "code": "IN",
+      "name": "Indiana",
+      "population": 6785528,
+      "senators": 2,
+      "people_per_senator": 3392764,
+      "representation_index": 0.975
+    },
+    {
+      "fips": "20",
+      "code": "KS",
+      "name": "Kansas",
+      "population": 2937880,
+      "senators": 2,
+      "people_per_senator": 1468940,
+      "representation_index": 2.252
+    },
+    {
+      "fips": "21",
+      "code": "KY",
+      "name": "Kentucky",
+      "population": 4505836,
+      "senators": 2,
+      "people_per_senator": 2252918,
+      "representation_index": 1.468
+    },
+    {
+      "fips": "22",
+      "code": "LA",
+      "name": "Louisiana",
+      "population": 4657757,
+      "senators": 2,
+      "people_per_senator": 2328878,
+      "representation_index": 1.42
+    },
+    {
+      "fips": "25",
+      "code": "MA",
+      "name": "Massachusetts",
+      "population": 7029917,
+      "senators": 2,
+      "people_per_senator": 3514958,
+      "representation_index": 0.941
+    },
+    {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "population": 6177224,
+      "senators": 2,
+      "people_per_senator": 3088612,
+      "representation_index": 1.071
+    },
+    {
+      "fips": "23",
+      "code": "ME",
+      "name": "Maine",
+      "population": 1362359,
+      "senators": 2,
+      "people_per_senator": 681180,
+      "representation_index": 4.856
+    },
+    {
+      "fips": "26",
+      "code": "MI",
+      "name": "Michigan",
+      "population": 10077331,
+      "senators": 2,
+      "people_per_senator": 5038666,
+      "representation_index": 0.656
+    },
+    {
+      "fips": "27",
+      "code": "MN",
+      "name": "Minnesota",
+      "population": 5706494,
+      "senators": 2,
+      "people_per_senator": 2853247,
+      "representation_index": 1.159
+    },
+    {
+      "fips": "29",
+      "code": "MO",
+      "name": "Missouri",
+      "population": 6154913,
+      "senators": 2,
+      "people_per_senator": 3077456,
+      "representation_index": 1.075
+    },
+    {
+      "fips": "28",
+      "code": "MS",
+      "name": "Mississippi",
+      "population": 2961279,
+      "senators": 2,
+      "people_per_senator": 1480640,
+      "representation_index": 2.234
+    },
+    {
+      "fips": "30",
+      "code": "MT",
+      "name": "Montana",
+      "population": 1084225,
+      "senators": 2,
+      "people_per_senator": 542112,
+      "representation_index": 6.101
+    },
+    {
+      "fips": "37",
+      "code": "NC",
+      "name": "North Carolina",
+      "population": 10439388,
+      "senators": 2,
+      "people_per_senator": 5219694,
+      "representation_index": 0.634
+    },
+    {
+      "fips": "38",
+      "code": "ND",
+      "name": "North Dakota",
+      "population": 779094,
+      "senators": 2,
+      "people_per_senator": 389547,
+      "representation_index": 8.491
+    },
+    {
+      "fips": "31",
+      "code": "NE",
+      "name": "Nebraska",
+      "population": 1961504,
+      "senators": 2,
+      "people_per_senator": 980752,
+      "representation_index": 3.373
+    },
+    {
+      "fips": "33",
+      "code": "NH",
+      "name": "New Hampshire",
+      "population": 1377529,
+      "senators": 2,
+      "people_per_senator": 688764,
+      "representation_index": 4.802
+    },
+    {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "population": 9288994,
+      "senators": 2,
+      "people_per_senator": 4644497,
+      "representation_index": 0.712
+    },
+    {
+      "fips": "35",
+      "code": "NM",
+      "name": "New Mexico",
+      "population": 2117522,
+      "senators": 2,
+      "people_per_senator": 1058761,
+      "representation_index": 3.124
+    },
+    {
+      "fips": "32",
+      "code": "NV",
+      "name": "Nevada",
+      "population": 3104614,
+      "senators": 2,
+      "people_per_senator": 1552307,
+      "representation_index": 2.131
+    },
+    {
+      "fips": "36",
+      "code": "NY",
+      "name": "New York",
+      "population": 20201249,
+      "senators": 2,
+      "people_per_senator": 10100624,
+      "representation_index": 0.327
+    },
+    {
+      "fips": "39",
+      "code": "OH",
+      "name": "Ohio",
+      "population": 11799448,
+      "senators": 2,
+      "people_per_senator": 5899724,
+      "representation_index": 0.561
+    },
+    {
+      "fips": "40",
+      "code": "OK",
+      "name": "Oklahoma",
+      "population": 3959353,
+      "senators": 2,
+      "people_per_senator": 1979676,
+      "representation_index": 1.671
+    },
+    {
+      "fips": "41",
+      "code": "OR",
+      "name": "Oregon",
+      "population": 4237256,
+      "senators": 2,
+      "people_per_senator": 2118628,
+      "representation_index": 1.561
+    },
+    {
+      "fips": "42",
+      "code": "PA",
+      "name": "Pennsylvania",
+      "population": 13002700,
+      "senators": 2,
+      "people_per_senator": 6501350,
+      "representation_index": 0.509
+    },
+    {
+      "fips": "44",
+      "code": "RI",
+      "name": "Rhode Island",
+      "population": 1097379,
+      "senators": 2,
+      "people_per_senator": 548690,
+      "representation_index": 6.028
+    },
+    {
+      "fips": "45",
+      "code": "SC",
+      "name": "South Carolina",
+      "population": 5118425,
+      "senators": 2,
+      "people_per_senator": 2559212,
+      "representation_index": 1.292
+    },
+    {
+      "fips": "46",
+      "code": "SD",
+      "name": "South Dakota",
+      "population": 886667,
+      "senators": 2,
+      "people_per_senator": 443334,
+      "representation_index": 7.461
+    },
+    {
+      "fips": "47",
+      "code": "TN",
+      "name": "Tennessee",
+      "population": 6910840,
+      "senators": 2,
+      "people_per_senator": 3455420,
+      "representation_index": 0.957
+    },
+    {
+      "fips": "48",
+      "code": "TX",
+      "name": "Texas",
+      "population": 29145505,
+      "senators": 2,
+      "people_per_senator": 14572752,
+      "representation_index": 0.227
+    },
+    {
+      "fips": "49",
+      "code": "UT",
+      "name": "Utah",
+      "population": 3271616,
+      "senators": 2,
+      "people_per_senator": 1635808,
+      "representation_index": 2.022
+    },
+    {
+      "fips": "51",
+      "code": "VA",
+      "name": "Virginia",
+      "population": 8631393,
+      "senators": 2,
+      "people_per_senator": 4315696,
+      "representation_index": 0.766
+    },
+    {
+      "fips": "50",
+      "code": "VT",
+      "name": "Vermont",
+      "population": 643077,
+      "senators": 2,
+      "people_per_senator": 321538,
+      "representation_index": 10.287
+    },
+    {
+      "fips": "53",
+      "code": "WA",
+      "name": "Washington",
+      "population": 7705281,
+      "senators": 2,
+      "people_per_senator": 3852640,
+      "representation_index": 0.859
+    },
+    {
+      "fips": "55",
+      "code": "WI",
+      "name": "Wisconsin",
+      "population": 5893718,
+      "senators": 2,
+      "people_per_senator": 2946859,
+      "representation_index": 1.122
+    },
+    {
+      "fips": "54",
+      "code": "WV",
+      "name": "West Virginia",
+      "population": 1793716,
+      "senators": 2,
+      "people_per_senator": 896858,
+      "representation_index": 3.688
+    },
+    {
+      "fips": "56",
+      "code": "WY",
+      "name": "Wyoming",
+      "population": 576851,
+      "senators": 2,
+      "people_per_senator": 288426,
+      "representation_index": 11.468
+    }
+  ],
+  "majority": {
+    "states_needed": 26,
+    "senators": 52,
+    "population": 58141067,
+    "population_share": 0.1758,
+    "state_codes": [
+      "WY",
+      "VT",
+      "AK",
+      "ND",
+      "SD",
+      "DE",
+      "MT",
+      "RI",
+      "ME",
+      "NH",
+      "HI",
+      "WV",
+      "ID",
+      "NE",
+      "NM",
+      "KS",
+      "MS",
+      "AR",
+      "NV",
+      "IA",
+      "UT",
+      "CT",
+      "OK",
+      "OR",
+      "KY",
+      "LA"
+    ]
+  }
+}

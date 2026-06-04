@@ -63,6 +63,7 @@ const FAQS: FaqItem[] = [
   {
     q: 'Why the House and not the Senate?',
     a: 'The Senate gives every state two senators regardless of population. That’s a fixed feature of the Constitution that can’t be changed without a constitutional amendment. The House is allocated proportionally by population already; the gap between current single-member-district allocation and full PR is a statutory choice, not a constitutional one. So the House is the realistic surface where PR could happen.',
+    link: { to: '/senate', label: 'See how lopsided the Senate’s malapportionment is →' },
   },
   {
     q: 'What about the presidency — could you apply this to the Electoral College?',

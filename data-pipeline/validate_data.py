@@ -174,18 +174,39 @@ def check_electoral_college(errors: list[str]) -> None:
             errors.append(f"EC {year}: no_majority set but leader has a majority")
 
 
+def check_senate(errors: list[str]) -> None:
+    path = PUBLIC_DATA / "senate.json"
+    if not path.exists():
+        return  # optional / built offline from committed baseline
+    sen = _load("senate.json")
+    states = sen.get("states", [])
+    if len(states) != 50:
+        errors.append(f"senate: {len(states)} states (expected 50)")
+    if sum(s["senators"] for s in states) != sen["meta"]["total_senators"]:
+        errors.append("senate: senators don't sum to total_senators")
+    if sum(s["population"] for s in states) != sen["meta"]["total_population"]:
+        errors.append("senate: state populations don't sum to total_population")
+    for s in states:
+        if s["population"] <= 0 or "representation_index" not in s:
+            errors.append(f"senate {s.get('code')}: bad population / missing index")
+    maj = sen.get("majority", {})
+    if maj.get("senators", 0) < 51:
+        errors.append("senate: majority block has < 51 senators")
+
+
 def main() -> None:
     errors: list[str] = []
     check_projection(errors)
     check_retrospectives(errors)
     check_history(errors)
     check_electoral_college(errors)
+    check_senate(errors)
     if errors:
         print(f"DATA VALIDATION FAILED ({len(errors)} issue(s)):")
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
-    print("Data validation passed: projection + retrospectives + history + EC invariants hold.")
+    print("Data validation passed: projection + retrospectives + history + EC + Senate invariants hold.")
 
 
 if __name__ == "__main__":

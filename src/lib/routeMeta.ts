@@ -62,4 +62,10 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       'What if each state split its electoral votes proportionally instead of winner-take-all? Applied to every presidential election since 1976 — including how often no candidate would reach 270, sending the election to the House.',
     canonicalPath: '/electoral-college',
   },
+  '/senate': {
+    title: 'The Senate’s malapportionment · The Proportional House',
+    description:
+      'Every state gets two senators regardless of population. See how lopsided that is — a Wyoming voter has ~68× the Senate representation of a Californian, and the smallest states holding under 18% of the population can command a Senate majority.',
+    canonicalPath: '/senate',
+  },
 };

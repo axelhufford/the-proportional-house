@@ -321,6 +321,14 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) electoral-college build failed: {e}")
 
+    # Senate malapportionment — offline, reads committed state_populations.json
+    # (distilled once by fetch_senate_populations.py).
+    try:
+        from build_senate import main as build_senate
+        build_senate()
+    except Exception as e:
+        print(f"  (warn) senate build failed: {e}")
+
     # Static long-form content pages (e.g. /retrospectives) — reads
     # retrospectives.json (written just above); pure Python, no resvg.
     try:
