@@ -1,0 +1,478 @@
+{
+  "meta": {
+    "generated_at": "2026-06-04T14:34:34.816828+00:00",
+    "judgeships_source": "28 U.S.C. \u00a744(a) (current authorized circuit judgeships)",
+    "composition_source": "28 U.S.C. \u00a741",
+    "population_source": "U.S. Census Bureau, 2020 resident population",
+    "total_population": 334735155,
+    "total_judges": 167,
+    "note": "Federal Circuit (non-geographic) excluded; territories other than Puerto Rico omitted. The rebalanced map is one illustrative redraw, not a proposal; real circuit design weighs caseload, geography, and history, not just population."
+  },
+  "current": {
+    "circuits": [
+      {
+        "id": "DC",
+        "label": "D.C. Circuit",
+        "states": [
+          "DC"
+        ],
+        "population": 689545,
+        "judges": 11,
+        "people_per_judge": 62686
+      },
+      {
+        "id": "1",
+        "label": "1st Circuit",
+        "states": [
+          "ME",
+          "MA",
+          "NH",
+          "RI",
+          "PR"
+        ],
+        "population": 14153058,
+        "judges": 6,
+        "people_per_judge": 2358843
+      },
+      {
+        "id": "2",
+        "label": "2nd Circuit",
+        "states": [
+          "CT",
+          "NY",
+          "VT"
+        ],
+        "population": 24450270,
+        "judges": 13,
+        "people_per_judge": 1880790
+      },
+      {
+        "id": "3",
+        "label": "3rd Circuit",
+        "states": [
+          "DE",
+          "NJ",
+          "PA"
+        ],
+        "population": 23281642,
+        "judges": 14,
+        "people_per_judge": 1662974
+      },
+      {
+        "id": "4",
+        "label": "4th Circuit",
+        "states": [
+          "MD",
+          "NC",
+          "SC",
+          "VA",
+          "WV"
+        ],
+        "population": 32160146,
+        "judges": 15,
+        "people_per_judge": 2144010
+      },
+      {
+        "id": "5",
+        "label": "5th Circuit",
+        "states": [
+          "LA",
+          "MS",
+          "TX"
+        ],
+        "population": 36764541,
+        "judges": 17,
+        "people_per_judge": 2162620
+      },
+      {
+        "id": "6",
+        "label": "6th Circuit",
+        "states": [
+          "KY",
+          "MI",
+          "OH",
+          "TN"
+        ],
+        "population": 33293455,
+        "judges": 16,
+        "people_per_judge": 2080841
+      },
+      {
+        "id": "7",
+        "label": "7th Circuit",
+        "states": [
+          "IL",
+          "IN",
+          "WI"
+        ],
+        "population": 25491754,
+        "judges": 11,
+        "people_per_judge": 2317432
+      },
+      {
+        "id": "8",
+        "label": "8th Circuit",
+        "states": [
+          "AR",
+          "IA",
+          "MN",
+          "MO",
+          "NE",
+          "ND",
+          "SD"
+        ],
+        "population": 21690565,
+        "judges": 11,
+        "people_per_judge": 1971870
+      },
+      {
+        "id": "9",
+        "label": "9th Circuit",
+        "states": [
+          "AK",
+          "AZ",
+          "CA",
+          "HI",
+          "ID",
+          "MT",
+          "NV",
+          "OR",
+          "WA"
+        ],
+        "population": 66848869,
+        "judges": 29,
+        "people_per_judge": 2305133
+      },
+      {
+        "id": "10",
+        "label": "10th Circuit",
+        "states": [
+          "CO",
+          "KS",
+          "NM",
+          "OK",
+          "UT",
+          "WY"
+        ],
+        "population": 18636936,
+        "judges": 12,
+        "people_per_judge": 1553078
+      },
+      {
+        "id": "11",
+        "label": "11th Circuit",
+        "states": [
+          "AL",
+          "FL",
+          "GA"
+        ],
+        "population": 37274374,
+        "judges": 12,
+        "people_per_judge": 3106198
+      }
+    ],
+    "by_state": {
+      "DC": "DC",
+      "ME": "1",
+      "MA": "1",
+      "NH": "1",
+      "RI": "1",
+      "PR": "1",
+      "CT": "2",
+      "NY": "2",
+      "VT": "2",
+      "DE": "3",
+      "NJ": "3",
+      "PA": "3",
+      "MD": "4",
+      "NC": "4",
+      "SC": "4",
+      "VA": "4",
+      "WV": "4",
+      "LA": "5",
+      "MS": "5",
+      "TX": "5",
+      "KY": "6",
+      "MI": "6",
+      "OH": "6",
+      "TN": "6",
+      "IL": "7",
+      "IN": "7",
+      "WI": "7",
+      "AR": "8",
+      "IA": "8",
+      "MN": "8",
+      "MO": "8",
+      "NE": "8",
+      "ND": "8",
+      "SD": "8",
+      "AK": "9",
+      "AZ": "9",
+      "CA": "9",
+      "HI": "9",
+      "ID": "9",
+      "MT": "9",
+      "NV": "9",
+      "OR": "9",
+      "WA": "9",
+      "CO": "10",
+      "KS": "10",
+      "NM": "10",
+      "OK": "10",
+      "UT": "10",
+      "WY": "10",
+      "AL": "11",
+      "FL": "11",
+      "GA": "11"
+    },
+    "disparity": {
+      "max": {
+        "label": "9th Circuit",
+        "population": 66848869
+      },
+      "min": {
+        "label": "1st Circuit",
+        "population": 14153058
+      },
+      "ratio": 4.7
+    }
+  },
+  "rebalanced": {
+    "circuits": [
+      {
+        "id": "dc",
+        "label": "District of Columbia",
+        "states": [
+          "DC"
+        ],
+        "population": 689545,
+        "judges": 11,
+        "people_per_judge": 62686
+      },
+      {
+        "id": "california",
+        "label": "California",
+        "states": [
+          "CA"
+        ],
+        "population": 39538223,
+        "judges": 19,
+        "people_per_judge": 2080959
+      },
+      {
+        "id": "pacific_mountain",
+        "label": "Pacific & Mountain West",
+        "states": [
+          "WA",
+          "OR",
+          "AK",
+          "HI",
+          "ID",
+          "MT",
+          "NV",
+          "UT",
+          "WY"
+        ],
+        "population": 24007611,
+        "judges": 11,
+        "people_per_judge": 2182510
+      },
+      {
+        "id": "southwest_plains",
+        "label": "Southwest & Southern Plains",
+        "states": [
+          "AZ",
+          "NM",
+          "CO",
+          "KS",
+          "OK"
+        ],
+        "population": 21939971,
+        "judges": 10,
+        "people_per_judge": 2193997
+      },
+      {
+        "id": "texas_louisiana",
+        "label": "Texas & Louisiana",
+        "states": [
+          "TX",
+          "LA"
+        ],
+        "population": 33803262,
+        "judges": 16,
+        "people_per_judge": 2112704
+      },
+      {
+        "id": "upper_plains",
+        "label": "Upper Plains & Mississippi Valley",
+        "states": [
+          "ND",
+          "SD",
+          "NE",
+          "IA",
+          "MN",
+          "MO",
+          "AR"
+        ],
+        "population": 21690565,
+        "judges": 10,
+        "people_per_judge": 2169056
+      },
+      {
+        "id": "western_lakes",
+        "label": "Western Great Lakes",
+        "states": [
+          "WI",
+          "IL",
+          "IN"
+        ],
+        "population": 25491754,
+        "judges": 12,
+        "people_per_judge": 2124313
+      },
+      {
+        "id": "eastern_lakes",
+        "label": "Eastern Great Lakes",
+        "states": [
+          "MI",
+          "OH"
+        ],
+        "population": 21876779,
+        "judges": 10,
+        "people_per_judge": 2187678
+      },
+      {
+        "id": "mid_south",
+        "label": "Mid-South & Appalachia",
+        "states": [
+          "AL",
+          "MS",
+          "TN",
+          "KY",
+          "WV"
+        ],
+        "population": 21195950,
+        "judges": 10,
+        "people_per_judge": 2119595
+      },
+      {
+        "id": "southeast",
+        "label": "Southeast",
+        "states": [
+          "FL",
+          "GA"
+        ],
+        "population": 32250095,
+        "judges": 15,
+        "people_per_judge": 2150006
+      },
+      {
+        "id": "carolinas_virginia",
+        "label": "Carolinas & Virginia",
+        "states": [
+          "SC",
+          "NC",
+          "VA"
+        ],
+        "population": 24189206,
+        "judges": 11,
+        "people_per_judge": 2199019
+      },
+      {
+        "id": "mid_atlantic",
+        "label": "Mid-Atlantic",
+        "states": [
+          "PA",
+          "NJ",
+          "DE",
+          "MD"
+        ],
+        "population": 29458866,
+        "judges": 14,
+        "people_per_judge": 2104205
+      },
+      {
+        "id": "northeast",
+        "label": "Northeast",
+        "states": [
+          "NY",
+          "CT",
+          "RI",
+          "MA",
+          "VT",
+          "NH",
+          "ME",
+          "PR"
+        ],
+        "population": 38603328,
+        "judges": 18,
+        "people_per_judge": 2144629
+      }
+    ],
+    "by_state": {
+      "DC": "dc",
+      "CA": "california",
+      "WA": "pacific_mountain",
+      "OR": "pacific_mountain",
+      "AK": "pacific_mountain",
+      "HI": "pacific_mountain",
+      "ID": "pacific_mountain",
+      "MT": "pacific_mountain",
+      "NV": "pacific_mountain",
+      "UT": "pacific_mountain",
+      "WY": "pacific_mountain",
+      "AZ": "southwest_plains",
+      "NM": "southwest_plains",
+      "CO": "southwest_plains",
+      "KS": "southwest_plains",
+      "OK": "southwest_plains",
+      "TX": "texas_louisiana",
+      "LA": "texas_louisiana",
+      "ND": "upper_plains",
+      "SD": "upper_plains",
+      "NE": "upper_plains",
+      "IA": "upper_plains",
+      "MN": "upper_plains",
+      "MO": "upper_plains",
+      "AR": "upper_plains",
+      "WI": "western_lakes",
+      "IL": "western_lakes",
+      "IN": "western_lakes",
+      "MI": "eastern_lakes",
+      "OH": "eastern_lakes",
+      "AL": "mid_south",
+      "MS": "mid_south",
+      "TN": "mid_south",
+      "KY": "mid_south",
+      "WV": "mid_south",
+      "FL": "southeast",
+      "GA": "southeast",
+      "SC": "carolinas_virginia",
+      "NC": "carolinas_virginia",
+      "VA": "carolinas_virginia",
+      "PA": "mid_atlantic",
+      "NJ": "mid_atlantic",
+      "DE": "mid_atlantic",
+      "MD": "mid_atlantic",
+      "NY": "northeast",
+      "CT": "northeast",
+      "RI": "northeast",
+      "MA": "northeast",
+      "VT": "northeast",
+      "NH": "northeast",
+      "ME": "northeast",
+      "PR": "northeast"
+    },
+    "disparity": {
+      "max": {
+        "label": "California",
+        "population": 39538223
+      },
+      "min": {
+        "label": "Mid-South & Appalachia",
+        "population": 21195950
+      },
+      "ratio": 1.9
+    }
+  }
+}

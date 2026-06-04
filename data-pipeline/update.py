@@ -329,6 +329,14 @@ def main(refresh_clerk: bool = False) -> None:
     except Exception as e:
         print(f"  (warn) senate build failed: {e}")
 
+    # Federal circuits by population/judges — offline, reads committed
+    # circuit_definitions.json + state_populations.json.
+    try:
+        from build_circuits import main as build_circuits
+        build_circuits()
+    except Exception as e:
+        print(f"  (warn) circuits build failed: {e}")
+
     # Static long-form content pages (e.g. /retrospectives) — reads
     # retrospectives.json (written just above); pure Python, no resvg.
     try:

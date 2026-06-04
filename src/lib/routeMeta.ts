@@ -68,4 +68,10 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       'Every state gets two senators regardless of population. See how lopsided that is — a Wyoming voter has ~68× the Senate representation of a Californian, and the smallest states holding under 18% of the population can command a Senate majority.',
     canonicalPath: '/senate',
   },
+  '/circuits': {
+    title: 'The federal circuit map · The Proportional House',
+    description:
+      'The U.S. Courts of Appeals are carved into wildly unequal circuits — the 9th covers ~1 in 5 Americans. See today’s circuits by population and authorized judges, and an illustrative redraw into far more equal circuits.',
+    canonicalPath: '/circuits',
+  },
 };

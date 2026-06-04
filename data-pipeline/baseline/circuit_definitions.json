@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "$comment": "Federal Courts of Appeals. Circuit composition: 28 U.S.C. §41. Authorized circuit judgeships: 28 U.S.C. §44(a). The Federal Circuit (nationwide, subject-matter) is excluded; it is not geographic. Territories with tiny populations (Guam, N. Mariana Islands, U.S. Virgin Islands) are omitted from the maps/totals; Puerto Rico (1st Circuit) is included. 'rebalanced' is one illustrative, hand-drawn redraw into more population-equal, contiguous circuits — not a proposal.",
+    "judgeships_source": "28 U.S.C. §44(a) (current authorized circuit judgeships)",
+    "composition_source": "28 U.S.C. §41",
+    "population_source": "U.S. Census Bureau, 2020 resident population",
+    "extra_populations": { "DC": 689545, "PR": 3285874 }
+  },
+  "judgeships": {
+    "DC": 11, "1": 6, "2": 13, "3": 14, "4": 15, "5": 17,
+    "6": 16, "7": 11, "8": 11, "9": 29, "10": 12, "11": 12
+  },
+  "current": {
+    "DC": { "label": "D.C. Circuit", "states": ["DC"] },
+    "1": { "label": "1st Circuit", "states": ["ME", "MA", "NH", "RI", "PR"] },
+    "2": { "label": "2nd Circuit", "states": ["CT", "NY", "VT"] },
+    "3": { "label": "3rd Circuit", "states": ["DE", "NJ", "PA"] },
+    "4": { "label": "4th Circuit", "states": ["MD", "NC", "SC", "VA", "WV"] },
+    "5": { "label": "5th Circuit", "states": ["LA", "MS", "TX"] },
+    "6": { "label": "6th Circuit", "states": ["KY", "MI", "OH", "TN"] },
+    "7": { "label": "7th Circuit", "states": ["IL", "IN", "WI"] },
+    "8": { "label": "8th Circuit", "states": ["AR", "IA", "MN", "MO", "NE", "ND", "SD"] },
+    "9": { "label": "9th Circuit", "states": ["AK", "AZ", "CA", "HI", "ID", "MT", "NV", "OR", "WA"] },
+    "10": { "label": "10th Circuit", "states": ["CO", "KS", "NM", "OK", "UT", "WY"] },
+    "11": { "label": "11th Circuit", "states": ["AL", "FL", "GA"] }
+  },
+  "rebalanced": {
+    "dc": { "label": "District of Columbia", "states": ["DC"], "fixed": true },
+    "california": { "label": "California", "states": ["CA"] },
+    "pacific_mountain": { "label": "Pacific & Mountain West", "states": ["WA", "OR", "AK", "HI", "ID", "MT", "NV", "UT", "WY"] },
+    "southwest_plains": { "label": "Southwest & Southern Plains", "states": ["AZ", "NM", "CO", "KS", "OK"] },
+    "texas_louisiana": { "label": "Texas & Louisiana", "states": ["TX", "LA"] },
+    "upper_plains": { "label": "Upper Plains & Mississippi Valley", "states": ["ND", "SD", "NE", "IA", "MN", "MO", "AR"] },
+    "western_lakes": { "label": "Western Great Lakes", "states": ["WI", "IL", "IN"] },
+    "eastern_lakes": { "label": "Eastern Great Lakes", "states": ["MI", "OH"] },
+    "mid_south": { "label": "Mid-South & Appalachia", "states": ["AL", "MS", "TN", "KY", "WV"] },
+    "southeast": { "label": "Southeast", "states": ["FL", "GA"] },
+    "carolinas_virginia": { "label": "Carolinas & Virginia", "states": ["SC", "NC", "VA"] },
+    "mid_atlantic": { "label": "Mid-Atlantic", "states": ["PA", "NJ", "DE", "MD"] },
+    "northeast": { "label": "Northeast", "states": ["NY", "CT", "RI", "MA", "VT", "NH", "ME", "PR"] }
+  }
+}

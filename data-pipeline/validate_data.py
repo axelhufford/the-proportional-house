@@ -194,6 +194,28 @@ def check_senate(errors: list[str]) -> None:
         errors.append("senate: majority block has < 51 senators")
 
 
+def check_circuits(errors: list[str]) -> None:
+    path = PUBLIC_DATA / "circuits.json"
+    if not path.exists():
+        return  # optional / built offline from committed baseline
+    c = _load("circuits.json")
+    total_pop = c["meta"]["total_population"]
+    total_judges = c["meta"]["total_judges"]
+    for grp in ("current", "rebalanced"):
+        g = c[grp]
+        if sum(r["population"] for r in g["circuits"]) != total_pop:
+            errors.append(f"circuits {grp}: populations don't sum to total_population")
+        if sum(r["judges"] for r in g["circuits"]) != total_judges:
+            errors.append(f"circuits {grp}: judges don't sum to {total_judges}")
+        states = [code for code in g["by_state"] if code not in ("DC", "PR")]
+        if len(set(states)) != 50:
+            errors.append(f"circuits {grp}: {len(set(states))} states assigned (expected 50)")
+        for r in g["circuits"]:
+            for code in r["states"]:
+                if g["by_state"].get(code) != r["id"]:
+                    errors.append(f"circuits {grp}: {code} not mapped to {r['id']}")
+
+
 def main() -> None:
     errors: list[str] = []
     check_projection(errors)
@@ -201,12 +223,13 @@ def main() -> None:
     check_history(errors)
     check_electoral_college(errors)
     check_senate(errors)
+    check_circuits(errors)
     if errors:
         print(f"DATA VALIDATION FAILED ({len(errors)} issue(s)):")
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
-    print("Data validation passed: projection + retrospectives + history + EC + Senate invariants hold.")
+    print("Data validation passed: projection + retrospectives + history + EC + Senate + circuits invariants hold.")
 
 
 if __name__ == "__main__":

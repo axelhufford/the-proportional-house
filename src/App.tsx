@@ -11,6 +11,7 @@ import { NotFound } from './pages/NotFound';
 import { Rankings } from './pages/Rankings';
 import { ElectoralCollege } from './pages/ElectoralCollege';
 import { Senate } from './pages/Senate';
+import { Circuits } from './pages/Circuits';
 import { StateRedirect } from './pages/StateRedirect';
 import type { ProjectionMeta, ProjectionPayload } from './lib/types';
 
@@ -40,6 +41,7 @@ export default function App() {
           {/* Quieter companion pages — linked from the About FAQ, not the nav. */}
           <Route path="/electoral-college" element={<ElectoralCollege />} />
           <Route path="/senate" element={<Senate />} />
+          <Route path="/circuits" element={<Circuits />} />
           <Route path="/about" element={<About />} />
           <Route path="/state/:code" element={<StateRedirect />} />
           <Route path="*" element={<NotFound />} />

@@ -71,6 +71,11 @@ const FAQS: FaqItem[] = [
     link: { to: '/electoral-college', label: 'Explore the Proportional Electoral College →' },
   },
   {
+    q: 'Does this apply to the federal courts?',
+    a: 'Sort of — just for fun. The U.S. Courts of Appeals are carved into circuits of wildly unequal size: the 9th Circuit covers about 1 in 5 Americans while the 1st barely 14 million — roughly a 5× gap (the long-running “split the 9th” debate). A companion experiment maps the circuits by population and authorized judges, with an illustrative redraw into far more equal circuits. Courts aren’t a representative body, so it’s a structural curiosity, not a reform — a circuit’s real load is caseload, not population.',
+    link: { to: '/circuits', label: 'See the federal circuit map →' },
+  },
+  {
     q: 'How are states with only one seat handled?',
     a: 'There’s no proportional way to split a single seat between two parties; whoever wins the statewide vote gets it. Seven states have a single House seat: Alaska, Delaware, North Dakota, South Dakota, Vermont, Wyoming, and (after the 2020 reapportionment) Montana shifted up to 2. For these states the projection just records the winner.',
   },

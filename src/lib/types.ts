@@ -216,6 +216,41 @@ export interface SenatePayload {
   };
 }
 
+// --- Federal circuits -------------------------------------------------------
+// public/data/circuits.json, built offline by build_circuits.py.
+export interface Circuit {
+  id: string;
+  label: string;
+  states: string[];
+  population: number;
+  judges: number;
+  people_per_judge: number | null;
+}
+
+export interface CircuitsGroup {
+  circuits: Circuit[];
+  by_state: Record<string, string>; // state code → circuit id
+  disparity: {
+    max: { label: string; population: number };
+    min: { label: string; population: number };
+    ratio: number;
+  };
+}
+
+export interface CircuitsPayload {
+  meta: {
+    generated_at: string;
+    judgeships_source: string;
+    composition_source: string;
+    population_source: string;
+    total_population: number;
+    total_judges: number;
+    note: string;
+  };
+  current: CircuitsGroup;
+  rebalanced: CircuitsGroup;
+}
+
 // One completed cycle's PR-vs-actual outcome for a single state, derived from
 // retrospectives.json for the per-state "Under PR, 2016–2024" mini-history.
 export interface StateRetroPoint {
