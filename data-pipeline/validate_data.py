@@ -200,13 +200,16 @@ def check_circuits(errors: list[str]) -> None:
         return  # optional / built offline from committed baseline
     c = _load("circuits.json")
     total_pop = c["meta"]["total_population"]
-    total_judges = c["meta"]["total_judges"]
+    total_active = c["meta"]["total_active_judges"]
+    total_senior = c["meta"]["total_senior_judges"]
     for grp in ("current", "rebalanced"):
         g = c[grp]
         if sum(r["population"] for r in g["circuits"]) != total_pop:
             errors.append(f"circuits {grp}: populations don't sum to total_population")
-        if sum(r["judges"] for r in g["circuits"]) != total_judges:
-            errors.append(f"circuits {grp}: judges don't sum to {total_judges}")
+        if sum(r["active_judges"] for r in g["circuits"]) != total_active:
+            errors.append(f"circuits {grp}: active judges don't sum to {total_active}")
+        if sum(r["senior_judges"] for r in g["circuits"]) != total_senior:
+            errors.append(f"circuits {grp}: senior judges don't sum to {total_senior}")
         states = [code for code in g["by_state"] if code not in ("DC", "PR")]
         if len(set(states)) != 50:
             errors.append(f"circuits {grp}: {len(set(states))} states assigned (expected 50)")

@@ -59,6 +59,7 @@ export function Circuits() {
   const [topology, setTopology] = useState<Topology | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<CircuitView>('current');
+  const [showSeniors, setShowSeniors] = useState(false);
 
   useEffect(() => {
     fetchJson<CircuitsPayload>('/data/circuits.json').then(setData).catch((e) => setError(String(e)));
@@ -117,28 +118,53 @@ export function Circuits() {
             <ViewToggle value={view} onChange={setView} />
           </div>
 
-          {topology && <CircuitMap topology={topology} group={group} colors={colors} />}
+          {topology && <CircuitMap topology={topology} group={group} colors={colors} showSeniors={showSeniors} />}
         </div>
       </Reveal>
 
       <Reveal>
         <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
-          <h2 className="font-serif text-xl text-brand-navy">
-            {view === 'current' ? 'Today’s circuits, by the numbers' : 'The rebalanced circuits'}
-          </h2>
+          <div className="flex items-start justify-between gap-3">
+            <h2 className="font-serif text-xl text-brand-navy">
+              {view === 'current' ? 'Today’s circuits, by the numbers' : 'The rebalanced circuits'}
+            </h2>
+            <div className="inline-flex rounded-md border border-stone-200 overflow-hidden text-xs" role="group" aria-label="Count active judges only, or include senior judges">
+              {(['active', 'senior'] as const).map((v) => {
+                const on = (v === 'senior') === showSeniors;
+                return (
+                  <button
+                    key={v}
+                    onClick={() => setShowSeniors(v === 'senior')}
+                    aria-pressed={on}
+                    className={'px-3 py-1 transition-colors ' + (on ? 'bg-brand-navy text-white' : 'bg-white text-stone-600 hover:bg-stone-50')}
+                  >
+                    {v === 'senior' ? '+ Senior' : 'Active'}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {showSeniors && (
+            <p className="text-xs text-stone-500 mt-1">
+              Adding the {data.meta.total_senior_judges} senior circuit judges (semi-retired, still hearing cases) as of{' '}
+              {data.meta.senior_judges_as_of}. Seniors carry reduced caseloads, so this is an optimistic floor.
+            </p>
+          )}
           <div className="mt-3 overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left text-stone-500 border-b border-stone-200">
                   <th className="py-1.5 pr-3 font-medium">Circuit</th>
                   <th className="py-1.5 px-2 font-medium text-right">Population</th>
-                  <th className="py-1.5 px-2 font-medium text-right">Judges</th>
+                  <th className="py-1.5 px-2 font-medium text-right">{showSeniors ? 'Judges (active + senior)' : 'Active judges'}</th>
                   <th className="py-1.5 pl-2 font-medium text-right">People / judge</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((c) => {
                   const isDC = c.id === 'DC' || c.id === 'dc';
+                  const judges = c.active_judges + (showSeniors ? c.senior_judges : 0);
+                  const ppj = judges > 0 ? Math.round(c.population / judges) : null;
                   return (
                     <tr key={c.id} className="border-b border-stone-100">
                       <td className="py-1.5 pr-3">
@@ -149,9 +175,12 @@ export function Circuits() {
                         <span className="block text-[11px] text-stone-400 ml-[18px]">{c.states.join(' · ')}</span>
                       </td>
                       <td className="py-1.5 px-2 text-right tabular-nums text-stone-700">{fmt(c.population)}</td>
-                      <td className="py-1.5 px-2 text-right tabular-nums text-stone-700">{c.judges}</td>
+                      <td className="py-1.5 px-2 text-right tabular-nums text-stone-700">
+                        {judges}
+                        {showSeniors && <span className="block text-[11px] text-stone-400">{c.active_judges} + {c.senior_judges}</span>}
+                      </td>
                       <td className="py-1.5 pl-2 text-right tabular-nums text-stone-700">
-                        {c.people_per_judge ? fmt(c.people_per_judge) : '—'}
+                        {ppj ? fmt(ppj) : '—'}
                         {isDC && <span className="block text-[11px] text-stone-400">federal-gov docket</span>}
                       </td>
                     </tr>
@@ -165,7 +194,8 @@ export function Circuits() {
 
       <footer className="mt-6 text-xs text-stone-400 leading-relaxed max-w-3xl">
         <p>
-          Circuit composition: {data.meta.composition_source}. Authorized judgeships: {data.meta.judgeships_source}.
+          Circuit composition: {data.meta.composition_source}. Authorized active judgeships: {data.meta.judgeships_source}.
+          Senior judges: {data.meta.senior_judges_source} (current as of {data.meta.senior_judges_as_of}).
           Populations: {data.meta.population_source}. {data.meta.note} The D.C. Circuit hears federal-government cases
           rather than a population, so its people-per-judge is not comparable. Puerto Rico (1st Circuit) is included;
           Guam, the Northern Mariana Islands, and the U.S. Virgin Islands are omitted.
@@ -184,16 +214,20 @@ function CircuitMap({
   topology,
   group,
   colors,
+  showSeniors,
 }: {
   topology: Topology;
   group: CircuitsGroup;
   colors: Record<string, string>;
+  showSeniors: boolean;
 }) {
   const [hover, setHover] = useState<string | null>(null);
   const labelByState = useMemo(() => {
-    const m = new Map<string, { circuit: string; population: number; ppj: number | null }>();
+    const m = new Map<string, { circuit: string; population: number; active: number; senior: number }>();
     for (const c of group.circuits) {
-      for (const code of c.states) m.set(code, { circuit: c.label, population: c.population, ppj: c.people_per_judge });
+      for (const code of c.states) {
+        m.set(code, { circuit: c.label, population: c.population, active: c.active_judges, senior: c.senior_judges });
+      }
     }
     return m;
   }, [group]);
@@ -235,9 +269,14 @@ function CircuitMap({
         <div className="absolute top-2 right-2 w-56 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
           <div className="font-semibold text-stone-900">{hover}</div>
           <div className="text-stone-700 mt-0.5">{hovered.circuit}</div>
-          <div className="text-xs text-stone-500 mt-1">
-            {fmt(hovered.population)} people{hovered.ppj ? ` · ${fmt(hovered.ppj)}/judge` : ''}
-          </div>
+          {(() => {
+            const judges = hovered.active + (showSeniors ? hovered.senior : 0);
+            return (
+              <div className="text-xs text-stone-500 mt-1">
+                {fmt(hovered.population)} people{judges ? ` · ${fmt(Math.round(hovered.population / judges))}/judge` : ''}
+              </div>
+            );
+          })()}
         </div>
       )}
     </div>

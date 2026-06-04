@@ -223,8 +223,8 @@ export interface Circuit {
   label: string;
   states: string[];
   population: number;
-  judges: number;
-  people_per_judge: number | null;
+  active_judges: number;
+  senior_judges: number;
 }
 
 export interface CircuitsGroup {
@@ -243,8 +243,11 @@ export interface CircuitsPayload {
     judgeships_source: string;
     composition_source: string;
     population_source: string;
+    senior_judges_source: string;
+    senior_judges_as_of: string;
     total_population: number;
-    total_judges: number;
+    total_active_judges: number;
+    total_senior_judges: number;
     note: string;
   };
   current: CircuitsGroup;

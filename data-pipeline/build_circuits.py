@@ -34,18 +34,16 @@ def _pop_lookup(defs: dict) -> dict[str, int]:
     return pops
 
 
-def _circuit_rows(group: dict, pops: dict, judges_by_id: dict[str, int]) -> list[dict]:
+def _circuit_rows(group: dict, pops: dict, active_by_id: dict[str, int], senior_by_id: dict[str, int]) -> list[dict]:
     rows = []
     for cid, c in group.items():
-        population = sum(pops[code] for code in c["states"])
-        judges = judges_by_id.get(cid, 0)
         rows.append({
             "id": cid,
             "label": c["label"],
             "states": c["states"],
-            "population": population,
-            "judges": judges,
-            "people_per_judge": round(population / judges) if judges else None,
+            "population": sum(pops[code] for code in c["states"]),
+            "active_judges": active_by_id.get(cid, 0),
+            "senior_judges": senior_by_id.get(cid, 0),
         })
     return rows
 
@@ -65,21 +63,28 @@ def _disparity(rows: list[dict], exclude_ids: set[str]) -> dict:
 def main() -> None:
     defs = json.loads(DEFS_PATH.read_text())
     pops = _pop_lookup(defs)
-    judgeships = defs["judgeships"]
-    total_geo_judges = sum(v for k, v in judgeships.items() if k != "DC")  # 156
+    judgeships = defs["judgeships"]  # §44 authorized active judgeships
+    senior = json.loads((BASELINE / "senior_judges.json").read_text())
+    seniors = senior["senior_judges"]  # current senior judges per circuit (FJC)
 
-    # --- Current ---
-    current = _circuit_rows(defs["current"], pops, judgeships)
+    total_geo_active = sum(v for k, v in judgeships.items() if k != "DC")  # 156
+    total_geo_seniors = sum(v for k, v in seniors.items() if k != "DC")    # 108 (DC seniors stay with DC)
+
+    # --- Current: §44 active + FJC senior counts ---
+    current = _circuit_rows(defs["current"], pops, judgeships, seniors)
     current_by_state = {code: cid for cid, c in defs["current"].items() for code in c["states"]}
 
-    # --- Rebalanced: reallocate the 156 geographic judges by population (Hamilton);
-    # the D.C. Circuit keeps its 11. ---
+    # --- Rebalanced: reallocate BOTH the 156 geographic active judges and the 108
+    # geographic senior judges across the new circuits by population (Hamilton); the
+    # D.C. Circuit keeps its real 11 active + 5 senior. ---
     reb_def = defs["rebalanced"]
     geo_ids = [cid for cid, c in reb_def.items() if not c.get("fixed")]
     geo_pops = [sum(pops[code] for code in reb_def[cid]["states"]) for cid in geo_ids]
-    geo_judges = allocate_n(AllocationInputN(seats=total_geo_judges, votes=geo_pops), "hamilton")
-    reb_judges_by_id = {"dc": judgeships["DC"], **{cid: j for cid, j in zip(geo_ids, geo_judges)}}
-    rebalanced = _circuit_rows(reb_def, pops, reb_judges_by_id)
+    geo_active = allocate_n(AllocationInputN(seats=total_geo_active, votes=geo_pops), "hamilton")
+    geo_senior = allocate_n(AllocationInputN(seats=total_geo_seniors, votes=geo_pops), "hamilton")
+    reb_active = {"dc": judgeships["DC"], **dict(zip(geo_ids, geo_active))}
+    reb_senior = {"dc": seniors["DC"], **dict(zip(geo_ids, geo_senior))}
+    rebalanced = _circuit_rows(reb_def, pops, reb_active, reb_senior)
     rebalanced_by_state = {code: cid for cid, c in reb_def.items() for code in c["states"]}
 
     total_population = sum(r["population"] for r in current)  # all jurisdictions incl DC/PR
@@ -90,12 +95,16 @@ def main() -> None:
             "judgeships_source": defs["meta"]["judgeships_source"],
             "composition_source": defs["meta"]["composition_source"],
             "population_source": defs["meta"]["population_source"],
+            "senior_judges_source": senior["meta"]["source"],
+            "senior_judges_as_of": senior["meta"]["as_of"],
             "total_population": total_population,
-            "total_judges": sum(judgeships.values()),
+            "total_active_judges": sum(judgeships.values()),
+            "total_senior_judges": sum(seniors.values()),
             "note": (
                 "Federal Circuit (non-geographic) excluded; territories other than Puerto Rico omitted. "
-                "The rebalanced map is one illustrative redraw, not a proposal; real circuit design weighs "
-                "caseload, geography, and history, not just population."
+                "Senior judges hear cases with reduced caseloads, so a people-per-judge that counts them is "
+                "an optimistic floor. The rebalanced map is one illustrative redraw, not a proposal; real "
+                "circuit design weighs caseload, geography, and history, not just population."
             ),
         },
         "current": {
@@ -113,9 +122,11 @@ def main() -> None:
 
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)}")
     cd = payload["current"]["disparity"]
-    rd = payload["rebalanced"]["disparity"]
-    print(f"  current:    {cd['max']['label']} {cd['max']['population']:,} vs {cd['min']['label']} {cd['min']['population']:,}  ({cd['ratio']}x)")
-    print(f"  rebalanced: {rd['max']['label']} {rd['max']['population']:,} vs {rd['min']['label']} {rd['min']['population']:,}  ({rd['ratio']}x)")
+    print(f"  population gap: current {cd['ratio']}x | rebalanced {payload['rebalanced']['disparity']['ratio']}x")
+    ninth = next(r for r in current if r["id"] == "9")
+    ppj_a = ninth["population"] // ninth["active_judges"]
+    ppj_s = ninth["population"] // (ninth["active_judges"] + ninth["senior_judges"])
+    print(f"  9th Circuit: {ninth['active_judges']} active + {ninth['senior_judges']} senior → {ppj_a:,}/judge active, {ppj_s:,}/judge with seniors")
 
 
 if __name__ == "__main__":
