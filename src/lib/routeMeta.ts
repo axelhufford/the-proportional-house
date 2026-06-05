@@ -75,3 +75,39 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     canonicalPath: '/circuits',
   },
 };
+
+/**
+ * Build a schema.org `Dataset` JSON-LD object for a page, mirroring the shape the
+ * homepage emits for the projection. The companion experiment pages inject this
+ * via an inline `<script type="application/ld+json">` so crawlers — and Google
+ * Dataset Search — can discover each experiment's underlying public JSON.
+ */
+export function datasetSchema(opts: {
+  name: string;
+  description: string;
+  /** Page path with a leading slash, e.g. "/senate". */
+  canonicalPath: string;
+  /** Public data file path with a leading slash, e.g. "/data/senate.json". */
+  dataPath: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: opts.name,
+    description: opts.description,
+    url: `${SITE_ORIGIN}${opts.canonicalPath}`,
+    isAccessibleForFree: true,
+    // CC BY 4.0 — same data license as the homepage projection.
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    creator: {
+      '@type': 'Person',
+      name: 'Axel Hufford',
+      url: 'https://axelhufford.com',
+    },
+    distribution: {
+      '@type': 'DataDownload',
+      encodingFormat: 'application/json',
+      contentUrl: `${SITE_ORIGIN}${opts.dataPath}`,
+    },
+  };
+}

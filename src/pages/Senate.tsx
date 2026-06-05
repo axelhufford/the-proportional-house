@@ -7,7 +7,7 @@ import { Reveal } from '../components/Reveal';
 import { distortionColor } from '../lib/colors';
 import { fetchJson } from '../lib/fetchJson';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
-import { ROUTE_META } from '../lib/routeMeta';
+import { ROUTE_META, datasetSchema } from '../lib/routeMeta';
 import type { SenatePayload, SenateState } from '../lib/types';
 
 const OVER_COLOR = '#5e3c99'; // purple — overrepresented (small states)
@@ -197,6 +197,21 @@ export function Senate() {
           constitutional amendment (which is why the rest of this site focuses on the House).
         </p>
       </footer>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            datasetSchema({
+              name: 'U.S. Senate malapportionment by state',
+              description:
+                'State-by-state U.S. Senate representation per person — population, people per senator, and representation relative to the national average — quantifying the structural cost of equal per-state representation.',
+              canonicalPath: '/senate',
+              dataPath: '/data/senate.json',
+            }),
+          ),
+        }}
+      />
     </div>
   );
 }
@@ -242,6 +257,8 @@ function SenateMap({
               className="cursor-pointer transition-[stroke-width] duration-150"
               onMouseEnter={() => setHover(f.properties.name)}
               onMouseLeave={() => setHover(null)}
+              onFocus={() => setHover(f.properties.name)}
+              onBlur={() => setHover(null)}
               tabIndex={st ? 0 : -1}
               aria-label={
                 st
@@ -252,6 +269,34 @@ function SenateMap({
           );
         })}
       </svg>
+
+      {/* Screen-reader-only tabular fallback for the map. */}
+      <table className="sr-only">
+        <caption>
+          U.S. Senate representation by state: population, people per senator, and representation
+          relative to the national average.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">State</th>
+            <th scope="col">Population</th>
+            <th scope="col">People per senator</th>
+            <th scope="col">Representation vs. national average</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...states]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((s) => (
+              <tr key={s.code}>
+                <th scope="row">{s.name}</th>
+                <td>{fmt(s.population)}</td>
+                <td>{fmt(s.people_per_senator)}</td>
+                <td>{s.representation_index}×</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
       {hovered && (
         <div className="absolute top-2 right-2 w-56 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
           <div className="font-semibold text-stone-900">{hovered.name}</div>

@@ -43,6 +43,24 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://proportionalhouse.org/electoral-college</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://proportionalhouse.org/senate</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://proportionalhouse.org/circuits</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://proportionalhouse.org/state/ak</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>daily</changefreq>

@@ -10,7 +10,7 @@ import { allocateN, type AllocationMethod } from '../lib/allocation';
 import { balanceColor } from '../lib/colors';
 import { fetchJson } from '../lib/fetchJson';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
-import { ROUTE_META } from '../lib/routeMeta';
+import { ROUTE_META, datasetSchema } from '../lib/routeMeta';
 import type { ECCandidate, ECCycle, ElectoralCollegePayload } from '../lib/types';
 
 const D_COLOR = '#2166ac';
@@ -387,6 +387,21 @@ export function ElectoralCollege() {
           candidates that win no electors are omitted from the breakdown.
         </p>
       </footer>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            datasetSchema({
+              name: 'The Proportional Electoral College, 1976–2024',
+              description:
+                'Every U.S. presidential election since 1976 recomputed as if each state allocated its electoral votes in proportion to its popular vote instead of winner-take-all — with per-state elector splits and how often no candidate reaches a 270 majority.',
+              canonicalPath: '/electoral-college',
+              dataPath: '/data/electoral_college.json',
+            }),
+          ),
+        }}
+      />
     </div>
   );
 }
@@ -445,6 +460,8 @@ function ECMap({ topology, states, view }: { topology: Topology; states: Compute
               className="cursor-pointer transition-[stroke-width,fill] duration-150"
               onMouseEnter={() => setHover(f.properties.name)}
               onMouseLeave={() => setHover(null)}
+              onFocus={() => setHover(f.properties.name)}
+              onBlur={() => setHover(null)}
               tabIndex={st ? 0 : -1}
               aria-label={aria}
             />

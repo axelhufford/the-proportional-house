@@ -2,9 +2,20 @@
 
 Lists every URL the site exposes:
   - /                       (home)
+  - /rankings               (rankings leaderboards)
+  - /retrospective          (interactive retrospective view)
+  - /sandbox                (interactive build-your-own view)
+  - /retrospectives         (static long-form write-up)
   - /methodology            (methodology page)
+  - /about                  (about + FAQ)
+  - /electoral-college      (companion experiment)
+  - /senate                 (companion experiment)
+  - /circuits               (companion experiment)
   - /state/{code_lower}     (one per state, 50 total — matches the static
                              HTML pages emitted by generate_state_og.py)
+
+Keep the fixed-route list here in sync with ROUTE_META in src/lib/routeMeta.ts
+(the per-route prerender source) so crawlers can discover every page.
 
 `<lastmod>` for every URL uses the pipeline's `generated_at` timestamp from
 public/data/meta.json. That way Google sees a fresh date whenever the
@@ -32,6 +43,23 @@ SITEMAP_PATH = REPO_ROOT / "public" / "sitemap.xml"
 # the canonical hostname or Google will see two competing copies. See
 # generate_state_og.SITE_URL — keep these in sync.
 SITE_URL = "https://proportionalhouse.org"
+
+# Fixed (non-state) routes as (path, priority, changefreq). Keep in sync with
+# ROUTE_META in src/lib/routeMeta.ts (the prerender source) plus the static
+# /retrospectives write-up. Listing every page here is what lets search engines
+# and AI crawlers discover the companion experiments, which aren't in the nav.
+FIXED_ROUTES: list[tuple[str, str, str]] = [
+    ("/", "1.0", "daily"),                # homepage — refreshes each pipeline run
+    ("/rankings", "0.9", "daily"),        # leaderboards re-sort each run
+    ("/retrospective", "0.8", "monthly"),  # interactive: PR over 2016–2024 actuals
+    ("/sandbox", "0.7", "monthly"),       # build-your-own scenario tool
+    ("/retrospectives", "0.8", "monthly"),  # static long-form write-up
+    ("/methodology", "0.7", "monthly"),   # stable
+    ("/about", "0.5", "monthly"),         # very stable
+    ("/electoral-college", "0.6", "monthly"),  # companion experiment
+    ("/senate", "0.6", "monthly"),        # companion experiment
+    ("/circuits", "0.6", "monthly"),      # companion experiment
+]
 
 
 def _lastmod() -> str:
@@ -70,20 +98,10 @@ def build_sitemap(state_codes: list[str]) -> str:
         '<?xml version="1.0" encoding="UTF-8"?>\n',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n',
     ]
-    # Homepage — highest priority, updates whenever the projection refreshes.
-    parts.append(_url_entry(f"{SITE_URL}/", lastmod, "1.0", "daily"))
-    # Rankings — fresh content every pipeline run (numbers re-sort), high priority.
-    parts.append(_url_entry(f"{SITE_URL}/rankings", lastmod, "0.9", "daily"))
-    # Retrospective — interactive view: PR applied to 2016–2024 actual votes.
-    parts.append(_url_entry(f"{SITE_URL}/retrospective", lastmod, "0.8", "monthly"))
-    # Sandbox — interactive build-your-own scenario tool.
-    parts.append(_url_entry(f"{SITE_URL}/sandbox", lastmod, "0.7", "monthly"))
-    # Retrospectives — static long-form article (PR vs. actual, 2016–2024).
-    parts.append(_url_entry(f"{SITE_URL}/retrospectives", lastmod, "0.8", "monthly"))
-    # Methodology — stable content, changes rarely.
-    parts.append(_url_entry(f"{SITE_URL}/methodology", lastmod, "0.7", "monthly"))
-    # About — very stable, rarely changes.
-    parts.append(_url_entry(f"{SITE_URL}/about", lastmod, "0.5", "monthly"))
+    # Fixed (non-state) routes.
+    for path, priority, changefreq in FIXED_ROUTES:
+        loc = f"{SITE_URL}/" if path == "/" else f"{SITE_URL}{path}"
+        parts.append(_url_entry(loc, lastmod, priority, changefreq))
     # Per-state pages — these mirror the static HTML pages in /state/.
     for code in state_codes:
         parts.append(
@@ -103,10 +121,9 @@ def main() -> None:
     state_codes = sorted(s["code"] for s in payload["states"])
     sitemap = build_sitemap(state_codes)
     SITEMAP_PATH.write_text(sitemap)
-    # 7 fixed routes (/, /rankings, /retrospective, /sandbox, /retrospectives,
-    # /methodology, /about) + one per state.
+    # len(FIXED_ROUTES) fixed routes + one per state.
     print(
-        f"Wrote sitemap with {len(state_codes) + 7} URLs to "
+        f"Wrote sitemap with {len(state_codes) + len(FIXED_ROUTES)} URLs to "
         f"{SITEMAP_PATH.relative_to(REPO_ROOT)}"
     )
 

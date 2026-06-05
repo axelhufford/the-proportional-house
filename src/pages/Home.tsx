@@ -999,7 +999,7 @@ export function Home({ onMetaChange }: HomeProps) {
         <Reveal>
           <div className="mt-8 pt-6 border-t border-stone-200/70 text-center">
             <p className="text-sm text-stone-500 max-w-xl mx-auto">
-              Two more experiments, beyond the House: the same structural lens turned on the presidency
+              More experiments, beyond the House: the same structural lens turned on the presidency
               and the Senate.
             </p>
             <div className="mt-3 flex flex-wrap justify-center gap-2">

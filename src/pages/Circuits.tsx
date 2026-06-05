@@ -6,7 +6,7 @@ import type { Topology } from 'topojson-specification';
 import { Reveal } from '../components/Reveal';
 import { fetchJson } from '../lib/fetchJson';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
-import { ROUTE_META } from '../lib/routeMeta';
+import { ROUTE_META, datasetSchema } from '../lib/routeMeta';
 import type { CircuitsGroup, CircuitsPayload } from '../lib/types';
 
 type CircuitView = 'current' | 'rebalanced';
@@ -118,7 +118,7 @@ export function Circuits() {
             <ViewToggle value={view} onChange={setView} />
           </div>
 
-          {topology && <CircuitMap topology={topology} group={group} colors={colors} showSeniors={showSeniors} />}
+          {topology && <CircuitMap topology={topology} group={group} colors={colors} showSeniors={showSeniors} view={view} />}
         </div>
       </Reveal>
 
@@ -201,6 +201,21 @@ export function Circuits() {
           Guam, the Northern Mariana Islands, and the U.S. Virgin Islands are omitted.
         </p>
       </footer>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            datasetSchema({
+              name: 'U.S. Courts of Appeals circuits by population and judges',
+              description:
+                'Each U.S. federal judicial circuit by population and authorized judgeships, with people-per-judge ratios, plus an illustrative redraw into more population-equal circuits.',
+              canonicalPath: '/circuits',
+              dataPath: '/data/circuits.json',
+            }),
+          ),
+        }}
+      />
     </div>
   );
 }
@@ -215,11 +230,13 @@ function CircuitMap({
   group,
   colors,
   showSeniors,
+  view,
 }: {
   topology: Topology;
   group: CircuitsGroup;
   colors: Record<string, string>;
   showSeniors: boolean;
+  view: CircuitView;
 }) {
   const [hover, setHover] = useState<string | null>(null);
   const labelByState = useMemo(() => {
@@ -243,14 +260,39 @@ function CircuitMap({
   const codeForName = (name: string) => NAME_TO_CODE[name];
   const hovered = hover ? labelByState.get(codeForName(hover) ?? '') ?? null : null;
 
+  // Screen-reader / keyboard tabular fallback: every mapped state with its
+  // circuit, circuit population, and people per judge (respecting the seniors
+  // toggle). Mirrors what a sighted user reads by hovering each state.
+  const srRows = geojson.features
+    .map((f) => {
+      const info = labelByState.get(codeForName(f.properties.name) ?? '');
+      return info ? { name: f.properties.name, ...info } : null;
+    })
+    .filter(
+      (r): r is { name: string; circuit: string; population: number; active: number; senior: number } =>
+        r !== null,
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const peoplePerJudge = (population: number, active: number, senior: number) => {
+    const judges = active + (showSeniors ? senior : 0);
+    return judges > 0 ? Math.round(population / judges) : null;
+  };
+
   return (
     <div className="relative mt-3">
       <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full h-auto" role="img" aria-label="Map of the U.S. courts of appeals circuits by state">
         {geojson.features.map((f, i) => {
           const code = codeForName(f.properties.name);
           const cid = code ? group.by_state[code] : undefined;
+          const info = code ? labelByState.get(code) : undefined;
           const fill = cid ? colors[cid] : '#e5e7eb';
           const isHover = hover === f.properties.name;
+          const ppj = info ? peoplePerJudge(info.population, info.active, info.senior) : null;
+          const aria = info
+            ? `${f.properties.name}: ${info.circuit}, ${fmt(info.population)} people${
+                ppj ? `, ${fmt(ppj)} per judge` : ''
+              }`
+            : undefined;
           return (
             <path
               key={i}
@@ -261,10 +303,43 @@ function CircuitMap({
               className="cursor-pointer transition-[fill,stroke-width] duration-150"
               onMouseEnter={() => setHover(f.properties.name)}
               onMouseLeave={() => setHover(null)}
+              onFocus={() => setHover(f.properties.name)}
+              onBlur={() => setHover(null)}
+              tabIndex={info ? 0 : -1}
+              aria-label={aria}
             />
           );
         })}
       </svg>
+
+      {/* Screen-reader-only tabular fallback for the map. */}
+      <table className="sr-only">
+        <caption>
+          {view === 'current' ? 'Today’s' : 'Rebalanced'} U.S. courts of appeals circuits: the circuit,
+          total circuit population, and people per {showSeniors ? 'active or senior ' : ''}judge for each state.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">State</th>
+            <th scope="col">Circuit</th>
+            <th scope="col">Circuit population</th>
+            <th scope="col">People per judge</th>
+          </tr>
+        </thead>
+        <tbody>
+          {srRows.map((r) => {
+            const ppj = peoplePerJudge(r.population, r.active, r.senior);
+            return (
+              <tr key={r.name}>
+                <th scope="row">{r.name}</th>
+                <td>{r.circuit}</td>
+                <td>{fmt(r.population)}</td>
+                <td>{ppj ? fmt(ppj) : '—'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       {hovered && (
         <div className="absolute top-2 right-2 w-56 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
           <div className="font-semibold text-stone-900">{hover}</div>

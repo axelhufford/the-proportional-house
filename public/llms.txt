@@ -14,6 +14,11 @@
 - [Methodology](https://proportionalhouse.org/methodology): data sources, Sainte-Laguë allocation, state elasticity, the Sandbox's allocation methods (Pure PR, multi-member districts, mixed-member proportional), House-size expansion, uncontested-race handling, and limitations.
 - [About / FAQ](https://proportionalhouse.org/about): what the project is, why the House (not the Senate), whether it's partisan, and a detailed FAQ.
 
+## Companion experiments
+- [The Proportional Electoral College](https://proportionalhouse.org/electoral-college): every presidential election since 1976 recomputed as if each state split its electoral votes in proportion to its popular vote instead of winner-take-all — including how often no candidate reaches 270 (which would send the choice to the U.S. House).
+- [The Senate's malapportionment](https://proportionalhouse.org/senate): how lopsided equal-per-state Senate representation is by population — the per-person representation gap between the smallest and largest states, and how few people the smallest states need to command a Senate majority.
+- [The federal circuit map](https://proportionalhouse.org/circuits): the U.S. Courts of Appeals carved into circuits of wildly unequal population (the 9th covers ~1 in 5 Americans), with an illustrative redraw into far more equal circuits — a structural curiosity, not a reform proposal.
+
 ## Per-state pages
 - `https://proportionalhouse.org/state/{code}` — one page per state (e.g. /state/tx, /state/ca, /state/pa) showing that state's actual delegation vs. its proportional allocation.
 
