@@ -70,7 +70,7 @@ export default defineConfig({
         // Split vendor code into long-lived cacheable chunks so app updates
         // don't bust the React + d3 + topojson bytes on repeat visits.
         // Recharts gets its own chunk automatically via React.lazy() in
-        // src/components/StateDetail.tsx — no need to declare it here.
+        // src/pages/Home.tsx — no need to declare it here.
         manualChunks: {
           react: ['react', 'react-dom', 'react-router-dom'],
           // Only declare packages that are actually imported in src/.

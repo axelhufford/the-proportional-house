@@ -225,8 +225,10 @@ export function NationalSummary({
         );
       })}
     </span>
+  ) : dGain === 0 ? (
+    <span className="text-stone-500">±0</span>
   ) : (
-    <span className={dGain >= 0 ? 'text-blue-700' : 'text-red-700'}>
+    <span className={dGain > 0 ? 'text-blue-700' : 'text-red-700'}>
       {dGain > 0 ? '+' : ''}{dGain} D / {dGain > 0 ? '-' : '+'}{Math.abs(dGain)} R
     </span>
   );

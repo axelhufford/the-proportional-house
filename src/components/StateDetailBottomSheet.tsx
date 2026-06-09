@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { StateDetailContent } from './StateDetailContent';
 import type { AllocationMethodKind } from '../lib/methods';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
-import type { StateProjection, ProjectionMeta, StateRetroPoint } from '../lib/types';
+import type { StateProjection, ProjectionMeta, StateRetroPoint, ViewMode } from '../lib/types';
 
 interface Props {
   state: StateProjection;
@@ -15,6 +15,8 @@ interface Props {
   houseSize?: number;
   threshold?: number;
   retroHistory?: StateRetroPoint[];
+  viewMode?: ViewMode;
+  retroYear?: number;
 }
 
 type Phase = 'entering' | 'open' | 'exiting';
@@ -32,7 +34,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  * parent `onClose` is only invoked after the transform transition completes
  * so the sheet animates out instead of disappearing.
  */
-export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold, retroHistory }: Props) {
+export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold, retroHistory, viewMode, retroYear }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
 
   useLayoutEffect(() => {
@@ -131,6 +133,8 @@ export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandbo
           houseSize={houseSize}
           threshold={threshold}
           retroHistory={retroHistory}
+          viewMode={viewMode}
+          retroYear={retroYear}
         />
       </aside>
     </>

@@ -22,7 +22,7 @@ interface FaqItem {
 const FAQS: FaqItem[] = [
   {
     q: 'What is proportional representation?',
-    a: 'Proportional representation (PR) means a party’s share of seats roughly matches its share of the vote. Today the U.S. House uses single-member districts, where the candidate with the most votes in each district wins outright and the runner-up’s voters get no representation. PR allocates each state’s seats by vote share: if a state votes 55% Democratic and 45% Republican, a 10-seat delegation would be 5 D + 5 R rather than (say) 8 D + 2 R.',
+    a: 'Proportional representation (PR) means a party’s share of seats roughly matches its share of the vote. Today the U.S. House uses single-member districts, where the candidate with the most votes in each district wins outright and the runner-up’s voters get no representation. PR allocates each state’s seats by vote share: if a state votes 55% Democratic and 45% Republican, a 10-seat delegation would be 6 D + 4 R rather than (say) 8 D + 2 R.',
   },
   {
     q: 'Why does it matter for the U.S. House?',
@@ -77,7 +77,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'How are states with only one seat handled?',
-    a: 'There’s no proportional way to split a single seat between two parties; whoever wins the statewide vote gets it. Seven states have a single House seat: Alaska, Delaware, North Dakota, South Dakota, Vermont, Wyoming, and (after the 2020 reapportionment) Montana shifted up to 2. For these states the projection just records the winner.',
+    a: 'There’s no proportional way to split a single seat between two parties; whoever wins the statewide vote gets it. Six states have a single House seat: Alaska, Delaware, North Dakota, South Dakota, Vermont, and Wyoming (Montana was a seventh until the 2020 reapportionment gave it a second seat). For these states the projection just records the winner.',
   },
   {
     q: 'How often is the projection updated?',

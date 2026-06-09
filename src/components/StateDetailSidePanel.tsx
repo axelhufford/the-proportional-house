@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { StateDetailContent } from './StateDetailContent';
 import type { AllocationMethodKind } from '../lib/methods';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
-import type { StateProjection, ProjectionMeta, StateRetroPoint } from '../lib/types';
+import type { StateProjection, ProjectionMeta, StateRetroPoint, ViewMode } from '../lib/types';
 
 interface Props {
   state: StateProjection;
@@ -15,6 +15,8 @@ interface Props {
   houseSize?: number;
   threshold?: number;
   retroHistory?: StateRetroPoint[];
+  viewMode?: ViewMode;
+  retroYear?: number;
 }
 
 type Phase = 'entering' | 'open' | 'exiting';
@@ -26,7 +28,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  * Escape), we set phase='exiting' and only call the parent `onClose` after
  * the transform transition completes, so the panel doesn't pop out.
  */
-export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold, retroHistory }: Props) {
+export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold, retroHistory, viewMode, retroYear }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
 
   // Flip from 'entering' to 'open' on the next frame so the transition has
@@ -104,6 +106,8 @@ export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxS
         houseSize={houseSize}
         threshold={threshold}
         retroHistory={retroHistory}
+        viewMode={viewMode}
+        retroYear={retroYear}
       />
     </aside>
   );

@@ -7,7 +7,7 @@ import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
 import { StateRetroHistory } from './StateRetroHistory';
-import type { StateProjection, ProjectionMeta, StateRetroPoint } from '../lib/types';
+import type { StateProjection, ProjectionMeta, StateRetroPoint, ViewMode } from '../lib/types';
 
 export interface StateDetailContentProps {
   state: StateProjection;
@@ -64,6 +64,15 @@ export interface StateDetailContentProps {
    * route and Sandbox leave it undefined, hiding the section.
    */
   retroHistory?: StateRetroPoint[];
+  /**
+   * Active view. In 'retrospective' the panel's labels name the selected
+   * cycle ("Actual 2016", "2016 two-party vote") instead of "today"/"2024",
+   * and the swing line reads "no swing applied" — a retrospective allocates
+   * the actual votes as cast. Defaults to 'current' (embed routes included).
+   */
+  viewMode?: ViewMode;
+  /** Selected cycle when viewMode === 'retrospective'. */
+  retroYear?: number;
 }
 
 export function StateDetailContent({
@@ -79,8 +88,11 @@ export function StateDetailContent({
   houseSize = DEFAULT_HOUSE_SIZE,
   threshold,
   retroHistory,
+  viewMode = 'current',
+  retroYear = 2024,
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const isRetro = viewMode === 'retrospective';
 
   // Keep "PR" short so the embed view and default sandbox still read
   // "Projected under PR"; reforms read "MMD-3", "MMP-50", "PR (D'Hondt)", etc.
@@ -153,7 +165,11 @@ export function StateDetailContent({
   const actualBaseD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
   const actualBaseR = sandboxState ? sandboxState.actual_scaled.r_seats : state.actual.r_seats;
   const houseExpanded = !!sandboxState && sandboxState.total_seats !== state.seats;
-  const actualHeading = houseExpanded ? `Today, scaled to ${effectiveSeats}` : 'Actual today';
+  const actualHeading = houseExpanded
+    ? `Today, scaled to ${effectiveSeats}`
+    : isRetro
+      ? `Actual ${retroYear}`
+      : 'Actual today';
   const dGain = projectedD - actualBaseD;
 
   // "See also": find 3 states with the most similar PR distortion. Same
@@ -336,14 +352,18 @@ export function StateDetailContent({
                 {dGain > 0 ? `gains ${dGain} D seat${Math.abs(dGain) === 1 ? '' : 's'}`
                            : `gains ${Math.abs(dGain)} R seat${Math.abs(dGain) === 1 ? '' : 's'}`}
               </span>{' '}
-              relative to today.
+              relative to {isRetro ? `its actual ${retroYear} result` : 'today'}.
             </div>
           )
         )}
 
         <Section title="Vote share">
           <div className="grid grid-cols-2 gap-3 text-sm">
-            <ShareBlock heading="2024 baseline" d={state.baseline_2024.d_share} r={state.baseline_2024.r_share} />
+            <ShareBlock
+              heading={isRetro ? `${retroYear} two-party vote` : '2024 baseline'}
+              d={state.baseline_2024.d_share}
+              r={state.baseline_2024.r_share}
+            />
             {hasMinors ? (
               <div>
                 <div className="text-xs text-stone-500">Projected (sandbox)</div>
@@ -359,11 +379,26 @@ export function StateDetailContent({
                 </div>
               </div>
             ) : (
-              <ShareBlock heading="Projected 2026" d={projectedDShare} r={projectedRShare} />
+              <ShareBlock
+                heading={
+                  isRetro
+                    ? `Under PR (${retroYear})`
+                    : viewMode === 'sandbox'
+                      ? 'Projected (sandbox)'
+                      : 'Projected 2026'
+                }
+                d={projectedDShare}
+                r={projectedRShare}
+              />
             )}
           </div>
           <div className="text-xs text-stone-500 mt-2">
             {(() => {
+              // A retrospective allocates the actual votes as cast — there is
+              // no polling swing, so the swing line would be misleading noise.
+              if (isRetro) {
+                return <>No swing applied: proportional allocation of the actual {retroYear} statewide vote.</>;
+              }
               const stateSwing = state.state_swing_applied ?? meta.swing;
               const elasticity = state.state_elasticity ?? 1.0;
               const showMultiplier = Math.abs(elasticity - 1.0) > 0.05;

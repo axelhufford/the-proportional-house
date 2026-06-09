@@ -31,6 +31,20 @@ const FALLBACK_SWING = 8.6;
 const CA_ELASTICITY = 1.7;
 const PA_ELASTICITY = 0.51;
 
+/** Sign-safe margin label: 6.9 → "D+6.9", −3 → "R+3.0". The live polling
+  * numbers below can flip sign between pipeline runs; hardcoding a "D+"
+  * prefix would render "D+-3.0". */
+function fmtMargin(points: number, digits = 1): string {
+  return points >= 0
+    ? `D+${points.toFixed(digits)}`
+    : `R+${Math.abs(points).toFixed(digits)}`;
+}
+
+/** Sign-safe swing phrase: 9.5 → "9.5 points toward D", −4 → "4.0 points toward R". */
+function fmtSwingPhrase(points: number): string {
+  return `${Math.abs(points).toFixed(1)} points toward ${points >= 0 ? 'D' : 'R'}`;
+}
+
 export function Methodology(_props: MethodologyProps) {
   useDocumentTitle(
     ROUTE_META['/methodology'].title,
@@ -104,12 +118,12 @@ export function Methodology(_props: MethodologyProps) {
       <Section id="the-math" title="The math, written out">
         <p>Each state’s 2024 two-party D share is computed from the Clerk’s recap as <code>d_share = D / (D + R)</code>. The national swing is</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`swing = current_generic_ballot_margin − baseline_2024_national_margin`}</pre>
-        <p>where both terms are in margin points (positive = D advantage). For example, today the generic ballot sits at roughly D+{pipelineMeta?.generic_ballot?.margin?.toFixed(1) ?? '6.0'} and 2024 was R+{pipelineMeta?.baseline_2024_r_margin?.toFixed(2) ?? '2.55'}, giving a swing of about +{pipelineMeta?.swing?.toFixed(1) ?? FALLBACK_SWING.toFixed(1)} points toward D.</p>
+        <p>where both terms are in margin points (positive = D advantage). For example, today the generic ballot sits at roughly {fmtMargin(pipelineMeta?.generic_ballot?.margin ?? 6.0)} and 2024 was {fmtMargin(-(pipelineMeta?.baseline_2024_r_margin ?? 2.55), 2)}, giving a swing of about {fmtSwingPhrase(pipelineMeta?.swing ?? FALLBACK_SWING)}.</p>
         <p>States don’t all respond to a national swing equally. California swung ~9 points toward Republicans between 2020 and 2024 while Pennsylvania moved far less (about 3 points). We capture that with a per-state <em>elasticity</em> coefficient: each state’s D-margin shift between the 2020 and 2024 presidential elections, divided by the national average shift.</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`state_swing  = national_swing × elasticity_state
 projected_d_share = baseline_d_share + (state_swing / 2 / 100)
 projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
-        <p>For example, California’s elasticity is 1.70, so it gets 1.7× the national swing — but California is already heavily Democratic, so the marginal seats gained are small. Pennsylvania’s elasticity is 0.51, so only about half the national swing is applied there, reflecting its reputation as a tight, hard-to-move state. (With today’s {pipelineMeta?.swing ? `+${pipelineMeta.swing.toFixed(1)}` : `+${FALLBACK_SWING.toFixed(1)}`}-point national swing toward Democrats, that’s roughly {pipelineMeta?.swing ? `+${(pipelineMeta.swing * CA_ELASTICITY).toFixed(1)}` : `+${(FALLBACK_SWING * CA_ELASTICITY).toFixed(1)}`} in California and {pipelineMeta?.swing ? `+${(pipelineMeta.swing * PA_ELASTICITY).toFixed(1)}` : `+${(FALLBACK_SWING * PA_ELASTICITY).toFixed(1)}`} in Pennsylvania.) Source: unweighted mean of CD-level Biden/Harris vs. Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (which would otherwise yield unstable or negative elasticity).</p>
+        <p>For example, California’s elasticity is 1.70, so it gets 1.7× the national swing — but California is already heavily Democratic, so the marginal seats gained are small. Pennsylvania’s elasticity is 0.51, so only about half the national swing is applied there, reflecting its reputation as a tight, hard-to-move state. (With today’s {Math.abs(pipelineMeta?.swing ?? FALLBACK_SWING).toFixed(1)}-point national swing toward {(pipelineMeta?.swing ?? FALLBACK_SWING) >= 0 ? 'Democrats' : 'Republicans'}, that’s roughly {Math.abs((pipelineMeta?.swing ?? FALLBACK_SWING) * CA_ELASTICITY).toFixed(1)} points in California and {Math.abs((pipelineMeta?.swing ?? FALLBACK_SWING) * PA_ELASTICITY).toFixed(1)} in Pennsylvania.) Source: unweighted mean of CD-level Biden/Harris vs. Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (which would otherwise yield unstable or negative elasticity).</p>
         <p>The divide-by-2 in both formulas is because a swing of N points in the <em>margin</em> shifts each party’s share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don’t break Sainte-Laguë.</p>
       </Section>
 
@@ -406,7 +420,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
 
       <Section id="the-reveal" title="The reveal is more modest than you might expect">
         <p>
-          Under today’s D+{pipelineMeta?.generic_ballot?.margin?.toFixed(0) ?? '6'} polling and the 2024 baseline, the projection comes out at{' '}
+          Under today’s {fmtMargin(pipelineMeta?.generic_ballot?.margin ?? 6, 0)} polling and the 2024 baseline, the projection comes out at{' '}
           {pipelineMeta?.national && (
             <strong>
               D {pipelineMeta.national.projected.d_seats} / R {pipelineMeta.national.projected.r_seats}

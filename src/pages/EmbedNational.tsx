@@ -125,11 +125,15 @@ export function EmbedNational() {
             Difference
           </div>
           <div className="text-lg font-semibold mt-0.5 tabular-nums">
-            <span className={dGain >= 0 ? 'text-blue-700' : 'text-red-700'}>
-              {dGain > 0 ? '+' : ''}
-              {dGain} D / {dGain > 0 ? '-' : '+'}
-              {Math.abs(dGain)} R
-            </span>
+            {dGain === 0 ? (
+              <span className="text-stone-500">±0</span>
+            ) : (
+              <span className={dGain > 0 ? 'text-blue-700' : 'text-red-700'}>
+                {dGain > 0 ? '+' : ''}
+                {dGain} D / {dGain > 0 ? '-' : '+'}
+                {Math.abs(dGain)} R
+              </span>
+            )}
           </div>
         </div>
       </div>

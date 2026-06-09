@@ -58,14 +58,18 @@ interface HomeProps {
 const VIEW_MODES: ViewMode[] = ['current', 'retrospective', 'sandbox'];
 const COLOR_MODES: ColorMode[] = ['balance', 'distortion'];
 
-// Retrospective cycles (rolling window of the 5 most recent). The latest is the
-// default; the data-driven selector renders whatever retrospectives.json carries.
+// Retrospective cycles — pre-data fallback only. The selector and validation
+// are data-driven off retrospectives.json (a rolling window of the most recent
+// cycles), so a new cycle landing in the data doesn't require touching this.
 const RETRO_YEARS = [2016, 2018, 2020, 2022, 2024];
 const RETRO_DEFAULT_YEAR = RETRO_YEARS[RETRO_YEARS.length - 1];
 
+// Accept any plausible cycle year; the fetch handler snaps it to the cycles
+// retrospectives.json actually carries once that loads. Hardcoding the list
+// here would permanently reject deep links to cycles added after this build.
 function parseRetroYear(raw: string | null): number {
   const n = raw ? Number(raw) : NaN;
-  return RETRO_YEARS.includes(n) ? n : RETRO_DEFAULT_YEAR;
+  return Number.isInteger(n) && n >= 2000 && n <= 2100 ? n : RETRO_DEFAULT_YEAR;
 }
 
 function parseViewMode(raw: string | null): ViewMode {
@@ -437,7 +441,17 @@ export function Home({ onMetaChange }: HomeProps) {
       .then(([proj, topo, retro, hist]) => {
         setPayload(proj);
         setTopology(topo);
-        if (retro) setRetros(retro);
+        if (retro) {
+          setRetros(retro);
+          // Snap a ?year= deep link to a cycle the data actually carries —
+          // e.g. a stale link to a cycle that rolled out of the window, or a
+          // typo year that parsed as plausible.
+          setRetroYear((cur) =>
+            retro.meta.cycles.includes(cur)
+              ? cur
+              : retro.meta.cycles[retro.meta.cycles.length - 1] ?? RETRO_DEFAULT_YEAR,
+          );
+        }
         if (hist) setHistory(hist);
         setSandboxBallot((cur) => (cur === null ? proj.meta.generic_ballot_margin : cur));
         // Resolve any ?state=XX URL param to its FIPS now that the payload
@@ -778,6 +792,7 @@ export function Home({ onMetaChange }: HomeProps) {
               genericBallot={ballot}
               swing={sandboxSwing}
               baseline2024={payload.meta.baseline_2024_margin}
+              liveBallot={payload.meta.generic_ballot_margin}
               onChange={setSandboxBallot}
               minors={minors}
               threshold={threshold}
@@ -1038,6 +1053,8 @@ export function Home({ onMetaChange }: HomeProps) {
             houseSize={houseSize}
             threshold={threshold}
             retroHistory={selectedRetroHistory}
+            viewMode={viewMode}
+            retroYear={retroYear}
           />
         </div>,
         document.body

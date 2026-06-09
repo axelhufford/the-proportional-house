@@ -20,6 +20,8 @@ interface Props {
   swing: number;
   /** 2024 baseline margin (negative = R lead). Used to anchor the slider. */
   baseline2024: number;
+  /** Today's live polling margin — Reset snaps the ballot slider back to it. */
+  liveBallot: number;
   onChange: (genericBallot: number) => void;
   /** Extended-mode controls: minor parties + threshold. */
   minors: MinorState[];
@@ -81,6 +83,7 @@ export function Sandbox({
   genericBallot,
   swing,
   baseline2024,
+  liveBallot,
   onChange,
   minors,
   threshold,
@@ -166,6 +169,7 @@ export function Sandbox({
     },
   ];
   const resetSandbox = () => {
+    onChange(liveBallot);
     onMinorsChange([]);
     onThresholdChange(DEFAULT_THRESHOLD);
     onMethodChange('PR');
