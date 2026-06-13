@@ -28,10 +28,9 @@ import json
 from pathlib import Path
 
 # NOTE: resvg_py (a binary wheel for SVG→PNG) is imported lazily inside main(),
-# not here. It isn't installed in CI, and a top-level import would make the
-# whole module fail to import there — skipping the HTML pages too. Importing it
-# lazily lets the (pure-Python) per-state HTML content pages regenerate on every
-# deploy, while the PNG share-cards render only where resvg is available.
+# not here. It's in requirements.txt so CI re-renders the cards on every deploy,
+# but importing it lazily means a missing/broken wheel only skips the PNGs — the
+# (pure-Python) per-state HTML content pages still regenerate.
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
@@ -40,6 +39,10 @@ STATE_HTML_DIR = REPO_ROOT / "public" / "state"
 # Home share card. index.html points og:image at /og-card.png, so we overwrite
 # that committed file with a freshly-rendered one carrying the live headline.
 HOME_OG_PATH = REPO_ROOT / "public" / "og-card.png"
+# Brand fonts (Source Serif 4 + Inter) shipped with the repo so the cards render
+# identically everywhere — matched by family name, independent of the runner's
+# installed fonts. See fonts/README.md.
+FONTS_DIR = REPO_ROOT / "data-pipeline" / "fonts"
 
 SITE_URL = "https://proportionalhouse.org"
 
@@ -163,10 +166,13 @@ def build_home_card_svg(national: dict, meta: dict) -> str:
 </svg>"""
 
 
-def build_html_page(state: dict) -> str:
+def build_html_page(state: dict, og_version: str = "") -> str:
     """Return the static /state/{code}.html page — a real, indexable content
     page (no redirect) that search + AI crawlers can read, with a link into the
-    interactive SPA map."""
+    interactive SPA map.
+
+    og_version, when set, is appended to the og:image URL (?v=...) so social
+    platforms re-fetch the regenerated card instead of a stale cached copy."""
     name = state["name"]
     code = state["code"]
     code_lower = code.lower()
@@ -193,6 +199,8 @@ def build_html_page(state: dict) -> str:
         f"D {pd}/R {pr} ({change_desc})."
     )
     og_image = f"{SITE_URL}/og/state-{code}.png"
+    if og_version:
+        og_image += f"?v={og_version}"
     spa_url = f"/?state={code}"
     # Self-canonical keeps each /state/{code} page indexable in its own right
     # (the sitemap lists them for exactly this reason).
@@ -279,30 +287,43 @@ def main() -> None:
     OG_DIR.mkdir(parents=True, exist_ok=True)
     STATE_HTML_DIR.mkdir(parents=True, exist_ok=True)
 
-    # PNG cards need resvg_py (a binary wheel not installed in CI). Render cards
-    # only when it imports; the HTML content pages below always regenerate.
+    # PNG cards need resvg_py (a binary wheel, in requirements.txt). Render them
+    # only when it imports so a missing/broken wheel degrades to HTML-only rather
+    # than failing the whole deploy; the (pure-Python) HTML pages always write.
     try:
         import resvg_py
     except Exception as e:  # noqa: BLE001 — any import failure → skip PNGs
         resvg_py = None
         print(f"  (note) resvg_py unavailable ({e}); writing HTML pages only, skipping PNG cards.")
 
+    # Render with the repo's bundled brand fonts (matched by family name, so the
+    # output is identical on every machine — local + CI). System fonts stay as a
+    # last-resort fallback only, so a font-load failure degrades to a readable
+    # serif rather than blank text. See fonts/README.md.
+    render_kw = {"width": 1200, "height": 630, "font_dirs": [str(FONTS_DIR)]}
+
+    # Cache-buster: the cards are overwritten in place on every deploy, so stamp
+    # the og:image URLs with the data date and social platforms re-fetch instead
+    # of showing a stale cached image. (index.html's home-card URL is stamped at
+    # build time by the og-cache-bust Vite plugin — same date, same effect.)
+    og_version = str(payload.get("meta", {}).get("generated_at", ""))[:10]
+
     # Home share card (live national headline) → public/og-card.png.
     national = payload.get("national")
     if resvg_py and national:
         home_svg = build_home_card_svg(national, payload.get("meta", {}))
-        HOME_OG_PATH.write_bytes(resvg_py.svg_to_bytes(svg_string=home_svg, width=1200, height=630))
+        HOME_OG_PATH.write_bytes(resvg_py.svg_to_bytes(svg_string=home_svg, **render_kw))
         print(f"Wrote home OG card to {HOME_OG_PATH.relative_to(REPO_ROOT)}")
 
     n_html = 0
     n_png = 0
     for state in payload["states"]:
         # HTML content page — always written (pure Python, no resvg).
-        (STATE_HTML_DIR / f"{state['code'].lower()}.html").write_text(build_html_page(state))
+        (STATE_HTML_DIR / f"{state['code'].lower()}.html").write_text(build_html_page(state, og_version))
         n_html += 1
         # PNG share-card — only when resvg is available.
         if resvg_py:
-            png = resvg_py.svg_to_bytes(svg_string=build_card_svg(state), width=1200, height=630)
+            png = resvg_py.svg_to_bytes(svg_string=build_card_svg(state), **render_kw)
             (OG_DIR / f"state-{state['code']}.png").write_bytes(png)
             n_png += 1
 

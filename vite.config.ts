@@ -62,8 +62,39 @@ function prerenderRouteMeta(): Plugin {
   };
 }
 
+/**
+ * Cache-bust the home OG share card.
+ *
+ * og:image points at a fixed /og-card.png that the daily pipeline overwrites in
+ * place, so messaging apps (iMessage, Slack, Twitter…) keep showing the version
+ * they first cached. Stamping the URL with the data date — ?v=YYYY-MM-DD from
+ * public/data/meta.json — makes the URL change whenever the numbers do, so they
+ * re-fetch. Runs in transformIndexHtml, so the per-route clones that
+ * prerenderRouteMeta makes from the built index.html inherit the stamped URL.
+ * (The pipeline stamps the same date on the retrospectives + per-state pages.)
+ */
+function ogCacheBust(): Plugin {
+  let version = '';
+  return {
+    name: 'og-cache-bust',
+    apply: 'build',
+    buildStart() {
+      try {
+        const meta = JSON.parse(readFileSync(resolve('public/data/meta.json'), 'utf8'));
+        version = String(meta.generated_at ?? '').slice(0, 10);
+      } catch {
+        // meta.json missing/garbled — fall back to the build date below
+      }
+      if (!version) version = new Date().toISOString().slice(0, 10);
+    },
+    transformIndexHtml(html) {
+      return html.replace(/\/og-card\.png(?=")/g, `/og-card.png?v=${version}`);
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), tailwindcss(), prerenderRouteMeta()],
+  plugins: [react(), tailwindcss(), prerenderRouteMeta(), ogCacheBust()],
   build: {
     rollupOptions: {
       output: {

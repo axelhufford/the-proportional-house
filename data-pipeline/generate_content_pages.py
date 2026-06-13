@@ -19,8 +19,19 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 RETRO_PATH = REPO_ROOT / "public" / "data" / "retrospectives.json"
+META_PATH = REPO_ROOT / "public" / "data" / "meta.json"
 OUT_PATH = REPO_ROOT / "public" / "retrospectives.html"
 SITE_URL = "https://proportionalhouse.org"
+
+
+def _og_version() -> str:
+    """Date stamp (YYYY-MM-DD) appended to the og:image URL so social platforms
+    re-fetch the regenerated home card instead of a stale cached copy. Empty if
+    meta.json is unreadable — then the URL is just unversioned."""
+    try:
+        return str(json.loads(META_PATH.read_text())["generated_at"])[:10]
+    except Exception:  # noqa: BLE001 — missing/garbled meta → no version, not a crash
+        return ""
 
 TITLE = "U.S. House retrospectives: proportional representation vs. the actual result, 2016–2024 · The Proportional House"
 DESCRIPTION = (
@@ -29,7 +40,8 @@ DESCRIPTION = (
     "Democrats about 20 seats; other cycles are within about two."
 )
 CANONICAL = f"{SITE_URL}/retrospectives"
-OG_IMAGE = f"{SITE_URL}/og-card.png"
+_v = _og_version()
+OG_IMAGE = f"{SITE_URL}/og-card.png" + (f"?v={_v}" if _v else "")
 
 
 def _shift(d_gain: int) -> tuple[str, str]:
