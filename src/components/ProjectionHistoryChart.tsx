@@ -2,7 +2,6 @@ import {
   CartesianGrid,
   Line,
   LineChart,
-  ReferenceArea,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
@@ -86,12 +85,6 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
   const yMin = Math.min(212, Math.min(...ds) - 4);
   const yMax = Math.max(224, Math.max(...ds) + 4);
 
-  // The hindcast (reconstructed) span is the leading run of points; shade it so
-  // it reads as distinct from live, forward-collected days.
-  const reconDates = data.filter((d) => d.reconstructed).map((d) => d.date);
-  const reconStart = reconDates[0];
-  const reconEnd = reconDates[reconDates.length - 1];
-
   return (
     <div className="w-full">
       <ResponsiveContainer width="100%" height={height}>
@@ -113,15 +106,6 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
             width={36}
             allowDecimals={false}
           />
-          {reconStart && reconEnd && (
-            <ReferenceArea
-              x1={reconStart}
-              x2={reconEnd}
-              fill="#1c2c4c"
-              fillOpacity={0.05}
-              label={{ value: 'reconstructed', position: 'insideTopLeft', fontSize: 9, fill: '#a8a29e' }}
-            />
-          )}
           <ReferenceLine
             y={218}
             stroke="#a8a29e"

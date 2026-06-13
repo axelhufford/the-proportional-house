@@ -998,9 +998,8 @@ export function Home({ onMetaChange }: HomeProps) {
             </div>
             <p className="mt-3 text-xs text-stone-500">
               Each point is that day’s Current projection of Democratic seats; the dashed line marks 218,
-              a House majority. The shaded span is <em>reconstructed</em> from Nate Silver’s generic-ballot
-              poll archive — the current model run as of each day, not live snapshots — after which daily
-              tracking takes over.{' '}
+              a House majority. Earlier points are <em>reconstructed</em> from Nate Silver’s generic-ballot
+              poll archive — hover any point for detail.{' '}
               <Link className="underline hover:text-brand-navy" to="/methodology#limitations">
                 How &amp; why
               </Link>.
