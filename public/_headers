@@ -14,3 +14,9 @@
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   Cache-Control: public, max-age=300, s-maxage=300
+
+# Vite build artifacts have content-hashed filenames, so a given URL is
+# immutable — the hash changes whenever the content does. Cache them for a
+# year so repeat visitors skip the re-download entirely.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
