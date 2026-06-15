@@ -29,8 +29,22 @@ const FAQS: FaqItem[] = [
     a: 'Single-member districts amplify small vote shifts into large seat shifts and let aggressive line-drawing turn a slim popular-vote loss into a comfortable seat-count win. PR neutralizes that: the seat count tracks the vote count, and the line-drawing process becomes irrelevant to the partisan outcome. The site shows, state by state, how big that distortion is right now.',
   },
   {
+    q: 'What would the U.S. House look like under proportional representation?',
+    a: 'That’s the question this site answers, recomputed every day. Each state’s House seats are reallocated to match its statewide two-party vote share — projected from the current generic-ballot polling average — and then summed into a national total. Because seats track votes, the chamber shifts toward whichever party the winner-take-all map currently underrepresents. The home page shows the current projected Democratic–Republican split, the interactive map shows which states move the most, and the rankings page lists the most distorted delegations. The 2016–2024 retrospectives run the same calculation on the actual past results.',
+    link: { to: '/', label: 'See the current projected House →' },
+  },
+  {
     q: 'Where does the data come from?',
     a: 'The 2024 baseline comes from the U.S. House Clerk’s official election statistics PDF. The generic-ballot polling average uses Silver Bulletin’s public polling database. Uncontested districts are imputed from The Downballot’s 2024 presidential-by-congressional-district vote totals. All sources are linked from the Methodology page.',
+  },
+  {
+    q: 'How does the generic-ballot polling become proportional House seats?',
+    a: 'In four steps. First, start from each state’s actual 2024 two-party House vote. Second, measure the gap between the current generic-ballot polling average and the 2024 national House margin. Third, shift every state’s vote by that gap, scaled by a state-specific elasticity (some states swing more than the nation, some less). Fourth, allocate each state’s seats in proportion to the shifted vote using the Sainte-Laguë method, then sum the states for the national total. There’s no district-by-district modeling — the unit is the statewide vote.',
+    link: { to: '/methodology', label: 'Read the full methodology →' },
+  },
+  {
+    q: 'Is this a forecast or a prediction of the next House election?',
+    a: 'No — it’s a structural projection, not an election forecast. The site doesn’t predict who will win individual districts or which party controls the next House: there’s no candidate-level modeling, no turnout or fundamentals model, no district ratings. The Current view simply takes today’s generic-ballot polling average and shows what the House would look like right now if every state allocated its seats proportionally instead of by winner-take-all districts. The goal is to make the structural gap between votes and seats visible, not to call the next election.',
   },
   {
     q: 'Is this partisan?',

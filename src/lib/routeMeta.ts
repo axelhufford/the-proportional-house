@@ -19,9 +19,9 @@ export interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'The Proportional House: U.S. House under proportional representation',
+    title: 'Current U.S. House seats under proportional representation · The Proportional House',
     description:
-      'See how the U.S. House would look if every state allocated its seats by proportional representation, based on current generic-ballot polling.',
+      'See how many seats each party would hold if the U.S. House used proportional representation instead of winner-take-all districts — a daily projection from the current generic-ballot polling average, with 2016–2024 retrospectives.',
     canonicalPath: '/',
   },
   '/retrospective': {
