@@ -111,6 +111,13 @@ export interface HistoryPoint {
    * on forward-collected points. See Methodology → Assumptions and limitations.
    */
   reconstructed?: boolean;
+  /**
+   * National seats under the alternative allocation methods at this date,
+   * precomputed by the pipeline from the same swing (Pure-PR stays the
+   * top-level projected_d/projected_r). Keyed by method id ('MMD-3', 'MMD-5',
+   * 'MMP-50'). Absent on legacy points until the next pipeline run rebuilds.
+   */
+  methods?: Record<string, { d: number; r: number }>;
 }
 export interface HistoryPayload {
   meta: { generated_at: string };

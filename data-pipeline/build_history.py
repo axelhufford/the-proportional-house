@@ -32,6 +32,10 @@ from pathlib import Path
 
 import requests
 
+from fetch_clerk_house import OUT_PATH as BASELINE_JSON
+from methods import national_by_method
+from update import project_states
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_DATA = REPO_ROOT / "public" / "data"
 PROJECTION_PATH = PUBLIC_DATA / "projection.json"
@@ -40,6 +44,12 @@ BACKFILL_PATH = PUBLIC_DATA / "history_backfill.json"
 
 LIVE_HISTORY_URL = "https://proportionalhouse.org/data/history.json"
 MAX_POINTS = 730  # ~2 years of daily points
+
+# Alternative methods charted alongside the Pure-PR line. Pure PR stays the
+# top-level projected_d/projected_r; these are precomputed per point from the
+# stored swing (see attach_methods). Two-party only — minors / thresholds /
+# House-size reapportionment stay Sandbox-only (client-side).
+HISTORY_METHODS = ("MMD-3", "MMD-5", "MMP-50")
 
 
 def _is_reconstructed(pt: dict) -> bool:
@@ -74,6 +84,28 @@ def _fetch_live_points() -> list[dict]:
     except Exception as e:  # network / JSON / anything — degrade gracefully
         print(f"  (info) live history fetch failed ({e}); skipping live source.")
     return []
+
+
+def attach_methods(points: list[dict], baseline_states: list[dict]) -> int:
+    """Precompute, for each point, national seats under the alternative methods
+    (HISTORY_METHODS) from that point's stored `swing`. Pure-PR stays the
+    top-level projected_d/projected_r. Mutates points in place; a point without
+    a `swing` is left as-is (so the Pure-PR line still renders). Recomputed every
+    build so all sources (backfill + forward + legacy) stay consistent.
+
+    Returns the number of points that received a `methods` block."""
+    attached = 0
+    for pt in points:
+        swing = pt.get("swing")
+        if swing is None:
+            continue
+        projected = project_states(baseline_states, float(swing))
+        pt["methods"] = {
+            m: dict(zip(("d", "r"), national_by_method(projected, m)))
+            for m in HISTORY_METHODS
+        }
+        attached += 1
+    return attached
 
 
 def merge_sources(sources: list[tuple[int, list[dict]]]) -> list[dict]:
@@ -119,6 +151,17 @@ def main() -> None:
         (2, _forward_only(_fetch_live_points())),          # forward points accumulated in prod
         (3, [point]),                                      # today's fresh point
     ])
+
+    # Precompute the alternative-method series (MMD-3 / MMD-5 / MMP-50) for the
+    # chart's method selector — from each point's stored swing, so backfill +
+    # forward + legacy points all stay consistent. Never breaks the build.
+    try:
+        with BASELINE_JSON.open() as f:
+            baseline_states = json.load(f)["states"]
+        n_methods = attach_methods(points, baseline_states)
+        print(f"Attached method series ({', '.join(HISTORY_METHODS)}) to {n_methods} point(s).")
+    except (FileNotFoundError, ValueError, KeyError) as e:
+        print(f"  (warn) could not attach method series to history: {e}")
 
     payload = {
         "meta": {"generated_at": datetime.now(timezone.utc).isoformat()},

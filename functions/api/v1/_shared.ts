@@ -5,7 +5,7 @@
  * function bundle stays tiny. The CORS preflight handler and headers below
  * are duplicated lightly across endpoints to avoid any shared-state surprises.
  */
-import type { ProjectionPayload } from '../../../src/lib/types';
+import type { HistoryPayload, ProjectionPayload } from '../../../src/lib/types';
 
 /**
  * Minimal env shape we rely on. Pages Functions inject `ASSETS` so a
@@ -45,6 +45,16 @@ export async function loadProjection(context: PagesContext): Promise<ProjectionP
     throw new Error(`Failed to load projection.json: ${res.status}`);
   }
   return (await res.json()) as ProjectionPayload;
+}
+
+/** Read the latest history.json (projection-over-time series) from the deployed assets. */
+export async function loadHistory(context: PagesContext): Promise<HistoryPayload> {
+  const url = new URL('/data/history.json', context.request.url);
+  const res = await context.env.ASSETS.fetch(new Request(url));
+  if (!res.ok) {
+    throw new Error(`Failed to load history.json: ${res.status}`);
+  }
+  return (await res.json()) as HistoryPayload;
 }
 
 /** Standard CORS preflight response. */

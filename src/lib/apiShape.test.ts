@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { API_VERSION, toApiV1, toApiV1Csv } from './apiShape';
-import type { ProjectionPayload } from './types';
+import { API_VERSION, toApiV1, toApiV1Csv, toApiV1History } from './apiShape';
+import type { HistoryPayload, ProjectionPayload } from './types';
 
 const FIXTURE: ProjectionPayload = {
   meta: {
@@ -129,5 +129,64 @@ describe('toApiV1Csv', () => {
   it('terminates with a trailing newline', () => {
     const csv = toApiV1Csv(FIXTURE);
     expect(csv.endsWith('\n')).toBe(true);
+  });
+});
+
+const HISTORY_FIXTURE: HistoryPayload = {
+  meta: { generated_at: '2026-06-18T00:00:00+00:00' },
+  points: [
+    {
+      date: '2025-02-03',
+      projected_d: 219,
+      projected_r: 216,
+      actual_d: 215,
+      actual_r: 220,
+      generic_ballot_margin: -0.05,
+      swing: 2.46,
+      reconstructed: true,
+      methods: {
+        'MMD-3': { d: 212, r: 223 },
+        'MMD-5': { d: 216, r: 219 },
+        'MMP-50': { d: 218, r: 217 },
+      },
+    },
+    {
+      // Legacy point with no `methods` block — only Pure PR should be emitted.
+      date: '2026-06-02',
+      projected_d: 234,
+      projected_r: 201,
+      actual_d: 215,
+      actual_r: 220,
+      generic_ballot_margin: 6.94,
+      swing: 9.45,
+      reconstructed: false,
+    },
+  ],
+};
+
+describe('toApiV1History', () => {
+  it('stamps the api_version and advertises the method list', () => {
+    const out = toApiV1History(HISTORY_FIXTURE);
+    expect(out.api_version).toBe(API_VERSION);
+    expect(out.methods).toEqual(['PR', 'MMD-3', 'MMD-5', 'MMP-50']);
+    expect(out.total_seats).toBe(435);
+    expect(out.generated_at).toBe('2026-06-18T00:00:00+00:00');
+  });
+
+  it('keys per-method seats as party objects, PR from the top-level fields', () => {
+    const out = toApiV1History(HISTORY_FIXTURE);
+    expect(out.points[0].seats).toEqual({
+      PR: { D: 219, R: 216 },
+      'MMD-3': { D: 212, R: 223 },
+      'MMD-5': { D: 216, R: 219 },
+      'MMP-50': { D: 218, R: 217 },
+    });
+    expect(out.points[0].reconstructed).toBe(true);
+  });
+
+  it('emits only PR for legacy points that lack a methods block', () => {
+    const out = toApiV1History(HISTORY_FIXTURE);
+    expect(out.points[1].seats).toEqual({ PR: { D: 234, R: 201 } });
+    expect(out.points[1].reconstructed).toBe(false);
   });
 });

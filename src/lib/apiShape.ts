@@ -12,9 +12,12 @@
  * download buttons both serve. If we ever need to break the shape we'll
  * publish a `/api/v2/` and keep this one running unchanged.
  */
-import type { ProjectionPayload } from './types';
+import type { HistoryPayload, ProjectionPayload } from './types';
 
 export const API_VERSION = 'v1';
+
+/** Methods carried in the v1 history series, in stable display order. */
+export const API_HISTORY_METHODS = ['PR', 'MMD-3', 'MMD-5', 'MMP-50'] as const;
 
 export interface ApiV1Seats {
   D: number;
@@ -121,6 +124,71 @@ export function toApiV1(payload: ProjectionPayload): ApiV1Payload {
         vote_share_2024: { D: s.baseline_2024.d_share, R: s.baseline_2024.r_share },
         vote_share_projected: { D: s.projected.d_share, R: s.projected.r_share },
       })),
+  };
+}
+
+// --- v1 history (projection-over-time) -------------------------------------
+// Served at /api/v1/history.json. Additive to the v1 surface — does NOT touch
+// the projection shape above, so existing consumers are unaffected.
+
+export interface ApiV1HistoryPoint {
+  /** UTC calendar date, YYYY-MM-DD. */
+  date: string;
+  /** True for hindcast points reconstructed from the poll archive. */
+  reconstructed: boolean;
+  /** Generic-ballot margin that day (positive = D). */
+  generic_ballot_margin: number;
+  /** Swing vs. the 2024 baseline that day. */
+  swing: number;
+  /**
+   * Projected national delegation that day, keyed by allocation method
+   * (`PR`, `MMD-3`, `MMD-5`, `MMP-50`). `PR` is always present; the
+   * alternative methods are present once the pipeline has computed them.
+   */
+  seats: Record<string, { D: number; R: number }>;
+}
+
+export interface ApiV1HistoryPayload {
+  api_version: typeof API_VERSION;
+  /** ISO 8601 timestamp of when the history was last rebuilt. */
+  generated_at: string;
+  /** Total House seats (the series holds the chamber size fixed). */
+  total_seats: number;
+  /** Methods carried in `points[].seats`, in display order. */
+  methods: string[];
+  points: ApiV1HistoryPoint[];
+}
+
+/**
+ * Transform the internal `HistoryPayload` into the public v1 history shape.
+ * Pure function. Pure-PR comes from each point's top-level projected_d/_r;
+ * the alternative methods come from the optional `methods` block.
+ */
+export function toApiV1History(payload: HistoryPayload): ApiV1HistoryPayload {
+  return {
+    api_version: API_VERSION,
+    generated_at: payload.meta.generated_at,
+    total_seats: 435,
+    methods: [...API_HISTORY_METHODS],
+    points: payload.points.map((p) => {
+      const seats: Record<string, { D: number; R: number }> = {
+        PR: { D: p.projected_d, R: p.projected_r },
+      };
+      if (p.methods) {
+        for (const m of API_HISTORY_METHODS) {
+          if (m === 'PR') continue;
+          const v = p.methods[m];
+          if (v) seats[m] = { D: v.d, R: v.r };
+        }
+      }
+      return {
+        date: p.date,
+        reconstructed: p.reconstructed === true,
+        generic_ballot_margin: p.generic_ballot_margin,
+        swing: p.swing,
+        seats,
+      };
+    }),
   };
 }
 

@@ -1,0 +1,351 @@
+{
+  "_comment": "Shared MMD/MMP parity fixture. Generated from data-pipeline/methods.py; tests/test_methods.py (Python) and tests/methods.parity.test.ts (TS) both assert against it. expected[method] = seats per party in [D, R] order.",
+  "methods": [
+    "PR",
+    "MMD-3",
+    "MMD-5",
+    "MMP-50"
+  ],
+  "cases": [
+    {
+      "name": "ca-d55",
+      "input": {
+        "total_seats": 52,
+        "vote_shares": [
+          0.55,
+          0.45
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 26,
+        "actual_r_seats": 26
+      },
+      "expected": {
+        "PR": [
+          29,
+          23
+        ],
+        "MMD-3": [
+          35,
+          17
+        ],
+        "MMD-5": [
+          31,
+          21
+        ],
+        "MMP-50": [
+          29,
+          23
+        ]
+      }
+    },
+    {
+      "name": "tx-r58",
+      "input": {
+        "total_seats": 38,
+        "vote_shares": [
+          0.42,
+          0.58
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 12,
+        "actual_r_seats": 26
+      },
+      "expected": {
+        "PR": [
+          16,
+          22
+        ],
+        "MMD-3": [
+          13,
+          25
+        ],
+        "MMD-5": [
+          15,
+          23
+        ],
+        "MMP-50": [
+          16,
+          22
+        ]
+      }
+    },
+    {
+      "name": "nc-tossup",
+      "input": {
+        "total_seats": 14,
+        "vote_shares": [
+          0.49,
+          0.51
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 6,
+        "actual_r_seats": 8
+      },
+      "expected": {
+        "PR": [
+          7,
+          7
+        ],
+        "MMD-3": [
+          5,
+          9
+        ],
+        "MMD-5": [
+          6,
+          8
+        ],
+        "MMP-50": [
+          7,
+          7
+        ]
+      }
+    },
+    {
+      "name": "odd9-mmp-round",
+      "input": {
+        "total_seats": 9,
+        "vote_shares": [
+          0.52,
+          0.48
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 5,
+        "actual_r_seats": 4
+      },
+      "expected": {
+        "PR": [
+          5,
+          4
+        ],
+        "MMD-3": [
+          6,
+          3
+        ],
+        "MMD-5": [
+          5,
+          4
+        ],
+        "MMP-50": [
+          5,
+          4
+        ]
+      }
+    },
+    {
+      "name": "single-seat-d",
+      "input": {
+        "total_seats": 1,
+        "vote_shares": [
+          0.45,
+          0.55
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 0,
+        "actual_r_seats": 1
+      },
+      "expected": {
+        "PR": [
+          0,
+          1
+        ],
+        "MMD-3": [
+          0,
+          1
+        ],
+        "MMD-5": [
+          0,
+          1
+        ],
+        "MMP-50": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "name": "single-seat-r",
+      "input": {
+        "total_seats": 1,
+        "vote_shares": [
+          0.6,
+          0.4
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 1,
+        "actual_r_seats": 0
+      },
+      "expected": {
+        "PR": [
+          1,
+          0
+        ],
+        "MMD-3": [
+          1,
+          0
+        ],
+        "MMD-5": [
+          1,
+          0
+        ],
+        "MMP-50": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "name": "mmp-overhang",
+      "input": {
+        "total_seats": 10,
+        "vote_shares": [
+          0.3,
+          0.7
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 8,
+        "actual_r_seats": 2
+      },
+      "expected": {
+        "PR": [
+          3,
+          7
+        ],
+        "MMD-3": [
+          3,
+          7
+        ],
+        "MMD-5": [
+          2,
+          8
+        ],
+        "MMP-50": [
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "name": "tie8",
+      "input": {
+        "total_seats": 8,
+        "vote_shares": [
+          0.5,
+          0.5
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 4,
+        "actual_r_seats": 4
+      },
+      "expected": {
+        "PR": [
+          4,
+          4
+        ],
+        "MMD-3": [
+          5,
+          3
+        ],
+        "MMD-5": [
+          5,
+          3
+        ],
+        "MMP-50": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "name": "ca-r-wave",
+      "input": {
+        "total_seats": 52,
+        "vote_shares": [
+          0.4,
+          0.6
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 20,
+        "actual_r_seats": 32
+      },
+      "expected": {
+        "PR": [
+          21,
+          31
+        ],
+        "MMD-3": [
+          17,
+          35
+        ],
+        "MMD-5": [
+          21,
+          31
+        ],
+        "MMP-50": [
+          21,
+          31
+        ]
+      }
+    },
+    {
+      "name": "md-d-dom",
+      "input": {
+        "total_seats": 8,
+        "vote_shares": [
+          0.66,
+          0.34
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 7,
+        "actual_r_seats": 1
+      },
+      "expected": {
+        "PR": [
+          5,
+          3
+        ],
+        "MMD-3": [
+          5,
+          3
+        ],
+        "MMD-5": [
+          5,
+          3
+        ],
+        "MMP-50": [
+          5,
+          3
+        ]
+      }
+    }
+  ]
+}
