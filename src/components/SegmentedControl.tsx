@@ -15,11 +15,18 @@ export function SegmentedControl<T extends string>({
   value,
   options,
   onChange,
+  onHover,
 }: {
   label: string;
   value: T;
   options: SegOpt<T>[];
   onChange: (v: T) => void;
+  /**
+   * Optional: fires the option value on pointer-enter / keyboard-focus, and
+   * `null` on leave / blur. Lets a caller surface a live, hover-driven
+   * explainer (more discoverable than the native `title` tooltip).
+   */
+  onHover?: (v: T | null) => void;
 }) {
   const sid = `segctl-${label.replace(/\s+/g, '-')}`;
   return (
@@ -41,6 +48,10 @@ export function SegmentedControl<T extends string>({
               disabled={opt.disabled}
               aria-pressed={active}
               onClick={() => onChange(opt.value)}
+              onMouseEnter={() => onHover?.(opt.value)}
+              onMouseLeave={() => onHover?.(null)}
+              onFocus={() => onHover?.(opt.value)}
+              onBlur={() => onHover?.(null)}
               className={[
                 'px-3 py-1.5 sm:py-1 text-sm rounded transition-colors',
                 active ? 'bg-brand-navy text-white' : 'text-stone-700 hover:bg-stone-100',

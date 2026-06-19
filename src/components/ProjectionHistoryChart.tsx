@@ -119,8 +119,19 @@ interface Props {
  * precomputed by the pipeline (history.json `methods`). A dashed 218 line marks
  * the majority threshold. Lazy-loaded (recharts is its own chunk).
  */
+const COMPARE_EXPLAINER =
+  'MMD-3 / MMD-5 split each state into 3- or 5-seat districts (less proportional than statewide PR); MMP-50 mixes single-member-district seats with party-list seats. Pure PR is statewide proportional.';
+
+function explainerFor(sel: Selection): string {
+  return sel === 'compare' ? COMPARE_EXPLAINER : METHOD_DESCRIPTIONS[sel];
+}
+
 export function ProjectionHistoryChart({ points, height = 260 }: Props) {
   const [selection, setSelection] = useState<Selection>('PR');
+  // Hovered/focused method (from the selector) — drives a live explainer that's
+  // far more discoverable than the native `title` tooltip. Falls back to the
+  // current selection when nothing is hovered.
+  const [hovered, setHovered] = useState<Selection | null>(null);
 
   const data: Row[] = points.map((p) => {
     const row: Row = {
@@ -166,6 +177,7 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
           value={selection}
           options={SELECT_OPTIONS}
           onChange={setSelection}
+          onHover={setHovered}
         />
         {showLegend && (
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600">
@@ -231,12 +243,12 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
           <Tooltip content={<HistTooltip />} cursor={{ stroke: '#d6d3d1', strokeDasharray: '3 3' }} />
         </LineChart>
       </ResponsiveContainer>
-      {/* Brief, selection-aware explainer — these acronyms first appear here, so
-        * name what they mean and deep-link to the full Methodology section. */}
+      {/* Brief explainer — these acronyms first appear here, so name what they
+        * mean and deep-link to the full Methodology section. Updates live as you
+        * hover/focus a method in the selector (native `title` is too slow to
+        * notice), falling back to the current selection. */}
       <p className="mt-2 text-xs text-stone-500">
-        {selection === 'compare'
-          ? 'MMD-3 / MMD-5 split each state into 3- or 5-seat districts (less proportional than statewide PR); MMP-50 mixes single-member-district seats with party-list seats. Pure PR is statewide proportional.'
-          : METHOD_DESCRIPTIONS[selection]}{' '}
+        {explainerFor(hovered ?? selection)}{' '}
         <Link to="/methodology#methods" className="underline hover:text-brand-navy">
           What do MMD &amp; MMP mean? →
         </Link>
