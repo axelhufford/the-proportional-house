@@ -3,13 +3,18 @@ import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { ChartSkeleton } from '../components/ChartSkeleton';
+import { FeaturedScenarios } from '../components/FeaturedScenarios';
 import { HomeSkeleton } from '../components/HomeSkeleton';
 import { Reveal } from '../components/Reveal';
 import { HomeHero } from '../components/HomeHero';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
 import { MethodComparisonTable } from '../components/MethodComparisonTable';
-import type { MinorState, MinorPresetSelector } from '../components/MinorPartyControls';
+import {
+  defaultMinorState,
+  type MinorState,
+  type MinorPresetSelector,
+} from '../components/MinorPartyControls';
 import { NationalSummary } from '../components/NationalSummary';
 import { ModeToggle } from '../components/ModeToggle';
 import { SegmentedControl } from '../components/SegmentedControl';
@@ -23,8 +28,8 @@ import {
   PRESET_MINORS,
 } from '../lib/parties';
 import {
-  cubeRootSize,
-  wyomingRuleSize,
+  CUBE_ROOT_HOUSE_SIZE,
+  WYOMING_RULE_HOUSE_SIZE,
 } from '../lib/apportionment';
 import { ALL_METHODS, resolveEffectiveMethod, type AllocationMethodKind } from '../lib/methods';
 import { fetchJson } from '../lib/fetchJson';
@@ -33,10 +38,7 @@ import {
   DEFAULT_HOUSE_SIZE,
   type MinorPartySpec,
 } from '../lib/sandboxSwing';
-import {
-  TOTAL_APPORTIONMENT_POPULATION_2020,
-  WYOMING_POPULATION_2020,
-} from '../lib/statePopulations';
+import { scenarioHouseSize, type Scenario } from '../lib/scenarios';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
 import { cycleToProjectionPayload } from '../lib/retrospective';
@@ -253,14 +255,6 @@ function parseThreshold(raw: string | null): number | null {
 
 const DEFAULT_THRESHOLD = 0.05;
 
-/** Precomputed Wyoming Rule House size from 2020 census numbers (~573). */
-export const WYOMING_RULE_HOUSE_SIZE = wyomingRuleSize(
-  TOTAL_APPORTIONMENT_POPULATION_2020,
-  WYOMING_POPULATION_2020,
-);
-/** Precomputed cube root House size from 2020 census numbers (~692). */
-export const CUBE_ROOT_HOUSE_SIZE = cubeRootSize(TOTAL_APPORTIONMENT_POPULATION_2020);
-
 /** Acceptable House size range — 435 today; reform proposals go up. */
 const MIN_HOUSE_SIZE = 435;
 const MAX_HOUSE_SIZE = 800;
@@ -394,6 +388,23 @@ export function Home({ onMetaChange }: HomeProps) {
     setMmdMagnitude(null);
     setMmpSmdShare(null);
   }, []);
+
+  // A featured-scenario chip on the Current view: jump into the sandbox with
+  // the scenario pre-applied. Must go through the setters (not a navigate to
+  // /sandbox?…) — URL params only initialize state on mount, and the URL-sync
+  // effect below then emits the canonical shareable URL for us. The ballot is
+  // left at whatever the live polling (or the user) set, matching the
+  // in-sandbox scenario strip.
+  const handleApplyScenario = useCallback(
+    (s: Scenario) => {
+      setViewMode('sandbox');
+      setMinors(s.config.minors.map((id) => defaultMinorState(id)));
+      if (s.config.minors.length > 0) setThreshold(DEFAULT_THRESHOLD);
+      handleMethodChange(s.config.method);
+      setHouseSize(scenarioHouseSize(s.config));
+    },
+    [handleMethodChange],
+  );
   // Total House size — 435 by default. Wyoming Rule ≈ 573, cube root ≈ 692.
   // Only meaningful in Sandbox; ignored in Current / Retrospective.
   const [houseSize, setHouseSize] = useState<number>(
@@ -785,6 +796,13 @@ export function Home({ onMetaChange }: HomeProps) {
           colorMode={colorMode}
           onColorModeChange={setColorMode}
         />
+
+        {viewMode === 'current' && (
+          <FeaturedScenarios
+            onApply={handleApplyScenario}
+            onOpenSandbox={() => setViewMode('sandbox')}
+          />
+        )}
 
         {viewMode === 'sandbox' && (
           <div className="mt-5">

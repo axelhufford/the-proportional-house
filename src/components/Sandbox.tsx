@@ -6,6 +6,7 @@ import {
   type AllocationMethodKind,
   type EffectiveMethod,
 } from '../lib/methods';
+import { SANDBOX_SCENARIOS, scenarioHouseSize, type Scenario } from '../lib/scenarios';
 import { Term } from './Term';
 import {
   defaultMinorState,
@@ -124,50 +125,16 @@ export function Sandbox({
         ? '+ Add fourth party'
         : '+ Add fifth party';
 
-  // Quick scenarios — one click sets several knobs at once so a newcomer can
-  // see a real reform without first understanding every control. They compose
-  // the same callbacks the manual controls use; onMethodChange also clears any
-  // magnitude/share override, so these land on canonical methods. The
-  // generic-ballot margin is intentionally left untouched.
-  const SCENARIOS: { label: string; title: string; apply: () => void }[] = [
-    {
-      label: 'Two new parties',
-      title: 'Add a Progressive Left and America First party, with a 5% threshold.',
-      apply: () => {
-        onMinorsChange([defaultMinorState('PROG'), defaultMinorState('AF')]);
-        onThresholdChange(DEFAULT_THRESHOLD);
-        onMethodChange('PR');
-        onHouseSizeChange(DEFAULT_HOUSE_SIZE);
-      },
-    },
-    {
-      label: 'Mixed-member (Germany)',
-      title: 'Half single-member districts, half proportional list — the German/NZ system.',
-      apply: () => {
-        onMinorsChange([]);
-        onMethodChange('MMP-50');
-        onHouseSizeChange(DEFAULT_HOUSE_SIZE);
-      },
-    },
-    {
-      label: 'Multi-member districts',
-      title: 'Group seats into 5-seat districts with PR inside each.',
-      apply: () => {
-        onMinorsChange([]);
-        onMethodChange('MMD-5');
-        onHouseSizeChange(DEFAULT_HOUSE_SIZE);
-      },
-    },
-    {
-      label: 'Bigger House',
-      title: `Expand the House to ${wyomingRuleHouseSize} seats (the Wyoming Rule).`,
-      apply: () => {
-        onMinorsChange([]);
-        onMethodChange('PR');
-        onHouseSizeChange(wyomingRuleHouseSize);
-      },
-    },
-  ];
+  // Quick scenarios — shared registry with the home-view strip (lib/scenarios).
+  // Applied through the same callbacks the manual controls use; onMethodChange
+  // also clears any magnitude/share override, so these land on canonical
+  // methods. The generic-ballot margin is intentionally left untouched.
+  const applyScenario = (s: Scenario) => {
+    onMinorsChange(s.config.minors.map((id) => defaultMinorState(id)));
+    if (s.config.minors.length > 0) onThresholdChange(DEFAULT_THRESHOLD);
+    onMethodChange(s.config.method);
+    onHouseSizeChange(scenarioHouseSize(s.config));
+  };
   const resetSandbox = () => {
     onChange(liveBallot);
     onMinorsChange([]);
@@ -188,15 +155,15 @@ export function Sandbox({
         * them apart from the stone preset/method buttons below. */}
       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
         <span className="text-stone-500 font-medium self-center">New here? Try —</span>
-        {SCENARIOS.map((s) => (
+        {SANDBOX_SCENARIOS.map((s) => (
           <button
-            key={s.label}
+            key={s.id}
             type="button"
-            onClick={s.apply}
+            onClick={() => applyScenario(s)}
             title={s.title}
             className="px-3 py-1.5 sm:py-1 rounded-full border border-brand-navy/30 text-brand-navy hover:bg-brand-navy/5 transition-colors"
           >
-            {s.label}
+            {s.chipLabel}
           </button>
         ))}
         <button

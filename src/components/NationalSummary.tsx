@@ -8,6 +8,7 @@ import {
 import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
+import { buildEmbedSnippet, nationalEmbedPath } from '../lib/embedSnippet';
 import { formatSeatPct } from '../lib/format';
 import { SeatBar } from './SeatBar';
 import { Term } from './Term';
@@ -82,6 +83,22 @@ export function NationalSummary({
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Clipboard unavailable (insecure context / denied) — no-op.
+    }
+  }, []);
+  // Copy the host-page iframe snippet for the national embed. The embed only
+  // understands ?view/?color/?ballot, so the path builder whitelists those
+  // from the synced URL; the button disables (with the others) in extended
+  // sandbox, which the embed can't represent.
+  const [embedCopied, setEmbedCopied] = useState(false);
+  const handleCopyEmbed = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(
+        buildEmbedSnippet(nationalEmbedPath(window.location.href), 'The Proportional House'),
+      );
+      setEmbedCopied(true);
+      setTimeout(() => setEmbedCopied(false), 1800);
     } catch {
       // Clipboard unavailable (insecure context / denied) — no-op.
     }
@@ -361,6 +378,19 @@ export function NationalSummary({
             title={inExtendedSandbox ? disabledTooltip : 'Download projection as JSON'}
           >
             JSON
+          </button>
+          <button
+            type="button"
+            onClick={handleCopyEmbed}
+            disabled={inExtendedSandbox}
+            className={[
+              'transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-stone-500 disabled:cursor-not-allowed rounded-full h-9 px-2 flex items-center justify-center text-xs font-medium tracking-wide',
+              embedCopied ? 'text-green-700' : 'text-stone-500 hover:text-stone-900 hover:bg-stone-100',
+            ].join(' ')}
+            aria-label="Copy embed code"
+            title={inExtendedSandbox ? disabledTooltip : 'Copy an iframe snippet that embeds this view'}
+          >
+            {embedCopied ? 'Copied!' : 'Embed'}
           </button>
           <button
             type="button"

@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { quotientTable } from '../lib/allocation';
+import { buildEmbedSnippet } from '../lib/embedSnippet';
 import { METHOD_LABELS, type AllocationMethodKind } from '../lib/methods';
 import { PARTY_D, PARTY_R, displayName } from '../lib/parties';
 import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
@@ -135,6 +136,20 @@ export function StateDetailContent({
     window.open(intent, '_blank', 'noopener,noreferrer');
   }, [state.code, state.name, state.actual.d_seats, state.projected.d_seats]);
 
+  // Copy the host-page iframe snippet for this state's embed card.
+  const [embedCopied, setEmbedCopied] = useState(false);
+  const handleCopyEmbed = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(
+        buildEmbedSnippet(`/embed/state/${state.code}`, `${state.name} · The Proportional House`),
+      );
+      setEmbedCopied(true);
+      setTimeout(() => setEmbedCopied(false), 1800);
+    } catch {
+      // Clipboard unavailable (insecure context / denied) — no-op.
+    }
+  }, [state.code, state.name]);
+
   // Focus the heading on open so screen-reader users land inside the dialog.
   useEffect(() => {
     if (autoFocusHeading) {
@@ -246,6 +261,27 @@ export function StateDetailContent({
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
+            </button>
+            <button
+              type="button"
+              onClick={handleCopyEmbed}
+              className={[
+                'rounded-full h-11 w-11 flex items-center justify-center transition-colors',
+                embedCopied ? 'text-green-700' : 'text-stone-500 hover:text-stone-900 hover:bg-stone-100',
+              ].join(' ')}
+              aria-label="Copy embed code"
+              title={embedCopied ? 'Copied!' : `Copy an iframe snippet that embeds this state's card`}
+            >
+              {embedCopied ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              )}
             </button>
             <button
               type="button"

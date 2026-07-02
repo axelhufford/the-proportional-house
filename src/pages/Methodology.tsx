@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SainteLagueDemo } from '../components/SainteLagueDemo';
+import { buildEmbedSnippet } from '../lib/embedSnippet';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
 import { fetchJson } from '../lib/fetchJson';
@@ -535,21 +536,15 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             the two-letter postal abbreviation, e.g. <code>CA</code>).
           </li>
         </ul>
-        <p>Minimal host snippet:</p>
-        <pre className="bg-stone-100 rounded p-3 text-xs overflow-x-auto">{`<iframe
-  src="https://proportionalhouse.org/embed/national"
-  style="width:100%; border:0;"
-  title="The Proportional House"
-  loading="lazy"
-></iframe>
-<script>
-  window.addEventListener('message', (e) => {
-    if (e.data && e.data.type === 'proportional-house:resize') {
-      const f = document.querySelector('iframe[src*="proportionalhouse.org/embed"]');
-      if (f) f.style.height = e.data.height + 'px';
-    }
-  });
-</script>`}</pre>
+        <p>
+          Minimal host snippet (or use the <strong>Embed</strong> button in the share row / a
+          state panel to copy one preconfigured for the view you're looking at):
+        </p>
+        {/* Rendered from the same builder the Embed buttons copy from, so the
+          * docs and the copied snippet can never drift. */}
+        <pre className="bg-stone-100 rounded p-3 text-xs overflow-x-auto">
+          {buildEmbedSnippet('/embed/national', 'The Proportional House')}
+        </pre>
         <p className="text-sm text-stone-600">
           The embed posts its content height to the parent window on mount and whenever the
           content reflows. The snippet listens for that message and resizes the iframe; no

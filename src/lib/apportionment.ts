@@ -27,6 +27,11 @@
  *   - `cubeRootSize` — House size ≈ ∛(total population).
  */
 
+import {
+  TOTAL_APPORTIONMENT_POPULATION_2020,
+  WYOMING_POPULATION_2020,
+} from './statePopulations';
+
 export interface ApportionmentInput {
   /** Map of state postal code → population. States with population 0 are skipped. */
   state_populations: Record<string, number>;
@@ -100,3 +105,11 @@ export function cubeRootSize(totalPop: number): number {
   if (totalPop <= 0) return 0;
   return Math.round(Math.cbrt(totalPop));
 }
+
+/** Precomputed Wyoming Rule House size from 2020 census numbers (~573). */
+export const WYOMING_RULE_HOUSE_SIZE = wyomingRuleSize(
+  TOTAL_APPORTIONMENT_POPULATION_2020,
+  WYOMING_POPULATION_2020,
+);
+/** Precomputed cube root House size from 2020 census numbers (~692). */
+export const CUBE_ROOT_HOUSE_SIZE = cubeRootSize(TOTAL_APPORTIONMENT_POPULATION_2020);

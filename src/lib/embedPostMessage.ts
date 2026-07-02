@@ -13,8 +13,10 @@ import { useEffect, useRef } from 'react';
  * "state/CA"). The path of the embed is included so the parent can update
  * the right iframe.
  */
+export const EMBED_RESIZE_MESSAGE_TYPE = 'proportional-house:resize' as const;
+
 export interface EmbedResizeMessage {
-  type: 'proportional-house:resize';
+  type: typeof EMBED_RESIZE_MESSAGE_TYPE;
   embed: string;
   height: number;
 }
@@ -38,7 +40,7 @@ export function useEmbedHeightSync(containerRef: React.RefObject<HTMLElement | n
       if (Math.abs(height - lastHeightRef.current) < 1) return;
       lastHeightRef.current = height;
       const msg: EmbedResizeMessage = {
-        type: 'proportional-house:resize',
+        type: EMBED_RESIZE_MESSAGE_TYPE,
         embed: window.location.pathname,
         height: Math.ceil(height),
       };
