@@ -6,6 +6,7 @@ import {
   type AllocationMethodKind,
   type EffectiveMethod,
 } from '../lib/methods';
+import { fmtMargin } from '../lib/format';
 import { SANDBOX_SCENARIOS, scenarioHouseSize, type Scenario } from '../lib/scenarios';
 import { Term } from './Term';
 import {
@@ -58,11 +59,6 @@ const PRESETS: { label: string; value: number }[] = [
   { label: 'D+5', value: 5 },
   { label: 'D+10', value: 10 },
 ];
-
-function fmtMargin(pts: number): string {
-  if (Math.abs(pts) < 0.05) return 'Tie';
-  return pts >= 0 ? `D+${pts.toFixed(1)}` : `R+${Math.abs(pts).toFixed(1)}`;
-}
 
 const THRESHOLD_MIN = 0;
 const THRESHOLD_MAX = 0.1;

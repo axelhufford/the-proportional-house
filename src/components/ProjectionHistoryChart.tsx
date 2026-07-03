@@ -11,6 +11,7 @@ import {
   YAxis,
 } from 'recharts';
 import type { HistoryPoint } from '../lib/types';
+import { fmtMargin } from '../lib/format';
 import { METHOD_DESCRIPTIONS } from '../lib/methods';
 import { SegmentedControl } from './SegmentedControl';
 
@@ -32,11 +33,6 @@ function fmtAxis(iso: string): string {
     year: 'numeric',
     timeZone: 'UTC',
   });
-}
-
-function fmtMargin(m: number): string {
-  if (Math.abs(m) < 0.05) return 'Tie';
-  return m >= 0 ? `D+${m.toFixed(1)}` : `R+${Math.abs(m).toFixed(1)}`;
 }
 
 const TOTAL_SEATS = 435;

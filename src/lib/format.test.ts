@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatSeatPct } from './format';
+import { fmtMargin, formatSeatPct } from './format';
 
 describe('formatSeatPct', () => {
   it('returns empty string when total is zero', () => {
@@ -35,5 +35,24 @@ describe('formatSeatPct', () => {
     expect(formatSeatPct(1, 3)).toBe('(33%)');
     expect(formatSeatPct(1, 3)).toBe('(33%)');
     expect(formatSeatPct(1, 3)).toBe('(33%)');
+  });
+});
+
+describe('fmtMargin', () => {
+  it('reads a tie inside the ±0.05 band', () => {
+    expect(fmtMargin(0)).toBe('Tie');
+    expect(fmtMargin(0.04)).toBe('Tie');
+    expect(fmtMargin(-0.04)).toBe('Tie');
+  });
+
+  it('does not call the band boundary a tie', () => {
+    // 0.05 renders "D+0.1", never "D+0.0" — the band matches display rounding.
+    expect(fmtMargin(0.05)).toBe('D+0.1');
+    expect(fmtMargin(-0.05)).toBe('R+0.1');
+  });
+
+  it('formats both signs with one decimal', () => {
+    expect(fmtMargin(6.94)).toBe('D+6.9');
+    expect(fmtMargin(-2.5)).toBe('R+2.5');
   });
 });

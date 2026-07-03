@@ -39,9 +39,24 @@ interface Props {
    * Null when the live setting matches a canonical preset.
    */
   currentRow: { label: string; payload: SandboxPayload } | null;
+  /**
+   * Marker on the highlighted row. The sandbox default reads "← current
+   * view"; the Current-view disclosure passes "← shown above" since there
+   * the whole page IS the current view.
+   */
+  markerLabel?: string;
+  /** Sentence under the "Compare reform models" heading. Sandbox default. */
+  subtitle?: ReactNode;
 }
 
-export function MethodComparisonTable({ basePayload, comparison, activeKey, currentRow }: Props) {
+export function MethodComparisonTable({
+  basePayload,
+  comparison,
+  activeKey,
+  currentRow,
+  markerLabel = '← current view',
+  subtitle = 'National seat totals under each allocation method, given the current sandbox settings.',
+}: Props) {
   // Column set: every party that has seats in at least one row. Ordered
   // canonical (D, R, then minors in the order the sandbox added them).
   // Using the first method's national.parties as the source of truth for
@@ -64,7 +79,7 @@ export function MethodComparisonTable({ basePayload, comparison, activeKey, curr
       <div className="px-4 py-3 border-b border-stone-200 bg-stone-50">
         <h2 className="text-sm font-medium text-stone-900">Compare reform models</h2>
         <p className="text-xs text-stone-600 mt-0.5">
-          National seat totals under each allocation method, given the current sandbox settings.
+          {subtitle}
           {/* Pull house_size from the first comparison row — all rows share the same value. */}
           {comparison[0] && comparison[0].payload.house_size !== 435 && (
             <>
@@ -147,7 +162,7 @@ export function MethodComparisonTable({ basePayload, comparison, activeKey, curr
                     >
                       {label}
                       {opts.marker && (
-                        <span className="text-stone-500 text-xs font-normal ml-2">← current view</span>
+                        <span className="text-stone-500 text-xs font-normal ml-2">{markerLabel}</span>
                       )}
                     </th>
                     {parties.map((p) => (

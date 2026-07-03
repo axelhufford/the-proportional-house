@@ -33,12 +33,14 @@ import {
 } from '../lib/apportionment';
 import { ALL_METHODS, resolveEffectiveMethod, type AllocationMethodKind } from '../lib/methods';
 import { fetchJson } from '../lib/fetchJson';
+import { fmtMargin } from '../lib/format';
 import {
   buildSandboxPayload,
   DEFAULT_HOUSE_SIZE,
   type MinorPartySpec,
 } from '../lib/sandboxSwing';
 import { scenarioHouseSize, type Scenario } from '../lib/scenarios';
+import { computeWeeklyDelta } from '../lib/weeklyDelta';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
 import { cycleToProjectionPayload } from '../lib/retrospective';
@@ -707,6 +709,24 @@ export function Home({ onMetaChange }: HomeProps) {
     }));
   }, [effectivePayload, viewMode, minors, threshold, houseSize]);
 
+  // Current-view method comparison: canonical inputs (no minors, threshold 0,
+  // 435 seats, no param overrides). The 'PR' row must equal
+  // payload.national.projected — both are Sainte-Laguë over the same shares.
+  const currentMethodComparison = useMemo(() => {
+    if (!effectivePayload || viewMode !== 'current') return null;
+    return ALL_METHODS.map((m) => ({
+      method: m,
+      payload: buildSandboxPayload(effectivePayload, [], 0, m, DEFAULT_HOUSE_SIZE),
+    }));
+  }, [effectivePayload, viewMode]);
+
+  // "Since last week" movement for the hero chip. Pure function of the
+  // history series; null when no honest week-ago forward baseline exists.
+  const weeklyDelta = useMemo(
+    () => (history ? computeWeeklyDelta(history.points) : null),
+    [history],
+  );
+
   if (error) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-12">
@@ -734,12 +754,7 @@ export function Home({ onMetaChange }: HomeProps) {
 
   // Current generic-ballot average, for the polling-trend card under the map.
   const pollMargin = payload.meta.generic_ballot_margin;
-  const pollLabel =
-    Math.abs(pollMargin) < 0.05
-      ? 'Tie'
-      : pollMargin >= 0
-        ? `D+${pollMargin.toFixed(1)}`
-        : `R+${Math.abs(pollMargin).toFixed(1)}`;
+  const pollLabel = fmtMargin(pollMargin);
 
   // Dataset JSON-LD for the homepage — declares the projection as a public
   // dataset that Google Dataset Search and other crawlers can index. Kept
@@ -777,6 +792,7 @@ export function Home({ onMetaChange }: HomeProps) {
         sandboxPayload={sandboxPayload}
         methodLabel={effective.label}
         retroYear={retroYear}
+        weeklyDelta={weeklyDelta}
       />
       <NationalSummary
         payload={effectivePayload}
@@ -802,6 +818,22 @@ export function Home({ onMetaChange }: HomeProps) {
             onApply={handleApplyScenario}
             onOpenSandbox={() => setViewMode('sandbox')}
           />
+        )}
+
+        {viewMode === 'current' && currentMethodComparison && (
+          <details className="mt-4 text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
+            <summary className="cursor-pointer font-medium text-brand-navy rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy">
+              How would other allocation methods change this projection?
+            </summary>
+            <MethodComparisonTable
+              basePayload={effectivePayload}
+              comparison={currentMethodComparison}
+              activeKey="PR"
+              currentRow={null}
+              markerLabel="← shown above"
+              subtitle="National seat totals under each allocation method, applied to today's projected statewide vote shares."
+            />
+          </details>
         )}
 
         {viewMode === 'sandbox' && (

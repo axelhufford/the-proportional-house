@@ -21,3 +21,15 @@ export function formatSeatPct(seats: number, total: number): string {
   if (total <= 0) return '';
   return `(${Math.round((seats / total) * 100)}%)`;
 }
+
+/**
+ * Generic-ballot margin label: 'D+6.9' / 'R+2.5' / 'Tie' when |m| < 0.05.
+ *
+ * Positive = D lead (the pipeline's sign convention throughout). The Tie
+ * band matches one display decimal: anything that would render "D+0.0"
+ * or "R+0.0" reads as a tie instead.
+ */
+export function fmtMargin(m: number): string {
+  if (Math.abs(m) < 0.05) return 'Tie';
+  return m >= 0 ? `D+${m.toFixed(1)}` : `R+${Math.abs(m).toFixed(1)}`;
+}

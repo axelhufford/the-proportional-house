@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import { fmtMargin } from '../lib/format';
 import { PARTY_D, PARTY_R } from '../lib/parties';
 import { useCountUp } from '../lib/useCountUp';
+import type { WeeklyDelta } from '../lib/weeklyDelta';
 import { Hemicycle } from './Hemicycle';
 
 /**
@@ -42,6 +44,12 @@ interface Props {
   methodLabel?: string;
   /** Selected cycle for the Retrospective view (e.g. 2016…2024). */
   retroYear?: number;
+  /**
+   * "Since last week" movement of the Current projection; null/absent when
+   * history is missing, too short, or has no forward baseline. Rendered as a
+   * small chip under the headline, Current view only.
+   */
+  weeklyDelta?: WeeklyDelta | null;
 }
 
 export function HomeHero({
@@ -52,6 +60,7 @@ export function HomeHero({
   sandboxPayload,
   methodLabel,
   retroYear = 2024,
+  weeklyDelta,
 }: Props) {
   const { national, meta } = payload;
   // The headline shift = projected D minus the baseline D. In Sandbox we read
@@ -258,6 +267,8 @@ export function HomeHero({
           </div>
           <p className="mt-2 text-[11px] uppercase tracking-wider text-stone-500">{subLabel}</p>
 
+          {viewMode === 'current' && weeklyDelta && <WeeklyDeltaChip delta={weeklyDelta} />}
+
           <p className="mt-4 text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
           {caveat && (
             <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">{caveat}</p>
@@ -310,5 +321,57 @@ export function HomeHero({
         winner-take-all districts we use now — this map projects what that would change.
       </aside>
     </section>
+  );
+}
+
+/** Chip date: "Jun 12" / with year on the endpoint ("Jun 19, 2026"). */
+function fmtChipDate(iso: string, withYear = false): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    ...(withYear ? { year: 'numeric' as const } : {}),
+    timeZone: 'UTC',
+  });
+}
+
+/**
+ * Small pill under the headline: how the Current projection moved over the
+ * past week. Direction colored by the benefiting party. The window can
+ * legitimately be 5–10 days when a nightly run was skipped, so the title
+ * tooltip carries the exact from → to dates backing the "week" claim.
+ */
+function WeeklyDeltaChip({ delta }: { delta: WeeklyDelta }) {
+  const n = Math.abs(delta.seatDelta);
+  const fromLabel = fmtMargin(delta.marginFrom);
+  const toLabel = fmtMargin(delta.marginTo);
+  // Collapse "(D+6.9 → D+6.9)" noise when both ends format identically.
+  const marginPart = fromLabel === toLabel ? `(${toLabel})` : `(${fromLabel} → ${toLabel})`;
+  const seats = `seat${n === 1 ? '' : 's'}`;
+
+  let visible: string;
+  let srText: string;
+  let color: string;
+  if (delta.seatDelta > 0) {
+    visible = `▲ D+${n} ${seats} since last week ${marginPart}`;
+    srText = `Democrats gained ${n} ${seats} in the proportional projection since last week; the generic-ballot margin moved from ${fromLabel} to ${toLabel}.`;
+    color = 'text-blue-700';
+  } else if (delta.seatDelta < 0) {
+    visible = `▼ R+${n} ${seats} since last week ${marginPart}`;
+    srText = `Republicans gained ${n} ${seats} in the proportional projection since last week; the generic-ballot margin moved from ${fromLabel} to ${toLabel}.`;
+    color = 'text-red-700';
+  } else {
+    visible = `No seat change since last week ${marginPart}`;
+    srText = `No change in projected seats since last week; the generic-ballot margin is ${toLabel}.`;
+    color = 'text-stone-600';
+  }
+
+  return (
+    <p
+      className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-medium tabular-nums"
+      title={`${fmtChipDate(delta.fromDate)} → ${fmtChipDate(delta.toDate, true)}`}
+    >
+      <span aria-hidden="true" className={color}>{visible}</span>
+      <span className="sr-only">{srText}</span>
+    </p>
   );
 }

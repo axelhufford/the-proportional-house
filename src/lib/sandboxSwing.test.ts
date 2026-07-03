@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { ALL_METHODS } from './methods';
 import { PARTY_D, PARTY_R, PRESET_MINORS } from './parties';
-import { buildSandboxPayload, type MinorPartySpec } from './sandboxSwing';
+import { buildSandboxPayload, DEFAULT_HOUSE_SIZE, type MinorPartySpec } from './sandboxSwing';
 import type { ProjectionPayload } from './types';
 
 // Two-state fixture: a large blue state (CA-like, 52 seats, 60/40 D) and a
@@ -195,5 +196,28 @@ describe('buildSandboxPayload — actual_scaled baseline (House-size-correct dif
     const smallTotal = small.national.actual_scaled.d_seats + small.national.actual_scaled.r_seats;
     const bigTotal = big.national.actual_scaled.d_seats + big.national.actual_scaled.r_seats;
     expect(bigTotal).toBeGreaterThan(smallTotal);
+  });
+});
+
+describe('current-view method comparison (canonical inputs)', () => {
+  // These pin the guarantees the home page's "other allocation methods"
+  // disclosure relies on: no minors, threshold 0, default House size.
+
+  it("the PR row equals the pipeline's national.projected (hero headline)", () => {
+    const out = buildSandboxPayload(FIXTURE, [], 0, 'PR', DEFAULT_HOUSE_SIZE);
+    const [d, r] = out.national.parties;
+    expect(d.party.id).toBe('D');
+    expect(r.party.id).toBe('R');
+    expect(d.seats).toBe(FIXTURE.national.projected.d_seats);
+    expect(r.seats).toBe(FIXTURE.national.projected.r_seats);
+  });
+
+  it('every method yields a two-party result summing to the full House', () => {
+    for (const method of ALL_METHODS) {
+      const out = buildSandboxPayload(FIXTURE, [], 0, method, DEFAULT_HOUSE_SIZE);
+      expect(out.national.parties.map((p) => p.party.id), method).toEqual(['D', 'R']);
+      const total = out.national.parties.reduce((sum, p) => sum + p.seats, 0);
+      expect(total, method).toBe(FIXTURE.national.seats);
+    }
   });
 });
