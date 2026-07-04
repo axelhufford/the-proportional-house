@@ -102,13 +102,17 @@ export default defineConfig({
         // don't bust the React + d3 + topojson bytes on repeat visits.
         // Recharts gets its own chunk automatically via React.lazy() in
         // src/pages/Home.tsx — no need to declare it here.
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom'],
-          // Only declare packages that are actually imported in src/.
-          // us-atlas is fetched at runtime as JSON, d3-selection isn't
-          // directly imported (it's a transitive dep) — listing them here
-          // would crash Vite's resolver.
-          'd3-geo': ['d3-geo', 'topojson-client'],
+        // Rolldown (Vite 8) only takes the function form; scheduler and
+        // react-router are listed because the old object form swept in each
+        // package's exclusive deps, and these two must stay in the react
+        // chunk to keep it self-contained.
+        manualChunks(id) {
+          if (/[\\/]node_modules[\\/](react|react-dom|scheduler|react-router|react-router-dom)[\\/]/.test(id)) {
+            return 'react';
+          }
+          if (/[\\/]node_modules[\\/](d3-geo|topojson-client)[\\/]/.test(id)) {
+            return 'd3-geo';
+          }
         },
       },
     },
