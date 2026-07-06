@@ -7,7 +7,7 @@
  * The row matching the currently-selected method gets a subtle highlight
  * to tie the table back to the map above.
  */
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import type { ProjectionPayload } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import {
@@ -63,6 +63,13 @@ export function MethodComparisonTable({
   // ordering — every method produces the same party list (just different
   // seat counts).
   const columnParties = comparison[0]?.payload.national.parties ?? [];
+
+  // Hovered/focused method row — drives the live definition in the footer
+  // strip. Native `title` alone is too slow to notice (same finding as the
+  // history chart's selector) and never fires on touch or keyboard focus.
+  const [hoveredMethod, setHoveredMethod] = useState<{ label: string; description: string } | null>(
+    null,
+  );
 
   // For "Actual today" row, only D and R have data; minors are zero.
   const actualSeats = (partyId: string): number => {
@@ -159,8 +166,27 @@ export function MethodComparisonTable({
                       scope="row"
                       className="text-left px-4 py-2 font-medium text-stone-700"
                       title={opts.title}
+                      tabIndex={opts.title ? 0 : undefined}
+                      onMouseEnter={
+                        opts.title
+                          ? () => setHoveredMethod({ label, description: opts.title! })
+                          : undefined
+                      }
+                      onMouseLeave={opts.title ? () => setHoveredMethod(null) : undefined}
+                      onFocus={
+                        opts.title
+                          ? () => setHoveredMethod({ label, description: opts.title! })
+                          : undefined
+                      }
+                      onBlur={opts.title ? () => setHoveredMethod(null) : undefined}
                     >
-                      {label}
+                      {opts.title ? (
+                        <span className="cursor-help border-b border-dotted border-stone-400 hover:border-stone-600">
+                          {label}
+                        </span>
+                      ) : (
+                        label
+                      )}
                       {opts.marker && (
                         <span className="text-stone-500 text-xs font-normal ml-2">{markerLabel}</span>
                       )}
@@ -218,7 +244,19 @@ export function MethodComparisonTable({
         </table>
       </div>
       <div className="px-4 py-2 border-t border-stone-200 bg-stone-50 text-[11px] text-stone-500">
-        Hover a method label for a one-line definition. MMP totals may slightly exceed 435 in extreme
+        {/* Live explainer: swaps to the hovered/focused method's definition
+          * (aria-live so keyboard users hear it too). */}
+        <span aria-live="polite">
+          {hoveredMethod ? (
+            <>
+              <strong className="text-stone-700">{hoveredMethod.label}:</strong>{' '}
+              {hoveredMethod.description}
+            </>
+          ) : (
+            <>Hover or tab to a method name for a one-line definition.</>
+          )}
+        </span>{' '}
+        MMP totals may slightly exceed 435 in extreme
         overhang cases; the model holds total seats fixed for cleanliness.{' '}
         {/* If we ever model Ausgleichsmandate (Germany's overhang-compensation seats), this caveat changes. */}
         D / R columns reference {PARTY_D.label} and {PARTY_R.label}.
