@@ -93,6 +93,79 @@ def check_projection(errors: list[str]) -> None:
                 or unc["d_seats_high"] + unc["r_seats_low"] != TOTAL_SEATS):
             errors.append("projection: uncertainty band complements don't sum to 435")
 
+    majority = p["meta"].get("majority")
+    flips = p["meta"].get("closest_flips")
+    if majority is not None or flips is not None:
+        # Strong checks re-run the shipped model, so they need the baseline.
+        from update import project_states  # function-level: avoids import-order surprises
+
+        baseline_path = REPO_ROOT / "data-pipeline" / "baseline" / "house_2024.json"
+        with baseline_path.open() as f:
+            baseline_states = json.load(f)["states"]
+        margin = p["meta"]["generic_ballot_margin"]
+        baseline_d_margin = p["meta"]["baseline_2024_margin"]
+
+        def national_d(at_margin: float) -> int:
+            proj = project_states(baseline_states, at_margin - baseline_d_margin)
+            return sum(s["projected"]["d_seats"] for s in proj)
+
+    if majority is not None:
+        tip = majority["tipping_margin"]
+        if majority["majority_seats"] != 218:
+            errors.append(f"projection: majority_seats {majority['majority_seats']} != 218")
+        if not (-20 <= tip <= 20):
+            errors.append(f"projection: tipping_margin {tip} outside ±20")
+        # Sign consistency: D holds a projected majority iff today's margin
+        # sits at/above the tipping point (0.05 covers the 0.1 rounding).
+        has_majority_now = nat["projected"]["d_seats"] >= 218
+        if has_majority_now != (tip <= margin + 0.05):
+            errors.append("projection: tipping_margin sign inconsistent with projected majority")
+        # Strong check: the crossing actually happens at the shipped value.
+        if national_d(tip + 0.1) < 218:
+            errors.append(f"projection: D < 218 at tipping_margin+0.1 ({tip + 0.1})")
+        if national_d(tip - 0.1) > 217:
+            errors.append(f"projection: D > 217 at tipping_margin-0.1 ({tip - 0.1})")
+
+    if flips is not None:
+        if len(flips) > 6:
+            errors.append(f"projection: closest_flips has {len(flips)} entries (max 6)")
+        for direction in ("D", "R"):
+            if sum(1 for c in flips if c["direction"] == direction) > 3:
+                errors.append(f"projection: closest_flips has > 3 {direction} entries")
+        deltas = [c["margin_delta"] for c in flips]
+        if deltas != sorted(deltas):
+            errors.append("projection: closest_flips not sorted by margin_delta")
+        seen = set()
+        by_fips = {s["fips"]: s for s in baseline_states}
+        for c in flips:
+            key = (c["code"], c["direction"])
+            if key in seen:
+                errors.append(f"projection: closest_flips duplicate {key}")
+            seen.add(key)
+            if not (0 < c["margin_delta"] <= 15):
+                errors.append(f"projection {c['code']}: margin_delta {c['margin_delta']} outside (0, 15]")
+            sign = 1.0 if c["direction"] == "D" else -1.0
+            if abs(c["flips_at_margin"] - round(margin + sign * c["margin_delta"], 1)) > 0.051:
+                errors.append(f"projection {c['code']}: flips_at_margin arithmetic off")
+            # Strong check: the seat really flips at delta (+0.05 slack) and
+            # not well before it (0.2 covers bisection tol + ceil rounding).
+            state = by_fips.get(c["fips"])
+            if state is None:
+                errors.append(f"projection {c['code']}: fips not in baseline")
+                continue
+            swing_today = margin - baseline_d_margin
+            today_d = project_states([state], swing_today)[0]["projected"]["d_seats"]
+            at_delta = project_states([state], swing_today + sign * (c["margin_delta"] + 0.05))[0]["projected"]["d_seats"]
+            if at_delta == today_d:
+                errors.append(f"projection {c['code']}: no flip at margin_delta+0.05")
+            elif (at_delta > today_d) != (c["direction"] == "D"):
+                errors.append(f"projection {c['code']}: flip direction mismatch")
+            early = c["margin_delta"] - 0.2
+            if early > 0:
+                at_early = project_states([state], swing_today + sign * early)[0]["projected"]["d_seats"]
+                if at_early != today_d:
+                    errors.append(f"projection {c['code']}: flips earlier than margin_delta-0.2")
+
 
 def check_polling_error(errors: list[str]) -> None:
     """No-fabrication guard for the curated polling-error table.

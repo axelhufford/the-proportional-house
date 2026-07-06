@@ -96,6 +96,42 @@ describe('toApiV1', () => {
     expect(out.national.projected).toEqual({ D: 234, R: 201 });
   });
 
+  it('passes the optional majority tipping + closest flips through, omitted when absent', () => {
+    const withAnalytics: ProjectionPayload = {
+      ...FIXTURE,
+      meta: {
+        ...FIXTURE.meta,
+        majority: { tipping_margin: -0.6, majority_seats: 218 },
+        closest_flips: [
+          {
+            fips: '36',
+            code: 'NY',
+            name: 'New York',
+            direction: 'D',
+            margin_delta: 0.2,
+            flips_at_margin: 7.0,
+          },
+        ],
+      },
+    };
+    const out = toApiV1(withAnalytics);
+    expect(out.national.majority_tipping).toEqual({ tipping_margin: -0.6, majority_seats: 218 });
+    expect(out.closest_flips).toEqual([
+      {
+        code: 'NY',
+        name: 'New York',
+        fips: '36',
+        direction: 'D',
+        margin_delta: 0.2,
+        flips_at_margin: 7.0,
+      },
+    ]);
+    // Omitted (not null) without the data — the base FIXTURE path.
+    const bare = toApiV1(FIXTURE);
+    expect(bare.national).not.toHaveProperty('majority_tipping');
+    expect(bare).not.toHaveProperty('closest_flips');
+  });
+
   it('sorts states alphabetically by postal code', () => {
     const out = toApiV1(FIXTURE);
     expect(out.states.map((s) => s.code)).toEqual(['AL', 'CA']);

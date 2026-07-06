@@ -17,6 +17,13 @@ export interface ProjectionMeta {
    * table is verified (data-pipeline/baseline/polling_error.json).
    */
   uncertainty?: UncertaintyBand;
+  /**
+   * Majority tipping point + closest seats to flip. Like `uncertainty`,
+   * only valid at the shipped swing (recomputeWithSwing strips them) and
+   * absent until the pipeline emits them.
+   */
+  majority?: MajorityTipping;
+  closest_flips?: ClosestFlip[];
 }
 
 export interface UncertaintyBand {
@@ -30,6 +37,25 @@ export interface UncertaintyBand {
   d_seats_high: number;
   r_seats_low: number;
   r_seats_high: number;
+}
+
+export interface MajorityTipping {
+  /** Generic-ballot D-margin at which projected D seats first reach a majority. */
+  tipping_margin: number;
+  /** Seats needed for control (218 of 435). */
+  majority_seats: number;
+}
+
+export interface ClosestFlip {
+  fips: string;
+  code: string;
+  name: string;
+  /** Which party gains the next seat as the national margin moves its way. */
+  direction: 'D' | 'R';
+  /** Points of national-margin movement toward `direction` needed to flip it. */
+  margin_delta: number;
+  /** Absolute generic-ballot D-margin at which the flip happens. */
+  flips_at_margin: number;
 }
 
 export interface SeatSplit {

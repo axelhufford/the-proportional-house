@@ -80,6 +80,24 @@ export interface ApiV1ProjectedRange {
   R: { low: number; high: number };
 }
 
+/** Generic-ballot D-margin at which projected House control flips. */
+export interface ApiV1MajorityTipping {
+  tipping_margin: number;
+  majority_seats: number;
+}
+
+/** A seat close to flipping as the national margin moves. */
+export interface ApiV1ClosestFlip {
+  code: string;
+  name: string;
+  fips: string;
+  direction: 'D' | 'R';
+  /** Points of national-margin movement toward `direction` needed. */
+  margin_delta: number;
+  /** Absolute D-margin at which it flips. */
+  flips_at_margin: number;
+}
+
 export interface ApiV1Payload {
   api_version: typeof API_VERSION;
   /** ISO 8601 timestamp of when the pipeline last refreshed. */
@@ -96,7 +114,11 @@ export interface ApiV1Payload {
     projected: ApiV1Seats;
     /** Optional sensitivity band; key omitted when the data lacks one. */
     projected_range?: ApiV1ProjectedRange;
+    /** Optional majority tipping point; key omitted when absent. */
+    majority_tipping?: ApiV1MajorityTipping;
   };
+  /** Optional closest-seats-to-flip list; key omitted when absent. */
+  closest_flips?: ApiV1ClosestFlip[];
   /** State-by-state breakdown, sorted alphabetically by postal code. */
   states: ApiV1State[];
 }
@@ -138,7 +160,27 @@ export function toApiV1(payload: ProjectionPayload): ApiV1Payload {
             },
           }
         : {}),
+      ...(meta.majority
+        ? {
+            majority_tipping: {
+              tipping_margin: meta.majority.tipping_margin,
+              majority_seats: meta.majority.majority_seats,
+            },
+          }
+        : {}),
     },
+    ...(meta.closest_flips && meta.closest_flips.length > 0
+      ? {
+          closest_flips: meta.closest_flips.map((c) => ({
+            code: c.code,
+            name: c.name,
+            fips: c.fips,
+            direction: c.direction,
+            margin_delta: c.margin_delta,
+            flips_at_margin: c.flips_at_margin,
+          })),
+        }
+      : {}),
     states: states
       .slice()
       .sort((a, b) => a.code.localeCompare(b.code))

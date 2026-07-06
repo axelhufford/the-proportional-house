@@ -77,6 +77,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- No-JS / crawler fallback. The LIVE-SUMMARY placeholder is replaced
+         with the day's numbers by the prerender plugin (home route) or
+         stripped (other routes / data unavailable). Plain markup on purpose:
+         noscript content isn't part of the Tailwind utility scan. -->
+    <noscript>
+      <div>
+        <p><strong>The Proportional House</strong> — mapping the U.S. House under proportional representation.</p>
+        <!--LIVE-SUMMARY-->
+        <p>This interactive site requires JavaScript. The data is public:
+          <a href="/data/projection.json">projection.json</a>, the
+          <a href="/api/v1/projection.json">v1 API</a>, and static per-state pages under /state/.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

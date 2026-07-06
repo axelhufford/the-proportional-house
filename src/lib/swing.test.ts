@@ -18,6 +18,17 @@ const FIXTURE: ProjectionPayload = {
       r_seats_low: 21,
       r_seats_high: 25,
     },
+    majority: { tipping_margin: -0.6, majority_seats: 218 },
+    closest_flips: [
+      {
+        fips: '06',
+        code: 'CA',
+        name: 'California',
+        direction: 'D',
+        margin_delta: 0.5,
+        flips_at_margin: 5.5,
+      },
+    ],
   },
   national: {
     seats: 55,
@@ -47,12 +58,15 @@ const FIXTURE: ProjectionPayload = {
 };
 
 describe('recomputeWithSwing', () => {
-  it('strips the shipped uncertainty band (only valid at the shipped swing)', () => {
+  it('strips the shipped swing-specific analytics (only valid at the shipped swing)', () => {
     const out = recomputeWithSwing(FIXTURE, 3.0);
-    expect(out.meta.uncertainty).toBeUndefined();
     expect('uncertainty' in out.meta).toBe(false);
+    expect('majority' in out.meta).toBe(false);
+    expect('closest_flips' in out.meta).toBe(false);
     // The input payload is untouched.
     expect(FIXTURE.meta.uncertainty).toBeDefined();
+    expect(FIXTURE.meta.majority).toBeDefined();
+    expect(FIXTURE.meta.closest_flips).toBeDefined();
   });
 
   it('still updates swing and margin consistently', () => {

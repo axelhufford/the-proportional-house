@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { ChartSkeleton } from '../components/ChartSkeleton';
+import { ClosestSeats } from '../components/ClosestSeats';
 import { FeaturedScenarios } from '../components/FeaturedScenarios';
 import { HomeSkeleton } from '../components/HomeSkeleton';
 import { Reveal } from '../components/Reveal';
@@ -804,6 +805,16 @@ export function Home({ onMetaChange }: HomeProps) {
         structuralDGain={structuralDGain ?? undefined}
         retroYear={retroYear}
       />
+
+      {/* Closest seats to flip — pipeline analytics, so read from `payload`
+        * (identical to effectivePayload on Current, where alone it renders). */}
+      {viewMode === 'current' && payload.meta.closest_flips?.length ? (
+        <ClosestSeats
+          flips={payload.meta.closest_flips}
+          currentMargin={payload.meta.generic_ballot_margin}
+          onSelectState={handleSelect}
+        />
+      ) : null}
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-3">
         <ModeToggle

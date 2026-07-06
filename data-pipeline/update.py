@@ -19,6 +19,7 @@ Run:
 from __future__ import annotations
 
 import json
+import math
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -165,6 +166,87 @@ def compute_seat_band(
     }
 
 
+def _national_d_seats(baseline_states: list[dict], swing_points: float, method: str = "sainte-lague") -> int:
+    """Projected national D seats at a given swing — the bisection predicate."""
+    return sum(s["projected"]["d_seats"] for s in project_states(baseline_states, swing_points, method))
+
+
+def compute_majority_tipping(
+    baseline_states: list[dict], baseline_d_margin: float,
+    method: str = "sainte-lague", majority_seats: int = 218,
+    margin_range: tuple[float, float] = (-20.0, 20.0), tol: float = 0.01,
+) -> float | None:
+    """Generic-ballot D-margin at which projected D seats first reach a majority.
+
+    D seats are weakly nondecreasing in the margin (Sainte-Laguë quotients
+    rise with share; the clamp saturates but never reverses; ties are
+    deterministic), so bisect the predicate. Returns None if the crossing
+    falls outside margin_range (defensive — the field is then omitted).
+    """
+    lo, hi = margin_range
+
+    def has_majority(margin: float) -> bool:
+        return _national_d_seats(baseline_states, margin - baseline_d_margin, method) >= majority_seats
+
+    if has_majority(lo) or not has_majority(hi):
+        return None
+    while hi - lo > tol:
+        mid = (lo + hi) / 2
+        if has_majority(mid):
+            hi = mid
+        else:
+            lo = mid
+    return round(hi, 1)
+
+
+def compute_closest_flips(
+    baseline_states: list[dict], swing_points: float, current_margin: float,
+    method: str = "sainte-lague", max_delta: float = 15.0,
+    per_direction: int = 3, tol: float = 0.01,
+) -> list[dict]:
+    """The seats nearest to flipping as the national margin moves either way.
+
+    Per state and direction, bisects the smallest national-margin movement
+    that changes the state's projected D seats — one-state project_states
+    calls, so elasticity, imputation, and the allocator are exactly the
+    shipped model. margin_delta is ceil-rounded to 0.1 so the displayed
+    "needs +0.4 pts" is always sufficient to flip the seat.
+    """
+    candidates: dict[str, list[dict]] = {"D": [], "R": []}
+    for s in baseline_states:
+        one = [s]
+        today = project_states(one, swing_points, method)[0]["projected"]["d_seats"]
+        for sign, direction in ((1.0, "D"), (-1.0, "R")):
+            def flipped(delta: float) -> bool:
+                d = project_states(one, swing_points + sign * delta, method)[0]["projected"]["d_seats"]
+                return d != today
+
+            if not flipped(max_delta):
+                continue
+            lo, hi = 0.0, max_delta
+            while hi - lo > tol:
+                mid = (lo + hi) / 2
+                if flipped(mid):
+                    hi = mid
+                else:
+                    lo = mid
+            delta = math.ceil(hi * 10 - 1e-9) / 10
+            candidates[direction].append({
+                "fips": s["fips"],
+                "code": s["code"],
+                "name": s["name"],
+                "direction": direction,
+                "margin_delta": delta,
+                "flips_at_margin": round(current_margin + sign * delta, 1),
+            })
+    merged: list[dict] = []
+    for direction in ("D", "R"):
+        candidates[direction].sort(key=lambda c: (c["margin_delta"], c["code"]))
+        merged.extend(candidates[direction][:per_direction])
+    merged.sort(key=lambda c: (c["margin_delta"], c["code"]))
+    return merged
+
+
 def retrospective_states(baseline_states: list[dict], method: str = "sainte-lague") -> list[dict]:
     """The 2024 Retrospective: apply Sainte-Laguë directly to the 2024 baseline,
     no swing. Shows the pure distortion of the current system.
@@ -277,6 +359,22 @@ def main(refresh_clerk: bool = False) -> None:
             f"D {uncertainty['d_seats_low']}–{uncertainty['d_seats_high']} seats."
         )
 
+    # 4c. Majority tipping point + closest seats to flip — same pure model,
+    # bisected. Both optional (omitted if the crossing/flips fall outside the
+    # defensive ranges).
+    majority = None
+    tipping = compute_majority_tipping(baseline_states, baseline_d_margin)
+    if tipping is not None:
+        majority = {"tipping_margin": tipping, "majority_seats": 218}
+        print(f"Majority tipping point: D reaches 218 at ballot margin {tipping:+.1f}.")
+    closest_flips = compute_closest_flips(baseline_states, swing, generic_ballot)
+    if closest_flips:
+        nearest = closest_flips[0]
+        print(
+            f"Closest seat to flip: {nearest['code']} toward {nearest['direction']} "
+            f"at +{nearest['margin_delta']:.1f} pts ({len(closest_flips)} listed)."
+        )
+
     # 5. Write outputs.
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
 
@@ -300,10 +398,14 @@ def main(refresh_clerk: bool = False) -> None:
         },
         "states": projected,
     }
-    # Key absent (not null) when the band is ungated — the optional TS type
-    # and the API omission contract both rely on absence.
+    # Keys absent (not null) when ungated — the optional TS types and the
+    # API omission contract both rely on absence.
     if uncertainty:
         projection_payload["meta"]["uncertainty"] = uncertainty
+    if majority:
+        projection_payload["meta"]["majority"] = majority
+    if closest_flips:
+        projection_payload["meta"]["closest_flips"] = closest_flips
     PROJECTION_PATH.write_text(json.dumps(projection_payload, indent=2))
 
     baseline_payload = {
@@ -356,6 +458,10 @@ def main(refresh_clerk: bool = False) -> None:
     }
     if uncertainty:
         meta_payload["uncertainty"] = uncertainty
+    if majority:
+        meta_payload["majority"] = majority
+    if closest_flips:
+        meta_payload["closest_flips"] = closest_flips
     META_PATH.write_text(json.dumps(meta_payload, indent=2))
 
     # Regenerate per-state OG cards + static HTML pages so social-share
@@ -373,6 +479,14 @@ def main(refresh_clerk: bool = False) -> None:
         generate_sitemap()
     except Exception as e:
         print(f"  (warn) sitemap generation failed: {e}")
+
+    # Regenerate llms.txt with the day's headline numbers so AI crawlers
+    # quote live data rather than only the static descriptions.
+    try:
+        from generate_llms import main as generate_llms
+        generate_llms()
+    except Exception as e:
+        print(f"  (warn) llms.txt generation failed: {e}")
 
     # Rebuild the multi-cycle retrospectives (offline — reads committed
     # house_{year}.json baselines, no network). 2024 here matches the

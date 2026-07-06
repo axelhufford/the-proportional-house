@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { fmtMargin } from '../lib/format';
+import { majorityTippingSentence } from '../lib/majorityTipping';
 import { PARTY_D, PARTY_R } from '../lib/parties';
 import { describeSeatShiftBand, seatShiftBand } from '../lib/uncertaintyBand';
 import { useCountUp } from '../lib/useCountUp';
@@ -275,17 +276,31 @@ export function HomeHero({
           {caveat && (
             <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">{caveat}</p>
           )}
-          {/* Polling-error sensitivity band — Current view only: the shipped
-            * band is the pipeline's projection at ITS swing ± ε, so it is
-            * meaningless against a sandbox slider or a past cycle (and
-            * recomputeWithSwing strips it from those payloads anyway). */}
-          {viewMode === 'current' && meta.uncertainty && (
+          {/* Polling-error sensitivity band + majority stakes — Current view
+            * only: both are the pipeline's projection at ITS swing, so they
+            * are meaningless against a sandbox slider or a past cycle (and
+            * recomputeWithSwing strips them from those payloads anyway). */}
+          {viewMode === 'current' && (meta.uncertainty || meta.majority) && (
             <p className="mt-3 text-sm text-stone-600 leading-relaxed">
-              If the polls miss by the{' '}
-              <Term id="polling-error">
-                historical ±{meta.uncertainty.epsilon_points.toFixed(1)} points
-              </Term>
-              , {describeSeatShiftBand(seatShiftBand(meta.uncertainty, national.actual.d_seats))}.
+              {meta.uncertainty && (
+                <>
+                  If the polls miss by the{' '}
+                  <Term id="polling-error">
+                    historical ±{meta.uncertainty.epsilon_points.toFixed(1)} points
+                  </Term>
+                  , {describeSeatShiftBand(seatShiftBand(meta.uncertainty, national.actual.d_seats))}.
+                </>
+              )}
+              {meta.majority && (
+                <>
+                  {meta.uncertainty ? ' ' : ''}
+                  {majorityTippingSentence({
+                    tippingMargin: meta.majority.tipping_margin,
+                    currentMargin: meta.generic_ballot_margin,
+                    epsilonPoints: meta.uncertainty?.epsilon_points,
+                  })}
+                </>
+              )}
             </p>
           )}
 

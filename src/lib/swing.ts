@@ -97,12 +97,19 @@ export function recomputeWithSwing(
     natR += s.projected.r_seats;
   }
 
-  // The shipped uncertainty band is the pipeline's projection evaluated at
-  // ITS swing ± ε. A recomputed payload carries a different swing, so the
-  // band no longer describes it — strip it rather than let a stale band
-  // leak into Sandbox/Retrospective renders.
-  const { uncertainty: _droppedBand, ...restMeta } = payload.meta;
+  // The shipped uncertainty band, majority tipping point, and closest-flips
+  // list are all evaluated at the PIPELINE's swing. A recomputed payload
+  // carries a different swing, so none of them describe it — strip them
+  // rather than let stale analytics leak into Sandbox/Retrospective renders.
+  const {
+    uncertainty: _droppedBand,
+    majority: _droppedMajority,
+    closest_flips: _droppedFlips,
+    ...restMeta
+  } = payload.meta;
   void _droppedBand;
+  void _droppedMajority;
+  void _droppedFlips;
   return {
     ...payload,
     meta: {
