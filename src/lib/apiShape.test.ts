@@ -61,11 +61,39 @@ describe('toApiV1', () => {
 
   it('renames snake_case seat fields to party-keyed objects', () => {
     const out = toApiV1(FIXTURE);
+    // toEqual is exact — this also guards that projected_range is OMITTED
+    // (not null) when the internal payload carries no uncertainty band.
     expect(out.national).toEqual({
       total_seats: 435,
       actual: { D: 215, R: 220 },
       projected: { D: 234, R: 201 },
     });
+  });
+
+  it('passes the optional uncertainty band through as national.projected_range', () => {
+    const withBand: ProjectionPayload = {
+      ...FIXTURE,
+      meta: {
+        ...FIXTURE.meta,
+        uncertainty: {
+          epsilon_points: 2.2,
+          basis: 'RMS miss of final RCP generic-ballot averages, 2016-2024',
+          d_seats_low: 226,
+          d_seats_high: 240,
+          r_seats_low: 195,
+          r_seats_high: 209,
+        },
+      },
+    };
+    const out = toApiV1(withBand);
+    expect(out.national.projected_range).toEqual({
+      epsilon_points: 2.2,
+      basis: 'RMS miss of final RCP generic-ballot averages, 2016-2024',
+      D: { low: 226, high: 240 },
+      R: { low: 195, high: 209 },
+    });
+    // The rest of the national block is unchanged by the band.
+    expect(out.national.projected).toEqual({ D: 234, R: 201 });
   });
 
   it('sorts states alphabetically by postal code', () => {

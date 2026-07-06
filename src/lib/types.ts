@@ -9,6 +9,27 @@ export interface ProjectionMeta {
   n_polls_in_average?: number;
   poll_window_days?: number;
   poll_half_life_days?: number;
+  /**
+   * Polling-error sensitivity band: the projection re-run at swing ± ε.
+   * A sensitivity range, not a probability. Only valid at the shipped
+   * swing — recomputeWithSwing strips it, and the UI renders it only on
+   * the Current view. Absent until the pipeline's curated polling-error
+   * table is verified (data-pipeline/baseline/polling_error.json).
+   */
+  uncertainty?: UncertaintyBand;
+}
+
+export interface UncertaintyBand {
+  /** Historical ± polling-average miss, in margin points (e.g. 2.2). */
+  epsilon_points: number;
+  /** One-line citation for how epsilon was derived. */
+  basis: string;
+  /** D seats at swing − ε. */
+  d_seats_low: number;
+  /** D seats at swing + ε. */
+  d_seats_high: number;
+  r_seats_low: number;
+  r_seats_high: number;
 }
 
 export interface SeatSplit {

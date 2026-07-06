@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "description": "Final national generic-ballot polling averages vs. actual U.S. House two-party popular-vote margin, by cycle. Powers the projection's sensitivity band (projection.json meta.uncertainty). The pipeline emits NO band until every cycle row is verified:true and epsilon_points is set.",
+    "epsilon_points": 2.2,
+    "epsilon_method": "root-mean-square of signed misses (error_points), rounded to 0.1",
+    "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
+    "curated_at": "2026-07-04",
+    "actual_margin_source": "Committed baselines data-pipeline/baseline/house_{year}.json: MIT Election Data and Science Lab (2016-2022); U.S. House Clerk 2024 election statistics (2024).",
+    "two_party_note": "Actual margins are two-party (D minus R over D plus R), the same convention the pipeline uses for baseline_2024_margin and the swing. Polling averages are as published (all-voter margins); the small definitional mismatch is itself a component of historical 'polling error' as experienced by this model.",
+    "sign_note": "All margins are D-positive: +8.7 means D ahead by 8.7 points. error_points = final_average_d_margin - actual_d_margin (positive = polls overstated Democrats)."
+  },
+  "cycles": [
+    {
+      "year": 2016,
+      "final_average_d_margin": 0.6,
+      "final_average_source": "RealClearPolitics 2016 Generic Congressional Vote, RCP Average 11/1-11/7 (D 46.0, R 45.4), Wayback capture of election day",
+      "final_average_source_url": "https://web.archive.org/web/20161108183447/https://www.realclearpolitics.com/epolls/other/2016_generic_congressional_vote-5279.html",
+      "accessed": "2026-07-04",
+      "actual_d_margin": -1.117,
+      "error_points": 1.717,
+      "verified": true
+    },
+    {
+      "year": 2018,
+      "final_average_d_margin": 7.3,
+      "final_average_source": "RealClearPolitics 2018 Generic Congressional Vote, RCP Average 10/13-11/3 (D 49.7, R 42.4), Wayback capture of election day",
+      "final_average_source_url": "https://web.archive.org/web/20181106115737/https://www.realclearpolitics.com/epolls/other/2018_generic_congressional_vote-6185.html",
+      "accessed": "2026-07-04",
+      "actual_d_margin": 8.724,
+      "error_points": -1.424,
+      "verified": true
+    },
+    {
+      "year": 2020,
+      "final_average_d_margin": 6.8,
+      "final_average_source": "RealClearPolitics 2020 Generic Congressional Vote, RCP Average 10/25-11/2 (D 49.3, R 42.5), Wayback capture of election day",
+      "final_average_source_url": "https://web.archive.org/web/20201103185315/https://www.realclearpolitics.com/epolls/other/2020_generic_congressional_vote-6722.html",
+      "accessed": "2026-07-04",
+      "actual_d_margin": 3.034,
+      "error_points": 3.766,
+      "verified": true
+    },
+    {
+      "year": 2022,
+      "final_average_d_margin": -2.5,
+      "final_average_source": "RealClearPolitics 2022 Generic Congressional Vote, RCP Average 10/18-11/6 (R 48.0, D 45.5), Wayback capture of election morning",
+      "final_average_source_url": "https://web.archive.org/web/20221108120541/https://www.realclearpolitics.com/epolls/other/2022-generic-congressional-vote-7361.html",
+      "accessed": "2026-07-04",
+      "actual_d_margin": -2.899,
+      "error_points": 0.399,
+      "verified": true
+    },
+    {
+      "year": 2024,
+      "final_average_d_margin": -0.3,
+      "final_average_source": "RealClearPolling 2024 Generic Congressional Vote, RCP Average 10/14-11/2 (R 47.0, D 46.7), Wayback capture of election morning",
+      "final_average_source_url": "https://web.archive.org/web/20241105093456/https://www.realclearpolling.com/polls/state-of-the-union/2024/generic-congressional-vote",
+      "accessed": "2026-07-04",
+      "actual_d_margin": -2.511,
+      "error_points": 2.211,
+      "verified": true
+    }
+  ]
+}

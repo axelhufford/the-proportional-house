@@ -30,7 +30,8 @@ export type GlossarySlug =
   | 'baseline-2024'
   | 'elasticity'
   | 'threshold'
-  | 'house-size';
+  | 'house-size'
+  | 'polling-error';
 
 export const GLOSSARY: Record<GlossarySlug, GlossaryEntry> = {
   'pure-pr': {
@@ -101,5 +102,11 @@ export const GLOSSARY: Record<GlossarySlug, GlossaryEntry> = {
     short:
       'How many seats the House has in total. Fixed at 435 since 1929; presets here include the Wyoming Rule (~573) and the cube-root rule (~692).',
     anchor: 'house-size',
+  },
+  'polling-error': {
+    term: 'Polling error',
+    short:
+      'How far final generic-ballot polling averages have missed the actual House vote in recent cycles. We re-run the projection with the margin moved by that much each way — a sensitivity range, not a probability.',
+    anchor: 'polling-uncertainty',
   },
 };

@@ -65,6 +65,21 @@ export interface ApiV1State {
   vote_share_projected: ApiV1VoteShare;
 }
 
+/**
+ * Polling-error sensitivity band: the projection re-run at swing ± ε.
+ * A sensitivity range, not a probability. Additive/optional — absent
+ * when the pipeline hasn't shipped a band, so v1 consumers that predate
+ * it are unaffected.
+ */
+export interface ApiV1ProjectedRange {
+  /** Historical ± polling-average miss, in margin points. */
+  epsilon_points: number;
+  /** One-line citation for how epsilon was derived. */
+  basis: string;
+  D: { low: number; high: number };
+  R: { low: number; high: number };
+}
+
 export interface ApiV1Payload {
   api_version: typeof API_VERSION;
   /** ISO 8601 timestamp of when the pipeline last refreshed. */
@@ -79,6 +94,8 @@ export interface ApiV1Payload {
     total_seats: number;
     actual: ApiV1Seats;
     projected: ApiV1Seats;
+    /** Optional sensitivity band; key omitted when the data lacks one. */
+    projected_range?: ApiV1ProjectedRange;
   };
   /** State-by-state breakdown, sorted alphabetically by postal code. */
   states: ApiV1State[];
@@ -109,6 +126,18 @@ export function toApiV1(payload: ProjectionPayload): ApiV1Payload {
       total_seats: national.seats,
       actual: { D: national.actual.d_seats, R: national.actual.r_seats },
       projected: { D: national.projected.d_seats, R: national.projected.r_seats },
+      // Conditional spread so the key is OMITTED (not null) when absent —
+      // the shape existing v1 consumers already see.
+      ...(meta.uncertainty
+        ? {
+            projected_range: {
+              epsilon_points: meta.uncertainty.epsilon_points,
+              basis: meta.uncertainty.basis,
+              D: { low: meta.uncertainty.d_seats_low, high: meta.uncertainty.d_seats_high },
+              R: { low: meta.uncertainty.r_seats_low, high: meta.uncertainty.r_seats_high },
+            },
+          }
+        : {}),
     },
     states: states
       .slice()

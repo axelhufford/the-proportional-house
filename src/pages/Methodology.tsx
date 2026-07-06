@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { SainteLagueDemo } from '../components/SainteLagueDemo';
 import { buildEmbedSnippet } from '../lib/embedSnippet';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
+// The curated polling-error table is imported directly from the pipeline's
+// committed baseline — single source of truth, so this page can never drift
+// from what the band actually uses.
+import POLLING_ERROR from '../../data-pipeline/baseline/polling_error.json';
 import { ROUTE_META } from '../lib/routeMeta';
 import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionMeta } from '../lib/types';
@@ -19,6 +23,14 @@ interface MetaJson {
   generic_ballot?: { margin: number; n_polls: number; window_days: number };
   national?: { projected: { d_seats: number; r_seats: number }; actual: { d_seats: number; r_seats: number } };
   retrospective_national?: { projected_pr: { d_seats: number; r_seats: number }; actual: { d_seats: number; r_seats: number } };
+  uncertainty?: {
+    epsilon_points: number;
+    basis: string;
+    d_seats_low: number;
+    d_seats_high: number;
+    r_seats_low: number;
+    r_seats_high: number;
+  };
 }
 
 /**
@@ -460,6 +472,83 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
+      <Section id="polling-uncertainty" title="How wrong could the polls be?">
+        <p>
+          The headline projection is a <em>nowcast</em>: today’s generic-ballot average, applied to
+          the 2024 baseline. Its biggest quantifiable risk is simple — the polls could be off. So we
+          publish a sensitivity band: the same model, re-run with the national margin moved by the
+          historical polling miss (±{POLLING_ERROR.meta.epsilon_points} points) in each direction.
+          It is <strong>a sensitivity range, not a probability</strong> — we make no probabilistic
+          claim about where the outcome lands, only what the projection looks like at the edges of
+          the typical miss.
+        </p>
+        {pipelineMeta?.uncertainty && (
+          <p>
+            Today that band is{' '}
+            <strong>
+              D {pipelineMeta.uncertainty.d_seats_low}–{pipelineMeta.uncertainty.d_seats_high} seats
+            </strong>{' '}
+            (equivalently R {pipelineMeta.uncertainty.r_seats_low}–{pipelineMeta.uncertainty.r_seats_high}),
+            around the point projection shown on the homepage.
+          </p>
+        )}
+        <p>
+          The ±{POLLING_ERROR.meta.epsilon_points}-point figure isn’t a guess. It is the
+          root-mean-square miss of the final RealClearPolitics generic-ballot average against the
+          actual national House two-party margin over the last five cycles, from the committed,
+          source-linked table the pipeline validates on every run:
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border border-stone-200 rounded">
+            <thead className="text-xs uppercase tracking-wider text-stone-500 bg-stone-50">
+              <tr>
+                <th scope="col" className="text-left px-3 py-2">Cycle</th>
+                <th scope="col" className="text-right px-3 py-2">Final polling average</th>
+                <th scope="col" className="text-right px-3 py-2">Actual House margin</th>
+                <th scope="col" className="text-right px-3 py-2">Miss</th>
+              </tr>
+            </thead>
+            <tbody>
+              {POLLING_ERROR.cycles.map((c) => (
+                <tr key={c.year} className="border-t border-stone-200">
+                  <td className="px-3 py-2">{c.year}</td>
+                  <td className="text-right px-3 py-2 tabular-nums">
+                    <a className="underline hover:text-brand-navy" href={c.final_average_source_url ?? undefined} target="_blank" rel="noreferrer">
+                      {c.final_average_d_margin != null && c.final_average_d_margin >= 0
+                        ? `D+${c.final_average_d_margin.toFixed(1)}`
+                        : `R+${Math.abs(c.final_average_d_margin ?? 0).toFixed(1)}`}
+                    </a>
+                  </td>
+                  <td className="text-right px-3 py-2 tabular-nums">
+                    {c.actual_d_margin >= 0
+                      ? `D+${c.actual_d_margin.toFixed(1)}`
+                      : `R+${Math.abs(c.actual_d_margin).toFixed(1)}`}
+                  </td>
+                  <td className="text-right px-3 py-2 tabular-nums">
+                    {(c.error_points ?? 0) >= 0 ? '+' : '−'}{Math.abs(c.error_points ?? 0).toFixed(1)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-stone-600">
+          Polling averages are linked to dated Internet Archive captures from each election
+          morning; actual margins are two-party (the same convention the swing uses), from the{' '}
+          MIT Election Data and Science Lab (2016–2022) and the House Clerk’s 2024 statistics. A
+          positive miss means the polls overstated Democrats. Note the misses lean positive —
+          the band is symmetric anyway, because five cycles is far too small a sample to
+          calibrate a directional correction without fooling ourselves.
+        </p>
+        <p>
+          What the band does <em>not</em> capture: error in the uniform-swing and elasticity model
+          itself, candidate and turnout effects, the absence of state-level polling, and the fact
+          that a July polling average is a snapshot of today, not a prediction of November — polls
+          months out drift more than final averages do. Those caveats live in{' '}
+          <a className="underline hover:text-brand-navy" href="#limitations">Assumptions and limitations</a>.
+        </p>
+      </Section>
+
       <Section id="limitations" title="Assumptions and limitations">
         <ul className="list-disc pl-6 space-y-2">
           <li>
@@ -494,7 +583,11 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <code>GET /api/v1/projection.json</code>: the full projection in a stable, documented
             shape. Returns <code>api_version</code>, <code>generated_at</code>, <code>polling</code>{' '}
             (window, half-life, n_polls, swing), <code>national</code> totals, and one entry per
-            state with both seat counts and underlying vote shares.
+            state with both seat counts and underlying vote shares. <code>national</code> also
+            carries an optional <code>projected_range</code> — the{' '}
+            <a className="underline" href="#polling-uncertainty">polling-error sensitivity band</a>{' '}
+            (ε, basis, and D/R low–high seat ranges); the key is omitted entirely if a build ships
+            without a band, so existing consumers are unaffected.
           </li>
           <li>
             <code>GET /api/v1/projection.csv</code>: the same data flattened to one row per state,
@@ -576,6 +669,7 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: 'methods', label: 'Allocation methods' },
   { id: 'house-size', label: 'House size' },
   { id: 'the-reveal', label: 'How modest the change is' },
+  { id: 'polling-uncertainty', label: 'How wrong could polls be?' },
   { id: 'limitations', label: 'Assumptions & limits' },
   { id: 'api', label: 'API & downloads' },
   { id: 'embeds', label: 'Embeds' },

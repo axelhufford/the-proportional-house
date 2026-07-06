@@ -81,6 +81,62 @@ def check_projection(errors: list[str]) -> None:
         errors.append("projection: national.actual != sum of states")
     if ad + ar != TOTAL_SEATS or pd + pr != TOTAL_SEATS:
         errors.append("projection: national totals don't sum to 435")
+    unc = p["meta"].get("uncertainty")
+    if unc is not None:
+        if not unc["epsilon_points"] > 0:
+            errors.append("projection: uncertainty epsilon <= 0")
+        if unc["d_seats_low"] > unc["d_seats_high"]:
+            errors.append("projection: uncertainty band inverted")
+        if not (unc["d_seats_low"] <= nat["projected"]["d_seats"] <= unc["d_seats_high"]):
+            errors.append("projection: projected d_seats outside uncertainty band")
+        if (unc["d_seats_low"] + unc["r_seats_high"] != TOTAL_SEATS
+                or unc["d_seats_high"] + unc["r_seats_low"] != TOTAL_SEATS):
+            errors.append("projection: uncertainty band complements don't sum to 435")
+
+
+def check_polling_error(errors: list[str]) -> None:
+    """No-fabrication guard for the curated polling-error table.
+
+    Runs nightly with the pipeline: every verified row's actual margin must
+    match the committed house_{year}.json baseline exactly, the miss
+    arithmetic must hold, every row must carry a source URL, and the shipped
+    epsilon must equal the RMS of the misses. Skips silently while the table
+    is an unverified skeleton (the pipeline emits no band in that state).
+    """
+    path = REPO_ROOT / "data-pipeline" / "baseline" / "polling_error.json"
+    if not path.exists():
+        return
+    with path.open() as f:
+        table = json.load(f)
+    cycles = table.get("cycles", [])
+    verified = [c for c in cycles if c.get("verified") is True]
+    eps = table.get("meta", {}).get("epsilon_points")
+    if not verified or eps is None:
+        return  # skeleton — band is gated off; nothing to check
+    misses: list[float] = []
+    for c in verified:
+        year = c["year"]
+        hp = REPO_ROOT / "data-pipeline" / "baseline" / f"house_{year}.json"
+        with hp.open() as f:
+            nhpv = json.load(f)["meta"]["national_house_popular_vote"]
+        actual = nhpv.get("d_margin_points")
+        if actual is None:
+            actual = -nhpv["r_margin_points"]
+        if abs(c["actual_d_margin"] - actual) > 0.001:
+            errors.append(f"polling_error {year}: actual_d_margin {c['actual_d_margin']} != baseline {actual}")
+        if c["final_average_d_margin"] is None:
+            errors.append(f"polling_error {year}: verified row missing final_average_d_margin")
+            continue
+        expected_err = c["final_average_d_margin"] - c["actual_d_margin"]
+        if abs(c["error_points"] - expected_err) > 0.001:
+            errors.append(f"polling_error {year}: error_points {c['error_points']} != {expected_err:.3f}")
+        if not c.get("final_average_source_url"):
+            errors.append(f"polling_error {year}: verified row missing final_average_source_url")
+        misses.append(c["error_points"])
+    if misses:
+        rms = (sum(m * m for m in misses) / len(misses)) ** 0.5
+        if abs(eps - round(rms, 1)) > 0.05:
+            errors.append(f"polling_error: epsilon_points {eps} != RMS of misses {round(rms, 1)}")
 
 
 def check_retrospectives(errors: list[str]) -> None:
@@ -222,6 +278,7 @@ def check_circuits(errors: list[str]) -> None:
 def main() -> None:
     errors: list[str] = []
     check_projection(errors)
+    check_polling_error(errors)
     check_retrospectives(errors)
     check_history(errors)
     check_electoral_college(errors)

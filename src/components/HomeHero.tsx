@@ -3,9 +3,11 @@ import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { fmtMargin } from '../lib/format';
 import { PARTY_D, PARTY_R } from '../lib/parties';
+import { describeSeatShiftBand, seatShiftBand } from '../lib/uncertaintyBand';
 import { useCountUp } from '../lib/useCountUp';
 import type { WeeklyDelta } from '../lib/weeklyDelta';
 import { Hemicycle } from './Hemicycle';
+import { Term } from './Term';
 
 /**
  * Homepage hero. Owns the page's <h1> and surfaces the headline finding as a
@@ -272,6 +274,19 @@ export function HomeHero({
           <p className="mt-4 text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
           {caveat && (
             <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">{caveat}</p>
+          )}
+          {/* Polling-error sensitivity band — Current view only: the shipped
+            * band is the pipeline's projection at ITS swing ± ε, so it is
+            * meaningless against a sandbox slider or a past cycle (and
+            * recomputeWithSwing strips it from those payloads anyway). */}
+          {viewMode === 'current' && meta.uncertainty && (
+            <p className="mt-3 text-sm text-stone-600 leading-relaxed">
+              If the polls miss by the{' '}
+              <Term id="polling-error">
+                historical ±{meta.uncertainty.epsilon_points.toFixed(1)} points
+              </Term>
+              , {describeSeatShiftBand(seatShiftBand(meta.uncertainty, national.actual.d_seats))}.
+            </p>
           )}
 
           <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">

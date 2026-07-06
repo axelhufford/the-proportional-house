@@ -44,6 +44,7 @@ PROJECTION_PATH = PUBLIC_DATA / "projection.json"
 BASELINE_OUT_PATH = PUBLIC_DATA / "baseline_2024.json"
 POLLING_TREND_PATH = PUBLIC_DATA / "polling_trend.json"
 META_PATH = PUBLIC_DATA / "meta.json"
+POLLING_ERROR_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "polling_error.json"
 
 # How far back to include polls in the trend chart (the on-page sparkline).
 TREND_WINDOW_DAYS = 180
@@ -115,6 +116,53 @@ def project_states(baseline_states: list[dict], swing_points: float, method: str
             "imputed_district_ids": s.get("imputed_district_ids", []),
         })
     return out
+
+
+def load_polling_error() -> dict | None:
+    """Load the curated historical polling-error table, or None if unusable.
+
+    The sensitivity band is emitted ONLY when every cycle row is verified
+    against its named source and meta.epsilon_points is set. An unverified
+    skeleton (nulls, verified:false) can therefore be committed without the
+    pipeline shipping any band — the no-fabrication gate.
+    """
+    if not POLLING_ERROR_PATH.exists():
+        return None
+    with POLLING_ERROR_PATH.open() as f:
+        table = json.load(f)
+    eps = table.get("meta", {}).get("epsilon_points")
+    if eps is None or not eps > 0:
+        return None
+    cycles = table.get("cycles", [])
+    if not cycles or not all(c.get("verified") is True for c in cycles):
+        return None
+    return table
+
+
+def compute_seat_band(
+    baseline_states: list[dict], swing_points: float, epsilon: float,
+    method: str = "sainte-lague",
+) -> dict:
+    """National seat range if the ballot margin missed by ±epsilon points.
+
+    Re-runs the site's own model (elasticity, imputation, Sainte-Laguë — the
+    same project_states the point projection uses) at swing ∓ ε. A pure
+    sensitivity band: no probabilistic claim, just the model evaluated at the
+    edges of the historical polling miss.
+    """
+    lo = project_states(baseline_states, swing_points - epsilon, method)
+    hi = project_states(baseline_states, swing_points + epsilon, method)
+    d_lo = sum(s["projected"]["d_seats"] for s in lo)
+    d_hi = sum(s["projected"]["d_seats"] for s in hi)
+    # More swing toward D should mean more D seats, but order defensively.
+    d_low, d_high = min(d_lo, d_hi), max(d_lo, d_hi)
+    total = sum(s["seats"] for s in baseline_states)
+    return {
+        "d_seats_low": d_low,
+        "d_seats_high": d_high,
+        "r_seats_low": total - d_high,
+        "r_seats_high": total - d_low,
+    }
 
 
 def retrospective_states(baseline_states: list[dict], method: str = "sainte-lague") -> list[dict]:
@@ -213,6 +261,22 @@ def main(refresh_clerk: bool = False) -> None:
     nat_retro_d = sum(s["projected_pr"]["d_seats"] for s in retrospective)
     nat_retro_r = sum(s["projected_pr"]["r_seats"] for s in retrospective)
 
+    # 4b. Sensitivity band (only when the curated polling-error table is
+    # fully verified — see load_polling_error).
+    uncertainty = None
+    polling_error = load_polling_error()
+    if polling_error:
+        eps = float(polling_error["meta"]["epsilon_points"])
+        uncertainty = {
+            "epsilon_points": eps,
+            "basis": polling_error["meta"]["basis"],
+            **compute_seat_band(baseline_states, swing, eps),
+        }
+        print(
+            f"Sensitivity band at ±{eps:.1f} pts: "
+            f"D {uncertainty['d_seats_low']}–{uncertainty['d_seats_high']} seats."
+        )
+
     # 5. Write outputs.
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
 
@@ -236,6 +300,10 @@ def main(refresh_clerk: bool = False) -> None:
         },
         "states": projected,
     }
+    # Key absent (not null) when the band is ungated — the optional TS type
+    # and the API omission contract both rely on absence.
+    if uncertainty:
+        projection_payload["meta"]["uncertainty"] = uncertainty
     PROJECTION_PATH.write_text(json.dumps(projection_payload, indent=2))
 
     baseline_payload = {
@@ -286,6 +354,8 @@ def main(refresh_clerk: bool = False) -> None:
         "national": projection_payload["national"],
         "retrospective_national": baseline_payload["national"],
     }
+    if uncertainty:
+        meta_payload["uncertainty"] = uncertainty
     META_PATH.write_text(json.dumps(meta_payload, indent=2))
 
     # Regenerate per-state OG cards + static HTML pages so social-share
