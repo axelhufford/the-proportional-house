@@ -8,24 +8,9 @@
  */
 import { fmtMargin } from './format';
 
-export function majorityTippingSentence(args: {
-  /** Generic-ballot D-margin where projected D seats reach 218. */
-  tippingMargin: number;
-  /** Today's generic-ballot D-margin. */
-  currentMargin: number;
-  /** Polling-error ε when a band is shipped; ties the sentence to it. */
-  epsilonPoints?: number;
-}): string {
-  const { tippingMargin, currentMargin, epsilonPoints } = args;
+/** Generic-ballot D-margin where projected D seats reach 218 (meta.majority). */
+export function majorityTippingSentence(tippingMargin: number): string {
   const label = fmtMargin(tippingMargin);
   const at = label === 'Tie' ? 'at an even national vote' : `at ${label} on the generic ballot`;
-
-  if (epsilonPoints !== undefined) {
-    const inside = Math.abs(tippingMargin - currentMargin) <= epsilonPoints + 1e-9;
-    return `Control of the House itself would flip ${at} — ${
-      inside ? 'inside' : 'outside'
-    } that range.`;
-  }
-  const distance = Math.abs(tippingMargin - currentMargin);
-  return `Control of the House itself would flip ${at} — ${distance.toFixed(1)} points from today's average.`;
+  return `Control of the House itself would flip ${at}.`;
 }

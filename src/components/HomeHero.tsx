@@ -294,11 +294,7 @@ export function HomeHero({
               {meta.majority && (
                 <>
                   {meta.uncertainty ? ' ' : ''}
-                  {majorityTippingSentence({
-                    tippingMargin: meta.majority.tipping_margin,
-                    currentMargin: meta.generic_ballot_margin,
-                    epsilonPoints: meta.uncertainty?.epsilon_points,
-                  })}
+                  {majorityTippingSentence(meta.majority.tipping_margin)}
                 </>
               )}
             </p>

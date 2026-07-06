@@ -806,16 +806,6 @@ export function Home({ onMetaChange }: HomeProps) {
         retroYear={retroYear}
       />
 
-      {/* Closest seats to flip — pipeline analytics, so read from `payload`
-        * (identical to effectivePayload on Current, where alone it renders). */}
-      {viewMode === 'current' && payload.meta.closest_flips?.length ? (
-        <ClosestSeats
-          flips={payload.meta.closest_flips}
-          currentMargin={payload.meta.generic_ballot_margin}
-          onSelectState={handleSelect}
-        />
-      ) : null}
-
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-3">
         <ModeToggle
           viewMode={viewMode}
@@ -993,6 +983,17 @@ export function Home({ onMetaChange }: HomeProps) {
             .
           </p>
         </div>
+
+        {/* Closest seats to flip — sits under the map, above the polling input.
+          * Pipeline analytics, so read from `payload` (identical to
+          * effectivePayload on Current, where alone it renders). */}
+        {viewMode === 'current' && payload.meta.closest_flips?.length ? (
+          <ClosestSeats
+            flips={payload.meta.closest_flips}
+            currentMargin={payload.meta.generic_ballot_margin}
+            onSelectState={handleSelect}
+          />
+        ) : null}
 
         {/* National generic-ballot polling trend. It's the input to the Current
          * projection, so it lives under the map in that view only — not in the

@@ -23,13 +23,15 @@ export function ClosestSeats({ flips, currentMargin, onSelectState }: Props) {
   ];
 
   return (
-    <section aria-label="Closest seats to flip">
-      <div className="max-w-6xl mx-auto px-6 pb-2">
-        <div className="bg-white rounded-xl border border-stone-200 shadow-sm px-4 py-3">
-          <div className="text-[11px] uppercase tracking-wider text-stone-500 font-medium">
-            Closest seats to flip
-          </div>
-          <div className="mt-2 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+    <section
+      aria-label="Closest seats to flip"
+      className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6"
+    >
+      <h2 className="font-serif text-xl sm:text-2xl text-brand-navy">Closest seats to flip</h2>
+      <p className="text-xs text-stone-500">
+        The seats nearest to changing parties as the national vote moves
+      </p>
+      <div className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
             {columns.map(({ direction, heading, color }) => {
               const rows = flips.filter((f) => f.direction === direction);
               return (
@@ -74,12 +76,10 @@ export function ClosestSeats({ flips, currentMargin, onSelectState }: Props) {
               );
             })}
           </div>
-          <p className="mt-2 text-[11px] text-stone-500">
-            How far the national margin (now {fmtMargin(currentMargin)}) would have to move for the
-            next seat to change parties. Click a state for its full breakdown.
-          </p>
-        </div>
-      </div>
+      <p className="mt-3 text-xs text-stone-500">
+        How far the national margin (now {fmtMargin(currentMargin)}) would have to move for the
+        next seat to change parties. Click a state for its full breakdown.
+      </p>
     </section>
   );
 }
