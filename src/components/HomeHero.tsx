@@ -362,7 +362,9 @@ function fmtChipDate(iso: string, withYear = false): string {
 
 /**
  * Small pill under the headline: how the Current projection moved over the
- * past week. Direction colored by the benefiting party. The window can
+ * past week. The ▲ always means "gained seats" — it points up for whichever
+ * party benefited; the party is conveyed by the D+/R+ label and the text
+ * color (blue vs red), not by the arrow direction. The window can
  * legitimately be 5–10 days when a nightly run was skipped, so the title
  * tooltip carries the exact from → to dates backing the "week" claim.
  */
@@ -382,7 +384,7 @@ function WeeklyDeltaChip({ delta }: { delta: WeeklyDelta }) {
     srText = `Democrats gained ${n} ${seats} in the proportional projection since last week; the generic-ballot margin moved from ${fromLabel} to ${toLabel}.`;
     color = 'text-blue-700';
   } else if (delta.seatDelta < 0) {
-    visible = `▼ R+${n} ${seats} since last week ${marginPart}`;
+    visible = `▲ R+${n} ${seats} since last week ${marginPart}`;
     srText = `Republicans gained ${n} ${seats} in the proportional projection since last week; the generic-ballot margin moved from ${fromLabel} to ${toLabel}.`;
     color = 'text-red-700';
   } else {
