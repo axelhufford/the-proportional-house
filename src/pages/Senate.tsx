@@ -241,7 +241,11 @@ function SenateMap({
 
   return (
     <div className="relative mt-4">
-      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full h-auto" role="img" aria-label="Map of U.S. Senate representation per person by state">
+      {/* role="img" omitted deliberately — it would prune the labeled,
+        * focusable per-state paths inside from the accessibility tree while
+        * leaving them in the tab order. See the note in src/components/Map.tsx.
+        * The sr-only table below is the linear fallback. */}
+      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full h-auto" aria-label="Map of U.S. Senate representation per person by state">
         {geojson.features.map((f, i) => {
           const st = byName.get(f.properties.name);
           const fill = st ? distortionColor(repSignal(st.representation_index)) : '#e5e7eb';

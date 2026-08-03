@@ -48,12 +48,20 @@ body {
   border-radius: 2px;
 }
 
-/* SVG paths don't render CSS outline reliably; use a thick navy stroke
- * for focused map states. Targets the keyboard-focus state on Map.tsx. */
-svg path[role="button"]:focus-visible {
+/* SVG shapes don't render CSS outline reliably; use a thick navy stroke for
+ * focused map states and chart bars instead. `path` covers the choropleth maps;
+ * `g` covers grouped bars (RetrospectiveTrend), which sets Tailwind's
+ * focus:outline-none — that beat the zero-specificity :where() rule above, so
+ * those year bars previously had no visible focus state at all (WCAG 2.4.7). */
+svg :is(path, g, rect, circle, polygon)[role="button"]:focus-visible {
   stroke: var(--brand-navy);
   stroke-width: 3;
   outline: none;
+}
+/* Grouped shapes stroke their children, not the <g> itself. */
+svg g[role="button"]:focus-visible > * {
+  stroke: var(--brand-navy);
+  stroke-width: 2;
 }
 
 /* Global motion-safety: users who've set "Reduce motion" at the OS level

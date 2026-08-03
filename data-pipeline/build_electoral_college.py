@@ -26,6 +26,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from allocation import AllocationInputN, allocate_n
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 BASELINE_DIR = REPO_ROOT / "data-pipeline" / "baseline"
@@ -182,7 +183,11 @@ def main() -> None:
         print("VALIDATION ERRORS:")
         for e in errors:
             print("  ✗", e)
-        raise SystemExit(1)
+        # ValueError, not SystemExit: SystemExit is not an Exception subclass,
+        # so it used to escape update.py's per-builder handler and hard-kill the
+        # whole pipeline run — the opposite of every sibling builder, and
+        # contrary to this module's "never breaks the build" contract.
+        raise ValueError(f"electoral-college validation failed with {len(errors)} error(s)")
 
     payload = {
         "meta": {
@@ -204,7 +209,7 @@ def main() -> None:
         "cycles": cycles,
         "series": series,
     }
-    OUT_PATH.write_text(json.dumps(payload, indent=2))
+    write_json_atomic(OUT_PATH, payload)
 
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)} ({len(CYCLES)} cycles)\n")
     print(f"{'year':>4}  {'actual (D/R)':>14}  {'proportional (D/R/oth)':>24}  result")

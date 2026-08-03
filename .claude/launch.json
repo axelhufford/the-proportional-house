@@ -12,6 +12,12 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["node_modules/vite/bin/vite.js", "preview", "--port", "4173", "--strictPort"],
       "port": 4173
+    },
+    {
+      "name": "preview-with-headers",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/preview-with-headers.mjs", "dist", "public/_headers", "4180"],
+      "port": 4180
     }
   ]
 }

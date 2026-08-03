@@ -61,6 +61,11 @@ def allocate_mmd(inp: MethodAllocationInput, size: int) -> List[int]:
     N <= size → a single district of N (so 1-seat states go to the plurality)."""
     total_seats = inp.total_seats
     shares = inp.vote_shares
+    # A size below 1 would make `full` unbounded (size 0 raises) or negative,
+    # silently dropping every seat. The UI bounds magnitude to 2-10, but this
+    # is a public function. Mirrors the guard in src/lib/methods.ts.
+    if size < 1:
+        raise ValueError(f"allocate_mmd: district size must be >= 1 (got {size})")
     if total_seats <= 0:
         return [0] * len(shares)
 
@@ -92,13 +97,17 @@ def allocate_mmp(inp: MethodAllocationInput, smd_fraction: float) -> List[int]:
     if total_seats <= 0:
         return [0] * n
 
-    smd_count = _round_half_up(total_seats * smd_fraction)
-    list_count = total_seats - smd_count
     actual_total = inp.actual_d_seats + inp.actual_r_seats
+    # With no actual delegation (0-0) there is no basis for a single-member
+    # split, so the whole chamber comes from the list tier. Leaving smd_count
+    # > 0 here would strand those seats: the SMD block below is skipped and the
+    # list tier only hands out list_count, so sum(seats) < total_seats.
+    smd_count = _round_half_up(total_seats * smd_fraction) if actual_total > 0 else 0
+    list_count = total_seats - smd_count
 
     # Step 1: SMD seats — D and R only, scaled from today's actual delegation.
     smd = [0] * n
-    if smd_count > 0 and actual_total > 0:
+    if smd_count > 0:
         d_idx = inp.party_ids.index("D") if "D" in inp.party_ids else -1
         r_idx = inp.party_ids.index("R") if "R" in inp.party_ids else -1
         d_exact = (inp.actual_d_seats / actual_total) * smd_count

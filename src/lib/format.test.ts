@@ -55,4 +55,34 @@ describe('fmtMargin', () => {
     expect(fmtMargin(6.94)).toBe('D+6.9');
     expect(fmtMargin(-2.5)).toBe('R+2.5');
   });
+
+  it('renders non-finite input as an em dash rather than NaN', () => {
+    expect(fmtMargin(null)).toBe('—');
+    expect(fmtMargin(undefined)).toBe('—');
+    expect(fmtMargin(NaN)).toBe('—');
+    expect(fmtMargin(Infinity)).toBe('—');
+  });
+
+  it('honors a custom precision, widening the tie band to match', () => {
+    // The Methodology page renders some figures at 0 and 2 decimals. The band
+    // must track the displayed precision, or the label claims a lead it isn't
+    // showing a number for.
+    expect(fmtMargin(6.04, 0)).toBe('D+6');
+    expect(fmtMargin(0.4, 0)).toBe('Tie');
+    expect(fmtMargin(0.6, 0)).toBe('D+1');
+    expect(fmtMargin(-2.551, 2)).toBe('R+2.55');
+    expect(fmtMargin(0.004, 2)).toBe('Tie');
+    expect(fmtMargin(0.006, 2)).toBe('D+0.01');
+  });
+
+  it('never renders a signed zero', () => {
+    // The bug this replaced: five call sites inlined the ternary without a Tie
+    // branch, so a dead-even slider showed "Tie" in one place and "D+0.0" in
+    // two others on the same screen.
+    for (const digits of [0, 1, 2]) {
+      for (const m of [0, -0, 1e-9, -1e-9]) {
+        expect(fmtMargin(m, digits)).toBe('Tie');
+      }
+    }
+  });
 });

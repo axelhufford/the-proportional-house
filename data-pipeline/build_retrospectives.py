@@ -22,6 +22,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from allocation import AllocationInput, allocate
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 BASELINE_DIR = REPO_ROOT / "data-pipeline" / "baseline"
@@ -145,7 +146,7 @@ def main() -> None:
         "series": series,
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps(payload, indent=2))
+    write_json_atomic(OUT_PATH, payload)
 
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)} ({len(available)} cycles).")
     for r in series:

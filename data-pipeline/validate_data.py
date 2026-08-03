@@ -12,13 +12,21 @@ shipped.
 from __future__ import annotations
 
 import json
+import math
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_DATA = REPO_ROOT / "public" / "data"
 
 TOTAL_SEATS = 435
+
+# Minimum polls that may back a published generic-ballot average. backfill
+#_history.py has always enforced 8 for reconstructed points; the live pipeline
+# enforced nothing, so a source schema change that left two matching rows would
+# have published a 2-poll average as *the* generic ballot for the whole model.
+MIN_POLLS_IN_AVERAGE = 8
 
 # Known U.S. House composition (D, R) after each cycle's election — ground truth.
 KNOWN_ACTUAL = {
@@ -54,6 +62,26 @@ def _load(name: str) -> dict:
         return json.load(f)
 
 
+def _is_num(x: object) -> bool:
+    """True for a real, finite number. Rejects None, strings, NaN and Infinity.
+
+    json.load happily produces float('nan') from the non-standard `NaN` literal,
+    and NaN compares false against every bound — so a range check alone lets it
+    straight through.
+    """
+    return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
+
+
+def _parse_ts(value: object) -> datetime | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        ts = datetime.fromisoformat(value)
+    except ValueError:
+        return None
+    return ts if ts.tzinfo else ts.replace(tzinfo=timezone.utc)
+
+
 def check_projection(errors: list[str]) -> None:
     p = _load("projection.json")
     states = p["states"]
@@ -70,8 +98,17 @@ def check_projection(errors: list[str]) -> None:
         if s["projected"]["d_seats"] + s["projected"]["r_seats"] != s["seats"]:
             errors.append(f"projection {c}: projected seats != {s['seats']}")
         ds, rs = s["baseline_2024"]["d_share"], s["baseline_2024"]["r_share"]
-        if not (0 <= ds <= 1) or abs(ds + rs - 1) > 0.02:
+        if not _is_num(ds) or not _is_num(rs) or not (0 <= ds <= 1) or abs(ds + rs - 1) > 0.02:
             errors.append(f"projection {c}: share off d={ds} r={rs}")
+        elif abs(ds - 0.5) < 1e-9 and not s.get("baseline_distortion_warning"):
+            # Same imputation-artifact guard retrospectives.json has had all
+            # along. Applies to the 2024 baseline share (real returns, never
+            # exactly 50%), not the projected share — a flagged state at exactly
+            # zero swing legitimately projects 50/50 off the neutral fallback.
+            errors.append(f"projection {c}: 2024 share is exactly 50/50 (imputation artifact?)")
+        pjd, pjr = s["projected"]["d_share"], s["projected"]["r_share"]
+        if not _is_num(pjd) or not _is_num(pjr) or not (0 <= pjd <= 1):
+            errors.append(f"projection {c}: projected share off d={pjd} r={pjr}")
         pd += s["projected"]["d_seats"]; pr += s["projected"]["r_seats"]
         ad += s["actual"]["d_seats"]; ar += s["actual"]["r_seats"]
     nat = p["national"]
@@ -262,23 +299,182 @@ def check_retrospectives(errors: list[str]) -> None:
             errors.append(f"series {pt['year']}: d_gain inconsistent")
 
 
-def check_history(errors: list[str]) -> None:
+def check_meta(errors: list[str], check_freshness: bool = False) -> None:
+    """meta.json backs the homepage headline, the stale banner, the build-time
+    SEO prerender, the OG cache-buster and the sitemap's <lastmod> — and was
+    previously never validated at all.
+
+    The important invariant is agreement with projection.json: the two are
+    written separately, so a failure between the writes would leave the
+    prerendered <title> and og:description quoting different seat counts than
+    the interactive map.
+    """
+    path = PUBLIC_DATA / "meta.json"
+    if not path.exists():
+        errors.append("meta.json: missing")
+        return
+    m = _load("meta.json")
+
+    ts = _parse_ts(m.get("generated_at"))
+    if ts is None:
+        errors.append(f"meta: generated_at missing or unparseable ({m.get('generated_at')!r})")
+    elif check_freshness:
+        # Only meaningful right after a pipeline run: the data was just written,
+        # so an old timestamp means a write silently didn't happen. Skipped for
+        # standalone runs and for CI's last-good restore path, which ships
+        # deliberately older data.
+        age_h = (datetime.now(timezone.utc) - ts).total_seconds() / 3600
+        limit = m.get("stale_after_hours", 48)
+        if age_h > limit:
+            errors.append(f"meta: generated_at is {age_h:.1f}h old (stale_after_hours={limit})")
+        if age_h < -1:
+            errors.append(f"meta: generated_at is {-age_h:.1f}h in the future")
+
+    if not _is_num(m.get("stale_after_hours")) or m["stale_after_hours"] <= 0:
+        errors.append(f"meta: stale_after_hours invalid ({m.get('stale_after_hours')!r})")
+
+    gb = m.get("generic_ballot") or {}
+    if not _is_num(gb.get("margin")):
+        errors.append(f"meta: generic_ballot.margin invalid ({gb.get('margin')!r})")
+    elif abs(gb["margin"]) > 30:
+        errors.append(f"meta: generic_ballot.margin {gb['margin']} is implausible (>30 pts)")
+    n_polls = gb.get("n_polls")
+    if not isinstance(n_polls, int) or n_polls < MIN_POLLS_IN_AVERAGE:
+        errors.append(
+            f"meta: generic_ballot.n_polls={n_polls!r} below the {MIN_POLLS_IN_AVERAGE}-poll "
+            f"minimum — the average is too thin to publish"
+        )
+
+    # Must agree with projection.json, which is written separately.
+    if (PUBLIC_DATA / "projection.json").exists():
+        p = _load("projection.json")
+        if m.get("national") != p.get("national"):
+            errors.append("meta: national block != projection.json national block")
+        if _is_num(gb.get("margin")) and _is_num(p["meta"].get("generic_ballot_margin")):
+            if abs(gb["margin"] - p["meta"]["generic_ballot_margin"]) > 1e-9:
+                errors.append("meta: generic_ballot.margin != projection meta.generic_ballot_margin")
+
+
+def check_baseline_2024(errors: list[str]) -> None:
+    """baseline_2024.json backs the entire Retrospective view and had no checks.
+
+    In particular it never got the exact-50/50 imputation guard that
+    retrospectives.json has — and three separate code paths substitute a
+    fabricated 50/50 share when a two-party total comes out zero.
+    """
+    path = PUBLIC_DATA / "baseline_2024.json"
+    if not path.exists():
+        errors.append("baseline_2024.json: missing")
+        return
+    b = _load("baseline_2024.json")
+    states = b.get("states", [])
+    if len(states) != 50:
+        errors.append(f"baseline_2024: {len(states)} states (expected 50)")
+    seat_sum = sum(s["seats"] for s in states)
+    if seat_sum != TOTAL_SEATS:
+        errors.append(f"baseline_2024: seats sum {seat_sum} != {TOTAL_SEATS}")
+
+    pd = pr = ad = ar = 0
+    for s in states:
+        c = s["code"]
+        if s["actual"]["d_seats"] + s["actual"]["r_seats"] != s["seats"]:
+            errors.append(f"baseline_2024 {c}: actual seats != {s['seats']}")
+        if s["projected_pr"]["d_seats"] + s["projected_pr"]["r_seats"] != s["seats"]:
+            errors.append(f"baseline_2024 {c}: PR seats != {s['seats']}")
+        ds, rs = s["baseline_2024"]["d_share"], s["baseline_2024"]["r_share"]
+        if not _is_num(ds) or not _is_num(rs) or not (0 <= ds <= 1) or abs(ds + rs - 1) > 0.02:
+            errors.append(f"baseline_2024 {c}: share off d={ds} r={rs}")
+        elif abs(ds - 0.5) < 1e-9 and not s.get("baseline_distortion_warning"):
+            # A real two-party return is never exactly 50.0000000% — this is the
+            # signature of a 50/50 imputation reaching the published data, which
+            # then hands a 1-seat state to D on the tie-break (the ND-2022 bug).
+            errors.append(f"baseline_2024 {c}: share is exactly 50/50 (imputation artifact?)")
+        pd += s["projected_pr"]["d_seats"]; pr += s["projected_pr"]["r_seats"]
+        ad += s["actual"]["d_seats"]; ar += s["actual"]["r_seats"]
+
+    nat = b.get("national", {})
+    if (pd, pr) != (nat.get("projected_pr", {}).get("d_seats"), nat.get("projected_pr", {}).get("r_seats")):
+        errors.append("baseline_2024: national.projected_pr != sum of states")
+    if (ad, ar) != (nat.get("actual", {}).get("d_seats"), nat.get("actual", {}).get("r_seats")):
+        errors.append("baseline_2024: national.actual != sum of states")
+
+
+def check_polling_trend(errors: list[str]) -> None:
+    path = PUBLIC_DATA / "polling_trend.json"
+    if not path.exists():
+        errors.append("polling_trend.json: missing")
+        return
+    t = _load("polling_trend.json")
+    polls = t.get("polls", [])
+    if not polls:
+        errors.append("polling_trend: no polls in the trend window")
+    last = ""
+    for p in polls:
+        if not _is_num(p.get("margin")):
+            errors.append(f"polling_trend: non-numeric margin {p.get('margin')!r} ({p.get('pollster')})")
+        elif abs(p["margin"]) > 50:
+            errors.append(f"polling_trend: implausible margin {p['margin']} ({p.get('pollster')})")
+        d = p.get("date", "")
+        if not isinstance(d, str) or not d:
+            errors.append("polling_trend: point missing date")
+        elif d < last:
+            errors.append(f"polling_trend: dates out of order at {d}")
+        else:
+            last = d
+    if t.get("meta", {}).get("n_polls") != len(polls):
+        errors.append("polling_trend: meta.n_polls != len(polls)")
+
+
+def check_history(errors: list[str], check_freshness: bool = False) -> None:
     path = PUBLIC_DATA / "history.json"
     if not path.exists():
         return  # optional / accumulates over time
     h = _load("history.json")
     seen = set()
     last = ""
-    for pt in h.get("points", []):
-        for k in ("date", "projected_d", "projected_r", "actual_d", "actual_r"):
-            if k not in pt:
-                errors.append(f"history: point missing {k}")
+    points = h.get("points", [])
+    if not points:
+        errors.append("history: no points")
+    for pt in points:
         d = pt.get("date", "")
+        # Previously this checked key *presence* only, so a null or a pair that
+        # summed to 400 merged in cleanly and rendered as a hole or a cliff in
+        # the homepage chart.
+        for k in ("projected_d", "projected_r", "actual_d", "actual_r"):
+            v = pt.get(k)
+            if not isinstance(v, int) or isinstance(v, bool) or v < 0:
+                errors.append(f"history {d or '?'}: {k}={v!r} is not a non-negative integer")
+        if all(isinstance(pt.get(k), int) for k in ("projected_d", "projected_r")):
+            if pt["projected_d"] + pt["projected_r"] != TOTAL_SEATS:
+                errors.append(
+                    f"history {d or '?'}: projected {pt['projected_d']}+{pt['projected_r']} != {TOTAL_SEATS}"
+                )
+        if all(isinstance(pt.get(k), int) for k in ("actual_d", "actual_r")):
+            if pt["actual_d"] + pt["actual_r"] != TOTAL_SEATS:
+                errors.append(
+                    f"history {d or '?'}: actual {pt['actual_d']}+{pt['actual_r']} != {TOTAL_SEATS}"
+                )
+        for method, seats in (pt.get("methods") or {}).items():
+            dv, rv = seats.get("d"), seats.get("r")
+            if not isinstance(dv, int) or not isinstance(rv, int) or dv + rv != TOTAL_SEATS:
+                errors.append(f"history {d or '?'}: methods.{method} = {dv}/{rv} != {TOTAL_SEATS}")
+        if not d:
+            errors.append("history: point missing date")
+            continue
         if d in seen:
             errors.append(f"history: duplicate date {d}")
         if d < last:
             errors.append(f"history: dates out of order at {d}")
         seen.add(d); last = d
+
+    # The newest point should be today's. A builder that threw leaves the whole
+    # file untouched, which every other check here would happily accept.
+    if check_freshness and last:
+        newest = _parse_ts(last + "T00:00:00+00:00")
+        if newest is not None:
+            age_days = (datetime.now(timezone.utc) - newest).days
+            if age_days > 2:
+                errors.append(f"history: newest point {last} is {age_days} days old (build failed?)")
 
 
 def check_electoral_college(errors: list[str]) -> None:
@@ -348,12 +544,22 @@ def check_circuits(errors: list[str]) -> None:
                     errors.append(f"circuits {grp}: {code} not mapped to {r['id']}")
 
 
-def main() -> None:
+def main(check_freshness: bool = False) -> None:
+    """Validate everything in public/data.
+
+    `check_freshness` additionally asserts the data was generated just now. The
+    pipeline passes it (it just wrote these files, so an old timestamp means a
+    write silently didn't land); standalone runs and CI's last-good restore path
+    do not, since those legitimately inspect older data.
+    """
     errors: list[str] = []
     check_projection(errors)
+    check_meta(errors, check_freshness)
+    check_baseline_2024(errors)
+    check_polling_trend(errors)
     check_polling_error(errors)
     check_retrospectives(errors)
-    check_history(errors)
+    check_history(errors, check_freshness)
     check_electoral_college(errors)
     check_senate(errors)
     check_circuits(errors)
@@ -362,8 +568,11 @@ def main() -> None:
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
-    print("Data validation passed: projection + retrospectives + history + EC + Senate + circuits invariants hold.")
+    print(
+        "Data validation passed: projection + meta + baseline + polling trend + "
+        "retrospectives + history + EC + Senate + circuits invariants hold."
+    )
 
 
 if __name__ == "__main__":
-    main()
+    main(check_freshness="--check-freshness" in sys.argv)

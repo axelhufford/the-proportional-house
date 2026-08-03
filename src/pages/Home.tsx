@@ -38,6 +38,7 @@ import { fmtMargin } from '../lib/format';
 import {
   buildSandboxPayload,
   DEFAULT_HOUSE_SIZE,
+  SANDBOX_BOUNDS,
   type MinorPartySpec,
 } from '../lib/sandboxSwing';
 import { scenarioHouseSize, type Scenario } from '../lib/scenarios';
@@ -201,11 +202,10 @@ function serializeMinor(m: MinorState): string {
  * "pr" / "PR" / "mmd-3" / "MMP-50". Returns null for unknown values so
  * Home can fall back to the default (PR).
  */
-/** Sandbox slider bounds for the MMD magnitude and MMP single-member share. */
-const MMD_MIN = 2;
-const MMD_MAX = 10;
-const MMP_PCT_MIN = 10;
-const MMP_PCT_MAX = 90;
+/** Sandbox slider bounds — shared with Sandbox.tsx so the parsers below always
+  * accept exactly what the sliders can emit. See SANDBOX_BOUNDS. */
+const { mmdMin: MMD_MIN, mmdMax: MMD_MAX, mmpPctMin: MMP_PCT_MIN, mmpPctMax: MMP_PCT_MAX } =
+  SANDBOX_BOUNDS;
 
 interface ParsedMethod {
   method: AllocationMethodKind;
@@ -256,11 +256,11 @@ function parseThreshold(raw: string | null): number | null {
   return n / 100;
 }
 
-const DEFAULT_THRESHOLD = 0.05;
+const DEFAULT_THRESHOLD = SANDBOX_BOUNDS.defaultThreshold;
 
 /** Acceptable House size range — 435 today; reform proposals go up. */
-const MIN_HOUSE_SIZE = 435;
-const MAX_HOUSE_SIZE = 800;
+const MIN_HOUSE_SIZE = SANDBOX_BOUNDS.houseSizeMin;
+const MAX_HOUSE_SIZE = SANDBOX_BOUNDS.houseSizeMax;
 
 /**
  * Parse the ?house= URL param. Accepts numeric values (435–800) and
@@ -551,8 +551,17 @@ export function Home({ onMetaChange }: HomeProps) {
 
   // App state → URL: keep the URL in sync with the current view so links
   // are shareable. Crucially, `searchParams` is NOT a dep here — that
-  // would clobber external URL changes from the effect above. Uses
-  // `replace` so slider ticks don't pollute back-button history.
+  // would clobber external URL changes from the effect above.
+  //
+  // Push vs replace matters for the Back button. Control churn (dragging the
+  // ballot slider, nudging a threshold) uses `replace` so one drag doesn't
+  // stack dozens of history entries. But switching view or opening a state
+  // panel is a real navigation and gets pushed: previously *everything* was
+  // replaced, so landing on / and clicking "Sandbox" overwrote the entry and
+  // Back left the site entirely — and on mobile the Back gesture, the natural
+  // way to dismiss the state sheet, exited instead of closing it.
+  const lastNavKeyRef = useRef<string | null>(null);
+
   useEffect(() => {
     if (!payload) return;
     const next = new URLSearchParams();
@@ -604,9 +613,15 @@ export function Home({ onMetaChange }: HomeProps) {
       if (state) next.set('state', state.code);
     }
     const search = next.toString();
+    // Only the view and the open state panel are "navigation-worthy"; every
+    // other control is churn.
+    const navKey = `${viewMode}|${selectedFips ?? ''}`;
+    const isFirstEmit = lastNavKeyRef.current === null;
+    const push = !isFirstEmit && navKey !== lastNavKeyRef.current;
+    lastNavKeyRef.current = navKey;
     navigate(
       { pathname: VIEW_PATH[viewMode], search: search ? `?${search}` : '' },
-      { replace: true },
+      { replace: !push },
     );
   }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, navigate]);
 
@@ -632,9 +647,16 @@ export function Home({ onMetaChange }: HomeProps) {
 
   // Structural-distortion baseline for the Current-view headline decomposition.
   // PR of the *actual 2024* vote (swing = 0) minus today's 2024-elected House —
-  // i.e. the pure SMD-vs-PR distortion, the same number the 2024 Retrospective
-  // shows (computed the same way). The Current gap then decomposes exactly as
-  // structural + swing-since-2024, so the headline can attribute each honestly.
+  // i.e. the pure SMD-vs-PR distortion. The Current gap then decomposes exactly
+  // as structural + swing-since-2024, so the headline can attribute each
+  // honestly.
+  //
+  // This is recomputed here from projection.json's published shares rather than
+  // read from retrospectives.json, which the pipeline builds at full precision.
+  // The two agree because projection.json publishes 6-decimal shares (see
+  // SHARE_PRECISION in data-pipeline/update.py) — enough that re-allocating
+  // from the rounded value reproduces the pipeline's seat counts exactly. At
+  // the previous 4 decimals they could differ by a seat.
   const structuralDGain = useMemo<number | null>(() => {
     if (!payload) return null;
     const retro = recomputeWithSwing(payload, 0).national;

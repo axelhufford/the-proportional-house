@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useLocation, useNavigationType } from 'react-router-dom';
 
 /**
  * Global scroll behavior for the SPA. Drop once near the router so every
@@ -17,11 +17,40 @@ import { useLocation } from 'react-router-dom';
  *
  * Search-param-only changes (e.g. ?state=NH toggling) deliberately do NOT
  * scroll — toggling a panel shouldn't jolt the page.
+ *
+ * Back/Forward (a POP navigation) is also left alone, so the browser can
+ * restore the previous scroll position. Without that check, returning from
+ * /methodology to a half-scrolled /rankings dumped the user at the top — and
+ * an in-page anchor click followed by Back did the same, since the router
+ * sees hash: '' and re-runs this effect.
  */
+
+/**
+ * The three Home views are one page with a control on it, not three pages.
+ * They're separate paths only so a scenario is shareable — the view tabs sit
+ * mid-page, so scrolling to top when the user picks one yanks the controls
+ * they just asked for off-screen.
+ */
+const HOME_VIEW_PATHS = new Set(['/', '/retrospective', '/sandbox']);
+
 export function ScrollManager() {
   const { pathname, hash } = useLocation();
+  const navigationType = useNavigationType();
+  const prevPathRef = useRef<string | null>(null);
 
   useEffect(() => {
+    const prev = prevPathRef.current;
+    prevPathRef.current = pathname;
+
+    // Let the browser restore the saved position on Back/Forward.
+    if (navigationType === 'POP' && !hash) return;
+
+    // Switching between the Home views is a control interaction, not a
+    // navigation. Leave the scroll position alone.
+    if (!hash && prev !== null && HOME_VIEW_PATHS.has(pathname) && HOME_VIEW_PATHS.has(prev)) {
+      return;
+    }
+
     let cancelled = false;
     let timer = 0;
     const start =
@@ -53,7 +82,7 @@ export function ScrollManager() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [pathname, hash]);
+  }, [pathname, hash, navigationType]);
 
   return null;
 }

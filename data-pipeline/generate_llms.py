@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from io_utils import write_text_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
@@ -106,7 +107,7 @@ TEMPLATE = """# The Proportional House
 def main() -> None:
     with PROJECTION_PATH.open() as f:
         projection = json.load(f)
-    OUT_PATH.write_text(TEMPLATE.format(current_section=build_current_section(projection)))
+    write_text_atomic(OUT_PATH, TEMPLATE.format(current_section=build_current_section(projection)))
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)}.")
 
 

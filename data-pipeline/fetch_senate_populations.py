@@ -23,6 +23,7 @@ import zipfile
 from pathlib import Path
 
 import requests
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "state_populations.json"
@@ -114,7 +115,7 @@ def main() -> None:
         },
         "states": states,
     }
-    OUT_PATH.write_text(json.dumps(payload, indent=2))
+    write_json_atomic(OUT_PATH, payload)
     sm = min(states, key=lambda s: s["population"])
     lg = max(states, key=lambda s: s["population"])
     print(f"Wrote {len(states)} states to {OUT_PATH.relative_to(REPO_ROOT)} (total {total:,})")

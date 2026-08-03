@@ -28,6 +28,7 @@ from datetime import date
 from pathlib import Path
 
 import requests
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "senior_judges.json"
@@ -89,7 +90,7 @@ def main() -> None:
         },
         "senior_judges": counts,
     }
-    OUT_PATH.write_text(json.dumps(payload, indent=2))
+    write_json_atomic(OUT_PATH, payload)
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)} — {payload['meta']['total']} senior judges")
     print("  by circuit:", {c: counts[c] for c in ["9", "6", "2", "10", "DC", "1"]}, "…")
 

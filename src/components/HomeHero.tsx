@@ -3,6 +3,7 @@ import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { fmtMargin } from '../lib/format';
 import { majorityTippingSentence } from '../lib/majorityTipping';
+import { topMinorWithSeats } from '../lib/colors';
 import { PARTY_D, PARTY_R } from '../lib/parties';
 import { describeSeatShiftBand, seatShiftBand } from '../lib/uncertaintyBand';
 import { useCountUp } from '../lib/useCountUp';
@@ -79,9 +80,15 @@ export function HomeHero({
   // All three views frame PR's effect as a shift *toward* a party, so the
   // highlighted phrase is colored by that party: blue when PR helps Democrats
   // (dGain > 0), red when it helps Republicans (dGain < 0).
-  const towardColor = dGain > 0 ? 'text-blue-700' : 'text-red-700';
+  const towardColor = dGain > 0 ? 'text-blue-700' : dGain < 0 ? 'text-red-700' : 'text-stone-700';
   const seats = (n: number) => (n === 1 ? 'seat' : 'seats');
-  const towardWord = (v: number) => (v > 0 ? 'toward Democrats' : 'toward Republicans');
+  // Zero is neither direction. Without this branch a dead-even swing read
+  // "+0 seats toward Republicans" in red — the rest of the app (RankingRow,
+  // StateRetroHistory, RetrospectiveTrend) already handles the zero case.
+  const towardWord = (v: number) =>
+    v > 0 ? 'toward Democrats' : v < 0 ? 'toward Republicans' : 'in either direction';
+  const swingColor = (v: number) =>
+    v > 0 ? 'text-blue-700' : v < 0 ? 'text-red-700' : 'text-stone-700';
   const towardParty = dGain > 0 ? 'Democrats' : 'Republicans';
   const animatedGain = useCountUp(absGain);
 
@@ -134,15 +141,15 @@ export function HomeHero({
       );
   } else if (viewMode === 'sandbox') {
     const generic = meta.generic_ballot_margin;
-    const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
+    const genericLabel = fmtMargin(generic);
     const reform = methodLabel ?? 'proportional representation';
     // With extra parties active, "toward Democrats/Republicans" is misleading
     // (both majors can lose seats to a minor), so describe the multi-party
     // result instead of a single two-party shift.
     const minorsActive = !!sandboxNational && (sandboxPayload?.minors.length ?? 0) > 0;
-    const topMinor = sandboxNational
-      ? sandboxNational.parties.slice(2).filter((p) => p.seats > 0).sort((a, b) => b.seats - a.seats)[0]
-      : undefined;
+    // topMinorWithSeats filters by party id rather than assuming D and R are
+    // exactly indices 0 and 1, which the previous .slice(2) did.
+    const topMinor = sandboxNational ? topMinorWithSeats(sandboxNational.parties) : undefined;
     if (minorsActive) {
       lede = topMinor ? (
         <>
@@ -185,8 +192,7 @@ export function HomeHero({
     // precise structural/swing split is in the "Difference under PR" card below
     // and on the Methodology page.
     const generic = meta.generic_ballot_margin;
-    const genericLabel =
-      generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
+    const genericLabel = fmtMargin(generic);
     if (dGain === 0) {
       lede = (
         <>
@@ -216,11 +222,11 @@ export function HomeHero({
         caveat = (
           <>
             That splits into roughly{' '}
-            <strong className={swing > 0 ? 'text-blue-700' : 'text-red-700'}>
+            <strong className={swingColor(swing)}>
               {signed(swing)} {seats(Math.abs(swing))}
             </strong>{' '}
             from the polling swing {towardWord(swing)} since 2024 and{' '}
-            <strong className={structuralDGain > 0 ? 'text-blue-700' : 'text-red-700'}>
+            <strong className={swingColor(structuralDGain)}>
               {signed(structuralDGain)}
             </strong>{' '}
             from{' '}

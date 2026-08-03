@@ -9,12 +9,13 @@ import { Reveal } from '../components/Reveal';
 import { allocateN, type AllocationMethod } from '../lib/allocation';
 import { balanceColor } from '../lib/colors';
 import { fetchJson } from '../lib/fetchJson';
+import { PARTY_D, PARTY_R } from '../lib/parties';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META, datasetSchema } from '../lib/routeMeta';
 import type { ECCandidate, ECCycle, ElectoralCollegePayload } from '../lib/types';
 
-const D_COLOR = '#2166ac';
-const R_COLOR = '#b2182b';
+const D_COLOR = PARTY_D.color;
+const R_COLOR = PARTY_R.color;
 // Distinct, color-blind-friendly hues for third parties, assigned in order of
 // electors won (so the most consequential third party is most distinct).
 const OTHER_PALETTE = ['#059669', '#CA8A04', '#7c3aed', '#0891b2', '#db2777', '#65a30d'];
@@ -89,7 +90,11 @@ function computeCycle(cycle: ECCycle, method: AllocationMethod): Computed {
     ...c,
     color: c.party === 'D' ? D_COLOR : c.party === 'R' ? R_COLOR : OTHER_PALETTE[otherIdx++ % OTHER_PALETTE.length],
   }));
-  const leader = candidates[0];
+  // `byName` only collects candidates with electors > 0, so a cycle whose
+  // states all allocate zero (or a malformed `states` array) leaves this empty.
+  // Reading candidates[0].electors then threw and replaced the whole page with
+  // the generic error screen.
+  const leader = candidates[0] ?? { name: '—', party: 'O' as const, electors: 0, color: OTHER_PALETTE[0] };
   const noMajority = leader.electors < cycle.majority;
   return { states, candidates, byParty, leader, noMajority, majorityGap: cycle.majority - leader.electors };
 }
@@ -143,7 +148,16 @@ export function ElectoralCollege() {
     fetchJson<ElectoralCollegePayload>('/data/electoral_college.json')
       .then((p) => {
         setPayload(p);
-        setYear(p.meta.cycles[p.meta.cycles.length - 1]); // default to most recent
+        // Default to the most recent cycle that actually has data. Taking the
+        // last entry of meta.cycles blindly meant a year listed in meta but
+        // missing from p.cycles left the page stuck on "Loading…" forever,
+        // with no error path.
+        const usable = [...p.meta.cycles].reverse().find((y) => p.cycles[String(y)]);
+        if (usable == null) {
+          setError('electoral_college.json lists no cycle with data.');
+          return;
+        }
+        setYear(usable);
       })
       .catch((e) => setError(String(e)));
     fetchJson<Topology>('/data/states-10m.json')
@@ -426,10 +440,10 @@ function ECMap({ topology, states, view }: { topology: Topology; states: Compute
 
   return (
     <div className="relative mt-3">
+      {/* role="img" omitted deliberately — see the note in src/components/Map.tsx. */}
       <svg
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
         className="w-full h-auto"
-        role="img"
         aria-label={
           view === 'proportional'
             ? 'Map of the Proportional Electoral College result by state'

@@ -1,5 +1,11 @@
 export interface ProjectionMeta {
   generated_at: string;
+  /**
+   * Age (hours) past which the site shows its "data may be stale" banner.
+   * Published by the pipeline so the threshold lives in one place; optional
+   * because an older cached payload predates the field.
+   */
+  stale_after_hours?: number;
   data_source: string;
   method: string;
   generic_ballot_margin: number;

@@ -35,7 +35,10 @@ export function StateTable({ states }: { states: StateProjection[] }) {
       states.map((s) => ({
         s,
         shift: s.projected.d_seats - s.actual.d_seats,
-        gap: s.actual.d_seats / s.seats - s.baseline_2024.d_share,
+        // Guard the division: a `seats: 0` state would make `gap` NaN, which
+        // renders as "NaN pt → R" and — worse — makes the sort comparator
+        // return NaN, leaving the whole 50-row table in an arbitrary order.
+        gap: s.seats > 0 ? s.actual.d_seats / s.seats - s.baseline_2024.d_share : 0,
       })),
     [states],
   );

@@ -33,6 +33,7 @@ from __future__ import annotations
 import json
 from datetime import datetime
 from pathlib import Path
+from io_utils import write_text_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
@@ -120,7 +121,7 @@ def main() -> None:
         payload = json.load(f)
     state_codes = sorted(s["code"] for s in payload["states"])
     sitemap = build_sitemap(state_codes)
-    SITEMAP_PATH.write_text(sitemap)
+    write_text_atomic(SITEMAP_PATH, sitemap)
     # len(FIXED_ROUTES) fixed routes + one per state.
     print(
         f"Wrote sitemap with {len(state_codes) + len(FIXED_ROUTES)} URLs to "

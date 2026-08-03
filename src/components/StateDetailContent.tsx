@@ -9,6 +9,7 @@ import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
 import { StateRetroHistory } from './StateRetroHistory';
 import type { StateProjection, ProjectionMeta, StateRetroPoint, ViewMode } from '../lib/types';
+import { isMinorParty } from '../lib/colors';
 
 export interface StateDetailContentProps {
   state: StateProjection;
@@ -163,7 +164,7 @@ export function StateDetailContent({
   const hasMinors =
     !!sandboxState &&
     sandboxState.parties.some(
-      (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+      (p) => isMinorParty(p.party.id) && p.seats > 0,
     );
   const projectedD = sandboxState ? sandboxState.parties[0]?.seats ?? 0 : state.projected.d_seats;
   const projectedR = sandboxState ? sandboxState.parties[1]?.seats ?? 0 : state.projected.r_seats;
@@ -198,29 +199,40 @@ export function StateDetailContent({
       state: s,
       delta: s.projected.d_seats - s.actual.d_seats,
     }));
-    const sameSign = dGain === 0
+    // Compare like with like. Every candidate's `delta` is the canonical
+    // Pure-PR-at-435 distortion, so this must use *this* state's canonical
+    // distortion too — not the sandbox `dGain`, which is measured under a
+    // different method/House size. Ranking one against the other produced
+    // arbitrary matches whose own chips showed a third, unrelated number.
+    const canonicalDGain = state.projected.d_seats - state.actual.d_seats;
+    const sameSign = canonicalDGain === 0
       ? withDelta.filter((x) => x.delta === 0)
-      : withDelta.filter((x) => Math.sign(x.delta) === Math.sign(dGain));
+      : withDelta.filter((x) => Math.sign(x.delta) === Math.sign(canonicalDGain));
     // Sort by how close their delta is to ours.
     const pool = sameSign.length >= 3 ? sameSign : withDelta;
     return pool
-      .map((x) => ({ ...x, distance: Math.abs(x.delta - dGain) }))
+      .map((x) => ({ ...x, distance: Math.abs(x.delta - canonicalDGain) }))
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 3)
       .map((x) => x.state);
-  }, [allStates, state.fips, dGain]);
+  }, [allStates, state.fips, state.projected.d_seats, state.actual.d_seats]);
 
+  // Quotient table for the "show the math" panel. Built from the *effective*
+  // seats and shares so it matches the delegation rendered above it — the
+  // static 435-seat values would show a 38-row table for a 60-seat Texas in an
+  // expanded-House sandbox. Only valid as a D-vs-R illustration, so the render
+  // site below also requires Pure PR and no minor parties.
   const quotients = useMemo(() => {
-    if (state.seats <= 1) return [];
+    if (effectiveSeats <= 1) return [];
     return quotientTable(
       {
-        seats: state.seats,
-        d_votes: state.projected.d_share * 1_000_000,
-        r_votes: state.projected.r_share * 1_000_000,
+        seats: effectiveSeats,
+        d_votes: projectedDShare * 1_000_000,
+        r_votes: projectedRShare * 1_000_000,
       },
       'sainte-lague',
     );
-  }, [state]);
+  }, [effectiveSeats, projectedDShare, projectedRShare]);
 
   return (
     <>
@@ -363,7 +375,7 @@ export function StateDetailContent({
           // Minor-party gains paragraph: list any non-D/R party with seats.
           (() => {
             const minors = sandboxState!.parties.filter(
-              (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+              (p) => isMinorParty(p.party.id) && p.seats > 0,
             );
             if (minors.length === 0) return null;
             return (
@@ -457,8 +469,11 @@ export function StateDetailContent({
 
         {/* The math demo is Sainte-Laguë-specific. Under other PR formulas
           * (D'Hondt, Hamilton) or MMD/MMP, the quotients shown wouldn't
-          * match the actual allocation, so hide it outside Pure PR. */}
-        {state.seats > 1 && quotients.length > 0 && method === 'PR' && (
+          * match the actual allocation, so hide it outside Pure PR. It's also
+          * strictly D-vs-R, so hide it when minor parties are winning seats —
+          * otherwise a two-column table sits directly under a five-party
+          * delegation strip and contradicts it. */}
+        {effectiveSeats > 1 && quotients.length > 0 && method === 'PR' && !hasMinors && (
           <details className="text-sm">
             <summary className="cursor-pointer text-stone-700 font-medium">Show the math (Sainte-Laguë)</summary>
             <div className="mt-3 overflow-x-auto">
@@ -487,7 +502,7 @@ export function StateDetailContent({
                 </tbody>
               </table>
               <div className="text-xs text-stone-500 mt-2">
-                Top {state.seats} quotients win seats. ✓ marks seat-winning quotients.
+                Top {effectiveSeats} quotients win seats. ✓ marks seat-winning quotients.
               </div>
             </div>
           </details>

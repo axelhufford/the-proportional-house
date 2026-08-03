@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import Iterable
 
 from allocation import AllocationInput, allocate
+from io_utils import write_json_atomic
 from fetch_clerk_house import (
     PDF_URL as CLERK_PDF_URL,
     OUT_PATH as BASELINE_JSON,
@@ -49,6 +50,21 @@ POLLING_ERROR_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "polling_error.j
 
 # How far back to include polls in the trend chart (the on-page sparkline).
 TREND_WINDOW_DAYS = 180
+
+# Age at which the site shows its "data may be stale" banner. Published in both
+# meta.json and projection.json's meta so the UI never hardcodes its own copy.
+STALE_AFTER_HOURS = 48
+
+# Decimal places for published two-party vote shares.
+#
+# These are not just for display: the Sandbox recomputes seat allocations in
+# the browser from the shares in projection.json, so the published precision
+# has to be fine enough that re-running the allocator on the rounded value
+# reproduces the pipeline's own seat counts. At 4 decimals it did not — a
+# ~5e-5 rounding error is enough to reorder two adjacent Sainte-Laguë
+# quotients in a large delegation. 6 decimals leaves the error ~500x below the
+# smallest quotient gap observed across the ±15-point ballot range.
+SHARE_PRECISION = 6
 
 
 def clamp(x: float, lo: float = 0.001, hi: float = 0.999) -> float:
@@ -100,13 +116,19 @@ def project_states(baseline_states: list[dict], swing_points: float, method: str
                 "d_seats": s["actual_d_seats_119th"],
                 "r_seats": s["actual_r_seats_119th"],
             },
+            # 6 decimals, not 4. The seat counts above are allocated from the
+            # full-precision shares, but the Sandbox re-derives seats in the
+            # browser from these *published* values. At 4 decimals the rounding
+            # error was large enough to flip a marginal quotient, so the
+            # browser and the pipeline could disagree about the same state
+            # (e.g. CA 31-21 vs 32-20). See SHARE_PRECISION below.
             "baseline_2024": {
-                "d_share": round(baseline_d, 4),
-                "r_share": round(baseline_r, 4),
+                "d_share": round(baseline_d, SHARE_PRECISION),
+                "r_share": round(baseline_r, SHARE_PRECISION),
             },
             "projected": {
-                "d_share": round(proj_d, 4),
-                "r_share": round(proj_r, 4),
+                "d_share": round(proj_d, SHARE_PRECISION),
+                "r_share": round(proj_r, SHARE_PRECISION),
                 "d_seats": result.d_seats,
                 "r_seats": result.r_seats,
             },
@@ -277,7 +299,10 @@ def retrospective_states(baseline_states: list[dict], method: str = "sainte-lagu
                 "d_seats": s["actual_d_seats_119th"],
                 "r_seats": s["actual_r_seats_119th"],
             },
-            "baseline_2024": {"d_share": round(d, 4), "r_share": round(r, 4)},
+            "baseline_2024": {
+                "d_share": round(d, SHARE_PRECISION),
+                "r_share": round(r, SHARE_PRECISION),
+            },
             "projected_pr": {"d_seats": result.d_seats, "r_seats": result.r_seats},
             "state_elasticity": round(float(s.get("state_elasticity", 1.0)), 3),
             "baseline_distortion_warning": s.get("baseline_distortion_warning", False),
@@ -307,11 +332,20 @@ def build_polling_trend(polls: list, as_of: datetime) -> list[dict]:
 
 
 def main(refresh_clerk: bool = False) -> None:
-    # 1. Baseline.
+    # Pipeline-step failures collected across the run; a non-empty list makes
+    # the process exit non-zero at the end (see the tail of main).
+    failures: list[str] = []
+
+    # 1. Baseline. The 2024 vote shares and the as-elected delegation are both
+    # fixed history, so the committed house_2024.json is reused unless
+    # --refresh is passed. See fetch_clerk_house.WIKIPEDIA_RAW_URL: the source
+    # table is *not* a live composition feed, so re-fetching it every run would
+    # add a network dependency without ever changing a number.
     if refresh_clerk or not BASELINE_JSON.exists():
         fetch_clerk_main(force_download=refresh_clerk)
     with BASELINE_JSON.open() as f:
         baseline = json.load(f)
+
     baseline_states = baseline["states"]
     baseline_margin = baseline["meta"]["national_house_popular_vote"]["r_margin_points"]
     baseline_d_margin = -baseline_margin  # D's margin (negative if R-leaning)
@@ -381,6 +415,10 @@ def main(refresh_clerk: bool = False) -> None:
     projection_payload = {
         "meta": {
             "generated_at": now.isoformat(),
+            # Also published in meta.json. Repeated here because the stale-data
+            # banner renders from projection.json's meta and would otherwise
+            # need its own hardcoded copy of the threshold.
+            "stale_after_hours": STALE_AFTER_HOURS,
             "data_source": "U.S. House Clerk 2024 statistics (state totals) + Silver Bulletin generic-ballot polls",
             "method": "sainte-lague",
             "generic_ballot_margin": generic_ballot,
@@ -406,7 +444,7 @@ def main(refresh_clerk: bool = False) -> None:
         projection_payload["meta"]["majority"] = majority
     if closest_flips:
         projection_payload["meta"]["closest_flips"] = closest_flips
-    PROJECTION_PATH.write_text(json.dumps(projection_payload, indent=2))
+    write_json_atomic(PROJECTION_PATH, projection_payload)
 
     baseline_payload = {
         "meta": {
@@ -422,10 +460,10 @@ def main(refresh_clerk: bool = False) -> None:
         },
         "states": retrospective,
     }
-    BASELINE_OUT_PATH.write_text(json.dumps(baseline_payload, indent=2))
+    write_json_atomic(BASELINE_OUT_PATH, baseline_payload)
 
     trend = build_polling_trend(polls, as_of=now)
-    POLLING_TREND_PATH.write_text(json.dumps({
+    write_json_atomic(POLLING_TREND_PATH, {
         "meta": {
             "generated_at": now.isoformat(),
             "source": SILVER_BULLETIN_LANDING_URL,
@@ -435,11 +473,11 @@ def main(refresh_clerk: bool = False) -> None:
             "uses_house_effect_adjustment": True,
         },
         "polls": trend,
-    }, indent=2))
+    })
 
     meta_payload = {
         "generated_at": now.isoformat(),
-        "stale_after_hours": 48,
+        "stale_after_hours": STALE_AFTER_HOURS,
         "sources": {
             "baseline": baseline["meta"]["source_url"],
             "polls": SILVER_BULLETIN_LANDING_URL,
@@ -462,81 +500,46 @@ def main(refresh_clerk: bool = False) -> None:
         meta_payload["majority"] = majority
     if closest_flips:
         meta_payload["closest_flips"] = closest_flips
-    META_PATH.write_text(json.dumps(meta_payload, indent=2))
+    write_json_atomic(META_PATH, meta_payload)
 
-    # Regenerate per-state OG cards + static HTML pages so social-share
-    # previews always reflect the freshest projection.
-    try:
-        from generate_state_og import main as generate_state_og
-        generate_state_og()
-    except Exception as e:
-        print(f"  (warn) per-state OG generation failed: {e}")
+    # Derived artifacts. Each is isolated so one failure can't abort the others
+    # or discard the core files already written above — but every failure is
+    # recorded and makes the run exit non-zero (see `failures` handling at the
+    # end of main). Previously these only printed a warning, so a builder that
+    # threw left yesterday's file in place while the run still reported success:
+    # the homepage chart would silently stop advancing with nothing to notice it.
+    def run_builder(label: str, module: str) -> None:
+        try:
+            mod = __import__(module)
+            mod.main()
+        # BaseException, not Exception: build_electoral_college historically
+        # raised SystemExit, which is not an Exception subclass and so escaped
+        # the old handlers and hard-killed the whole run.
+        except BaseException as e:  # noqa: BLE001
+            failures.append(f"{label}: {type(e).__name__}: {e}")
+            print(f"  (warn) {label} failed: {type(e).__name__}: {e}")
 
-    # Regenerate sitemap.xml so search engines see fresh <lastmod> dates and
-    # can discover all 50 per-state pages.
-    try:
-        from generate_sitemap import main as generate_sitemap
-        generate_sitemap()
-    except Exception as e:
-        print(f"  (warn) sitemap generation failed: {e}")
-
-    # Regenerate llms.txt with the day's headline numbers so AI crawlers
-    # quote live data rather than only the static descriptions.
-    try:
-        from generate_llms import main as generate_llms
-        generate_llms()
-    except Exception as e:
-        print(f"  (warn) llms.txt generation failed: {e}")
-
-    # Rebuild the multi-cycle retrospectives (offline — reads committed
-    # house_{year}.json baselines, no network). 2024 here matches the
-    # baseline_2024.json computed above (same Sainte-Laguë over the same data).
-    try:
-        from build_retrospectives import main as build_retrospectives
-        build_retrospectives()
-    except Exception as e:
-        print(f"  (warn) retrospectives build failed: {e}")
-
-    # Proportional Electoral College (1976-2024) — offline, reads committed
-    # president_{year}.json baselines (distilled once by fetch_president.py).
-    try:
-        from build_electoral_college import main as build_electoral_college
-        build_electoral_college()
-    except Exception as e:
-        print(f"  (warn) electoral-college build failed: {e}")
-
-    # Senate malapportionment — offline, reads committed state_populations.json
-    # (distilled once by fetch_senate_populations.py).
-    try:
-        from build_senate import main as build_senate
-        build_senate()
-    except Exception as e:
-        print(f"  (warn) senate build failed: {e}")
-
-    # Federal circuits by population/judges — offline, reads committed
-    # circuit_definitions.json + state_populations.json.
-    try:
-        from build_circuits import main as build_circuits
-        build_circuits()
-    except Exception as e:
-        print(f"  (warn) circuits build failed: {e}")
-
-    # Static long-form content pages (e.g. /retrospectives) — reads
-    # retrospectives.json (written just above); pure Python, no resvg.
-    try:
-        from generate_content_pages import main as generate_content_pages
-        generate_content_pages()
-    except Exception as e:
-        print(f"  (warn) content-page generation failed: {e}")
-
-    # Append today's snapshot to the projection-over-time series. Fetches the
-    # live history.json (accumulates across deploys without committing data),
-    # falls back to the committed file; never breaks the build.
-    try:
-        from build_history import main as build_history
-        build_history()
-    except Exception as e:
-        print(f"  (warn) history build failed: {e}")
+    # Per-state OG cards + static HTML pages, so social-share previews always
+    # reflect the freshest projection.
+    run_builder("per-state OG generation", "generate_state_og")
+    # sitemap.xml — fresh <lastmod> dates, discovery of all 50 state pages.
+    run_builder("sitemap generation", "generate_sitemap")
+    # llms.txt with the day's headline numbers, so AI crawlers quote live data.
+    run_builder("llms.txt generation", "generate_llms")
+    # Multi-cycle retrospectives (offline — reads committed house_{year}.json).
+    # 2024 here matches baseline_2024.json above (same Sainte-Laguë, same data).
+    run_builder("retrospectives build", "build_retrospectives")
+    # Proportional Electoral College (1976-2024) — offline, committed baselines.
+    run_builder("electoral-college build", "build_electoral_college")
+    # Senate malapportionment — offline, committed state_populations.json.
+    run_builder("senate build", "build_senate")
+    # Federal circuits by population/judges — offline, committed definitions.
+    run_builder("circuits build", "build_circuits")
+    # Static long-form content pages (e.g. /retrospectives), from the
+    # retrospectives.json written just above.
+    run_builder("content-page generation", "generate_content_pages")
+    # Append today's snapshot to the projection-over-time series.
+    run_builder("history build", "build_history")
 
     # Sanity-check: print the plan's Phase 2 "done when" criteria.
     proj_gain_d = nat_proj_d - nat_actual_d
@@ -564,7 +567,22 @@ def main(refresh_clerk: bool = False) -> None:
     # a regression.
     print()
     from validate_data import main as validate_data
-    validate_data()
+    # check_freshness=True: these files were written moments ago, so a stale
+    # generated_at or a history series that didn't advance means a write or a
+    # builder silently failed.
+    validate_data(check_freshness=True)
+
+    # A step that failed above means the site is serving a mix of today's core
+    # data and yesterday's charts/maps/OG cards (or yesterday's delegation).
+    # validate_data can't catch it — it happily validates the stale file — so
+    # surface it here as a non-zero exit. The deploy still ships last-good data
+    # (CI restores it), but the run no longer reports success.
+    if failures:
+        print()
+        print(f"✗ {len(failures)} pipeline step(s) failed:")
+        for f in failures:
+            print(f"    - {f}")
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,9 @@
 {
-  "_comment": "Shared MMD/MMP parity fixture. Generated from data-pipeline/methods.py; tests/test_methods.py (Python) and tests/methods.parity.test.ts (TS) both assert against it. expected[method] = seats per party in [D, R] order.",
+  "_comment": "Shared MMD/MMP parity fixture. GENERATED \u2014 do not hand-edit. Regenerate with: .venv/bin/python data-pipeline/generate_parity_fixtures.py. tests/test_methods.py (Python) and tests/methods.parity.test.ts (TS) both assert against it. expected[method] = seats per party, in vote_shares order. `params` (when present) carries mmd_magnitude / mmp_smd_share overrides.",
   "methods": [
     "PR",
+    "PR-DH",
+    "PR-HAM",
     "MMD-3",
     "MMD-5",
     "MMP-50"
@@ -24,6 +26,14 @@
       },
       "expected": {
         "PR": [
+          29,
+          23
+        ],
+        "PR-DH": [
+          29,
+          23
+        ],
+        "PR-HAM": [
           29,
           23
         ],
@@ -61,6 +71,14 @@
           16,
           22
         ],
+        "PR-DH": [
+          16,
+          22
+        ],
+        "PR-HAM": [
+          16,
+          22
+        ],
         "MMD-3": [
           13,
           25
@@ -92,6 +110,14 @@
       },
       "expected": {
         "PR": [
+          7,
+          7
+        ],
+        "PR-DH": [
+          7,
+          7
+        ],
+        "PR-HAM": [
           7,
           7
         ],
@@ -129,6 +155,14 @@
           5,
           4
         ],
+        "PR-DH": [
+          5,
+          4
+        ],
+        "PR-HAM": [
+          5,
+          4
+        ],
         "MMD-3": [
           6,
           3
@@ -160,6 +194,14 @@
       },
       "expected": {
         "PR": [
+          0,
+          1
+        ],
+        "PR-DH": [
+          0,
+          1
+        ],
+        "PR-HAM": [
           0,
           1
         ],
@@ -197,6 +239,14 @@
           1,
           0
         ],
+        "PR-DH": [
+          1,
+          0
+        ],
+        "PR-HAM": [
+          1,
+          0
+        ],
         "MMD-3": [
           1,
           0
@@ -228,6 +278,14 @@
       },
       "expected": {
         "PR": [
+          3,
+          7
+        ],
+        "PR-DH": [
+          3,
+          7
+        ],
+        "PR-HAM": [
           3,
           7
         ],
@@ -265,6 +323,14 @@
           4,
           4
         ],
+        "PR-DH": [
+          4,
+          4
+        ],
+        "PR-HAM": [
+          4,
+          4
+        ],
         "MMD-3": [
           5,
           3
@@ -296,6 +362,14 @@
       },
       "expected": {
         "PR": [
+          21,
+          31
+        ],
+        "PR-DH": [
+          21,
+          31
+        ],
+        "PR-HAM": [
           21,
           31
         ],
@@ -333,6 +407,14 @@
           5,
           3
         ],
+        "PR-DH": [
+          5,
+          3
+        ],
+        "PR-HAM": [
+          5,
+          3
+        ],
         "MMD-3": [
           5,
           3
@@ -344,6 +426,765 @@
         "MMP-50": [
           5,
           3
+        ]
+      }
+    },
+    {
+      "name": "mmp-no-actual-delegation",
+      "input": {
+        "total_seats": 10,
+        "vote_shares": [
+          0.3,
+          0.7
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 0,
+        "actual_r_seats": 0
+      },
+      "expected": {
+        "PR": [
+          3,
+          7
+        ],
+        "PR-DH": [
+          3,
+          7
+        ],
+        "PR-HAM": [
+          3,
+          7
+        ],
+        "MMD-3": [
+          3,
+          7
+        ],
+        "MMD-5": [
+          2,
+          8
+        ],
+        "MMP-50": [
+          3,
+          7
+        ]
+      }
+    },
+    {
+      "name": "mmp-no-actual-delegation-odd",
+      "input": {
+        "total_seats": 7,
+        "vote_shares": [
+          0.55,
+          0.45
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 0,
+        "actual_r_seats": 0
+      },
+      "expected": {
+        "PR": [
+          4,
+          3
+        ],
+        "PR-DH": [
+          4,
+          3
+        ],
+        "PR-HAM": [
+          4,
+          3
+        ],
+        "MMD-3": [
+          5,
+          2
+        ],
+        "MMD-5": [
+          4,
+          3
+        ],
+        "MMP-50": [
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "name": "mmp-smd-30",
+      "input": {
+        "total_seats": 20,
+        "vote_shares": [
+          0.52,
+          0.48
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 11,
+        "actual_r_seats": 9
+      },
+      "params": {
+        "mmp_smd_share": 0.3
+      },
+      "expected": {
+        "PR": [
+          10,
+          10
+        ],
+        "PR-DH": [
+          10,
+          10
+        ],
+        "PR-HAM": [
+          10,
+          10
+        ],
+        "MMD-3": [
+          13,
+          7
+        ],
+        "MMD-5": [
+          12,
+          8
+        ],
+        "MMP-50": [
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "name": "mmp-smd-70",
+      "input": {
+        "total_seats": 20,
+        "vote_shares": [
+          0.52,
+          0.48
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 11,
+        "actual_r_seats": 9
+      },
+      "params": {
+        "mmp_smd_share": 0.7
+      },
+      "expected": {
+        "PR": [
+          10,
+          10
+        ],
+        "PR-DH": [
+          10,
+          10
+        ],
+        "PR-HAM": [
+          10,
+          10
+        ],
+        "MMD-3": [
+          13,
+          7
+        ],
+        "MMD-5": [
+          12,
+          8
+        ],
+        "MMP-50": [
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "name": "mmp-smd-0",
+      "input": {
+        "total_seats": 12,
+        "vote_shares": [
+          0.58,
+          0.42
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 7,
+        "actual_r_seats": 5
+      },
+      "params": {
+        "mmp_smd_share": 0.0
+      },
+      "expected": {
+        "PR": [
+          7,
+          5
+        ],
+        "PR-DH": [
+          7,
+          5
+        ],
+        "PR-HAM": [
+          7,
+          5
+        ],
+        "MMD-3": [
+          8,
+          4
+        ],
+        "MMD-5": [
+          7,
+          5
+        ],
+        "MMP-50": [
+          7,
+          5
+        ]
+      }
+    },
+    {
+      "name": "mmp-smd-100",
+      "input": {
+        "total_seats": 12,
+        "vote_shares": [
+          0.58,
+          0.42
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 7,
+        "actual_r_seats": 5
+      },
+      "params": {
+        "mmp_smd_share": 1.0
+      },
+      "expected": {
+        "PR": [
+          7,
+          5
+        ],
+        "PR-DH": [
+          7,
+          5
+        ],
+        "PR-HAM": [
+          7,
+          5
+        ],
+        "MMD-3": [
+          8,
+          4
+        ],
+        "MMD-5": [
+          7,
+          5
+        ],
+        "MMP-50": [
+          7,
+          5
+        ]
+      }
+    },
+    {
+      "name": "mmd-magnitude-2",
+      "input": {
+        "total_seats": 15,
+        "vote_shares": [
+          0.53,
+          0.47
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 8,
+        "actual_r_seats": 7
+      },
+      "params": {
+        "mmd_magnitude": 2
+      },
+      "expected": {
+        "PR": [
+          8,
+          7
+        ],
+        "PR-DH": [
+          8,
+          7
+        ],
+        "PR-HAM": [
+          8,
+          7
+        ],
+        "MMD-3": [
+          8,
+          7
+        ],
+        "MMD-5": [
+          8,
+          7
+        ],
+        "MMP-50": [
+          8,
+          7
+        ]
+      }
+    },
+    {
+      "name": "mmd-magnitude-4",
+      "input": {
+        "total_seats": 15,
+        "vote_shares": [
+          0.53,
+          0.47
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 8,
+        "actual_r_seats": 7
+      },
+      "params": {
+        "mmd_magnitude": 4
+      },
+      "expected": {
+        "PR": [
+          8,
+          7
+        ],
+        "PR-DH": [
+          8,
+          7
+        ],
+        "PR-HAM": [
+          8,
+          7
+        ],
+        "MMD-3": [
+          8,
+          7
+        ],
+        "MMD-5": [
+          8,
+          7
+        ],
+        "MMP-50": [
+          8,
+          7
+        ]
+      }
+    },
+    {
+      "name": "mmd-magnitude-10",
+      "input": {
+        "total_seats": 15,
+        "vote_shares": [
+          0.53,
+          0.47
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 8,
+        "actual_r_seats": 7
+      },
+      "params": {
+        "mmd_magnitude": 10
+      },
+      "expected": {
+        "PR": [
+          8,
+          7
+        ],
+        "PR-DH": [
+          8,
+          7
+        ],
+        "PR-HAM": [
+          8,
+          7
+        ],
+        "MMD-3": [
+          8,
+          7
+        ],
+        "MMD-5": [
+          8,
+          7
+        ],
+        "MMP-50": [
+          8,
+          7
+        ]
+      }
+    },
+    {
+      "name": "epsilon-sl-50",
+      "input": {
+        "total_seats": 50,
+        "vote_shares": [
+          0.57,
+          0.43000000000000005
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 25,
+        "actual_r_seats": 25
+      },
+      "expected": {
+        "PR": [
+          28,
+          22
+        ],
+        "PR-DH": [
+          29,
+          21
+        ],
+        "PR-HAM": [
+          28,
+          22
+        ],
+        "MMD-3": [
+          33,
+          17
+        ],
+        "MMD-5": [
+          30,
+          20
+        ],
+        "MMP-50": [
+          28,
+          22
+        ]
+      }
+    },
+    {
+      "name": "epsilon-sl-20",
+      "input": {
+        "total_seats": 20,
+        "vote_shares": [
+          0.575,
+          0.42500000000000004
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 10,
+        "actual_r_seats": 10
+      },
+      "expected": {
+        "PR": [
+          11,
+          9
+        ],
+        "PR-DH": [
+          12,
+          8
+        ],
+        "PR-HAM": [
+          12,
+          8
+        ],
+        "MMD-3": [
+          13,
+          7
+        ],
+        "MMD-5": [
+          12,
+          8
+        ],
+        "MMP-50": [
+          11,
+          9
+        ]
+      }
+    },
+    {
+      "name": "epsilon-dh-24",
+      "input": {
+        "total_seats": 24,
+        "vote_shares": [
+          0.32,
+          0.6799999999999999
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 10,
+        "actual_r_seats": 14
+      },
+      "expected": {
+        "PR": [
+          8,
+          16
+        ],
+        "PR-DH": [
+          8,
+          16
+        ],
+        "PR-HAM": [
+          8,
+          16
+        ],
+        "MMD-3": [
+          8,
+          16
+        ],
+        "MMD-5": [
+          9,
+          15
+        ],
+        "MMP-50": [
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "name": "zero-seats",
+      "input": {
+        "total_seats": 0,
+        "vote_shares": [
+          0.5,
+          0.5
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 0,
+        "actual_r_seats": 0
+      },
+      "expected": {
+        "PR": [
+          0,
+          0
+        ],
+        "PR-DH": [
+          0,
+          0
+        ],
+        "PR-HAM": [
+          0,
+          0
+        ],
+        "MMD-3": [
+          0,
+          0
+        ],
+        "MMD-5": [
+          0,
+          0
+        ],
+        "MMP-50": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "one-seat-exact-tie",
+      "input": {
+        "total_seats": 1,
+        "vote_shares": [
+          0.5,
+          0.5
+        ],
+        "party_ids": [
+          "D",
+          "R"
+        ],
+        "actual_d_seats": 1,
+        "actual_r_seats": 0
+      },
+      "expected": {
+        "PR": [
+          1,
+          0
+        ],
+        "PR-DH": [
+          1,
+          0
+        ],
+        "PR-HAM": [
+          1,
+          0
+        ],
+        "MMD-3": [
+          1,
+          0
+        ],
+        "MMD-5": [
+          1,
+          0
+        ],
+        "MMP-50": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "name": "three-party",
+      "input": {
+        "total_seats": 10,
+        "vote_shares": [
+          0.45,
+          0.4,
+          0.15
+        ],
+        "party_ids": [
+          "D",
+          "R",
+          "G"
+        ],
+        "actual_d_seats": 5,
+        "actual_r_seats": 5
+      },
+      "expected": {
+        "PR": [
+          5,
+          4,
+          1
+        ],
+        "PR-DH": [
+          5,
+          4,
+          1
+        ],
+        "PR-HAM": [
+          5,
+          4,
+          1
+        ],
+        "MMD-3": [
+          7,
+          3,
+          0
+        ],
+        "MMD-5": [
+          4,
+          4,
+          2
+        ],
+        "MMP-50": [
+          5,
+          4,
+          1
+        ]
+      }
+    },
+    {
+      "name": "three-party-epsilon",
+      "input": {
+        "total_seats": 2,
+        "vote_shares": [
+          0.01,
+          0.33,
+          0.6599999999999999
+        ],
+        "party_ids": [
+          "D",
+          "R",
+          "G"
+        ],
+        "actual_d_seats": 1,
+        "actual_r_seats": 1
+      },
+      "expected": {
+        "PR": [
+          0,
+          1,
+          1
+        ],
+        "PR-DH": [
+          0,
+          1,
+          1
+        ],
+        "PR-HAM": [
+          0,
+          1,
+          1
+        ],
+        "MMD-3": [
+          0,
+          1,
+          1
+        ],
+        "MMD-5": [
+          0,
+          1,
+          1
+        ],
+        "MMP-50": [
+          1,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "name": "three-party-r-first",
+      "input": {
+        "total_seats": 12,
+        "vote_shares": [
+          0.35,
+          0.5,
+          0.15
+        ],
+        "party_ids": [
+          "R",
+          "D",
+          "G"
+        ],
+        "actual_d_seats": 4,
+        "actual_r_seats": 8
+      },
+      "expected": {
+        "PR": [
+          4,
+          6,
+          2
+        ],
+        "PR-DH": [
+          4,
+          6,
+          2
+        ],
+        "PR-HAM": [
+          4,
+          6,
+          2
+        ],
+        "MMD-3": [
+          4,
+          8,
+          0
+        ],
+        "MMD-5": [
+          5,
+          5,
+          2
+        ],
+        "MMP-50": [
+          4,
+          6,
+          2
         ]
       }
     }

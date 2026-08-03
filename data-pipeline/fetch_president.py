@@ -32,6 +32,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import requests
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 BASELINE_DIR = REPO_ROOT / "data-pipeline" / "baseline"
@@ -253,7 +254,7 @@ def main() -> None:
             "states": states_out,
         }
         out_path = BASELINE_DIR / f"president_{year}.json"
-        out_path.write_text(json.dumps(payload, indent=2))
+        write_json_atomic(out_path, payload)
         # Quick eyeball: national top-3 by votes.
         natl: dict[str, int] = defaultdict(int)
         for s in states_out:

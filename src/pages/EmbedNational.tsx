@@ -4,6 +4,7 @@ import type { Topology } from 'topojson-specification';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
 import { useEmbedHeightSync } from '../lib/embedPostMessage';
+import { fmtMargin } from '../lib/format';
 import { recomputeWithSwing } from '../lib/swing';
 import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload, ViewMode, ColorMode } from '../lib/types';
@@ -103,8 +104,8 @@ export function EmbedNational() {
     viewMode === 'retrospective'
       ? '2024 Retrospective'
       : viewMode === 'sandbox'
-        ? `Sandbox · ${ballot >= 0 ? `D+${ballot.toFixed(1)}` : `R+${Math.abs(ballot).toFixed(1)}`}`
-        : `Current polling · ${meta.generic_ballot_margin >= 0 ? `D+${meta.generic_ballot_margin.toFixed(1)}` : `R+${Math.abs(meta.generic_ballot_margin).toFixed(1)}`}`;
+        ? `Sandbox · ${fmtMargin(ballot)}`
+        : `Current polling · ${fmtMargin(meta.generic_ballot_margin)}`;
 
   return (
     <div ref={containerRef} className="bg-white text-stone-900 font-sans p-4">

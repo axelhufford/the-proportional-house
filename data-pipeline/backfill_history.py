@@ -37,6 +37,7 @@ import build_history
 from fetch_clerk_house import OUT_PATH as BASELINE_JSON
 from fetch_polls import fetch_csv, parse_polls, weighted_average
 from update import project_states
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_DATA = REPO_ROOT / "public" / "data"
@@ -115,7 +116,7 @@ def main() -> None:
         },
         "points": points,
     }
-    BACKFILL_PATH.write_text(json.dumps(payload, indent=2))
+    write_json_atomic(BACKFILL_PATH, payload)
     print(f"Wrote {len(points)} reconstructed point(s) to {BACKFILL_PATH.relative_to(REPO_ROOT)}")
     if points:
         first, last = points[0], points[-1]

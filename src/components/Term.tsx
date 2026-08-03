@@ -47,7 +47,12 @@ export function Term({ id, children }: TermProps) {
       <button
         type="button"
         aria-describedby={open ? tipId : undefined}
-        onClick={() => setOpen(true)}
+        aria-expanded={open}
+        // Toggle, not open-only. The outside-pointerdown handler above
+        // deliberately ignores clicks inside the wrapper — and the term button
+        // *is* inside it — so on touch (no hover, no blur) a second tap on the
+        // term did nothing and the only way to dismiss was tapping elsewhere.
+        onClick={() => setOpen((o) => !o)}
         onFocus={() => setOpen(true)}
         onKeyDown={(e) => {
           if (e.key === 'Escape') setOpen(false);

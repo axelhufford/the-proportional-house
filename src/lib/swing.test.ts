@@ -77,3 +77,68 @@ describe('recomputeWithSwing', () => {
     expect(out.national.projected.d_seats).toBe(natD);
   });
 });
+
+// The two tests above only cover metadata handling. These cover the seat math
+// itself, which drives every number the Sandbox shows.
+describe('recomputeWithSwing seat math', () => {
+  it('conserves each state’s seat total at any swing', () => {
+    for (let s = -15; s <= 15; s += 0.5) {
+      const out = recomputeWithSwing(FIXTURE, s);
+      for (const st of out.states) {
+        expect(st.projected.d_seats + st.projected.r_seats, `${st.code} at swing ${s}`).toBe(
+          st.seats,
+        );
+        expect(Number.isInteger(st.projected.d_seats)).toBe(true);
+        expect(st.projected.d_seats).toBeGreaterThanOrEqual(0);
+      }
+      expect(out.national.projected.d_seats + out.national.projected.r_seats).toBe(
+        out.national.seats,
+      );
+    }
+  });
+
+  it('is monotonic: a bigger D swing never costs Democrats seats', () => {
+    let prev = -Infinity;
+    for (let s = -15; s <= 15; s += 0.25) {
+      const d = recomputeWithSwing(FIXTURE, s).national.projected.d_seats;
+      expect(d, `D seats dropped going to swing ${s}`).toBeGreaterThanOrEqual(prev);
+      prev = d;
+    }
+  });
+
+  it('projects the untouched baseline shares at zero swing', () => {
+    const out = recomputeWithSwing(FIXTURE, 0);
+    for (const st of out.states) {
+      const orig = FIXTURE.states.find((x) => x.fips === st.fips)!;
+      expect(st.projected.d_share, `${st.code} d_share`).toBeCloseTo(
+        orig.baseline_2024.d_share,
+        9,
+      );
+      expect(st.projected.r_share, `${st.code} r_share`).toBeCloseTo(
+        orig.baseline_2024.r_share,
+        9,
+      );
+    }
+  });
+
+  it('is deterministic — the same swing always yields the same seats', () => {
+    const a = recomputeWithSwing(FIXTURE, 4.25);
+    const b = recomputeWithSwing(FIXTURE, 4.25);
+    expect(a.states.map((s) => s.projected.d_seats)).toEqual(
+      b.states.map((s) => s.projected.d_seats),
+    );
+  });
+
+  it('drives every seat to one party at an extreme swing', () => {
+    const allD = recomputeWithSwing(FIXTURE, 500);
+    expect(allD.national.projected.r_seats).toBe(0);
+    const allR = recomputeWithSwing(FIXTURE, -500);
+    expect(allR.national.projected.d_seats).toBe(0);
+  });
+
+  it('leaves the input payload untouched', () => {
+    const before = JSON.stringify(FIXTURE);
+    recomputeWithSwing(FIXTURE, 9.0);
+    expect(JSON.stringify(FIXTURE)).toBe(before);
+  });
+});

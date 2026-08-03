@@ -107,6 +107,12 @@ export function allocatePR(
  */
 export function allocateMMD(input: MethodAllocationInput, size: number): number[] {
   const { total_seats, vote_shares } = input;
+  // A size below 1 would make `full` Infinity (size 0) or negative (size < 0),
+  // hanging the tab or silently dropping every seat. The UI bounds magnitude
+  // to 2–10, but this is an exported function.
+  if (!Number.isFinite(size) || size < 1) {
+    throw new RangeError(`allocateMMD: district size must be >= 1 (got ${size})`);
+  }
   if (total_seats <= 0) return vote_shares.map(() => 0);
 
   // Compute district sizes.
@@ -161,13 +167,18 @@ export function allocateMMP(input: MethodAllocationInput, smdFraction: number): 
   const n = vote_shares.length;
   if (total_seats <= 0) return vote_shares.map(() => 0);
 
-  const smdCount = Math.round(total_seats * smdFraction);
-  const listCount = total_seats - smdCount;
   const actualTotal = actual_d_seats + actual_r_seats;
+  // The SMD tier is seeded from today's actual delegation. With no actual
+  // delegation (0-0) there is no basis for a single-member split, so the whole
+  // chamber comes from the list tier. Leaving smdCount > 0 here would strand
+  // those seats: the SMD block below is skipped, and the list tier only ever
+  // hands out listCount — so sum(seats) would come up short of total_seats.
+  const smdCount = actualTotal > 0 ? Math.round(total_seats * smdFraction) : 0;
+  const listCount = total_seats - smdCount;
 
   // Step 1: SMD allocation. D and R only, scaled from today's actual.
   const smd = vote_shares.map(() => 0);
-  if (smdCount > 0 && actualTotal > 0) {
+  if (smdCount > 0) {
     const dIdx = party_ids.indexOf('D');
     const rIdx = party_ids.indexOf('R');
     const dExact = (actual_d_seats / actualTotal) * smdCount;

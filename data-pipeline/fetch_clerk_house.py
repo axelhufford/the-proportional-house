@@ -28,6 +28,8 @@ from typing import Dict
 import pdfplumber
 import requests
 
+from io_utils import write_bytes_atomic, write_json_atomic
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PDF_URL = "https://history.house.gov/Institution/Election-Statistics/2024election/"
 PDF_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "clerk_2024_statistics.pdf"
@@ -35,10 +37,23 @@ OUT_PATH = REPO_ROOT / "data-pipeline" / "baseline" / "house_2024.json"
 
 # Per-state seat counts from the 2024 House election. Sourced from Wikipedia's
 # "Per state" summary table because the Clerk PDF only gives per-district
-# winners (parsing each state's page would work but is fragile). Wikipedia's
-# table updates if special elections shift the count, which is what we want
-# for "actual delegation today".
+# winners (parsing each state's page would work but is fragile).
+#
+# SCOPE: this table reports the delegation *as elected in November 2024*. It is
+# not a live composition feed — it does not move when a seat changes hands in a
+# special election. An earlier comment here claimed it did; it does not, and
+# nothing downstream should be documented as if it does.
+#
+# We read `action=raw` wikitext rather than the rendered page. The rendered HTML
+# is now Parsoid output, where every element carries id="mw…" attributes and
+# `data-mw` payloads containing escaped markup — the previous regexes over bare
+# `<tr>`/`<th>` tags silently matched nothing, so this scrape had been returning
+# zero states and failing.
 WIKIPEDIA_RESULTS_URL = "https://en.wikipedia.org/wiki/2024_United_States_House_of_Representatives_elections"
+WIKIPEDIA_RAW_URL = (
+    "https://en.wikipedia.org/w/index.php"
+    "?title=2024_United_States_House_of_Representatives_elections&action=raw"
+)
 
 # Static data files for uncontested-race imputation. Stage 1 covers just
 # state-level cases (only Vermont currently); within-state uncontested
@@ -107,55 +122,65 @@ SEATS_2024 = {
     "WI": 8, "WY": 1,
 }
 
-def fetch_house_composition() -> Dict[str, Dict[str, int]]:
-    """Scrape Wikipedia's per-state 2024 House election results table.
+def _wikitext_cell_int(line: str) -> int | None:
+    """Extract the integer from one wikitext table cell.
+
+    Cells come in several shapes:
+        |7                                      -> 7
+        | {{Party shading/Republican}} |'''5'''  -> 5
+        |{{decrease}} 1                          -> 1  (a change column)
+    Take the text after the last pipe, drop any templates and bold markers,
+    and parse what's left. Returns None when the cell isn't a plain number.
+    """
+    part = line.split("|")[-1]
+    part = re.sub(r"\{\{[^}]*\}\}", "", part)  # {{decrease}}, {{Party shading/...}}
+    part = part.replace("'''", "").strip()
+    return int(part) if re.fullmatch(r"-?\d+", part) else None
+
+
+def parse_house_composition(wikitext: str) -> Dict[str, Dict[str, int]]:
+    """Parse the 'Per state' table out of the article wikitext.
 
     Returns a dict keyed by state code (e.g. 'CA') with {seats, d_seats, r_seats}.
+    Validates that R + D == seats for every state and that the table covers all
+    50 states totalling 435; raises if anything is off.
 
-    Wikipedia maintains this table and updates it if special elections shift
-    the count, so this gives us the real current delegation rather than a
-    hardcoded snapshot. Validates that R + D == seats for every state and
-    totals to 435; raises if anything's off.
+    Split out from the fetch so it can be tested against a fixture without
+    hitting the network.
     """
-    print(f"Fetching {WIKIPEDIA_RESULTS_URL}")
-    r = requests.get(WIKIPEDIA_RESULTS_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
-    r.raise_for_status()
-    html = r.text
-
-    anchor_idx = html.find('id="Per_state"')
-    if anchor_idx < 0:
-        raise RuntimeError("Could not find 'Per_state' anchor in Wikipedia page (page structure may have changed)")
-    slice_ = html[anchor_idx:anchor_idx + 200000]
-    tab_start = slice_.find('<table class="wikitable sortable"')
-    tab_end = slice_.find("</table>", tab_start) + len("</table>")
-    table_html = slice_[tab_start:tab_end]
-
-    def strip_html(s: str) -> str:
-        return re.sub(r"<[^>]+>", "", s).strip()
+    idx = wikitext.find("== Per state ==")
+    if idx < 0:
+        idx = wikitext.find("==Per state==")
+    if idx < 0:
+        raise RuntimeError("Could not find the 'Per state' section (article structure changed?)")
+    tab_start = wikitext.find("{|", idx)
+    tab_end = wikitext.find("|}", tab_start)
+    if tab_start < 0 or tab_end < 0:
+        raise RuntimeError("Could not locate the 'Per state' wikitable delimiters")
+    table = wikitext[tab_start:tab_end]
 
     out: Dict[str, Dict[str, int]] = {}
-    for tr in re.findall(r"<tr>\s*(.*?)\s*</tr>", table_html, re.DOTALL):
-        m_state = re.search(r'<th><a href="#[^"]+"[^>]*>([A-Z][a-zA-Z ]+)</a>', tr)
+    for block in table.split("\n|-"):
+        # Row header is the state link: ![[#Alabama|Alabama]]
+        m_state = re.search(r"^!\s*\[\[#[^|\]]+\|([^\]]+)\]\]", block.strip(), re.M)
         if not m_state:
             continue
-        state = m_state.group(1)
+        state = m_state.group(1).strip()
         if state not in STATE_CODES:
             continue
-        tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.DOTALL)
-        if len(tds) < 5:
-            continue
-        try:
-            total = int(strip_html(tds[0]))
-            r_seats = int(strip_html(tds[1]).split()[0])
-            d_seats = int(strip_html(tds[3]).split()[0])
-        except (ValueError, IndexError):
-            continue
+        cells = [ln for ln in block.strip().split("\n") if ln.startswith("|")]
+        values = [_wikitext_cell_int(c) for c in cells]
+        # Columns: Total | R seats | R change | D seats | D change
+        if len(values) < 5 or any(v is None for v in (values[0], values[1], values[3])):
+            raise RuntimeError(f"{state}: could not parse seat columns from {cells!r}")
+        total, r_seats, d_seats = values[0], values[1], values[3]
         if r_seats + d_seats != total:
             raise RuntimeError(f"{state}: R({r_seats}) + D({d_seats}) != total ({total})")
         out[STATE_CODES[state]] = {"seats": total, "r_seats": r_seats, "d_seats": d_seats}
 
     if len(out) != 50:
-        raise RuntimeError(f"Expected 50 states, got {len(out)}")
+        missing = sorted(set(STATE_CODES.values()) - set(out))
+        raise RuntimeError(f"Expected 50 states, got {len(out)} (missing: {', '.join(missing)})")
     total_seats = sum(v["seats"] for v in out.values())
     if total_seats != 435:
         raise RuntimeError(f"Total seats = {total_seats}, expected 435")
@@ -165,14 +190,46 @@ def fetch_house_composition() -> Dict[str, Dict[str, int]]:
     return out
 
 
+def fetch_house_composition() -> Dict[str, Dict[str, int]]:
+    """Fetch and parse the per-state 2024 House election results table.
+
+    This is the delegation *as elected in November 2024* — see the note on
+    WIKIPEDIA_RAW_URL. It is not adjusted for subsequent special elections.
+    """
+    print(f"Fetching {WIKIPEDIA_RAW_URL}")
+    r = requests.get(
+        WIKIPEDIA_RAW_URL,
+        headers={"User-Agent": "the-proportional-house/1.0 (+https://proportionalhouse.org)"},
+        timeout=30,
+    )
+    r.raise_for_status()
+    return parse_house_composition(r.text)
+
+
 def download_pdf(force: bool = False) -> Path:
+    """Fetch the Clerk statistics PDF, replacing the committed copy only if the
+    response really is a PDF.
+
+    PDF_URL is a landing page that 302s and can serve HTML; `raise_for_status`
+    is happy with that, so an unguarded write would clobber the committed 600 KB
+    baseline with a redirect body and leave the corrupted file staged for
+    commit. Check the magic bytes before touching the existing file, and write
+    atomically so an interrupted download can't truncate it either.
+    """
     if PDF_PATH.exists() and not force:
         return PDF_PATH
     PDF_PATH.parent.mkdir(parents=True, exist_ok=True)
     print(f"Downloading {PDF_URL}")
     r = requests.get(PDF_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
     r.raise_for_status()
-    PDF_PATH.write_bytes(r.content)
+    if not r.content.startswith(b"%PDF"):
+        ctype = r.headers.get("Content-Type", "unknown")
+        raise ValueError(
+            f"{PDF_URL} returned {ctype} ({len(r.content)} bytes), not a PDF — "
+            f"refusing to overwrite {PDF_PATH.name}. The Clerk site may have "
+            f"moved the file; update PDF_URL to the direct .pdf link."
+        )
+    write_bytes_atomic(PDF_PATH, r.content)
     return PDF_PATH
 
 
@@ -507,14 +564,12 @@ def main(force_download: bool = False) -> None:
             "notes": [
                 "State-level vote totals reflect uncontested-district imputation where applied (see uncontested_imputation).",
                 "Two-party share is computed as R / (R + D); third parties and write-ins are excluded from the share.",
-                "Actual delegation seat counts are scraped from Wikipedia's per-state results table on every pipeline run, so special-election shifts propagate automatically.",
+                "Actual delegation seat counts are the results of the November 2024 general election, parsed from Wikipedia's per-state summary table. They are NOT adjusted for subsequent special elections; both these counts and the two-party vote shares are fixed 2024 history, re-derived only when this script is re-run with --refresh.",
             ],
         },
         "states": states_out,
     }
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with OUT_PATH.open("w") as f:
-        json.dump(payload, f, indent=2)
+    write_json_atomic(OUT_PATH, payload)
     flagged = [s["code"] for s in states_out if s["baseline_distortion_warning"]]
     print(
         f"Wrote {OUT_PATH.relative_to(REPO_ROOT)}: "

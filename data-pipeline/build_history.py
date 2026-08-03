@@ -35,6 +35,7 @@ import requests
 from fetch_clerk_house import OUT_PATH as BASELINE_JSON
 from methods import national_by_method
 from update import project_states
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_DATA = REPO_ROOT / "public" / "data"
@@ -167,7 +168,7 @@ def main() -> None:
         "meta": {"generated_at": datetime.now(timezone.utc).isoformat()},
         "points": points,
     }
-    HISTORY_PATH.write_text(json.dumps(payload, indent=2))
+    write_json_atomic(HISTORY_PATH, payload)
     n_recon = sum(1 for p in points if _is_reconstructed(p))
     print(
         f"Wrote history with {len(points)} point(s) "

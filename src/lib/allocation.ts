@@ -24,7 +24,27 @@ export interface AllocationInputN {
   votes: number[];
 }
 
-const EPSILON = 1e-9;
+/**
+ * Reject inputs that would produce meaningless seat counts.
+ *
+ * Without this, a NaN vote total silently poisons the sort comparator and a
+ * negative one can produce a *negative* seat count (Math.floor(-2.5) === -3),
+ * which would render in the UI as "−3 seats" rather than failing loudly.
+ * Mirrors `_validate` in data-pipeline/allocation.py.
+ */
+function assertValidInput(input: AllocationInputN): void {
+  if (!Number.isFinite(input.seats)) {
+    throw new RangeError(`allocation: seats must be finite (got ${input.seats})`);
+  }
+  for (let i = 0; i < input.votes.length; i++) {
+    const v = input.votes[i];
+    if (!Number.isFinite(v) || v < 0) {
+      throw new RangeError(
+        `allocation: vote totals must be finite and non-negative (party index ${i} got ${v})`,
+      );
+    }
+  }
+}
 
 /**
  * Generic divisor-method allocator. Computes a quotient per party per
@@ -35,6 +55,13 @@ const EPSILON = 1e-9;
  * larger original vote total; final ties broken by lower party index.
  * For two-party callers (D=index 0, R=index 1) this preserves the
  * historical "D wins ties" behavior that the existing fixture encodes.
+ *
+ * Quotients are compared *exactly*, not within an epsilon. An epsilon
+ * comparison here would be non-transitive (a≈b, b≈c, a<c), which is
+ * undefined behavior for Array.prototype.sort, and it would disagree with
+ * data-pipeline/allocation.py — which compares exactly — whenever two
+ * quotients land within 1e-9 of each other. Genuine mathematical ties
+ * produce bit-identical doubles, so exact comparison handles them.
  */
 function divisorMethodN(
   input: AllocationInputN,
@@ -60,7 +87,7 @@ function divisorMethodN(
   }
 
   quotients.sort((a, b) => {
-    if (Math.abs(a.value - b.value) > EPSILON) return b.value - a.value;
+    if (a.value !== b.value) return b.value - a.value;
     if (a.votes !== b.votes) return b.votes - a.votes;
     return a.partyIdx - b.partyIdx; // lower index wins final tie
   });
@@ -102,7 +129,7 @@ function hamiltonN(input: AllocationInputN): number[] {
   let remaining = seats - assigned;
 
   remainders.sort((a, b) => {
-    if (Math.abs(a.frac - b.frac) > EPSILON) return b.frac - a.frac;
+    if (a.frac !== b.frac) return b.frac - a.frac;
     if (a.votes !== b.votes) return b.votes - a.votes;
     return a.idx - b.idx;
   });
@@ -126,6 +153,7 @@ export function allocateN(
   input: AllocationInputN,
   method: AllocationMethod = 'sainte-lague',
 ): number[] {
+  assertValidInput(input);
   switch (method) {
     case 'sainte-lague':
       return sainteLagueN(input);
@@ -170,6 +198,7 @@ export function quotientTable(
   method: Extract<AllocationMethod, 'sainte-lague' | 'dhondt'> = 'sainte-lague',
 ): QuotientRow[] {
   const { seats, d_votes, r_votes } = input;
+  assertValidInput({ seats, votes: [d_votes, r_votes] });
   const divisorFor = method === 'sainte-lague' ? (i: number) => 2 * i + 1 : (i: number) => i + 1;
 
   type Q = { party: Party; value: number; votes: number; divisor: number };
@@ -183,8 +212,13 @@ export function quotientTable(
     all.push({ party: 'D', value: d_q, votes: d_votes, divisor: div });
     all.push({ party: 'R', value: r_q, votes: r_votes, divisor: div });
   }
+  // All-zero votes → no seats earned. Without this, every quotient is 0, the
+  // tie-break hands all `seats` rows to D, and the table would contradict
+  // `allocate`, which returns 0/0 for the same input. Reachable from the
+  // Methodology page's interactive demo, whose vote inputs allow 0.
+  if (d_votes + r_votes <= 0) return rows;
   all.sort((a, b) => {
-    if (Math.abs(a.value - b.value) > EPSILON) return b.value - a.value;
+    if (a.value !== b.value) return b.value - a.value;
     if (a.votes !== b.votes) return b.votes - a.votes;
     return a.party === b.party ? 0 : a.party === 'D' ? -1 : 1;
   });

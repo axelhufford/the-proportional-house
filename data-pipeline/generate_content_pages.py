@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from io_utils import write_text_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 RETRO_PATH = REPO_ROOT / "public" / "data" / "retrospectives.json"
@@ -170,7 +171,7 @@ def main() -> None:
         print(f"  (skip) {RETRO_PATH.relative_to(REPO_ROOT)} not found — retrospectives page not written.")
         return
     retro = json.loads(RETRO_PATH.read_text())
-    OUT_PATH.write_text(build_html(retro))
+    write_text_atomic(OUT_PATH, build_html(retro))
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)} ({len(retro.get('series', []))} cycles).")
 
 

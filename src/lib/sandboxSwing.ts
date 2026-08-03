@@ -152,6 +152,35 @@ function scaleActualDelegation(
 export const DEFAULT_HOUSE_SIZE = 435;
 
 /**
+ * Sandbox control bounds — the single source of truth for both the slider
+ * widgets (src/components/Sandbox.tsx) and the URL parsers that have to accept
+ * what those sliders emit (src/pages/Home.tsx).
+ *
+ * These were previously declared separately in each file. Because the parsers
+ * reject out-of-range values, widening a slider in one place without the other
+ * made the app emit `?method=mmd-12` and then silently reject its own URL on
+ * load, quietly falling back to Pure PR — a shareable-link feature failing
+ * closed with no error.
+ */
+export const SANDBOX_BOUNDS = {
+  /** Multi-member district magnitude. */
+  mmdMin: 2,
+  mmdMax: 10,
+  /** MMP single-member share, as a whole percentage. */
+  mmpPctMin: 10,
+  mmpPctMax: 90,
+  mmpPctStep: 5,
+  /** Minor-party vote threshold, as a fraction. */
+  thresholdMin: 0,
+  thresholdMax: 0.1,
+  thresholdStep: 0.005,
+  defaultThreshold: 0.05,
+  /** House size — 435 today; reform proposals go up. */
+  houseSizeMin: 435,
+  houseSizeMax: 800,
+} as const;
+
+/**
  * Build a SandboxPayload from a two-party ProjectionPayload.
  *
  * When `minors` is empty, callers should generally skip building this

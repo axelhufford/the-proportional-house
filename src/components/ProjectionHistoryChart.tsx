@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PARTY_D } from '../lib/parties';
 import {
   CartesianGrid,
   Line,
@@ -41,7 +42,7 @@ const TOTAL_SEATS = 435;
 // `methods` keys (and 'PR' for the top-level Pure-PR line). Colors are chosen
 // to stay distinguishable when overlaid in Compare mode.
 const SERIES = [
-  { id: 'PR', label: 'Pure PR', color: '#2166ac' },
+  { id: 'PR', label: 'Pure PR', color: PARTY_D.color },
   { id: 'MMD-3', label: 'MMD-3', color: '#d97706' },
   { id: 'MMD-5', label: 'MMD-5', color: '#059669' },
   { id: 'MMP-50', label: 'MMP-50', color: '#7c3aed' },
@@ -129,39 +130,57 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
   // current selection when nothing is hovered.
   const [hovered, setHovered] = useState<Selection | null>(null);
 
-  const data: Row[] = points.map((p) => {
-    const row: Row = {
-      date: p.date,
-      margin: p.generic_ballot_margin,
-      reconstructed: p.reconstructed === true,
-      PR: p.projected_d,
-    };
-    if (p.methods) {
-      for (const s of SERIES) {
-        if (s.id !== 'PR' && p.methods[s.id]) row[s.id] = p.methods[s.id].d;
-      }
-    }
-    return row;
-  });
+  // Memoized on `points` alone. `hovered` changes on every mouseenter,
+  // mouseleave, focus and blur across the five selector options, and it only
+  // affects the one-line explainer below — but without this the whole ~550-row
+  // dataset was rebuilt with a fresh identity on each of those events, forcing
+  // recharts to re-layout the entire LineChart.
+  const data: Row[] = useMemo(
+    () =>
+      points.map((p) => {
+        const row: Row = {
+          date: p.date,
+          margin: p.generic_ballot_margin,
+          reconstructed: p.reconstructed === true,
+          PR: p.projected_d,
+        };
+        if (p.methods) {
+          for (const s of SERIES) {
+            if (s.id !== 'PR' && p.methods[s.id]) row[s.id] = p.methods[s.id].d;
+          }
+        }
+        return row;
+      }),
+    [points],
+  );
 
   // Which method lines to draw. A single non-PR selection also shows Pure PR
   // faint as a reference; Compare draws all four.
-  const selectedIds: MethodId[] =
-    selection === 'compare' ? SERIES.map((s) => s.id) : [selection];
+  // A single non-PR selection also draws Pure PR faint, as a reference line.
   const showPrReference = selection !== 'PR' && selection !== 'compare';
-  const visibleIds: MethodId[] = showPrReference ? ['PR', ...selectedIds] : selectedIds;
+  const visibleIds: MethodId[] = useMemo(() => {
+    const selectedIds: MethodId[] =
+      selection === 'compare' ? SERIES.map((s) => s.id) : [selection];
+    return selection !== 'PR' && selection !== 'compare'
+      ? ['PR', ...selectedIds]
+      : selectedIds;
+  }, [selection]);
 
   // Auto-scale the y-domain over whatever's visible (MMD/MMP land well off the
   // Pure-PR ~218 band), but always keep the 218 majority line in frame.
-  const vals: number[] = [];
-  for (const row of data) {
-    for (const id of visibleIds) {
-      const v = row[id];
-      if (typeof v === 'number') vals.push(v);
+  const { yMin, yMax } = useMemo(() => {
+    const vals: number[] = [];
+    for (const row of data) {
+      for (const id of visibleIds) {
+        const v = row[id];
+        if (typeof v === 'number') vals.push(v);
+      }
     }
-  }
-  const yMin = Math.floor(Math.min(218, ...vals) - 4);
-  const yMax = Math.ceil(Math.max(218, ...vals) + 4);
+    return {
+      yMin: Math.floor(Math.min(218, ...vals) - 4),
+      yMax: Math.ceil(Math.max(218, ...vals) + 4),
+    };
+  }, [data, visibleIds]);
 
   const showLegend = visibleIds.length > 1;
 

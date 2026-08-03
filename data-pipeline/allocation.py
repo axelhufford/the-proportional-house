@@ -7,10 +7,9 @@ shared fixture in tests/fixtures/allocation_cases.json.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Callable, List, Literal
-
-EPSILON = 1e-9
 
 Party = Literal["D", "R"]
 Method = Literal["sainte-lague", "dhondt", "hamilton"]
@@ -29,94 +28,35 @@ class AllocationResult:
     r_seats: int
 
 
-def _divisor_method(
-    inp: AllocationInput,
-    divisor_for: Callable[[int], int],
-) -> AllocationResult:
-    if inp.seats <= 0:
-        return AllocationResult(0, 0)
-
-    # (party, value, votes)
-    quotients: List[tuple[Party, float, float]] = []
-    for i in range(inp.seats):
-        div = divisor_for(i)
-        quotients.append(("D", inp.d_votes / div, inp.d_votes))
-        quotients.append(("R", inp.r_votes / div, inp.r_votes))
-
-    # Sort descending by value. Ties broken by larger vote total, then 'D' < 'R'.
-    def sort_key(q: tuple[Party, float, float]) -> tuple[float, float, int]:
-        party, value, votes = q
-        return (-value, -votes, 0 if party == "D" else 1)
-
-    quotients.sort(key=sort_key)
-
-    d = 0
-    r = 0
-    for i in range(inp.seats):
-        if quotients[i][0] == "D":
-            d += 1
-        else:
-            r += 1
-    return AllocationResult(d, r)
-
-
-def _sainte_lague(inp: AllocationInput) -> AllocationResult:
-    return _divisor_method(inp, lambda i: 2 * i + 1)
-
-
-def _dhondt(inp: AllocationInput) -> AllocationResult:
-    return _divisor_method(inp, lambda i: i + 1)
-
-
-def _hamilton(inp: AllocationInput) -> AllocationResult:
-    if inp.seats <= 0:
-        return AllocationResult(0, 0)
-    total = inp.d_votes + inp.r_votes
-    if total <= 0:
-        return AllocationResult(0, 0)
-
-    d_quota = (inp.d_votes / total) * inp.seats
-    r_quota = (inp.r_votes / total) * inp.seats
-    d = int(d_quota)  # floor for non-negative floats
-    r = int(r_quota)
-    remaining = inp.seats - d - r
-
-    d_rem = d_quota - d
-    r_rem = r_quota - r
-    while remaining > 0:
-        if d_rem > r_rem + EPSILON:
-            d += 1
-        elif r_rem > d_rem + EPSILON:
-            r += 1
-        elif inp.d_votes >= inp.r_votes:
-            d += 1
-        else:
-            r += 1
-        remaining -= 1
-    return AllocationResult(d, r)
-
-
-def allocate(inp: AllocationInput, method: Method = "sainte-lague") -> AllocationResult:
-    if method == "sainte-lague":
-        return _sainte_lague(inp)
-    if method == "dhondt":
-        return _dhondt(inp)
-    if method == "hamilton":
-        return _hamilton(inp)
-    raise ValueError(f"Unknown allocation method: {method}")
-
-
 # --- N-party allocation -----------------------------------------------------
 # Mirrors `allocateN` in src/lib/allocation.ts. Used by the Electoral College
-# build (allocate a state's electors across all presidential candidates).
-# Parity is guarded by the shared fixture tests/fixtures/allocation_cases.json
-# ("cases_n"), consumed by both tests/test_allocation.py and allocation.test.ts.
+# build (allocate a state's electors across all presidential candidates) and,
+# via `allocate` below, by every two-party caller. Parity is guarded by the
+# shared fixture tests/fixtures/allocation_cases.json, consumed by both
+# tests/test_allocation.py and allocation.test.ts.
 
 
 @dataclass(frozen=True)
 class AllocationInputN:
     seats: int
     votes: List[float]  # vote totals per party; order preserved in the result
+
+
+def _validate(inp: AllocationInputN) -> None:
+    """Reject inputs that would produce meaningless seat counts.
+
+    Without this, a NaN vote total silently poisons the sort comparator and a
+    negative one can produce a *negative* seat count (floor(-2.5) = -3), which
+    would render in the UI as "−3 seats" rather than failing loudly.
+    """
+    if not math.isfinite(inp.seats):
+        raise ValueError(f"allocation: seats must be finite (got {inp.seats})")
+    for i, v in enumerate(inp.votes):
+        if not math.isfinite(v) or v < 0:
+            raise ValueError(
+                f"allocation: vote totals must be finite and non-negative "
+                f"(party index {i} got {v})"
+            )
 
 
 def _divisor_method_n(
@@ -176,6 +116,7 @@ def _hamilton_n(inp: AllocationInputN) -> List[int]:
 def allocate_n(inp: AllocationInputN, method: Method = "sainte-lague") -> List[int]:
     """Allocate `inp.seats` among the parties in `inp.votes`, returning seats per
     party in input order. Mirrors src/lib/allocation.ts `allocateN`."""
+    _validate(inp)
     if method == "sainte-lague":
         return _divisor_method_n(inp, lambda i: 2 * i + 1)
     if method == "dhondt":
@@ -183,3 +124,20 @@ def allocate_n(inp: AllocationInputN, method: Method = "sainte-lague") -> List[i
     if method == "hamilton":
         return _hamilton_n(inp)
     raise ValueError(f"Unknown allocation method: {method}")
+
+
+def allocate(inp: AllocationInput, method: Method = "sainte-lague") -> AllocationResult:
+    """Two-party allocator — the canonical API for the rest of the pipeline.
+
+    Delegates to `allocate_n` with party order [D, R], mirroring the same
+    delegation in src/lib/allocation.ts. Keeping a single implementation is
+    what guarantees the two-party and N-party paths agree with each other and
+    with TypeScript — a separate two-party implementation previously handed
+    *every* seat to D when both parties had zero votes, because it lacked the
+    all-zero guard that `_divisor_method_n` has.
+    """
+    d, r = allocate_n(
+        AllocationInputN(seats=inp.seats, votes=[inp.d_votes, inp.r_votes]),
+        method,
+    )
+    return AllocationResult(d, r)

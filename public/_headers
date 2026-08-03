@@ -1,19 +1,40 @@
 # Cloudflare Pages custom headers.
 # https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Rules here are applied to Function responses as well as static assets, and
+# they win over headers a Function sets for the same name — so anything that
+# needs to vary per response (e.g. cache directives on an error) must NOT be
+# pinned here.
+
+# Baseline hardening for every route. Cloudflare already supplies nosniff and
+# a Referrer-Policy by default; these make them explicit and add the two that
+# were missing. frame-ancestors 'self' is the clickjacking guard — the main
+# site was framable by any origin, which matters for a page whose controls a
+# visitor can be tricked into operating.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'
+  X-Frame-Options: SAMEORIGIN
 
 # Embed routes are intentionally framable from any origin so newsrooms can
-# drop the widget into a story. Override any default X-Frame-Options and
-# set CSP frame-ancestors explicitly to wildcard.
+# drop the widget into a story. These override the /* rules above: both the
+# legacy X-Frame-Options and the CSP frame-ancestors directive have to be
+# relaxed, since a restrictive frame-ancestors would otherwise block the
+# iframe regardless of X-Frame-Options.
 /embed/*
   X-Frame-Options: ALLOWALL
-  Content-Security-Policy: frame-ancestors *;
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; frame-ancestors *; object-src 'none'
 
-# Public API: CORS + sensible cache. The Pages Function sets these too, but
-# repeating them here means a stale function bundle can't drop them.
+# Public API: CORS only. The Function sets its own Cache-Control so it can use
+# `no-store` on a 503 — pinning a cache directive here would override that and
+# let the edge serve a transient upstream failure for five minutes to every
+# consumer. CORS stays here because it's identical on every response, so a
+# stale function bundle can't drop it.
 /api/v1/*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
-  Cache-Control: public, max-age=300, s-maxage=300
 
 # Vite build artifacts have content-hashed filenames, so a given URL is
 # immutable — the hash changes whenever the content does. Cache them for a

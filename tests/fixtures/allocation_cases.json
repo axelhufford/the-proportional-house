@@ -119,6 +119,35 @@
         "dhondt":       { "d_seats": 0, "r_seats": 0 },
         "hamilton":     { "d_seats": 0, "r_seats": 0 }
       }
+    },
+    {
+      "name": "all-zero votes return all zeros (no seats earned)",
+      "$note": "Every quotient is 0, so a naive sort hands all seats to whichever party wins the index tie-break — i.e. D. That is a phantom seat, not an allocation. The N-party path had this guard from the start; the two-party path did not, and awarded D all 5 seats until it was made to delegate to allocate_n / allocateN.",
+      "input": { "seats": 5, "d_votes": 0, "r_votes": 0 },
+      "expected": {
+        "sainte-lague": { "d_seats": 0, "r_seats": 0 },
+        "dhondt":       { "d_seats": 0, "r_seats": 0 },
+        "hamilton":     { "d_seats": 0, "r_seats": 0 }
+      }
+    },
+    {
+      "name": "1-seat all-zero votes return 0-0",
+      "input": { "seats": 1, "d_votes": 0, "r_votes": 0 },
+      "expected": {
+        "sainte-lague": { "d_seats": 0, "r_seats": 0 },
+        "dhondt":       { "d_seats": 0, "r_seats": 0 },
+        "hamilton":     { "d_seats": 0, "r_seats": 0 }
+      }
+    },
+    {
+      "name": "one party with zero votes — the other sweeps",
+      "$note": "Distinct from the all-zero case: R genuinely earned nothing, so D taking all 4 is a real result rather than a tie-break artifact.",
+      "input": { "seats": 4, "d_votes": 800, "r_votes": 0 },
+      "expected": {
+        "sainte-lague": { "d_seats": 4, "r_seats": 0 },
+        "dhondt":       { "d_seats": 4, "r_seats": 0 },
+        "hamilton":     { "d_seats": 4, "r_seats": 0 }
+      }
     }
   ],
   "$comment_n": "N-party parity cases for allocate_n (Python) / allocateN (TS). `votes` order is preserved in `expected[method]`. Hand-verified — used by the Electoral College build (electors across all presidential candidates).",

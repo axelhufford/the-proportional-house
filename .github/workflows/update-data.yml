@@ -11,6 +11,8 @@ on:
       - "src/**"
       - "public/**"
       - "functions/**"
+      - "data-pipeline/**"
+      - "tests/**"
       - "index.html"
       - "package.json"
       - "package-lock.json"
@@ -51,15 +53,22 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r data-pipeline/requirements.txt
 
+      # The Python and TypeScript seat allocators are separate implementations
+      # of the same math, kept in step by a shared generated fixture. Running the
+      # suites here is what makes that guard real — without it, a change that
+      # diverges the two deploys clean.
+      - name: Run Python tests
+        run: python -m pytest tests/ -q
+
       - name: Run pipeline (best-effort; never breaks the deploy)
+        id: pipeline
         run: |
           # Snapshot the last-good committed data OUTSIDE public/ (so Vite never
           # bundles it). If the pipeline errors — e.g. a data source is briefly
           # down — we restore this clean snapshot and overlay the currently-live
           # data, so the deploy still ships good data: never the stale committed
           # copy, and never a half-written file. A code change can still ship
-          # during a data blip; the failure surfaces as a CI warning (and, if it
-          # persists >48h, the site's "data may be stale" banner).
+          # during a data blip; the failure is reported at the end of the job.
           cp -a public/data /tmp/data-committed
 
           if [ "${{ inputs.refresh_baseline }}" = "true" ]; then
@@ -70,18 +79,36 @@ jobs:
 
           if python data-pipeline/update.py $args; then
             echo "Pipeline succeeded — fresh data."
+            echo "failed=false" >> "$GITHUB_OUTPUT"
           else
             echo "::warning title=Data pipeline failed::Pipeline errored; shipping the last-good data so the deploy still succeeds. Data won't refresh this run."
+            echo "failed=true" >> "$GITHUB_OUTPUT"
             # Reset to the clean committed snapshot (drops any partial writes),
             # then prefer the currently-live files for freshness.
             rm -rf public/data && cp -a /tmp/data-committed public/data
             for f in projection.json baseline_2024.json polling_trend.json meta.json history.json; do
               if curl -fsSL "https://proportionalhouse.org/data/$f" -o "/tmp/$f"; then
-                mv "/tmp/$f" "public/data/$f"
+                # `curl -f` only fails on HTTP >= 400, but public/_redirects ends
+                # with `/*  /index.html  200` — so a *missing* data file comes
+                # back as HTTP 200 with the SPA's HTML. Writing that over
+                # projection.json would deploy a "JSON" file that is an HTML
+                # page, breaking every visitor and the public API. Parse it
+                # before trusting it.
+                if python -c "import json,sys; json.load(open(sys.argv[1]))" "/tmp/$f"; then
+                  mv "/tmp/$f" "public/data/$f"
+                else
+                  echo "::warning::Live $f is not valid JSON (likely the SPA fallback); keeping the committed copy."
+                fi
               else
                 echo "::warning::Could not fetch live $f; keeping the committed copy."
               fi
             done
+            # Validate what we are actually about to ship. The restore path
+            # previously deployed without any validation at all.
+            if ! python data-pipeline/validate_data.py; then
+              echo "::error title=Restored data is invalid::Neither the fresh nor the restored data passed validation."
+              exit 1
+            fi
           fi
 
       - name: Upload data artifacts (for debugging on failure)
@@ -101,6 +128,9 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Run JS tests
+        run: npm test
+
       - name: Build site
         run: npm run build
 
@@ -110,3 +140,13 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=the-proportional-house --branch=main
+
+      # Runs after the deploy so the site still gets last-good data, but marks
+      # the run red. A warning annotation on a green check is invisible: the
+      # pipeline could fail every night for weeks and the only signal would be a
+      # visitor noticing the stale-data banner.
+      - name: Report pipeline failure
+        if: always() && steps.pipeline.outputs.failed == 'true'
+        run: |
+          echo "::error title=Data pipeline failed::The site deployed with last-good data, but the pipeline did not produce fresh data this run. Check the 'Run pipeline' step."
+          exit 1

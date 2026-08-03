@@ -116,4 +116,14 @@ export function topMinorWithSeats<T extends { party: { id: string }; seats: numb
   return best;
 }
 
-const MAJOR_IDS: ReadonlySet<string> = new Set(['D', 'R']);
+/**
+ * The two major parties. Exported because the predicate
+ * `p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0` was hand-inlined in
+ * five places across Map.tsx and StateDetailContent.tsx.
+ */
+export const MAJOR_IDS: ReadonlySet<string> = new Set(['D', 'R']);
+
+/** True when `party` is a minor party (anything that isn't D or R). */
+export function isMinorParty(id: string): boolean {
+  return !MAJOR_IDS.has(id);
+}

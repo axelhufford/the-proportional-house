@@ -1,0 +1,370 @@
+== Per state ===
+{| class="wikitable sortable" style="text-align:center"
+! rowspan="2" |State
+! rowspan="2" |Total
+seats
+! colspan="2" {{Party shading/Republican}} |[[Republican Party (United States)|Republican]]
+! colspan="2" {{Party shading/Democratic}} |[[Democratic Party (United States)|Democratic]]
+|-
+!Seats
+!Change
+!Seats
+!Change
+|-
+![[#Alabama|Alabama]]
+|7
+| {{Party shading/Republican}} |'''5'''
+|{{decrease}} 1
+|2
+|{{increase}} 1
+|-
+![[#Alaska|Alaska]]
+|1
+| {{Party shading/Republican}} |'''1'''
+|{{increase}} 1
+|0
+|{{decrease}} 1
+|-
+![[#Arizona|Arizona]]
+|9
+| {{Party shading/Republican}} |'''6'''
+|{{steady}}
+|3
+|{{steady}}
+|-
+![[#Arkansas|Arkansas]]
+|4
+| {{Party shading/Republican}} |'''4'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#California|California]]
+|52
+|9
+|{{decrease}} 3
+| {{Party shading/Democratic}} |'''43'''
+|{{increase}} 3
+|-
+![[#Colorado|Colorado]]
+|8
+|'''4'''
+|{{increase}} 1
+|'''4'''
+|{{decrease}} 1
+|-
+![[#Connecticut|Connecticut]]
+|5
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''5'''
+|{{steady}}
+|-
+![[#Delaware|Delaware]]
+|1
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''1'''
+|{{steady}}
+|-
+![[#Florida|Florida]]
+|28
+| {{Party shading/Republican}} |'''20'''
+|{{steady}}
+|8
+|{{steady}}
+|-
+![[#Georgia|Georgia]]
+|14
+| {{Party shading/Republican}} |'''9'''
+|{{steady}}
+|5
+|{{steady}}
+|-
+![[#Hawaii|Hawaii]]
+|2
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''2'''
+|{{steady}}
+|-
+![[#Idaho|Idaho]]
+|2
+| {{Party shading/Republican}} |'''2'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Illinois|Illinois]]
+|17
+|3
+|{{steady}}
+| {{Party shading/Democratic}} |'''14'''
+|{{steady}}
+|-
+![[#Indiana|Indiana]]
+|9
+| {{Party shading/Republican}} |'''7'''
+|{{steady}}
+|2
+|{{steady}}
+|-
+![[#Iowa|Iowa]]
+|4
+| {{Party shading/Republican}} |'''4'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Kansas|Kansas]]
+|4
+| {{Party shading/Republican}} |'''3'''
+|{{steady}}
+|1
+|{{steady}}
+|-
+![[#Kentucky|Kentucky]]
+|6
+| {{Party shading/Republican}} |'''5'''
+|{{steady}}
+|1
+|{{steady}}
+|-
+![[#Louisiana|Louisiana]]
+|6
+| {{Party shading/Republican}} |'''4'''
+|{{decrease}} 1
+|2
+|{{increase}} 1
+|-
+![[#Maine|Maine]]
+|2
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''2'''
+|{{steady}}
+|-
+![[#Maryland|Maryland]]
+|8
+|1
+|{{steady}}
+| {{Party shading/Democratic}} |'''7'''
+|{{steady}}
+|-
+![[#Massachusetts|Massachusetts]]
+|9
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''9'''
+|{{steady}}
+|-
+![[#Michigan|Michigan]]
+|13
+| {{Party shading/Republican}} |'''7'''
+|{{increase}} 1
+|6
+|{{decrease}} 1
+|-
+![[#Minnesota|Minnesota]]
+|8
+|'''4'''
+|{{steady}}
+|'''4'''
+|{{steady}}
+|-
+![[#Mississippi|Mississippi]]
+|4
+| {{Party shading/Republican}} |'''3'''
+|{{steady}}
+|1
+|{{steady}}
+|-
+![[#Missouri|Missouri]]
+|8
+| {{Party shading/Republican}} |'''6'''
+|{{steady}}
+|2
+|{{steady}}
+|-
+![[#Montana|Montana]]
+|2
+| {{Party shading/Republican}} |'''2'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Nebraska|Nebraska]]
+|3
+| {{Party shading/Republican}} |'''3'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Nevada|Nevada]]
+|4
+|1
+|{{steady}}
+| {{Party shading/Democratic}} |'''3'''
+|{{steady}}
+|-
+![[#New Hampshire|New Hampshire]]
+|2
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''2'''
+|{{steady}}
+|-
+![[#New Jersey|New Jersey]]
+|12
+|3
+|{{steady}}
+| {{Party shading/Democratic}} |'''9'''
+|{{steady}}
+|-
+![[#New Mexico|New Mexico]]
+|3
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''3'''
+|{{steady}} 
+|-
+![[#New York|New York]]
+|26
+|7
+|{{decrease}} 3
+| {{Party shading/Democratic}} |'''19'''
+|{{increase}} 3
+|-
+![[#North Carolina|North Carolina]]
+|14
+| {{Party shading/Republican}} |'''10'''
+|{{increase}} 3
+|4
+|{{decrease}} 3
+|-
+![[#North Dakota|North Dakota]]
+|1
+| {{Party shading/Republican}} |'''1'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Ohio|Ohio]]
+|15
+| {{Party shading/Republican}} |'''10'''
+|{{steady}}
+|5
+|{{steady}}
+|-
+![[#Oklahoma|Oklahoma]]
+|5
+| {{Party shading/Republican}} |'''5'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Oregon|Oregon]]
+|6
+|1
+|{{decrease}} 1
+| {{Party shading/Democratic}} |'''5'''
+|{{increase}} 1
+|-
+![[#Pennsylvania|Pennsylvania]]
+|17
+| {{Party shading/Republican}} |'''10'''
+|{{increase}} 2
+|7
+|{{decrease}} 2
+|-
+![[#Rhode Island|Rhode Island]]
+|2
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''2'''
+|{{steady}}
+|-
+![[#South Carolina|South Carolina]]
+|7
+| {{Party shading/Republican}} |'''6'''
+|{{steady}}
+|1
+|{{steady}}
+|-
+![[#South Dakota|South Dakota]]
+|1
+| {{Party shading/Republican}} |'''1'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Tennessee|Tennessee]]
+|9
+| {{Party shading/Republican}} |'''8'''
+|{{steady}}
+|1
+|{{steady}}
+|-
+![[#Texas|Texas]]
+|38
+| {{Party shading/Republican}} |'''25'''
+|{{steady}}
+|13
+|{{steady}}
+|-
+![[#Utah|Utah]]
+|4
+| {{Party shading/Republican}} |'''4'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Vermont|Vermont]]
+|1
+|0
+|{{steady}}
+| {{Party shading/Democratic}} |'''1'''
+|{{steady}}
+|-
+![[#Virginia|Virginia]]
+|11
+|5
+|{{steady}}
+| {{Party shading/Democratic}} |'''6'''
+|{{steady}} 
+|-
+![[#Washington|Washington]]
+|10
+|2
+|{{steady}} 
+| {{Party shading/Democratic}} |'''8'''
+|{{steady}} 
+|-
+![[#West Virginia|West Virginia]]
+|2
+| {{Party shading/Republican}} |'''2'''
+|{{steady}}
+|0
+|{{steady}}
+|-
+![[#Wisconsin|Wisconsin]]
+|8
+| {{Party shading/Republican}} |'''6'''
+|{{steady}}
+|2
+|{{steady}}
+|-
+![[#Wyoming|Wyoming]]
+|1
+| {{Party shading/Republican}} |'''1'''
+|{{steady}}
+|0
+|{{steady}}
+|- class="sortbottom"
+!Total
+|435
+| {{Party shading/Republican}} |'''220'''
+!{{decrease}} 2
+|215
+!{{increase}} 2
+|}

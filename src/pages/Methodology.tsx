@@ -8,6 +8,7 @@ import { useDocumentTitle } from '../lib/useDocumentTitle';
 // from what the band actually uses.
 import POLLING_ERROR from '../../data-pipeline/baseline/polling_error.json';
 import { ROUTE_META } from '../lib/routeMeta';
+import { fmtMargin } from '../lib/format';
 import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionMeta } from '../lib/types';
 
@@ -43,15 +44,6 @@ interface MetaJson {
 const FALLBACK_SWING = 8.6;
 const CA_ELASTICITY = 1.7;
 const PA_ELASTICITY = 0.51;
-
-/** Sign-safe margin label: 6.9 → "D+6.9", −3 → "R+3.0". The live polling
-  * numbers below can flip sign between pipeline runs; hardcoding a "D+"
-  * prefix would render "D+-3.0". */
-function fmtMargin(points: number, digits = 1): string {
-  return points >= 0
-    ? `D+${points.toFixed(digits)}`
-    : `R+${Math.abs(points).toFixed(digits)}`;
-}
 
 /** Sign-safe swing phrase: 9.5 → "9.5 points toward D", −4 → "4.0 points toward R". */
 function fmtSwingPhrase(points: number): string {

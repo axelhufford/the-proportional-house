@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { geoAlbersUsa, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -11,6 +11,7 @@ import {
   balanceMargin,
   distortionMargin,
   pluralityColor,
+  isMinorParty,
 } from '../lib/colors';
 import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { formatSeatPct } from '../lib/format';
@@ -78,7 +79,7 @@ function buildAriaLabel(
 const WIDTH = 975;
 const HEIGHT = 610;
 
-export function USMap({ topology, states, colorMode, selectedFips, onSelect, sandboxPayload }: MapProps) {
+function USMapInner({ topology, states, colorMode, selectedFips, onSelect, sandboxPayload }: MapProps) {
   const [hoverFips, setHoverFips] = useState<string | null>(null);
 
   const projectionByFips = useMemo(() => {
@@ -108,6 +109,23 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
     const projection = geoAlbersUsa().fitSize([WIDTH, HEIGHT], geojson);
     return geoPath(projection);
   }, [geojson]);
+
+  // Serialized path data, keyed by FIPS. The geometry never changes, so these
+  // strings are computed once per topology — deliberately in their own memo
+  // rather than folded into `visuals` below, which also depends on colorMode
+  // and the sandbox payload.
+  //
+  // These used to be generated inline in the JSX, twice per state (visual layer
+  // + hit layer). That re-serialized all 102 paths out of the 114 KB topology
+  // on every render — including every mouse move across the map (setHoverFips)
+  // and every tick of the sandbox ballot slider.
+  const pathByFips = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const f of geojson.features) {
+      m.set(String(f.id).padStart(2, '0'), pathGen(f) || '');
+    }
+    return m;
+  }, [geojson.features, pathGen]);
 
   const hovered = hoverFips ? projectionByFips.get(hoverFips) : null;
 
@@ -160,7 +178,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
         baselineR = sandboxState.actual_scaled.r_seats;
 
         const hasMinorSeats = sandboxState.parties.some(
-          (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+          (p) => isMinorParty(p.party.id) && p.seats > 0,
         );
 
         if (hasMinorSeats) {
@@ -173,7 +191,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
           const pluralityIsMajor = winner !== null && (winner.party.id === 'D' || winner.party.id === 'R');
           if (pluralityIsMajor) {
             stripeColors = sandboxState.parties
-              .filter((p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0)
+              .filter((p) => isMinorParty(p.party.id) && p.seats > 0)
               .map((p) => p.party.color);
           }
         } else {
@@ -231,10 +249,14 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
 
   return (
     <div className="relative">
+      {/* No role="img" on the <svg>. ARIA prunes every descendant of an
+        * img-role element from the accessibility tree, which silenced the 51
+        * per-state buttons below (each carrying its own aria-label) while
+        * leaving them keyboard-focusable — 51 unlabeled tab stops. Home also
+        * renders an sr-only table with the same numbers as a linear summary. */}
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="w-full h-auto"
-        role="img"
         aria-label="U.S. map of projected House delegation under proportional representation"
       >
         {/* Pattern defs for diagonal stripes on states with minor seats.
@@ -292,7 +314,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
             return (
               <path
                 key={v.fips}
-                d={pathGen(v.feature) || ''}
+                d={pathByFips.get(v.fips) ?? ''}
                 fill={v.fillRef}
                 stroke="#fff"
                 strokeWidth={0.75}
@@ -304,7 +326,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
           return (
             <path
               key={v.fips}
-              d={pathGen(v.feature) || ''}
+              d={pathByFips.get(v.fips) ?? ''}
               fill={v.fillRef}
               stroke={isSelected ? '#1F2E4D' : '#fff'}
               strokeWidth={isSelected ? 2 : isHover ? 1.5 : 0.75}
@@ -321,7 +343,7 @@ export function USMap({ topology, states, colorMode, selectedFips, onSelect, san
           v.state ? (
             <path
               key={v.fips}
-              d={pathGen(v.feature) || ''}
+              d={pathByFips.get(v.fips) ?? ''}
               fill="transparent"
               className="cursor-pointer [pointer-events:all]"
               data-fips={v.fips}
@@ -367,6 +389,15 @@ function findPluralityParty(parties: PartyShare[]): PartyShare | null {
   return tie ? null : winner;
 }
 
+/**
+ * The map re-renders on every parent state change — and Home re-renders on
+ * every sandbox slider tick. Memoizing means a parent render that didn't
+ * actually change the map's props (e.g. the ballot readout updating) skips the
+ * 51-state diff entirely. All props are stable references from Home's memos,
+ * so the default shallow comparison is enough.
+ */
+export const USMap = memo(USMapInner);
+
 function Tooltip({
   state,
   sandboxState,
@@ -380,7 +411,7 @@ function Tooltip({
   const hasMinorSeats =
     !!sandboxState &&
     sandboxState.parties.some(
-      (p) => p.party.id !== 'D' && p.party.id !== 'R' && p.seats > 0,
+      (p) => isMinorParty(p.party.id) && p.seats > 0,
     );
   const projectedD = sandboxState ? sandboxState.parties[0]?.seats ?? 0 : state.projected.d_seats;
   const projectedR = sandboxState ? sandboxState.parties[1]?.seats ?? 0 : state.projected.r_seats;

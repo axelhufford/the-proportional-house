@@ -1,7 +1,8 @@
 import type { RetroSeriesPoint } from '../lib/types';
+import { PARTY_D, PARTY_R } from '../lib/parties';
 
-const D_COLOR = '#2166ac';
-const R_COLOR = '#b2182b';
+const D_COLOR = PARTY_D.color;
+const R_COLOR = PARTY_R.color;
 const NEUTRAL = '#888780';
 
 interface Props {
@@ -62,7 +63,11 @@ export function RetrospectiveTrend({ series, selectedYear, onSelect }: Props) {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(p.year); }
               }}
-              className="cursor-pointer focus:outline-none"
+              // No focus:outline-none here — it used to beat the global
+              // zero-specificity :where() focus ring, leaving these year bars
+              // with no visible keyboard focus at all. index.css strokes
+              // g[role="button"]:focus-visible instead.
+              className="cursor-pointer"
             >
               {/* full-column hit target */}
               <rect x={cx - colW / 2} y={8} width={colW} height={H - 16} fill="transparent" />

@@ -1,4 +1,5 @@
 import type { StateRetroPoint } from '../lib/types';
+import { PARTY_D, PARTY_R } from '../lib/parties';
 
 /**
  * Compact per-cycle history for one state: how proportional allocation would
@@ -16,7 +17,7 @@ export function StateRetroHistory({ points }: { points: StateRetroPoint[] }) {
       <div className="flex items-end gap-2">
         {points.map((p) => {
           const toward = p.d_gain > 0 ? 'D' : p.d_gain < 0 ? 'R' : null;
-          const color = p.d_gain > 0 ? '#2166ac' : p.d_gain < 0 ? '#b2182b' : '#a8a29e';
+          const color = p.d_gain > 0 ? PARTY_D.color : p.d_gain < 0 ? PARTY_R.color : '#a8a29e';
           const label = toward ? `+${Math.abs(p.d_gain)} ${toward}` : '—';
           const barH = Math.round((Math.abs(p.d_gain) / maxAbs) * 28);
           return (

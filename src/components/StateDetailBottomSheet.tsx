@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useDismissable } from '../lib/useDismissable';
 import { StateDetailContent } from './StateDetailContent';
 import type { AllocationMethodKind } from '../lib/methods';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
@@ -36,6 +37,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  */
 export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold, retroHistory, viewMode, retroYear }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
+  const sheetRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const id = requestAnimationFrame(() => setPhase('open'));
@@ -46,26 +48,11 @@ export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandbo
     setPhase((p) => (p === 'exiting' ? p : 'exiting'));
   }, []);
 
-  // Body scroll lock while open. Restore the original overflow on unmount
-  // so we don't leak state if the user switches sheets quickly.
-  useEffect(() => {
-    const original = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = original;
-    };
-  }, []);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        startClose();
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [startClose]);
+  // Genuinely modal: a full-screen backdrop covers the page, so this locks body
+  // scroll AND traps Tab inside the sheet. Without the trap, aria-modal told
+  // screen readers the background was hidden while keyboard users could still
+  // Tab straight into those same hidden controls.
+  useDismissable({ ref: sheetRef, onDismiss: startClose, modal: true });
 
   const handleTransitionEnd = useCallback(
     (e: React.TransitionEvent<HTMLElement>) => {
@@ -103,6 +90,7 @@ export function StateDetailBottomSheet({ state, meta, allStates, onClose, sandbo
         ].join(' ')}
       />
       <aside
+        ref={sheetRef}
         role="dialog"
         aria-modal="true"
         aria-label={`${state.name} detail`}

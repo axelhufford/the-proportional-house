@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import {
   type AllocationMethodKind,
   METHOD_LABELS,
@@ -9,11 +10,10 @@ import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 import { buildEmbedSnippet, nationalEmbedPath } from '../lib/embedSnippet';
-import { formatSeatPct } from '../lib/format';
+import { fmtMargin, formatSeatPct } from '../lib/format';
 import { SeatBar } from './SeatBar';
 import { Term } from './Term';
 
-const DEFAULT_HOUSE_SIZE = 435;
 
 interface Props {
   payload: ProjectionPayload;
@@ -140,9 +140,9 @@ export function NationalSummary({
       ? `≈ ${signedD(structuralDGain as number)} structural · ${signedD(swingDGain)} since 2024`
       : undefined;
   const generic = meta.generic_ballot_margin;
-  const genericLabel = generic >= 0 ? `D+${generic.toFixed(1)}` : `R+${Math.abs(generic).toFixed(1)}`;
+  const genericLabel = fmtMargin(generic);
   const baseline = meta.baseline_2024_margin;
-  const baselineLabel = baseline >= 0 ? `D+${baseline.toFixed(1)}` : `R+${Math.abs(baseline).toFixed(1)}`;
+  const baselineLabel = fmtMargin(baseline);
 
   // The active method's display label. Prefer the explicit override (which
   // carries slider-dialed values like "MMD-4"), keeping "PR" short for the

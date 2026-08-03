@@ -126,10 +126,14 @@ export function MinorPartyControls({ slot, state, onChange, onRemove }: Props) {
 
       {/* Preset dropdown + (Custom only) label + color inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] items-center gap-2">
-        <label className="text-xs text-stone-600">Preset</label>
+        <label className="text-xs text-stone-600" htmlFor={`minor-preset-${slot}`}>
+          Preset
+        </label>
         <select
+          id={`minor-preset-${slot}`}
           value={state.presetId}
           onChange={(e) => handlePresetChange(e.target.value as MinorPresetSelector)}
+          aria-label={`Preset for ${ordinal} party`}
           className="border border-stone-300 rounded px-2 py-1 text-sm bg-white"
         >
           <option value="PROG">Progressive Left</option>
@@ -138,12 +142,16 @@ export function MinorPartyControls({ slot, state, onChange, onRemove }: Props) {
         </select>
         {isCustom && (
           <>
-            <label className="text-xs text-stone-600">Label</label>
+            <label className="text-xs text-stone-600" htmlFor={`custom-label-${slot}`}>
+              Label
+            </label>
             <input
+              id={`custom-label-${slot}`}
               type="text"
               value={state.label ?? ''}
               onChange={(e) => onChange({ ...state, label: e.target.value })}
               placeholder={`Custom party ${slot}`}
+              aria-label={`Name for ${ordinal} party`}
               className="border border-stone-300 rounded px-2 py-1 text-sm"
             />
             <label className="text-xs text-stone-600" htmlFor={`custom-color-${slot}`}>

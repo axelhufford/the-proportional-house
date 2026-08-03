@@ -280,7 +280,10 @@ function CircuitMap({
 
   return (
     <div className="relative mt-3">
-      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full h-auto" role="img" aria-label="Map of the U.S. courts of appeals circuits by state">
+      {/* role="img" omitted deliberately — it would prune the labeled,
+        * focusable per-state paths from the accessibility tree while leaving
+        * them in the tab order. See the note in src/components/Map.tsx. */}
+      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full h-auto" aria-label="Map of the U.S. courts of appeals circuits by state">
         {geojson.features.map((f, i) => {
           const code = codeForName(f.properties.name);
           const cid = code ? group.by_state[code] : undefined;

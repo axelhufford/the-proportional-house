@@ -7,10 +7,19 @@ interface LayoutProps {
   meta?: ProjectionMeta;
 }
 
-const STALE_AFTER_HOURS = 48;
+/**
+ * Fallback staleness threshold, in hours.
+ *
+ * The pipeline publishes its own `stale_after_hours` in meta.json; that value
+ * wins. This is only used when the field is absent (an older cached payload),
+ * so changing the cadence in the pipeline no longer requires a matching edit
+ * here.
+ */
+const DEFAULT_STALE_AFTER_HOURS = 48;
 
 export function Layout({ meta }: LayoutProps) {
-  const isStale = meta ? isStaleData(meta.generated_at, STALE_AFTER_HOURS) : false;
+  const staleAfterHours = meta?.stale_after_hours ?? DEFAULT_STALE_AFTER_HOURS;
+  const isStale = meta ? isStaleData(meta.generated_at, staleAfterHours) : false;
   const { pathname } = useLocation();
 
   return (
@@ -29,7 +38,7 @@ export function Layout({ meta }: LayoutProps) {
             <span>
               <strong>Data may be stale.</strong>{' '}
               Last updated {new Date(meta.generated_at).toLocaleString()}{' '}
-              (over {STALE_AFTER_HOURS} hours ago). The pipeline normally runs nightly.
+              (over {staleAfterHours} hours ago). The pipeline normally runs nightly.
             </span>
           </div>
         </div>

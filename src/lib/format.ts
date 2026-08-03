@@ -23,13 +23,22 @@ export function formatSeatPct(seats: number, total: number): string {
 }
 
 /**
- * Generic-ballot margin label: 'D+6.9' / 'R+2.5' / 'Tie' when |m| < 0.05.
+ * Generic-ballot margin label: 'D+6.9' / 'R+2.5' / 'Tie' at dead even.
  *
- * Positive = D lead (the pipeline's sign convention throughout). The Tie
- * band matches one display decimal: anything that would render "D+0.0"
- * or "R+0.0" reads as a tie instead.
+ * Positive = D lead (the pipeline's sign convention throughout). The Tie band
+ * tracks the displayed precision — anything that would render as "D+0.0" or
+ * "R+0.0" reads as a tie instead, so the label never claims a lead it isn't
+ * showing a number for. At `digits: 0` that band widens to |m| < 0.5.
+ *
+ * This is the single formatter for margins across the app. Several call sites
+ * used to inline `m >= 0 ? \`D+${m.toFixed(1)}\` : …`, which has no Tie branch —
+ * so with the sandbox slider at exactly 0.0 the page showed "Tie" in the slider
+ * readout and "D+0.0" in the hero and settings line simultaneously.
+ *
+ * Non-finite input renders as an em dash rather than "NaN".
  */
-export function fmtMargin(m: number): string {
-  if (Math.abs(m) < 0.05) return 'Tie';
-  return m >= 0 ? `D+${m.toFixed(1)}` : `R+${Math.abs(m).toFixed(1)}`;
+export function fmtMargin(m: number | null | undefined, digits = 1): string {
+  if (m == null || !Number.isFinite(m)) return '—';
+  if (Math.abs(m) < 0.5 * 10 ** -digits) return 'Tie';
+  return m >= 0 ? `D+${m.toFixed(digits)}` : `R+${Math.abs(m).toFixed(digits)}`;
 }

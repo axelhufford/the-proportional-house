@@ -9,6 +9,8 @@ import {
   YAxis,
 } from 'recharts';
 import { fetchJson } from '../lib/fetchJson';
+import { fmtMargin } from '../lib/format';
+import { PARTY_D, PARTY_R } from '../lib/parties';
 
 interface RawPoll {
   date: string;
@@ -91,11 +93,6 @@ function smoothTrend(polls: RawPoll[]): ChartPoint[] {
   });
 }
 
-function fmtMargin(m: number | null | undefined): string {
-  if (m == null || !Number.isFinite(m)) return '—';
-  if (Math.abs(m) < 0.05) return 'Tie';
-  return m >= 0 ? `D+${m.toFixed(1)}` : `R+${Math.abs(m).toFixed(1)}`;
-}
 
 // Poll dates are ISO date-only strings, so Date.parse() anchors them to UTC
 // midnight; the monthly ticks are likewise UTC first-of-month. Format both in
@@ -150,7 +147,11 @@ interface DotProps {
 function PollDot({ cx, cy, payload, activeId, onHover, onLeave }: DotProps) {
   if (cx == null || cy == null || !payload) return null;
   const r = visibleRadius(payload.sample_size);
-  const fill = payload.margin >= 0 ? '#2563EB' : '#DC2626';
+  // Use the canonical party colors — these dots sit directly under the map
+  // and seat bars, which use PARTY_D/PARTY_R. They previously used a
+  // brighter, unrelated blue/red, so the same two parties rendered in two
+  // different pairs of colors on one screen.
+  const fill = payload.margin >= 0 ? PARTY_D.color : PARTY_R.color;
   const isActive = payload.id === activeId;
   // Comfortable target, but small enough that stacked neighbors stay reachable.
   const hitR = Math.max(r + 4, 7);

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useDismissable } from '../lib/useDismissable';
 import { StateDetailContent } from './StateDetailContent';
 import type { AllocationMethodKind } from '../lib/methods';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
@@ -30,6 +31,7 @@ type Phase = 'entering' | 'open' | 'exiting';
  */
 export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxState, method, methodLabel, houseSize, threshold, retroHistory, viewMode, retroYear }: Props) {
   const [phase, setPhase] = useState<Phase>('entering');
+  const panelRef = useRef<HTMLElement>(null);
 
   // Flip from 'entering' to 'open' on the next frame so the transition has
   // an initial (off-screen) keyframe to interpolate from.
@@ -42,19 +44,12 @@ export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxS
     setPhase((p) => (p === 'exiting' ? p : 'exiting'));
   }, []);
 
-  // Escape closes from anywhere. Listening on window matches the previous
-  // behavior (StateDetail used to do this); keeping it at the shell layer
-  // means the embed/inline use case in Content doesn't fight for the key.
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        startClose();
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [startClose]);
+  // Escape closes when focus is inside the panel. Deliberately NOT modal: the
+  // map stays visible and clickable beside this panel — picking another state
+  // without closing is a normal flow — so there's no scroll lock and no focus
+  // trap, and the wrapper below doesn't set aria-modal. Trapping Tab inside a
+  // surface the mouse can freely leave would be worse than not trapping.
+  useDismissable({ ref: panelRef, onDismiss: startClose, modal: false });
 
   const handleTransitionEnd = useCallback(
     (e: React.TransitionEvent<HTMLElement>) => {
@@ -83,8 +78,11 @@ export function StateDetailSidePanel({ state, meta, allStates, onClose, sandboxS
 
   return (
     <aside
+      ref={panelRef}
       role="dialog"
-      aria-modal="true"
+      // No aria-modal: the rest of the page stays visible and operable next to
+      // this panel. Claiming modality would tell screen readers to hide the map
+      // and controls that sighted users can still see and click.
       aria-label={`${state.name} detail`}
       onTransitionEnd={handleTransitionEnd}
       className={[

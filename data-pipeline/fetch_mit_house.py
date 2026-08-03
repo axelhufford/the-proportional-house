@@ -33,6 +33,7 @@ import json
 import sys
 from collections import defaultdict
 from pathlib import Path
+from io_utils import write_json_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 BASELINE_DIR = REPO_ROOT / "data-pipeline" / "baseline"
@@ -239,7 +240,7 @@ def main() -> None:
     for year in CYCLES:
         payload = build_cycle(rows, year)
         out = BASELINE_DIR / f"house_{year}.json"
-        out.write_text(json.dumps(payload, indent=2))
+        write_json_atomic(out, payload)
         comp = payload["meta"]["national_composition"]
         exp = EXPECTED[year]
         d, r, tot = comp["d_seats"], comp["r_seats"], comp["total"]

@@ -7,6 +7,7 @@ import {
   type EffectiveMethod,
 } from '../lib/methods';
 import { fmtMargin } from '../lib/format';
+import { DEFAULT_HOUSE_SIZE, SANDBOX_BOUNDS } from '../lib/sandboxSwing';
 import { SANDBOX_SCENARIOS, scenarioHouseSize, type Scenario } from '../lib/scenarios';
 import { Term } from './Term';
 import {
@@ -60,21 +61,22 @@ const PRESETS: { label: string; value: number }[] = [
   { label: 'D+10', value: 10 },
 ];
 
-const THRESHOLD_MIN = 0;
-const THRESHOLD_MAX = 0.1;
-const THRESHOLD_STEP = 0.005;
-const DEFAULT_THRESHOLD = 0.05;
-
-const HOUSE_SIZE_MIN = 435;
-const HOUSE_SIZE_MAX = 800;
-const DEFAULT_HOUSE_SIZE = 435;
-
-// District-magnitude (MMD) and single-member-share (MMP) slider bounds.
-const MMD_MIN = 2;
-const MMD_MAX = 10;
-const MMP_PCT_MIN = 10;
-const MMP_PCT_MAX = 90;
-const MMP_PCT_STEP = 5;
+// All slider bounds come from SANDBOX_BOUNDS so Home.tsx's URL parsers accept
+// exactly the range these widgets can produce. Widening a slider here alone
+// used to make the app emit a URL it would then silently reject on load.
+const {
+  thresholdMin: THRESHOLD_MIN,
+  thresholdMax: THRESHOLD_MAX,
+  thresholdStep: THRESHOLD_STEP,
+  defaultThreshold: DEFAULT_THRESHOLD,
+  houseSizeMin: HOUSE_SIZE_MIN,
+  houseSizeMax: HOUSE_SIZE_MAX,
+  mmdMin: MMD_MIN,
+  mmdMax: MMD_MAX,
+  mmpPctMin: MMP_PCT_MIN,
+  mmpPctMax: MMP_PCT_MAX,
+  mmpPctStep: MMP_PCT_STEP,
+} = SANDBOX_BOUNDS;
 
 export function Sandbox({
   genericBallot,
