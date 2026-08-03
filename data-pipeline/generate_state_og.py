@@ -96,7 +96,7 @@ def build_card_svg(state: dict) -> str:
   <text x="500" y="200" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="64" font-weight="500" fill="#1F2E4D" letter-spacing="-0.01em">{name}</text>
   <text x="500" y="240" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="22" font-style="italic" fill="#5C5C5A">{state['seats']} House {'seat' if state['seats'] == 1 else 'seats'} under proportional representation</text>
 
-  <text x="500" y="320" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">ACTUAL TODAY</text>
+  <text x="500" y="320" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">AS ELECTED 2024</text>
   <text x="500" y="370" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
     <tspan fill="#2166ac">D {actual['d_seats']}</tspan>
     <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
@@ -121,8 +121,13 @@ def build_home_card_svg(national: dict, meta: dict) -> str:
     """Return the 1200x630 home OG card carrying the live national headline.
 
     Mirrors build_card_svg's frame/colors but shows the national finding:
-    the seat shift under PR, plus the Actual-today and Projected-under-PR
+    the seat shift under PR, plus the as-elected-2024 and Projected-under-PR
     splits and the current polling margin.
+
+    The card's numbers stay on the 2024 election result — the same basis the
+    projection is compared against — so the card can't disagree with the
+    headline. Today's live chamber (with vacancies) is a site/API figure, not
+    something a static social card should carry.
     """
     actual = national["actual"]
     projected = national["projected"]
@@ -147,7 +152,7 @@ def build_home_card_svg(national: dict, meta: dict) -> str:
   <text x="500" y="218" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="46" font-weight="600" fill="{headline_color}" letter-spacing="-0.01em">{headline}</text>
   <text x="500" y="258" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="22" font-style="italic" fill="#5C5C5A">under today's polling ({polling})</text>
 
-  <text x="500" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">ACTUAL TODAY</text>
+  <text x="500" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">AS ELECTED 2024</text>
   <text x="500" y="395" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
     <tspan fill="#2166ac">D {actual['d_seats']}</tspan>
     <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
@@ -260,7 +265,7 @@ def build_html_page(state: dict, og_version: str = "") -> str:
     Allocated in proportion to its statewide House vote, it would be
     <span class="d">D&nbsp;{pd}</span> &middot; <span class="r">R&nbsp;{pr}</span> &mdash; {shift}.</p>
   <div class="stats">
-    <div class="stat"><div class="lab">Actual today</div>
+    <div class="stat"><div class="lab">As elected (2024)</div>
       <div class="val"><span class="d">D&nbsp;{ad}</span> &middot; <span class="r">R&nbsp;{ar}</span></div></div>
     <div class="stat"><div class="lab">Under proportional representation</div>
       <div class="val"><span class="d">D&nbsp;{pd}</span> &middot; <span class="r">R&nbsp;{pr}</span></div></div>

@@ -16,6 +16,7 @@ from io_utils import write_text_atomic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
+COMPOSITION_PATH = REPO_ROOT / "public" / "data" / "house_composition.json"
 OUT_PATH = REPO_ROOT / "public" / "llms.txt"
 
 
@@ -25,18 +26,36 @@ def _fmt_margin(m: float) -> str:
     return f"D+{m:.1f}" if m >= 0 else f"R+{abs(m):.1f}"
 
 
-def build_current_section(p: dict) -> str:
+def build_current_section(p: dict, composition: dict | None = None) -> str:
     meta = p["meta"]
     nat = p["national"]
     date = str(meta["generated_at"])[:10]
     lines = [
         f"## Current projection (updated {date})",
+        # The parenthetical is the 2024 ELECTION RESULT, which is what the
+        # projection is compared against. Labeling it "today" (as this line used
+        # to) is wrong once anyone resigns — the live chamber gets its own line
+        # below so an AI crawler quoting either one quotes it accurately.
         f"- Projected House under PR: Democrats {nat['projected']['d_seats']}, "
         f"Republicans {nat['projected']['r_seats']} "
-        f"(actual House today: D {nat['actual']['d_seats']}, R {nat['actual']['r_seats']}).",
+        f"(as elected in 2024: D {nat['actual']['d_seats']}, R {nat['actual']['r_seats']}).",
         f"- Generic-ballot average: {_fmt_margin(meta['generic_ballot_margin'])} "
         f"(swing {meta['swing']:+.1f} pts vs. the 2024 House vote).",
     ]
+    if composition:
+        c = composition["national"]
+        parts = [f"D {c['d_seats']}", f"R {c['r_seats']}"]
+        if c.get("other_seats"):
+            parts.append(f"{c['other_seats']} other")
+        if c.get("vacant"):
+            parts.append(f"{c['vacant']} vacant")
+        lines.append(
+            f"- Actual House composition today: {', '.join(parts)} "
+            f"(Clerk of the House, as of {composition['meta']['publish_date']}). "
+            f"This differs from the 2024 election result above because of "
+            f"resignations, deaths, and special elections; the projection is "
+            f"compared against the election result, not this figure."
+        )
     unc = meta.get("uncertainty")
     if unc:
         lines.append(
@@ -107,7 +126,12 @@ TEMPLATE = """# The Proportional House
 def main() -> None:
     with PROJECTION_PATH.open() as f:
         projection = json.load(f)
-    write_text_atomic(OUT_PATH, TEMPLATE.format(current_section=build_current_section(projection)))
+    # Optional: absent if the Clerk feed was unavailable this run.
+    composition = None
+    if COMPOSITION_PATH.exists():
+        with COMPOSITION_PATH.open() as f:
+            composition = json.load(f)
+    write_text_atomic(OUT_PATH, TEMPLATE.format(current_section=build_current_section(projection, composition)))
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)}.")
 
 

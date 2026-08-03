@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import type { ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import type { HouseCompositionPayload } from '../lib/types';
 import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import {
   type AllocationMethodKind,
@@ -38,6 +39,12 @@ interface Props {
   structuralDGain?: number;
   /** Selected cycle for the Retrospective view (labels the settings line). */
   retroYear?: number;
+  /**
+   * Today's chamber from the Clerk (D/R/vacant). Display-only — the projection
+   * baseline stays the 2024 election result. Optional: absent when the feed is
+   * unavailable or on an older cached deploy.
+   */
+  composition?: HouseCompositionPayload | null;
 }
 
 export function NationalSummary({
@@ -49,6 +56,7 @@ export function NationalSummary({
   houseSize = DEFAULT_HOUSE_SIZE,
   structuralDGain,
   retroYear = 2024,
+  composition,
 }: Props) {
   const { national, meta } = payload;
 
@@ -164,7 +172,7 @@ export function NationalSummary({
 
   // Extended-sandbox rendering: when minors are active, show one stat
   // card per party (filtered to seats > 0) using the canonical party
-  // colors. The "Actual today" and "Difference" cards stay two-party
+  // colors. The "As elected" and "Difference" cards stay two-party
   // because actual House membership is inherently D/R.
   const extendedParties = hasMinors
     ? sandboxPayload!.national.parties.filter((p) => p.seats > 0)
@@ -223,6 +231,21 @@ export function NationalSummary({
     </>
   );
 
+  // The card above shows the 2024 election result, which is the projection
+  // baseline and never moves. This caption is the *live* chamber, which does —
+  // resignations, deaths, special elections. Kept as a caption rather than the
+  // headline number so a vacancy can't be misread as a proportionality effect.
+  // Only shown on the Current view; in Retrospective the card is a historical
+  // cycle and "today" would be a non-sequitur.
+  const liveCompositionNote =
+    composition && viewMode === 'current'
+      ? `Today: D ${composition.national.d_seats} · R ${composition.national.r_seats}` +
+        (composition.national.other_seats
+          ? ` · ${composition.national.other_seats} other`
+          : '') +
+        (composition.national.vacant ? ` · ${composition.national.vacant} vacant` : '')
+      : undefined;
+
   const diffValue = extendedParties ? (
     <span className="inline-flex items-baseline gap-2 flex-wrap text-base">
       {extendedParties.map((p, i) => {
@@ -279,9 +302,14 @@ export function NationalSummary({
             bar={<SeatBar parties={projectedBarParties} className="h-1.5" />}
           />
           <ScoreCell
-            label={viewMode === 'retrospective' ? `Actual ${retroYear} House` : 'Actual House today'}
+            label={
+              viewMode === 'retrospective'
+                ? `Actual ${retroYear} House`
+                : 'House as elected (2024)'
+            }
             value={actualValue}
             bar={<SeatBar parties={actualBarParties} className="h-1.5" />}
+            note={liveCompositionNote}
           />
           <ScoreCell label={diffLabel} value={diffValue} note={differenceNote} />
         </div>

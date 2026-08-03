@@ -519,6 +519,12 @@ def main(refresh_clerk: bool = False) -> None:
             failures.append(f"{label}: {type(e).__name__}: {e}")
             print(f"  (warn) {label} failed: {type(e).__name__}: {e}")
 
+    # Today's actual chamber (D/R/vacant) from the Clerk's official member list.
+    # Display-only: nothing in the projection math reads it — the November 2024
+    # election result stays the baseline, so a resignation can't move the
+    # headline seat-gap. Runs first so llms.txt and the OG cards below can
+    # reference it. This one IS a live feed, unlike the 2024 elections table.
+    run_builder("live House composition", "fetch_live_composition")
     # Per-state OG cards + static HTML pages, so social-share previews always
     # reflect the freshest projection.
     run_builder("per-state OG generation", "generate_state_og")

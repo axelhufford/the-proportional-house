@@ -418,7 +418,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           House expansion.
         </p>
         <p className="text-sm text-stone-600">
-          The Sandbox “Actual today” row always stays at 435 seats (that’s the historical fact),
+          The Sandbox “As elected” row always stays at 435 seats (that’s the historical fact),
           while every reform row reflects your chosen House size.
         </p>
       </Section>

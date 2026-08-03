@@ -8,12 +8,13 @@
 > historical retrospectives covering the last five cycles (2016, 2018, 2020, 2022, 2024).
 > Built by Axel Hufford; open source under the MIT license.
 
-## Current projection (updated 2026-07-06)
-- Projected House under PR: Democrats 231, Republicans 204 (actual House today: D 215, R 220).
-- Generic-ballot average: D+6.0 (swing +8.5 pts vs. the 2024 House vote).
-- If polls miss by the historical ±2.2 points: D 226–235 seats.
+## Current projection (updated 2026-08-03)
+- Projected House under PR: Democrats 232, Republicans 203 (as elected in 2024: D 215, R 220).
+- Generic-ballot average: D+6.2 (swing +8.7 pts vs. the 2024 House vote).
+- Actual House composition today: D 212, R 219, 4 vacant (Clerk of the House, as of July 6, 2026). This differs from the 2024 election result above because of resignations, deaths, and special elections; the projection is compared against the election result, not this figure.
+- If polls miss by the historical ±2.2 points: D 226–236 seats.
 - Control of the House would flip at R+0.6 on the generic ballot.
-- Closest seat to flip: New York, toward Democrats if the margin moves 0.2 more points that way.
+- Closest seat to flip: New York, toward Republicans if the margin moves 0.2 more points that way.
 - Machine-readable: https://proportionalhouse.org/api/v1/projection.json
 
 ## Key pages

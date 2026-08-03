@@ -120,7 +120,7 @@ export function EmbedNational() {
           d={national.projected.d_seats}
           r={national.projected.r_seats}
         />
-        <SummaryStat label="Actual today" d={national.actual.d_seats} r={national.actual.r_seats} />
+        <SummaryStat label="As elected (2024)" d={national.actual.d_seats} r={national.actual.r_seats} />
         <div>
           <div className="text-[10px] uppercase tracking-wider text-stone-500 font-medium">
             Difference

@@ -474,7 +474,7 @@ function Tooltip({
         }
       />
       <div className="text-xs text-stone-500 mt-1.5">
-        Now: D {state.actual.d_seats}
+        As elected: D {state.actual.d_seats}
         {actualTotal > 0 && (
           <span className="text-stone-400 tabular-nums"> {formatSeatPct(state.actual.d_seats, actualTotal)}</span>
         )}

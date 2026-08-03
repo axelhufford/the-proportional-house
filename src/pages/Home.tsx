@@ -48,7 +48,7 @@ import { recomputeWithSwing } from '../lib/swing';
 import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
-import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload, StateRetroPoint, HistoryPayload } from '../lib/types';
+import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload, StateRetroPoint, HistoryPayload, HouseCompositionPayload } from '../lib/types';
 
 // recharts is ~110 KB gzipped. Lazy-load the polling chart so it lands in its
 // own chunk after first paint — keeps it out of the initial bundle and off the
@@ -352,6 +352,8 @@ export function Home({ onMetaChange }: HomeProps) {
   }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
   // Multi-cycle retrospectives + the selected cycle (Retrospective view only).
   const [retros, setRetros] = useState<RetrospectivesPayload | null>(null);
+  // Today's chamber from the Clerk. Display-only — never feeds the projection.
+  const [composition, setComposition] = useState<HouseCompositionPayload | null>(null);
   // Projection-over-time series (accumulates daily). Non-fatal if absent.
   const [history, setHistory] = useState<HistoryPayload | null>(null);
   const [retroYear, setRetroYear] = useState<number>(() => parseRetroYear(searchParams.get('year')));
@@ -451,8 +453,12 @@ export function Home({ onMetaChange }: HomeProps) {
       fetchJson<RetrospectivesPayload>('/data/retrospectives.json').catch(() => null),
       // Projection-over-time series. Non-fatal if it 404s (pre-launch / older deploy).
       fetchJson<HistoryPayload>('/data/history.json').catch(() => null),
+      // Today's chamber incl. vacancies. Non-fatal if it 404s (older deploy) or
+      // if the Clerk feed was down — the UI just omits the live figure and
+      // shows only the 2024 election result.
+      fetchJson<HouseCompositionPayload>('/data/house_composition.json').catch(() => null),
     ])
-      .then(([proj, topo, retro, hist]) => {
+      .then(([proj, topo, retro, hist, comp]) => {
         setPayload(proj);
         setTopology(topo);
         if (retro) {
@@ -467,6 +473,7 @@ export function Home({ onMetaChange }: HomeProps) {
           );
         }
         if (hist) setHistory(hist);
+        if (comp) setComposition(comp);
         setSandboxBallot((cur) => (cur === null ? proj.meta.generic_ballot_margin : cur));
         // Resolve any ?state=XX URL param to its FIPS now that the payload
         // is loaded. Invalid codes are silently ignored.
@@ -826,6 +833,7 @@ export function Home({ onMetaChange }: HomeProps) {
         houseSize={houseSize}
         structuralDGain={structuralDGain ?? undefined}
         retroYear={retroYear}
+        composition={composition}
       />
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-3">
@@ -982,7 +990,7 @@ export function Home({ onMetaChange }: HomeProps) {
               <tr>
                 <th scope="col">State</th>
                 <th scope="col">Seats</th>
-                <th scope="col">Actual today</th>
+                <th scope="col">As elected (2024)</th>
                 <th scope="col">Projected under PR</th>
               </tr>
             </thead>
@@ -1138,6 +1146,7 @@ export function Home({ onMetaChange }: HomeProps) {
             retroHistory={selectedRetroHistory}
             viewMode={viewMode}
             retroYear={retroYear}
+            composition={composition}
           />
         </div>,
         document.body

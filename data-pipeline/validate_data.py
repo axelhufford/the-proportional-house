@@ -399,6 +399,70 @@ def check_baseline_2024(errors: list[str]) -> None:
         errors.append("baseline_2024: national.actual != sum of states")
 
 
+def check_house_composition(errors: list[str]) -> None:
+    """Validate the live chamber composition (house_composition.json).
+
+    This file is display-only — it never feeds the allocation math — but it is
+    the site's answer to "who holds the House right now", so it has to be a
+    whole chamber or nothing. Note the invariant is d + r + other + vacant ==
+    seats, NOT d + r == seats: vacancies are real and are counted separately.
+    """
+    path = PUBLIC_DATA / "house_composition.json"
+    if not path.exists():
+        # Optional: the site degrades to showing only the election result.
+        return
+    hc = _load("house_composition.json")
+
+    states = hc.get("states", [])
+    if len(states) != 50:
+        errors.append(f"house_composition: {len(states)} states (expected 50)")
+
+    nat = hc.get("national", {})
+    d = r = other = vacant = 0
+    for s in states:
+        code = s.get("code")
+        parts = (s.get("d_seats"), s.get("r_seats"), s.get("other_seats"), s.get("vacant"))
+        if not all(isinstance(v, int) and v >= 0 for v in parts):
+            errors.append(f"house_composition {code}: non-integer or negative seat counts {parts}")
+            continue
+        if sum(parts) != s.get("seats"):
+            errors.append(
+                f"house_composition {code}: d+r+other+vacant={sum(parts)} != seats {s.get('seats')}"
+            )
+        d += parts[0]; r += parts[1]; other += parts[2]; vacant += parts[3]
+
+    if (d, r, other, vacant) != (
+        nat.get("d_seats"), nat.get("r_seats"), nat.get("other_seats"), nat.get("vacant")
+    ):
+        errors.append("house_composition: national block != sum of states")
+    if d + r + other + vacant != TOTAL_SEATS:
+        errors.append(
+            f"house_composition: chamber sums to {d + r + other + vacant}, expected {TOTAL_SEATS}"
+        )
+
+    # Every vacancy must carry a citable cause — an unexplained empty seat is
+    # exactly the kind of number this project refuses to publish.
+    vacancies = hc.get("vacancies", [])
+    if len(vacancies) != vacant:
+        errors.append(f"house_composition: {len(vacancies)} vacancy entries but {vacant} vacant seats")
+    for v in vacancies:
+        if not (v.get("reason") or "").strip():
+            errors.append(f"house_composition: vacancy {v.get('code')}-{v.get('district')} has no reason")
+
+    if not (hc.get("meta", {}).get("publish_date") or "").strip():
+        errors.append("house_composition: meta.publish_date missing")
+
+    # Apportionment must agree with the projection — both describe the same 435.
+    if (PUBLIC_DATA / "projection.json").exists():
+        proj_seats = {s["code"]: s["seats"] for s in _load("projection.json")["states"]}
+        for s in states:
+            if proj_seats.get(s.get("code")) != s.get("seats"):
+                errors.append(
+                    f"house_composition {s.get('code')}: seats {s.get('seats')} != "
+                    f"projection.json {proj_seats.get(s.get('code'))}"
+                )
+
+
 def check_polling_trend(errors: list[str]) -> None:
     path = PUBLIC_DATA / "polling_trend.json"
     if not path.exists():
@@ -556,6 +620,7 @@ def main(check_freshness: bool = False) -> None:
     check_projection(errors)
     check_meta(errors, check_freshness)
     check_baseline_2024(errors)
+    check_house_composition(errors)
     check_polling_trend(errors)
     check_polling_error(errors)
     check_retrospectives(errors)
@@ -569,7 +634,7 @@ def main(check_freshness: bool = False) -> None:
             print(f"  - {e}")
         sys.exit(1)
     print(
-        "Data validation passed: projection + meta + baseline + polling trend + "
+        "Data validation passed: projection + meta + baseline + composition + polling trend + "
         "retrospectives + history + EC + Senate + circuits invariants hold."
     )
 

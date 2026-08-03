@@ -187,7 +187,7 @@ export function HomeHero({
   } else {
     // Current: today's House vs. PR of the projected statewide vote. Lead with
     // the plain finding — under current polling, how many more seats PR would
-    // hand the favored party vs. what they hold now — then (honestly) note how
+    // hand the favored party vs. what they won in 2024 — then (honestly) note how
     // much of that gap is the post-2024 polling swing vs. the district map. The
     // precise structural/swing split is in the "Difference under PR" card below
     // and on the Methodology page.
@@ -197,7 +197,7 @@ export function HomeHero({
       lede = (
         <>
           Under today’s polling (<strong>{genericLabel}</strong>), a proportional U.S. House would
-          give both parties about the same number of seats they hold now.
+          give both parties about the same number of seats they won in 2024.
         </>
       );
     } else {
@@ -209,7 +209,7 @@ export function HomeHero({
           <strong className={towardColor}>
             {gainParty} about {absGain} more {seats(absGain)}
           </strong>{' '}
-          than they hold now.
+          than they won in 2024.
         </>
       );
       if (structuralDGain != null) {

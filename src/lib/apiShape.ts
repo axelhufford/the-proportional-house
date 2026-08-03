@@ -12,7 +12,7 @@
  * download buttons both serve. If we ever need to break the shape we'll
  * publish a `/api/v2/` and keep this one running unchanged.
  */
-import type { HistoryPayload, ProjectionPayload } from './types';
+import type { HistoryPayload, HouseCompositionPayload, ProjectionPayload } from './types';
 
 export const API_VERSION = 'v1';
 
@@ -98,6 +98,29 @@ export interface ApiV1ClosestFlip {
   flips_at_margin: number;
 }
 
+/**
+ * Today's chamber, including vacancies — distinct from `national.actual`, which
+ * is the November 2024 election result and remains the projection baseline.
+ *
+ * `d_seats + r_seats + other_seats + vacant === total_seats`. Note that, unlike
+ * `national.actual`, D + R alone does NOT sum to 435 whenever a seat is vacant.
+ * Party attribution follows each member's caucus.
+ *
+ * Additive and optional — omitted when the Clerk feed is unavailable, so v1
+ * consumers that predate it are unaffected.
+ */
+export interface ApiV1CurrentComposition {
+  d_seats: number;
+  r_seats: number;
+  /** Members caucusing with neither major party. */
+  other_seats: number;
+  vacant: number;
+  total_seats: number;
+  /** Clerk publish date for the underlying member list. */
+  as_of: string;
+  source_url: string;
+}
+
 export interface ApiV1Payload {
   api_version: typeof API_VERSION;
   /** ISO 8601 timestamp of when the pipeline last refreshed. */
@@ -119,6 +142,8 @@ export interface ApiV1Payload {
   };
   /** Optional closest-seats-to-flip list; key omitted when absent. */
   closest_flips?: ApiV1ClosestFlip[];
+  /** Optional live chamber composition; key omitted when absent. */
+  current_composition?: ApiV1CurrentComposition;
   /** State-by-state breakdown, sorted alphabetically by postal code. */
   states: ApiV1State[];
 }
@@ -127,8 +152,15 @@ export interface ApiV1Payload {
  * Transform the internal `ProjectionPayload` into the public v1 shape.
  * Pure function — no I/O, no side effects, safe to call in both the
  * Cloudflare Function and the browser.
+ *
+ * `composition` is optional and purely additive: when supplied it emits the
+ * `current_composition` block. When absent the key is omitted entirely (never
+ * null), so a consumer written before the block existed sees no change.
  */
-export function toApiV1(payload: ProjectionPayload): ApiV1Payload {
+export function toApiV1(
+  payload: ProjectionPayload,
+  composition?: HouseCompositionPayload | null,
+): ApiV1Payload {
   const { meta, national, states } = payload;
 
   return {
@@ -179,6 +211,21 @@ export function toApiV1(payload: ProjectionPayload): ApiV1Payload {
             margin_delta: c.margin_delta,
             flips_at_margin: c.flips_at_margin,
           })),
+        }
+      : {}),
+    // Conditional spread so the key is OMITTED (not null) when the Clerk feed
+    // is unavailable — same contract as the optional blocks above.
+    ...(composition
+      ? {
+          current_composition: {
+            d_seats: composition.national.d_seats,
+            r_seats: composition.national.r_seats,
+            other_seats: composition.national.other_seats,
+            vacant: composition.national.vacant,
+            total_seats: composition.national.total_seats,
+            as_of: composition.meta.publish_date,
+            source_url: composition.meta.source_url,
+          },
         }
       : {}),
     states: states

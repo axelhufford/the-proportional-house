@@ -8,7 +8,13 @@ import { DEFAULT_HOUSE_SIZE } from '../lib/sandboxSwing';
 import type { SandboxStateProjection } from '../lib/sandboxTypes';
 import { SeatStrip } from './SeatStrip';
 import { StateRetroHistory } from './StateRetroHistory';
-import type { StateProjection, ProjectionMeta, StateRetroPoint, ViewMode } from '../lib/types';
+import type {
+  StateProjection,
+  ProjectionMeta,
+  StateRetroPoint,
+  ViewMode,
+  HouseCompositionPayload,
+} from '../lib/types';
 import { isMinorParty } from '../lib/colors';
 
 export interface StateDetailContentProps {
@@ -75,6 +81,12 @@ export interface StateDetailContentProps {
   viewMode?: ViewMode;
   /** Selected cycle when viewMode === 'retrospective'. */
   retroYear?: number;
+  /**
+   * Today's chamber from the Clerk. Used only for this state's live figure and
+   * vacancy note — `state.actual` stays the 2024 election result the projection
+   * compares against. Optional.
+   */
+  composition?: HouseCompositionPayload | null;
 }
 
 export function StateDetailContent({
@@ -92,6 +104,7 @@ export function StateDetailContent({
   retroHistory,
   viewMode = 'current',
   retroYear = 2024,
+  composition,
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const isRetro = viewMode === 'retrospective';
@@ -185,8 +198,28 @@ export function StateDetailContent({
     ? `Today, scaled to ${effectiveSeats}`
     : isRetro
       ? `Actual ${retroYear}`
-      : 'Actual today';
+      : 'As elected (2024)';
   const dGain = projectedD - actualBaseD;
+
+  // This state's live chamber slice. Only meaningful on the Current view: in
+  // Retrospective the panel describes a past cycle, and in Sandbox the
+  // delegation is hypothetical. Shown as a caption under the as-elected figure
+  // so a vacancy can never be mistaken for a proportionality effect.
+  const liveState =
+    composition && viewMode === 'current' && !sandboxState
+      ? composition.states.find((s) => s.code === state.code) ?? null
+      : null;
+  const stateVacancies =
+    liveState && liveState.vacant > 0 && composition
+      ? composition.vacancies.filter((v) => v.code === state.code)
+      : [];
+  // Only worth showing when it actually differs from the election result —
+  // otherwise it's a duplicate line on 46 of 50 states.
+  const liveDiffers =
+    !!liveState &&
+    (liveState.d_seats !== state.actual.d_seats ||
+      liveState.r_seats !== state.actual.r_seats ||
+      liveState.vacant > 0);
 
   // "See also": find 3 states with the most similar PR distortion. Same
   // direction as the current state (both gain D, or both gain R), closest
@@ -369,6 +402,33 @@ export function StateDetailContent({
             left={{ heading: actualHeading, d: actualBaseD, r: actualBaseR }}
             right={{ heading: `Projected under ${methodLabel}`, d: projectedD, r: projectedR }}
           />
+        )}
+
+        {liveDiffers && liveState && (
+          <div className="text-xs text-stone-600 -mt-1">
+            <span className="font-medium text-stone-700">Today:</span>{' '}
+            <span className="text-blue-700">D {liveState.d_seats}</span>
+            <span className="text-stone-400"> · </span>
+            <span className="text-red-700">R {liveState.r_seats}</span>
+            {liveState.other_seats > 0 && <> · {liveState.other_seats} other</>}
+            {liveState.vacant > 0 && (
+              <>
+                <span className="text-stone-400"> · </span>
+                <span className="text-stone-700">
+                  {liveState.vacant} vacant
+                </span>
+              </>
+            )}
+            {stateVacancies.length > 0 && (
+              <ul className="mt-1 space-y-0.5 text-stone-500">
+                {stateVacancies.map((v) => (
+                  <li key={`${v.code}-${v.district}`}>
+                    {v.district}: {v.reason}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         )}
 
         {hasMinors ? (

@@ -1,0 +1,545 @@
+{
+  "meta": {
+    "generated_at": "2026-08-03T21:21:19.993871+00:00",
+    "congress": 119,
+    "publish_date": "July 6, 2026",
+    "source": "Clerk of the U.S. House, MemberData.xml",
+    "source_url": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "note": "Live chamber composition, including vacancies. Party attribution follows each member's caucus. Distinct from the November 2024 election result, which remains the projection baseline \u2014 see house_2024.json."
+  },
+  "national": {
+    "d_seats": 212,
+    "r_seats": 219,
+    "other_seats": 0,
+    "vacant": 4,
+    "total_seats": 435
+  },
+  "states": [
+    {
+      "code": "AK",
+      "fips": "02",
+      "name": "Alaska",
+      "seats": 1,
+      "d_seats": 0,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "AL",
+      "fips": "01",
+      "name": "Alabama",
+      "seats": 7,
+      "d_seats": 2,
+      "r_seats": 5,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "AR",
+      "fips": "05",
+      "name": "Arkansas",
+      "seats": 4,
+      "d_seats": 0,
+      "r_seats": 4,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "AZ",
+      "fips": "04",
+      "name": "Arizona",
+      "seats": 9,
+      "d_seats": 3,
+      "r_seats": 6,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "CA",
+      "fips": "06",
+      "name": "California",
+      "seats": 52,
+      "d_seats": 42,
+      "r_seats": 9,
+      "other_seats": 0,
+      "vacant": 1
+    },
+    {
+      "code": "CO",
+      "fips": "08",
+      "name": "Colorado",
+      "seats": 8,
+      "d_seats": 4,
+      "r_seats": 4,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "CT",
+      "fips": "09",
+      "name": "Connecticut",
+      "seats": 5,
+      "d_seats": 5,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "DE",
+      "fips": "10",
+      "name": "Delaware",
+      "seats": 1,
+      "d_seats": 1,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "FL",
+      "fips": "12",
+      "name": "Florida",
+      "seats": 28,
+      "d_seats": 7,
+      "r_seats": 20,
+      "other_seats": 0,
+      "vacant": 1
+    },
+    {
+      "code": "GA",
+      "fips": "13",
+      "name": "Georgia",
+      "seats": 14,
+      "d_seats": 4,
+      "r_seats": 9,
+      "other_seats": 0,
+      "vacant": 1
+    },
+    {
+      "code": "HI",
+      "fips": "15",
+      "name": "Hawaii",
+      "seats": 2,
+      "d_seats": 2,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "IA",
+      "fips": "19",
+      "name": "Iowa",
+      "seats": 4,
+      "d_seats": 0,
+      "r_seats": 4,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "ID",
+      "fips": "16",
+      "name": "Idaho",
+      "seats": 2,
+      "d_seats": 0,
+      "r_seats": 2,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "IL",
+      "fips": "17",
+      "name": "Illinois",
+      "seats": 17,
+      "d_seats": 14,
+      "r_seats": 3,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "IN",
+      "fips": "18",
+      "name": "Indiana",
+      "seats": 9,
+      "d_seats": 2,
+      "r_seats": 7,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "KS",
+      "fips": "20",
+      "name": "Kansas",
+      "seats": 4,
+      "d_seats": 1,
+      "r_seats": 3,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "KY",
+      "fips": "21",
+      "name": "Kentucky",
+      "seats": 6,
+      "d_seats": 1,
+      "r_seats": 5,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "LA",
+      "fips": "22",
+      "name": "Louisiana",
+      "seats": 6,
+      "d_seats": 2,
+      "r_seats": 4,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MA",
+      "fips": "25",
+      "name": "Massachusetts",
+      "seats": 9,
+      "d_seats": 9,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MD",
+      "fips": "24",
+      "name": "Maryland",
+      "seats": 8,
+      "d_seats": 7,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "ME",
+      "fips": "23",
+      "name": "Maine",
+      "seats": 2,
+      "d_seats": 2,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MI",
+      "fips": "26",
+      "name": "Michigan",
+      "seats": 13,
+      "d_seats": 6,
+      "r_seats": 7,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MN",
+      "fips": "27",
+      "name": "Minnesota",
+      "seats": 8,
+      "d_seats": 4,
+      "r_seats": 4,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MO",
+      "fips": "29",
+      "name": "Missouri",
+      "seats": 8,
+      "d_seats": 2,
+      "r_seats": 6,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MS",
+      "fips": "28",
+      "name": "Mississippi",
+      "seats": 4,
+      "d_seats": 1,
+      "r_seats": 3,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "MT",
+      "fips": "30",
+      "name": "Montana",
+      "seats": 2,
+      "d_seats": 0,
+      "r_seats": 2,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NC",
+      "fips": "37",
+      "name": "North Carolina",
+      "seats": 14,
+      "d_seats": 4,
+      "r_seats": 10,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "ND",
+      "fips": "38",
+      "name": "North Dakota",
+      "seats": 1,
+      "d_seats": 0,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NE",
+      "fips": "31",
+      "name": "Nebraska",
+      "seats": 3,
+      "d_seats": 0,
+      "r_seats": 3,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NH",
+      "fips": "33",
+      "name": "New Hampshire",
+      "seats": 2,
+      "d_seats": 2,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NJ",
+      "fips": "34",
+      "name": "New Jersey",
+      "seats": 12,
+      "d_seats": 9,
+      "r_seats": 3,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NM",
+      "fips": "35",
+      "name": "New Mexico",
+      "seats": 3,
+      "d_seats": 3,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NV",
+      "fips": "32",
+      "name": "Nevada",
+      "seats": 4,
+      "d_seats": 3,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "NY",
+      "fips": "36",
+      "name": "New York",
+      "seats": 26,
+      "d_seats": 19,
+      "r_seats": 7,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "OH",
+      "fips": "39",
+      "name": "Ohio",
+      "seats": 15,
+      "d_seats": 5,
+      "r_seats": 10,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "OK",
+      "fips": "40",
+      "name": "Oklahoma",
+      "seats": 5,
+      "d_seats": 0,
+      "r_seats": 5,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "OR",
+      "fips": "41",
+      "name": "Oregon",
+      "seats": 6,
+      "d_seats": 5,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "PA",
+      "fips": "42",
+      "name": "Pennsylvania",
+      "seats": 17,
+      "d_seats": 7,
+      "r_seats": 10,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "RI",
+      "fips": "44",
+      "name": "Rhode Island",
+      "seats": 2,
+      "d_seats": 2,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "SC",
+      "fips": "45",
+      "name": "South Carolina",
+      "seats": 7,
+      "d_seats": 1,
+      "r_seats": 6,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "SD",
+      "fips": "46",
+      "name": "South Dakota",
+      "seats": 1,
+      "d_seats": 0,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "TN",
+      "fips": "47",
+      "name": "Tennessee",
+      "seats": 9,
+      "d_seats": 1,
+      "r_seats": 8,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "TX",
+      "fips": "48",
+      "name": "Texas",
+      "seats": 38,
+      "d_seats": 13,
+      "r_seats": 24,
+      "other_seats": 0,
+      "vacant": 1
+    },
+    {
+      "code": "UT",
+      "fips": "49",
+      "name": "Utah",
+      "seats": 4,
+      "d_seats": 0,
+      "r_seats": 4,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "VA",
+      "fips": "51",
+      "name": "Virginia",
+      "seats": 11,
+      "d_seats": 6,
+      "r_seats": 5,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "VT",
+      "fips": "50",
+      "name": "Vermont",
+      "seats": 1,
+      "d_seats": 1,
+      "r_seats": 0,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "WA",
+      "fips": "53",
+      "name": "Washington",
+      "seats": 10,
+      "d_seats": 8,
+      "r_seats": 2,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "WI",
+      "fips": "55",
+      "name": "Wisconsin",
+      "seats": 8,
+      "d_seats": 2,
+      "r_seats": 6,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "WV",
+      "fips": "54",
+      "name": "West Virginia",
+      "seats": 2,
+      "d_seats": 0,
+      "r_seats": 2,
+      "other_seats": 0,
+      "vacant": 0
+    },
+    {
+      "code": "WY",
+      "fips": "56",
+      "name": "Wyoming",
+      "seats": 1,
+      "d_seats": 0,
+      "r_seats": 1,
+      "other_seats": 0,
+      "vacant": 0
+    }
+  ],
+  "vacancies": [
+    {
+      "code": "CA",
+      "name": "California",
+      "district": "14th",
+      "reason": "Vacancy due to the resignation of Eric Swalwell, April 14, 2026."
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "district": "20th",
+      "reason": "Vacancy due to the resignation of Sheila Cherfilus-McCormick, April 21, 2026."
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "district": "13th",
+      "reason": "Vacancy due to the death of David Scott, April 22, 2026."
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "district": "23rd",
+      "reason": "Vacancy due to the resignation of Tony Gonzales, April 14, 2026."
+    }
+  ]
+}

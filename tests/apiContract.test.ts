@@ -126,6 +126,53 @@ describe('/api/v1/projection.json against the real pipeline output', () => {
   });
 });
 
+describe('current_composition is additive and internally consistent', () => {
+  const composition = JSON.parse(
+    readFileSync(resolve(dataDir, 'house_composition.json'), 'utf-8'),
+  );
+
+  it('leaves national.actual summing to 435 when present', () => {
+    // The whole point of keeping the live chamber in a separate block: the
+    // sibling repo's `actual` contract must not change. A consumer computing
+    // `435 - actual.D` has to keep getting the right answer even though the
+    // real chamber currently holds fewer than 435 sitting members.
+    const v1 = toApiV1(projection, composition);
+    expect(v1.national.actual.D + v1.national.actual.R).toBe(435);
+    expect(v1.national.total_seats).toBe(435);
+  });
+
+  it('sums d + r + other + vacant to total_seats', () => {
+    const v1 = toApiV1(projection, composition);
+    const c = v1.current_composition!;
+    expect(c).toBeDefined();
+    expect(c.d_seats + c.r_seats + c.other_seats + c.vacant).toBe(c.total_seats);
+    expect(c.total_seats).toBe(435);
+  });
+
+  it('omits the key entirely when no composition is supplied', () => {
+    const v1 = toApiV1(projection);
+    expect('current_composition' in v1).toBe(false);
+    // Null would be a breaking change for consumers branching on key presence.
+    const round = JSON.parse(JSON.stringify(v1));
+    expect('current_composition' in round).toBe(false);
+  });
+
+  it('carries provenance for the live figure', () => {
+    const c = toApiV1(projection, composition).current_composition!;
+    expect(c.as_of.length).toBeGreaterThan(0);
+    expect(c.source_url).toContain('clerk.house.gov');
+  });
+
+  it('differs from the election result — otherwise this block is pointless', () => {
+    const v1 = toApiV1(projection, composition);
+    const c = v1.current_composition!;
+    const sitting = c.d_seats + c.r_seats + c.other_seats;
+    expect(sitting).toBe(435 - c.vacant);
+    // Sanity: the live count should never exceed the chamber.
+    expect(sitting).toBeLessThanOrEqual(435);
+  });
+});
+
 describe('/api/v1/projection.csv against the real pipeline output', () => {
   const csv = toApiV1Csv(projection);
   const lines = csv.trim().split('\n');
@@ -219,7 +266,7 @@ const REQUIRED_TOP_LEVEL = [
   'states',
 ];
 /** Emitted only when the pipeline produces them (key omitted, never null). */
-const OPTIONAL_TOP_LEVEL = ['closest_flips'];
+const OPTIONAL_TOP_LEVEL = ['closest_flips', 'current_composition'];
 
 describe('v1 shape is stable', () => {
   it('has every required top-level key', () => {

@@ -314,6 +314,59 @@ export interface CircuitsPayload {
   rebalanced: CircuitsGroup;
 }
 
+/**
+ * Live chamber composition — public/data/house_composition.json.
+ *
+ * This is who holds the House *today*, vacancies included. It is deliberately
+ * NOT the projection baseline: `StateProjection.actual` stays the November 2024
+ * election result, so the headline seat-gap can't move because a member
+ * resigned. Party attribution follows each member's caucus.
+ *
+ * Everything that reads this must treat it as optional — the Clerk feed can be
+ * unavailable, and an older cached deploy won't have the file at all.
+ */
+export interface HouseCompositionState {
+  code: string;
+  fips: string;
+  name: string;
+  /** Apportioned seats — equals d + r + other + vacant. */
+  seats: number;
+  d_seats: number;
+  r_seats: number;
+  other_seats: number;
+  vacant: number;
+}
+
+export interface HouseVacancy {
+  code: string;
+  name: string;
+  /** Ordinal district label from the Clerk, e.g. "14th" or "At Large". */
+  district: string;
+  /** The Clerk's stated cause, e.g. "Vacancy due to the resignation of …". */
+  reason: string;
+}
+
+export interface HouseCompositionPayload {
+  meta: {
+    generated_at: string;
+    congress: number | null;
+    /** Clerk publish date for the member list, e.g. "July 6, 2026". */
+    publish_date: string;
+    source: string;
+    source_url: string;
+    note: string;
+  };
+  national: {
+    d_seats: number;
+    r_seats: number;
+    other_seats: number;
+    vacant: number;
+    total_seats: number;
+  };
+  states: HouseCompositionState[];
+  vacancies: HouseVacancy[];
+}
+
 // One completed cycle's PR-vs-actual outcome for a single state, derived from
 // retrospectives.json for the per-state "Under PR, 2016–2024" mini-history.
 export interface StateRetroPoint {

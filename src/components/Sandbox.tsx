@@ -439,7 +439,7 @@ export function Sandbox({
         />
         <p className="text-xs text-stone-500 mt-1">
           Seats reapportion among states via Huntington-Hill, the same method the real US House
-          uses. “Actual today” in the comparison table stays at 435; reform rows reflect the chosen
+          uses. “As elected” in the comparison table stays at 435; reform rows reflect the chosen
           size.
         </p>
       </Group>

@@ -24,7 +24,7 @@ interface MethodRow {
 }
 
 interface Props {
-  /** Base payload for the "Actual today" row (always two-party). */
+  /** Base payload for the "As elected" row (always two-party). */
   basePayload: ProjectionPayload;
   /** One entry per canonical method; produced by Home from buildSandboxPayload. */
   comparison: MethodRow[];
@@ -71,7 +71,7 @@ export function MethodComparisonTable({
     null,
   );
 
-  // For "Actual today" row, only D and R have data; minors are zero.
+  // For the "As elected" row, only D and R have data; minors are zero.
   const actualSeats = (partyId: string): number => {
     if (partyId === 'D') return basePayload.national.actual.d_seats;
     if (partyId === 'R') return basePayload.national.actual.r_seats;
@@ -91,7 +91,7 @@ export function MethodComparisonTable({
           {comparison[0] && comparison[0].payload.house_size !== 435 && (
             <>
               {' '}House expanded to <strong>{comparison[0].payload.house_size} seats</strong> via
-              Huntington-Hill apportionment; the “Actual today” row stays at 435 since that’s the
+              Huntington-Hill apportionment; the “As elected” row stays at 435 since that’s the
               current real House.
             </>
           )}
@@ -122,7 +122,7 @@ export function MethodComparisonTable({
               return (
                 <tr className="border-t border-stone-200">
                   <th scope="row" className="text-left font-medium px-4 py-2 text-stone-700">
-                    Actual today (SMD)
+                    As elected (SMD)
                   </th>
                   {columnParties.map((p) => {
                     const seats = actualSeats(p.party.id);

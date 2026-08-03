@@ -15,6 +15,7 @@ import {
   CACHE_HEADERS,
   CORS_HEADERS,
   handleOptions,
+  loadHouseComposition,
   loadProjection,
   type PagesContext,
 } from './_shared';
@@ -22,7 +23,11 @@ import {
 export async function onRequestGet(context: PagesContext): Promise<Response> {
   try {
     const internal = await loadProjection(context);
-    const v1 = toApiV1(internal);
+    // Optional and best-effort — loadHouseComposition returns null rather than
+    // throwing, so a missing Clerk snapshot omits one block instead of taking
+    // the whole endpoint down.
+    const composition = await loadHouseComposition(context);
+    const v1 = toApiV1(internal, composition);
     return new Response(JSON.stringify(v1), {
       status: 200,
       headers: {
