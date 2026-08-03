@@ -51,9 +51,20 @@ createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
   let pathname = decodeURIComponent(url.pathname);
 
-  // Later rules win, matching Cloudflare's "most specific last" behavior here.
+  // Cloudflare APPENDS every matching rule rather than letting a more specific
+  // one replace `/*`. A path matching both receives two Content-Security-Policy
+  // headers — which browsers enforce as the INTERSECTION — and two
+  // X-Frame-Options values. Model that faithfully: an earlier version of this
+  // server used Object.assign, so a later rule appeared to override an earlier
+  // one, and a policy that broke third-party embeds passed local verification
+  // and shipped.
   const applied = {};
-  for (const r of RULES) if (matches(r.pattern, pathname)) Object.assign(applied, r.headers);
+  for (const r of RULES) {
+    if (!matches(r.pattern, pathname)) continue;
+    for (const [k, v] of Object.entries(r.headers)) {
+      applied[k] = applied[k] === undefined ? v : [].concat(applied[k], v);
+    }
+  }
 
   const candidates = [
     join(ROOT, pathname),

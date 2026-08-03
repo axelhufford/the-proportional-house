@@ -6,26 +6,33 @@
 # needs to vary per response (e.g. cache directives on an error) must NOT be
 # pinned here.
 
-# Baseline hardening for every route. Cloudflare already supplies nosniff and
-# a Referrer-Policy by default; these make them explicit and add the two that
-# were missing. frame-ancestors 'self' is the clickjacking guard — the main
-# site was framable by any origin, which matters for a page whose controls a
-# visitor can be tricked into operating.
+# Baseline hardening for every route.
+#
+# NOTE ON FRAMING — deliberately absent here. Cloudflare Pages *appends* rules
+# from a more specific path to the ones matched by `/*`; it does not replace
+# them. A page matching both `/*` and `/embed/*` therefore receives TWO
+# Content-Security-Policy headers, and browsers enforce the INTERSECTION of
+# every CSP present. So a `frame-ancestors 'self'` here is not overridable by
+# `frame-ancestors *` below — it silently wins, and third-party embeds break.
+# (Verified against production: both headers were served, and the embed became
+# unframable.) The same append behavior produces two conflicting
+# X-Frame-Options values.
+#
+# Since the embed widget is a real feature and this is a read-only site with no
+# auth and no destructive controls, framing stays unrestricted rather than
+# breaking embeds for a clickjacking guard that buys little here. Everything
+# else in the policy still applies.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'
-  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'
 
-# Embed routes are intentionally framable from any origin so newsrooms can
-# drop the widget into a story. These override the /* rules above: both the
-# legacy X-Frame-Options and the CSP frame-ancestors directive have to be
-# relaxed, since a restrictive frame-ancestors would otherwise block the
-# iframe regardless of X-Frame-Options.
+# Embed routes are explicitly framable from any origin so newsrooms can drop
+# the widget into a story. This only needs to be permissive — with no
+# frame-ancestors in the `/*` policy above, nothing here has to be overridden.
 /embed/*
   X-Frame-Options: ALLOWALL
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; frame-ancestors *; object-src 'none'
 
 # Public API: CORS only. The Function sets its own Cache-Control so it can use
 # `no-store` on a 503 — pinning a cache directive here would override that and
