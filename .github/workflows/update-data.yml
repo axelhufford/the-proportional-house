@@ -157,9 +157,15 @@ jobs:
       #     stamps a timestamp, so committing everything would produce ~6.5 MB of
       #     meaningless diff per run.
       #   * Sundays only — ~52 commits/year, fallback at most 7 days stale.
-      #   * `[skip ci]` is REQUIRED: `public/**` is in this workflow's push paths
-      #     filter, so without it this commit would re-trigger the workflow and
-      #     loop.
+      #   * The skip token in the commit message below is REQUIRED: `public/**`
+      #     is in this workflow's push paths filter, so without it this commit
+      #     would re-trigger the workflow and loop.
+      #
+      #     CAUTION for humans: GitHub honors that token anywhere in a commit
+      #     message, including the body. Writing about it in a normal commit
+      #     message silently skips the deploy for that commit — which has
+      #     already happened once. Refer to it indirectly ("the skip token")
+      #     rather than pasting the literal string.
       #   * Skipped entirely when the pipeline failed — committing restored
       #     last-good data would relabel stale numbers as a fresh snapshot.
       - name: Weekly data snapshot
