@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-03T21:21:19.746652+00:00",
+  "generated_at": "2026-08-09T06:56:05.612996+00:00",
   "stale_after_hours": 48,
   "sources": {
     "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "polls": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
   },
   "generic_ballot": {
-    "margin": 6.193,
-    "n_polls": 28,
+    "margin": 6.278,
+    "n_polls": 29,
     "window_days": 30,
     "half_life_days": 14,
     "uses_house_effect_adjustment": true
   },
   "baseline_2024_r_margin": 2.511,
-  "swing": 8.7,
+  "swing": 8.79,
   "national": {
     "seats": 435,
     "projected": {
@@ -50,20 +50,20 @@
   },
   "closest_flips": [
     {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "direction": "D",
+      "margin_delta": 0.2,
+      "flips_at_margin": 6.5
+    },
+    {
       "fips": "36",
       "code": "NY",
       "name": "New York",
       "direction": "R",
       "margin_delta": 0.2,
-      "flips_at_margin": 6.0
-    },
-    {
-      "fips": "06",
-      "code": "CA",
-      "name": "California",
-      "direction": "D",
-      "margin_delta": 0.3,
-      "flips_at_margin": 6.5
+      "flips_at_margin": 6.1
     },
     {
       "fips": "34",
@@ -71,14 +71,14 @@
       "name": "New Jersey",
       "direction": "D",
       "margin_delta": 0.4,
-      "flips_at_margin": 6.6
+      "flips_at_margin": 6.7
     },
     {
       "fips": "15",
       "code": "HI",
       "name": "Hawaii",
       "direction": "R",
-      "margin_delta": 0.7,
+      "margin_delta": 0.8,
       "flips_at_margin": 5.5
     },
     {
@@ -86,7 +86,7 @@
       "code": "MA",
       "name": "Massachusetts",
       "direction": "R",
-      "margin_delta": 0.9,
+      "margin_delta": 1.0,
       "flips_at_margin": 5.3
     },
     {
@@ -94,7 +94,7 @@
       "code": "NC",
       "name": "North Carolina",
       "direction": "D",
-      "margin_delta": 1.9,
+      "margin_delta": 1.8,
       "flips_at_margin": 8.1
     }
   ]
