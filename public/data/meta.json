@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-09T06:56:05.612996+00:00",
+  "generated_at": "2026-08-16T06:38:35.412209+00:00",
   "stale_after_hours": 48,
   "sources": {
     "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "polls": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
   },
   "generic_ballot": {
-    "margin": 6.278,
-    "n_polls": 29,
+    "margin": 6.558,
+    "n_polls": 24,
     "window_days": 30,
     "half_life_days": 14,
     "uses_house_effect_adjustment": true
   },
   "baseline_2024_r_margin": 2.511,
-  "swing": 8.79,
+  "swing": 9.07,
   "national": {
     "seats": 435,
     "projected": {
-      "d_seats": 232,
-      "r_seats": 203
+      "d_seats": 233,
+      "r_seats": 202
     },
     "actual": {
       "d_seats": 215,
@@ -39,10 +39,10 @@
   "uncertainty": {
     "epsilon_points": 2.2,
     "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
-    "d_seats_low": 226,
-    "d_seats_high": 236,
-    "r_seats_low": 199,
-    "r_seats_high": 209
+    "d_seats_low": 227,
+    "d_seats_high": 238,
+    "r_seats_low": 197,
+    "r_seats_high": 208
   },
   "majority": {
     "tipping_margin": -0.6,
@@ -50,52 +50,52 @@
   },
   "closest_flips": [
     {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "direction": "D",
+      "margin_delta": 0.1,
+      "flips_at_margin": 6.7
+    },
+    {
       "fips": "06",
       "code": "CA",
       "name": "California",
-      "direction": "D",
+      "direction": "R",
       "margin_delta": 0.2,
-      "flips_at_margin": 6.5
+      "flips_at_margin": 6.4
     },
     {
       "fips": "36",
       "code": "NY",
       "name": "New York",
       "direction": "R",
-      "margin_delta": 0.2,
+      "margin_delta": 0.5,
       "flips_at_margin": 6.1
-    },
-    {
-      "fips": "34",
-      "code": "NJ",
-      "name": "New Jersey",
-      "direction": "D",
-      "margin_delta": 0.4,
-      "flips_at_margin": 6.7
     },
     {
       "fips": "15",
       "code": "HI",
       "name": "Hawaii",
       "direction": "R",
-      "margin_delta": 0.8,
+      "margin_delta": 1.1,
       "flips_at_margin": 5.5
-    },
-    {
-      "fips": "25",
-      "code": "MA",
-      "name": "Massachusetts",
-      "direction": "R",
-      "margin_delta": 1.0,
-      "flips_at_margin": 5.3
     },
     {
       "fips": "37",
       "code": "NC",
       "name": "North Carolina",
       "direction": "D",
-      "margin_delta": 1.8,
-      "flips_at_margin": 8.1
+      "margin_delta": 1.6,
+      "flips_at_margin": 8.2
+    },
+    {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "direction": "D",
+      "margin_delta": 1.9,
+      "flips_at_margin": 8.5
     }
   ]
 }

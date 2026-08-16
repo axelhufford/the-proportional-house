@@ -1,23 +1,23 @@
 {
   "meta": {
-    "generated_at": "2026-08-09T06:56:05.612996+00:00",
+    "generated_at": "2026-08-16T06:38:35.412209+00:00",
     "stale_after_hours": 48,
     "data_source": "U.S. House Clerk 2024 statistics (state totals) + Silver Bulletin generic-ballot polls",
     "method": "sainte-lague",
-    "generic_ballot_margin": 6.278,
+    "generic_ballot_margin": 6.558,
     "baseline_2024_margin": -2.511,
     "baseline_2024_r_margin": 2.511,
-    "swing": 8.79,
-    "n_polls_in_average": 29,
+    "swing": 9.07,
+    "n_polls_in_average": 24,
     "poll_window_days": 30,
     "poll_half_life_days": 14,
     "uncertainty": {
       "epsilon_points": 2.2,
       "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
-      "d_seats_low": 226,
-      "d_seats_high": 236,
-      "r_seats_low": 199,
-      "r_seats_high": 209
+      "d_seats_low": 227,
+      "d_seats_high": 238,
+      "r_seats_low": 197,
+      "r_seats_high": 208
     },
     "majority": {
       "tipping_margin": -0.6,
@@ -25,60 +25,60 @@
     },
     "closest_flips": [
       {
+        "fips": "34",
+        "code": "NJ",
+        "name": "New Jersey",
+        "direction": "D",
+        "margin_delta": 0.1,
+        "flips_at_margin": 6.7
+      },
+      {
         "fips": "06",
         "code": "CA",
         "name": "California",
-        "direction": "D",
+        "direction": "R",
         "margin_delta": 0.2,
-        "flips_at_margin": 6.5
+        "flips_at_margin": 6.4
       },
       {
         "fips": "36",
         "code": "NY",
         "name": "New York",
         "direction": "R",
-        "margin_delta": 0.2,
+        "margin_delta": 0.5,
         "flips_at_margin": 6.1
-      },
-      {
-        "fips": "34",
-        "code": "NJ",
-        "name": "New Jersey",
-        "direction": "D",
-        "margin_delta": 0.4,
-        "flips_at_margin": 6.7
       },
       {
         "fips": "15",
         "code": "HI",
         "name": "Hawaii",
         "direction": "R",
-        "margin_delta": 0.8,
+        "margin_delta": 1.1,
         "flips_at_margin": 5.5
-      },
-      {
-        "fips": "25",
-        "code": "MA",
-        "name": "Massachusetts",
-        "direction": "R",
-        "margin_delta": 1.0,
-        "flips_at_margin": 5.3
       },
       {
         "fips": "37",
         "code": "NC",
         "name": "North Carolina",
         "direction": "D",
-        "margin_delta": 1.8,
-        "flips_at_margin": 8.1
+        "margin_delta": 1.6,
+        "flips_at_margin": 8.2
+      },
+      {
+        "fips": "24",
+        "code": "MD",
+        "name": "Maryland",
+        "direction": "D",
+        "margin_delta": 1.9,
+        "flips_at_margin": 8.5
       }
     ]
   },
   "national": {
     "seats": 435,
     "projected": {
-      "d_seats": 232,
-      "r_seats": 203
+      "d_seats": 233,
+      "r_seats": 202
     },
     "actual": {
       "d_seats": 215,
@@ -100,13 +100,13 @@
         "r_share": 0.505233
       },
       "projected": {
-        "d_share": 0.526671,
-        "r_share": 0.473329,
+        "d_share": 0.527687,
+        "r_share": 0.472313,
         "d_seats": 1,
         "r_seats": 0
       },
       "state_elasticity": 0.726,
-      "state_swing_applied": 6.381,
+      "state_swing_applied": 6.584,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -125,13 +125,13 @@
         "r_share": 0.744347
       },
       "projected": {
-        "d_share": 0.286415,
-        "r_share": 0.713585,
+        "d_share": 0.287394,
+        "r_share": 0.712606,
         "d_seats": 2,
         "r_seats": 5
       },
       "state_elasticity": 0.7,
-      "state_swing_applied": 6.152,
+      "state_swing_applied": 6.348,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -150,13 +150,13 @@
         "r_share": 0.680577
       },
       "projected": {
-        "d_share": 0.349306,
-        "r_share": 0.650694,
+        "d_share": 0.350258,
+        "r_share": 0.649742,
         "d_seats": 1,
         "r_seats": 3
       },
       "state_elasticity": 0.68,
-      "state_swing_applied": 5.977,
+      "state_swing_applied": 6.167,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -175,13 +175,13 @@
         "r_share": 0.520074
       },
       "projected": {
-        "d_share": 0.52431,
-        "r_share": 0.47569,
+        "d_share": 0.525724,
+        "r_share": 0.474276,
         "d_seats": 5,
         "r_seats": 4
       },
       "state_elasticity": 1.01,
-      "state_swing_applied": 8.877,
+      "state_swing_applied": 9.16,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -200,13 +200,13 @@
         "r_share": 0.393454
       },
       "projected": {
-        "d_share": 0.681384,
-        "r_share": 0.318616,
-        "d_seats": 35,
-        "r_seats": 17
+        "d_share": 0.683769,
+        "r_share": 0.316231,
+        "d_seats": 36,
+        "r_seats": 16
       },
       "state_elasticity": 1.703,
-      "state_swing_applied": 14.968,
+      "state_swing_applied": 15.445,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -225,13 +225,13 @@
         "r_share": 0.439272
       },
       "projected": {
-        "d_share": 0.577691,
-        "r_share": 0.422309,
+        "d_share": 0.578231,
+        "r_share": 0.421769,
         "d_seats": 5,
         "r_seats": 3
       },
       "state_elasticity": 0.386,
-      "state_swing_applied": 3.393,
+      "state_swing_applied": 3.501,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -250,13 +250,13 @@
         "r_share": 0.4103
       },
       "projected": {
-        "d_share": 0.632766,
-        "r_share": 0.367234,
+        "d_share": 0.634138,
+        "r_share": 0.365862,
         "d_seats": 3,
         "r_seats": 2
       },
       "state_elasticity": 0.98,
-      "state_swing_applied": 8.613,
+      "state_swing_applied": 8.888,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -275,13 +275,13 @@
         "r_share": 0.421373
       },
       "projected": {
-        "d_share": 0.610531,
-        "r_share": 0.389469,
+        "d_share": 0.611547,
+        "r_share": 0.388453,
         "d_seats": 1,
         "r_seats": 0
       },
       "state_elasticity": 0.726,
-      "state_swing_applied": 6.381,
+      "state_swing_applied": 6.584,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -300,13 +300,13 @@
         "r_share": 0.579286
       },
       "projected": {
-        "d_share": 0.495508,
-        "r_share": 0.504492,
+        "d_share": 0.497891,
+        "r_share": 0.502109,
         "d_seats": 14,
         "r_seats": 14
       },
       "state_elasticity": 1.702,
-      "state_swing_applied": 14.959,
+      "state_swing_applied": 15.435,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -325,13 +325,13 @@
         "r_share": 0.526
       },
       "projected": {
-        "d_share": 0.487183,
-        "r_share": 0.512817,
+        "d_share": 0.487603,
+        "r_share": 0.512397,
         "d_seats": 7,
         "r_seats": 7
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -350,13 +350,13 @@
         "r_share": 0.29733
       },
       "projected": {
-        "d_share": 0.754481,
-        "r_share": 0.245519,
+        "d_share": 0.756132,
+        "r_share": 0.243868,
         "d_seats": 2,
         "r_seats": 0
       },
       "state_elasticity": 1.179,
-      "state_swing_applied": 10.362,
+      "state_swing_applied": 10.692,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -375,13 +375,13 @@
         "r_share": 0.565141
       },
       "projected": {
-        "d_share": 0.477925,
-        "r_share": 0.522075,
+        "d_share": 0.479297,
+        "r_share": 0.520703,
         "d_seats": 2,
         "r_seats": 2
       },
       "state_elasticity": 0.98,
-      "state_swing_applied": 8.613,
+      "state_swing_applied": 8.888,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -400,13 +400,13 @@
         "r_share": 0.703548
       },
       "projected": {
-        "d_share": 0.340309,
-        "r_share": 0.659691,
+        "d_share": 0.341706,
+        "r_share": 0.658294,
         "d_seats": 1,
         "r_seats": 1
       },
       "state_elasticity": 0.998,
-      "state_swing_applied": 8.771,
+      "state_swing_applied": 9.051,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -425,13 +425,13 @@
         "r_share": 0.470843
       },
       "projected": {
-        "d_share": 0.576046,
-        "r_share": 0.423954,
+        "d_share": 0.57754,
+        "r_share": 0.42246,
         "d_seats": 10,
         "r_seats": 7
       },
       "state_elasticity": 1.067,
-      "state_swing_applied": 9.378,
+      "state_swing_applied": 9.677,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -450,13 +450,13 @@
         "r_share": 0.601932
       },
       "projected": {
-        "d_share": 0.415426,
-        "r_share": 0.584574,
+        "d_share": 0.415979,
+        "r_share": 0.584021,
         "d_seats": 4,
         "r_seats": 5
       },
       "state_elasticity": 0.395,
-      "state_swing_applied": 3.472,
+      "state_swing_applied": 3.582,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -475,13 +475,13 @@
         "r_share": 0.587502
       },
       "projected": {
-        "d_share": 0.42845,
-        "r_share": 0.57155,
+        "d_share": 0.428958,
+        "r_share": 0.571042,
         "d_seats": 2,
         "r_seats": 2
       },
       "state_elasticity": 0.363,
-      "state_swing_applied": 3.19,
+      "state_swing_applied": 3.292,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -500,13 +500,13 @@
         "r_share": 0.731143
       },
       "projected": {
-        "d_share": 0.302079,
-        "r_share": 0.697921,
+        "d_share": 0.303138,
+        "r_share": 0.696862,
         "d_seats": 2,
         "r_seats": 4
       },
       "state_elasticity": 0.756,
-      "state_swing_applied": 6.644,
+      "state_swing_applied": 6.856,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -525,13 +525,13 @@
         "r_share": 0.619413
       },
       "projected": {
-        "d_share": 0.403175,
-        "r_share": 0.596825,
+        "d_share": 0.403894,
+        "r_share": 0.596106,
         "d_seats": 2,
         "r_seats": 4
       },
       "state_elasticity": 0.514,
-      "state_swing_applied": 4.518,
+      "state_swing_applied": 4.661,
       "baseline_distortion_warning": false,
       "imputed_district_count": 1,
       "imputed_district_ids": [
@@ -552,13 +552,13 @@
         "r_share": 0.113157
       },
       "projected": {
-        "d_share": 0.95153,
-        "r_share": 0.04847,
+        "d_share": 0.953591,
+        "r_share": 0.046409,
         "d_seats": 9,
         "r_seats": 0
       },
       "state_elasticity": 1.472,
-      "state_swing_applied": 12.937,
+      "state_swing_applied": 13.35,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -577,13 +577,13 @@
         "r_share": 0.353221
       },
       "projected": {
-        "d_share": 0.67965,
-        "r_share": 0.32035,
+        "d_share": 0.680697,
+        "r_share": 0.319303,
         "d_seats": 5,
         "r_seats": 3
       },
       "state_elasticity": 0.748,
-      "state_swing_applied": 6.574,
+      "state_swing_applied": 6.784,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -602,13 +602,13 @@
         "r_share": 0.438678
       },
       "projected": {
-        "d_share": 0.577274,
-        "r_share": 0.422726,
+        "d_share": 0.577782,
+        "r_share": 0.422218,
         "d_seats": 1,
         "r_seats": 1
       },
       "state_elasticity": 0.363,
-      "state_swing_applied": 3.19,
+      "state_swing_applied": 3.292,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -627,13 +627,13 @@
         "r_share": 0.506411
       },
       "projected": {
-        "d_share": 0.52334,
-        "r_share": 0.47666,
+        "d_share": 0.524288,
+        "r_share": 0.475712,
         "d_seats": 7,
         "r_seats": 6
       },
       "state_elasticity": 0.677,
-      "state_swing_applied": 5.95,
+      "state_swing_applied": 6.14,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -652,13 +652,13 @@
         "r_share": 0.495329
       },
       "projected": {
-        "d_share": 0.517854,
-        "r_share": 0.482146,
+        "d_share": 0.518274,
+        "r_share": 0.481726,
         "d_seats": 4,
         "r_seats": 4
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -677,13 +677,13 @@
         "r_share": 0.603179
       },
       "projected": {
-        "d_share": 0.411762,
-        "r_share": 0.588238,
+        "d_share": 0.412238,
+        "r_share": 0.587762,
         "d_seats": 3,
         "r_seats": 5
       },
       "state_elasticity": 0.34,
-      "state_swing_applied": 2.988,
+      "state_swing_applied": 3.083,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -702,13 +702,13 @@
         "r_share": 0.69879
       },
       "projected": {
-        "d_share": 0.339091,
-        "r_share": 0.660909,
+        "d_share": 0.340297,
+        "r_share": 0.659703,
         "d_seats": 1,
         "r_seats": 3
       },
       "state_elasticity": 0.862,
-      "state_swing_applied": 7.576,
+      "state_swing_applied": 7.817,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -727,13 +727,13 @@
         "r_share": 0.595997
       },
       "projected": {
-        "d_share": 0.427909,
-        "r_share": 0.572091,
+        "d_share": 0.428671,
+        "r_share": 0.571329,
         "d_seats": 1,
         "r_seats": 1
       },
       "state_elasticity": 0.544,
-      "state_swing_applied": 4.781,
+      "state_swing_applied": 4.934,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -752,13 +752,13 @@
         "r_share": 0.551567
       },
       "projected": {
-        "d_share": 0.461617,
-        "r_share": 0.538384,
+        "d_share": 0.462037,
+        "r_share": 0.537964,
         "d_seats": 6,
         "r_seats": 8
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -777,13 +777,13 @@
         "r_share": 0.695168
       },
       "projected": {
-        "d_share": 0.336736,
-        "r_share": 0.663264,
+        "d_share": 0.337752,
+        "r_share": 0.662248,
         "d_seats": 0,
         "r_seats": 1
       },
       "state_elasticity": 0.726,
-      "state_swing_applied": 6.381,
+      "state_swing_applied": 6.584,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -802,13 +802,13 @@
         "r_share": 0.636156
       },
       "projected": {
-        "d_share": 0.377028,
-        "r_share": 0.622973,
+        "d_share": 0.377447,
+        "r_share": 0.622553,
         "d_seats": 1,
         "r_seats": 2
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -827,13 +827,13 @@
         "r_share": 0.464879
       },
       "projected": {
-        "d_share": 0.574979,
-        "r_share": 0.425021,
+        "d_share": 0.576249,
+        "r_share": 0.423751,
         "d_seats": 1,
         "r_seats": 1
       },
       "state_elasticity": 0.907,
-      "state_swing_applied": 7.972,
+      "state_swing_applied": 8.226,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -852,13 +852,13 @@
         "r_share": 0.463623
       },
       "projected": {
-        "d_share": 0.622114,
-        "r_share": 0.377886,
+        "d_share": 0.624845,
+        "r_share": 0.375155,
         "d_seats": 7,
         "r_seats": 5
       },
       "state_elasticity": 1.951,
-      "state_swing_applied": 17.147,
+      "state_swing_applied": 17.694,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -877,13 +877,13 @@
         "r_share": 0.449277
       },
       "projected": {
-        "d_share": 0.585264,
-        "r_share": 0.414736,
+        "d_share": 0.586364,
+        "r_share": 0.413636,
         "d_seats": 2,
         "r_seats": 1
       },
       "state_elasticity": 0.786,
-      "state_swing_applied": 6.908,
+      "state_swing_applied": 7.128,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -902,13 +902,13 @@
         "r_share": 0.564638
       },
       "projected": {
-        "d_share": 0.479219,
-        "r_share": 0.520781,
+        "d_share": 0.480616,
+        "r_share": 0.519384,
         "d_seats": 2,
         "r_seats": 2
       },
       "state_elasticity": 0.998,
-      "state_swing_applied": 8.771,
+      "state_swing_applied": 9.051,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -927,13 +927,13 @@
         "r_share": 0.412456
       },
       "projected": {
-        "d_share": 0.674951,
-        "r_share": 0.325049,
+        "d_share": 0.677735,
+        "r_share": 0.322265,
         "d_seats": 18,
         "r_seats": 8
       },
       "state_elasticity": 1.989,
-      "state_swing_applied": 17.481,
+      "state_swing_applied": 18.038,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -952,13 +952,13 @@
         "r_share": 0.565819
       },
       "projected": {
-        "d_share": 0.451715,
-        "r_share": 0.548285,
+        "d_share": 0.452274,
+        "r_share": 0.547726,
         "d_seats": 7,
         "r_seats": 8
       },
       "state_elasticity": 0.399,
-      "state_swing_applied": 3.507,
+      "state_swing_applied": 3.619,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -977,13 +977,13 @@
         "r_share": 0.677172
       },
       "projected": {
-        "d_share": 0.336012,
-        "r_share": 0.663988,
+        "d_share": 0.336431,
+        "r_share": 0.663569,
         "d_seats": 2,
         "r_seats": 3
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1002,13 +1002,13 @@
         "r_share": 0.442081
       },
       "projected": {
-        "d_share": 0.571103,
-        "r_share": 0.428897,
+        "d_share": 0.571523,
+        "r_share": 0.428478,
         "d_seats": 3,
         "r_seats": 3
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1027,13 +1027,13 @@
         "r_share": 0.510466
       },
       "projected": {
-        "d_share": 0.511902,
-        "r_share": 0.488098,
+        "d_share": 0.512615,
+        "r_share": 0.487385,
         "d_seats": 9,
         "r_seats": 8
       },
       "state_elasticity": 0.509,
-      "state_swing_applied": 4.474,
+      "state_swing_applied": 4.616,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1052,13 +1052,13 @@
         "r_share": 0.380879
       },
       "projected": {
-        "d_share": 0.67893,
-        "r_share": 0.32107,
+        "d_share": 0.680836,
+        "r_share": 0.319164,
         "d_seats": 1,
         "r_seats": 1
       },
       "state_elasticity": 1.361,
-      "state_swing_applied": 11.962,
+      "state_swing_applied": 12.343,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1077,13 +1077,13 @@
         "r_share": 0.604698
       },
       "projected": {
-        "d_share": 0.443158,
-        "r_share": 0.556842,
+        "d_share": 0.444683,
+        "r_share": 0.555317,
         "d_seats": 3,
         "r_seats": 4
       },
       "state_elasticity": 1.089,
-      "state_swing_applied": 9.571,
+      "state_swing_applied": 9.876,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1102,13 +1102,13 @@
         "r_share": 0.720445
       },
       "projected": {
-        "d_share": 0.303461,
-        "r_share": 0.696539,
+        "d_share": 0.304223,
+        "r_share": 0.695777,
         "d_seats": 0,
         "r_seats": 1
       },
       "state_elasticity": 0.544,
-      "state_swing_applied": 4.781,
+      "state_swing_applied": 4.934,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1127,13 +1127,13 @@
         "r_share": 0.658393
       },
       "projected": {
-        "d_share": 0.378828,
-        "r_share": 0.621172,
+        "d_share": 0.380014,
+        "r_share": 0.619986,
         "d_seats": 3,
         "r_seats": 6
       },
       "state_elasticity": 0.847,
-      "state_swing_applied": 7.444,
+      "state_swing_applied": 7.681,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1152,13 +1152,13 @@
         "r_share": 0.591221
       },
       "projected": {
-        "d_share": 0.468808,
-        "r_share": 0.531192,
+        "d_share": 0.47072,
+        "r_share": 0.52928,
         "d_seats": 18,
         "r_seats": 20
       },
       "state_elasticity": 1.366,
-      "state_swing_applied": 12.006,
+      "state_swing_applied": 12.388,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1177,13 +1177,13 @@
         "r_share": 0.658753
       },
       "projected": {
-        "d_share": 0.354431,
-        "r_share": 0.64557,
+        "d_share": 0.354851,
+        "r_share": 0.64515,
         "d_seats": 1,
         "r_seats": 3
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1202,13 +1202,13 @@
         "r_share": 0.481011
       },
       "projected": {
-        "d_share": 0.548872,
-        "r_share": 0.451128,
+        "d_share": 0.549824,
+        "r_share": 0.450176,
         "d_seats": 6,
         "r_seats": 5
       },
       "state_elasticity": 0.68,
-      "state_swing_applied": 5.977,
+      "state_swing_applied": 6.167,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1227,13 +1227,13 @@
         "r_share": 0.340205
       },
       "projected": {
-        "d_share": 0.691699,
-        "r_share": 0.308301,
+        "d_share": 0.692715,
+        "r_share": 0.307285,
         "d_seats": 1,
         "r_seats": 0
       },
       "state_elasticity": 0.726,
-      "state_swing_applied": 6.381,
+      "state_swing_applied": 6.584,
       "baseline_distortion_warning": false,
       "imputed_district_count": 1,
       "imputed_district_ids": [
@@ -1254,13 +1254,13 @@
         "r_share": 0.415643
       },
       "projected": {
-        "d_share": 0.597541,
-        "r_share": 0.402459,
+        "d_share": 0.597961,
+        "r_share": 0.402039,
         "d_seats": 6,
         "r_seats": 4
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 2,
       "imputed_district_ids": [
@@ -1282,13 +1282,13 @@
         "r_share": 0.514902
       },
       "projected": {
-        "d_share": 0.498281,
-        "r_share": 0.501718,
+        "d_share": 0.498701,
+        "r_share": 0.501298,
         "d_seats": 4,
         "r_seats": 4
       },
       "state_elasticity": 0.3,
-      "state_swing_applied": 2.637,
+      "state_swing_applied": 2.721,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1307,13 +1307,13 @@
         "r_share": 0.712094
       },
       "projected": {
-        "d_share": 0.311812,
-        "r_share": 0.688188,
+        "d_share": 0.312574,
+        "r_share": 0.687426,
         "d_seats": 1,
         "r_seats": 1
       },
       "state_elasticity": 0.544,
-      "state_swing_applied": 4.781,
+      "state_swing_applied": 4.934,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
@@ -1332,13 +1332,13 @@
         "r_share": 0.752389
       },
       "projected": {
-        "d_share": 0.271517,
-        "r_share": 0.728483,
+        "d_share": 0.272279,
+        "r_share": 0.727721,
         "d_seats": 0,
         "r_seats": 1
       },
       "state_elasticity": 0.544,
-      "state_swing_applied": 4.781,
+      "state_swing_applied": 4.934,
       "baseline_distortion_warning": false,
       "imputed_district_count": 0,
       "imputed_district_ids": []
