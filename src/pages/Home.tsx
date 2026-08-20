@@ -45,6 +45,12 @@ import { scenarioHouseSize, type Scenario } from '../lib/scenarios';
 import { computeWeeklyDelta } from '../lib/weeklyDelta';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
+import {
+  applyVariant,
+  ballotVariants,
+  DEFAULT_VARIANT_ID,
+  resolveVariant,
+} from '../lib/ballotVariant';
 import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
@@ -96,6 +102,13 @@ function pathToView(pathname: string): ViewMode | null {
 }
 function parseColorMode(raw: string | null): ColorMode {
   return raw && (COLOR_MODES as string[]).includes(raw) ? (raw as ColorMode) : 'balance';
+}
+// Which generic-ballot average drives the projection. Validated against the
+// payload (not a fixed list) in `resolveVariant`, so a ?avg= naming a variant
+// the pipeline has stopped publishing falls back to the default instead of
+// rendering nothing.
+function parseVariantId(raw: string | null): string {
+  return raw && /^[a-z0-9_-]{1,24}$/.test(raw) ? raw : DEFAULT_VARIANT_ID;
 }
 function parseBallot(raw: string | null): number | null {
   if (!raw) return null;
@@ -329,6 +342,24 @@ export function Home({ onMetaChange }: HomeProps) {
     return parseViewMode(searchParams.get('view'));
   });
   const [colorMode, setColorMode] = useState<ColorMode>(() => parseColorMode(searchParams.get('color')));
+  // Which published generic-ballot average drives the Current view.
+  const [variantId, setVariantId] = useState<string>(() => parseVariantId(searchParams.get('avg')));
+
+  // The averages on offer and the one selected. Resolved against the payload so
+  // a ?avg= naming a variant the pipeline has stopped publishing (e.g. the LV
+  // average dropping below its poll floor) degrades to the standard average
+  // rather than to a blank page. Declared here, above the effects and memos
+  // that read `liveBallot`, so those can list it as a dependency.
+  const variants = useMemo(() => (payload ? ballotVariants(payload) : []), [payload]);
+  const activeVariant = useMemo(
+    () => (payload ? resolveVariant(payload, variantId) : null),
+    [payload, variantId],
+  );
+  // Today's polling margin under the selected average. Everything that means
+  // "the live number" — the Sandbox slider's anchor and its Reset target, the
+  // ?ballot= omission test — reads this rather than meta.generic_ballot_margin,
+  // so Reset snaps to the number the user is actually looking at.
+  const liveBallot = activeVariant?.margin ?? payload?.meta.generic_ballot_margin ?? 0;
 
   // Per-view document title/description/canonical (each view path has its own).
   const routeMeta = ROUTE_META[VIEW_PATH[viewMode]] ?? ROUTE_META['/'];
@@ -474,7 +505,10 @@ export function Home({ onMetaChange }: HomeProps) {
         }
         if (hist) setHistory(hist);
         if (comp) setComposition(comp);
-        setSandboxBallot((cur) => (cur === null ? proj.meta.generic_ballot_margin : cur));
+        // Anchor the untouched sandbox slider to the selected average. Resolved
+        // off the just-fetched payload rather than `liveBallot`, which is still
+        // derived from the pre-fetch (null) payload at this point.
+        setSandboxBallot((cur) => (cur === null ? resolveVariant(proj, variantId).margin : cur));
         // Resolve any ?state=XX URL param to its FIPS now that the payload
         // is loaded. Invalid codes are silently ignored.
         const pending = pendingStateCodeRef.current;
@@ -550,10 +584,13 @@ export function Home({ onMetaChange }: HomeProps) {
     setMmpSmdShare(null);
     setHouseSize(DEFAULT_HOUSE_SIZE);
     setSelectedFips(null);
+    setVariantId(DEFAULT_VARIANT_ID);
     // sandboxBallot: snap back to the live polling margin so a future
     // visit to Sandbox starts at the headline number, not the last value
-    // the user dragged the slider to.
-    if (payload) setSandboxBallot(payload.meta.generic_ballot_margin);
+    // the user dragged the slider to. The bare URL means the standard
+    // average, which setVariantId above has just restored — so read that
+    // variant's margin, not the (still stale this render) liveBallot.
+    if (payload) setSandboxBallot(resolveVariant(payload, DEFAULT_VARIANT_ID).margin);
   }, [location.pathname, searchParams, payload]);
 
   // App state → URL: keep the URL in sync with the current view so links
@@ -574,13 +611,19 @@ export function Home({ onMetaChange }: HomeProps) {
     const next = new URLSearchParams();
     // The view is carried by the path (VIEW_PATH), not a query param.
     if (colorMode !== 'balance') next.set('color', colorMode);
+    // Emit ?avg= for any non-default polling average, so a link carries which
+    // one the reader was looking at. Emitted in every view: the Sandbox and
+    // Retrospective don't render the toggle, but the choice must survive a
+    // round trip through them back to Current.
+    if (activeVariant && activeVariant.id !== DEFAULT_VARIANT_ID) {
+      next.set('avg', activeVariant.id);
+    }
     // Emit ?year= in retrospective mode for any non-default cycle so a specific
     // retrospective is shareable (the latest cycle stays a clean URL).
     if (viewMode === 'retrospective' && retroYear !== RETRO_DEFAULT_YEAR) {
       next.set('year', String(retroYear));
     }
     if (viewMode === 'sandbox' && sandboxBallot !== null) {
-      const liveBallot = payload.meta.generic_ballot_margin;
       if (Math.abs(sandboxBallot - liveBallot) > 0.05) {
         next.set('ballot', sandboxBallot.toFixed(1));
       }
@@ -630,15 +673,18 @@ export function Home({ onMetaChange }: HomeProps) {
       { pathname: VIEW_PATH[viewMode], search: search ? `?${search}` : '' },
       { replace: !push },
     );
-  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, navigate]);
+  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, navigate, activeVariant, liveBallot]);
 
   // Derive what the user actually sees based on the active view mode.
-  // - current: pipeline-computed projection (no client recompute).
+  // - current: pipeline-computed projection at the selected ballot average
+  //   (the default variant returns the shipped payload untouched).
   // - retrospective: 2024 PR under swing=0.
   // - sandbox: PR under user-controlled hypothetical generic-ballot.
   const effectivePayload = useMemo<ProjectionPayload | null>(() => {
     if (!payload) return null;
-    if (viewMode === 'current') return payload;
+    if (viewMode === 'current') {
+      return activeVariant ? applyVariant(payload, activeVariant) : payload;
+    }
     if (viewMode === 'retrospective') {
       // Adapt the selected cycle from retrospectives.json. Falls back to the
       // 2024-from-projection computation if the data hasn't loaded (or 404s on
@@ -647,10 +693,10 @@ export function Home({ onMetaChange }: HomeProps) {
       return cycle ? cycleToProjectionPayload(cycle, retroYear) : recomputeWithSwing(payload, 0);
     }
     // sandbox
-    const ballot = sandboxBallot ?? payload.meta.generic_ballot_margin;
+    const ballot = sandboxBallot ?? liveBallot;
     const swing = ballot - payload.meta.baseline_2024_margin;
     return recomputeWithSwing(payload, swing);
-  }, [payload, viewMode, sandboxBallot, retros, retroYear]);
+  }, [payload, viewMode, sandboxBallot, retros, retroYear, activeVariant, liveBallot]);
 
   // Structural-distortion baseline for the Current-view headline decomposition.
   // PR of the *actual 2024* vote (swing = 0) minus today's 2024-elected House —
@@ -752,9 +798,16 @@ export function Home({ onMetaChange }: HomeProps) {
 
   // "Since last week" movement for the hero chip. Pure function of the
   // history series; null when no honest week-ago forward baseline exists.
+  //
+  // history.json only ever recorded the standard average, so on any other
+  // ballot variant there is no week-ago figure to compare against — the chip
+  // is suppressed rather than shown quoting margins the headline contradicts.
   const weeklyDelta = useMemo(
-    () => (history ? computeWeeklyDelta(history.points) : null),
-    [history],
+    () =>
+      history && (!activeVariant || activeVariant.id === DEFAULT_VARIANT_ID)
+        ? computeWeeklyDelta(history.points)
+        : null,
+    [history, activeVariant],
   );
 
   if (error) {
@@ -779,11 +832,11 @@ export function Home({ onMetaChange }: HomeProps) {
     ? effectivePayload.states.find((s) => s.fips === selectedFips) ?? null
     : null;
 
-  const ballot = sandboxBallot ?? payload.meta.generic_ballot_margin;
+  const ballot = sandboxBallot ?? liveBallot;
   const sandboxSwing = ballot - payload.meta.baseline_2024_margin;
 
   // Current generic-ballot average, for the polling-trend card under the map.
-  const pollMargin = payload.meta.generic_ballot_margin;
+  const pollMargin = liveBallot;
   const pollLabel = fmtMargin(pollMargin);
 
   // Dataset JSON-LD for the homepage — declares the projection as a public
@@ -823,6 +876,9 @@ export function Home({ onMetaChange }: HomeProps) {
         methodLabel={effective.label}
         retroYear={retroYear}
         weeklyDelta={weeklyDelta}
+        ballotVariants={variants}
+        activeVariantId={activeVariant?.id}
+        onVariantChange={setVariantId}
       />
       <NationalSummary
         payload={effectivePayload}
@@ -873,7 +929,7 @@ export function Home({ onMetaChange }: HomeProps) {
               genericBallot={ballot}
               swing={sandboxSwing}
               baseline2024={payload.meta.baseline_2024_margin}
-              liveBallot={payload.meta.generic_ballot_margin}
+              liveBallot={liveBallot}
               onChange={setSandboxBallot}
               minors={minors}
               threshold={threshold}
@@ -1015,12 +1071,14 @@ export function Home({ onMetaChange }: HomeProps) {
         </div>
 
         {/* Closest seats to flip — sits under the map, above the polling input.
-          * Pipeline analytics, so read from `payload` (identical to
-          * effectivePayload on Current, where alone it renders). */}
-        {viewMode === 'current' && payload.meta.closest_flips?.length ? (
+          * Pipeline analytics, read from `effectivePayload`: on Current (where
+          * alone it renders) that's the selected ballot average's own flip
+          * list, restored by applyVariant. Reading `payload` here would pin the
+          * list to the standard average while the map showed another. */}
+        {viewMode === 'current' && effectivePayload.meta.closest_flips?.length ? (
           <ClosestSeats
-            flips={payload.meta.closest_flips}
-            currentMargin={payload.meta.generic_ballot_margin}
+            flips={effectivePayload.meta.closest_flips}
+            currentMargin={effectivePayload.meta.generic_ballot_margin}
             onSelectState={handleSelect}
           />
         ) : null}

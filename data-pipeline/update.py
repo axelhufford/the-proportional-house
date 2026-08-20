@@ -36,6 +36,7 @@ from fetch_polls import (
     SILVER_BULLETIN_CSV_URL,
     SILVER_BULLETIN_LANDING_URL,
     fetch_csv,
+    format_margin,
     parse_polls,
     weighted_average,
 )
@@ -269,6 +270,113 @@ def compute_closest_flips(
     return merged
 
 
+# Generic-ballot average variants, published so the site can offer a toggle.
+#
+# The default is every poll in the window. The likely-voter variant re-runs the
+# SAME average — same window, half-life, sample-size term, house-effect-adjusted
+# margins — restricted to polls of likely voters. The two therefore differ only
+# in which polls they include.
+#
+# This is deliberately NOT a reproduction of Silver Bulletin's likely-voter
+# adjustment. Theirs is estimated by comparing the LV and RV releases of the
+# same survey; the public poll database is deduped to one row per survey with
+# the LV version preferred, so those paired rows are exactly what it strips.
+# Ours is a filter over the same public data, published as our own calculation.
+#
+# `min_polls` gates publication: below it the variant is omitted entirely rather
+# than shipped as a noisy number, the same discipline as load_polling_error.
+# The standard variant is ungated (0) to preserve its existing behavior.
+BALLOT_VARIANTS: list[dict] = [
+    {
+        "id": "standard",
+        "label": "Standard average",
+        "short_label": "All polls",
+        "populations": None,
+        "min_polls": 0,
+        "note": (
+            "Every generic-ballot poll in the window — likely voters, registered "
+            "voters and adults — weighted by recency, sample size and voter screen."
+        ),
+    },
+    {
+        "id": "lv",
+        "label": "Likely-voter polls only",
+        "short_label": "LV only",
+        "populations": {"LV"},
+        "min_polls": 3,
+        "note": (
+            "The same average restricted to polls of likely voters. This is our own "
+            "calculation, not Silver Bulletin's likely-voter-adjusted average — that "
+            "adjustment compares the likely-voter and registered-voter releases of a "
+            "single survey, and the public poll database keeps only one row per survey."
+        ),
+    },
+]
+
+
+def build_ballot_variant(
+    spec: dict, polls: list, as_of: datetime, baseline_states: list[dict],
+    baseline_d_margin: float, polling_error: dict | None,
+    method: str = "sainte-lague",
+) -> tuple[dict | None, dict, list[dict] | None]:
+    """Compute one ballot-average variant and everything derived from it.
+
+    Returns `(variant, avg, projected_states)`. `variant` is None when the
+    average has fewer than `spec["min_polls"]` polls in window — the caller
+    omits it rather than publishing a number too thin to defend.
+
+    The band, tipping point and closest-flips list are all evaluated at THIS
+    variant's swing, because none of them are transferable between swings.
+    That is why they ride along on the variant instead of living only at the
+    top level: the browser can re-derive a variant's per-state seats from the
+    published shares, but it cannot re-derive these.
+    """
+    avg = weighted_average(polls, as_of=as_of, populations=spec["populations"])
+    if avg["n_polls"] < spec["min_polls"]:
+        return None, avg, None
+
+    margin = avg["margin"]
+    swing = margin - baseline_d_margin
+    projected = project_states(baseline_states, swing, method)
+
+    variant: dict = {
+        "id": spec["id"],
+        "label": spec["label"],
+        "short_label": spec["short_label"],
+        "note": spec["note"],
+        "margin": margin,
+        "swing": round(swing, 2),
+        "n_polls": avg["n_polls"],
+        "populations": avg["populations"],
+        "projected": {
+            "d_seats": sum(s["projected"]["d_seats"] for s in projected),
+            "r_seats": sum(s["projected"]["r_seats"] for s in projected),
+        },
+    }
+
+    # Optional blocks: absent (not null) when ungated, matching the top-level
+    # omission contract the TS types and API tests rely on.
+    if polling_error:
+        eps = float(polling_error["meta"]["epsilon_points"])
+        variant["uncertainty"] = {
+            "epsilon_points": eps,
+            "basis": polling_error["meta"]["basis"],
+            **compute_seat_band(baseline_states, swing, eps, method),
+        }
+    # The tipping point is a property of the baseline and the allocator, not of
+    # the swing, so it comes out the same for every variant. Published per
+    # variant anyway so the client has one uniform shape to read, and so the
+    # validator can check it against each variant's own margin.
+    tipping = compute_majority_tipping(baseline_states, baseline_d_margin, method)
+    if tipping is not None:
+        variant["majority"] = {"tipping_margin": tipping, "majority_seats": 218}
+    flips = compute_closest_flips(baseline_states, swing, margin, method)
+    if flips:
+        variant["closest_flips"] = flips
+
+    return variant, avg, projected
+
+
 def retrospective_states(baseline_states: list[dict], method: str = "sainte-lague") -> list[dict]:
     """The 2024 Retrospective: apply Sainte-Laguë directly to the 2024 baseline,
     no swing. Shows the pure distortion of the current system.
@@ -354,20 +462,53 @@ def main(refresh_clerk: bool = False) -> None:
     csv_text = fetch_csv()
     polls = parse_polls(csv_text)
     now = datetime.now(timezone.utc)
-    avg = weighted_average(polls, as_of=now)
-    generic_ballot = avg["margin"]  # positive = D advantage in margin points
 
-    # 3. Swing.
+    # 3-4. Ballot-average variants. Each carries its own swing, projection,
+    # sensitivity band, tipping point and closest-flips list, because none of
+    # those transfer between swings. The standard variant also supplies every
+    # top-level field the payloads below already published, so the shape the
+    # public API and the sibling social engine consume is unchanged.
+    polling_error = load_polling_error()
+    variants: list[dict] = []
+    standard: dict | None = None
+    standard_avg: dict | None = None
+    standard_states: list[dict] | None = None
+
+    print(f"Baseline 2024 D margin: {baseline_d_margin:+.2f} points (R+{abs(baseline_d_margin):.2f}).")
+    for spec in BALLOT_VARIANTS:
+        variant, v_avg, v_states = build_ballot_variant(
+            spec, polls, now, baseline_states, baseline_d_margin, polling_error,
+        )
+        if variant is None:
+            print(
+                f"  {spec['id']:<9} omitted — {v_avg['n_polls']} poll(s) in window, "
+                f"minimum {spec['min_polls']}."
+            )
+            continue
+        variants.append(variant)
+        print(
+            f"  {variant['id']:<9} {format_margin(variant['margin'], 2)} "
+            f"(n={variant['n_polls']}), swing {variant['swing']:+.2f} → "
+            f"D {variant['projected']['d_seats']} / R {variant['projected']['r_seats']}"
+        )
+        if spec["id"] == "standard":
+            standard, standard_avg, standard_states = variant, v_avg, v_states
+
+    if standard is None or standard_avg is None or standard_states is None:
+        # Unreachable with min_polls=0, but the pipeline must never silently
+        # publish a payload with no headline projection in it.
+        raise RuntimeError("standard ballot variant missing — cannot build a projection")
+
+    # The names below are the standard variant's, and stay the meaning of every
+    # top-level field in projection.json / meta.json.
+    avg = standard_avg
+    generic_ballot = standard["margin"]  # positive = D advantage in margin points
     swing = generic_ballot - baseline_d_margin
-    print(
-        f"Baseline 2024 D margin: {baseline_d_margin:+.2f} points "
-        f"(R+{abs(baseline_d_margin):.2f}). "
-        f"Generic ballot: {'D+' if generic_ballot >= 0 else 'R+'}{abs(generic_ballot):.2f}. "
-        f"Swing: {'+' if swing >= 0 else ''}{swing:.2f} points toward D."
-    )
+    projected = standard_states
+    uncertainty = standard.get("uncertainty")
+    majority = standard.get("majority")
+    closest_flips = standard.get("closest_flips")
 
-    # 4. Project.
-    projected = project_states(baseline_states, swing)
     nat_proj_d = sum(s["projected"]["d_seats"] for s in projected)
     nat_proj_r = sum(s["projected"]["r_seats"] for s in projected)
     nat_actual_d = sum(s["actual"]["d_seats"] for s in projected)
@@ -377,31 +518,13 @@ def main(refresh_clerk: bool = False) -> None:
     nat_retro_d = sum(s["projected_pr"]["d_seats"] for s in retrospective)
     nat_retro_r = sum(s["projected_pr"]["r_seats"] for s in retrospective)
 
-    # 4b. Sensitivity band (only when the curated polling-error table is
-    # fully verified — see load_polling_error).
-    uncertainty = None
-    polling_error = load_polling_error()
-    if polling_error:
-        eps = float(polling_error["meta"]["epsilon_points"])
-        uncertainty = {
-            "epsilon_points": eps,
-            "basis": polling_error["meta"]["basis"],
-            **compute_seat_band(baseline_states, swing, eps),
-        }
+    if uncertainty:
         print(
-            f"Sensitivity band at ±{eps:.1f} pts: "
+            f"Sensitivity band at ±{uncertainty['epsilon_points']:.1f} pts: "
             f"D {uncertainty['d_seats_low']}–{uncertainty['d_seats_high']} seats."
         )
-
-    # 4c. Majority tipping point + closest seats to flip — same pure model,
-    # bisected. Both optional (omitted if the crossing/flips fall outside the
-    # defensive ranges).
-    majority = None
-    tipping = compute_majority_tipping(baseline_states, baseline_d_margin)
-    if tipping is not None:
-        majority = {"tipping_margin": tipping, "majority_seats": 218}
-        print(f"Majority tipping point: D reaches 218 at ballot margin {tipping:+.1f}.")
-    closest_flips = compute_closest_flips(baseline_states, swing, generic_ballot)
+    if majority:
+        print(f"Majority tipping point: D reaches 218 at ballot margin {majority['tipping_margin']:+.1f}.")
     if closest_flips:
         nearest = closest_flips[0]
         print(
@@ -444,6 +567,10 @@ def main(refresh_clerk: bool = False) -> None:
         projection_payload["meta"]["majority"] = majority
     if closest_flips:
         projection_payload["meta"]["closest_flips"] = closest_flips
+    # Additive: the ballot-average toggle reads this. `standard` duplicates the
+    # top-level fields above so the client has one uniform shape; the top-level
+    # fields stay authoritative for consumers that predate the toggle.
+    projection_payload["meta"]["ballot_variants"] = variants
     write_json_atomic(PROJECTION_PATH, projection_payload)
 
     baseline_payload = {
@@ -500,6 +627,7 @@ def main(refresh_clerk: bool = False) -> None:
         meta_payload["majority"] = majority
     if closest_flips:
         meta_payload["closest_flips"] = closest_flips
+    meta_payload["ballot_variants"] = variants
     write_json_atomic(META_PATH, meta_payload)
 
     # Derived artifacts. Each is isolated so one failure can't abort the others

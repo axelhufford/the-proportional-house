@@ -118,90 +118,142 @@ def check_projection(errors: list[str]) -> None:
         errors.append("projection: national.actual != sum of states")
     if ad + ar != TOTAL_SEATS or pd + pr != TOTAL_SEATS:
         errors.append("projection: national totals don't sum to 435")
-    unc = p["meta"].get("uncertainty")
+    baseline_d_margin = p["meta"]["baseline_2024_margin"]
+
+    # The band / tipping point / closest-flips list are each only meaningful at
+    # the swing they were computed for, so every published ballot-average
+    # variant carries its own set and every set gets checked. The top-level meta
+    # is the standard variant's, checked under the label "projection".
+    analytics_sets = [
+        ("projection", p["meta"], p["meta"]["generic_ballot_margin"], nat["projected"]["d_seats"]),
+    ]
+    variants = p["meta"].get("ballot_variants")
+    if variants is not None:
+        if not variants:
+            errors.append("projection: ballot_variants present but empty")
+        ids = [v["id"] for v in variants]
+        if ids[:1] != ["standard"]:
+            errors.append(f"projection: ballot_variants must lead with 'standard', got {ids}")
+        if len(set(ids)) != len(ids):
+            errors.append(f"projection: duplicate ballot_variant ids {ids}")
+        std = variants[0]
+        # The standard variant must agree with the top-level fields it mirrors,
+        # or the toggle and the public API would disagree about the default.
+        if std["margin"] != p["meta"]["generic_ballot_margin"]:
+            errors.append("projection: standard variant margin != generic_ballot_margin")
+        if std["n_polls"] != p["meta"]["n_polls_in_average"]:
+            errors.append("projection: standard variant n_polls != n_polls_in_average")
+        if std["projected"] != {k: nat["projected"][k] for k in ("d_seats", "r_seats")}:
+            errors.append("projection: standard variant projected != national.projected")
+        for v in variants:
+            if v["n_polls"] < 1:
+                errors.append(f"projection: variant '{v['id']}' published with {v['n_polls']} polls")
+            if abs(v["swing"] - (v["margin"] - baseline_d_margin)) > 0.011:
+                errors.append(f"projection: variant '{v['id']}' swing != margin - baseline")
+            if v["projected"]["d_seats"] + v["projected"]["r_seats"] != TOTAL_SEATS:
+                errors.append(f"projection: variant '{v['id']}' seats don't sum to {TOTAL_SEATS}")
+            if v["id"] != "standard":
+                analytics_sets.append((f"variant '{v['id']}'", v, v["margin"], v["projected"]["d_seats"]))
+
+    for label, block, margin, projected_d in analytics_sets:
+        _check_projection_analytics(errors, label, block, margin, projected_d, baseline_d_margin)
+
+
+def _check_projection_analytics(
+    errors: list[str], label: str, block: dict, margin: float,
+    projected_d: int, baseline_d_margin: float,
+) -> None:
+    """Sensitivity band + tipping point + closest-flips checks for one swing.
+
+    `block` is either projection.json's top-level meta or one ballot-average
+    variant; both carry the same optional analytics keys. The strong checks
+    re-run the shipped model at `margin`, so a variant whose numbers were
+    copied from another swing fails here.
+    """
+    unc = block.get("uncertainty")
     if unc is not None:
         if not unc["epsilon_points"] > 0:
-            errors.append("projection: uncertainty epsilon <= 0")
+            errors.append(f"{label}: uncertainty epsilon <= 0")
         if unc["d_seats_low"] > unc["d_seats_high"]:
-            errors.append("projection: uncertainty band inverted")
-        if not (unc["d_seats_low"] <= nat["projected"]["d_seats"] <= unc["d_seats_high"]):
-            errors.append("projection: projected d_seats outside uncertainty band")
+            errors.append(f"{label}: uncertainty band inverted")
+        if not (unc["d_seats_low"] <= projected_d <= unc["d_seats_high"]):
+            errors.append(f"{label}: projected d_seats outside uncertainty band")
         if (unc["d_seats_low"] + unc["r_seats_high"] != TOTAL_SEATS
                 or unc["d_seats_high"] + unc["r_seats_low"] != TOTAL_SEATS):
-            errors.append("projection: uncertainty band complements don't sum to 435")
+            errors.append(f"{label}: uncertainty band complements don't sum to 435")
 
-    majority = p["meta"].get("majority")
-    flips = p["meta"].get("closest_flips")
-    if majority is not None or flips is not None:
-        # Strong checks re-run the shipped model, so they need the baseline.
-        from update import project_states  # function-level: avoids import-order surprises
+    majority = block.get("majority")
+    flips = block.get("closest_flips")
+    if majority is None and flips is None:
+        return
 
-        baseline_path = REPO_ROOT / "data-pipeline" / "baseline" / "house_2024.json"
-        with baseline_path.open() as f:
-            baseline_states = json.load(f)["states"]
-        margin = p["meta"]["generic_ballot_margin"]
-        baseline_d_margin = p["meta"]["baseline_2024_margin"]
+    # Strong checks re-run the shipped model, so they need the baseline.
+    from update import project_states  # function-level: avoids import-order surprises
 
-        def national_d(at_margin: float) -> int:
-            proj = project_states(baseline_states, at_margin - baseline_d_margin)
-            return sum(s["projected"]["d_seats"] for s in proj)
+    baseline_path = REPO_ROOT / "data-pipeline" / "baseline" / "house_2024.json"
+    with baseline_path.open() as f:
+        baseline_states = json.load(f)["states"]
+
+    def national_d(at_margin: float) -> int:
+        proj = project_states(baseline_states, at_margin - baseline_d_margin)
+        return sum(s["projected"]["d_seats"] for s in proj)
 
     if majority is not None:
         tip = majority["tipping_margin"]
         if majority["majority_seats"] != 218:
-            errors.append(f"projection: majority_seats {majority['majority_seats']} != 218")
+            errors.append(f"{label}: majority_seats {majority['majority_seats']} != 218")
         if not (-20 <= tip <= 20):
-            errors.append(f"projection: tipping_margin {tip} outside ±20")
+            errors.append(f"{label}: tipping_margin {tip} outside ±20")
         # Sign consistency: D holds a projected majority iff today's margin
         # sits at/above the tipping point (0.05 covers the 0.1 rounding).
-        has_majority_now = nat["projected"]["d_seats"] >= 218
+        has_majority_now = projected_d >= 218
         if has_majority_now != (tip <= margin + 0.05):
-            errors.append("projection: tipping_margin sign inconsistent with projected majority")
+            errors.append(f"{label}: tipping_margin sign inconsistent with projected majority")
         # Strong check: the crossing actually happens at the shipped value.
         if national_d(tip + 0.1) < 218:
-            errors.append(f"projection: D < 218 at tipping_margin+0.1 ({tip + 0.1})")
+            errors.append(f"{label}: D < 218 at tipping_margin+0.1 ({tip + 0.1})")
         if national_d(tip - 0.1) > 217:
-            errors.append(f"projection: D > 217 at tipping_margin-0.1 ({tip - 0.1})")
+            errors.append(f"{label}: D > 217 at tipping_margin-0.1 ({tip - 0.1})")
 
     if flips is not None:
         if len(flips) > 6:
-            errors.append(f"projection: closest_flips has {len(flips)} entries (max 6)")
+            errors.append(f"{label}: closest_flips has {len(flips)} entries (max 6)")
         for direction in ("D", "R"):
             if sum(1 for c in flips if c["direction"] == direction) > 3:
-                errors.append(f"projection: closest_flips has > 3 {direction} entries")
+                errors.append(f"{label}: closest_flips has > 3 {direction} entries")
         deltas = [c["margin_delta"] for c in flips]
         if deltas != sorted(deltas):
-            errors.append("projection: closest_flips not sorted by margin_delta")
+            errors.append(f"{label}: closest_flips not sorted by margin_delta")
         seen = set()
         by_fips = {s["fips"]: s for s in baseline_states}
         for c in flips:
             key = (c["code"], c["direction"])
             if key in seen:
-                errors.append(f"projection: closest_flips duplicate {key}")
+                errors.append(f"{label}: closest_flips duplicate {key}")
             seen.add(key)
             if not (0 < c["margin_delta"] <= 15):
-                errors.append(f"projection {c['code']}: margin_delta {c['margin_delta']} outside (0, 15]")
+                errors.append(f"{label} {c['code']}: margin_delta {c['margin_delta']} outside (0, 15]")
             sign = 1.0 if c["direction"] == "D" else -1.0
             if abs(c["flips_at_margin"] - round(margin + sign * c["margin_delta"], 1)) > 0.051:
-                errors.append(f"projection {c['code']}: flips_at_margin arithmetic off")
+                errors.append(f"{label} {c['code']}: flips_at_margin arithmetic off")
             # Strong check: the seat really flips at delta (+0.05 slack) and
             # not well before it (0.2 covers bisection tol + ceil rounding).
             state = by_fips.get(c["fips"])
             if state is None:
-                errors.append(f"projection {c['code']}: fips not in baseline")
+                errors.append(f"{label} {c['code']}: fips not in baseline")
                 continue
             swing_today = margin - baseline_d_margin
             today_d = project_states([state], swing_today)[0]["projected"]["d_seats"]
             at_delta = project_states([state], swing_today + sign * (c["margin_delta"] + 0.05))[0]["projected"]["d_seats"]
             if at_delta == today_d:
-                errors.append(f"projection {c['code']}: no flip at margin_delta+0.05")
+                errors.append(f"{label} {c['code']}: no flip at margin_delta+0.05")
             elif (at_delta > today_d) != (c["direction"] == "D"):
-                errors.append(f"projection {c['code']}: flip direction mismatch")
+                errors.append(f"{label} {c['code']}: flip direction mismatch")
             early = c["margin_delta"] - 0.2
             if early > 0:
                 at_early = project_states([state], swing_today + sign * early)[0]["projected"]["d_seats"]
                 if at_early != today_d:
-                    errors.append(f"projection {c['code']}: flips earlier than margin_delta-0.2")
+                    errors.append(f"{label} {c['code']}: flips earlier than margin_delta-0.2")
 
 
 def check_polling_error(errors: list[str]) -> None:

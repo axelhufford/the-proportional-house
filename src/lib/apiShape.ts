@@ -42,6 +42,32 @@ export interface ApiV1Polling {
   baseline_2024_margin: number;
   /** Swing applied: generic_ballot_margin − baseline_2024_margin. */
   swing: number;
+  /**
+   * Alternative generic-ballot averages the site publishes, the first of which
+   * ("standard") is the one every field above describes. Additive: the fields
+   * above keep their meaning and their values whatever this contains, so a
+   * consumer written before variants existed is unaffected.
+   *
+   * Omitted entirely when the payload has no variants.
+   */
+  variants?: ApiV1PollingVariant[];
+}
+
+export interface ApiV1PollingVariant {
+  /** Stable key; "standard" is the default average. */
+  id: string;
+  /** Human-readable name, e.g. "Likely-voter polls only". */
+  label: string;
+  /** What this average contains, and what it is not. */
+  note: string;
+  /** D-margin in points; positive = D. */
+  generic_ballot_margin: number;
+  swing: number;
+  n_polls: number;
+  /** Voter screens included, e.g. ["LV"]; null when unfiltered. */
+  populations: string[] | null;
+  /** Projected national delegation at this average. */
+  projected: ApiV1Seats;
 }
 
 export interface ApiV1State {
@@ -175,6 +201,22 @@ export function toApiV1(
       generic_ballot_margin: meta.generic_ballot_margin,
       baseline_2024_margin: meta.baseline_2024_margin,
       swing: meta.swing,
+      // Conditional spread so the key is OMITTED (not null) when absent, like
+      // every other optional block in v1.
+      ...(meta.ballot_variants?.length
+        ? {
+            variants: meta.ballot_variants.map((v) => ({
+              id: v.id,
+              label: v.label,
+              note: v.note,
+              generic_ballot_margin: v.margin,
+              swing: v.swing,
+              n_polls: v.n_polls,
+              populations: v.populations,
+              projected: { D: v.projected.d_seats, R: v.projected.r_seats },
+            })),
+          }
+        : {}),
     },
     national: {
       total_seats: national.seats,

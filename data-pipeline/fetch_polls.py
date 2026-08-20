@@ -13,6 +13,11 @@ average so the methodology page can show exactly what's in it.
 Weights: recency (exponential decay, 14-day half-life), sqrt(sample_size),
 population (LV=1.0, RV=0.85, A=0.7).
 
+`weighted_average` also takes an optional `populations` filter, used to build
+the site's likely-voter-only variant of the average. See the note on that
+parameter for why a filter — and not a shift — is the only honest thing we can
+build from this CSV.
+
 Fallbacks for if the CSV breaks (described in PROJECT_PLAN section 4) are NOT
 implemented here yet; this is the primary fetcher.
 """
@@ -42,6 +47,12 @@ SILVER_BULLETIN_LANDING_URL = (
 RECENT_WINDOW_DAYS = 30
 HALF_LIFE_DAYS = 14
 POPULATION_WEIGHTS = {"LV": 1.0, "RV": 0.85, "A": 0.7}
+
+
+def format_margin(margin: float, places: int = 1) -> str:
+    """`6.45` -> "D+6.5"; `-2.51` -> "R+2.5". Console output only."""
+    side = "D+" if margin >= 0 else "R+"
+    return f"{side}{abs(margin):.{places}f}"
 
 
 @dataclass
@@ -142,10 +153,29 @@ def parse_polls(csv_text: str) -> list[Poll]:
     return polls
 
 
-def weighted_average(polls: list[Poll], as_of: datetime, use_adjusted: bool = True) -> dict:
+def weighted_average(
+    polls: list[Poll], as_of: datetime, use_adjusted: bool = True,
+    populations: Optional[set[str]] = None,
+) -> dict:
     """Compute the weighted average margin (D - R) for polls within the recent
     window. Returns a dict with `margin`, `n_polls`, `total_weight`, and the
     list of included polls (with their per-poll weights, for display).
+
+    `populations` restricts the average to polls of a given screen, e.g.
+    {"LV"} for the site's likely-voter-only variant. Everything else — the
+    window, the half-life, the sqrt(sample size) term, the preference for
+    Silver Bulletin's house-effect-adjusted margin — is unchanged, so two
+    averages differ ONLY in which polls they include.
+
+    Note this is a filter, not a likely-voter *adjustment*. Silver Bulletin's
+    own LV adjustment is estimated by comparing the LV and RV releases of the
+    same survey, which we cannot reproduce: the public CSV is already deduped
+    to one row per survey with the LV version preferred, so the paired rows
+    that method needs are exactly what it strips out. See the Methodology page.
+
+    POPULATION_WEIGHTS is inert when a single population is selected (every
+    included poll gets the same multiplier), which is intended — the LV-only
+    average is a plain recency/size-weighted mean of the LV polls.
     """
     recent: list[tuple[Poll, float, float]] = []  # poll, weight, margin
     cutoff = as_of.timestamp() - RECENT_WINDOW_DAYS * 86400
@@ -155,6 +185,8 @@ def weighted_average(polls: list[Poll], as_of: datetime, use_adjusted: bool = Tr
         # otherwise future polls leak in with negative `days_ago` and an
         # exploding recency weight. Harmless when as_of=now (no future polls).
         if p.midpoint.timestamp() < cutoff or p.midpoint > as_of:
+            continue
+        if populations is not None and p.population not in populations:
             continue
         margin = (p.adjusted_net if (use_adjusted and p.adjusted_net is not None) else p.raw_net)
         # Recency: exponential decay from poll midpoint.
@@ -168,8 +200,14 @@ def weighted_average(polls: list[Poll], as_of: datetime, use_adjusted: bool = Tr
         w = recency_w * size_w * pop_w
         recent.append((p, w, margin))
 
+    pop_filter = sorted(populations) if populations is not None else None
+
     if not recent:
-        return {"margin": 0.0, "n_polls": 0, "total_weight": 0.0, "polls": []}
+        return {
+            "margin": 0.0, "n_polls": 0, "total_weight": 0.0,
+            "window_days": RECENT_WINDOW_DAYS, "half_life_days": HALF_LIFE_DAYS,
+            "populations": pop_filter, "polls": [],
+        }
 
     total_w = sum(w for _, w, _ in recent)
     weighted_sum = sum(w * m for _, w, m in recent)
@@ -182,6 +220,7 @@ def weighted_average(polls: list[Poll], as_of: datetime, use_adjusted: bool = Tr
         "use_adjusted": use_adjusted,
         "window_days": RECENT_WINDOW_DAYS,
         "half_life_days": HALF_LIFE_DAYS,
+        "populations": pop_filter,
         "polls": [
             {
                 "pollster": p.pollster,
@@ -205,12 +244,11 @@ def main() -> None:
     csv_text = fetch_csv()
     polls = parse_polls(csv_text)
     print(f"Loaded {len(polls)} polls (subgroup='All polls').")
-    avg = weighted_average(polls, as_of=datetime.now(timezone.utc))
-    label = f"D+{avg['margin']:.1f}" if avg["margin"] >= 0 else f"R+{abs(avg['margin']):.1f}"
-    print(
-        f"Weighted average (last {RECENT_WINDOW_DAYS}d, half-life {HALF_LIFE_DAYS}d, "
-        f"adjusted={avg['use_adjusted']}): {label} (n={avg['n_polls']})"
-    )
+    now = datetime.now(timezone.utc)
+    print(f"Window: last {RECENT_WINDOW_DAYS}d, half-life {HALF_LIFE_DAYS}d, house-effect adjusted.")
+    for name, pops in (("all polls", None), ("LV polls only", {"LV"})):
+        avg = weighted_average(polls, as_of=now, populations=pops)
+        print(f"  {name:<14} {format_margin(avg['margin'])} (n={avg['n_polls']})")
 
 
 if __name__ == "__main__":

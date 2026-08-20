@@ -117,6 +117,35 @@ export function Methodology(_props: MethodologyProps) {
             our weighted average inherits that correction. We additionally weight polls by recency
             (14-day exponential half-life), √sample size, and population (LV {'>'} RV {'>'} A).
           </li>
+          <li id="ballot-variants" className="scroll-mt-24">
+            <strong>Two versions of that average.</strong> The Current view’s{' '}
+            <em>Polling average</em> toggle switches between the <strong>standard average</strong>{' '}
+            (every poll in the window) and <strong>likely-voter polls only</strong> (the same average
+            restricted to polls of likely voters). Nothing else changes between them — same window,
+            same half-life, same sample-size term, same house-effect-adjusted margins — so the two
+            differ only in which polls they include.
+            <p className="mt-2">
+              This is <em>not</em> Silver Bulletin’s likely-voter-adjusted average, the one his 2026
+              forecast model runs on, and the two numbers will not agree. His adjustment is estimated
+              by comparing the likely-voter and registered-voter releases of the <em>same</em> survey.
+              We can’t reproduce it: the public poll database is deduplicated to one row per survey
+              with the likely-voter version preferred, so the paired rows that method needs are exactly
+              what it strips out. Estimating the gap indirectly from what remains gives answers ranging
+              from roughly −0.1 to +1.7 points depending on the window and technique — pollsters adopt
+              likely-voter screens as a cycle heats up, which is hard to separate from any real
+              trend — so we publish the filter, which is reproducible from public data every morning,
+              rather than a modeled shift we can’t defend. His adjusted figure is a paid feature of{' '}
+              <a className="underline" href="https://www.natesilver.net/p/nate-silver-2026-midterm-election-polls-model" target="_blank" rel="noreferrer">
+                his forecast page
+              </a>; if you want that number, read it there.
+            </p>
+            <p className="mt-2">
+              A caution on the likely-voter view: it runs on far fewer polls than the standard average
+              (the count is shown next to the toggle), so it moves around more from day to day. When
+              fewer than three likely-voter polls fall in the window, the pipeline omits the variant
+              entirely rather than publish a number that thin, and the toggle disappears.
+            </p>
+          </li>
         </ul>
       </Section>
 

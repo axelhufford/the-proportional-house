@@ -123,6 +123,58 @@ describe('/api/v1/projection.json against the real pipeline output', () => {
       const nat = round.national as Record<string, unknown>;
       if (key in nat) expect(nat[key]).not.toBeNull();
     }
+    const polling = round.polling as Record<string, unknown>;
+    if ('variants' in polling) expect(polling.variants).not.toBeNull();
+  });
+});
+
+describe('polling.variants is additive and internally consistent', () => {
+  const v1 = toApiV1(projection);
+
+  it('leaves the top-level polling fields describing the standard average', () => {
+    // The contract that keeps pre-variant consumers working: whatever variants
+    // exist, `polling.generic_ballot_margin` and friends stay the default.
+    if (!v1.polling.variants) return;
+    const std = v1.polling.variants[0];
+    expect(std.id).toBe('standard');
+    expect(std.generic_ballot_margin).toBe(v1.polling.generic_ballot_margin);
+    expect(std.swing).toBe(v1.polling.swing);
+    expect(std.n_polls).toBe(v1.polling.n_polls);
+    expect(std.projected).toEqual(v1.national.projected);
+  });
+
+  it('gives every variant a complete, well-formed entry', () => {
+    if (!v1.polling.variants) return;
+    for (const v of v1.polling.variants) {
+      const rec = v as unknown as Record<string, unknown>;
+      for (const key of [
+        'id', 'label', 'note', 'generic_ballot_margin', 'swing', 'n_polls',
+        'populations', 'projected',
+      ]) {
+        requireKey(rec, key, `polling.variants[${v.id}]`);
+      }
+      expect(v.id, 'variant id is URL-safe').toMatch(/^[a-z0-9_-]{1,24}$/);
+      expect(v.n_polls, `${v.id} n_polls`).toBeGreaterThan(0);
+      expect(v.projected.D + v.projected.R, `${v.id} seats`).toBe(435);
+      expect(
+        v.swing,
+        `${v.id} swing != margin - baseline`,
+      ).toBeCloseTo(v.generic_ballot_margin - v1.polling.baseline_2024_margin, 1);
+      // `populations` is meaningfully null (unfiltered), so it's the one key
+      // allowed to be null — but never undefined, which JSON would drop.
+      expect(v.populations === null || Array.isArray(v.populations)).toBe(true);
+    }
+  });
+
+  it('has unique ids', () => {
+    if (!v1.polling.variants) return;
+    const ids = v1.polling.variants.map((v) => v.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('survives a JSON round-trip', () => {
+    const round = JSON.parse(JSON.stringify(v1)) as ApiV1Payload;
+    expect(round.polling.variants).toEqual(v1.polling.variants);
   });
 });
 

@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-16T06:38:35.412209+00:00",
+  "generated_at": "2026-08-20T19:52:36.067747+00:00",
   "stale_after_hours": 48,
   "sources": {
     "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "polls": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
   },
   "generic_ballot": {
-    "margin": 6.558,
-    "n_polls": 24,
+    "margin": 6.475,
+    "n_polls": 25,
     "window_days": 30,
     "half_life_days": 14,
     "uses_house_effect_adjustment": true
   },
   "baseline_2024_r_margin": 2.511,
-  "swing": 9.07,
+  "swing": 8.99,
   "national": {
     "seats": 435,
     "projected": {
@@ -40,8 +40,8 @@
     "epsilon_points": 2.2,
     "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
     "d_seats_low": 227,
-    "d_seats_high": 238,
-    "r_seats_low": 197,
+    "d_seats_high": 237,
+    "r_seats_low": 198,
     "r_seats_high": 208
   },
   "majority": {
@@ -50,27 +50,27 @@
   },
   "closest_flips": [
     {
-      "fips": "34",
-      "code": "NJ",
-      "name": "New Jersey",
-      "direction": "D",
-      "margin_delta": 0.1,
-      "flips_at_margin": 6.7
-    },
-    {
       "fips": "06",
       "code": "CA",
       "name": "California",
       "direction": "R",
-      "margin_delta": 0.2,
+      "margin_delta": 0.1,
       "flips_at_margin": 6.4
+    },
+    {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "direction": "D",
+      "margin_delta": 0.2,
+      "flips_at_margin": 6.7
     },
     {
       "fips": "36",
       "code": "NY",
       "name": "New York",
       "direction": "R",
-      "margin_delta": 0.5,
+      "margin_delta": 0.4,
       "flips_at_margin": 6.1
     },
     {
@@ -78,7 +78,7 @@
       "code": "HI",
       "name": "Hawaii",
       "direction": "R",
-      "margin_delta": 1.1,
+      "margin_delta": 1.0,
       "flips_at_margin": 5.5
     },
     {
@@ -87,15 +87,171 @@
       "name": "North Carolina",
       "direction": "D",
       "margin_delta": 1.6,
-      "flips_at_margin": 8.2
+      "flips_at_margin": 8.1
     },
     {
       "fips": "24",
       "code": "MD",
       "name": "Maryland",
       "direction": "D",
-      "margin_delta": 1.9,
+      "margin_delta": 2.0,
       "flips_at_margin": 8.5
+    }
+  ],
+  "ballot_variants": [
+    {
+      "id": "standard",
+      "label": "Standard average",
+      "short_label": "All polls",
+      "note": "Every generic-ballot poll in the window \u2014 likely voters, registered voters and adults \u2014 weighted by recency, sample size and voter screen.",
+      "margin": 6.475,
+      "swing": 8.99,
+      "n_polls": 25,
+      "populations": null,
+      "projected": {
+        "d_seats": 233,
+        "r_seats": 202
+      },
+      "uncertainty": {
+        "epsilon_points": 2.2,
+        "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
+        "d_seats_low": 227,
+        "d_seats_high": 237,
+        "r_seats_low": 198,
+        "r_seats_high": 208
+      },
+      "majority": {
+        "tipping_margin": -0.6,
+        "majority_seats": 218
+      },
+      "closest_flips": [
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "R",
+          "margin_delta": 0.1,
+          "flips_at_margin": 6.4
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "direction": "D",
+          "margin_delta": 0.2,
+          "flips_at_margin": 6.7
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "direction": "R",
+          "margin_delta": 0.4,
+          "flips_at_margin": 6.1
+        },
+        {
+          "fips": "15",
+          "code": "HI",
+          "name": "Hawaii",
+          "direction": "R",
+          "margin_delta": 1.0,
+          "flips_at_margin": 5.5
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "direction": "D",
+          "margin_delta": 1.6,
+          "flips_at_margin": 8.1
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "direction": "D",
+          "margin_delta": 2.0,
+          "flips_at_margin": 8.5
+        }
+      ]
+    },
+    {
+      "id": "lv",
+      "label": "Likely-voter polls only",
+      "short_label": "LV only",
+      "note": "The same average restricted to polls of likely voters. This is our own calculation, not Silver Bulletin's likely-voter-adjusted average \u2014 that adjustment compares the likely-voter and registered-voter releases of a single survey, and the public poll database keeps only one row per survey.",
+      "margin": 7.12,
+      "swing": 9.63,
+      "n_polls": 7,
+      "populations": [
+        "LV"
+      ],
+      "projected": {
+        "d_seats": 234,
+        "r_seats": 201
+      },
+      "uncertainty": {
+        "epsilon_points": 2.2,
+        "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
+        "d_seats_low": 228,
+        "d_seats_high": 240,
+        "r_seats_low": 195,
+        "r_seats_high": 207
+      },
+      "majority": {
+        "tipping_margin": -0.6,
+        "majority_seats": 218
+      },
+      "closest_flips": [
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "direction": "R",
+          "margin_delta": 0.6,
+          "flips_at_margin": 6.5
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "R",
+          "margin_delta": 0.7,
+          "flips_at_margin": 6.4
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "direction": "D",
+          "margin_delta": 1.0,
+          "flips_at_margin": 8.1
+        },
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "direction": "R",
+          "margin_delta": 1.1,
+          "flips_at_margin": 6.0
+        },
+        {
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
+          "direction": "D",
+          "margin_delta": 1.3,
+          "flips_at_margin": 8.4
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "D",
+          "margin_delta": 1.6,
+          "flips_at_margin": 8.7
+        }
+      ]
     }
   ]
 }

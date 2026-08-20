@@ -30,6 +30,54 @@ export interface ProjectionMeta {
    */
   majority?: MajorityTipping;
   closest_flips?: ClosestFlip[];
+  /**
+   * The generic-ballot averages the site offers a toggle between. Always leads
+   * with `standard`, whose fields mirror the top-level ones above — those stay
+   * authoritative for the public API and any consumer that predates the
+   * toggle. Optional because a cached payload may predate it; `lib/ballotVariant`
+   * falls back to a synthesized standard variant when it's missing.
+   */
+  ballot_variants?: BallotVariant[];
+  /**
+   * Which variant this payload has been projected at, stamped client-side by
+   * `applyVariant`. Never published by the pipeline, and absent on the default
+   * variant (whose payload is returned untouched) — so anything reading it
+   * treats absence as "the standard average". Lets downstream consumers like
+   * the share card label the number without threading a prop through every
+   * component between here and them.
+   */
+  active_ballot_variant?: BallotVariant;
+}
+
+/**
+ * One generic-ballot average, plus everything derived from it that the browser
+ * cannot re-derive on its own.
+ *
+ * The per-state seats at this variant's margin ARE re-derivable in the browser
+ * (see `recomputeWithSwing`), so they aren't published per variant. The band,
+ * tipping point and closest-flips list are not — each is only meaningful at the
+ * swing it was computed for — so the pipeline ships them here.
+ */
+export interface BallotVariant {
+  /** Stable key, also the `?avg=` URL value. `standard` is the default. */
+  id: string;
+  /** Full name, e.g. "Likely-voter polls only". */
+  label: string;
+  /** Compact form for the toggle itself, e.g. "LV only". */
+  short_label: string;
+  /** One-sentence description of what's in this average, shown next to the toggle. */
+  note: string;
+  /** D-margin in points (positive = D lead). */
+  margin: number;
+  /** margin − baseline_2024_margin. */
+  swing: number;
+  n_polls: number;
+  /** Voter screens included, e.g. ["LV"]; null when unfiltered. */
+  populations: string[] | null;
+  projected: SeatSplit;
+  uncertainty?: UncertaintyBand;
+  majority?: MajorityTipping;
+  closest_flips?: ClosestFlip[];
 }
 
 export interface UncertaintyBand {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { ProjectionPayload, ViewMode } from '../lib/types';
+import type { BallotVariant, ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { fmtMargin } from '../lib/format';
 import { majorityTippingSentence } from '../lib/majorityTipping';
@@ -8,6 +8,7 @@ import { PARTY_D, PARTY_R } from '../lib/parties';
 import { describeSeatShiftBand, seatShiftBand } from '../lib/uncertaintyBand';
 import { useCountUp } from '../lib/useCountUp';
 import type { WeeklyDelta } from '../lib/weeklyDelta';
+import { BallotVariantToggle } from './BallotVariantToggle';
 import { Hemicycle } from './Hemicycle';
 import { Term } from './Term';
 
@@ -54,6 +55,15 @@ interface Props {
    * small chip under the headline, Current view only.
    */
   weeklyDelta?: WeeklyDelta | null;
+  /**
+   * Generic-ballot averages the reader can switch between, and the active one.
+   * Current view only — the Retrospective has no polling input and the Sandbox
+   * supersedes it with its own slider. Omitted (or a single variant) renders
+   * no toggle, which is what a payload from before the toggle shipped does.
+   */
+  ballotVariants?: BallotVariant[];
+  activeVariantId?: string;
+  onVariantChange?: (id: string) => void;
 }
 
 export function HomeHero({
@@ -65,6 +75,9 @@ export function HomeHero({
   methodLabel,
   retroYear = 2024,
   weeklyDelta,
+  ballotVariants,
+  activeVariantId,
+  onVariantChange,
 }: Props) {
   const { national, meta } = payload;
   // The headline shift = projected D minus the baseline D. In Sandbox we read
@@ -304,6 +317,19 @@ export function HomeHero({
                 </>
               )}
             </p>
+          )}
+
+          {/* Which polling average feeds the projection above. Sits right under
+            * the uncertainty sentence, where the reader has just been told how
+            * much the ballot number matters. */}
+          {viewMode === 'current' && ballotVariants && ballotVariants.length > 1 && onVariantChange && (
+            <div className="mt-5">
+              <BallotVariantToggle
+                variants={ballotVariants}
+                value={activeVariantId ?? ballotVariants[0].id}
+                onChange={onVariantChange}
+              />
+            </div>
           )}
 
           <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">

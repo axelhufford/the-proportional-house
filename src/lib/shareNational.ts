@@ -57,7 +57,11 @@ function buildNationalCardSvg({ national, meta, viewMode, retroYear = 2024 }: Na
   } else if (viewMode === 'sandbox') {
     modeLabel = `SANDBOX · ${formatBallot(meta.generic_ballot_margin)}`;
   } else {
-    modeLabel = `CURRENT POLLING · ${formatBallot(meta.generic_ballot_margin)}`;
+    // Name the average when it isn't the default one, so a card showing the
+    // likely-voter number can't be mistaken for the headline projection.
+    const variant = meta.active_ballot_variant;
+    const qualifier = variant ? ` (${variant.short_label.toUpperCase()})` : '';
+    modeLabel = `CURRENT POLLING${qualifier} · ${formatBallot(meta.generic_ballot_margin)}`;
   }
   // The left stat column is "today" in Current/Sandbox, but a past cycle's
   // actual result in a Retrospective.
@@ -133,7 +137,11 @@ export function buildNationalTweetIntent({ national, meta, viewMode, retroYear =
   } else if (viewMode === 'sandbox') {
     text = `Under a ${formatBallot(meta.generic_ballot_margin)} generic ballot with proportional representation: Democrats ${projected.d_seats} seats, Republicans ${projected.r_seats} — ${shiftPhrase}:`;
   } else {
-    text = `Under proportional representation with current polling, Democrats would hold ${projected.d_seats} seats and Republicans ${projected.r_seats} — ${shiftPhrase}:`;
+    const variant = meta.active_ballot_variant;
+    const polling = variant
+      ? `${variant.label.toLowerCase()} (${formatBallot(meta.generic_ballot_margin)})`
+      : 'current polling';
+    text = `Under proportional representation with ${polling}, Democrats would hold ${projected.d_seats} seats and Republicans ${projected.r_seats} — ${shiftPhrase}:`;
   }
 
   const SITE = 'https://proportionalhouse.org';
@@ -143,7 +151,9 @@ export function buildNationalTweetIntent({ national, meta, viewMode, retroYear =
   } else if (viewMode === 'sandbox') {
     deepLink = `${SITE}/sandbox?ballot=${meta.generic_ballot_margin.toFixed(1)}`;
   } else {
-    deepLink = SITE;
+    // Carry the selected average so the link lands on the numbers being shared.
+    const variant = meta.active_ballot_variant;
+    deepLink = variant ? `${SITE}/?avg=${variant.id}` : SITE;
   }
 
   return (
