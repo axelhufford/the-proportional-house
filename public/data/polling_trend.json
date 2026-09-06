@@ -1,84 +1,20 @@
 {
   "meta": {
-    "generated_at": "2026-08-30T11:22:46.218393+00:00",
+    "generated_at": "2026-09-06T10:22:48.769722+00:00",
     "source": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
     "csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsvXNCZ0ubJr8D_yNcU5q6C0_HBa35K7oDK03KpO7Ca43UwdXaIdvVLWoXEmHHph0EREz5430Hm5yZ/pub?output=csv",
     "window_days": 180,
-    "n_polls": 212,
+    "n_polls": 211,
     "uses_house_effect_adjustment": true
   },
   "polls": [
     {
-      "date": "2026-03-03",
-      "pollster": "Noble Predictive Insights",
-      "margin": 1.98,
-      "sample_size": 2659,
-      "population": "RV",
-      "url": "https://www.thecentersquare.com/national/article_c3795c17-be14-4566-a625-eb38b4ffc1bf.html"
-    },
-    {
-      "date": "2026-03-03",
-      "pollster": "Cygnal",
-      "margin": 5.06,
-      "sample_size": 1500,
-      "population": "LV",
-      "url": "https://www.cygn.al/wp-content/uploads/2026/03/23673-Cygnal-National-Mar26-NVT-Deck-Public.pdf"
-    },
-    {
-      "date": "2026-03-05",
+      "date": "2026-03-12",
       "pollster": "Morning Consult",
-      "margin": 4.64,
-      "sample_size": 25948,
+      "margin": 6.12,
+      "sample_size": 26634,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
-    },
-    {
-      "date": "2026-03-06",
-      "pollster": "McLaughlin & Associates",
-      "margin": 7.29,
-      "sample_size": 1000,
-      "population": "LV",
-      "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/03/National-March-Presentation-RELEASE-03-10-26.pdf"
-    },
-    {
-      "date": "2026-03-07",
-      "pollster": "YouGov",
-      "margin": 3.78,
-      "sample_size": 1405,
-      "population": "RV",
-      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_EcCnfRV.pdf"
-    },
-    {
-      "date": "2026-03-07",
-      "pollster": "Morning Consult",
-      "margin": 6.44,
-      "sample_size": 2202,
-      "population": "RV",
-      "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
-    },
-    {
-      "date": "2026-03-08",
-      "pollster": "Focaldata",
-      "margin": 5.81,
-      "sample_size": 1534,
-      "population": "RV",
-      "url": "https://www.focaldata.com/blog/democrats-increase-lead-and-rubio-stock-surges-amid-iran-war"
-    },
-    {
-      "date": "2026-03-10",
-      "pollster": "Change Research",
-      "margin": 6.88,
-      "sample_size": 1540,
-      "population": "RV",
-      "url": "https://portal.changeresearch.com/portal/projects/61cdcd30-3c32-4785-9ccb-5fe82cb36389"
-    },
-    {
-      "date": "2026-03-10",
-      "pollster": "McLaughlin & Associates",
-      "margin": 7.23,
-      "sample_size": 1000,
-      "population": "LV",
-      "url": "https://www.teapartypatriots.org/save-america-act-poll/"
     },
     {
       "date": "2026-03-12",
@@ -90,16 +26,8 @@
     },
     {
       "date": "2026-03-12",
-      "pollster": "Morning Consult",
-      "margin": 6.14,
-      "sample_size": 26634,
-      "population": "RV",
-      "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
-    },
-    {
-      "date": "2026-03-12",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 1148,
       "population": "RV",
       "url": "https://www.yahoo.com/news/politics/article/poll-66-of-americans-disapprove-of-trump-on-gas-prices-as-they-feel-effects-of-iran-war-120000483.html"
@@ -107,7 +35,7 @@
     {
       "date": "2026-03-14",
       "pollster": "The Argument/Verasight",
-      "margin": 8.08,
+      "margin": 8.09,
       "sample_size": 1519,
       "population": "RV",
       "url": "https://www.theargumentmag.com/p/americans-would-trade-jobs-for-cheaper"
@@ -115,7 +43,7 @@
     {
       "date": "2026-03-14",
       "pollster": "Morning Consult",
-      "margin": 10.44,
+      "margin": 10.42,
       "sample_size": 2201,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
@@ -131,7 +59,7 @@
     {
       "date": "2026-03-14",
       "pollster": "YouGov",
-      "margin": 2.78,
+      "margin": 2.77,
       "sample_size": 1429,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_CwWXhS2.pdf"
@@ -154,35 +82,27 @@
     },
     {
       "date": "2026-03-16",
-      "pollster": "The Winston Group",
-      "margin": 9.35,
-      "sample_size": 1000,
-      "population": "RV",
-      "url": "https://www.winningtheissues.org/wp-content/uploads/2026/04/March-2026-Winning-the-Issues-Survey.pdf"
-    },
-    {
-      "date": "2026-03-16",
       "pollster": "Emerson College",
-      "margin": 6.97,
+      "margin": 6.96,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://emersoncollegepolling.com/march-2026-national-poll-47-oppose-us-military-action-in-iran-40-support/"
     },
     {
-      "date": "2026-03-17",
-      "pollster": "Rasmussen Reports",
-      "margin": 4.22,
-      "sample_size": 2222,
-      "population": "LV",
-      "url": "https://www.rasmussenreports.com/platinum/political_tracking_crosstabs/march_2026/crosstabs_generic_congressional_ballot_march_16_19_and_22_23_2026#google_vignette"
+      "date": "2026-03-16",
+      "pollster": "The Winston Group",
+      "margin": 9.36,
+      "sample_size": 1000,
+      "population": "RV",
+      "url": "https://www.winningtheissues.org/wp-content/uploads/2026/04/March-2026-Winning-the-Issues-Survey.pdf"
     },
     {
       "date": "2026-03-17",
-      "pollster": "Verasight",
-      "margin": 4.26,
-      "sample_size": 1370,
-      "population": "RV",
-      "url": "https://www.gelliottmorris.com/p/2026-03-24-march-sin-verasight-poll-main-release"
+      "pollster": "Rasmussen Reports",
+      "margin": 4.23,
+      "sample_size": 2222,
+      "population": "LV",
+      "url": "https://www.rasmussenreports.com/platinum/political_tracking_crosstabs/march_2026/crosstabs_generic_congressional_ballot_march_16_19_and_22_23_2026#google_vignette"
     },
     {
       "date": "2026-03-17",
@@ -191,6 +111,14 @@
       "sample_size": 1000,
       "population": "LV",
       "url": "https://x.com/zogbystrategies/status/2036096236139245673/photo/1"
+    },
+    {
+      "date": "2026-03-17",
+      "pollster": "Verasight",
+      "margin": 4.26,
+      "sample_size": 1370,
+      "population": "RV",
+      "url": "https://www.gelliottmorris.com/p/2026-03-24-march-sin-verasight-poll-main-release"
     },
     {
       "date": "2026-03-18",
@@ -203,7 +131,7 @@
     {
       "date": "2026-03-19",
       "pollster": "Morning Consult",
-      "margin": 5.54,
+      "margin": 5.52,
       "sample_size": 26406,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
@@ -211,18 +139,10 @@
     {
       "date": "2026-03-19",
       "pollster": "Morning Consult",
-      "margin": 7.44,
+      "margin": 7.42,
       "sample_size": 15029,
       "population": "A",
       "url": "https://www.gamblingisnotinvesting.com/morning-consult-poll-reveals-americans-concerns-with-prediction-markets/"
-    },
-    {
-      "date": "2026-03-21",
-      "pollster": "YouGov",
-      "margin": 3.78,
-      "sample_size": 1502,
-      "population": "RV",
-      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_o84FoNw.pdf"
     },
     {
       "date": "2026-03-21",
@@ -235,31 +155,39 @@
     {
       "date": "2026-03-21",
       "pollster": "Quinnipiac University",
-      "margin": 9.53,
+      "margin": 9.54,
       "sample_size": 1191,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3953"
     },
     {
-      "date": "2026-03-25",
-      "pollster": "HarrisX",
-      "margin": 6.34,
-      "sample_size": 1475,
-      "population": "LV",
-      "url": "https://harvardharrispoll.com/wp-content/uploads/2026/03/HHP_Mar2026_KeyResults.pdf"
+      "date": "2026-03-21",
+      "pollster": "YouGov",
+      "margin": 3.77,
+      "sample_size": 1502,
+      "population": "RV",
+      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_o84FoNw.pdf"
     },
     {
       "date": "2026-03-25",
       "pollster": "Quantus Insights",
-      "margin": 6.42,
+      "margin": 6.29,
       "sample_size": 1472,
       "population": "LV",
       "url": "https://quantusinsights.org/f/new-quantus-survey-a-sour-national-mood-and-a-midterm-warning"
     },
     {
+      "date": "2026-03-25",
+      "pollster": "HarrisX",
+      "margin": 6.87,
+      "sample_size": 1475,
+      "population": "LV",
+      "url": "https://harvardharrispoll.com/wp-content/uploads/2026/03/HHP_Mar2026_KeyResults.pdf"
+    },
+    {
       "date": "2026-03-26",
       "pollster": "Morning Consult",
-      "margin": 5.24,
+      "margin": 5.22,
       "sample_size": 26725,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
@@ -275,7 +203,7 @@
     {
       "date": "2026-03-28",
       "pollster": "YouGov",
-      "margin": 3.78,
+      "margin": 3.77,
       "sample_size": 1000,
       "population": "A",
       "url": "https://www.uml.edu/Research/public-opinion/polls/default.aspx"
@@ -283,7 +211,7 @@
     {
       "date": "2026-03-28",
       "pollster": "YouGov",
-      "margin": 6.78,
+      "margin": 6.77,
       "sample_size": 1505,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_3wplfYX.pdf"
@@ -291,7 +219,7 @@
     {
       "date": "2026-04-02",
       "pollster": "Morning Consult",
-      "margin": 5.04,
+      "margin": 5.02,
       "sample_size": 27594,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
@@ -307,7 +235,7 @@
     {
       "date": "2026-04-04",
       "pollster": "Morning Consult",
-      "margin": 5.44,
+      "margin": 5.42,
       "sample_size": 2200,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
@@ -315,7 +243,7 @@
     {
       "date": "2026-04-04",
       "pollster": "YouGov",
-      "margin": 2.78,
+      "margin": 2.77,
       "sample_size": 1560,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_SVRZJH8.pdf"
@@ -323,7 +251,7 @@
     {
       "date": "2026-04-05",
       "pollster": "Change Research",
-      "margin": 5.88,
+      "margin": 5.89,
       "sample_size": 2702,
       "population": "RV",
       "url": "https://changeresearch.com/who-do-voters-want-in-2028/"
@@ -347,7 +275,7 @@
     {
       "date": "2026-04-07",
       "pollster": "Tavern Research",
-      "margin": 2.1,
+      "margin": 2.11,
       "sample_size": 502,
       "population": "LV",
       "url": "https://www.tavernresearch.com/research-and-writings/cutting-room-floor-april-10-2026"
@@ -355,7 +283,7 @@
     {
       "date": "2026-04-07",
       "pollster": "Morning Consult",
-      "margin": 6.44,
+      "margin": 6.42,
       "sample_size": 2200,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
@@ -371,7 +299,7 @@
     {
       "date": "2026-04-11",
       "pollster": "McLaughlin & Associates",
-      "margin": 7.29,
+      "margin": 7.28,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/04/National-April-Release-Presentation-4-16-26.pdf"
@@ -379,7 +307,7 @@
     {
       "date": "2026-04-11",
       "pollster": "GBAO",
-      "margin": 7.36,
+      "margin": 7.37,
       "sample_size": 2000,
       "population": "RV",
       "url": "https://www.thirdway.org/memo/the-cost-of-misplaced-priorities-trumps-coalition-frays"
@@ -387,7 +315,7 @@
     {
       "date": "2026-04-11",
       "pollster": "YouGov",
-      "margin": 5.78,
+      "margin": 5.77,
       "sample_size": 1573,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_G1zNgZq.pdf"
@@ -411,7 +339,7 @@
     {
       "date": "2026-04-16",
       "pollster": "KFF",
-      "margin": 8.19,
+      "margin": 8.2,
       "sample_size": 1107,
       "population": "RV",
       "url": "https://www.kff.org/public-opinion/kff-health-tracking-poll-health-care-costs-and-the-midterms/"
@@ -419,10 +347,18 @@
     {
       "date": "2026-04-16",
       "pollster": "Morning Consult",
-      "margin": 4.74,
+      "margin": 4.72,
       "sample_size": 27869,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
+    },
+    {
+      "date": "2026-04-17",
+      "pollster": "Ipsos",
+      "margin": 4.54,
+      "sample_size": 3577,
+      "population": "RV",
+      "url": "https://www.ipsos.com/en-us/americans-remain-skeptical-trumps-handling-inflation"
     },
     {
       "date": "2026-04-17",
@@ -441,12 +377,20 @@
       "url": "https://johnzogbystrategies.com/wp-content/uploads/2026/04/Brand-New-Zogby-Poll-Amid-War-Confusion-04.20.26.html"
     },
     {
-      "date": "2026-04-17",
-      "pollster": "Ipsos",
-      "margin": 4.54,
-      "sample_size": 3577,
+      "date": "2026-04-18",
+      "pollster": "YouGov",
+      "margin": 5.77,
+      "sample_size": 1553,
       "population": "RV",
-      "url": "https://www.ipsos.com/en-us/americans-remain-skeptical-trumps-handling-inflation"
+      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_I24AWdp.pdf"
+    },
+    {
+      "date": "2026-04-18",
+      "pollster": "Morning Consult",
+      "margin": 5.42,
+      "sample_size": 2203,
+      "population": "RV",
+      "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
     },
     {
       "date": "2026-04-18",
@@ -465,22 +409,6 @@
       "url": "https://echeloninsights.com/insights/april-2026-verified-voter-omnibus"
     },
     {
-      "date": "2026-04-18",
-      "pollster": "YouGov",
-      "margin": 5.78,
-      "sample_size": 1553,
-      "population": "RV",
-      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_I24AWdp.pdf"
-    },
-    {
-      "date": "2026-04-18",
-      "pollster": "Morning Consult",
-      "margin": 5.44,
-      "sample_size": 2203,
-      "population": "RV",
-      "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
-    },
-    {
       "date": "2026-04-19",
       "pollster": "Clarity Campaign Labs",
       "margin": 4.55,
@@ -491,7 +419,7 @@
     {
       "date": "2026-04-21",
       "pollster": "The Argument/Verasight",
-      "margin": 6.08,
+      "margin": 6.09,
       "sample_size": 1516,
       "population": "RV",
       "url": "https://www.theargumentmag.com/p/why-democrats-cant-win-more-trump"
@@ -499,7 +427,7 @@
     {
       "date": "2026-04-22",
       "pollster": "Quantus Insights",
-      "margin": 4.92,
+      "margin": 4.79,
       "sample_size": 1452,
       "population": "LV",
       "url": "https://quantusinsights.org/f/quantus-survey-a-divided-electorate-a-narrow-democratic-edge"
@@ -507,7 +435,7 @@
     {
       "date": "2026-04-23",
       "pollster": "Morning Consult",
-      "margin": 4.94,
+      "margin": 4.92,
       "sample_size": 28235,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/2026-midterm-election-generic-ballot-polls"
@@ -523,7 +451,7 @@
     {
       "date": "2026-04-24",
       "pollster": "HarrisX",
-      "margin": 2.34,
+      "margin": 2.87,
       "sample_size": 1963,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-april-2026/"
@@ -531,7 +459,7 @@
     {
       "date": "2026-04-25",
       "pollster": "Emerson College",
-      "margin": 9.37,
+      "margin": 9.36,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://emersoncollegepolling.com/april-2026-national-poll/"
@@ -547,7 +475,7 @@
     {
       "date": "2026-04-25",
       "pollster": "YouGov",
-      "margin": 5.78,
+      "margin": 5.77,
       "sample_size": 1647,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_Ty7ikPd.pdf"
@@ -555,7 +483,7 @@
     {
       "date": "2026-04-25",
       "pollster": "Morning Consult",
-      "margin": 4.44,
+      "margin": 4.42,
       "sample_size": 2201,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
@@ -571,7 +499,7 @@
     {
       "date": "2026-04-28",
       "pollster": "Marist University",
-      "margin": 7.52,
+      "margin": 7.53,
       "sample_size": 1155,
       "population": "RV",
       "url": "https://maristpoll.marist.edu/polls/president-trump-while-at-war-may-2026/"
@@ -579,7 +507,7 @@
     {
       "date": "2026-04-30",
       "pollster": "Morning Consult",
-      "margin": 5.34,
+      "margin": 5.32,
       "sample_size": 27846,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-PI-Weekly.html"
@@ -595,7 +523,7 @@
     {
       "date": "2026-05-02",
       "pollster": "HarrisX",
-      "margin": 8.34,
+      "margin": 8.87,
       "sample_size": 1891,
       "population": "LV",
       "url": "https://www.harrisx.com/posts/forbes-and-harrisx-partner-on-new-american-confidence-survey-as-gallup-ends-approval-polling"
@@ -603,7 +531,7 @@
     {
       "date": "2026-05-02",
       "pollster": "YouGov",
-      "margin": 3.78,
+      "margin": 3.77,
       "sample_size": 1409,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_i4K4elJ.pdf"
@@ -611,7 +539,7 @@
     {
       "date": "2026-05-02",
       "pollster": "Morning Consult",
-      "margin": 5.44,
+      "margin": 5.42,
       "sample_size": 2200,
       "population": "RV",
       "url": "https://pro.morningconsult.com/trackers/donald-trump-congress-policy-republicans-polling"
@@ -659,7 +587,7 @@
     {
       "date": "2026-05-07",
       "pollster": "Change Research",
-      "margin": 3.88,
+      "margin": 3.89,
       "sample_size": 2244,
       "population": "RV",
       "url": "https://portal.changeresearch.com/portal/projects/07dc6ff6-bb96-4bc5-a138-90b0ab3b22db"
@@ -667,7 +595,7 @@
     {
       "date": "2026-05-07",
       "pollster": "Morning Consult",
-      "margin": 5.54,
+      "margin": 5.52,
       "sample_size": 28573,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-PI-Weekly.html"
@@ -683,7 +611,7 @@
     {
       "date": "2026-05-10",
       "pollster": "YouGov",
-      "margin": 5.78,
+      "margin": 5.77,
       "sample_size": 1410,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ONiR6Nb.pdf"
@@ -699,7 +627,7 @@
     {
       "date": "2026-05-13",
       "pollster": "The New York Times/Siena College",
-      "margin": 10.57,
+      "margin": 10.58,
       "sample_size": 1507,
       "population": "RV",
       "url": "https://www.nytimes.com/interactive/2026/05/18/polls/times-siena-national-poll-toplines.html"
@@ -707,7 +635,7 @@
     {
       "date": "2026-05-14",
       "pollster": "YouGov",
-      "margin": 5.78,
+      "margin": 5.77,
       "sample_size": 1397,
       "population": "LV",
       "url": "https://www.cbsnews.com/news/redistricting-elections-opinion-poll-19-may-2026/"
@@ -715,7 +643,7 @@
     {
       "date": "2026-05-14",
       "pollster": "Morning Consult",
-      "margin": 5.64,
+      "margin": 5.62,
       "sample_size": 28525,
       "population": "RV",
       "url": "https://intel.morningconsult.com/mc-content/trackers/2026-midterm-election-generic-ballot-polls"
@@ -723,7 +651,7 @@
     {
       "date": "2026-05-15",
       "pollster": "McLaughlin & Associates",
-      "margin": 7.29,
+      "margin": 7.28,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/2026/05/22/national-monthly-may-2026/"
@@ -731,7 +659,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Rasmussen Reports",
-      "margin": 7.22,
+      "margin": 7.23,
       "sample_size": 2161,
       "population": "LV",
       "url": "https://www.rasmussenreports.com/public_content/politics/mood_of_america/generic_congressional_ballot_may25"
@@ -739,7 +667,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Quinnipiac University",
-      "margin": 9.53,
+      "margin": 9.54,
       "sample_size": 1106,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3959"
@@ -755,7 +683,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Data for Progress",
-      "margin": 7.55,
+      "margin": 7.56,
       "sample_size": 1149,
       "population": "LV",
       "url": "https://www.dataforprogress.org/blog/2026/5/21/democrats-lead-the-generic-ballot-by-8-points-as-midterms-approach"
@@ -779,7 +707,7 @@
     {
       "date": "2026-05-16",
       "pollster": "YouGov",
-      "margin": 3.78,
+      "margin": 3.77,
       "sample_size": 1380,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_YTE4G2g.pdf"
@@ -787,7 +715,7 @@
     {
       "date": "2026-05-16",
       "pollster": "Morning Consult",
-      "margin": 8.44,
+      "margin": 8.42,
       "sample_size": 2203,
       "population": "RV",
       "url": "https://intel.morningconsult.com/mc-content/trackers/donald-trump-congress-policy-republicans-polling"
@@ -795,7 +723,7 @@
     {
       "date": "2026-05-17",
       "pollster": "The Rainey Center",
-      "margin": 3.08,
+      "margin": 3.09,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://www.raineycenter.org/polling/data-centers-voters-are-persuadable-but-they-want-accountability-and-clean-energy"
@@ -827,7 +755,7 @@
     {
       "date": "2026-05-21",
       "pollster": "Morning Consult",
-      "margin": 5.64,
+      "margin": 5.62,
       "sample_size": 29255,
       "population": "RV",
       "url": "https://intel.morningconsult.com/mc-content/trackers/2026-midterm-election-generic-ballot-polls"
@@ -835,7 +763,7 @@
     {
       "date": "2026-05-22",
       "pollster": "Bedrock Polling",
-      "margin": 5.33,
+      "margin": 5.34,
       "sample_size": 1776,
       "population": "RV",
       "url": "https://www.thirdway.org/memo/americans-blame-the-government-for-high-health-costs-and-want-it-to-rein-in-the-industry"
@@ -843,7 +771,7 @@
     {
       "date": "2026-05-22",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 862,
       "population": "RV",
       "url": "https://democracy.psu.edu/poll-report-archive/fewer-than-four-in-ten-americans-think-president-trump-is-doing-a-good-job/"
@@ -859,7 +787,7 @@
     {
       "date": "2026-05-24",
       "pollster": "Emerson College",
-      "margin": 7.77,
+      "margin": 7.76,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://emersoncollegepolling.com/may-2026-national-poll/"
@@ -867,7 +795,7 @@
     {
       "date": "2026-05-24",
       "pollster": "YouGov",
-      "margin": 5.78,
+      "margin": 5.77,
       "sample_size": 1397,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_aWdgoE7.pdf"
@@ -875,7 +803,7 @@
     {
       "date": "2026-05-27",
       "pollster": "TIPP Insights",
-      "margin": 6.15,
+      "margin": 6.16,
       "sample_size": 1332,
       "population": "RV",
       "url": "https://issuesinsights.com/2026/06/15/does-either-party-have-an-edge-in-2026-midterms-and-2028-presidential-election-ii-tipp-poll/"
@@ -883,7 +811,7 @@
     {
       "date": "2026-05-28",
       "pollster": "Morning Consult",
-      "margin": 5.64,
+      "margin": 5.62,
       "sample_size": 30379,
       "population": "RV",
       "url": "https://intel.morningconsult.com/mc-content/trackers/2026-midterm-election-generic-ballot-polls"
@@ -891,7 +819,7 @@
     {
       "date": "2026-05-29",
       "pollster": "HarrisX",
-      "margin": 3.34,
+      "margin": 3.87,
       "sample_size": 1137,
       "population": "LV",
       "url": "https://www.harrisx.com/content/forbes-harrisx-american-confidence-tracker-june-2026"
@@ -907,7 +835,7 @@
     {
       "date": "2026-05-30",
       "pollster": "HarrisX/Harris Poll",
-      "margin": 6.34,
+      "margin": 6.87,
       "sample_size": null,
       "population": "LV",
       "url": "https://harvardharrispoll.com/key-results-may-2026/"
@@ -915,7 +843,7 @@
     {
       "date": "2026-05-30",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 1453,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AvLU7vY.pdf"
@@ -931,7 +859,7 @@
     {
       "date": "2026-05-31",
       "pollster": "The Argument/Verasight",
-      "margin": 6.08,
+      "margin": 6.09,
       "sample_size": 3008,
       "population": "RV",
       "url": "https://www.theargumentmag.com/p/the-biggest-issue-in-american-politics"
@@ -955,7 +883,7 @@
     {
       "date": "2026-06-01",
       "pollster": "Quantus Insights",
-      "margin": 5.42,
+      "margin": 5.29,
       "sample_size": 1050,
       "population": "LV",
       "url": "https://quantusinsights.org/f/quantus-insights-trump-underwater-democrats-hold-edge"
@@ -971,7 +899,7 @@
     {
       "date": "2026-06-02",
       "pollster": "Data for Progress",
-      "margin": 6.55,
+      "margin": 6.56,
       "sample_size": 5809,
       "population": "LV",
       "url": "https://www.dataforprogress.org/blog/2026/7/9/midterms-swing-voter-report-1"
@@ -995,7 +923,7 @@
     {
       "date": "2026-06-04",
       "pollster": "Morning Consult",
-      "margin": 6.34,
+      "margin": 6.32,
       "sample_size": 29264,
       "population": "RV",
       "url": "https://intel.morningconsult.com/mc-content/trackers/2026-midterm-election-generic-ballot-polls"
@@ -1003,7 +931,7 @@
     {
       "date": "2026-06-05",
       "pollster": "Research Co.",
-      "margin": 5.09,
+      "margin": 5.1,
       "sample_size": 1001,
       "population": "A",
       "url": "https://researchco.ca/2026/06/15/uspoli-june2026/"
@@ -1019,7 +947,7 @@
     {
       "date": "2026-06-06",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 1438,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_nvajahp.pdf"
@@ -1027,7 +955,7 @@
     {
       "date": "2026-06-07",
       "pollster": "Emerson College",
-      "margin": 10.07,
+      "margin": 10.06,
       "sample_size": 1200,
       "population": "LV",
       "url": "https://emersoncollegepolling.com/june-2026/"
@@ -1035,7 +963,7 @@
     {
       "date": "2026-06-11",
       "pollster": "Morning Consult",
-      "margin": 6.34,
+      "margin": 6.32,
       "sample_size": 28911,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/06/MCPI-Midterm-Ballot_260622.html"
@@ -1059,7 +987,7 @@
     {
       "date": "2026-06-13",
       "pollster": "Change Research",
-      "margin": 5.88,
+      "margin": 5.89,
       "sample_size": 1714,
       "population": "RV",
       "url": "https://portal.changeresearch.com/portal/projects/92fca10b-bc07-4b9c-9d7b-f281ec087a74"
@@ -1083,7 +1011,7 @@
     {
       "date": "2026-06-14",
       "pollster": "YouGov",
-      "margin": 2.78,
+      "margin": 2.77,
       "sample_size": 1403,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_GpnDRNm.pdf"
@@ -1091,7 +1019,7 @@
     {
       "date": "2026-06-16",
       "pollster": "Quantus Insights",
-      "margin": 4.72,
+      "margin": 4.59,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://polls.quantusinsights.org/polls/national-approval-june-17?tab=toplines"
@@ -1099,7 +1027,7 @@
     {
       "date": "2026-06-18",
       "pollster": "Morning Consult",
-      "margin": 6.04,
+      "margin": 6.02,
       "sample_size": 29540,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/06/MCPI-Midterm-Ballot_260622.html"
@@ -1115,7 +1043,7 @@
     {
       "date": "2026-06-20",
       "pollster": "Quinnipiac University",
-      "margin": 5.53,
+      "margin": 5.54,
       "sample_size": 1165,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3961"
@@ -1131,7 +1059,7 @@
     {
       "date": "2026-06-20",
       "pollster": "McLaughlin & Associates",
-      "margin": 6.29,
+      "margin": 6.28,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/06/National-June-Presentation-RELEASE-June-2026.pdf"
@@ -1147,7 +1075,7 @@
     {
       "date": "2026-06-20",
       "pollster": "YouGov",
-      "margin": 2.78,
+      "margin": 2.77,
       "sample_size": 1517,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_v8p0Pe8.pdf"
@@ -1163,7 +1091,7 @@
     {
       "date": "2026-06-25",
       "pollster": "Morning Consult",
-      "margin": 5.54,
+      "margin": 5.52,
       "sample_size": 30337,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/07/MCPI-Midterm-Ballot_260701.html"
@@ -1171,7 +1099,7 @@
     {
       "date": "2026-06-25",
       "pollster": "Morning Consult",
-      "margin": 8.44,
+      "margin": 8.42,
       "sample_size": 2253,
       "population": "A",
       "url": "https://www.cato.org/sites/cato.org/files/2026-07/Cato%20Fourth%20of%20July%202026%20Survey%20Toplines.pdf"
@@ -1179,7 +1107,7 @@
     {
       "date": "2026-06-27",
       "pollster": "Rasmussen Reports",
-      "margin": 5.22,
+      "margin": 5.23,
       "sample_size": 2224,
       "population": "LV",
       "url": "https://www.rasmussenreports.com/public_content/politics/mood_of_america/generic_congressional_ballot_july07?utm_campaign=RR07072026DN&utm_source=criticalimpact&utm_medium=email"
@@ -1187,7 +1115,7 @@
     {
       "date": "2026-06-27",
       "pollster": "AlphaROC",
-      "margin": 7.16,
+      "margin": 7.15,
       "sample_size": 1000,
       "population": "RV",
       "url": "https://independentcentervoice.com/insights/june-2026-national-survey-on-independent-candidates"
@@ -1195,7 +1123,7 @@
     {
       "date": "2026-06-27",
       "pollster": "YouGov",
-      "margin": 3.78,
+      "margin": 3.77,
       "sample_size": 1428,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_1tbbxVr.pdf"
@@ -1203,7 +1131,7 @@
     {
       "date": "2026-06-27",
       "pollster": "Morning Consult",
-      "margin": 6.44,
+      "margin": 6.42,
       "sample_size": 2202,
       "population": "RV",
       "url": "https://drive.google.com/file/d/1r9X_-vXE-Kkv1lXR5cu1KtWd-LAEMSJW/view"
@@ -1243,7 +1171,7 @@
     {
       "date": "2026-07-02",
       "pollster": "Morning Consult",
-      "margin": 5.74,
+      "margin": 5.72,
       "sample_size": 30997,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/07/MCPI-Midterm-Ballot_260706.html"
@@ -1259,7 +1187,7 @@
     {
       "date": "2026-07-04",
       "pollster": "YouGov",
-      "margin": 3.78,
+      "margin": 3.77,
       "sample_size": 1443,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_Qxo6bev.pdf"
@@ -1267,7 +1195,7 @@
     {
       "date": "2026-07-05",
       "pollster": "Quantus Insights",
-      "margin": 5.52,
+      "margin": 5.39,
       "sample_size": 1140,
       "population": "LV",
       "url": "https://quantusinsights.org/polling/f/trump-approval-and-wrong-track-majority-gives-democrats-2026-edge"
@@ -1283,7 +1211,7 @@
     {
       "date": "2026-07-09",
       "pollster": "HarrisX",
-      "margin": 4.34,
+      "margin": 4.87,
       "sample_size": 787,
       "population": "LV",
       "url": "https://www.harrisx.com/content/july-2026-nato-summit-survey-findings-crosstabs"
@@ -1291,7 +1219,7 @@
     {
       "date": "2026-07-09",
       "pollster": "Morning Consult",
-      "margin": 5.14,
+      "margin": 5.12,
       "sample_size": 30858,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-PI-Weekly.html"
@@ -1323,15 +1251,15 @@
     {
       "date": "2026-07-11",
       "pollster": "HarrisX",
-      "margin": 4.34,
+      "margin": 4.87,
       "sample_size": null,
       "population": "LV",
-      "url": "https://harvardharrispoll.com/key-results-july-2026/"
+      "url": "https://harvardharrispoll.com/assets/uploads/2026/07/July2026_HHP_TOPLINE.pdf"
     },
     {
       "date": "2026-07-11",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 1450,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ie0SzVb.pdf"
@@ -1339,7 +1267,7 @@
     {
       "date": "2026-07-11",
       "pollster": "Morning Consult",
-      "margin": 5.44,
+      "margin": 5.42,
       "sample_size": 2201,
       "population": "RV",
       "url": "https://drive.google.com/file/d/1cggsijQl76RMmlpuDL991Z3uyHfXfiZh/view"
@@ -1355,7 +1283,7 @@
     {
       "date": "2026-07-13",
       "pollster": "AlphaROC",
-      "margin": 5.36,
+      "margin": 5.35,
       "sample_size": 1000,
       "population": "A",
       "url": "https://independentcentervoice.com/insights/republicans-move-sharply-toward-independents-and-the-overall-market-holds"
@@ -1363,7 +1291,7 @@
     {
       "date": "2026-07-15",
       "pollster": "Change Research",
-      "margin": 8.88,
+      "margin": 8.89,
       "sample_size": 2006,
       "population": "RV",
       "url": "https://portal.changeresearch.com/portal/projects/0bc92362-5cbd-4cb3-9ec4-8690c0780aad"
@@ -1379,7 +1307,7 @@
     {
       "date": "2026-07-16",
       "pollster": "Morning Consult",
-      "margin": 5.44,
+      "margin": 5.42,
       "sample_size": 30070,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-PI-Weekly.html"
@@ -1419,7 +1347,7 @@
     {
       "date": "2026-07-18",
       "pollster": "McLaughlin & Associates",
-      "margin": 5.29,
+      "margin": 5.28,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/2026/07/24/national-monthly-july-2026/"
@@ -1427,7 +1355,7 @@
     {
       "date": "2026-07-18",
       "pollster": "YouGov",
-      "margin": 5.78,
+      "margin": 5.77,
       "sample_size": 1432,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ESdiNMa.pdf"
@@ -1435,7 +1363,7 @@
     {
       "date": "2026-07-18",
       "pollster": "Morning Consult",
-      "margin": 5.44,
+      "margin": 5.42,
       "sample_size": 2203,
       "population": "RV",
       "url": "https://intel.morningconsult.com/mc-content/trackers/donald-trump-congress-policy-republicans-polling"
@@ -1443,7 +1371,7 @@
     {
       "date": "2026-07-19",
       "pollster": "Emerson College",
-      "margin": 10.67,
+      "margin": 10.66,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://emersoncollegepolling.com/july-2026-national-poll-democrats-with-11-point-generic-ballot-advantage/"
@@ -1459,7 +1387,7 @@
     {
       "date": "2026-07-23",
       "pollster": "The Argument/Verasight",
-      "margin": 8.08,
+      "margin": 8.09,
       "sample_size": 3000,
       "population": "RV",
       "url": "https://www.theargumentmag.com/p/americans-know-who-the-real-elite"
@@ -1467,7 +1395,7 @@
     {
       "date": "2026-07-23",
       "pollster": "YouGov",
-      "margin": 7.78,
+      "margin": 7.77,
       "sample_size": 1474,
       "population": "RV",
       "url": "https://www.cbsnews.com/news/cbs-poll-analysis-cost-of-living-democrats-republicans/"
@@ -1475,7 +1403,7 @@
     {
       "date": "2026-07-23",
       "pollster": "Morning Consult",
-      "margin": 5.44,
+      "margin": 5.42,
       "sample_size": 30228,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/07/MCPI-Midterm-Ballot_260727.html"
@@ -1491,7 +1419,7 @@
     {
       "date": "2026-07-25",
       "pollster": "Quinnipiac University",
-      "margin": 5.53,
+      "margin": 5.54,
       "sample_size": 963,
       "population": "RV",
       "url": "https://poll.qu.edu/poll-release?releaseid=3964"
@@ -1515,7 +1443,7 @@
     {
       "date": "2026-07-26",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 1407,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_0t0YpHo.pdf"
@@ -1523,7 +1451,7 @@
     {
       "date": "2026-07-30",
       "pollster": "Morning Consult",
-      "margin": 6.54,
+      "margin": 6.52,
       "sample_size": 29168,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-Midterm-Ballot.html"
@@ -1547,7 +1475,7 @@
     {
       "date": "2026-08-01",
       "pollster": "YouGov",
-      "margin": 4.78,
+      "margin": 4.77,
       "sample_size": 1473,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_mjKhx0z.pdf"
@@ -1555,7 +1483,7 @@
     {
       "date": "2026-08-03",
       "pollster": "Quantus Insights",
-      "margin": 7.12,
+      "margin": 6.99,
       "sample_size": 1048,
       "population": "LV",
       "url": "https://quantusinsights.org/polling/f/latest-survey-democrats-hold-the-midterm-edge"
@@ -1579,7 +1507,7 @@
     {
       "date": "2026-08-06",
       "pollster": "Morning Consult",
-      "margin": 6.54,
+      "margin": 6.52,
       "sample_size": 29719,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-Midterm-Ballot.html"
@@ -1587,7 +1515,7 @@
     {
       "date": "2026-08-08",
       "pollster": "YouGov",
-      "margin": 6.78,
+      "margin": 6.77,
       "sample_size": 1420,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_pKJG0WT.pdf"
@@ -1595,10 +1523,18 @@
     {
       "date": "2026-08-09",
       "pollster": "Angus Reid Global",
-      "margin": 8.46,
+      "margin": 8.45,
       "sample_size": 1525,
       "population": "A",
       "url": "https://angusreid.us/congressional-generic-ballot-democrats-lead-53-43/"
+    },
+    {
+      "date": "2026-08-09",
+      "pollster": "Wave Polling",
+      "margin": 6.9,
+      "sample_size": 1591,
+      "population": "RV",
+      "url": "https://wavepolling.com/results/2026-08-17-economic-costs-deportations/"
     },
     {
       "date": "2026-08-09",
@@ -1611,7 +1547,7 @@
     {
       "date": "2026-08-09",
       "pollster": "AlphaROC",
-      "margin": 4.26,
+      "margin": 4.25,
       "sample_size": 1000,
       "population": "A",
       "url": "https://independentcentervoice.com/insights/august-2026-national-survey-on-independent-candidates-and-the-2026-midterms-wave-3"
@@ -1619,7 +1555,7 @@
     {
       "date": "2026-08-13",
       "pollster": "Morning Consult",
-      "margin": 6.34,
+      "margin": 6.32,
       "sample_size": 29685,
       "population": "RV",
       "url": "https://pro-assets.morningconsult.com/wp-uploads/2026/08/MCPI-PI-Weekly.html"
@@ -1627,7 +1563,7 @@
     {
       "date": "2026-08-14",
       "pollster": "Noble Predictive Insights",
-      "margin": 5.98,
+      "margin": 5.97,
       "sample_size": 2533,
       "population": "RV",
       "url": "https://www.thecentersquare.com/polls/"
@@ -1659,7 +1595,7 @@
     {
       "date": "2026-08-15",
       "pollster": "YouGov",
-      "margin": 7.78,
+      "margin": 7.77,
       "sample_size": 1450,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ZMy1Zxu.pdf"
@@ -1667,7 +1603,7 @@
     {
       "date": "2026-08-16",
       "pollster": "Emerson College",
-      "margin": 6.97,
+      "margin": 6.96,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://emersoncollegepolling.com/august-2026-national-poll/"
@@ -1683,10 +1619,18 @@
     {
       "date": "2026-08-19",
       "pollster": "McLaughlin & Associates",
-      "margin": 8.29,
+      "margin": 8.28,
       "sample_size": 1000,
       "population": "LV",
       "url": "https://mclaughlinonline.com/pols/wp-content/uploads/2026/08/National-August-Presentation-RELEASE.pdf"
+    },
+    {
+      "date": "2026-08-20",
+      "pollster": "Morning Consult",
+      "margin": 6.02,
+      "sample_size": 30732,
+      "population": "RV",
+      "url": "https://drive.google.com/file/d/1mz53nbxVmkDaSt2l6gfcGff3hiOikKPJ/view"
     },
     {
       "date": "2026-08-22",
@@ -1699,10 +1643,58 @@
     {
       "date": "2026-08-22",
       "pollster": "YouGov",
-      "margin": 6.78,
+      "margin": 6.77,
       "sample_size": 1379,
       "population": "RV",
       "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_v7iliA1.pdf"
+    },
+    {
+      "date": "2026-08-23",
+      "pollster": "University of Massachusetts Department of Political Science/YouGov",
+      "margin": 7.68,
+      "sample_size": 1000,
+      "population": "A",
+      "url": "https://www.umass.edu/poll/about/reports/2026-09-national-public-opinion-poll-0#toc-toplines"
+    },
+    {
+      "date": "2026-08-27",
+      "pollster": "HarrisX",
+      "margin": 0.87,
+      "sample_size": null,
+      "population": "LV",
+      "url": "https://harvardharrispoll.com/assets/uploads/2026/08/HHP_Aug2026_KeyResults.pdf"
+    },
+    {
+      "date": "2026-08-27",
+      "pollster": "Quantus Insights",
+      "margin": 7.49,
+      "sample_size": 1200,
+      "population": "LV",
+      "url": "https://quantusinsights.org/polling/f/new-survey-democrats-hold-the-midterm-advantage"
+    },
+    {
+      "date": "2026-08-27",
+      "pollster": "Morning Consult",
+      "margin": 7.22,
+      "sample_size": 28429,
+      "population": "RV",
+      "url": "https://drive.google.com/file/d/1mz53nbxVmkDaSt2l6gfcGff3hiOikKPJ/view"
+    },
+    {
+      "date": "2026-08-29",
+      "pollster": "Ipsos",
+      "margin": 6.54,
+      "sample_size": 924,
+      "population": "RV",
+      "url": "https://www.ipsos.com/en-us/cost-living-remains-top-mind-voters-heading-2026-midterms"
+    },
+    {
+      "date": "2026-08-29",
+      "pollster": "YouGov",
+      "margin": 6.77,
+      "sample_size": 1437,
+      "population": "RV",
+      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_yVe1kKt.pdf"
     }
   ]
 }

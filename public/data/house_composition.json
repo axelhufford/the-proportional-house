@@ -1,17 +1,17 @@
 {
   "meta": {
-    "generated_at": "2026-08-30T11:22:46.506420+00:00",
+    "generated_at": "2026-09-06T10:22:48.994235+00:00",
     "congress": 119,
-    "publish_date": "July 6, 2026",
+    "publish_date": "September 2, 2026",
     "source": "Clerk of the U.S. House, MemberData.xml",
     "source_url": "https://clerk.house.gov/xml/lists/MemberData.xml",
     "note": "Live chamber composition, including vacancies. Party attribution follows each member's caucus. Distinct from the November 2024 election result, which remains the projection baseline \u2014 see house_2024.json."
   },
   "national": {
-    "d_seats": 212,
+    "d_seats": 214,
     "r_seats": 219,
     "other_seats": 0,
-    "vacant": 4,
+    "vacant": 2,
     "total_seats": 435
   },
   "states": [
@@ -60,10 +60,10 @@
       "fips": "06",
       "name": "California",
       "seats": 52,
-      "d_seats": 42,
+      "d_seats": 43,
       "r_seats": 9,
       "other_seats": 0,
-      "vacant": 1
+      "vacant": 0
     },
     {
       "code": "CO",
@@ -110,10 +110,10 @@
       "fips": "13",
       "name": "Georgia",
       "seats": 14,
-      "d_seats": 4,
+      "d_seats": 5,
       "r_seats": 9,
       "other_seats": 0,
-      "vacant": 1
+      "vacant": 0
     },
     {
       "code": "HI",
@@ -518,22 +518,10 @@
   ],
   "vacancies": [
     {
-      "code": "CA",
-      "name": "California",
-      "district": "14th",
-      "reason": "Vacancy due to the resignation of Eric Swalwell, April 14, 2026."
-    },
-    {
       "code": "FL",
       "name": "Florida",
       "district": "20th",
       "reason": "Vacancy due to the resignation of Sheila Cherfilus-McCormick, April 21, 2026."
-    },
-    {
-      "code": "GA",
-      "name": "Georgia",
-      "district": "13th",
-      "reason": "Vacancy due to the death of David Scott, April 22, 2026."
     },
     {
       "code": "TX",
