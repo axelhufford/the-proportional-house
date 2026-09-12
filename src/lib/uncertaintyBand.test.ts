@@ -41,14 +41,14 @@ describe('describeSeatShiftBand', () => {
   it('sign crossing reads R-to-D', () => {
     // shifts: low −2, high +14
     expect(describeSeatShiftBand(seatShiftBand(band(213, 229), 215))).toBe(
-      'the shift lands anywhere from 2 seats toward Republicans to 14 toward Democrats',
+      'the shift lands anywhere from 2 seats toward Republicans to 14 seats toward Democrats',
     );
   });
 
   it('singular seat on a one-seat crossing endpoint', () => {
     // shifts: low −1, high +14
     expect(describeSeatShiftBand(seatShiftBand(band(214, 229), 215))).toBe(
-      'the shift lands anywhere from 1 seat toward Republicans to 14 toward Democrats',
+      'the shift lands anywhere from 1 seat toward Republicans to 14 seats toward Democrats',
     );
   });
 

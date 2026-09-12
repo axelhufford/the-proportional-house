@@ -72,7 +72,7 @@ export function SainteLagueDemo() {
           }
         />
         <Stat
-          label="Margin vs proportional"
+          label="Margin vs. proportional"
           value={
             <span className="tabular-nums">
               {marginNote(dShare, rShare, allocation.d_seats, allocation.r_seats, seats)}

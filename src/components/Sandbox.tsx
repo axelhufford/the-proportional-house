@@ -402,9 +402,9 @@ export function Sandbox({
       >
         <div className="flex flex-wrap gap-1.5">
           {[
-            { label: '435 (today)', value: DEFAULT_HOUSE_SIZE, title: 'Current US House size, frozen by the 1929 Permanent Apportionment Act.' },
+            { label: '435 (today)', value: DEFAULT_HOUSE_SIZE, title: 'Current U.S. House size, frozen by the 1929 Permanent Apportionment Act.' },
             { label: `${wyomingRuleHouseSize} (Wyoming Rule)`, value: wyomingRuleHouseSize, title: 'Cap district population at the smallest state’s. ~573 today.' },
-            { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: 'House size ≈ ∛(US population). ~692 today (Taagepera and Shugart, 1989).' },
+            { label: `${cubeRootHouseSize} (Cube root)`, value: cubeRootHouseSize, title: 'House size ≈ ∛(U.S. population). ~692 today (Taagepera and Shugart, 1989).' },
           ].map((p) => {
             const active = p.value === houseSize;
             return (
@@ -438,7 +438,7 @@ export function Sandbox({
           className="w-full accent-stone-900 mt-2"
         />
         <p className="text-xs text-stone-500 mt-1">
-          Seats reapportion among states via Huntington-Hill, the same method the real US House
+          Seats reapportion among states via Huntington-Hill, the same method the real U.S. House
           uses. “As elected” in the comparison table stays at 435; reform rows reflect the chosen
           size.
         </p>

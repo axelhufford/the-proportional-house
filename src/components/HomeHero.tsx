@@ -193,7 +193,7 @@ export function HomeHero({
             <strong className={towardColor}>
               {absGain} {seats(absGain)} {towardWord(dGain)}
             </strong>{' '}
-            from today’s. Adjust the controls to build your own scenario.
+            from today’s split. Adjust the controls to build your own scenario.
           </>
         );
     }

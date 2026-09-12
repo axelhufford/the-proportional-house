@@ -124,7 +124,7 @@ export function Rankings() {
         const allR = s.actual.r_seats === s.seats;
         if (!allD && !allR) return null;
         const losingShare = allD ? s.baseline_2024.r_share : s.baseline_2024.d_share;
-        const losingParty = allD ? 'Republican' : 'Democratic';
+        const losingParty = allD ? 'Republicans' : 'Democrats';
         return { state: s, losingShare, losingParty };
       })
       .filter((x): x is { state: StateProjection; losingShare: number; losingParty: string } => x !== null)
@@ -132,7 +132,7 @@ export function Rankings() {
       .slice(0, TOP_N)
       .map(({ state, losingShare, losingParty }) => ({
         state,
-        caption: `${state.actual.d_seats === state.seats ? 'All D' : 'All R'} delegation; ${losingParty}s got ${Math.round(losingShare * 100)}% of the 2024 House vote but zero seats`,
+        caption: `${state.actual.d_seats === state.seats ? 'All D' : 'All R'} delegation; ${losingParty} got ${Math.round(losingShare * 100)}% of the 2024 House vote but zero seats`,
       }));
 
     return [

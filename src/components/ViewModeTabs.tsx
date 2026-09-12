@@ -67,7 +67,7 @@ const VIEW_OPTIONS: ViewOption[] = [
     value: 'retrospective',
     label: 'Retrospective',
     desc: 'Past cycles, 2016–24',
-    title: 'How a past election’s actual votes would have allocated under PR — pick the cycle below.',
+    title: 'How a past election’s actual votes would have been allocated under PR — pick the cycle below.',
     icon: <ClockIcon />,
   },
   {

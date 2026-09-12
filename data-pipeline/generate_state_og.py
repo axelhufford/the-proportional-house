@@ -190,11 +190,11 @@ def build_html_page(state: dict, og_version: str = "") -> str:
     if d_gain > 0:
         n = d_gain
         shift = f"a shift of {n} {'seat' if n == 1 else 'seats'} toward Democrats"
-        change_desc = f"+{d_gain} Democratic seats"
+        change_desc = f"+{d_gain} Democratic {'seat' if n == 1 else 'seats'}"
     elif d_gain < 0:
         n = abs(d_gain)
         shift = f"a shift of {n} {'seat' if n == 1 else 'seats'} toward Republicans"
-        change_desc = f"+{n} Republican seats"
+        change_desc = f"+{n} Republican {'seat' if n == 1 else 'seats'}"
     else:
         shift = "no net change in the partisan split"
         change_desc = "no net seat change"

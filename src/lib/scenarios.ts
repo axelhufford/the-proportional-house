@@ -55,7 +55,7 @@ const REGISTRY: Record<Scenario['id'], Scenario> = {
     id: 'two-parties',
     chipLabel: 'Two new parties',
     homeLabel: 'What if both flanks broke away?',
-    title: 'Add a Progressive Left and America First party, with a 5% threshold.',
+    title: 'Add a Progressive Left and an America First party, with a 5% threshold.',
     config: { minors: ['PROG', 'AF'], method: 'PR', houseSize: 'default' },
   },
   'mmp-germany': {

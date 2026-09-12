@@ -11,7 +11,7 @@ interface Props {
 
 const COLOR_MODES: { value: ColorMode; label: string; title?: string }[] = [
   { value: 'balance', label: 'Delegation Balance', title: 'Which party leads each state’s projected delegation.' },
-  { value: 'distortion', label: 'Distortion vs Today', title: 'Which way each state’s seats would shift under PR, relative to today.' },
+  { value: 'distortion', label: 'Distortion vs. Today', title: 'Which way each state’s seats would shift under PR, relative to today.' },
 ];
 
 export function ModeToggle({ viewMode, onViewModeChange, colorMode, onColorModeChange }: Props) {

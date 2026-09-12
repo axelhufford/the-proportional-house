@@ -295,7 +295,7 @@ BALLOT_VARIANTS: list[dict] = [
         "min_polls": 0,
         "note": (
             "Every generic-ballot poll in the window — likely voters, registered "
-            "voters and adults — weighted by recency, sample size and voter screen."
+            "voters, and adults — weighted by recency, sample size, and voter screen."
         ),
     },
     {
@@ -306,7 +306,7 @@ BALLOT_VARIANTS: list[dict] = [
         "min_polls": 3,
         "note": (
             "The same average restricted to polls of likely voters. This is our own "
-            "calculation, not Silver Bulletin's likely-voter-adjusted average — that "
+            "calculation, not Silver Bulletin’s likely-voter-adjusted average — that "
             "adjustment compares the likely-voter and registered-voter releases of a "
             "single survey, and the public poll database keeps only one row per survey."
         ),

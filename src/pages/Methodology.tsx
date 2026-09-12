@@ -212,7 +212,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         <p>
           Sandbox state is captured in the URL (e.g.{' '}
           <code>/sandbox?ballot=…&amp;minor1=…&amp;method=mmd-4&amp;house=wyoming</code>),
-          so any scenario you set up is a sharable link.
+          so any scenario you set up is a shareable link.
         </p>
 
         <h3 className="font-serif text-lg text-brand-navy mt-6 mb-2">Minor-party scenarios</h3>
@@ -256,8 +256,8 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           <strong>Per-state share is uniform-national in v1.</strong> The share you set is applied
           to every state identically: a 6% Progressive Left means 6% of the two-party vote share
           is reassigned in California, Wyoming, and everywhere in between. Real third parties
-          cluster regionally (Greens stronger in Vermont, Libertarians stronger in the mountain
-          west), but modeling that would need per-state minor-party data we don’t currently
+          cluster regionally (Greens stronger in Vermont, Libertarians stronger in the Mountain
+          West), but modeling that would need per-state minor-party data we don’t currently
           collect. Listed below under limitations.
         </p>
         <p>
@@ -270,7 +270,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
       <Section id="methods" title="Sandbox: allocation methods (MMD and MMP)">
         <p>
           Pure statewide proportional representation is the cleanest reform on the spectrum but
-          rarely the most politically viable in a US context. The Sandbox lets you toggle between
+          rarely the most politically viable in a U.S. context. The Sandbox lets you toggle between
           four allocation models so you can compare across that spectrum. The comparison table at
           the bottom of the Sandbox view shows national seat totals under every method
           side-by-side, given your current settings; handy for “which reform is most or least
@@ -309,7 +309,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             come from today’s SMDs (we use the current actual delegation as the proxy for “who’d
             win the district seats”); the other half are <em>list seats</em>, allocated to top
             each party up to its proportional target. Used in Germany, New Zealand, Scotland, and
-            Wales. Familiar to US voters because the local-district relationship survives: your
+            Wales. Familiar to U.S. voters because the local-district relationship survives: your
             congressperson is still elected from your district, with the list seats added on top
             for proportionality. A single-member-share slider (10%–90%) exposes the same model at
             any ratio — fewer district seats lets the list tier compensate further, so a lower
@@ -364,9 +364,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             go to the parties with the largest fractional remainders. Genuinely proportional in the
             average case, but susceptible to the <strong>Alabama paradox</strong> (adding a seat to
             the legislature can <em>cost</em> a state seats) and the related population paradox.
-            The US Congress used Hamilton for inter-state apportionment until 1880 produced bizarre
+            The U.S. Congress used Hamilton for inter-state apportionment until 1880 produced bizarre
             results; Huntington-Hill replaced it for federal use in 1941. Still in use in some
-            European systems (Russia, Albania) and many state-level US contexts.
+            European systems (Russia, Albania) and many state-level U.S. contexts.
           </li>
         </ul>
         <p className="text-sm text-stone-600">
@@ -381,7 +381,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           The House has been frozen at <strong>435 seats since 1929</strong>. The number isn’t in
           the Constitution. The Permanent Apportionment Act of that year fixed it after the
           politically toxic 1920 census fight. In fact the House{' '}
-          <em>skipped reapportionment entirely after the 1920 census</em>, the only time in US
+          <em>skipped reapportionment entirely after the 1920 census</em>, the only time in U.S.
           history, because urban-rural balance shifts threatened too many incumbents. Before 1929,
           the House grew with the population.
         </p>
@@ -411,14 +411,14 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <strong>Cube root rule</strong> (≈ 692 today). The size of a legislature scales roughly
             as the cube root of population, proposed by Taagepera and Shugart in{' '}
             <em>Seats and Votes</em> (1989) after surveying democracies worldwide. With the 2020
-            census, <code>∛331 M ≈ 692</code> seats. Bigger expansion; brings the US in line with
+            census, <code>∛331 M ≈ 692</code> seats. Bigger expansion; brings the U.S. in line with
             most peer democracies’ legislators-per-capita.
           </li>
         </ul>
         <p>
           <strong>How seats redistribute under expansion.</strong> The Sandbox uses{' '}
           <strong>Huntington-Hill</strong> (a.k.a. “Method of Equal Proportions”) to apportion the
-          new total among states. This is <em>the same method the real US House has used since
+          new total among states. This is <em>the same method the real U.S. House has used since
           1941</em>, and most reform proposals keep it. The algorithm: every state with
           population &gt; 0 starts with 1 seat, then the remaining seats are assigned one at a time
           to whichever state has the highest “priority” of <code>population / √(n × (n+1))</code>,
@@ -564,7 +564,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         <p>
           What the band does <em>not</em> capture: error in the uniform-swing and elasticity model
           itself, candidate and turnout effects, the absence of state-level polling, and the fact
-          that a July polling average is a snapshot of today, not a prediction of November — polls
+          that today’s polling average is a snapshot of now, not a prediction of November — polls
           months out drift more than final averages do. Those caveats live in{' '}
           <a className="underline hover:text-brand-navy" href="#limitations">Assumptions and limitations</a>.
         </p>
@@ -579,7 +579,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             <strong>Uncontested races, imputed from presidential vote.</strong> Where a House district had no major-party opponent in 2024, the raw House totals don’t reflect partisan lean (one party gets ~100% of the two-party vote). The 2024 cycle had unusually few such races: VT-AL (Becca Balint, D), LA-4 (Mike Johnson, R), WA-4 (Dan Newhouse, R), and WA-9 (Adam Smith, D). For each, we replace the district’s House two-party total with its 2024 <em>presidential</em> two-party split (sourced from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>’s pres-by-CD calculations) so the state baseline reflects partisan lean rather than no-contest. One edge case is deferred: FL-20 (Sheila Cherfilus-McCormick, D) was re-elected without appearing on the ballot at all, so the Clerk PDF records no vote total to replace; imputing here would require estimating House turnout from outside data, which we’re not doing yet. Each state-detail panel labels how many of its districts were imputed.
           </li>
           <li>
-            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em>; see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
+            <strong>Pipeline, API, and exports are two-party only.</strong> The 2024 baseline and the polling-driven projection both use D-vs-R two-party share; third-party and write-in votes are excluded. Realistic for the U.S. House today (third parties rarely clear single digits), and it keeps the public API contract stable. The <Link className="underline" to="/sandbox">Sandbox</Link> view lets you model up to three additional parties as a <em>what-if</em>; see the Sandbox section above for the draw-ratio model and the uniform-national-share limitation that comes with it.
           </li>
           <li>
             <strong>Sainte-Laguë is a choice.</strong> Most academic work on proportional representation favors it. Reasonable people can prefer D’Hondt (slightly larger-party-favoring) or Hamilton (largest-remainder, with known paradoxes). The interactive demo above lets you sanity-check edge cases.
@@ -652,7 +652,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </ul>
         <p>
           Minimal host snippet (or use the <strong>Embed</strong> button in the share row / a
-          state panel to copy one preconfigured for the view you're looking at):
+          state panel to copy one preconfigured for the view you’re looking at):
         </p>
         {/* Rendered from the same builder the Embed buttons copy from, so the
           * docs and the copied snippet can never drift. */}

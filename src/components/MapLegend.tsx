@@ -25,14 +25,14 @@ const LABELS: Record<
     left: 'Strong R delegation',
     center: 'Even',
     right: 'Strong D delegation',
-    aria: 'Color scale: red for states with a Republican-leaning projected delegation, blue for Democratic-leaning, with grey for an even split.',
+    aria: 'Color scale: red for states with a Republican-leaning projected delegation, blue for Democratic-leaning, with gray for an even split.',
     caption: 'Each state’s color shows which party controls its projected delegation.',
   },
   distortion: {
     left: 'PR shifts toward R',
     center: 'Same as today',
     right: 'PR shifts toward D',
-    aria: 'Color scale: orange for states where proportional representation would shift seats toward Republicans relative to today, purple for shifts toward Democrats, grey for states unchanged.',
+    aria: 'Color scale: orange for states where proportional representation would shift seats toward Republicans relative to today, purple for shifts toward Democrats, gray for states unchanged.',
     caption: 'Each state’s color shows which way its seats would move under PR, vs. today’s map.',
   },
 };

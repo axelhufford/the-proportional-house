@@ -57,5 +57,5 @@ export function describeSeatShiftBand(b: SeatShiftBand): string {
     return `the shift lands anywhere from ${Math.abs(lo)} ${seats(Math.abs(lo))} toward Republicans to no net shift`;
   }
   // Sign crossing: lo < 0 < hi.
-  return `the shift lands anywhere from ${Math.abs(lo)} ${seats(Math.abs(lo))} toward Republicans to ${hi} toward Democrats`;
+  return `the shift lands anywhere from ${Math.abs(lo)} ${seats(Math.abs(lo))} toward Republicans to ${hi} ${seats(hi)} toward Democrats`;
 }

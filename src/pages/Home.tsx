@@ -918,7 +918,7 @@ export function Home({ onMetaChange }: HomeProps) {
               activeKey="PR"
               currentRow={null}
               markerLabel="← shown above"
-              subtitle="National seat totals under each allocation method, applied to today's projected statewide vote shares."
+              subtitle="National seat totals under each allocation method, applied to today’s projected statewide vote shares."
             />
           </details>
         )}
