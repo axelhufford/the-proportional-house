@@ -66,8 +66,10 @@ export async function loadHouseComposition(
     const res = await context.env.ASSETS.fetch(new Request(url));
     if (!res.ok) return null;
     const data = (await res.json()) as HouseCompositionPayload;
-    // The SPA fallback serves index.html with HTTP 200 for a missing asset, so
-    // a shape check is the only reliable "is this really the file" test.
+    // Kept as belt-and-braces. This used to be the ONLY reliable test, because
+    // the `/*  /index.html  200` SPA fallback answered a missing asset with the
+    // homepage at HTTP 200; that fallback is gone and a missing file now 404s,
+    // so `res.ok` above already catches it. A malformed file still wouldn't.
     if (!data?.national || typeof data.national.total_seats !== 'number') return null;
     return data;
   } catch {

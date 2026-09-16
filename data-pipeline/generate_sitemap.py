@@ -17,9 +17,17 @@ Lists every URL the site exposes:
 Keep the fixed-route list here in sync with ROUTE_META in src/lib/routeMeta.ts
 (the per-route prerender source) so crawlers can discover every page.
 
-`<lastmod>` for every URL uses the pipeline's `generated_at` timestamp from
-public/data/meta.json. That way Google sees a fresh date whenever the
-projection refreshes, which nudges re-crawling.
+`<lastmod>` is per-route, not one date for the whole file.
+
+Routes whose content really is regenerated every run (the map, the rankings,
+the retrospective view, the per-state pages) get the pipeline's `generated_at`
+date from public/data/meta.json. The rest — /about, /methodology and the
+companion experiments — get the commit date of the sources that produce them.
+
+Stamping today's date on all 60 URLs daily, which is what this used to do, is
+the textbook way to get lastmod ignored altogether: Google treats the signal as
+unreliable when a whole sitemap claims to change every day, and then the dates
+on the pages that genuinely DO change stop being believed either.
 
 The sitemap is regenerated automatically as part of `npm run pipeline`
 (update.py calls main() here right after generate_state_og).
@@ -31,6 +39,7 @@ Run standalone:
 from __future__ import annotations
 
 import json
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from io_utils import write_text_atomic
@@ -62,6 +71,27 @@ FIXED_ROUTES: list[tuple[str, str, str]] = [
     ("/circuits", "0.6", "monthly"),      # companion experiment
 ]
 
+# Routes the pipeline genuinely rewrites on every run: their numbers come from
+# the day's projection, so `generated_at` is their honest lastmod.
+DAILY_ROUTES = {"/", "/rankings", "/retrospective"}
+
+# For everything else, the sources whose last commit is that page's real
+# lastmod. A page is its component plus the dataset it renders; when either
+# changes, the page changed.
+ROUTE_SOURCES: dict[str, tuple[str, ...]] = {
+    "/sandbox": ("src/pages/Home.tsx", "src/components/MinorPartyControls.tsx",
+                 "src/lib/allocation.ts"),
+    "/retrospectives": ("data-pipeline/generate_retrospectives_page.py",
+                        "public/data/retrospectives.json"),
+    "/methodology": ("src/pages/Methodology.tsx",),
+    "/about": ("src/pages/About.tsx",),
+    "/electoral-college": ("src/pages/ElectoralCollege.tsx",
+                           "public/data/electoral_college.json"),
+    "/senate": ("src/pages/Senate.tsx", "public/data/senate.json"),
+    "/circuits": ("src/pages/Circuits.tsx", "public/data/circuits.json"),
+}
+
+
 
 def _lastmod() -> str:
     """Return the ISO-8601 lastmod string for every URL.
@@ -80,6 +110,46 @@ def _lastmod() -> str:
     except (FileNotFoundError, ValueError, KeyError):
         pass
     return datetime.utcnow().date().isoformat()
+
+
+def _git_lastmod(paths: tuple[str, ...]) -> str | None:
+    """Commit date (YYYY-MM-DD) of the newest commit touching any of `paths`.
+
+    Returns None when git can't answer — no repo, git missing, or a shallow
+    clone deep enough only for HEAD. Callers fall back to the pipeline date,
+    which is what this module did for every URL before.
+    """
+    existing = [p for p in paths if (REPO_ROOT / p).exists()]
+    if not existing:
+        return None
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cs", "--", *existing],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    date = out.stdout.strip()
+    # Sanity-check the shape rather than trusting whatever git printed.
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+    except ValueError:
+        return None
+    return date
+
+
+def _route_lastmod(path: str, pipeline_date: str) -> str:
+    """The honest lastmod for one fixed route."""
+    if path in DAILY_ROUTES:
+        return pipeline_date
+    sources = ROUTE_SOURCES.get(path)
+    if not sources:
+        return pipeline_date
+    # Never claim a page changed later than the data build it ships with.
+    return min(_git_lastmod(sources) or pipeline_date, pipeline_date)
 
 
 def _url_entry(loc: str, lastmod: str, priority: str, changefreq: str) -> str:
@@ -102,7 +172,7 @@ def build_sitemap(state_codes: list[str]) -> str:
     # Fixed (non-state) routes.
     for path, priority, changefreq in FIXED_ROUTES:
         loc = f"{SITE_URL}/" if path == "/" else f"{SITE_URL}{path}"
-        parts.append(_url_entry(loc, lastmod, priority, changefreq))
+        parts.append(_url_entry(loc, _route_lastmod(path, lastmod), priority, changefreq))
     # Per-state pages — these mirror the static HTML pages in /state/.
     for code in state_codes:
         parts.append(

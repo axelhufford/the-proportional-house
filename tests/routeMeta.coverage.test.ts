@@ -82,7 +82,67 @@ describe('every route ships its own <noscript> body', () => {
 
   it('keeps the LIVE-SUMMARY placeholder the prerender plugin substitutes', () => {
     expect(read('index.html')).toContain('<!--LIVE-SUMMARY-->');
-    expect(read('vite.config.ts')).toContain("replace('<!--LIVE-SUMMARY-->', routeNoscript)");
+    expect(read('vite.config.ts')).toContain("replace('<!--LIVE-SUMMARY-->', body)");
+  });
+});
+
+describe('every valid path is a real file, so unknown paths can 404', () => {
+  /**
+   * public/_redirects used to end with `/*  /index.html  200`, which answered
+   * every unknown path with the homepage at HTTP 200 — a soft 404 across the
+   * whole URL space. Removing it is only safe while every valid path is a
+   * static asset Pages can serve directly, so these guard that precondition.
+   */
+  it('has no SPA catch-all in _redirects', () => {
+    const redirects = read('public/_redirects')
+      .split('\n')
+      .filter((l) => l.trim() && !l.trim().startsWith('#'));
+    const catchAll = redirects.find((l) => l.trim().startsWith('/*'));
+    expect(
+      catchAll,
+      `A /* rule in _redirects re-introduces the soft 404: ${catchAll ?? ''}`,
+    ).toBeUndefined();
+  });
+
+  it('ships a static 404 page for Pages to serve on a real miss', () => {
+    const page = read('public/404.html');
+    expect(page).toContain('<title>');
+    // Must not be indexable itself, and must offer a way back into the site.
+    expect(page).toContain('name="robots" content="noindex"');
+    expect(page).toContain('href="/"');
+  });
+
+  it('prerenders a shell for every /embed route in App.tsx', () => {
+    const embedRoutes = [...read('src/App.tsx').matchAll(/<Route\s+path="(\/embed[^"]*)"/g)].map(
+      (m) => m[1],
+    );
+    expect(embedRoutes.length, 'no /embed routes found — did App.tsx change?').toBeGreaterThan(0);
+    // writeEmbedShells emits exactly these two trees. A third embed route would
+    // have no file and would 404 now that the catch-all is gone.
+    expect(new Set(embedRoutes)).toEqual(new Set(['/embed/national', '/embed/state/:code']));
+    const config = read('vite.config.ts');
+    expect(config).toContain("'embed/national.html'");
+    expect(config).toContain('embed/state/${code}.html');
+  });
+});
+
+describe('the <noscript> shell carries an internal link graph', () => {
+  /**
+   * The prerendered HTML is a bare SPA shell, so before React runs there were
+   * no internal links at all — every route was an orphan reachable only from
+   * sitemap.xml, which carries no link equity and no anchor text.
+   */
+  it('gives every route distinct, descriptive anchor text', () => {
+    const labels = new Set<string>();
+    for (const [path, meta] of Object.entries(ROUTE_META)) {
+      expect(meta.navLabel.length, `${path} navLabel too short`).toBeGreaterThan(5);
+      expect(meta.navLabel.length, `${path} navLabel too long for a link`).toBeLessThan(45);
+      expect(/^(here|this|link|click)/i.test(meta.navLabel), `${path} navLabel is not descriptive`).toBe(
+        false,
+      );
+      expect(labels.has(meta.navLabel), `duplicate navLabel for ${path}`).toBe(false);
+      labels.add(meta.navLabel);
+    }
   });
 });
 

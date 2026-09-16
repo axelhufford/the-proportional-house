@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -105,6 +105,64 @@ function buildRetrospectiveNoscript(): string {
 }
 
 /**
+ * Read public/data/projection.json at build time, or null when missing/garbled.
+ */
+function readProjectionJson(): Record<string, any> | null {
+  try {
+    return JSON.parse(readFileSync(resolve('public/data/projection.json'), 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The <noscript> navigation block: real <a href> links from every prerendered
+ * page to every other one.
+ *
+ * This exists because the prerendered HTML is the SPA shell — <div id="root">
+ * and nothing else. Before React runs there is not a single internal link on
+ * any route, so a crawler's first pass sees nine unconnected orphan pages and
+ * discovers them only through sitemap.xml. Sitemap discovery carries no
+ * internal link equity and no anchor text, which is the likeliest reason
+ * /senate sat in "Crawled - currently not indexed" while the genuinely linked
+ * static pages (/retrospectives, /state/*) indexed without trouble.
+ *
+ * `current` is omitted from its own list — a page shouldn't link to itself.
+ */
+function buildNavNoscript(current: string): string {
+  const links = Object.values(ROUTE_META)
+    .filter((m) => m.canonicalPath !== current)
+    .map((m) => `<li><a href="${escAttr(m.canonicalPath)}">${escText(m.navLabel)}</a></li>`)
+    .join('');
+  const retrospectives =
+    current === '/retrospectives'
+      ? ''
+      : '<li><a href="/retrospectives">Retrospectives write-up</a></li>';
+  return `<nav><p>More from The Proportional House:</p><ul>${links}${retrospectives}</ul></nav>`;
+}
+
+/**
+ * A linked index of all 50 per-state pages, from public/data/projection.json.
+ *
+ * The state pages are real prose with their own canonicals and they index
+ * fine, but nothing in the pre-JS HTML linked to them either — /rankings only
+ * mentioned "/state/" as plain text. Returns '' when the data is unavailable.
+ */
+function buildStateIndexNoscript(): string {
+  const states = readProjectionJson()?.states;
+  if (!Array.isArray(states) || !states.length) return '';
+  const items = states
+    .filter((st: any) => typeof st?.code === 'string' && typeof st?.name === 'string')
+    .map((st: any) => {
+      const href = `/state/${escAttr(String(st.code).toLowerCase())}`;
+      return `<li><a href="${href}">${escText(st.name)} under proportional representation</a></li>`;
+    })
+    .join('');
+  if (!items) return '';
+  return `<nav><p>Every state:</p><ul>${items}</ul></nav>`;
+}
+
+/**
  * Build-time per-route meta prerender.
  *
  * The app is a client-rendered SPA: Cloudflare serves the same index.html for
@@ -140,6 +198,10 @@ function prerenderRouteMeta(): Plugin {
       // when meta.json is missing/old — static copy ships unchanged.
       const { todayLine, noscriptSummary } = buildLiveSummary(readPublicMetaJson());
       const retrospectiveNoscript = buildRetrospectiveNoscript();
+      // The 50 per-state links are long, so they go on the two routes they
+      // actually belong to rather than on every page: the national map and the
+      // rankings leaderboards, both of which are about the states.
+      const stateIndex = buildStateIndexNoscript();
       for (const meta of Object.values(ROUTE_META)) {
         const isHome = meta.canonicalPath === '/';
         const url =
@@ -156,6 +218,12 @@ function prerenderRouteMeta(): Plugin {
           : meta.canonicalPath === '/retrospective'
             ? retrospectiveNoscript || meta.noscript || ''
             : (meta.noscript ?? '');
+        const wantsStateIndex =
+          meta.canonicalPath === '/' || meta.canonicalPath === '/rankings';
+        const body =
+          routeNoscript +
+          buildNavNoscript(meta.canonicalPath) +
+          (wantsStateIndex ? stateIndex : '');
         const html = template
           .replace(/<title>[\s\S]*?<\/title>/, `<title>${escText(meta.title)}</title>`)
           .replace(/(<meta name="description" content=")[^"]*(")/, `$1${desc}$2`)
@@ -165,15 +233,67 @@ function prerenderRouteMeta(): Plugin {
           .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${desc}$2`)
           .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${title}$2`)
           .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${desc}$2`)
-          // Per-route <noscript> body; placeholder stripped when a route has no
-          // prose and its data is unavailable.
-          .replace('<!--LIVE-SUMMARY-->', routeNoscript);
+          // Per-route <noscript> body: the route's own prose, then the
+          // cross-links that give the pre-JS HTML an internal link graph.
+          .replace('<!--LIVE-SUMMARY-->', body);
         const file =
           meta.canonicalPath === '/' ? 'index.html' : `${meta.canonicalPath.slice(1)}.html`;
         writeFileSync(resolve(outDir, file), html);
       }
+      writeEmbedShells(outDir, template);
     },
   };
+}
+
+/**
+ * Emit a static shell for every /embed/* route.
+ *
+ * These used to be served by the `/*  /index.html  200` catch-all in
+ * _redirects. That catch-all is gone — it was what made every unknown path
+ * answer HTTP 200 with the homepage, i.e. a soft 404 on the whole URL space —
+ * so each embed route now needs a real file, exactly like the per-route and
+ * per-state pages. Cloudflare Pages serves a nested asset at its clean URL
+ * (dist/state/ca.html is already served at /state/ca in production), so
+ * dist/embed/state/ca.html answers /embed/state/ca.
+ *
+ * Every shell is noindex: an embed is a chrome-less copy of content that has a
+ * real page elsewhere, and newsrooms iframe these into articles, so they are
+ * genuinely reachable by a crawler. Links are still followed, so the link back
+ * to the full page below keeps working.
+ */
+function writeEmbedShells(outDir: string, template: string): void {
+  const states = readProjectionJson()?.states;
+  const codes: string[] = Array.isArray(states)
+    ? states
+        .map((st: any) => (typeof st?.code === 'string' ? st.code.toLowerCase() : ''))
+        .filter(Boolean)
+    : [];
+
+  const shell = (canonicalPath: string, backLink: string) =>
+    template
+      .replace(
+        /<link rel="canonical" href="[^"]*"\s*\/?>/,
+        '<meta name="robots" content="noindex" />',
+      )
+      .replace('<!--LIVE-SUMMARY-->', backLink)
+      // Not a page anyone should land on from search or a shared link.
+      .replace(/<title>[\s\S]*?<\/title>/, `<title>The Proportional House</title>`)
+      .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${SITE_ORIGIN}${canonicalPath}$2`);
+
+  mkdirSync(resolve(outDir, 'embed/state'), { recursive: true });
+  writeFileSync(
+    resolve(outDir, 'embed/national.html'),
+    shell('/embed/national', '<p><a href="/">The full interactive map &rarr;</a></p>'),
+  );
+  for (const code of codes) {
+    writeFileSync(
+      resolve(outDir, `embed/state/${code}.html`),
+      shell(
+        `/embed/state/${code}`,
+        `<p><a href="/state/${code}">The full page for this state &rarr;</a></p>`,
+      ),
+    );
+  }
 }
 
 /**

@@ -33,6 +33,14 @@
 # frame-ancestors in the `/*` policy above, nothing here has to be overridden.
 /embed/*
   X-Frame-Options: ALLOWALL
+  # An embed is a chrome-less copy of content that has a real page elsewhere,
+  # and newsrooms iframe these into articles — so they are genuinely reachable
+  # by a crawler, and an indexed /embed/state/ca competing with /state/ca is
+  # strictly worse than neither. The shells also carry a noindex meta tag; this
+  # header covers the case where a crawler reads headers but not the body.
+  # Safe against the append behavior described above: `/*` sets no
+  # X-Robots-Tag, so there is nothing here to conflict with.
+  X-Robots-Tag: noindex
 
 # Public API: CORS only. The Function sets its own Cache-Control so it can use
 # `no-store` on a 503 — pinning a cache directive here would override that and

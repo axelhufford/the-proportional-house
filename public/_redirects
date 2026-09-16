@@ -1,7 +1,16 @@
-# Convenience alias: the no-extension API path 301s to the canonical .json
-# URL. Must come before the SPA fallback or it'd get swallowed.
+# Convenience alias: the no-extension API path 301s to the canonical .json URL.
 /api/v1/projection   /api/v1/projection.json   301
 
-# SPA fallback for client-side routing (react-router-dom BrowserRouter).
-# Without this, /methodology and other deep links return 404 on Cloudflare Pages.
-/*    /index.html   200
+# NOTE: there is deliberately no `/*  /index.html  200` SPA fallback here.
+#
+# That rule made Cloudflare answer EVERY unknown path with the homepage at
+# HTTP 200 — a soft 404 across the entire URL space, and a page whose canonical
+# pointed at "/" no matter what was requested. It is not needed: the Vite
+# prerender plugin writes a real file for every route in ROUTE_META, the
+# pipeline writes one per state, and both /embed/* trees are emitted too, so
+# every valid path is a static asset that Pages serves at its clean URL.
+# Anything left over genuinely does not exist and now gets public/404.html
+# with a real 404 status.
+#
+# If you add a route to App.tsx, add it to ROUTE_META — routeMeta.coverage
+# tests fail otherwise, and without a prerendered file the route would 404.

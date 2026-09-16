@@ -1,6 +1,9 @@
-// Static server for dist/ that applies public/_headers and public/_redirects
-// the way Cloudflare Pages does, so CSP and the SPA fallback can be verified
-// locally (workerd/wrangler needs macOS 13.5+; this box is on 12.6).
+// Static server for dist/ that applies public/_headers and models Cloudflare
+// Pages' asset resolution, so CSP and 404 behavior can be verified locally
+// (workerd/wrangler needs macOS 13.5+; this box is on 12.6).
+//
+// It does NOT parse public/_redirects — the only rule left there is the
+// /api/v1/projection alias, which is a Function's concern anyway.
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { join, extname, resolve } from 'node:path';
@@ -72,11 +75,18 @@ createServer((req, res) => {
     join(ROOT, pathname, 'index.html'),
   ];
   let file = candidates.find((c) => existsSync(c) && statSync(c).isFile());
-  // SPA fallback, mirroring `/*  /index.html  200`.
-  if (!file) file = join(ROOT, 'index.html');
+  // No matching asset. This used to fall back to index.html at HTTP 200,
+  // mirroring the `/*  /index.html  200` rule that made every unknown path a
+  // soft 404. That rule is gone: Pages now serves the custom 404 page with a
+  // real 404 status, and every valid route is a prerendered file above.
+  let status = 200;
+  if (!file) {
+    file = join(ROOT, '404.html');
+    status = 404;
+  }
 
   const body = readFileSync(file);
-  res.writeHead(200, {
+  res.writeHead(status, {
     'Content-Type': MIME[extname(file)] ?? 'application/octet-stream',
     ...applied,
   });

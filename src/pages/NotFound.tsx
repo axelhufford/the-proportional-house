@@ -2,17 +2,21 @@ import { Link } from 'react-router-dom';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
 /**
- * Client-side 404. Matches any path not handled by a real route via the
- * catch-all "*" route in App.tsx.
+ * Client-side 404, for a bad path reached by in-app navigation. Matches any
+ * path not handled by a real route via the catch-all "*" route in App.tsx.
  *
- * Caveat: because Cloudflare Pages is configured with an SPA fallback
- * (`_redirects: /* /index.html 200`), the actual HTTP status from the
- * server is still 200 for these unknown paths — the SPA always loads,
- * then this component renders client-side. We deliberately don't ship
- * a static public/404.html because CF Pages serves that *before* the
- * _redirects rule, breaking every SPA deep link (including /rankings,
- * /about, /methodology). The 200 status on misses is a known SPA
- * tradeoff; a real fix would require pre-rendering all valid routes.
+ * A direct hit on an unknown URL no longer reaches this component at all: it
+ * gets public/404.html with a real HTTP 404. The old arrangement — an SPA
+ * fallback serving index.html at HTTP 200 for every unknown path — was a soft
+ * 404 across the whole URL space. The note that used to live here said a
+ * static 404.html would break deep links because Pages serves it before the
+ * _redirects rule; what actually happens is that a matching static asset wins
+ * over both, and every valid route is now prerendered to one (see
+ * prerenderRouteMeta in vite.config.ts and public/_redirects).
+ *
+ * So this still earns its place — click a dead in-app link and React Router
+ * renders it without a network round trip — but it is no longer what a
+ * crawler or a cold visitor sees.
  */
 export function NotFound() {
   useDocumentTitle(

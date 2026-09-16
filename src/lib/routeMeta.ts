@@ -16,6 +16,14 @@ export interface RouteMeta {
   /** Path with a leading slash, e.g. "/" or "/rankings". */
   canonicalPath: string;
   /**
+   * Short anchor text for the cross-links in the <noscript> nav. The
+   * prerendered HTML is a bare SPA shell, so these are the only internal
+   * links a crawler sees before it runs our JS — they carry the anchor-text
+   * signal for the page they point at, so describe the destination rather
+   * than saying "here".
+   */
+  navLabel: string;
+  /**
    * Route-specific prose for the <noscript> crawler fallback, baked in by the
    * prerender plugin. Without it every route ships the same generic "this site
    * requires JavaScript" body, which reads as duplicate thin content to a
@@ -33,38 +41,40 @@ export interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'Current U.S. House seats under proportional representation · The Proportional House',
+    title: 'The U.S. House under proportional representation',
     description:
       'See how many seats each party would hold if the U.S. House used proportional representation instead of winner-take-all districts — a daily projection from the current generic-ballot polling average, with 2016–2024 retrospectives.',
     canonicalPath: '/',
+    navLabel: 'The national map',
   },
   '/retrospective': {
-    title:
-      'Retrospective: how past U.S. House elections would look under proportional representation · The Proportional House',
+    title: 'Past U.S. House elections under PR, 2016–2024 · The Proportional House',
     description:
       'Apply proportional representation to the actual votes of the 2016–2024 U.S. House elections. See, cycle by cycle, how many seats winner-take-all districts shifted from a proportional result.',
     canonicalPath: '/retrospective',
+    navLabel: 'Past elections under PR (2016–2024)',
     noscript:
       '<p>Proportional allocation applied to the actual certified votes of the 2016, 2018, 2020, ' +
       '2022 and 2024 U.S. House elections — cycle by cycle, how many seats winner-take-all ' +
       'districts moved away from a proportional result.</p>',
   },
   '/sandbox': {
-    title: 'Sandbox: build your own proportional U.S. House · The Proportional House',
+    title: 'Sandbox: build your own U.S. House · The Proportional House',
     description:
       'Experiment with the U.S. House: change the national vote, add third parties, switch the allocation method (Pure PR, MMD, MMP), set a threshold, and resize the chamber — and watch the seats recompute live.',
     canonicalPath: '/sandbox',
+    navLabel: 'Sandbox: build your own House',
     noscript:
       '<p>An interactive model of the U.S. House: set the national vote margin, add third parties, ' +
       'switch the allocation method (Pure PR, multi-member districts, or MMP), impose an electoral ' +
       'threshold, and resize the chamber beyond 435 seats — every seat count recomputes live.</p>',
   },
   '/rankings': {
-    title:
-      'House rankings: most distorted delegations under proportional representation · The Proportional House',
+    title: 'Most distorted U.S. House delegations · The Proportional House',
     description:
       'Which state delegations diverge most from proportional representation? Leaderboards of the biggest D shifts, biggest R shifts, and most one-sided House delegations.',
     canonicalPath: '/rankings',
+    navLabel: 'Most distorted state delegations',
     noscript:
       '<p>Leaderboards of the state delegations that diverge most from a proportional result: the ' +
       'largest shifts toward Democrats, the largest shifts toward Republicans, and the most ' +
@@ -76,6 +86,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'How the projection works: data sources, Sainte-Laguë allocation, state elasticity, the Sandbox’s allocation methods (PR, MMD, MMP) and House-size expansion, uncontested-race imputation, and limitations.',
     canonicalPath: '/methodology',
+    navLabel: 'Methodology and data sources',
     noscript:
       '<p>How the projection is built: the generic-ballot polling average, Sainte-Laguë seat ' +
       'allocation, per-state elasticity, imputation for uncontested races, and the allocation ' +
@@ -86,16 +97,18 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'About The Proportional House: a non-partisan visualization of how the U.S. House would look under proportional representation. Plus a FAQ on the methodology and politics.',
     canonicalPath: '/about',
+    navLabel: 'About and FAQ',
     noscript:
       '<p>A non-partisan visualization of how the U.S. House would look if seats were allocated in ' +
       'proportion to votes instead of won district by district, with a FAQ on the methodology and ' +
       'the politics.</p>',
   },
   '/electoral-college': {
-    title: 'The Proportional Electoral College, 1976–2024 · The Proportional House',
+    title: 'The Proportional Electoral College · The Proportional House',
     description:
       'What if each state split its electoral votes proportionally instead of winner-take-all? Applied to every presidential election since 1976 — including how often no candidate would reach 270, sending the election to the House.',
     canonicalPath: '/electoral-college',
+    navLabel: 'The proportional Electoral College',
     noscript:
       '<p>What if every state split its electoral votes in proportion to its popular vote instead ' +
       'of awarding them winner-take-all? Applied to all 13 presidential elections from 1976 to 2024 ' +
@@ -108,6 +121,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'Every state gets two senators regardless of population. See how lopsided that is — a Wyoming voter has ~68× the Senate representation of a Californian, and the smallest states holding under 18% of the population can command a Senate majority.',
     canonicalPath: '/senate',
+    navLabel: 'The Senate’s malapportionment',
     noscript:
       '<p>Every state elects two senators regardless of population. On 2020 Census figures, Wyoming ' +
       'has one senator per 288,426 residents and California one per 19,769,112 — a 68.5× gap ' +
@@ -120,6 +134,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'The U.S. Courts of Appeals are carved into wildly unequal circuits — the 9th covers ~1 in 5 Americans. See today’s circuits by population and authorized judges, and an illustrative redraw into far more equal circuits.',
     canonicalPath: '/circuits',
+    navLabel: 'The federal circuit map',
     noscript:
       '<p>The U.S. Courts of Appeals are divided into 12 geographic circuits of wildly unequal ' +
       'size. The 9th Circuit covers 66.8 million people — about one in five Americans — against ' +
