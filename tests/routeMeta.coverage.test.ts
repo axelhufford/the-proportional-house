@@ -61,6 +61,31 @@ describe('ROUTE_META covers every indexable route', () => {
   });
 });
 
+describe('every route ships its own <noscript> body', () => {
+  /**
+   * The prerender plugin clones one index.html per route and only rewrites the
+   * head, so without per-route noscript prose every route's crawler-visible
+   * body is byte-identical. Google filed /senate, /sandbox and /retrospective
+   * under "Crawled - currently not indexed" while that was true. '/' is the
+   * exception: its paragraph is generated from meta.json at build time.
+   */
+  it('gives every non-home route distinct, substantive prose', () => {
+    const seen = new Set<string>();
+    for (const [path, meta] of Object.entries(ROUTE_META)) {
+      if (path === '/') continue;
+      const prose = meta.noscript ?? '';
+      expect(prose.length, `${path} has no noscript prose`).toBeGreaterThan(120);
+      expect(seen.has(prose), `duplicate noscript prose for ${path}`).toBe(false);
+      seen.add(prose);
+    }
+  });
+
+  it('keeps the LIVE-SUMMARY placeholder the prerender plugin substitutes', () => {
+    expect(read('index.html')).toContain('<!--LIVE-SUMMARY-->');
+    expect(read('vite.config.ts')).toContain("replace('<!--LIVE-SUMMARY-->', routeNoscript)");
+  });
+});
+
 describe('the pipeline generators mirror the same routes', () => {
   it('generate_sitemap.py lists every ROUTE_META path', () => {
     const py = read('data-pipeline/generate_sitemap.py');

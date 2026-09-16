@@ -69,6 +69,42 @@ function buildLiveSummary(meta: Record<string, any> | null): {
 }
 
 /**
+ * The <noscript> block for /retrospective, built from
+ * public/data/retrospectives.json so its numbers can't drift from what the page
+ * renders. Returns '' when the file is missing or garbled — the hand-written
+ * ROUTE_META['/retrospective'].noscript prose ships in that case.
+ */
+function buildRetrospectiveNoscript(): string {
+  let data: Record<string, any> | null = null;
+  try {
+    data = JSON.parse(readFileSync(resolve('public/data/retrospectives.json'), 'utf8'));
+  } catch {
+    return '';
+  }
+  const cycles = data?.cycles;
+  if (!cycles || typeof cycles !== 'object') return '';
+  const rows = Object.keys(cycles)
+    .sort()
+    .map((year) => {
+      const national = cycles[year]?.national;
+      const actual = national?.actual;
+      const pr = national?.projected_pr;
+      if (!actual || !pr) return '';
+      return (
+        `<li>${escText(year)}: popular vote ${escText(fmtMargin(national?.popular_vote_d_margin))}` +
+        ` — actual House D ${actual.d_seats} / R ${actual.r_seats}, allocated proportionally` +
+        ` D ${pr.d_seats} / R ${pr.r_seats}.</li>`
+      );
+    })
+    .filter(Boolean);
+  if (!rows.length) return '';
+  return (
+    '<p>Proportional allocation applied to the certified votes of past U.S. House elections:</p>' +
+    `<ul>${rows.join('')}</ul>`
+  );
+}
+
+/**
  * Build-time per-route meta prerender.
  *
  * The app is a client-rendered SPA: Cloudflare serves the same index.html for
@@ -103,12 +139,23 @@ function prerenderRouteMeta(): Plugin {
       // escaping) and swapped into the <noscript> placeholder. Empty strings
       // when meta.json is missing/old — static copy ships unchanged.
       const { todayLine, noscriptSummary } = buildLiveSummary(readPublicMetaJson());
+      const retrospectiveNoscript = buildRetrospectiveNoscript();
       for (const meta of Object.values(ROUTE_META)) {
         const isHome = meta.canonicalPath === '/';
         const url =
           meta.canonicalPath === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${meta.canonicalPath}`;
         const title = escAttr(meta.title);
         const desc = escAttr(isHome ? meta.description + todayLine : meta.description);
+        // Every route gets its own <noscript> body. Shipping the same generic
+        // "requires JavaScript" fallback on all of them made each route look
+        // like thin duplicate content to crawlers that don't run our JS.
+        // Home and /retrospective are generated from public/data so they track
+        // the numbers on the page; the rest is static prose from ROUTE_META.
+        const routeNoscript = isHome
+          ? noscriptSummary
+          : meta.canonicalPath === '/retrospective'
+            ? retrospectiveNoscript || meta.noscript || ''
+            : (meta.noscript ?? '');
         const html = template
           .replace(/<title>[\s\S]*?<\/title>/, `<title>${escText(meta.title)}</title>`)
           .replace(/(<meta name="description" content=")[^"]*(")/, `$1${desc}$2`)
@@ -118,9 +165,9 @@ function prerenderRouteMeta(): Plugin {
           .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${desc}$2`)
           .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${title}$2`)
           .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${desc}$2`)
-          // Live <noscript> summary on the home route; placeholder stripped
-          // everywhere else (and when the data is unavailable).
-          .replace('<!--LIVE-SUMMARY-->', isHome ? noscriptSummary : '');
+          // Per-route <noscript> body; placeholder stripped when a route has no
+          // prose and its data is unavailable.
+          .replace('<!--LIVE-SUMMARY-->', routeNoscript);
         const file =
           meta.canonicalPath === '/' ? 'index.html' : `${meta.canonicalPath.slice(1)}.html`;
         writeFileSync(resolve(outDir, file), html);

@@ -77,10 +77,12 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- No-JS / crawler fallback. The LIVE-SUMMARY placeholder is replaced
-         with the day's numbers by the prerender plugin (home route) or
-         stripped (other routes / data unavailable). Plain markup on purpose:
-         noscript content isn't part of the Tailwind utility scan. -->
+    <!-- No-JS / crawler fallback. The prerender plugin swaps the LIVE-SUMMARY
+         placeholder for that route's own prose — the day's numbers on the home
+         route, per-cycle results on /retrospective, and the static
+         ROUTE_META.noscript copy elsewhere — so no two routes ship the same
+         crawler-visible body. Plain markup on purpose: noscript content isn't
+         part of the Tailwind utility scan. -->
     <noscript>
       <div>
         <p><strong>The Proportional House</strong> — mapping the U.S. House under proportional representation.</p>
