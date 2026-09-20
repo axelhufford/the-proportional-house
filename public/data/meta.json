@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-09-13T11:11:44.754548+00:00",
+  "generated_at": "2026-09-20T10:44:58.984828+00:00",
   "stale_after_hours": 48,
   "sources": {
     "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "polls": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
   },
   "generic_ballot": {
-    "margin": 7.097,
-    "n_polls": 22,
+    "margin": 8.187,
+    "n_polls": 26,
     "window_days": 30,
     "half_life_days": 14,
     "uses_house_effect_adjustment": true
   },
   "baseline_2024_r_margin": 2.511,
-  "swing": 9.61,
+  "swing": 10.7,
   "national": {
     "seats": 435,
     "projected": {
-      "d_seats": 234,
-      "r_seats": 201
+      "d_seats": 235,
+      "r_seats": 200
     },
     "actual": {
       "d_seats": 215,
@@ -39,10 +39,10 @@
   "uncertainty": {
     "epsilon_points": 2.2,
     "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
-    "d_seats_low": 228,
-    "d_seats_high": 240,
-    "r_seats_low": 195,
-    "r_seats_high": 207
+    "d_seats_low": 231,
+    "d_seats_high": 241,
+    "r_seats_low": 194,
+    "r_seats_high": 204
   },
   "majority": {
     "tipping_margin": -0.6,
@@ -50,11 +50,43 @@
   },
   "closest_flips": [
     {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "direction": "D",
+      "margin_delta": 0.2,
+      "flips_at_margin": 8.4
+    },
+    {
+      "fips": "37",
+      "code": "NC",
+      "name": "North Carolina",
+      "direction": "R",
+      "margin_delta": 0.2,
+      "flips_at_margin": 8.0
+    },
+    {
+      "fips": "47",
+      "code": "TN",
+      "name": "Tennessee",
+      "direction": "D",
+      "margin_delta": 0.5,
+      "flips_at_margin": 8.7
+    },
+    {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "direction": "D",
+      "margin_delta": 0.6,
+      "flips_at_margin": 8.8
+    },
+    {
       "fips": "34",
       "code": "NJ",
       "name": "New Jersey",
       "direction": "R",
-      "margin_delta": 0.6,
+      "margin_delta": 1.7,
       "flips_at_margin": 6.5
     },
     {
@@ -62,40 +94,8 @@
       "code": "CA",
       "name": "California",
       "direction": "R",
-      "margin_delta": 0.7,
+      "margin_delta": 1.8,
       "flips_at_margin": 6.4
-    },
-    {
-      "fips": "37",
-      "code": "NC",
-      "name": "North Carolina",
-      "direction": "D",
-      "margin_delta": 1.0,
-      "flips_at_margin": 8.1
-    },
-    {
-      "fips": "36",
-      "code": "NY",
-      "name": "New York",
-      "direction": "R",
-      "margin_delta": 1.1,
-      "flips_at_margin": 6.0
-    },
-    {
-      "fips": "24",
-      "code": "MD",
-      "name": "Maryland",
-      "direction": "D",
-      "margin_delta": 1.3,
-      "flips_at_margin": 8.4
-    },
-    {
-      "fips": "06",
-      "code": "CA",
-      "name": "California",
-      "direction": "D",
-      "margin_delta": 1.6,
-      "flips_at_margin": 8.7
     }
   ],
   "ballot_variants": [
@@ -104,91 +104,13 @@
       "label": "Standard average",
       "short_label": "All polls",
       "note": "Every generic-ballot poll in the window \u2014 likely voters, registered voters, and adults \u2014 weighted by recency, sample size, and voter screen.",
-      "margin": 7.097,
-      "swing": 9.61,
-      "n_polls": 22,
+      "margin": 8.187,
+      "swing": 10.7,
+      "n_polls": 26,
       "populations": null,
       "projected": {
-        "d_seats": 234,
-        "r_seats": 201
-      },
-      "uncertainty": {
-        "epsilon_points": 2.2,
-        "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
-        "d_seats_low": 228,
-        "d_seats_high": 240,
-        "r_seats_low": 195,
-        "r_seats_high": 207
-      },
-      "majority": {
-        "tipping_margin": -0.6,
-        "majority_seats": 218
-      },
-      "closest_flips": [
-        {
-          "fips": "34",
-          "code": "NJ",
-          "name": "New Jersey",
-          "direction": "R",
-          "margin_delta": 0.6,
-          "flips_at_margin": 6.5
-        },
-        {
-          "fips": "06",
-          "code": "CA",
-          "name": "California",
-          "direction": "R",
-          "margin_delta": 0.7,
-          "flips_at_margin": 6.4
-        },
-        {
-          "fips": "37",
-          "code": "NC",
-          "name": "North Carolina",
-          "direction": "D",
-          "margin_delta": 1.0,
-          "flips_at_margin": 8.1
-        },
-        {
-          "fips": "36",
-          "code": "NY",
-          "name": "New York",
-          "direction": "R",
-          "margin_delta": 1.1,
-          "flips_at_margin": 6.0
-        },
-        {
-          "fips": "24",
-          "code": "MD",
-          "name": "Maryland",
-          "direction": "D",
-          "margin_delta": 1.3,
-          "flips_at_margin": 8.4
-        },
-        {
-          "fips": "06",
-          "code": "CA",
-          "name": "California",
-          "direction": "D",
-          "margin_delta": 1.6,
-          "flips_at_margin": 8.7
-        }
-      ]
-    },
-    {
-      "id": "lv",
-      "label": "Likely-voter polls only",
-      "short_label": "LV only",
-      "note": "The same average restricted to polls of likely voters. This is our own calculation, not Silver Bulletin\u2019s likely-voter-adjusted average \u2014 that adjustment compares the likely-voter and registered-voter releases of a single survey, and the public poll database keeps only one row per survey.",
-      "margin": 7.791,
-      "swing": 10.3,
-      "n_polls": 9,
-      "populations": [
-        "LV"
-      ],
-      "projected": {
-        "d_seats": 234,
-        "r_seats": 201
+        "d_seats": 235,
+        "r_seats": 200
       },
       "uncertainty": {
         "epsilon_points": 2.2,
@@ -204,35 +126,43 @@
       },
       "closest_flips": [
         {
-          "fips": "37",
-          "code": "NC",
-          "name": "North Carolina",
-          "direction": "D",
-          "margin_delta": 0.3,
-          "flips_at_margin": 8.1
-        },
-        {
           "fips": "24",
           "code": "MD",
           "name": "Maryland",
           "direction": "D",
-          "margin_delta": 0.6,
+          "margin_delta": 0.2,
           "flips_at_margin": 8.4
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "direction": "R",
+          "margin_delta": 0.2,
+          "flips_at_margin": 8.0
         },
         {
           "fips": "47",
           "code": "TN",
           "name": "Tennessee",
           "direction": "D",
-          "margin_delta": 0.9,
+          "margin_delta": 0.5,
           "flips_at_margin": 8.7
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "D",
+          "margin_delta": 0.6,
+          "flips_at_margin": 8.8
         },
         {
           "fips": "34",
           "code": "NJ",
           "name": "New Jersey",
           "direction": "R",
-          "margin_delta": 1.3,
+          "margin_delta": 1.7,
           "flips_at_margin": 6.5
         },
         {
@@ -240,16 +170,86 @@
           "code": "CA",
           "name": "California",
           "direction": "R",
-          "margin_delta": 1.4,
+          "margin_delta": 1.8,
           "flips_at_margin": 6.4
+        }
+      ]
+    },
+    {
+      "id": "lv",
+      "label": "Likely-voter polls only",
+      "short_label": "LV only",
+      "note": "The same average restricted to polls of likely voters. This is our own calculation, not Silver Bulletin\u2019s likely-voter-adjusted average \u2014 that adjustment compares the likely-voter and registered-voter releases of a single survey, and the public poll database keeps only one row per survey.",
+      "margin": 8.501,
+      "swing": 11.01,
+      "n_polls": 16,
+      "populations": [
+        "LV"
+      ],
+      "projected": {
+        "d_seats": 236,
+        "r_seats": 199
+      },
+      "uncertainty": {
+        "epsilon_points": 2.2,
+        "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
+        "d_seats_low": 232,
+        "d_seats_high": 241,
+        "r_seats_low": 194,
+        "r_seats_high": 203
+      },
+      "majority": {
+        "tipping_margin": -0.6,
+        "majority_seats": 218
+      },
+      "closest_flips": [
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "D",
+          "margin_delta": 0.2,
+          "flips_at_margin": 8.7
         },
         {
-          "fips": "36",
-          "code": "NY",
-          "name": "New York",
+          "fips": "24",
+          "code": "MD",
+          "name": "Maryland",
           "direction": "R",
-          "margin_delta": 1.8,
-          "flips_at_margin": 6.0
+          "margin_delta": 0.2,
+          "flips_at_margin": 8.3
+        },
+        {
+          "fips": "47",
+          "code": "TN",
+          "name": "Tennessee",
+          "direction": "D",
+          "margin_delta": 0.2,
+          "flips_at_margin": 8.7
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "direction": "D",
+          "margin_delta": 0.5,
+          "flips_at_margin": 9.0
+        },
+        {
+          "fips": "37",
+          "code": "NC",
+          "name": "North Carolina",
+          "direction": "R",
+          "margin_delta": 0.5,
+          "flips_at_margin": 8.0
+        },
+        {
+          "fips": "34",
+          "code": "NJ",
+          "name": "New Jersey",
+          "direction": "R",
+          "margin_delta": 2.0,
+          "flips_at_margin": 6.5
         }
       ]
     }
