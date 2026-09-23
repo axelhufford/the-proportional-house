@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import type { Topology } from 'topojson-specification';
 import { ChartSkeleton } from '../components/ChartSkeleton';
 import { ClosestSeats } from '../components/ClosestSeats';
+import { DelegationDotMap, type DelegationSet } from '../components/DelegationDotMap';
 import { FeaturedScenarios } from '../components/FeaturedScenarios';
 import { HomeSkeleton } from '../components/HomeSkeleton';
 import { Reveal } from '../components/Reveal';
@@ -43,6 +44,7 @@ import {
 } from '../lib/sandboxSwing';
 import { scenarioHouseSize, type Scenario } from '../lib/scenarios';
 import { computeWeeklyDelta } from '../lib/weeklyDelta';
+import type { StateDelegation } from '../lib/seatDots';
 import type { SandboxPayload } from '../lib/sandboxTypes';
 import { recomputeWithSwing } from '../lib/swing';
 import {
@@ -810,6 +812,90 @@ export function Home({ onMetaChange }: HomeProps) {
     [history, activeVariant],
   );
 
+  // The dot map under the main map: every seat, state by state. Its default
+  // side is the same PR allocation the main map shows; the toggle flips to who
+  // actually holds the seats. Current: the live Clerk chamber (vacancies
+  // included), falling back to the November 2024 result if that feed is
+  // missing. Retrospective: the selected cycle, under PR vs. as elected. Not
+  // shown in the hypothetical Sandbox.
+  const dotMapView = useMemo<{
+    title: string;
+    proportional: DelegationSet;
+    actual: DelegationSet;
+  } | null>(() => {
+    if (!effectivePayload || viewMode === 'sandbox') return null;
+    const underPr: StateDelegation[] = effectivePayload.states.map((s) => ({
+      fips: s.fips,
+      code: s.code,
+      name: s.name,
+      d: s.projected.d_seats,
+      r: s.projected.r_seats,
+      other: 0,
+      vacant: 0,
+    }));
+    const asElected: StateDelegation[] = effectivePayload.states.map((s) => ({
+      fips: s.fips,
+      code: s.code,
+      name: s.name,
+      d: s.actual.d_seats,
+      r: s.actual.r_seats,
+      other: 0,
+      vacant: 0,
+    }));
+
+    if (viewMode === 'retrospective') {
+      // effectivePayload falls back to the 2024 result when retrospectives.json
+      // is missing, so only name the selected cycle when its data is really here.
+      const year = retros?.cycles[String(retroYear)] ? retroYear : 2024;
+      return {
+        title: `Every ${year} seat, state by state`,
+        proportional: {
+          delegations: underPr,
+          toggleLabel: 'Under PR',
+          rowLabel: 'Under PR',
+          subtitle: `One dot per seat, allocated by each state’s ${year} House vote`,
+        },
+        actual: {
+          delegations: asElected,
+          toggleLabel: 'As elected',
+          rowLabel: 'As elected',
+          subtitle: `One dot per seat, by the party that won it in November ${year}`,
+        },
+      };
+    }
+
+    return {
+      title: 'Every seat, state by state',
+      proportional: {
+        delegations: underPr,
+        toggleLabel: 'Under PR',
+        rowLabel: 'Under PR',
+        subtitle: 'One dot per seat, allocated by each state’s projected vote share',
+      },
+      actual: composition
+        ? {
+            delegations: composition.states.map((s) => ({
+              fips: s.fips,
+              code: s.code,
+              name: s.name,
+              d: s.d_seats,
+              r: s.r_seats,
+              other: s.other_seats,
+              vacant: s.vacant,
+            })),
+            toggleLabel: 'Today’s House',
+            rowLabel: 'Today',
+            subtitle: `One dot per seat, by who holds it today · Clerk of the House, as of ${composition.meta.publish_date}`,
+          }
+        : {
+            delegations: asElected,
+            toggleLabel: 'As elected',
+            rowLabel: 'As elected',
+            subtitle: 'One dot per seat, by the party that won it in November 2024',
+          },
+    };
+  }, [effectivePayload, viewMode, composition, retros, retroYear]);
+
   if (error) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-12">
@@ -1069,6 +1155,20 @@ export function Home({ onMetaChange }: HomeProps) {
             .
           </p>
         </div>
+
+        {/* Every seat as a dot, PR by default with a toggle to the real House.
+          * Current + Retrospective only. */}
+        {dotMapView && (
+          <Reveal>
+            <DelegationDotMap
+              topology={topology}
+              title={dotMapView.title}
+              proportional={dotMapView.proportional}
+              actual={dotMapView.actual}
+              onSelect={handleSelect}
+            />
+          </Reveal>
+        )}
 
         {/* Closest seats to flip — sits under the map, above the polling input.
           * Pipeline analytics, read from `effectivePayload`: on Current (where
