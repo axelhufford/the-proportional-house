@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from './ErrorBoundary';
+import { HOME_VIEW_PATHS } from '../lib/homeViews';
 import { Masthead } from './Masthead';
 import type { ProjectionMeta } from '../lib/types';
 
@@ -47,9 +48,12 @@ export function Layout({ meta }: LayoutProps) {
       <Masthead />
 
       <main className="flex-1">
-        {/* Keyed by pathname so navigating to a new route clears any caught
-            error and remounts the routed view. */}
-        <ErrorBoundary key={pathname}>
+        {/* Keyed by route so each page mounts fresh — except the Home views,
+            which share one key. They're one page with a view control, and
+            remounting Home on every switch refetched all its data and threw
+            away its state. resetKey still clears a caught error on any path
+            change, e.g. "Back to the map" from a crashed /sandbox. */}
+        <ErrorBoundary key={HOME_VIEW_PATHS.has(pathname) ? 'home' : pathname} resetKey={pathname}>
           <Outlet />
         </ErrorBoundary>
       </main>

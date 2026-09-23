@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
+import { HOME_VIEW_PATHS } from '../lib/homeViews';
 
 /**
  * Global scroll behavior for the SPA. Drop once near the router so every
@@ -25,13 +26,6 @@ import { useLocation, useNavigationType } from 'react-router-dom';
  * sees hash: '' and re-runs this effect.
  */
 
-/**
- * The three Home views are one page with a control on it, not three pages.
- * They're separate paths only so a scenario is shareable — the view tabs sit
- * mid-page, so scrolling to top when the user picks one yanks the controls
- * they just asked for off-screen.
- */
-const HOME_VIEW_PATHS = new Set(['/', '/retrospective', '/sandbox']);
 
 export function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -46,7 +40,8 @@ export function ScrollManager() {
     if (navigationType === 'POP' && !hash) return;
 
     // Switching between the Home views is a control interaction, not a
-    // navigation. Leave the scroll position alone.
+    // navigation: the view tabs sit mid-page, so scrolling to top would yank
+    // the controls the user just used off-screen. Leave the position alone.
     if (!hash && prev !== null && HOME_VIEW_PATHS.has(pathname) && HOME_VIEW_PATHS.has(prev)) {
       return;
     }

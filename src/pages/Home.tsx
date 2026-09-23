@@ -1,6 +1,6 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useNavigationType, useSearchParams } from 'react-router-dom';
 import type { Topology } from 'topojson-specification';
 import { ChartSkeleton } from '../components/ChartSkeleton';
 import { ClosestSeats } from '../components/ClosestSeats';
@@ -323,7 +323,33 @@ function buildSpec(m: MinorState, slot: MinorSlot): MinorPartySpec {
   };
 }
 
-export function Home({ onMetaChange }: HomeProps) {
+/**
+ * HomeView reads its scenario (view, sandbox parties, method, House size, …)
+ * from the URL once, when it mounts; after that the state drives the URL, not
+ * the reverse. The three view paths share one mounted HomeView (Layout gives
+ * them one error-boundary key), so switching views in-page keeps the loaded
+ * data and every control's state.
+ *
+ * Back/Forward is different: it can land on a URL whose scenario differs from
+ * the current state, so a history move to another path remounts the view to
+ * re-read the URL, exactly like a fresh visit. History moves within one path
+ * (opening or closing a state panel) don't remount; the ?state= sync handles
+ * those.
+ */
+export function Home(props: HomeProps) {
+  const location = useLocation();
+  const navigationType = useNavigationType();
+  const [seen, setSeen] = useState({ pathname: location.pathname, generation: 0 });
+  if (location.pathname !== seen.pathname) {
+    setSeen({
+      pathname: location.pathname,
+      generation: navigationType === 'POP' ? seen.generation + 1 : seen.generation,
+    });
+  }
+  return <HomeView key={seen.generation} {...props} />;
+}
+
+function HomeView({ onMetaChange }: HomeProps) {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -367,13 +393,12 @@ export function Home({ onMetaChange }: HomeProps) {
   const routeMeta = ROUTE_META[VIEW_PATH[viewMode]] ?? ROUTE_META['/'];
   useDocumentTitle(routeMeta.title, routeMeta.description, routeMeta.canonicalPath);
 
-  // Path → view: keep the active view in sync when the URL path changes
-  // externally (browser back/forward, or a direct/cross-page link). Home is
-  // reused (not remounted) across the /, /retrospective, /sandbox routes, so
+  // Path → view: keep the active view in sync when a link changes the path
+  // from outside this component (the masthead's "Map" link from /sandbox).
+  // HomeView stays mounted across the /, /retrospective, /sandbox routes, so
   // the initializer above only runs once — this effect handles later changes.
-  // React to *changes* in the path (back/forward, or links between the view
-  // routes — Home is reused, not remounted). A value-based ref (not a
-  // "first run" flag) so it's correct under StrictMode's double-invoked
+  // (Back/Forward remounts instead; see `Home` below.) A value-based ref (not
+  // a "first run" flag) so it's correct under StrictMode's double-invoked
   // effects, and so the mount path '/' of a legacy `?view=` link isn't
   // mistaken for Current before the sync effect upgrades it to the clean path.
   const lastPathRef = useRef(location.pathname);
@@ -568,15 +593,18 @@ export function Home({ onMetaChange }: HomeProps) {
   const prevUrlRef = useRef<string>(
     location.pathname + (searchParams.toString() ? `?${searchParams.toString()}` : ''),
   );
+  // The last URL the state → URL effect below navigated to. Switching to the
+  // Current view in-page also lands on a bare '/', but that's Home's own
+  // navigation, not a logo click, and must keep the Sandbox scenario intact.
+  const selfNavUrlRef = useRef<string | null>(null);
   useEffect(() => {
     const search = searchParams.toString();
     const url = location.pathname + (search ? `?${search}` : '');
     const prev = prevUrlRef.current;
     prevUrlRef.current = url;
     // Skip unless the URL just became the bare home '/' after being something
-    // else. With path-based views, '/retrospective' and '/sandbox' are NOT bare
-    // — so switching between views (which clears the query) must not reset.
-    if (url !== '/' || prev === '/') return;
+    // else, and something other than Home's own view switch put it there.
+    if (url !== '/' || prev === '/' || url === selfNavUrlRef.current) return;
     setViewMode('current');
     setColorMode('balance');
     setMinors([]);
@@ -607,6 +635,15 @@ export function Home({ onMetaChange }: HomeProps) {
   // Back left the site entirely — and on mobile the Back gesture, the natural
   // way to dismiss the state sheet, exited instead of closing it.
   const lastNavKeyRef = useRef<string | null>(null);
+  // `navigate` is called through a ref rather than listed as a dep: React
+  // Router hands out a new one whenever the pathname changes, so as a dep it
+  // re-ran this effect on every path change — Back included — with state that
+  // hadn't caught up to the new path yet. The effect navigated straight back,
+  // the path → view effect flipped it again, and the two looped forever.
+  const navigateRef = useRef(navigate);
+  navigateRef.current = navigate;
+  const locationRef = useRef(location);
+  locationRef.current = location;
 
   useEffect(() => {
     if (!payload) return;
@@ -671,11 +708,15 @@ export function Home({ onMetaChange }: HomeProps) {
     const isFirstEmit = lastNavKeyRef.current === null;
     const push = !isFirstEmit && navKey !== lastNavKeyRef.current;
     lastNavKeyRef.current = navKey;
-    navigate(
-      { pathname: VIEW_PATH[viewMode], search: search ? `?${search}` : '' },
-      { replace: !push },
-    );
-  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, navigate, activeVariant, liveBallot]);
+    const to = { pathname: VIEW_PATH[viewMode], search: search ? `?${search}` : '' };
+    // Nothing to do when the URL already says this, e.g. state catching up to
+    // a masthead link or a Back. Navigating anyway would push a duplicate
+    // entry and wipe out Forward.
+    const here = locationRef.current;
+    if (here.pathname === to.pathname && here.search === to.search) return;
+    selfNavUrlRef.current = to.pathname + to.search;
+    navigateRef.current(to, { replace: !push });
+  }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, activeVariant, liveBallot]);
 
   // Derive what the user actually sees based on the active view mode.
   // - current: pipeline-computed projection at the selected ballot average

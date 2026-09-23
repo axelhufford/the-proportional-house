@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 
 interface Props {
   children: ReactNode;
+  /**
+   * Clears a caught error when it changes, without remounting the children
+   * the way a `key` change would. Layout passes the pathname.
+   */
+  resetKey?: unknown;
 }
 
 interface State {
@@ -13,14 +18,21 @@ interface State {
  * Top-level error boundary. Without it, a render-time throw anywhere in the
  * routed tree white-screens the whole site. This catches it and shows an
  * on-brand recovery screen instead. It wraps the routed <Outlet/> inside
- * Layout (so the masthead/footer/skip-link survive), and Layout keys it by
- * pathname so navigating to another route auto-clears the error state.
+ * Layout (so the masthead/footer/skip-link survive), and Layout passes the
+ * pathname as `resetKey` so navigating to another route auto-clears the
+ * error state.
  */
 export class ErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false };
 
   static getDerivedStateFromError(): State {
     return { hasError: true };
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.state.hasError && prevProps.resetKey !== this.props.resetKey) {
+      this.setState({ hasError: false });
+    }
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
