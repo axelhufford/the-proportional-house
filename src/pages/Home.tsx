@@ -9,6 +9,9 @@ import { FeaturedScenarios } from '../components/FeaturedScenarios';
 import { HomeSkeleton } from '../components/HomeSkeleton';
 import { Reveal } from '../components/Reveal';
 import { HomeHero } from '../components/HomeHero';
+import { ProjectionScorecard } from '../components/ProjectionScorecard';
+import { ResultsHero } from '../components/ResultsHero';
+import { ResultsSummary } from '../components/ResultsSummary';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
 import { MethodComparisonTable } from '../components/MethodComparisonTable';
@@ -35,6 +38,14 @@ import {
 } from '../lib/apportionment';
 import { ALL_METHODS, resolveEffectiveMethod, type AllocationMethodKind } from '../lib/methods';
 import { fetchJson } from '../lib/fetchJson';
+import { isFrozen, projectionCopy } from '../lib/election';
+import {
+  calledDelegation,
+  hasResults,
+  prDelegation,
+  resultsStatusLabel,
+  resultsToProjectionPayload,
+} from '../lib/results';
 import { fmtMargin } from '../lib/format';
 import {
   buildSandboxPayload,
@@ -56,7 +67,7 @@ import {
 import { cycleToProjectionPayload } from '../lib/retrospective';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { ROUTE_META } from '../lib/routeMeta';
-import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload, StateRetroPoint, HistoryPayload, HouseCompositionPayload } from '../lib/types';
+import type { ProjectionPayload, ViewMode, ColorMode, RetrospectivesPayload, StateRetroPoint, HistoryPayload, HouseCompositionPayload, ResultsPayload } from '../lib/types';
 
 // recharts is ~110 KB gzipped. Lazy-load the polling chart so it lands in its
 // own chunk after first paint — keeps it out of the initial bundle and off the
@@ -414,6 +425,9 @@ function HomeView({ onMetaChange }: HomeProps) {
   const [composition, setComposition] = useState<HouseCompositionPayload | null>(null);
   // Projection-over-time series (accumulates daily). Non-fatal if absent.
   const [history, setHistory] = useState<HistoryPayload | null>(null);
+  // Election results (public/data/results_<cycle>.json), fetched once the
+  // projection is frozen for the election. See the effect below.
+  const [results, setResults] = useState<ResultsPayload | null>(null);
   const [retroYear, setRetroYear] = useState<number>(() => parseRetroYear(searchParams.get('year')));
   // Sandbox slider state: hypothetical generic-ballot margin in points.
   // Initialized from URL `ballot=` if present; otherwise from the pipeline
@@ -718,14 +732,30 @@ function HomeView({ onMetaChange }: HomeProps) {
     navigateRef.current(to, { replace: !push });
   }, [payload, viewMode, colorMode, retroYear, sandboxBallot, minors, threshold, method, mmdMagnitude, mmpSmdShare, houseSize, selectedFips, activeVariant, liveBallot]);
 
+  // Election results, once the projection is frozen (lib/election). Optional:
+  // until a state has votes counted the file is all-pending, and a failed
+  // fetch just leaves the frozen projection on screen.
+  const frozen = payload ? isFrozen(payload.meta) : false;
+  const resultsCycle = payload?.meta.election?.cycle;
+  useEffect(() => {
+    if (!frozen || !resultsCycle) return;
+    fetchJson<ResultsPayload>(`/data/results_${resultsCycle}.json`)
+      .then(setResults)
+      .catch(() => {});
+  }, [frozen, resultsCycle]);
+  // The Current view becomes the results view once any votes are counted.
+  const resultsMode = viewMode === 'current' && hasResults(results);
+
   // Derive what the user actually sees based on the active view mode.
-  // - current: pipeline-computed projection at the selected ballot average
+  // - current: election results once votes are counted; before that the
+  //   pipeline-computed projection at the selected ballot average
   //   (the default variant returns the shipped payload untouched).
   // - retrospective: 2024 PR under swing=0.
   // - sandbox: PR under user-controlled hypothetical generic-ballot.
   const effectivePayload = useMemo<ProjectionPayload | null>(() => {
     if (!payload) return null;
     if (viewMode === 'current') {
+      if (hasResults(results)) return resultsToProjectionPayload(results, payload);
       return activeVariant ? applyVariant(payload, activeVariant) : payload;
     }
     if (viewMode === 'retrospective') {
@@ -739,7 +769,7 @@ function HomeView({ onMetaChange }: HomeProps) {
     const ballot = sandboxBallot ?? liveBallot;
     const swing = ballot - payload.meta.baseline_2024_margin;
     return recomputeWithSwing(payload, swing);
-  }, [payload, viewMode, sandboxBallot, retros, retroYear, activeVariant, liveBallot]);
+  }, [payload, viewMode, sandboxBallot, retros, retroYear, activeVariant, liveBallot, results]);
 
   // Structural-distortion baseline for the Current-view headline decomposition.
   // PR of the *actual 2024* vote (swing = 0) minus today's 2024-elected House —
@@ -884,6 +914,29 @@ function HomeView({ onMetaChange }: HomeProps) {
       vacant: 0,
     }));
 
+    if (viewMode === 'current' && hasResults(results)) {
+      // Every state, including those with nothing counted yet: their seats
+      // (and uncalled races) are white dots, never folded into a party.
+      const cycle = results.meta.cycle;
+      return {
+        title: `Every ${cycle} seat, state by state`,
+        proportional: {
+          delegations: results.states.map(prDelegation),
+          toggleLabel: 'Under PR',
+          rowLabel: 'Under PR',
+          subtitle: `One dot per seat, allocated by each state’s ${cycle} vote counted so far`,
+          vacantLabel: 'not yet reporting',
+        },
+        actual: {
+          delegations: results.states.map(calledDelegation),
+          toggleLabel: 'As elected',
+          rowLabel: 'As elected',
+          subtitle: `One dot per seat, by the party that won it in November ${cycle}`,
+          vacantLabel: 'not yet called',
+        },
+      };
+    }
+
     if (viewMode === 'retrospective') {
       // effectivePayload falls back to the 2024 result when retrospectives.json
       // is missing, so only name the selected cycle when its data is really here.
@@ -926,7 +979,9 @@ function HomeView({ onMetaChange }: HomeProps) {
             })),
             toggleLabel: 'Today’s House',
             rowLabel: 'Today',
-            subtitle: `One dot per seat, by who holds it today · Clerk of the House, as of ${composition.meta.publish_date}`,
+            subtitle: `One dot per seat, by who holds it today${
+              composition.meta.congress ? ` (${ordinal(composition.meta.congress)} Congress)` : ''
+            } · Clerk of the House, as of ${composition.meta.publish_date}`,
           }
         : {
             delegations: asElected,
@@ -935,7 +990,7 @@ function HomeView({ onMetaChange }: HomeProps) {
             subtitle: 'One dot per seat, by the party that won it in November 2024',
           },
     };
-  }, [effectivePayload, viewMode, composition, retros, retroYear]);
+  }, [effectivePayload, viewMode, composition, retros, retroYear, results]);
 
   if (error) {
     return (
@@ -962,6 +1017,9 @@ function HomeView({ onMetaChange }: HomeProps) {
   const ballot = sandboxBallot ?? liveBallot;
   const sandboxSwing = ballot - payload.meta.baseline_2024_margin;
 
+  // Every string on this page whose meaning changes at the election freeze.
+  const copy = projectionCopy(payload.meta);
+
   // Current generic-ballot average, for the polling-trend card under the map.
   const pollMargin = liveBallot;
   const pollLabel = fmtMargin(pollMargin);
@@ -973,7 +1031,7 @@ function HomeView({ onMetaChange }: HomeProps) {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
     name: 'U.S. House proportional representation projection',
-    description: 'State-by-state projection of the U.S. House of Representatives under proportional representation, based on 2024 House election results, current generic-ballot polling, and Sainte-Laguë seat allocation.',
+    description: 'State-by-state projection of the U.S. House of Representatives under proportional representation, based on 2024 House election results, generic-ballot polling, and Sainte-Laguë seat allocation.',
     url: 'https://proportionalhouse.org/',
     isAccessibleForFree: true,
     // Data license (CC BY 4.0): free to reuse with attribution. Clears the
@@ -994,6 +1052,13 @@ function HomeView({ onMetaChange }: HomeProps) {
 
   return (
     <>
+      {resultsMode && results ? (
+        <>
+          <ResultsHero results={results} />
+          <ResultsSummary results={results} composition={composition} />
+        </>
+      ) : (
+      <>
       <HomeHero
         payload={effectivePayload}
         viewMode={viewMode}
@@ -1018,6 +1083,8 @@ function HomeView({ onMetaChange }: HomeProps) {
         retroYear={retroYear}
         composition={composition}
       />
+      </>
+      )}
 
       <section id="main" className="max-w-6xl mx-auto w-full px-6 py-3">
         <ModeToggle
@@ -1025,6 +1092,21 @@ function HomeView({ onMetaChange }: HomeProps) {
           onViewModeChange={setViewMode}
           colorMode={colorMode}
           onColorModeChange={setColorMode}
+          currentTab={
+            resultsMode && results
+              ? {
+                  label: `${results.meta.cycle} Results`,
+                  desc: resultsStatusLabel(results),
+                  title: `${results.meta.cycle} election results: the House voters elected vs. a proportional allocation of the votes counted.`,
+                }
+              : copy.frozen
+              ? {
+                  label: copy.viewLabel,
+                  desc: copy.viewDesc,
+                  title: `The final pre-election projection${copy.frozenOn ? `, frozen ${copy.frozenOn}` : ''}, vs. a proportional allocation of the projected statewide vote.`,
+                }
+              : undefined
+          }
         />
 
         {viewMode === 'current' && (
@@ -1034,7 +1116,7 @@ function HomeView({ onMetaChange }: HomeProps) {
           />
         )}
 
-        {viewMode === 'current' && currentMethodComparison && (
+        {viewMode === 'current' && !resultsMode && currentMethodComparison && (
           <details className="mt-4 text-sm text-stone-700 bg-stone-50 border border-stone-200 rounded-lg p-4">
             <summary className="cursor-pointer font-medium text-brand-navy rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy">
               How would other allocation methods change this projection?
@@ -1045,7 +1127,7 @@ function HomeView({ onMetaChange }: HomeProps) {
               activeKey="PR"
               currentRow={null}
               markerLabel="← shown above"
-              subtitle="National seat totals under each allocation method, applied to today’s projected statewide vote shares."
+              subtitle="National seat totals under each allocation method, applied to the projected statewide vote shares."
             />
           </details>
         )}
@@ -1152,7 +1234,17 @@ function HomeView({ onMetaChange }: HomeProps) {
             <p className="text-xs text-stone-500">
               Hover a state for its numbers · click any state for full detail.
             </p>
-            <MapLegend mode={colorMode} sandboxPayload={sandboxPayload} />
+            <MapLegend
+              mode={colorMode}
+              sandboxPayload={sandboxPayload}
+              resultsNote={
+                resultsMode
+                  ? colorMode === 'distortion'
+                    ? 'Light gray: no votes counted yet. Darker gray: races still uncalled.'
+                    : 'Gray: no votes counted yet. Colors show PR of the vote counted so far.'
+                  : undefined
+              }
+            />
           </div>
           <USMap
             topology={topology}
@@ -1165,7 +1257,9 @@ function HomeView({ onMetaChange }: HomeProps) {
           {/* Screen-reader-only tabular fallback for the map. */}
           <table className="sr-only">
             <caption>
-              {colorMode === 'balance'
+              {resultsMode
+                ? `${results?.meta.cycle} House results by state: races called, and a proportional allocation of the votes counted.`
+                : colorMode === 'balance'
                 ? 'Projected House delegation by state under proportional representation.'
                 : 'Distortion shift by state under proportional representation.'}
             </caption>
@@ -1173,8 +1267,8 @@ function HomeView({ onMetaChange }: HomeProps) {
               <tr>
                 <th scope="col">State</th>
                 <th scope="col">Seats</th>
-                <th scope="col">As elected (2024)</th>
-                <th scope="col">Projected under PR</th>
+                <th scope="col">{resultsMode ? 'Races called' : 'As elected (2024)'}</th>
+                <th scope="col">{resultsMode ? 'Under PR (votes counted)' : 'Projected under PR'}</th>
               </tr>
             </thead>
             <tbody>
@@ -1183,13 +1277,19 @@ function HomeView({ onMetaChange }: HomeProps) {
                   <th scope="row">{s.name}</th>
                   <td>{s.seats}</td>
                   <td>{`Democratic ${s.actual.d_seats}, Republican ${s.actual.r_seats}`}</td>
-                  <td>{`Democratic ${s.projected.d_seats}, Republican ${s.projected.r_seats}`}</td>
+                  <td>
+                    {s.result?.status === 'pending'
+                      ? 'No votes reported yet'
+                      : `Democratic ${s.projected.d_seats}, Republican ${s.projected.r_seats}`}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
           <p className="mt-3 text-xs text-stone-500">
-            Each state’s seats are allocated by its projected statewide vote share.{' '}
+            {resultsMode
+              ? 'Each state’s seats are allocated by its two-party vote counted so far; states in gray have no votes reported yet.'
+              : 'Each state’s seats are allocated by its projected statewide vote share.'}{' '}
             <Link to="/methodology" className="underline underline-offset-2 hover:text-brand-navy">
               How it’s calculated
             </Link>
@@ -1216,13 +1316,16 @@ function HomeView({ onMetaChange }: HomeProps) {
           * alone it renders) that's the selected ballot average's own flip
           * list, restored by applyVariant. Reading `payload` here would pin the
           * list to the standard average while the map showed another. */}
-        {viewMode === 'current' && effectivePayload.meta.closest_flips?.length ? (
+        {/* Hidden once frozen: the national margin no longer moves. */}
+        {viewMode === 'current' && !copy.frozen && effectivePayload.meta.closest_flips?.length ? (
           <ClosestSeats
             flips={effectivePayload.meta.closest_flips}
             currentMargin={effectivePayload.meta.generic_ballot_margin}
             onSelectState={handleSelect}
           />
         ) : null}
+
+        {resultsMode && results && <ProjectionScorecard results={results} />}
 
         {/* National generic-ballot polling trend. It's the input to the Current
          * projection, so it lives under the map in that view only — not in the
@@ -1235,7 +1338,11 @@ function HomeView({ onMetaChange }: HomeProps) {
                 <h2 className="font-serif text-xl sm:text-2xl text-brand-navy">
                   National generic-ballot polling
                 </h2>
-                <p className="text-xs text-stone-500">Last 180 days</p>
+                <p className="text-xs text-stone-500">
+                  {copy.frozen
+                    ? `180 days to the final projection${copy.frozenOn ? ` (${copy.frozenOn})` : ''}`
+                    : 'Last 180 days'}
+                </p>
               </div>
               <div className="text-right">
                 <div
@@ -1245,7 +1352,9 @@ function HomeView({ onMetaChange }: HomeProps) {
                 >
                   {pollLabel}
                 </div>
-                <div className="text-xs text-stone-500">14-day weighted average</div>
+                <div className="text-xs text-stone-500">
+                  {copy.frozen ? 'Final weighted average' : '30-day weighted average'}
+                </div>
               </div>
             </div>
             <div className="mt-4">
@@ -1254,9 +1363,10 @@ function HomeView({ onMetaChange }: HomeProps) {
               </Suspense>
             </div>
             <p className="mt-3 text-xs text-stone-500">
-              Each dot is one poll; size scales with sample size. The navy line is the same 14-day
-              weighted average we use in the projection. Source: Silver Bulletin’s public
-              generic-ballot database.
+              Each dot is one poll; size scales with sample size. The navy line is the same weighted
+              average (30-day window, 14-day half-life) we use in the projection.
+              {copy.frozen && ' Polls stopped counting when the projection was frozen for Election Day.'}{' '}
+              Source: Silver Bulletin’s public generic-ballot database.
             </p>
           </div>
           </Reveal>
@@ -1270,16 +1380,17 @@ function HomeView({ onMetaChange }: HomeProps) {
           <div className="mt-4 bg-white rounded-xl border border-stone-200 shadow-sm p-4 sm:p-6">
             <div>
               <h2 className="font-serif text-xl sm:text-2xl text-brand-navy">
-                How the projection has moved
+                {copy.frozen ? 'How the projection moved' : 'How the projection has moved'}
               </h2>
               <p className="text-xs text-stone-500">
-                Projected Democratic seats, daily since{' '}
+                Projected Democratic seats, daily {copy.frozen ? 'from' : 'since'}{' '}
                 {new Date(`${history.points[0].date}T00:00:00Z`).toLocaleDateString(undefined, {
                   month: 'short',
                   day: 'numeric',
                   year: 'numeric',
                   timeZone: 'UTC',
                 })}
+                {copy.frozen && copy.frozenOn && ` to the final projection on ${copy.frozenOn}`}
               </p>
             </div>
             <div className="mt-4">
@@ -1288,8 +1399,9 @@ function HomeView({ onMetaChange }: HomeProps) {
               </Suspense>
             </div>
             <p className="mt-3 text-xs text-stone-500">
-              Each point is that day’s Current projection of Democratic seats; the dashed line marks 218,
-              a House majority. Earlier points are <em>reconstructed</em> from Nate Silver’s generic-ballot
+              Each point is that day’s projection of Democratic seats; the dashed line marks 218,
+              a House majority.{copy.frozen && ' The series ends at the final pre-election projection.'} Earlier
+              points are <em>reconstructed</em> from Nate Silver’s generic-ballot
               poll archive — hover any point for detail.{' '}
               <Link className="underline hover:text-brand-navy" to="/methodology#limitations">
                 How &amp; why
@@ -1357,4 +1469,11 @@ function HomeView({ onMetaChange }: HomeProps) {
       />
     </>
   );
+}
+
+/** 119 → "119th", 121 → "121st". */
+function ordinal(n: number): string {
+  const tens = n % 100;
+  const suffix = tens >= 11 && tens <= 13 ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' } as Record<number, string>)[n % 10] ?? 'th';
+  return `${n}${suffix}`;
 }

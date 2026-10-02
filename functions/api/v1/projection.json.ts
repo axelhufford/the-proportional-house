@@ -27,7 +27,9 @@ export async function onRequestGet(context: PagesContext): Promise<Response> {
     // throwing, so a missing Clerk snapshot omits one block instead of taking
     // the whole endpoint down.
     const composition = await loadHouseComposition(context);
-    const v1 = toApiV1(internal, composition);
+    // Date.now() on Cloudflare's clock: `phase` flips at the election's
+    // freeze_at even if no pipeline run has happened since.
+    const v1 = toApiV1(internal, composition, Date.now());
     return new Response(JSON.stringify(v1), {
       status: 200,
       headers: {

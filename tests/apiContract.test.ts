@@ -52,9 +52,31 @@ describe('/api/v1/projection.json against the real pipeline output', () => {
     // key whose value is undefined. Round-tripping is the only way to catch
     // a field that the type system thinks exists but the data doesn't supply.
     const round = JSON.parse(JSON.stringify(v1)) as Record<string, unknown>;
-    for (const key of ['api_version', 'generated_at', 'method', 'data_source', 'polling', 'national', 'states']) {
+    for (const key of ['api_version', 'phase', 'generated_at', 'method', 'data_source', 'polling', 'national', 'states']) {
       requireKey(round, key, 'payload');
     }
+  });
+
+  it('declares an election phase the sibling engine can gate on', () => {
+    expect(['projection', 'counting', 'results']).toContain(v1.phase);
+    if (!v1.election) return; // payload predates the election lifecycle
+    expect(Number.isInteger(v1.election.cycle)).toBe(true);
+    expect(v1.election.election_date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    const freezeMs = Date.parse(v1.election.freeze_at);
+    expect(Number.isNaN(freezeMs)).toBe(false);
+    // Once frozen, the projection is the one published BEFORE the freeze —
+    // generated_at stops moving, which is also what trips a freshness gate.
+    if (v1.phase !== 'projection') {
+      expect(Date.parse(v1.generated_at)).toBeLessThan(freezeMs);
+    }
+  });
+
+  it('flips phase on the clock at freeze_at, without a new pipeline run', () => {
+    const election = projection.meta.election;
+    if (!election || election.phase !== 'projection') return;
+    const freezeMs = Date.parse(election.freeze_at);
+    expect(toApiV1(projection, null, freezeMs - 1).phase).toBe('projection');
+    expect(toApiV1(projection, null, freezeMs).phase).toBe('counting');
   });
 
   it('reports the expected api_version', () => {
@@ -314,11 +336,12 @@ const REQUIRED_TOP_LEVEL = [
   'generated_at',
   'method',
   'national',
+  'phase',
   'polling',
   'states',
 ];
 /** Emitted only when the pipeline produces them (key omitted, never null). */
-const OPTIONAL_TOP_LEVEL = ['closest_flips', 'current_composition'];
+const OPTIONAL_TOP_LEVEL = ['closest_flips', 'current_composition', 'election'];
 
 describe('v1 shape is stable', () => {
   it('has every required top-level key', () => {

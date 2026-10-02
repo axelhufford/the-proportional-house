@@ -11,6 +11,7 @@ import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { downloadNationalCard, buildNationalTweetIntent } from '../lib/shareNational';
 import { downloadProjectionCsv, downloadProjectionJson } from '../lib/exportData';
 import { buildEmbedSnippet, nationalEmbedPath } from '../lib/embedSnippet';
+import { isFrozen } from '../lib/election';
 import { fmtMargin, formatSeatPct } from '../lib/format';
 import { SeatBar } from './SeatBar';
 import { Term } from './Term';
@@ -143,7 +144,7 @@ export function NationalSummary({
   const swingDGain = structuralDGain != null ? dGain - structuralDGain : 0;
   const signedD = (v: number) => `${v >= 0 ? '+' : '−'}${Math.abs(v)} D`;
   const differenceNote = houseExpanded
-    ? `vs. today’s split scaled to ${projectedTotal} seats`
+    ? `vs. the 2024 split scaled to ${projectedTotal} seats`
     : showDecomposition
       ? `≈ ${signedD(structuralDGain as number)} structural · ${signedD(swingDGain)} since 2024`
       : undefined;
@@ -345,7 +346,9 @@ export function NationalSummary({
               </>
             ) : (
               <>
-                <Term id="generic-ballot">Generic ballot</Term> today:{' '}
+                {isFrozen(meta) ? 'Final ' : ''}
+                <Term id="generic-ballot">{isFrozen(meta) ? 'generic ballot' : 'Generic ballot'}</Term>
+                {isFrozen(meta) ? '' : ' today'}:{' '}
                 <span className="font-medium text-stone-700">{genericLabel}</span>
                 {' · '}<Term id="baseline-2024">2024 baseline</Term>:{' '}
                 <span className="font-medium text-stone-700">{baselineLabel}</span>

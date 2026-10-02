@@ -12,7 +12,8 @@
  * download buttons both serve. If we ever need to break the shape we'll
  * publish a `/api/v2/` and keep this one running unchanged.
  */
-import type { HistoryPayload, HouseCompositionPayload, ProjectionPayload } from './types';
+import { electionPhase } from './election';
+import type { ElectionPhase, HistoryPayload, HouseCompositionPayload, ProjectionPayload } from './types';
 
 export const API_VERSION = 'v1';
 
@@ -147,9 +148,39 @@ export interface ApiV1CurrentComposition {
   source_url: string;
 }
 
+/**
+ * The election the projection is for. Additive and optional — omitted when the
+ * payload predates the election lifecycle.
+ */
+export interface ApiV1Election {
+  cycle: number;
+  /** YYYY-MM-DD. */
+  election_date: string;
+  /** ISO 8601. From this moment `phase` is no longer 'projection'. */
+  freeze_at: string;
+}
+
 export interface ApiV1Payload {
   api_version: typeof API_VERSION;
-  /** ISO 8601 timestamp of when the pipeline last refreshed. */
+  /**
+   * Where the election cycle stands:
+   *  - 'projection': the daily projection from current generic-ballot polling.
+   *  - 'counting':   the election has happened. `national.projected` and
+   *                  `polling` are the FINAL pre-election projection, frozen and
+   *                  republished unchanged — not today's numbers. Results are
+   *                  being counted.
+   *  - 'results':    as 'counting', with every state's result certified.
+   * Consumers that narrate `national.projected` as "today's projection" must
+   * check this first. Always present (additive to v1).
+   */
+  phase: ElectionPhase;
+  /** Optional election block; key omitted when absent. */
+  election?: ApiV1Election;
+  /**
+   * ISO 8601 timestamp of the projection. Before the freeze, when the pipeline
+   * last refreshed; after it, when the final projection was published — it
+   * stops moving on purpose.
+   */
   generated_at: string;
   /** Seat allocation method. Currently always "sainte-lague". */
   method: string;
@@ -182,15 +213,30 @@ export interface ApiV1Payload {
  * `composition` is optional and purely additive: when supplied it emits the
  * `current_composition` block. When absent the key is omitted entirely (never
  * null), so a consumer written before the block existed sees no change.
+ *
+ * `now` decides `phase` together with the payload: at freeze_at the API flips
+ * to 'counting' by the clock, without waiting for a pipeline run or deploy.
  */
 export function toApiV1(
   payload: ProjectionPayload,
   composition?: HouseCompositionPayload | null,
+  now: number = Date.now(),
 ): ApiV1Payload {
   const { meta, national, states } = payload;
+  const election = meta.election;
 
   return {
     api_version: API_VERSION,
+    phase: electionPhase(election, now),
+    ...(election
+      ? {
+          election: {
+            cycle: election.cycle,
+            election_date: election.election_date,
+            freeze_at: election.freeze_at,
+          },
+        }
+      : {}),
     generated_at: meta.generated_at,
     method: meta.method,
     data_source: meta.data_source,

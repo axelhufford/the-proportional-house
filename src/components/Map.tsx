@@ -65,7 +65,7 @@ function buildAriaLabel(
 ): string {
   const totalLabel = `${projectedTotal} ${projectedTotal === 1 ? 'seat' : 'seats'}`;
   const base = `${state.name}, ${totalLabel}: ` +
-    `currently ${state.actual.d_seats} Democratic, ${state.actual.r_seats} Republican; ` +
+    `as elected ${state.actual.d_seats} Democratic, ${state.actual.r_seats} Republican; ` +
     `projected under PR ${projectedD} Democratic, ${projectedR} Republican.`;
   if (colorMode === 'distortion') {
     const dShift = projectedD - baselineD;
@@ -75,6 +75,11 @@ function buildAriaLabel(
   }
   return base;
 }
+
+/** States with no data — and, on election results, states not yet reporting. */
+const NO_DATA_FILL = '#e5e7eb';
+/** Distortion-mode fill for a results state whose races aren't all called. */
+const UNCALLED_FILL = '#d6d3d1';
 
 const WIDTH = 975;
 const HEIGHT = 610;
@@ -150,7 +155,7 @@ function USMapInner({ topology, states, colorMode, selectedFips, onSelect, sandb
       const fips = String(f.id).padStart(2, '0');
       const state = projectionByFips.get(fips);
       if (!state) {
-        out.push({ fips, feature: f, state: null, fillRef: '#e5e7eb' });
+        out.push({ fips, feature: f, state: null, fillRef: NO_DATA_FILL });
         continue;
       }
 
@@ -210,6 +215,15 @@ function USMapInner({ topology, states, colorMode, selectedFips, onSelect, sandb
                 );
           bgColor = colorMode === 'balance' ? balanceColor(margin) : distortionColor(margin);
         }
+      } else if (state.result?.status === 'pending') {
+        // Election results, nothing counted yet: no-data gray, whatever the
+        // color mode (its `projected` is the frozen projection, not a result).
+        bgColor = NO_DATA_FILL;
+      } else if (colorMode === 'distortion' && (state.result?.as_elected.uncalled_seats ?? 0) > 0) {
+        // Election results with races still uncalled: the as-elected side is
+        // incomplete, so a distortion color would measure the gap between two
+        // partial numbers. Neutral until every race in the state is called.
+        bgColor = UNCALLED_FILL;
       } else {
         // Not in Sandbox view: original two-party rendering from
         // effectivePayload's projected counts.
@@ -240,7 +254,10 @@ function USMapInner({ topology, states, colorMode, selectedFips, onSelect, sandb
         feature: f,
         state,
         fillRef,
-        ariaLabel: buildAriaLabel(state, colorMode, projectedD, projectedR, projectedTotal, baselineD),
+        ariaLabel:
+          state.result?.status === 'pending'
+            ? `${state.name}, ${state.seats} ${state.seats === 1 ? 'seat' : 'seats'}: no votes reported yet.`
+            : buildAriaLabel(state, colorMode, projectedD, projectedR, projectedTotal, baselineD),
       });
     }
 
@@ -421,6 +438,19 @@ function Tooltip({
   // Sandbox, so a bigger House isn't shown as a partisan gain.
   const baselineD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
   const dGain = projectedD - baselineD;
+  const uncalled = state.result?.as_elected.uncalled_seats ?? 0;
+  if (state.result?.status === 'pending') {
+    return (
+      <div className="absolute top-2 right-2 w-52 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
+        <div className="font-semibold text-stone-900">{state.name}</div>
+        <div className="text-stone-600 text-xs">{state.seats} {state.seats === 1 ? 'seat' : 'seats'}</div>
+        <div className="mt-1 text-stone-700">No votes reported yet</div>
+        <div className="text-xs text-stone-500 mt-1">
+          Final projection under PR: D {state.projected.d_seats} / R {state.projected.r_seats}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="absolute top-2 right-2 w-52 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
       <div className="font-semibold text-stone-900">{state.name}</div>
@@ -482,9 +512,11 @@ function Tooltip({
         {actualTotal > 0 && (
           <span className="text-stone-400 tabular-nums"> {formatSeatPct(state.actual.r_seats, actualTotal)}</span>
         )}
+        {uncalled > 0 && <span className="text-stone-500"> · {uncalled} uncalled</span>}
         {/* Drop the "(+X D)" delta in extended mode — it's a two-party
-          * concept and reads as misleading when minors are in the mix. */}
-        {!hasMinorSeats && dGain !== 0 && (
+          * concept and reads as misleading when minors are in the mix — and
+          * while races are uncalled (a gap between partial numbers). */}
+        {!hasMinorSeats && dGain !== 0 && uncalled === 0 && (
           <span className={dGain > 0 ? ' text-blue-700' : ' text-red-700'}>
             {' '}({dGain > 0 ? '+' : ''}{dGain} D)
           </span>

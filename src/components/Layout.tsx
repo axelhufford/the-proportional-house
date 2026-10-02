@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from './ErrorBoundary';
+import { electionPhase, projectionCopy } from '../lib/election';
 import { HOME_VIEW_PATHS } from '../lib/homeViews';
 import { Masthead } from './Masthead';
 import type { ProjectionMeta } from '../lib/types';
@@ -20,7 +21,10 @@ const DEFAULT_STALE_AFTER_HOURS = 48;
 
 export function Layout({ meta }: LayoutProps) {
   const staleAfterHours = meta?.stale_after_hours ?? DEFAULT_STALE_AFTER_HOURS;
-  const isStale = meta ? isStaleData(meta.generated_at, staleAfterHours) : false;
+  const copy = projectionCopy(meta);
+  // After the election freeze the projection's timestamp stops moving on
+  // purpose, so "stale" no longer means anything went wrong.
+  const isStale = meta && !copy.frozen ? isStaleData(meta.generated_at, staleAfterHours) : false;
   const { pathname } = useLocation();
 
   return (
@@ -33,6 +37,32 @@ export function Layout({ meta }: LayoutProps) {
       >
         Skip to main content
       </a>
+      {meta?.election?.rehearsal && (
+        <div className="bg-red-700 text-white text-sm font-medium">
+          <div className="max-w-6xl mx-auto px-6 py-2">
+            REHEARSAL BUILD: the election phase is simulated with test overrides. Not for publication.
+          </div>
+        </div>
+      )}
+      {copy.frozen && (
+        <div className="bg-amber-50 border-b border-amber-200 text-amber-950 text-sm">
+          <div className="max-w-6xl mx-auto px-6 py-2">
+            <strong>Election {copy.cycle}:</strong>{' '}
+            {electionPhase(meta?.election) === 'results' ? (
+              <>
+                every state has certified its results. The final pre-election projection
+                {copy.frozenOn ? ` (frozen ${copy.frozenOn})` : ''} is kept for comparison.
+              </>
+            ) : (
+              <>
+                the projection is final, frozen at the last pre-election polls
+                {copy.frozenOn ? ` on ${copy.frozenOn}` : ''}. Votes are being counted; results are
+                provisional until each state certifies.
+              </>
+            )}
+          </div>
+        </div>
+      )}
       {isStale && meta && (
         <div className="bg-blue-50 border-b border-blue-200 text-blue-900 text-sm">
           <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between gap-4">
@@ -64,11 +94,14 @@ export function Layout({ meta }: LayoutProps) {
             {meta ? (
               <>
                 <span>
-                  Updated {new Date(meta.generated_at).toLocaleString()}
+                  {copy.updatedLabel} {new Date(meta.generated_at).toLocaleString()}
                   {' · '}Source: {meta.data_source}
                 </span>
                 {meta.n_polls_in_average !== undefined && (
-                  <span>{meta.n_polls_in_average} polls in average (last {meta.poll_window_days ?? 30}d)</span>
+                  <span>
+                    {copy.frozen ? 'Final average: ' : ''}
+                    {meta.n_polls_in_average} polls (last {meta.poll_window_days ?? 30}d)
+                  </span>
                 )}
               </>
             ) : (

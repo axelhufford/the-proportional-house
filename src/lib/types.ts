@@ -1,3 +1,32 @@
+/**
+ * Where the site is in the election cycle (data-pipeline/election.py):
+ *  - projection: before freeze_at — the daily generic-ballot projection.
+ *  - counting:   the projection is frozen at what was published on election
+ *                eve; results arrive as provisional.
+ *  - results:    every state certified.
+ */
+export type ElectionPhase = 'projection' | 'counting' | 'results';
+
+/** `meta.election`, stamped by the pipeline into projection.json and meta.json. */
+export interface ElectionMeta {
+  cycle: number;
+  /** YYYY-MM-DD. */
+  election_date: string;
+  /** ISO timestamp. At and after it the projection is frozen. */
+  freeze_at: string;
+  /**
+   * The phase as of the pipeline run that wrote the file. The pipeline may not
+   * have run since freeze_at passed, so read the phase through
+   * `lib/election.electionPhase`, which also checks the clock.
+   */
+  phase: ElectionPhase;
+  baseline_cycle: number;
+  /** True when produced under PH_* rehearsal overrides — never deployed. */
+  rehearsal?: boolean;
+  /** Present once frozen: provenance of the frozen projection. */
+  final_projection?: { generated_at: string; sha256: string; captured_from: string };
+}
+
 export interface ProjectionMeta {
   generated_at: string;
   /**
@@ -47,6 +76,12 @@ export interface ProjectionMeta {
    * component between here and them.
    */
   active_ballot_variant?: BallotVariant;
+  /**
+   * Election lifecycle block. Optional because payloads that predate it (and
+   * client-built ones like the retrospective adapter) don't carry it — absence
+   * means the projection phase.
+   */
+  election?: ElectionMeta;
 }
 
 /**
@@ -135,6 +170,12 @@ export interface StateProjection {
   baseline_distortion_warning?: boolean;
   imputed_district_count?: number;
   imputed_district_ids?: string[];
+  /**
+   * Set only on payloads adapted from election results
+   * (lib/results.resultsToProjectionPayload): the state's raw result, so the
+   * map and detail panel can show its status, uncalled seats and provenance.
+   */
+  result?: ResultsState;
 }
 
 export interface NationalTotals {
@@ -219,9 +260,16 @@ export interface HistoryPoint {
    * 'MMP-50'). Absent on legacy points until the next pipeline run rebuilds.
    */
   methods?: Record<string, { d: number; r: number }>;
+  /** Set on the series' last point once the projection is frozen for the election. */
+  final?: boolean;
 }
 export interface HistoryPayload {
-  meta: { generated_at: string };
+  meta: {
+    generated_at: string;
+    /** Present once frozen: the election cycle and the final point's date. */
+    cycle?: number;
+    final_date?: string;
+  };
   points: HistoryPoint[];
 }
 
@@ -426,3 +474,76 @@ export interface StateRetroPoint {
   /** PR D seats − actual D seats (positive = PR favors Democrats). */
   d_gain: number;
 }
+
+// --- Election results (public/data/results_<cycle>.json) -------------------
+// Built by data-pipeline/build_results.py from the curated results CSV.
+
+export type ResultStatus = 'pending' | 'provisional' | 'certified';
+
+export interface ResultSeats {
+  d_seats: number;
+  r_seats: number;
+  other_seats: number;
+  /** Races not yet called. */
+  uncalled_seats: number;
+}
+
+export interface ResultsState {
+  fips: string;
+  code: string;
+  name: string;
+  seats: number;
+  status: ResultStatus;
+  /** Seats called so far, by party. */
+  as_elected: ResultSeats;
+  /** Votes counted so far; all null while pending. */
+  votes: { d: number | null; r: number | null; other: number | null };
+  two_party_share: VoteShare | null;
+  /** Sainte-Laguë of the counted two-party vote; null while no votes are in. */
+  under_pr: SeatSplit | null;
+  /** Share of the expected vote counted (0–100), with who estimated it. */
+  reporting_pct: number | null;
+  reporting_source: string | null;
+  source_url: string | null;
+  as_of: string | null;
+  note: string | null;
+  baseline_distortion_warning: boolean;
+  uncontested_district_count: number | null;
+  /** The frozen pre-election projection for this state (after the freeze). */
+  final_projection?: VoteShare & SeatSplit;
+}
+
+export interface ResultsPayload {
+  meta: {
+    generated_at: string;
+    cycle: number;
+    election_date: string;
+    source_file: string;
+    method: string;
+    /** Latest as_of of any state. */
+    as_of: string | null;
+    rehearsal: boolean;
+    status_counts: Record<ResultStatus, number>;
+    seats_called: number;
+    all_called: boolean;
+    all_certified: boolean;
+  };
+  national: {
+    seats: number;
+    as_elected: ResultSeats;
+    under_pr: SeatSplit & { pending_seats: number };
+    votes: { d: number; r: number; other: number | null };
+    two_party_d_margin_points: number | null;
+    all_votes_d_margin_points: number | null;
+  };
+  states: ResultsState[];
+  vs_final_projection?: {
+    final_generated_at: string;
+    final_generic_ballot_margin: number;
+    final_projected_pr: SeatSplit;
+    pr_on_counted_votes: SeatSplit & { pending_seats: number };
+    counted_two_party_d_margin_points: number | null;
+    provisional: boolean;
+  };
+}
+

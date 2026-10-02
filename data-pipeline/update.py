@@ -11,22 +11,36 @@ Outputs:
 - public/data/polling_trend.json (last 180 days of polls for the trend chart)
 - public/data/meta.json          (timestamp, generic ballot, polls included)
 
+After the election's freeze_at (data-pipeline/election.json) no polls are
+fetched: projection.json and polling_trend.json republish the final
+pre-election projection exactly as it was published (see freeze.py), and both
+projection.json's meta and meta.json carry an `election` block naming the phase.
+
 Run:
     python data-pipeline/update.py             # uses cached baseline + polls
     python data-pipeline/update.py --refresh   # re-downloads Clerk PDF
+
+Exit status: 0 success; 3 (EXIT_DEGRADED) core data fresh and valid but a
+derived builder failed; anything else, the core data can't be trusted.
 """
 
 from __future__ import annotations
 
+import copy
 import json
 import math
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable
 
+import requests
+
+import election
+import freeze
 from allocation import AllocationInput, allocate
-from io_utils import write_json_atomic
+from io_utils import looks_like_json, write_json_atomic
 from fetch_clerk_house import (
     PDF_URL as CLERK_PDF_URL,
     OUT_PATH as BASELINE_JSON,
@@ -439,31 +453,33 @@ def build_polling_trend(polls: list, as_of: datetime) -> list[dict]:
     return out
 
 
-def main(refresh_clerk: bool = False) -> None:
-    # Pipeline-step failures collected across the run; a non-empty list makes
-    # the process exit non-zero at the end (see the tail of main).
-    failures: list[str] = []
-
-    # 1. Baseline. The 2024 vote shares and the as-elected delegation are both
-    # fixed history, so the committed house_2024.json is reused unless
-    # --refresh is passed. See fetch_clerk_house.WIKIPEDIA_RAW_URL: the source
-    # table is *not* a live composition feed, so re-fetching it every run would
-    # add a network dependency without ever changing a number.
+def load_baseline(refresh_clerk: bool = False) -> dict:
+    # The 2024 vote shares and the as-elected delegation are both fixed
+    # history, so the committed house_2024.json is reused unless --refresh is
+    # passed. See fetch_clerk_house.WIKIPEDIA_RAW_URL: the source table is
+    # *not* a live composition feed, so re-fetching it every run would add a
+    # network dependency without ever changing a number.
     if refresh_clerk or not BASELINE_JSON.exists():
         fetch_clerk_main(force_download=refresh_clerk)
     with BASELINE_JSON.open() as f:
-        baseline = json.load(f)
+        return json.load(f)
 
+
+def build_live_payloads(baseline: dict, now: datetime) -> tuple[dict, dict]:
+    """Fetch polls and compute today's projection.
+
+    Returns `(projection_payload, polling_trend_payload)`, neither yet
+    carrying the `election` block. Pre-freeze only: after freeze_at the
+    pipeline republishes the frozen projection instead (see freeze.py).
+    """
     baseline_states = baseline["states"]
     baseline_margin = baseline["meta"]["national_house_popular_vote"]["r_margin_points"]
     baseline_d_margin = -baseline_margin  # D's margin (negative if R-leaning)
 
-    # 2. Polls.
     csv_text = fetch_csv()
     polls = parse_polls(csv_text)
-    now = datetime.now(timezone.utc)
 
-    # 3-4. Ballot-average variants. Each carries its own swing, projection,
+    # Ballot-average variants. Each carries its own swing, projection,
     # sensitivity band, tipping point and closest-flips list, because none of
     # those transfer between swings. The standard variant also supplies every
     # top-level field the payloads below already published, so the shape the
@@ -509,15 +525,6 @@ def main(refresh_clerk: bool = False) -> None:
     majority = standard.get("majority")
     closest_flips = standard.get("closest_flips")
 
-    nat_proj_d = sum(s["projected"]["d_seats"] for s in projected)
-    nat_proj_r = sum(s["projected"]["r_seats"] for s in projected)
-    nat_actual_d = sum(s["actual"]["d_seats"] for s in projected)
-    nat_actual_r = sum(s["actual"]["r_seats"] for s in projected)
-
-    retrospective = retrospective_states(baseline_states)
-    nat_retro_d = sum(s["projected_pr"]["d_seats"] for s in retrospective)
-    nat_retro_r = sum(s["projected_pr"]["r_seats"] for s in retrospective)
-
     if uncertainty:
         print(
             f"Sensitivity band at ±{uncertainty['epsilon_points']:.1f} pts: "
@@ -531,9 +538,6 @@ def main(refresh_clerk: bool = False) -> None:
             f"Closest seat to flip: {nearest['code']} toward {nearest['direction']} "
             f"at +{nearest['margin_delta']:.1f} pts ({len(closest_flips)} listed)."
         )
-
-    # 5. Write outputs.
-    PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
 
     projection_payload = {
         "meta": {
@@ -554,8 +558,14 @@ def main(refresh_clerk: bool = False) -> None:
         },
         "national": {
             "seats": sum(s["seats"] for s in projected),
-            "projected": {"d_seats": nat_proj_d, "r_seats": nat_proj_r},
-            "actual": {"d_seats": nat_actual_d, "r_seats": nat_actual_r},
+            "projected": {
+                "d_seats": sum(s["projected"]["d_seats"] for s in projected),
+                "r_seats": sum(s["projected"]["r_seats"] for s in projected),
+            },
+            "actual": {
+                "d_seats": sum(s["actual"]["d_seats"] for s in projected),
+                "r_seats": sum(s["actual"]["r_seats"] for s in projected),
+            },
         },
         "states": projected,
     }
@@ -571,26 +581,9 @@ def main(refresh_clerk: bool = False) -> None:
     # top-level fields above so the client has one uniform shape; the top-level
     # fields stay authoritative for consumers that predate the toggle.
     projection_payload["meta"]["ballot_variants"] = variants
-    write_json_atomic(PROJECTION_PATH, projection_payload)
-
-    baseline_payload = {
-        "meta": {
-            "generated_at": now.isoformat(),
-            "baseline_source": baseline["meta"]["source"],
-            "baseline_source_url": baseline["meta"]["source_url"],
-            "method": "sainte-lague",
-        },
-        "national": {
-            "seats": sum(s["seats"] for s in retrospective),
-            "projected_pr": {"d_seats": nat_retro_d, "r_seats": nat_retro_r},
-            "actual": {"d_seats": nat_actual_d, "r_seats": nat_actual_r},
-        },
-        "states": retrospective,
-    }
-    write_json_atomic(BASELINE_OUT_PATH, baseline_payload)
 
     trend = build_polling_trend(polls, as_of=now)
-    write_json_atomic(POLLING_TREND_PATH, {
+    trend_payload = {
         "meta": {
             "generated_at": now.isoformat(),
             "source": SILVER_BULLETIN_LANDING_URL,
@@ -600,8 +593,67 @@ def main(refresh_clerk: bool = False) -> None:
             "uses_house_effect_adjustment": True,
         },
         "polls": trend,
-    })
+    }
+    return projection_payload, trend_payload
 
+
+def build_frozen_payloads(el: election.Election) -> tuple[dict, dict, dict]:
+    """The final pre-election projection, republished unchanged.
+
+    Returns `(projection_payload, polling_trend_payload, final_block)`. No
+    polls are fetched. Must run before anything is written to public/data —
+    the working tree is one of the candidates.
+    """
+    cands, notes = freeze.collect(el)
+    for n in notes:
+        print(f"  (info) freeze candidate unavailable — {n}")
+    chosen = freeze.select_final(cands, el.freeze_at)
+    print(
+        f"Frozen final projection: {chosen.source}, generated {chosen.projection['meta']['generated_at']} "
+        f"(sha {chosen.sha256[:12]}…)."
+    )
+    if chosen.source != "committed":
+        # Durable record. In CI the Sunday snapshot commits it; locally, commit
+        # it by hand (or run freeze.py --capture on election morning).
+        d = freeze.write_frozen_dir(el, chosen, el.now)
+        print(f"  Captured to {d.relative_to(REPO_ROOT)}.")
+    return copy.deepcopy(chosen.projection), copy.deepcopy(chosen.polling_trend), freeze.final_block(chosen)
+
+
+def build_baseline_payload(baseline: dict, now: datetime) -> dict:
+    """The 2024 Retrospective: PR of the actual 2024 vote, no swing. Offline."""
+    retrospective = retrospective_states(baseline["states"])
+    return {
+        "meta": {
+            "generated_at": now.isoformat(),
+            "baseline_source": baseline["meta"]["source"],
+            "baseline_source_url": baseline["meta"]["source_url"],
+            "method": "sainte-lague",
+        },
+        "national": {
+            "seats": sum(s["seats"] for s in retrospective),
+            "projected_pr": {
+                "d_seats": sum(s["projected_pr"]["d_seats"] for s in retrospective),
+                "r_seats": sum(s["projected_pr"]["r_seats"] for s in retrospective),
+            },
+            "actual": {
+                "d_seats": sum(s["actual"]["d_seats"] for s in retrospective),
+                "r_seats": sum(s["actual"]["r_seats"] for s in retrospective),
+            },
+        },
+        "states": retrospective,
+    }
+
+
+def build_meta_payload(projection_payload: dict, baseline_payload: dict, baseline: dict, now: datetime) -> dict:
+    """meta.json, derived entirely from projection.json + the baseline.
+
+    Derived rather than computed alongside the projection so a frozen
+    projection yields exactly the meta.json it had when it was published —
+    except `generated_at`, which is this run's (the OG cache-buster and the
+    sitemap's <lastmod> read it).
+    """
+    pm = projection_payload["meta"]
     meta_payload = {
         "generated_at": now.isoformat(),
         "stale_after_hours": STALE_AFTER_HOURS,
@@ -610,34 +662,154 @@ def main(refresh_clerk: bool = False) -> None:
             "polls": SILVER_BULLETIN_LANDING_URL,
         },
         "generic_ballot": {
-            "margin": generic_ballot,
-            "n_polls": avg["n_polls"],
-            "window_days": avg["window_days"],
-            "half_life_days": avg["half_life_days"],
+            "margin": pm["generic_ballot_margin"],
+            "n_polls": pm["n_polls_in_average"],
+            "window_days": pm["poll_window_days"],
+            "half_life_days": pm["poll_half_life_days"],
             "uses_house_effect_adjustment": True,
         },
-        "baseline_2024_r_margin": baseline_margin,
-        "swing": round(swing, 2),
+        "baseline_2024_r_margin": pm["baseline_2024_r_margin"],
+        "swing": pm["swing"],
         "national": projection_payload["national"],
         "retrospective_national": baseline_payload["national"],
     }
-    if uncertainty:
-        meta_payload["uncertainty"] = uncertainty
-    if majority:
-        meta_payload["majority"] = majority
-    if closest_flips:
-        meta_payload["closest_flips"] = closest_flips
-    meta_payload["ballot_variants"] = variants
+    for key in ("uncertainty", "majority", "closest_flips"):
+        if key in pm:
+            meta_payload[key] = pm[key]
+    meta_payload["ballot_variants"] = pm.get("ballot_variants", [])
+    return meta_payload
+
+
+# Derived artifacts, in run order. Each is isolated so one failure can't abort
+# the others or discard the core files — but every failure is recorded and
+# makes the run exit DEGRADED (see main).
+BUILDERS: list[tuple[str, str]] = [
+    # Election results from the curated data-pipeline/results/house_<cycle>.csv
+    # (offline). First, so the OG cards, llms.txt and prerender can read them.
+    # Before the election it writes an all-pending file.
+    ("results build", "build_results"),
+    # Today's actual chamber (D/R/vacant) from the Clerk's official member
+    # list. Display-only: nothing in the projection math reads it — the
+    # November 2024 election result stays the baseline, so a resignation can't
+    # move the headline seat-gap. Runs first so llms.txt and the OG cards
+    # below can reference it. This one IS a live feed.
+    ("live House composition", "fetch_live_composition"),
+    # Per-state OG cards + static HTML pages, so social-share previews always
+    # reflect the freshest projection.
+    ("per-state OG generation", "generate_state_og"),
+    # sitemap.xml — fresh <lastmod> dates, discovery of all 50 state pages.
+    ("sitemap generation", "generate_sitemap"),
+    # llms.txt with the day's headline numbers, so AI crawlers quote live data.
+    ("llms.txt generation", "generate_llms"),
+    # Multi-cycle retrospectives (offline — reads committed house_{year}.json).
+    # 2024 here matches baseline_2024.json above (same Sainte-Laguë, same data).
+    ("retrospectives build", "build_retrospectives"),
+    # Proportional Electoral College (1976-2024) — offline, committed baselines.
+    ("electoral-college build", "build_electoral_college"),
+    # Senate malapportionment — offline, committed state_populations.json.
+    ("senate build", "build_senate"),
+    # Federal circuits by population/judges — offline, committed definitions.
+    ("circuits build", "build_circuits"),
+    # Static long-form content pages (e.g. /retrospectives), from the
+    # retrospectives.json written just above.
+    ("content-page generation", "generate_content_pages"),
+    # Append today's snapshot to the projection-over-time series (frozen after
+    # freeze_at — see build_history).
+    ("history build", "build_history"),
+]
+
+# Builders whose output is a live series production holds and the repo only
+# snapshots weekly. If one fails, the committed copy in the working tree is up
+# to a week behind — and with a degraded run now shipping the working tree,
+# deploying it would erase whatever production accumulated since (history
+# points can't be regenerated). So carry production's copy forward instead.
+LIVE_FALLBACK = {
+    "fetch_live_composition": "house_composition.json",
+    "build_history": "history.json",
+}
+
+
+def live_fallback_file(module: str, el: election.Election) -> str | None:
+    """The public/data file to carry forward from production if `module` fails.
+
+    Results too: a results file that fails to build (a bad edit to the CSV)
+    must leave the last good results live, not the committed skeleton.
+    """
+    if module == "build_results":
+        return f"results_{el.cycle}.json"
+    return LIVE_FALLBACK.get(module)
+LIVE_DATA_BASE = "https://proportionalhouse.org/data/"
+
+
+def carry_forward_from_production(filename: str) -> bool:
+    """Replace public/data/<filename> with production's copy. Best-effort."""
+    try:
+        r = requests.get(LIVE_DATA_BASE + filename, headers={"User-Agent": "Mozilla/5.0"}, timeout=20)
+        r.raise_for_status()
+        if not looks_like_json(r.text):
+            raise ValueError("not JSON")
+        payload = r.json()
+        if not isinstance(payload, dict) or "meta" not in payload:
+            raise ValueError("unexpected shape")
+    except Exception as e:  # noqa: BLE001
+        print(f"  (warn) could not carry production's {filename} forward: {e}")
+        return False
+    write_json_atomic(PUBLIC_DATA / filename, payload)
+    print(f"  Carried production's {filename} forward.")
+    return True
+
+
+# Exit status for a run whose core data (projection, meta, baseline, trend)
+# is fresh and validated but where a derived builder failed. CI keeps the
+# fresh data (instead of restoring last-good for every file) and still marks
+# the run red. Anything else non-zero means the core data can't be trusted.
+EXIT_DEGRADED = 3
+
+
+def main(refresh_clerk: bool = False) -> None:
+    el = election.resolve()
+    now = el.now
+    print(
+        f"Election {el.cycle}: phase {el.phase} (freeze_at {election.iso_z(el.freeze_at)})"
+        + (" [REHEARSAL]" if el.rehearsal else "")
+    )
+
+    # Pipeline-step failures collected across the run; a non-empty list makes
+    # the process exit DEGRADED at the end (see the tail of main).
+    failures: list[str] = []
+
+    # 1. Baseline.
+    baseline = load_baseline(refresh_clerk)
+
+    # 2-4. The headline projection: computed from today's polls before the
+    # freeze, republished unchanged after it.
+    if el.frozen:
+        projection_payload, trend_payload, final = build_frozen_payloads(el)
+    else:
+        projection_payload, trend_payload = build_live_payloads(baseline, now)
+        final = None
+    election_block = election.meta_block(el, final)
+    projection_payload["meta"]["election"] = election_block
+
+    baseline_payload = build_baseline_payload(baseline, now)
+    meta_payload = build_meta_payload(projection_payload, baseline_payload, baseline, now)
+    meta_payload["election"] = election_block
+
+    # 5. Write outputs.
+    PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
+    write_json_atomic(PROJECTION_PATH, projection_payload)
+    write_json_atomic(BASELINE_OUT_PATH, baseline_payload)
+    write_json_atomic(POLLING_TREND_PATH, trend_payload)
     write_json_atomic(META_PATH, meta_payload)
 
-    # Derived artifacts. Each is isolated so one failure can't abort the others
-    # or discard the core files already written above — but every failure is
-    # recorded and makes the run exit non-zero (see `failures` handling at the
-    # end of main). Previously these only printed a warning, so a builder that
-    # threw left yesterday's file in place while the run still reported success:
-    # the homepage chart would silently stop advancing with nothing to notice it.
+    # 6. Derived artifacts. Previously a failure here only printed a warning,
+    # so a builder that threw left yesterday's file in place while the run
+    # still reported success: the homepage chart would silently stop advancing
+    # with nothing to notice it.
     def run_builder(label: str, module: str) -> None:
         try:
+            if os.environ.get("PH_FAIL_BUILDER") == module:
+                raise RuntimeError("forced failure (PH_FAIL_BUILDER)")
             mod = __import__(module)
             mod.main()
         # BaseException, not Exception: build_electoral_college historically
@@ -646,53 +818,38 @@ def main(refresh_clerk: bool = False) -> None:
         except BaseException as e:  # noqa: BLE001
             failures.append(f"{label}: {type(e).__name__}: {e}")
             print(f"  (warn) {label} failed: {type(e).__name__}: {e}")
+            fallback = live_fallback_file(module, el)
+            if fallback:
+                carry_forward_from_production(fallback)
 
-    # Today's actual chamber (D/R/vacant) from the Clerk's official member list.
-    # Display-only: nothing in the projection math reads it — the November 2024
-    # election result stays the baseline, so a resignation can't move the
-    # headline seat-gap. Runs first so llms.txt and the OG cards below can
-    # reference it. This one IS a live feed, unlike the 2024 elections table.
-    run_builder("live House composition", "fetch_live_composition")
-    # Per-state OG cards + static HTML pages, so social-share previews always
-    # reflect the freshest projection.
-    run_builder("per-state OG generation", "generate_state_og")
-    # sitemap.xml — fresh <lastmod> dates, discovery of all 50 state pages.
-    run_builder("sitemap generation", "generate_sitemap")
-    # llms.txt with the day's headline numbers, so AI crawlers quote live data.
-    run_builder("llms.txt generation", "generate_llms")
-    # Multi-cycle retrospectives (offline — reads committed house_{year}.json).
-    # 2024 here matches baseline_2024.json above (same Sainte-Laguë, same data).
-    run_builder("retrospectives build", "build_retrospectives")
-    # Proportional Electoral College (1976-2024) — offline, committed baselines.
-    run_builder("electoral-college build", "build_electoral_college")
-    # Senate malapportionment — offline, committed state_populations.json.
-    run_builder("senate build", "build_senate")
-    # Federal circuits by population/judges — offline, committed definitions.
-    run_builder("circuits build", "build_circuits")
-    # Static long-form content pages (e.g. /retrospectives), from the
-    # retrospectives.json written just above.
-    run_builder("content-page generation", "generate_content_pages")
-    # Append today's snapshot to the projection-over-time series.
-    run_builder("history build", "build_history")
+    for label, module in BUILDERS:
+        run_builder(label, module)
 
-    # Sanity-check: print the plan's Phase 2 "done when" criteria.
-    proj_gain_d = nat_proj_d - nat_actual_d
-    retro_gain_d = nat_retro_d - nat_actual_d
-    print()
-    print(f"Projection:    D {nat_proj_d:>3} / R {nat_proj_r:>3}  (vs actual {nat_actual_d}/{nat_actual_r}, D gain {proj_gain_d:+d})")
-    print(f"Retrospective: D {nat_retro_d:>3} / R {nat_retro_r:>3}  (D gain {retro_gain_d:+d})")
-    print()
-    print("Phase 2 'done when' check:")
-    # Plan updated after first real-data run: expect +10 to +15 D under D+~6
-    # generic ballot. Anything outside ±5 of that warrants a look.
-    if 5 <= proj_gain_d <= 20:
-        print(f"  ✓ Projected D gain {proj_gain_d:+d} is in plan's expected +10 to +15 range (or close).")
-    else:
-        print(f"  ⚠ Projected D gain {proj_gain_d:+d} is outside the plan's expected +10 to +15 range. Check inputs.")
-    if abs(retro_gain_d) <= 15:
-        print(f"  ✓ Retrospective net swing {retro_gain_d:+d} is small (single/low double digits).")
-    else:
-        print(f"  ⚠ Retrospective net swing {retro_gain_d:+d} is larger than expected (>15). Math may be off.")
+    # Sanity-check: print the plan's Phase 2 "done when" criteria. Meaningless
+    # for a frozen projection, which was checked when it was published.
+    if not el.frozen:
+        nat = projection_payload["national"]
+        nat_proj_d, nat_proj_r = nat["projected"]["d_seats"], nat["projected"]["r_seats"]
+        nat_actual_d, nat_actual_r = nat["actual"]["d_seats"], nat["actual"]["r_seats"]
+        retro = baseline_payload["national"]["projected_pr"]
+        nat_retro_d, nat_retro_r = retro["d_seats"], retro["r_seats"]
+        proj_gain_d = nat_proj_d - nat_actual_d
+        retro_gain_d = nat_retro_d - nat_actual_d
+        print()
+        print(f"Projection:    D {nat_proj_d:>3} / R {nat_proj_r:>3}  (vs actual {nat_actual_d}/{nat_actual_r}, D gain {proj_gain_d:+d})")
+        print(f"Retrospective: D {nat_retro_d:>3} / R {nat_retro_r:>3}  (D gain {retro_gain_d:+d})")
+        print()
+        print("Phase 2 'done when' check:")
+        # Plan updated after first real-data run: expect +10 to +15 D under D+~6
+        # generic ballot. Anything outside ±5 of that warrants a look.
+        if 5 <= proj_gain_d <= 20:
+            print(f"  ✓ Projected D gain {proj_gain_d:+d} is in plan's expected +10 to +15 range (or close).")
+        else:
+            print(f"  ⚠ Projected D gain {proj_gain_d:+d} is outside the plan's expected +10 to +15 range. Check inputs.")
+        if abs(retro_gain_d) <= 15:
+            print(f"  ✓ Retrospective net swing {retro_gain_d:+d} is small (single/low double digits).")
+        else:
+            print(f"  ⚠ Retrospective net swing {retro_gain_d:+d} is larger than expected (>15). Math may be off.")
 
     # Hard data-integrity gate (NOT guarded): if the generated data violates an
     # invariant — wrong seat totals, wrong apportionment, a PR seat majority
@@ -706,17 +863,19 @@ def main(refresh_clerk: bool = False) -> None:
     # builder silently failed.
     validate_data(check_freshness=True)
 
-    # A step that failed above means the site is serving a mix of today's core
-    # data and yesterday's charts/maps/OG cards (or yesterday's delegation).
-    # validate_data can't catch it — it happily validates the stale file — so
-    # surface it here as a non-zero exit. The deploy still ships last-good data
-    # (CI restores it), but the run no longer reports success.
+    # A builder that failed above means the site is serving today's core data
+    # alongside an older chart/map/OG card (or delegation). validate_data can't
+    # catch it — it happily validates the older file — so surface it here. The
+    # core data is fresh and validated, so the exit is DEGRADED rather than a
+    # failure: CI ships it (instead of restoring last-good for every file,
+    # which would also throw away fresh results and composition) and still
+    # marks the run red.
     if failures:
         print()
-        print(f"✗ {len(failures)} pipeline step(s) failed:")
+        print(f"✗ {len(failures)} pipeline step(s) failed (core data is fresh and valid):")
         for f in failures:
             print(f"    - {f}")
-        raise SystemExit(1)
+        raise SystemExit(EXIT_DEGRADED)
 
 
 if __name__ == "__main__":

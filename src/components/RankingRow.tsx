@@ -72,7 +72,7 @@ export function RankingRow({ rank, state, caption, silhouette }: Props) {
            * side-by-side comparison with an → between them. */}
           <div className="mt-2 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-1.5 sm:gap-3 max-w-md">
             <SeatStrip
-              heading="Today"
+              heading="As elected"
               size="compact"
               parties={[
                 { id: 'D', label: 'D', color: PARTY_D.color, seats: state.actual.d_seats },

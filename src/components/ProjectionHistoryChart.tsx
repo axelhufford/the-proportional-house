@@ -67,6 +67,7 @@ type Row = {
   date: string;
   margin: number;
   reconstructed: boolean;
+  final: boolean;
 } & Partial<Record<MethodId, number>>;
 
 interface TooltipEntry {
@@ -99,6 +100,9 @@ function HistTooltip({ active, payload }: { active?: boolean; payload?: TooltipE
       <div className="text-stone-500 mt-0.5">Generic ballot: {fmtMargin(row.margin)}</div>
       {row.reconstructed && (
         <div className="mt-0.5 text-stone-400 italic">Reconstructed from poll archive</div>
+      )}
+      {row.final && (
+        <div className="mt-0.5 font-medium text-stone-700">Final pre-election projection</div>
       )}
     </div>
   );
@@ -142,6 +146,7 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
           date: p.date,
           margin: p.generic_ballot_margin,
           reconstructed: p.reconstructed === true,
+          final: p.final === true,
           PR: p.projected_d,
         };
         if (p.methods) {
@@ -183,6 +188,9 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
   }, [data, visibleIds]);
 
   const showLegend = visibleIds.length > 1;
+  // Once the projection is frozen for the election, the series ends on a
+  // point flagged `final` — mark it so the end reads as deliberate.
+  const finalDate = data.find((r) => r.final)?.date;
 
   return (
     <div className="w-full">
@@ -237,6 +245,14 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
             strokeDasharray="3 3"
             label={{ value: '218 = majority', position: 'insideTopRight', fontSize: 10, fill: '#a8a29e' }}
           />
+          {finalDate && (
+            <ReferenceLine
+              x={finalDate}
+              stroke="#57534e"
+              strokeDasharray="2 2"
+              label={{ value: 'Final', position: 'insideTopLeft', fontSize: 10, fill: '#57534e' }}
+            />
+          )}
           {visibleIds.map((id) => {
             const s = SERIES.find((x) => x.id === id)!;
             const isReference = showPrReference && id === 'PR';

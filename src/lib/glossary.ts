@@ -70,13 +70,13 @@ export const GLOSSARY: Record<GlossarySlug, GlossaryEntry> = {
   'generic-ballot': {
     term: 'generic ballot',
     short:
-      'The national polling question “which party’s House candidate would you vote for?” We use the current average as the national mood.',
+      'The national polling question “which party’s House candidate would you vote for?” We use the polling average as the national mood.',
     anchor: 'the-math',
   },
   swing: {
     term: 'swing',
     short:
-      'How far the national mood has moved since the 2024 House vote, in percentage points — applied to each state to project today’s vote.',
+      'How far the national mood has moved since the 2024 House vote, in percentage points — applied to each state to project its vote.',
     anchor: 'the-math',
   },
   'baseline-2024': {

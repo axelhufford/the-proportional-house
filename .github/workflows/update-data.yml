@@ -22,6 +22,12 @@ on:
   schedule:
     # 06:00 UTC daily = 02:00 ET / 23:00 PT prev day.
     - cron: "0 6 * * *"
+    # 10:10 UTC on Nov 3 — ten minutes after the 2026 election's freeze_at
+    # (data-pipeline/election.json). The site and API flip to the frozen phase
+    # on the clock by themselves; this run regenerates the static outputs (OG
+    # cards, llms.txt, prerendered copy) and captures the frozen projection.
+    # Fires every Nov 3; in other years it is just an extra daily run.
+    - cron: "10 10 3 11 *"
   workflow_dispatch:
     inputs:
       refresh_baseline:
@@ -87,16 +93,31 @@ jobs:
             args=""
           fi
 
-          if python data-pipeline/update.py $args; then
+          # Exit 3 = DEGRADED (update.py EXIT_DEGRADED): the core data is fresh
+          # and validated but a derived builder failed. Keep the fresh data —
+          # restoring last-good for every file would also throw away fresh
+          # results and composition — and report the run red at the end.
+          rc=0
+          python data-pipeline/update.py $args || rc=$?
+          if [ "$rc" -eq 0 ]; then
             echo "Pipeline succeeded — fresh data."
             echo "failed=false" >> "$GITHUB_OUTPUT"
+            echo "degraded=false" >> "$GITHUB_OUTPUT"
+          elif [ "$rc" -eq 3 ]; then
+            echo "::warning title=Data pipeline degraded::A derived builder failed; shipping the fresh, validated core data."
+            echo "failed=false" >> "$GITHUB_OUTPUT"
+            echo "degraded=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::warning title=Data pipeline failed::Pipeline errored; shipping the last-good data so the deploy still succeeds. Data won't refresh this run."
+            echo "::warning title=Data pipeline failed::Pipeline errored (exit $rc); shipping the last-good data so the deploy still succeeds. Data won't refresh this run."
             echo "failed=true" >> "$GITHUB_OUTPUT"
+            echo "degraded=false" >> "$GITHUB_OUTPUT"
             # Reset to the clean committed snapshot (drops any partial writes),
             # then prefer the currently-live files for freshness.
             rm -rf public/data && cp -a /tmp/data-committed public/data
-            for f in projection.json baseline_2024.json polling_trend.json meta.json history.json house_composition.json; do
+            # The election's results file too (named by cycle): a bad edit to
+            # the results CSV then leaves the last good results live.
+            cycle=$(python -c "import json; print(json.load(open('data-pipeline/election.json'))['cycle'])")
+            for f in projection.json baseline_2024.json polling_trend.json meta.json history.json house_composition.json "results_${cycle}.json"; do
               if curl -fsSL "https://proportionalhouse.org/data/$f" -o "/tmp/$f"; then
                 # Parse before trusting. `curl -f` fails on HTTP >= 400, and
                 # now that the `/*  /index.html  200` SPA fallback is gone a
@@ -201,6 +222,16 @@ jobs:
             public/data/polling_trend.json \
             public/data/history.json \
             public/data/house_composition.json
+          # After the election freeze, the durable record of the final
+          # projection (written by the first post-freeze run if nobody
+          # captured it by hand). Absent before then.
+          if [ -d data-pipeline/frozen ]; then
+            git add -- data-pipeline/frozen
+          fi
+          # Election results built from the committed CSV.
+          for f in public/data/results_*.json; do
+            if [ -e "$f" ]; then git add -- "$f"; fi
+          done
           if git diff --cached --quiet; then
             echo "No changes to snapshot."
             exit 0
@@ -218,7 +249,11 @@ jobs:
       # pipeline could fail every night for weeks and the only signal would be a
       # visitor noticing the stale-data banner.
       - name: Report pipeline failure
-        if: always() && steps.pipeline.outputs.failed == 'true'
+        if: always() && (steps.pipeline.outputs.failed == 'true' || steps.pipeline.outputs.degraded == 'true')
         run: |
-          echo "::error title=Data pipeline failed::The site deployed with last-good data, but the pipeline did not produce fresh data this run. Check the 'Run pipeline' step."
+          if [ "${{ steps.pipeline.outputs.failed }}" = "true" ]; then
+            echo "::error title=Data pipeline failed::The site deployed with last-good data, but the pipeline did not produce fresh data this run. Check the 'Run pipeline' step."
+          else
+            echo "::error title=Data pipeline degraded::The site deployed fresh core data, but a derived builder failed (its output is last-good). Check the 'Run pipeline' step."
+          fi
           exit 1

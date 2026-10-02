@@ -138,8 +138,8 @@ export function Rankings() {
     return [
       {
         id: 'most-distorted-today',
-        title: 'Most distorted delegations today',
-        blurb: 'States where the current delegation diverges furthest from the 2024 statewide House vote. The bigger the gap, the more proportional allocation would change the outcome.',
+        title: 'Most distorted delegations, as elected in 2024',
+        blurb: 'States where the delegation voters elected in 2024 diverges furthest from that year’s statewide House vote. The bigger the gap, the more proportional allocation would change the outcome.',
         rows: distortionToday,
       },
       {
@@ -211,7 +211,7 @@ export function Rankings() {
         House rankings under proportional representation
       </h1>
       <p className="mt-3 text-stone-700 leading-relaxed">
-        Which state delegations diverge most from their statewide vote? Below: the ten most distorted delegations today, the biggest projected gains for each party under proportional allocation, and the most one-sided “all-one-color” delegations. Tap any state to see its full projection.
+        Which state delegations diverge most from their statewide vote? Below: the ten most distorted delegations elected in 2024, the biggest projected gains for each party under proportional allocation, and the most one-sided “all-one-color” delegations. Tap any state to see its full projection.
       </p>
       <nav aria-label="Rankings sections" className="mt-5 flex flex-wrap gap-2 text-sm">
         {leaderboards.map((b) => (

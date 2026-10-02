@@ -162,6 +162,42 @@ describe('toApiV1', () => {
     expect(out.polling.window_days).toBe(30);
     expect(out.polling.half_life_days).toBe(14);
   });
+
+  describe('election phase', () => {
+    const FREEZE = '2026-11-03T10:00:00Z';
+    const freezeMs = Date.parse(FREEZE);
+    const withElection = (phase: 'projection' | 'counting' | 'results'): ProjectionPayload => ({
+      ...FIXTURE,
+      meta: {
+        ...FIXTURE.meta,
+        election: { cycle: 2026, election_date: '2026-11-03', freeze_at: FREEZE, phase, baseline_cycle: 2024 },
+      },
+    });
+
+    it('is always present, defaulting to projection for a payload that predates it', () => {
+      const out = toApiV1(FIXTURE, null, freezeMs + 1e9);
+      expect(out.phase).toBe('projection');
+      expect(out).not.toHaveProperty('election');
+    });
+
+    it('promotes a projection payload to counting at freeze_at, by the clock', () => {
+      expect(toApiV1(withElection('projection'), null, freezeMs - 1).phase).toBe('projection');
+      expect(toApiV1(withElection('projection'), null, freezeMs).phase).toBe('counting');
+    });
+
+    it('never demotes a frozen phase', () => {
+      expect(toApiV1(withElection('results'), null, freezeMs - 1e9).phase).toBe('results');
+      expect(toApiV1(withElection('counting'), null, 0).phase).toBe('counting');
+    });
+
+    it('publishes only the election identity, not pipeline provenance', () => {
+      expect(toApiV1(withElection('counting'), null, freezeMs).election).toEqual({
+        cycle: 2026,
+        election_date: '2026-11-03',
+        freeze_at: FREEZE,
+      });
+    });
+  });
 });
 
 describe('toApiV1Csv', () => {

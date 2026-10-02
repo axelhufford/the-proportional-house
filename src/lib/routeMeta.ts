@@ -43,7 +43,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
     title: 'The U.S. House under proportional representation',
     description:
-      'See how many seats each party would hold if the U.S. House used proportional representation instead of winner-take-all districts — a daily projection from the current generic-ballot polling average, with 2016–2024 retrospectives.',
+      'See how many seats each party would hold if the U.S. House used proportional representation instead of winner-take-all districts — a projection from the generic-ballot polling average applied to the 2024 House vote, with 2016–2024 retrospectives.',
     canonicalPath: '/',
     navLabel: 'The national map',
   },

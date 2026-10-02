@@ -30,8 +30,8 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'What would the U.S. House look like under proportional representation?',
-    a: 'That’s the question this site answers, recomputed every day. Each state’s House seats are reallocated to match its statewide two-party vote share — projected from the current generic-ballot polling average — and then summed into a national total. Because seats track votes, the chamber shifts toward whichever party the winner-take-all map currently underrepresents. The home page shows the current projected Democratic–Republican split, the interactive map shows which states move the most, and the rankings page lists the most distorted delegations. The 2016–2024 retrospectives run the same calculation on the actual past results.',
-    link: { to: '/', label: 'See the current projected House →' },
+    a: 'That’s the question this site answers. Each state’s House seats are reallocated to match its statewide two-party vote share — projected from the generic-ballot polling average, updated daily until the projection is frozen at the final pre-election polls on Election Day — and then summed into a national total. Because seats track votes, the chamber shifts toward whichever party the winner-take-all map underrepresents. The home page shows the projected Democratic–Republican split, the interactive map shows which states move the most, and the rankings page lists the most distorted delegations. The 2016–2024 retrospectives run the same calculation on the actual past results.',
+    link: { to: '/', label: 'See the projected House →' },
   },
   {
     q: 'Where does the data come from?',
@@ -39,12 +39,12 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'How does the generic-ballot polling become proportional House seats?',
-    a: 'In four steps. First, start from each state’s actual 2024 two-party House vote. Second, measure the gap between the current generic-ballot polling average and the 2024 national House margin. Third, shift every state’s vote by that gap, scaled by a state-specific elasticity (some states swing more than the nation, some less). Fourth, allocate each state’s seats in proportion to the shifted vote using the Sainte-Laguë method, then sum the states for the national total. There’s no district-by-district modeling — the unit is the statewide vote.',
+    a: 'In four steps. First, start from each state’s actual 2024 two-party House vote. Second, measure the gap between the generic-ballot polling average and the 2024 national House margin. Third, shift every state’s vote by that gap, scaled by a state-specific elasticity (some states swing more than the nation, some less). Fourth, allocate each state’s seats in proportion to the shifted vote using the Sainte-Laguë method, then sum the states for the national total. There’s no district-by-district modeling — the unit is the statewide vote.',
     link: { to: '/methodology', label: 'Read the full methodology →' },
   },
   {
     q: 'Is this a forecast or a prediction of the next House election?',
-    a: 'No — it’s a structural projection, not an election forecast. The site doesn’t predict who will win individual districts or which party controls the next House: there’s no candidate-level modeling, no turnout or fundamentals model, no district ratings. The Current view simply takes today’s generic-ballot polling average and shows what the House would look like right now if every state allocated its seats proportionally instead of by winner-take-all districts. The goal is to make the structural gap between votes and seats visible, not to call the next election.',
+    a: 'No — it’s a structural projection, not an election forecast. The site doesn’t predict who will win individual districts or which party controls the next House: there’s no candidate-level modeling, no turnout or fundamentals model, no district ratings. The projection simply takes the generic-ballot polling average and shows what the House would look like if every state allocated its seats proportionally instead of by winner-take-all districts. On Election Day it is frozen at the final pre-election polls, so it can be set against the real results. The goal is to make the structural gap between votes and seats visible, not to call the next election.',
   },
   {
     q: 'Is this partisan?',
@@ -95,7 +95,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'How often is the projection updated?',
-    a: 'A scheduled job re-runs the pipeline nightly, pulling fresh polling data and recomputing every state’s projection. The “Last updated” timestamp in the footer shows when. If it’s been more than 48 hours, a banner appears across the top of the site.',
+    a: 'A scheduled job re-runs the pipeline nightly, pulling fresh polling data and recomputing every state’s projection. The “Last updated” timestamp in the footer shows when. If it’s been more than 48 hours, a banner appears across the top of the site. On Election Day the projection is frozen at the final pre-election polls and stops updating; from then on the site follows the results as they are counted and certified.',
   },
   {
     q: 'Can I share or cite this?',
@@ -139,7 +139,7 @@ export function About() {
         </p>
         <p>
           The math is intentionally simple: take each state’s two-party House vote share,
-          shift it by the difference between today’s generic-ballot polling and the 2024
+          shift it by the difference between the generic-ballot polling average and the 2024
           national House margin (scaled by a state-specific elasticity), then allocate
           that state’s seats by the Sainte-Laguë method. No swing-state magic, no
           district-by-district modeling, no partisan thumbs on the scale. Full details
@@ -152,7 +152,7 @@ export function About() {
         <p>
           The point isn’t to predict the next election. It’s to make the structural
           cost of the current system visible, state by state. The <Link to="/rankings" className="underline hover:text-brand-navy">rankings</Link>{' '}
-          page surfaces which delegations are most distorted today, and which states
+          page surfaces which delegations are most distorted, and which states
           would shift the most under proportional allocation.
         </p>
         <p>
