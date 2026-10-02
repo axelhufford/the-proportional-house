@@ -13,9 +13,12 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+import election
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_DATA = REPO_ROOT / "public" / "data"
@@ -301,6 +304,27 @@ def check_polling_error(errors: list[str]) -> None:
             errors.append(f"polling_error: epsilon_points {eps} != RMS of misses {round(rms, 1)}")
 
 
+def _check_pr_winner(errors: list[str], label: str, seats: int, dshare: float, prd: int, prr: int) -> None:
+    """The ND-bug guard: PR's seat allocation must not favor the party that
+    lost the two-party vote — and no share is exactly 50/50."""
+    if seats == 1:
+        # A lone seat must go to the two-party plurality — no rounding slack.
+        if prd == 1 and dshare <= 0.5:
+            errors.append(f"{label}: PR gave D the only seat but D share is {dshare}")
+        if prr == 1 and dshare >= 0.5:
+            errors.append(f"{label}: PR gave R the only seat but D share is {dshare}")
+    else:
+        # Multi-seat: allow a small tolerance for legitimate near-tie rounding.
+        if prd > prr and dshare < 0.49:
+            errors.append(f"{label}: PR majority D ({prd}/{prr}) but D share {dshare}")
+        if prr > prd and dshare > 0.51:
+            errors.append(f"{label}: PR majority R ({prd}/{prr}) but D share {dshare}")
+    # An *exactly* 50/50 share never occurs in real returns — it's the
+    # signature of a 50/50 imputation slipping into the data (the ND bug).
+    if abs(dshare - 0.5) < 1e-9:
+        errors.append(f"{label}: two-party share is exactly 50/50 (imputation artifact?)")
+
+
 def check_retrospectives(errors: list[str]) -> None:
     r = _load("retrospectives.json")
     for year, cyc in r["cycles"].items():
@@ -318,26 +342,9 @@ def check_retrospectives(errors: list[str]) -> None:
                 errors.append(f"{year} {c}: PR seats != {seats}")
             if app.get(c) != seats:
                 errors.append(f"{year} {c}: apportionment {seats} != expected {app.get(c)}")
-            # The ND-bug guard: PR's seat allocation must not favor the party
-            # that lost the two-party vote.
             dshare = s["two_party_share"]["d_share"]
             prd, prr = s["projected_pr"]["d_seats"], s["projected_pr"]["r_seats"]
-            if seats == 1:
-                # A lone seat must go to the two-party plurality — no rounding slack.
-                if prd == 1 and dshare <= 0.5:
-                    errors.append(f"{year} {c}: PR gave D the only seat but D share is {dshare}")
-                if prr == 1 and dshare >= 0.5:
-                    errors.append(f"{year} {c}: PR gave R the only seat but D share is {dshare}")
-            else:
-                # Multi-seat: allow a small tolerance for legitimate near-tie rounding.
-                if prd > prr and dshare < 0.49:
-                    errors.append(f"{year} {c}: PR majority D ({prd}/{prr}) but D share {dshare}")
-                if prr > prd and dshare > 0.51:
-                    errors.append(f"{year} {c}: PR majority R ({prd}/{prr}) but D share {dshare}")
-            # An *exactly* 50/50 share never occurs in real returns — it's the
-            # signature of a 50/50 imputation slipping into the data (the ND bug).
-            if abs(dshare - 0.5) < 1e-9:
-                errors.append(f"{year} {c}: two-party share is exactly 50/50 (imputation artifact?)")
+            _check_pr_winner(errors, f"{year} {c}", seats, dshare, prd, prr)
             ad += s["actual"]["d_seats"]; ar += s["actual"]["r_seats"]
             pd += s["projected_pr"]["d_seats"]; pr += s["projected_pr"]["r_seats"]
         if ad + ar != TOTAL_SEATS or pd + pr != TOTAL_SEATS:
@@ -584,13 +591,188 @@ def check_history(errors: list[str], check_freshness: bool = False) -> None:
         seen.add(d); last = d
 
     # The newest point should be today's. A builder that threw leaves the whole
-    # file untouched, which every other check here would happily accept.
-    if check_freshness and last:
+    # file untouched, which every other check here would happily accept. Only
+    # before the freeze: afterwards the series ends on purpose (check_election
+    # asserts where).
+    if check_freshness and last and _data_phase() == "projection":
         newest = _parse_ts(last + "T00:00:00+00:00")
         if newest is not None:
             age_days = (datetime.now(timezone.utc) - newest).days
             if age_days > 2:
                 errors.append(f"history: newest point {last} is {age_days} days old (build failed?)")
+
+
+def _data_phase() -> str:
+    """The phase the published projection.json declares ('projection' if none)."""
+    path = PUBLIC_DATA / "projection.json"
+    if not path.exists():
+        return "projection"
+    block = (_load("projection.json").get("meta") or {}).get("election") or {}
+    return block.get("phase") or "projection"
+
+
+def check_election(errors: list[str], check_freshness: bool = False) -> None:
+    """The election-lifecycle invariants (see election.py and freeze.py).
+
+    After the freeze the projection must be byte-for-byte the one published
+    before freeze_at — its recorded sha256 is recomputed here — and the history
+    series must end on it.
+    """
+    ppath = PUBLIC_DATA / "projection.json"
+    if not ppath.exists():
+        return
+    p = _load("projection.json")
+    block = (p.get("meta") or {}).get("election")
+    if block is None:
+        # CI's last-good restore can legitimately ship data from before the
+        # block existed; a fresh run must always write it.
+        if check_freshness:
+            errors.append("election: projection.json meta.election missing")
+        return
+
+    mpath = PUBLIC_DATA / "meta.json"
+    if mpath.exists() and _load("meta.json").get("election") != block:
+        errors.append("election: meta.json election block != projection.json meta.election")
+
+    phase = block.get("phase")
+    if phase not in election.PHASES:
+        errors.append(f"election: phase {phase!r} is not one of {election.PHASES}")
+        return
+    for key in ("cycle", "election_date", "freeze_at", "baseline_cycle"):
+        if key not in block:
+            errors.append(f"election: block missing {key!r}")
+    freeze_at = _parse_ts(block.get("freeze_at"))
+    if freeze_at is None:
+        errors.append(f"election: freeze_at unparseable ({block.get('freeze_at')!r})")
+        return
+    if block.get("rehearsal") and os.environ.get("GITHUB_ACTIONS") == "true":
+        errors.append("election: rehearsal data (PH_* overrides) must never be deployed")
+
+    if phase == "projection":
+        if "final_projection" in block:
+            errors.append("election: final_projection present before the freeze")
+    else:
+        from freeze import canonical_sha256  # local: freeze pulls in requests
+
+        final = block.get("final_projection") or {}
+        gen_raw = (p.get("meta") or {}).get("generated_at")
+        gen = _parse_ts(gen_raw)
+        if gen is None or gen >= freeze_at:
+            errors.append(f"election: frozen projection generated_at {gen_raw!r} is not before freeze_at")
+        if final.get("generated_at") != gen_raw:
+            errors.append("election: final_projection.generated_at != projection meta.generated_at")
+        if final.get("sha256") != canonical_sha256(p):
+            errors.append("election: projection.json does not hash to final_projection.sha256 — "
+                          "the frozen projection was altered")
+        if gen is not None and (PUBLIC_DATA / "history.json").exists():
+            h = _load("history.json")
+            pts = h.get("points", [])
+            final_date = gen.astimezone(timezone.utc).date().isoformat()
+            if (h.get("meta") or {}).get("final_date") != final_date:
+                errors.append(f"history: meta.final_date != {final_date} (the frozen projection's date)")
+            last = pts[-1] if pts else {}
+            projected = p["national"]["projected"]
+            if last.get("date") != final_date or last.get("final") is not True:
+                errors.append(f"history: series must end on the final point dated {final_date}")
+            elif (last.get("projected_d"), last.get("projected_r")) != (projected["d_seats"], projected["r_seats"]):
+                errors.append("history: final point != the frozen projection's seats")
+            if any(pt.get("final") for pt in pts[:-1]):
+                errors.append("history: `final` flag on a point other than the last")
+
+    if check_freshness:
+        expected = election.resolve().phase
+        if phase != expected:
+            errors.append(f"election: data declares phase {phase!r} but this run resolved {expected!r}")
+
+
+def check_results(errors: list[str]) -> None:
+    """results_<cycle>.json, built from the curated results CSV (build_results.py).
+
+    Required once the projection is frozen; optional before (a deploy can
+    predate the file). Every provisional number must add up exactly: the
+    called + uncalled seats to the apportionment, PR to the state's seats, and
+    PR's majority to the party that leads the counted two-party vote.
+    """
+    phase = _data_phase()
+    p = _load("projection.json") if (PUBLIC_DATA / "projection.json").exists() else {}
+    cycle = ((p.get("meta") or {}).get("election") or {}).get("cycle")
+    path = PUBLIC_DATA / f"results_{cycle}.json" if cycle else None
+    if path is None or not path.exists():
+        if phase != "projection":
+            errors.append(f"results: {path.name if path else 'results file'} missing after the freeze")
+        return
+    r = _load(path.name)
+    label = f"results {cycle}"
+    meta, nat, states = r.get("meta", {}), r.get("national", {}), r.get("states", [])
+
+    if meta.get("cycle") != cycle:
+        errors.append(f"{label}: meta.cycle {meta.get('cycle')!r} != election cycle {cycle}")
+    if meta.get("rehearsal") and os.environ.get("GITHUB_ACTIONS") == "true":
+        errors.append(f"{label}: rehearsal results must never be deployed")
+    if len(states) != 50 or {s.get("code") for s in states} != set(APP_2020):
+        errors.append(f"{label}: expected the 50 states once each")
+
+    totals = {"d": 0, "r": 0, "o": 0, "u": 0, "prd": 0, "prr": 0, "pending": 0, "dv": 0, "rv": 0}
+    counts = {"pending": 0, "provisional": 0, "certified": 0}
+    for s in states:
+        c, seats, status = s.get("code"), s.get("seats"), s.get("status")
+        if APP_2020.get(c) != seats:
+            errors.append(f"{label} {c}: seats {seats} != apportionment {APP_2020.get(c)}")
+            continue
+        if status not in counts:
+            errors.append(f"{label} {c}: status {status!r}")
+            continue
+        counts[status] += 1
+        if phase == "projection" and status != "pending":
+            errors.append(f"{label} {c}: {status} results before the election freeze")
+        ae = s["as_elected"]
+        called = ae["d_seats"] + ae["r_seats"] + ae["other_seats"]
+        if min(ae.values()) < 0 or called + ae["uncalled_seats"] != seats:
+            errors.append(f"{label} {c}: as_elected {ae} doesn't partition {seats} seats")
+        if status == "certified" and ae["uncalled_seats"] != 0:
+            errors.append(f"{label} {c}: certified with uncalled seats")
+        pr = s.get("under_pr")
+        votes = s.get("votes") or {}
+        if pr is None:
+            if status != "pending":
+                errors.append(f"{label} {c}: {status} but no PR allocation")
+            totals["pending"] += seats
+        else:
+            dv, rv = votes.get("d") or 0, votes.get("r") or 0
+            if pr["d_seats"] + pr["r_seats"] != seats:
+                errors.append(f"{label} {c}: PR seats {pr} != {seats}")
+            if dv + rv <= 0:
+                errors.append(f"{label} {c}: PR allocation without votes")
+            else:
+                share = s.get("two_party_share") or {}
+                if abs(share.get("d_share", -1) - dv / (dv + rv)) > 1e-5:
+                    errors.append(f"{label} {c}: two_party_share doesn't match the votes")
+                # A state where one party had no votes at all is flagged, not a
+                # distortion to guard against (PR of the real vote is right).
+                if dv and rv:
+                    _check_pr_winner(errors, f"{label} {c}", seats, dv / (dv + rv), pr["d_seats"], pr["r_seats"])
+            totals["prd"] += pr["d_seats"]; totals["prr"] += pr["r_seats"]
+            totals["dv"] += dv; totals["rv"] += rv
+        totals["d"] += ae["d_seats"]; totals["r"] += ae["r_seats"]
+        totals["o"] += ae["other_seats"]; totals["u"] += ae["uncalled_seats"]
+
+    ne, npr = nat.get("as_elected", {}), nat.get("under_pr", {})
+    if (ne.get("d_seats"), ne.get("r_seats"), ne.get("other_seats"), ne.get("uncalled_seats")) != (
+        totals["d"], totals["r"], totals["o"], totals["u"]
+    ):
+        errors.append(f"{label}: national as_elected != sum of states")
+    if (npr.get("d_seats"), npr.get("r_seats"), npr.get("pending_seats")) != (
+        totals["prd"], totals["prr"], totals["pending"]
+    ):
+        errors.append(f"{label}: national under_pr != sum of states")
+    if totals["prd"] + totals["prr"] + totals["pending"] != TOTAL_SEATS:
+        errors.append(f"{label}: PR + pending seats != {TOTAL_SEATS}")
+    if (nat.get("votes") or {}).get("d") != totals["dv"] or (nat.get("votes") or {}).get("r") != totals["rv"]:
+        errors.append(f"{label}: national votes != sum of reporting states")
+    if meta.get("status_counts") != counts:
+        errors.append(f"{label}: meta.status_counts {meta.get('status_counts')} != {counts}")
+    if meta.get("all_called") != (totals["u"] == 0) or meta.get("all_certified") != (counts["certified"] == 50):
+        errors.append(f"{label}: meta all_called / all_certified inconsistent with the states")
 
 
 def check_electoral_college(errors: list[str]) -> None:
@@ -677,6 +859,8 @@ def main(check_freshness: bool = False) -> None:
     check_polling_error(errors)
     check_retrospectives(errors)
     check_history(errors, check_freshness)
+    check_election(errors, check_freshness)
+    check_results(errors)
     check_electoral_college(errors)
     check_senate(errors)
     check_circuits(errors)
@@ -687,7 +871,7 @@ def main(check_freshness: bool = False) -> None:
         sys.exit(1)
     print(
         "Data validation passed: projection + meta + baseline + composition + polling trend + "
-        "retrospectives + history + EC + Senate + circuits invariants hold."
+        "retrospectives + history + election + results + EC + Senate + circuits invariants hold."
     )
 
 

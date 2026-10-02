@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { BallotVariant, ProjectionPayload, ViewMode } from '../lib/types';
 import type { SandboxPayload } from '../lib/sandboxTypes';
+import { projectionCopy } from '../lib/election';
 import { fmtMargin } from '../lib/format';
 import { majorityTippingSentence } from '../lib/majorityTipping';
 import { topMinorWithSeats } from '../lib/colors';
@@ -80,6 +81,7 @@ export function HomeHero({
   onVariantChange,
 }: Props) {
   const { national, meta } = payload;
+  const copy = projectionCopy(meta);
   // The headline shift = projected D minus the baseline D. In Sandbox we read
   // the N-party sandbox totals (the selected method/minors/House, scaled
   // baseline) so the hero matches the "Difference under …" card exactly;
@@ -184,7 +186,7 @@ export function HomeHero({
         dGain === 0 ? (
           <>
             In a hypothetical <strong>{genericLabel}</strong> national vote, {reform} produces the
-            same split the House has today. Adjust the controls to explore.
+            same split the 2024 election did. Adjust the controls to explore.
           </>
         ) : (
           <>
@@ -193,7 +195,7 @@ export function HomeHero({
             <strong className={towardColor}>
               {absGain} {seats(absGain)} {towardWord(dGain)}
             </strong>{' '}
-            from today’s split. Adjust the controls to build your own scenario.
+            from the 2024 result. Adjust the controls to build your own scenario.
           </>
         );
     }
@@ -206,23 +208,34 @@ export function HomeHero({
     // and on the Methodology page.
     const generic = meta.generic_ballot_margin;
     const genericLabel = fmtMargin(generic);
+    // After the election freeze this is the final pre-election projection,
+    // republished unchanged: say so, and say when.
+    const under = copy.frozen ? 'Under the final pre-election polling' : 'Under today’s polling';
+    const frozenNote = copy.frozen ? (
+      <>
+        {' '}This is the final projection, frozen{copy.frozenOn ? ` on ${copy.frozenOn},` : ''} before
+        any votes were counted; {copy.cycle} results replace it as they come in.
+      </>
+    ) : null;
     if (dGain === 0) {
       lede = (
         <>
-          Under today’s polling (<strong>{genericLabel}</strong>), a proportional U.S. House would
+          {under} (<strong>{genericLabel}</strong>), a proportional U.S. House would
           give both parties about the same number of seats they won in 2024.
+          {frozenNote}
         </>
       );
     } else {
       const gainParty = dGain > 0 ? 'Democrats' : 'Republicans';
       lede = (
         <>
-          Under today’s polling (<strong>{genericLabel}</strong>), a proportional U.S. House would
+          {under} (<strong>{genericLabel}</strong>), a proportional U.S. House would
           give{' '}
           <strong className={towardColor}>
             {gainParty} about {absGain} more {seats(absGain)}
           </strong>{' '}
           than they won in 2024.
+          {frozenNote}
         </>
       );
       if (structuralDGain != null) {
@@ -289,7 +302,8 @@ export function HomeHero({
           </div>
           <p className="mt-2 text-[11px] uppercase tracking-wider text-stone-500">{subLabel}</p>
 
-          {viewMode === 'current' && weeklyDelta && <WeeklyDeltaChip delta={weeklyDelta} />}
+          {/* No week-over-week movement once the projection is frozen. */}
+          {viewMode === 'current' && weeklyDelta && !copy.frozen && <WeeklyDeltaChip delta={weeklyDelta} />}
 
           <p className="mt-4 text-base sm:text-lg text-stone-800 leading-relaxed">{lede}</p>
           {caveat && (

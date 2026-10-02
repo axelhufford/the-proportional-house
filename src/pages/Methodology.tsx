@@ -8,9 +8,10 @@ import { useDocumentTitle } from '../lib/useDocumentTitle';
 // from what the band actually uses.
 import POLLING_ERROR from '../../data-pipeline/baseline/polling_error.json';
 import { ROUTE_META } from '../lib/routeMeta';
+import { isFrozen } from '../lib/election';
 import { fmtMargin } from '../lib/format';
 import { fetchJson } from '../lib/fetchJson';
-import type { ProjectionMeta } from '../lib/types';
+import type { ElectionMeta, ProjectionMeta } from '../lib/types';
 
 interface MethodologyProps {
   // Kept for symmetry with the route definition; the page primarily reads its
@@ -19,6 +20,7 @@ interface MethodologyProps {
 }
 
 interface MetaJson {
+  election?: ElectionMeta;
   baseline_2024_r_margin?: number;
   swing?: number;
   generic_ballot?: { margin: number; n_polls: number; window_days: number };
@@ -62,6 +64,7 @@ export function Methodology(_props: MethodologyProps) {
   useEffect(() => {
     fetchJson<MetaJson>('/data/meta.json').then(setPipelineMeta).catch(() => {});
   }, []);
+  const frozen = isFrozen(pipelineMeta);
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-8 lg:grid lg:grid-cols-[208px_minmax(0,1fr)] lg:gap-10">
@@ -70,15 +73,15 @@ export function Methodology(_props: MethodologyProps) {
       <h1 className="font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">Methodology</h1>
       <p className="mt-3 text-stone-600">
         What would the U.S. House look like if every state allocated its seats by proportional
-        representation, based on current generic-ballot polling? This page walks through exactly
+        representation, based on generic-ballot polling? This page walks through exactly
         how that projection is computed, what data feeds it, and what it does and doesn’t tell you.
       </p>
 
       <Section id="short-version" title="The short version">
         <ol className="list-decimal pl-6 space-y-2">
           <li>For each state, take its 2024 two-party House vote share as a baseline.</li>
-          <li>Compute the current national generic-ballot polling margin from a weighted average of recent polls.</li>
-          <li>The difference between today’s generic-ballot margin and 2024’s national House margin is the <em>swing</em>.</li>
+          <li>Compute the national generic-ballot polling margin from a weighted average of recent polls.</li>
+          <li>The difference between that generic-ballot margin and 2024’s national House margin is the <em>swing</em>.</li>
           <li>Shift each state’s two-party shares by that swing, scaled by the state’s elasticity (how much the state moved between 2020 and 2024 vs. the nation as a whole).</li>
           <li>Allocate the state’s seats to the projected shares using Sainte-Laguë.</li>
         </ol>
@@ -152,12 +155,12 @@ export function Methodology(_props: MethodologyProps) {
       <Section id="the-math" title="The math, written out">
         <p>Each state’s 2024 two-party D share is computed from the Clerk’s recap as <code>d_share = D / (D + R)</code>. The national swing is</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`swing = current_generic_ballot_margin − baseline_2024_national_margin`}</pre>
-        <p>where both terms are in margin points (positive = D advantage). For example, today the generic ballot sits at roughly {fmtMargin(pipelineMeta?.generic_ballot?.margin ?? 6.0)} and 2024 was {fmtMargin(-(pipelineMeta?.baseline_2024_r_margin ?? 2.55), 2)}, giving a swing of about {fmtSwingPhrase(pipelineMeta?.swing ?? FALLBACK_SWING)}.</p>
+        <p>where both terms are in margin points (positive = D advantage). For example, in the {frozen ? 'final pre-election' : 'latest'} projection the generic ballot is roughly {fmtMargin(pipelineMeta?.generic_ballot?.margin ?? 6.0)} and 2024 was {fmtMargin(-(pipelineMeta?.baseline_2024_r_margin ?? 2.55), 2)}, giving a swing of about {fmtSwingPhrase(pipelineMeta?.swing ?? FALLBACK_SWING)}.</p>
         <p>States don’t all respond to a national swing equally. California swung ~9 points toward Republicans between 2020 and 2024 while Pennsylvania moved far less (about 3 points). We capture that with a per-state <em>elasticity</em> coefficient: each state’s D-margin shift between the 2020 and 2024 presidential elections, divided by the national average shift.</p>
         <pre className="bg-stone-100 rounded p-3 text-sm overflow-x-auto">{`state_swing  = national_swing × elasticity_state
 projected_d_share = baseline_d_share + (state_swing / 2 / 100)
 projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
-        <p>For example, California’s elasticity is 1.70, so it gets 1.7× the national swing — but California is already heavily Democratic, so the marginal seats gained are small. Pennsylvania’s elasticity is 0.51, so only about half the national swing is applied there, reflecting its reputation as a tight, hard-to-move state. (With today’s {Math.abs(pipelineMeta?.swing ?? FALLBACK_SWING).toFixed(1)}-point national swing toward {(pipelineMeta?.swing ?? FALLBACK_SWING) >= 0 ? 'Democrats' : 'Republicans'}, that’s roughly {Math.abs((pipelineMeta?.swing ?? FALLBACK_SWING) * CA_ELASTICITY).toFixed(1)} points in California and {Math.abs((pipelineMeta?.swing ?? FALLBACK_SWING) * PA_ELASTICITY).toFixed(1)} in Pennsylvania.) Source: unweighted mean of CD-level Biden/Harris vs. Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (which would otherwise yield unstable or negative elasticity).</p>
+        <p>For example, California’s elasticity is 1.70, so it gets 1.7× the national swing — but California is already heavily Democratic, so the marginal seats gained are small. Pennsylvania’s elasticity is 0.51, so only about half the national swing is applied there, reflecting its reputation as a tight, hard-to-move state. (With the projection’s {Math.abs(pipelineMeta?.swing ?? FALLBACK_SWING).toFixed(1)}-point national swing toward {(pipelineMeta?.swing ?? FALLBACK_SWING) >= 0 ? 'Democrats' : 'Republicans'}, that’s roughly {Math.abs((pipelineMeta?.swing ?? FALLBACK_SWING) * CA_ELASTICITY).toFixed(1)} points in California and {Math.abs((pipelineMeta?.swing ?? FALLBACK_SWING) * PA_ELASTICITY).toFixed(1)} in Pennsylvania.) Source: unweighted mean of CD-level Biden/Harris vs. Trump margins from <a className="underline" href="https://www.the-downballot.com/p/the-downballots-calculations-of-presidential" target="_blank" rel="noreferrer">The Downballot</a>. Elasticities are clamped to [0.3, 2.0] to handle states whose 2020→2024 pres swing was small or in the opposite direction (which would otherwise yield unstable or negative elasticity).</p>
         <p>The divide-by-2 in both formulas is because a swing of N points in the <em>margin</em> shifts each party’s share by N/2 points (D up by half, R down by half). Shares are clamped to [0.001, 0.999] so extreme sandbox values don’t break Sainte-Laguë.</p>
       </Section>
 
@@ -454,7 +457,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
 
       <Section id="the-reveal" title="The reveal is more modest than you might expect">
         <p>
-          Under today’s {fmtMargin(pipelineMeta?.generic_ballot?.margin ?? 6, 0)} polling and the 2024 baseline, the projection comes out at{' '}
+          Under the {frozen ? 'final pre-election' : 'current'} {fmtMargin(pipelineMeta?.generic_ballot?.margin ?? 6, 0)} polling and the 2024 baseline, the projection comes out at{' '}
           {pipelineMeta?.national && (
             <strong>
               D {pipelineMeta.national.projected.d_seats} / R {pipelineMeta.national.projected.r_seats}
@@ -462,9 +465,11 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           )}
           {pipelineMeta?.national && (
             <>
-              , enough to flip control from the current{' '}
+              {majorityParty(pipelineMeta.national.projected) !== majorityParty(pipelineMeta.national.actual)
+                ? ', enough to flip control from the '
+                : ', the same majority as the '}
               <strong>{pipelineMeta.national.actual.d_seats}D / {pipelineMeta.national.actual.r_seats}R</strong>{' '}
-              House, but a smaller net shift than the “PR would help one side enormously” intuition suggests.
+              House elected in 2024, but a smaller net shift than the “PR would help one side enormously” intuition suggests.
             </>
           )}
         </p>
@@ -472,7 +477,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           The reason: distortion goes <em>both ways</em>. R-gerrymandered states (TX, FL, OH) over-represent
           Republicans; D-gerrymandered states (CA, NY, IL, MD) over-represent Democrats. Under PR, both
           effects shrink, and they largely cancel at the national level. What remains is mostly the
-          national-mood swing (today, toward Democrats) translating into seats more directly than the current map allows.
+          national-mood swing (in this projection, toward {(pipelineMeta?.swing ?? FALLBACK_SWING) >= 0 ? 'Democrats' : 'Republicans'}) translating into seats more directly than the current map allows.
         </p>
         <p>
           The 2024 Retrospective view (applying PR to actual 2024 results with no swing) confirms this:
@@ -493,10 +498,35 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
       </Section>
 
+      <Section id="election-day" title="Election Day: freezing the projection">
+        <p>
+          The projection updates daily until Election Day. At 5 a.m. Eastern on the day of the
+          election (after the last scheduled pre-election run, before polls open) it is frozen:
+          the site stops fetching polls and republishes, unchanged, the final projection it
+          published that morning. It is never recomputed afterward. Poll databases are revised
+          after the fact and house-effect adjustments are re-estimated, so a recompute could
+          produce a “final projection” that was never actually shown.
+        </p>
+        <p>
+          The frozen projection is published with a SHA-256 hash of its contents
+          (<code>meta.election.final_projection</code> in <code>/data/projection.json</code>), so
+          anyone can check it hasn’t changed since. The{' '}
+          <a className="underline" href="#reconstructed-history">projection-over-time chart</a>{' '}
+          ends on that final point.
+        </p>
+        <p>
+          From then on the site follows the results. Numbers shown during the count are
+          provisional: each state carries how much of its expected vote is counted, a source, and a
+          timestamp, and its figures change as counting continues. Each state is marked certified
+          once it certifies its results, most by mid-December. The final projection stays on the
+          site as a record, to set against the results.
+        </p>
+      </Section>
+
       <Section id="polling-uncertainty" title="How wrong could the polls be?">
         <p>
-          The headline projection is a <em>nowcast</em>: today’s generic-ballot average, applied to
-          the 2024 baseline. Its biggest quantifiable risk is simple — the polls could be off. So we
+          The headline projection is a <em>nowcast</em>: the generic-ballot average on the day it is
+          computed, applied to the 2024 baseline. Its biggest quantifiable risk is simple — the polls could be off. So we
           publish a sensitivity band: the same model, re-run with the national margin moved by the
           historical polling miss (±{POLLING_ERROR.meta.epsilon_points} points) in each direction.
           It is <strong>a sensitivity range, not a probability</strong> — we make no probabilistic
@@ -564,7 +594,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         <p>
           What the band does <em>not</em> capture: error in the uniform-swing and elasticity model
           itself, candidate and turnout effects, the absence of state-level polling, and the fact
-          that today’s polling average is a snapshot of now, not a prediction of November — polls
+          that a polling average is a snapshot of its moment, not a prediction of Election Day — polls
           months out drift more than final averages do. Those caveats live in{' '}
           <a className="underline hover:text-brand-navy" href="#limitations">Assumptions and limitations</a>.
         </p>
@@ -608,7 +638,14 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
             carries an optional <code>projected_range</code> — the{' '}
             <a className="underline" href="#polling-uncertainty">polling-error sensitivity band</a>{' '}
             (ε, basis, and D/R low–high seat ranges); the key is omitted entirely if a build ships
-            without a band, so existing consumers are unaffected.
+            without a band, so existing consumers are unaffected. A top-level <code>phase</code>{' '}
+            says where the election cycle stands: <code>projection</code> before Election Day;{' '}
+            <code>counting</code> and then <code>results</code> after it, when{' '}
+            <code>national.projected</code> and <code>polling</code> are the{' '}
+            <a className="underline" href="#election-day">frozen final projection</a> rather than
+            today’s numbers. An optional <code>election</code> block names the cycle and the freeze
+            time. Anything that narrates the projection as current should check <code>phase</code>{' '}
+            first.
           </li>
           <li>
             <code>GET /api/v1/projection.csv</code>: the same data flattened to one row per state,
@@ -671,7 +708,7 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           The pipeline doesn’t look at partisan labels except to count votes. The same code runs whether
           the swing is toward D or toward R. If the generic ballot flipped to R+6, the projection would
           gain seats for Republicans in blue states by exactly the same mechanism that gains them for
-          Democrats today.
+          Democrats under a Democratic-leaning ballot.
         </p>
         <p>Source code: <a className="underline" href="https://github.com/axelhufford/the-proportional-house" target="_blank" rel="noreferrer">github.com/axelhufford/the-proportional-house</a>.</p>
       </Section>
@@ -690,6 +727,7 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: 'methods', label: 'Allocation methods' },
   { id: 'house-size', label: 'House size' },
   { id: 'the-reveal', label: 'How modest the change is' },
+  { id: 'election-day', label: 'Election Day freeze' },
   { id: 'polling-uncertainty', label: 'How wrong could polls be?' },
   { id: 'limitations', label: 'Assumptions & limits' },
   { id: 'api', label: 'API & downloads' },
@@ -746,4 +784,9 @@ function Section({ id, title, children }: { id?: string; title: string; children
       <div className="mt-3 space-y-3">{children}</div>
     </section>
   );
+}
+
+/** Which party holds a majority of a D/R split, or null on a tie. */
+function majorityParty(seats: { d_seats: number; r_seats: number }): 'D' | 'R' | null {
+  return seats.d_seats > seats.r_seats ? 'D' : seats.r_seats > seats.d_seats ? 'R' : null;
 }

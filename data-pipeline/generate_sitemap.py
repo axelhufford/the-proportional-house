@@ -81,7 +81,7 @@ DAILY_ROUTES = {"/", "/rankings", "/retrospective"}
 ROUTE_SOURCES: dict[str, tuple[str, ...]] = {
     "/sandbox": ("src/pages/Home.tsx", "src/components/MinorPartyControls.tsx",
                  "src/lib/allocation.ts"),
-    "/retrospectives": ("data-pipeline/generate_retrospectives_page.py",
+    "/retrospectives": ("data-pipeline/generate_content_pages.py",
                         "public/data/retrospectives.json"),
     "/methodology": ("src/pages/Methodology.tsx",),
     "/about": ("src/pages/About.tsx",),

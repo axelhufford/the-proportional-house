@@ -11,6 +11,11 @@ interface Props {
    * holds plurality; this legend explains the mapping.
    */
   sandboxPayload?: SandboxPayload | null;
+  /**
+   * Election results only: one line on what gray means (states with no votes
+   * counted, or — in distortion mode — with races still uncalled).
+   */
+  resultsNote?: string;
 }
 
 // Sample the same diverging color function the map uses, at evenly-spaced
@@ -30,14 +35,14 @@ const LABELS: Record<
   },
   distortion: {
     left: 'PR shifts toward R',
-    center: 'Same as today',
+    center: 'Same as elected',
     right: 'PR shifts toward D',
-    aria: 'Color scale: orange for states where proportional representation would shift seats toward Republicans relative to today, purple for shifts toward Democrats, gray for states unchanged.',
-    caption: 'Each state’s color shows which way its seats would move under PR, vs. today’s map.',
+    aria: 'Color scale: orange for states where proportional representation would shift seats toward Republicans relative to the delegation as elected, purple for shifts toward Democrats, gray for states unchanged.',
+    caption: 'Each state’s color shows which way its seats would move under PR, vs. the delegation voters elected.',
   },
 };
 
-export function MapLegend({ mode, sandboxPayload }: Props) {
+export function MapLegend({ mode, sandboxPayload, resultsNote }: Props) {
   // Extended sandbox legend: party swatches instead of a diverging
   // scale. Only swap to swatches when minors are actually active —
   // otherwise the map keeps painting balance/distortion (from sandbox
@@ -92,6 +97,7 @@ export function MapLegend({ mode, sandboxPayload }: Props) {
         <span>{labels.right}</span>
       </div>
       <p className="mt-1.5 text-xs text-stone-500">{labels.caption}</p>
+      {resultsNote && <p className="mt-0.5 text-xs text-stone-500">{resultsNote}</p>}
     </div>
   );
 }

@@ -26,12 +26,52 @@ def _fmt_margin(m: float) -> str:
     return f"D+{m:.1f}" if m >= 0 else f"R+{abs(m):.1f}"
 
 
+def _ordinal(n: int) -> str:
+    suffix = "th" if 11 <= n % 100 <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def build_results_section(r: dict) -> str | None:
+    """Election results, once any state has votes counted (build_results.py)."""
+    reporting = [s for s in r["states"] if s.get("under_pr")]
+    if not reporting:
+        return None
+    meta, nat = r["meta"], r["national"]
+    status = "certified" if meta["all_certified"] else "provisional"
+    ae, pr = nat["as_elected"], nat["under_pr"]
+    other = f", other {ae['other_seats']}" if ae["other_seats"] else ""
+    lines = [
+        f"## {meta['cycle']} election results ({status}; latest update {str(meta.get('as_of') or '')[:16]})",
+        f"- Races called: {meta['seats_called']} of 435 (D {ae['d_seats']}, R {ae['r_seats']}{other}).",
+        (f"- Proportional allocation of the certified vote: D {pr['d_seats']}, R {pr['r_seats']}"
+         if status == "certified" else
+         f"- Proportional allocation of the votes counted so far, in the {len(reporting)} states "
+         f"reporting: D {pr['d_seats']}, R {pr['r_seats']}")
+        + (f", with {pr['pending_seats']} seats in states not yet reporting." if pr["pending_seats"] else "."),
+    ]
+    if nat.get("two_party_d_margin_points") is not None:
+        lines.append(f"- Counted two-party House vote: {_fmt_margin(nat['two_party_d_margin_points'])}.")
+    if status == "provisional":
+        lines.append("- All results are provisional until each state certifies; partial counts move.")
+    lines.append(f"- Machine-readable: https://proportionalhouse.org/data/results_{meta['cycle']}.json")
+    return "\n".join(lines)
+
+
 def build_current_section(p: dict, composition: dict | None = None) -> str:
     meta = p["meta"]
     nat = p["national"]
     date = str(meta["generated_at"])[:10]
+    election = meta.get("election") or {}
+    # After the election freeze this is the final pre-election projection,
+    # republished unchanged — never "current" (see data-pipeline/freeze.py).
+    frozen = election.get("phase", "projection") != "projection"
+    heading = (
+        f"## Final {election.get('cycle', 2026)} projection (frozen {date}, before any votes were counted)"
+        if frozen
+        else f"## Current projection (updated {date})"
+    )
     lines = [
-        f"## Current projection (updated {date})",
+        heading,
         # The parenthetical is the 2024 ELECTION RESULT, which is what the
         # projection is compared against. Labeling it "today" (as this line used
         # to) is wrong once anyone resigns — the live chamber gets its own line
@@ -39,7 +79,8 @@ def build_current_section(p: dict, composition: dict | None = None) -> str:
         f"- Projected House under PR: Democrats {nat['projected']['d_seats']}, "
         f"Republicans {nat['projected']['r_seats']} "
         f"(as elected in 2024: D {nat['actual']['d_seats']}, R {nat['actual']['r_seats']}).",
-        f"- Generic-ballot average: {_fmt_margin(meta['generic_ballot_margin'])} "
+        f"- {'Final pre-election generic-ballot' if frozen else 'Generic-ballot'} average: "
+        f"{_fmt_margin(meta['generic_ballot_margin'])} "
         f"(swing {meta['swing']:+.1f} pts vs. the 2024 House vote).",
     ]
     if composition:
@@ -49,12 +90,13 @@ def build_current_section(p: dict, composition: dict | None = None) -> str:
             parts.append(f"{c['other_seats']} other")
         if c.get("vacant"):
             parts.append(f"{c['vacant']} vacant")
+        congress = composition["meta"].get("congress")
+        which = f"{_ordinal(congress)} Congress, " if congress else ""
         lines.append(
             f"- Actual House composition today: {', '.join(parts)} "
-            f"(Clerk of the House, as of {composition['meta']['publish_date']}). "
-            f"This differs from the 2024 election result above because of "
-            f"resignations, deaths, and special elections; the projection is "
-            f"compared against the election result, not this figure."
+            f"(Clerk of the House, {which}as of {composition['meta']['publish_date']}). "
+            f"The projection is compared against the 2024 election result above, "
+            f"not this figure, which moves with vacancies and special elections."
         )
     unc = meta.get("uncertainty")
     if unc:
@@ -69,7 +111,7 @@ def build_current_section(p: dict, composition: dict | None = None) -> str:
             f"on the generic ballot."
         )
     flips = meta.get("closest_flips")
-    if flips:
+    if flips and not frozen:  # the national margin no longer moves once frozen
         nearest = flips[0]
         toward = "Democrats" if nearest["direction"] == "D" else "Republicans"
         lines.append(
@@ -84,18 +126,19 @@ def build_current_section(p: dict, composition: dict | None = None) -> str:
 
 TEMPLATE = """# The Proportional House
 
-> The Proportional House (proportionalhouse.org) is a non-partisan, daily-updated
-> visualization of how the U.S. House of Representatives would look under proportional
-> representation (PR) instead of today's winner-take-all districts. It projects, state by
-> state, how seats would be allocated if each state's delegation matched its statewide vote:
-> using current generic-ballot polling for the live projection, and actual results for
-> historical retrospectives covering the last five cycles (2016, 2018, 2020, 2022, 2024).
+> The Proportional House (proportionalhouse.org) is a non-partisan visualization of how
+> the U.S. House of Representatives would look under proportional representation (PR)
+> instead of today's winner-take-all districts. It projects, state by state, how seats
+> would be allocated if each state's delegation matched its statewide vote: using
+> generic-ballot polling for the projection (updated daily until Election Day, then frozen
+> as the final pre-election projection), and actual results for historical retrospectives
+> covering the last five cycles (2016, 2018, 2020, 2022, 2024).
 > Built by Axel Hufford; open source under the MIT license.
 
 {current_section}
 
 ## Key pages
-- [Home / interactive map](https://proportionalhouse.org/): the national projection plus a clickable 50-state map. Three views: Current Projection (today's House vs. PR of the projected statewide vote), Retrospective (PR of the actual vote in 2016–2024), and an interactive Sandbox.
+- [Home / interactive map](https://proportionalhouse.org/): the national projection plus a clickable 50-state map. Three views: Current Projection (the 2024 result vs. PR of the projected statewide vote), Retrospective (PR of the actual vote in 2016–2024), and an interactive Sandbox.
 - [Rankings](https://proportionalhouse.org/rankings): leaderboards of the most distorted state delegations — biggest Democratic shifts, biggest Republican shifts, and the most one-sided delegations under PR.
 - [Methodology](https://proportionalhouse.org/methodology): data sources, Sainte-Laguë allocation, state elasticity, the polling-error sensitivity band, the Sandbox's allocation methods (Pure PR, multi-member districts, mixed-member proportional), House-size expansion, uncontested-race handling, and limitations.
 - [About / FAQ](https://proportionalhouse.org/about): what the project is, why the House (not the Senate), whether it's partisan, and a detailed FAQ.
@@ -131,7 +174,16 @@ def main() -> None:
     if COMPOSITION_PATH.exists():
         with COMPOSITION_PATH.open() as f:
             composition = json.load(f)
-    write_text_atomic(OUT_PATH, TEMPLATE.format(current_section=build_current_section(projection, composition)))
+    section = build_current_section(projection, composition)
+    # Results (after the election): lead with them, above the frozen projection.
+    cycle = (projection.get("meta", {}).get("election") or {}).get("cycle")
+    results_path = REPO_ROOT / "public" / "data" / f"results_{cycle}.json"
+    if cycle and results_path.exists():
+        with results_path.open() as f:
+            results_section = build_results_section(json.load(f))
+        if results_section:
+            section = results_section + "\n\n" + section
+    write_text_atomic(OUT_PATH, TEMPLATE.format(current_section=section))
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)}.")
 
 

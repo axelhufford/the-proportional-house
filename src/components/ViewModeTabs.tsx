@@ -82,6 +82,12 @@ const VIEW_OPTIONS: ViewOption[] = [
 interface Props {
   value: ViewMode;
   onChange: (mode: ViewMode) => void;
+  /**
+   * Label/descriptor for the 'current' tab. Defaults to the pre-election
+   * "Current Projection · Today's polling"; after the election freeze Home
+   * passes the frozen (and later, results) wording from lib/election.
+   */
+  current?: { label: string; desc: string; title?: string };
 }
 
 /**
@@ -90,7 +96,10 @@ interface Props {
  * label + one-line descriptor). Active = filled brand navy; inactive = bordered
  * white cards with a navy hover. Radio-style group via aria-pressed buttons.
  */
-export function ViewModeTabs({ value, onChange }: Props) {
+export function ViewModeTabs({ value, onChange, current }: Props) {
+  const options = current
+    ? VIEW_OPTIONS.map((o) => (o.value === 'current' ? { ...o, ...current } : o))
+    : VIEW_OPTIONS;
   return (
     <div>
       <span
@@ -100,7 +109,7 @@ export function ViewModeTabs({ value, onChange }: Props) {
         View
       </span>
       <div role="group" aria-labelledby="view-tabs-label" className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-        {VIEW_OPTIONS.map((opt) => {
+        {options.map((opt) => {
           const active = opt.value === value;
           return (
             <button

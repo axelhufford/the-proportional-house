@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { StateDetailContent } from '../components/StateDetailContent';
 import { useEmbedHeightSync } from '../lib/embedPostMessage';
+import { projectionCopy } from '../lib/election';
 import { fetchJson } from '../lib/fetchJson';
 import type { ProjectionPayload } from '../lib/types';
 
@@ -78,7 +79,10 @@ export function EmbedState() {
         autoFocusHeading={false}
       />
       <div className="px-5 pb-4 pt-1 flex items-baseline justify-between text-xs text-stone-500 border-t border-stone-100">
-        <span>Source: U.S. House Clerk + Silver Bulletin polls</span>
+        <span>
+          {projectionCopy(payload.meta).frozen && 'Final pre-election projection · '}
+          Source: U.S. House Clerk + Silver Bulletin polls
+        </span>
         <a
           href={`https://proportionalhouse.org/state/${state.code.toLowerCase()}?utm_source=embed`}
           target="_top"

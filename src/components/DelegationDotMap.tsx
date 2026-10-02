@@ -20,6 +20,12 @@ export interface DelegationSet {
   rowLabel: string;
   /** Line under the heading while this side is shown. */
   subtitle: string;
+  /**
+   * What an empty (white) seat means on this side, lowercase. Defaults to
+   * "vacant" (the live chamber); election results use it for races not yet
+   * called or states not yet counted.
+   */
+  vacantLabel?: string;
 }
 
 interface Props {
@@ -60,8 +66,8 @@ function geometryFor(topology: Topology): SeatDotGeometry {
   return g;
 }
 
-function plural(n: number, one: string, many: string): string {
-  return `${n} ${n === 1 ? one : many}`;
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 function sumDelegations(delegations: StateDelegation[]) {
@@ -149,7 +155,7 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
     `${title}, ${shown.toggleLabel.toLowerCase()}: one dot per seat, grouped by state. ` +
     `Nationally ${totals.d} Democrats and ${totals.r} Republicans` +
     (totals.other ? `, ${totals.other} other` : '') +
-    (totals.vacant ? `, ${plural(totals.vacant, 'vacant seat', 'vacant seats')}` : '') +
+    (totals.vacant ? `, ${totals.vacant} ${shown.vacantLabel ?? (totals.vacant === 1 ? 'vacant seat' : 'vacant seats')}` : '') +
     '.';
 
   return (
@@ -185,7 +191,7 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
         <LegendItem kind="D" label="Democrat" />
         <LegendItem kind="R" label="Republican" />
         {totals.other > 0 && <LegendItem kind="other" label="Other" />}
-        {totals.vacant > 0 && <LegendItem kind="vacant" label="Vacant" />}
+        {totals.vacant > 0 && <LegendItem kind="vacant" label={capitalize(shown.vacantLabel ?? 'vacant')} />}
       </ul>
 
       <div ref={frameRef} className="relative mt-2" onMouseMove={moveTooltip}>
@@ -297,7 +303,7 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
                       {' · '}
                       <span className={active ? 'text-red-700' : ''}>R {del.r}</span>
                       {del.other > 0 && ` · ${del.other} other`}
-                      {del.vacant > 0 && ` · ${del.vacant} vacant`}
+                      {del.vacant > 0 && ` · ${del.vacant} ${set.vacantLabel ?? 'vacant'}`}
                     </dd>
                   </div>
                 ))}
@@ -334,7 +340,7 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
                   {act
                     ? `Democratic ${act.d}, Republican ${act.r}` +
                       (act.other ? `, other ${act.other}` : '') +
-                      (act.vacant ? `, vacant ${act.vacant}` : '')
+                      (act.vacant ? `, ${actual.vacantLabel ?? 'vacant'} ${act.vacant}` : '')
                     : '—'}
                 </td>
               </tr>

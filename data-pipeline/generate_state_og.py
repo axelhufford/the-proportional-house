@@ -34,6 +34,16 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
+META_PATH = REPO_ROOT / "public" / "data" / "meta.json"
+
+
+def frozen_on(meta: dict) -> str | None:
+    """Publication date (YYYY-MM-DD) of the frozen final projection, or None
+    before the election freeze (see data-pipeline/freeze.py)."""
+    election = meta.get("election") or {}
+    if election.get("phase", "projection") == "projection":
+        return None
+    return str(meta.get("generated_at", ""))[:10] or None
 OG_DIR = REPO_ROOT / "public" / "og"
 STATE_HTML_DIR = REPO_ROOT / "public" / "state"
 # Home share card. index.html points og:image at /og-card.png, so we overwrite
@@ -71,14 +81,22 @@ LOGOMARK_SVG = """<g transform="translate(60, 95) scale(1.8)">
 </g>"""
 
 
-def build_card_svg(state: dict) -> str:
-    """Return a 1200x630 SVG OG card for a single state."""
+def build_card_svg(
+    state: dict, *, left_label: str = "AS ELECTED 2024", right_label: str = "PROJECTED UNDER PR",
+    shift_override: tuple[str, str] | None = None,
+) -> str:
+    """Return a 1200x630 SVG OG card for a single state.
+
+    The keyword arguments relabel it for election results (see
+    build_results_card_svg); the defaults are the projection card."""
     name = state["name"]
     code = state["code"]
     actual = state["actual"]
     projected = state["projected"]
     d_gain = projected["d_seats"] - actual["d_seats"]
-    if d_gain == 0:
+    if shift_override is not None:
+        shift_label, shift_color = shift_override
+    elif d_gain == 0:
         shift_label = "No shift under PR"
         shift_color = "#5C5C5A"
     elif d_gain > 0:
@@ -96,14 +114,14 @@ def build_card_svg(state: dict) -> str:
   <text x="500" y="200" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="64" font-weight="500" fill="#1F2E4D" letter-spacing="-0.01em">{name}</text>
   <text x="500" y="240" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="22" font-style="italic" fill="#5C5C5A">{state['seats']} House {'seat' if state['seats'] == 1 else 'seats'} under proportional representation</text>
 
-  <text x="500" y="320" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">AS ELECTED 2024</text>
+  <text x="500" y="320" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">{left_label}</text>
   <text x="500" y="370" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
     <tspan fill="#2166ac">D {actual['d_seats']}</tspan>
     <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
     <tspan fill="#B2182B">R {actual['r_seats']}</tspan>
   </text>
 
-  <text x="820" y="320" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">PROJECTED UNDER PR</text>
+  <text x="820" y="320" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">{right_label}</text>
   <text x="820" y="370" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
     <tspan fill="#2166ac">D {projected['d_seats']}</tspan>
     <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
@@ -144,22 +162,32 @@ def build_home_card_svg(national: dict, meta: dict) -> str:
 
     margin = meta.get("generic_ballot_margin", 0.0)
     polling = f"D+{margin:.1f}" if margin >= 0 else f"R+{abs(margin):.1f}"
+    under = "under the final pre-election polling" if frozen_on(meta) else "under today's polling"
+    return _home_card(
+        headline, headline_color, f"{under} ({polling})",
+        "AS ELECTED 2024", actual, "PROJECTED UNDER PR", projected,
+    )
 
+
+def _home_card(headline: str, headline_color: str, subline: str,
+               left_label: str, left: dict, right_label: str, right: dict) -> str:
+    """The home card's frame: headline, italic subline, two labeled D/R splits."""
+    actual, projected = left, right
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#F4EDE0"/>
   {LOGOMARK_SVG}
   <text x="500" y="150" font-family="'Inter', -apple-system, sans-serif" font-size="16" letter-spacing="3" fill="#888780">THE PROPORTIONAL HOUSE</text>
   <text x="500" y="218" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="46" font-weight="600" fill="{headline_color}" letter-spacing="-0.01em">{headline}</text>
-  <text x="500" y="258" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="22" font-style="italic" fill="#5C5C5A">under today's polling ({polling})</text>
+  <text x="500" y="258" font-family="'Source Serif 4', 'Times New Roman', Georgia, serif" font-size="22" font-style="italic" fill="#5C5C5A">{subline}</text>
 
-  <text x="500" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">AS ELECTED 2024</text>
+  <text x="500" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">{left_label}</text>
   <text x="500" y="395" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
     <tspan fill="#2166ac">D {actual['d_seats']}</tspan>
     <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
     <tspan fill="#B2182B">R {actual['r_seats']}</tspan>
   </text>
 
-  <text x="820" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">PROJECTED UNDER PR</text>
+  <text x="820" y="345" font-family="'Inter', -apple-system, sans-serif" font-size="14" letter-spacing="2" fill="#888780">{right_label}</text>
   <text x="820" y="395" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="600">
     <tspan fill="#2166ac">D {projected['d_seats']}</tspan>
     <tspan fill="#5C5C5A" font-weight="400">  ·  </tspan>
@@ -171,13 +199,69 @@ def build_home_card_svg(national: dict, meta: dict) -> str:
 </svg>"""
 
 
-def build_html_page(state: dict, og_version: str = "") -> str:
+def _uncalled_phrase(n: int) -> str:
+    return f"{n} {'race' if n == 1 else 'races'} not yet called"
+
+
+def build_results_card_svg(state: dict, result: dict, cycle: int) -> str:
+    """A state's OG card once it has votes counted: races called vs. PR of the
+    vote counted. No shift is claimed while a race is uncalled."""
+    ae, pr = result["as_elected"], result["under_pr"]
+    certified = result["status"] == "certified"
+    uncalled = ae["uncalled_seats"]
+    return build_card_svg(
+        {**state, "actual": {"d_seats": ae["d_seats"], "r_seats": ae["r_seats"]}, "projected": pr},
+        left_label=f"AS ELECTED {cycle}" if uncalled == 0 else "CALLED SO FAR",
+        right_label=f"UNDER PR · {cycle} VOTE" if certified else "UNDER PR · VOTES COUNTED",
+        shift_override=(_uncalled_phrase(uncalled), "#5C5C5A") if uncalled else None,
+    )
+
+
+def build_results_home_card_svg(results: dict) -> str:
+    """The home OG card once votes are counted. The headline seat shift appears
+    only when every race is called and every state is reporting."""
+    meta, nat = results["meta"], results["national"]
+    cycle = meta["cycle"]
+    ae, pr = nat["as_elected"], nat["under_pr"]
+    complete = meta["all_called"] and pr["pending_seats"] == 0
+    status = "certified" if meta["all_certified"] else "provisional"
+    reporting = sum(1 for s in results["states"] if s.get("under_pr"))
+    if complete:
+        d_gain = pr["d_seats"] - ae["d_seats"]
+        if d_gain == 0:
+            headline, color = "No shift under PR", "#5C5C5A"
+        elif d_gain > 0:
+            headline, color = f"+{d_gain} seats toward Democrats", "#2166ac"
+        else:
+            headline, color = f"+{abs(d_gain)} seats toward Republicans", "#B2182B"
+        sub = f"{cycle} House results under PR ({status})"
+    else:
+        headline, color = f"{cycle} results: counting", "#1F2E4D"
+        sub = f"{meta['seats_called']} of 435 races called · {reporting} of 50 states reporting"
+    return _home_card(
+        headline, color, sub,
+        f"AS ELECTED {cycle}" if meta["all_called"] else "CALLED SO FAR", ae,
+        f"UNDER PR · {cycle} VOTE" if meta["all_certified"] else "UNDER PR · VOTES COUNTED", pr,
+    )
+
+
+def build_html_page(
+    state: dict, og_version: str = "", frozen_date: str | None = None,
+    result: dict | None = None, cycle: int | None = None,
+) -> str:
     """Return the static /state/{code}.html page — a real, indexable content
     page (no redirect) that search + AI crawlers can read, with a link into the
     interactive SPA map.
 
     og_version, when set, is appended to the og:image URL (?v=...) so social
-    platforms re-fetch the regenerated card instead of a stale cached copy."""
+    platforms re-fetch the regenerated card instead of a stale cached copy.
+
+    frozen_date, when set, is the date the final pre-election projection was
+    frozen; the page then says so instead of "updated daily".
+
+    result, when set, is this state's entry in results_<cycle>.json: once it
+    has votes counted, the page leads with the results; while pending it notes
+    that nothing is reported yet."""
     name = state["name"]
     code = state["code"]
     code_lower = code.lower()
@@ -199,10 +283,55 @@ def build_html_page(state: dict, og_version: str = "") -> str:
         shift = "no net change in the partisan split"
         change_desc = "no net seat change"
     description = (
-        f"{name} under proportional representation: its {seats}-seat U.S. House delegation is "
-        f"actually D {ad}/R {ar}; allocated proportionally to the statewide vote it would be "
-        f"D {pd}/R {pr} ({change_desc})."
+        f"{name} under proportional representation: its {seats}-seat U.S. House delegation was "
+        f"elected D {ad}/R {ar} in 2024; allocated proportionally to the projected statewide vote "
+        f"it would be D {pd}/R {pr} ({change_desc})."
     )
+    cadence = (
+        f"frozen at the final pre-election polling on {frozen_date}"
+        if frozen_date
+        else "updated daily from current polling"
+    )
+    def split(d: int, r: int) -> str:
+        return f'<span class="d">D&nbsp;{d}</span> &middot; <span class="r">R&nbsp;{r}</span>'
+
+    def stat(label: str, d: int, r: int) -> str:
+        return (f'    <div class="stat"><div class="lab">{label}</div>\n'
+                f'      <div class="val">{split(d, r)}</div></div>')
+
+    lede_html = (
+        f"{name}&rsquo;s {seats}-seat U.S. House delegation was elected\n    {split(ad, ar)} in 2024.\n"
+        f"    Allocated in proportion to its projected statewide House vote, it would be\n"
+        f"    {split(pd, pr)} &mdash; {shift}."
+    )
+    stats_html = stat("As elected (2024)", ad, ar) + "\n" + stat("Under proportional representation", pd, pr)
+    if result and result.get("under_pr"):
+        ae, upr = result["as_elected"], result["under_pr"]
+        certified = result["status"] == "certified"
+        uncalled = ae["uncalled_seats"]
+        word = "certified" if certified else "provisional"
+        other = f" &middot; {ae['other_seats']}&nbsp;other" if ae["other_seats"] else ""
+        not_called = f", with {_uncalled_phrase(uncalled)}" if uncalled else ""
+        lede_html = (
+            f"{name}&rsquo;s {cycle} U.S. House results ({word}): {split(ae['d_seats'], ae['r_seats'])}{other} "
+            f"called{not_called}. Allocated in proportion to the "
+            f"{'certified vote' if certified else 'votes counted so far'}, the {seats}-seat delegation would be "
+            f"{split(upr['d_seats'], upr['r_seats'])}. The final pre-election projection was "
+            f"D&nbsp;{pd} &middot; R&nbsp;{pr}."
+        )
+        stats_html = (
+            stat(f"As elected ({cycle})" if uncalled == 0 else f"Called so far ({cycle})", ae["d_seats"], ae["r_seats"])
+            + "\n"
+            + stat(f"Under PR ({cycle} vote)" if certified else "Under PR (votes counted)", upr["d_seats"], upr["r_seats"])
+        )
+        description = (
+            f"{name} under proportional representation: {cycle} U.S. House results ({word}), "
+            f"D {ae['d_seats']}/R {ae['r_seats']} called{not_called.replace('&nbsp;', ' ')}; allocated proportionally "
+            f"to the votes counted it would be D {upr['d_seats']}/R {upr['r_seats']}."
+        )
+    elif result:
+        lede_html += f" No {cycle} votes have been reported for {name} yet."
+
     og_image = f"{SITE_URL}/og/state-{code}.png"
     if og_version:
         og_image += f"?v={og_version}"
@@ -260,19 +389,13 @@ def build_html_page(state: dict, og_version: str = "") -> str:
 <main>
   <p class="kicker"><a href="/">The Proportional House</a></p>
   <h1>{name} under proportional representation</h1>
-  <p class="lede">{name}&rsquo;s {seats}-seat U.S. House delegation is currently
-    <span class="d">D&nbsp;{ad}</span> &middot; <span class="r">R&nbsp;{ar}</span>.
-    Allocated in proportion to its statewide House vote, it would be
-    <span class="d">D&nbsp;{pd}</span> &middot; <span class="r">R&nbsp;{pr}</span> &mdash; {shift}.</p>
+  <p class="lede">{lede_html}</p>
   <div class="stats">
-    <div class="stat"><div class="lab">As elected (2024)</div>
-      <div class="val"><span class="d">D&nbsp;{ad}</span> &middot; <span class="r">R&nbsp;{ar}</span></div></div>
-    <div class="stat"><div class="lab">Under proportional representation</div>
-      <div class="val"><span class="d">D&nbsp;{pd}</span> &middot; <span class="r">R&nbsp;{pr}</span></div></div>
+{stats_html}
   </div>
   <p><a class="cta" href="{spa_url}">Explore {name} on the interactive map &rarr;</a></p>
   <p class="note">{name} is one of 50 states in an interactive map of the U.S. House under
-    proportional representation, updated daily from current polling. See the
+    proportional representation, {cadence}. See the
     <a href="/rankings">most distorted delegations</a>, the
     <a href="/methodology">methodology and data sources</a>, or the
     <a href="/">national map</a>.</p>
@@ -311,12 +434,32 @@ def main() -> None:
     # the og:image URLs with the data date and social platforms re-fetch instead
     # of showing a stale cached image. (index.html's home-card URL is stamped at
     # build time by the og-cache-bust Vite plugin — same date, same effect.)
-    og_version = str(payload.get("meta", {}).get("generated_at", ""))[:10]
+    #
+    # meta.json's date, not projection.json's: after the election freeze the
+    # projection's timestamp stops moving, but the cards' wording changed.
+    try:
+        og_version = str(json.loads(META_PATH.read_text())["generated_at"])[:10]
+    except (FileNotFoundError, ValueError, KeyError):
+        og_version = str(payload.get("meta", {}).get("generated_at", ""))[:10]
+    frozen_date = frozen_on(payload.get("meta", {}))
+
+    # Election results (after the freeze): build_results runs before this
+    # builder, so results_<cycle>.json is this run's.
+    results = None
+    cycle = (payload.get("meta", {}).get("election") or {}).get("cycle")
+    results_path = REPO_ROOT / "public" / "data" / f"results_{cycle}.json"
+    if frozen_date and cycle and results_path.exists():
+        results = json.loads(results_path.read_text())
+    result_by_code = {r["code"]: r for r in results["states"]} if results else {}
+    any_reporting = any(r.get("under_pr") for r in result_by_code.values())
 
     # Home share card (live national headline) → public/og-card.png.
     national = payload.get("national")
     if resvg_py and national:
-        home_svg = build_home_card_svg(national, payload.get("meta", {}))
+        home_svg = (
+            build_results_home_card_svg(results) if any_reporting
+            else build_home_card_svg(national, payload.get("meta", {}))
+        )
         HOME_OG_PATH.write_bytes(resvg_py.svg_to_bytes(svg_string=home_svg, **render_kw))
         print(f"Wrote home OG card to {HOME_OG_PATH.relative_to(REPO_ROOT)}")
 
@@ -324,11 +467,18 @@ def main() -> None:
     n_png = 0
     for state in payload["states"]:
         # HTML content page — always written (pure Python, no resvg).
-        (STATE_HTML_DIR / f"{state['code'].lower()}.html").write_text(build_html_page(state, og_version))
+        result = result_by_code.get(state["code"])
+        (STATE_HTML_DIR / f"{state['code'].lower()}.html").write_text(
+            build_html_page(state, og_version, frozen_date, result, cycle)
+        )
         n_html += 1
         # PNG share-card — only when resvg is available.
         if resvg_py:
-            png = resvg_py.svg_to_bytes(svg_string=build_card_svg(state), **render_kw)
+            svg = (
+                build_results_card_svg(state, result, cycle) if result and result.get("under_pr")
+                else build_card_svg(state)
+            )
+            png = resvg_py.svg_to_bytes(svg_string=svg, **render_kw)
             (OG_DIR / f"state-{state['code']}.png").write_bytes(png)
             n_png += 1
 

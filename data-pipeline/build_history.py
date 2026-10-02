@@ -21,6 +21,10 @@ backfill is re-applied every run so it can never be lost. A bad network day
 just means the live source is empty — it never breaks the build. Called from
 update.py after projection.json/meta.json are written.
 
+After the election's freeze_at the series ends: no point is added for today,
+the point dated the day the frozen projection was published is rebuilt from it
+and flagged `final`, and meta gains `final_date`. See freeze_series.
+
 Run standalone: python data-pipeline/build_history.py
 """
 
@@ -32,6 +36,7 @@ from pathlib import Path
 
 import requests
 
+import election
 from fetch_clerk_house import OUT_PATH as BASELINE_JSON
 from methods import national_by_method
 from update import project_states
@@ -128,15 +133,44 @@ def merge_sources(sources: list[tuple[int, list[dict]]]) -> list[dict]:
     return merged[-MAX_POINTS:]
 
 
+def final_date_of(projection: dict) -> str:
+    """UTC date of a frozen projection — the date of the series' final point."""
+    return election.parse_ts(projection["meta"]["generated_at"]).astimezone(timezone.utc).date().isoformat()
+
+
+def freeze_series(points: list[dict], final_date: str) -> list[dict]:
+    """End the series at the frozen projection.
+
+    Drops every point after `final_date` and flags the point ON it as final.
+    The final point itself is the one built from the frozen projection.json
+    (see main), so it equals what the site published — a run later on the
+    same UTC day can't move it. Any stray `final` flag elsewhere is cleared.
+    """
+    out = []
+    for pt in points:
+        d = pt.get("date", "")
+        if d > final_date:
+            continue
+        pt = {k: v for k, v in pt.items() if k != "final"}
+        if d == final_date:
+            pt["final"] = True
+        out.append(pt)
+    return out
+
+
 def main() -> None:
+    el = election.resolve()
     with PROJECTION_PATH.open() as f:
         proj = json.load(f)
 
     nat = proj["national"]
     pmeta = proj.get("meta", {})
-    today = datetime.now(timezone.utc).date().isoformat()
+    # After the freeze there is no "today's" projection: the point is the
+    # frozen one, dated the day it was published.
+    final_date = final_date_of(proj) if el.frozen else None
+    date = final_date or datetime.now(timezone.utc).date().isoformat()
     point = {
-        "date": today,
+        "date": date,
         "projected_d": nat["projected"]["d_seats"],
         "projected_r": nat["projected"]["r_seats"],
         "actual_d": nat["actual"]["d_seats"],
@@ -152,6 +186,8 @@ def main() -> None:
         (2, _forward_only(_fetch_live_points())),          # forward points accumulated in prod
         (3, [point]),                                      # today's fresh point
     ])
+    if final_date:
+        points = freeze_series(points, final_date)
 
     # Precompute the alternative-method series (MMD-3 / MMD-5 / MMP-50) for the
     # chart's method selector — from each point's stored swing, so backfill +
@@ -164,10 +200,11 @@ def main() -> None:
     except (FileNotFoundError, ValueError, KeyError) as e:
         print(f"  (warn) could not attach method series to history: {e}")
 
-    payload = {
-        "meta": {"generated_at": datetime.now(timezone.utc).isoformat()},
-        "points": points,
-    }
+    meta: dict = {"generated_at": datetime.now(timezone.utc).isoformat()}
+    if final_date:
+        meta["cycle"] = el.cycle
+        meta["final_date"] = final_date
+    payload = {"meta": meta, "points": points}
     write_json_atomic(HISTORY_PATH, payload)
     n_recon = sum(1 for p in points if _is_reconstructed(p))
     print(

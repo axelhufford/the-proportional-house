@@ -138,12 +138,16 @@ def _wikitext_cell_int(line: str) -> int | None:
     return int(part) if re.fullmatch(r"-?\d+", part) else None
 
 
-def parse_house_composition(wikitext: str) -> Dict[str, Dict[str, int]]:
+def parse_house_composition(wikitext: str, allow_uncalled: bool = False) -> Dict[str, Dict[str, int]]:
     """Parse the 'Per state' table out of the article wikitext.
 
     Returns a dict keyed by state code (e.g. 'CA') with {seats, d_seats, r_seats}.
     Validates that R + D == seats for every state and that the table covers all
     50 states totalling 435; raises if anything is off.
+
+    `allow_uncalled` is for an election still being counted (the results draft
+    scraper): empty seat cells read as 0 and R + D may fall short of the
+    state's seats. The 2024 baseline path never passes it.
 
     Split out from the fetch so it can be tested against a fixture without
     hitting the network.
@@ -171,10 +175,14 @@ def parse_house_composition(wikitext: str) -> Dict[str, Dict[str, int]]:
         cells = [ln for ln in block.strip().split("\n") if ln.startswith("|")]
         values = [_wikitext_cell_int(c) for c in cells]
         # Columns: Total | R seats | R change | D seats | D change
-        if len(values) < 5 or any(v is None for v in (values[0], values[1], values[3])):
+        if allow_uncalled and len(values) >= 4 and values[0] is not None:
+            values = [values[0]] + [v or 0 for v in values[1:]]
+        if len(values) < 5 and not (allow_uncalled and len(values) >= 4):
+            raise RuntimeError(f"{state}: could not parse seat columns from {cells!r}")
+        if any(v is None for v in (values[0], values[1], values[3])):
             raise RuntimeError(f"{state}: could not parse seat columns from {cells!r}")
         total, r_seats, d_seats = values[0], values[1], values[3]
-        if r_seats + d_seats != total:
+        if r_seats + d_seats > total or (not allow_uncalled and r_seats + d_seats != total):
             raise RuntimeError(f"{state}: R({r_seats}) + D({d_seats}) != total ({total})")
         out[STATE_CODES[state]] = {"seats": total, "r_seats": r_seats, "d_seats": d_seats}
 

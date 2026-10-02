@@ -1,0 +1,1392 @@
+{
+  "meta": {
+    "generated_at": "2026-09-30T04:06:08.288948+00:00",
+    "cycle": 2026,
+    "election_date": "2026-11-03",
+    "source_file": "data-pipeline/results/house_2026.csv",
+    "method": "sainte-lague",
+    "as_of": null,
+    "rehearsal": false,
+    "status_counts": {
+      "pending": 50,
+      "provisional": 0,
+      "certified": 0
+    },
+    "seats_called": 0,
+    "all_called": false,
+    "all_certified": false
+  },
+  "national": {
+    "seats": 435,
+    "as_elected": {
+      "d_seats": 0,
+      "r_seats": 0,
+      "other_seats": 0,
+      "uncalled_seats": 435
+    },
+    "under_pr": {
+      "d_seats": 0,
+      "r_seats": 0,
+      "pending_seats": 435
+    },
+    "votes": {
+      "d": 0,
+      "r": 0,
+      "other": null
+    },
+    "two_party_d_margin_points": null,
+    "all_votes_d_margin_points": null
+  },
+  "states": [
+    {
+      "fips": "02",
+      "code": "AK",
+      "name": "Alaska",
+      "seats": 1,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 1
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "01",
+      "code": "AL",
+      "name": "Alabama",
+      "seats": 7,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 7
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "05",
+      "code": "AR",
+      "name": "Arkansas",
+      "seats": 4,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 4
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "04",
+      "code": "AZ",
+      "name": "Arizona",
+      "seats": 9,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 9
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "06",
+      "code": "CA",
+      "name": "California",
+      "seats": 52,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 52
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "08",
+      "code": "CO",
+      "name": "Colorado",
+      "seats": 8,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 8
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "09",
+      "code": "CT",
+      "name": "Connecticut",
+      "seats": 5,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 5
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "10",
+      "code": "DE",
+      "name": "Delaware",
+      "seats": 1,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 1
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "12",
+      "code": "FL",
+      "name": "Florida",
+      "seats": 28,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 28
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "13",
+      "code": "GA",
+      "name": "Georgia",
+      "seats": 14,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 14
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "15",
+      "code": "HI",
+      "name": "Hawaii",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "19",
+      "code": "IA",
+      "name": "Iowa",
+      "seats": 4,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 4
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "16",
+      "code": "ID",
+      "name": "Idaho",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "17",
+      "code": "IL",
+      "name": "Illinois",
+      "seats": 17,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 17
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "18",
+      "code": "IN",
+      "name": "Indiana",
+      "seats": 9,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 9
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "20",
+      "code": "KS",
+      "name": "Kansas",
+      "seats": 4,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 4
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "21",
+      "code": "KY",
+      "name": "Kentucky",
+      "seats": 6,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 6
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "22",
+      "code": "LA",
+      "name": "Louisiana",
+      "seats": 6,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 6
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "25",
+      "code": "MA",
+      "name": "Massachusetts",
+      "seats": 9,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 9
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "24",
+      "code": "MD",
+      "name": "Maryland",
+      "seats": 8,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 8
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "23",
+      "code": "ME",
+      "name": "Maine",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "26",
+      "code": "MI",
+      "name": "Michigan",
+      "seats": 13,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 13
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "27",
+      "code": "MN",
+      "name": "Minnesota",
+      "seats": 8,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 8
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "29",
+      "code": "MO",
+      "name": "Missouri",
+      "seats": 8,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 8
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "28",
+      "code": "MS",
+      "name": "Mississippi",
+      "seats": 4,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 4
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "30",
+      "code": "MT",
+      "name": "Montana",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "37",
+      "code": "NC",
+      "name": "North Carolina",
+      "seats": 14,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 14
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "38",
+      "code": "ND",
+      "name": "North Dakota",
+      "seats": 1,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 1
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "31",
+      "code": "NE",
+      "name": "Nebraska",
+      "seats": 3,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 3
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "33",
+      "code": "NH",
+      "name": "New Hampshire",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "34",
+      "code": "NJ",
+      "name": "New Jersey",
+      "seats": 12,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 12
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "35",
+      "code": "NM",
+      "name": "New Mexico",
+      "seats": 3,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 3
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "32",
+      "code": "NV",
+      "name": "Nevada",
+      "seats": 4,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 4
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "36",
+      "code": "NY",
+      "name": "New York",
+      "seats": 26,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 26
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "39",
+      "code": "OH",
+      "name": "Ohio",
+      "seats": 15,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 15
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "40",
+      "code": "OK",
+      "name": "Oklahoma",
+      "seats": 5,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 5
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "41",
+      "code": "OR",
+      "name": "Oregon",
+      "seats": 6,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 6
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "42",
+      "code": "PA",
+      "name": "Pennsylvania",
+      "seats": 17,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 17
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "44",
+      "code": "RI",
+      "name": "Rhode Island",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "45",
+      "code": "SC",
+      "name": "South Carolina",
+      "seats": 7,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 7
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "46",
+      "code": "SD",
+      "name": "South Dakota",
+      "seats": 1,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 1
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "47",
+      "code": "TN",
+      "name": "Tennessee",
+      "seats": 9,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 9
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "48",
+      "code": "TX",
+      "name": "Texas",
+      "seats": 38,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 38
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "49",
+      "code": "UT",
+      "name": "Utah",
+      "seats": 4,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 4
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "51",
+      "code": "VA",
+      "name": "Virginia",
+      "seats": 11,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 11
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "50",
+      "code": "VT",
+      "name": "Vermont",
+      "seats": 1,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 1
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "53",
+      "code": "WA",
+      "name": "Washington",
+      "seats": 10,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 10
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "55",
+      "code": "WI",
+      "name": "Wisconsin",
+      "seats": 8,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 8
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "54",
+      "code": "WV",
+      "name": "West Virginia",
+      "seats": 2,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 2
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    },
+    {
+      "fips": "56",
+      "code": "WY",
+      "name": "Wyoming",
+      "seats": 1,
+      "status": "pending",
+      "as_elected": {
+        "d_seats": 0,
+        "r_seats": 0,
+        "other_seats": 0,
+        "uncalled_seats": 1
+      },
+      "votes": {
+        "d": null,
+        "r": null,
+        "other": null
+      },
+      "two_party_share": null,
+      "under_pr": null,
+      "reporting_pct": null,
+      "reporting_source": null,
+      "source_url": null,
+      "as_of": null,
+      "note": null,
+      "baseline_distortion_warning": false,
+      "uncontested_district_count": null
+    }
+  ]
+}

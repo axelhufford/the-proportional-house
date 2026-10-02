@@ -14,8 +14,10 @@ import type {
   StateRetroPoint,
   ViewMode,
   HouseCompositionPayload,
+  ResultsState,
 } from '../lib/types';
 import { isMinorParty } from '../lib/colors';
+import { fmtAsOf } from '../lib/results';
 
 export interface StateDetailContentProps {
   state: StateProjection;
@@ -108,6 +110,13 @@ export function StateDetailContent({
 }: StateDetailContentProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const isRetro = viewMode === 'retrospective';
+  // Set only on the results view (lib/results): this state's election result.
+  // Its `actual` is the races called so far, `projected` PR of the vote counted.
+  const result = state.result;
+  const resultCycle = meta.election?.cycle ?? 2026;
+  // Nothing counted yet: `projected` carries the frozen final projection, so
+  // the panel shows that (labeled) instead of a results comparison.
+  const isPending = result?.status === 'pending';
 
   // Keep "PR" short so the embed view and default sandbox still read
   // "Projected under PR"; reforms read "MMD-3", "MMP-50", "PR (D'Hondt)", etc.
@@ -194,8 +203,10 @@ export function StateDetailContent({
   const actualBaseD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
   const actualBaseR = sandboxState ? sandboxState.actual_scaled.r_seats : state.actual.r_seats;
   const houseExpanded = !!sandboxState && sandboxState.total_seats !== state.seats;
-  const actualHeading = houseExpanded
-    ? `Today, scaled to ${effectiveSeats}`
+  const actualHeading = result
+    ? `As elected (${resultCycle})`
+    : houseExpanded
+    ? `2024, scaled to ${effectiveSeats}`
     : isRetro
       ? `Actual ${retroYear}`
       : 'As elected (2024)';
@@ -206,7 +217,7 @@ export function StateDetailContent({
   // delegation is hypothetical. Shown as a caption under the as-elected figure
   // so a vacancy can never be mistaken for a proportionality effect.
   const liveState =
-    composition && viewMode === 'current' && !sandboxState
+    composition && viewMode === 'current' && !sandboxState && !result
       ? composition.states.find((s) => s.code === state.code) ?? null
       : null;
   const stateVacancies =
@@ -227,7 +238,8 @@ export function StateDetailContent({
   // if there aren't enough same-sign matches.
   const similarStates = useMemo(() => {
     if (!allStates || allStates.length === 0) return [];
-    const others = allStates.filter((s) => s.fips !== state.fips);
+    if (isPending) return [];
+    const others = allStates.filter((s) => s.fips !== state.fips && s.result?.status !== 'pending');
     const withDelta = others.map((s) => ({
       state: s,
       delta: s.projected.d_seats - s.actual.d_seats,
@@ -248,7 +260,7 @@ export function StateDetailContent({
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 3)
       .map((x) => x.state);
-  }, [allStates, state.fips, state.projected.d_seats, state.actual.d_seats]);
+  }, [allStates, state.fips, state.projected.d_seats, state.actual.d_seats, isPending]);
 
   // Quotient table for the "show the math" panel. Built from the *effective*
   // seats and shares so it matches the delegation rendered above it — the
@@ -341,6 +353,8 @@ export function StateDetailContent({
       </div>
 
       <div className="p-5 space-y-5">
+        {result && <ResultStatus result={result} cycle={resultCycle} />}
+
         {sandboxState && (
           <div className="flex flex-wrap gap-1.5">
             <Badge>{methodLabel}</Badge>
@@ -363,7 +377,7 @@ export function StateDetailContent({
           </div>
         )}
 
-        {state.baseline_distortion_warning && (state.imputed_district_count ?? 0) === 0 && (
+        {!result && state.baseline_distortion_warning && (state.imputed_district_count ?? 0) === 0 && (
           <div className="text-sm border border-amber-200 bg-amber-50 text-amber-900 rounded-md px-3 py-2">
             <strong>Uncontested statewide.</strong>{' '}
             {state.baseline_2024.d_share < 0.02
@@ -374,6 +388,14 @@ export function StateDetailContent({
           </div>
         )}
 
+        {isPending ? (
+          <Comparison
+            label="Final pre-election projection"
+            left={{ heading: `Called so far (${resultCycle})`, d: state.actual.d_seats, r: state.actual.r_seats }}
+            right={{ heading: 'Projected under PR', d: state.projected.d_seats, r: state.projected.r_seats }}
+          />
+        ) : (
+        <>
         {hasMinors ? (
           <div>
             <h3 className="text-xs uppercase tracking-wider text-stone-500 font-medium mb-2">Delegation</h3>
@@ -400,7 +422,7 @@ export function StateDetailContent({
           <Comparison
             label="Delegation"
             left={{ heading: actualHeading, d: actualBaseD, r: actualBaseR }}
-            right={{ heading: `Projected under ${methodLabel}`, d: projectedD, r: projectedR }}
+            right={{ heading: result ? 'Under PR (votes counted)' : `Projected under ${methodLabel}`, d: projectedD, r: projectedR }}
           />
         )}
 
@@ -453,14 +475,16 @@ export function StateDetailContent({
             );
           })()
         ) : (
-          dGain !== 0 && (
+          // Results: no gain while a race is uncalled — it would be a gap
+          // between two partial numbers (same rule as the national headline).
+          dGain !== 0 && !(result && result.as_elected.uncalled_seats > 0) && (
             <div className="text-sm">
               Under {methodLabel} this state{' '}
               <span className={dGain > 0 ? 'text-blue-700 font-medium' : 'text-red-700 font-medium'}>
                 {dGain > 0 ? `gains ${dGain} D seat${Math.abs(dGain) === 1 ? '' : 's'}`
                            : `gains ${Math.abs(dGain)} R seat${Math.abs(dGain) === 1 ? '' : 's'}`}
               </span>{' '}
-              relative to {isRetro ? `its actual ${retroYear} result` : 'today'}.
+              relative to {result ? 'the races called so far' : isRetro ? `its actual ${retroYear} result` : 'the 2024 result'}.
             </div>
           )
         )}
@@ -493,7 +517,9 @@ export function StateDetailContent({
                     ? `Under PR (${retroYear})`
                     : viewMode === 'sandbox'
                       ? 'Projected (sandbox)'
-                      : 'Projected 2026'
+                      : result
+                        ? `Counted (${resultCycle})`
+                        : 'Projected 2026'
                 }
                 d={projectedDShare}
                 r={projectedRShare}
@@ -506,6 +532,9 @@ export function StateDetailContent({
               // no polling swing, so the swing line would be misleading noise.
               if (isRetro) {
                 return <>No swing applied: proportional allocation of the actual {retroYear} statewide vote.</>;
+              }
+              if (result) {
+                return <>No swing applied: proportional allocation of the {resultCycle} two-party vote counted so far.</>;
               }
               const stateSwing = state.state_swing_applied ?? meta.swing;
               const elasticity = state.state_elasticity ?? 1.0;
@@ -566,6 +595,8 @@ export function StateDetailContent({
               </div>
             </div>
           </details>
+        )}
+        </>
         )}
 
         {retroHistory && retroHistory.length > 0 && (
@@ -658,3 +689,62 @@ function ShareBlock({ heading, d, r }: { heading: string; d: number; r: number }
     </div>
   );
 }
+
+/**
+ * Status and provenance for a state's election result: how final it is, how
+ * much is counted and by whose estimate, what isn't called, and where the
+ * numbers came from.
+ */
+function ResultStatus({ result, cycle }: { result: ResultsState; cycle: number }) {
+  const certified = result.status === 'certified';
+  const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  return (
+    <div
+      className={`text-sm rounded-md px-3 py-2 border space-y-0.5 ${
+        certified ? 'border-stone-200 bg-stone-50 text-stone-800' : 'border-amber-200 bg-amber-50 text-amber-950'
+      }`}
+    >
+      <div>
+        <strong>
+          {cycle} result · {certified ? 'Certified' : result.status === 'pending' ? 'Not yet reporting' : 'Provisional'}
+        </strong>
+        {!certified && result.reporting_pct != null && (
+          <>
+            {' '}· about {result.reporting_pct}% of the expected vote counted
+            {result.reporting_source ? ` (${result.reporting_source} estimate)` : ''}
+          </>
+        )}
+      </div>
+      {result.as_elected.uncalled_seats > 0 && (
+        <div>{plural(result.as_elected.uncalled_seats, 'race', 'races')} not yet called.</div>
+      )}
+      {result.as_elected.other_seats > 0 && (
+        <div>
+          {plural(result.as_elected.other_seats, 'seat', 'seats')} won outside the two major parties;
+          PR here allocates the two-party vote.
+        </div>
+      )}
+      {result.baseline_distortion_warning && (
+        <div>One major party has no votes counted statewide, so proportional allocation of the real vote gives it nothing.</div>
+      )}
+      {(result.uncontested_district_count ?? 0) > 0 && (
+        <div>
+          {plural(result.uncontested_district_count ?? 0, 'race', 'races')} had no major-party opponent; their votes count as cast.
+        </div>
+      )}
+      {result.note && <div className="text-xs">{result.note}</div>}
+      <div className="text-xs text-stone-600">
+        {result.as_of && <>Votes as of {fmtAsOf(result.as_of)}</>}
+        {result.source_url && (
+          <>
+            {result.as_of ? ' · ' : ''}
+            <a href={result.source_url} target="_blank" rel="noreferrer" className="underline underline-offset-2">
+              {certified ? 'Certification' : 'Source'}
+            </a>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+

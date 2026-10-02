@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { easternDate, electionPhase } from './src/lib/election';
 import { fmtMargin } from './src/lib/format';
 import { ROUTE_META, SITE_ORIGIN } from './src/lib/routeMeta';
 
@@ -28,7 +29,21 @@ function readPublicMetaJson(): Record<string, any> | null {
  * The " Today: …" clause appended to the HOME route's description (and the
  * longer <noscript> paragraph), built from the day's meta.json. Returns
  * empty strings when the data isn't available — the static copy ships as-is.
+ *
+ * After the election freeze the numbers are the final pre-election projection,
+ * so the clause says so and dates it by when that projection was published
+ * (meta.json's own generated_at keeps moving with each run).
  */
+/** public/data/results_<cycle>.json at build time, or null when absent/garbled. */
+function readPublicResultsJson(cycle: unknown): Record<string, any> | null {
+  if (typeof cycle !== 'number') return null;
+  try {
+    return JSON.parse(readFileSync(resolve(`public/data/results_${cycle}.json`), 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
 function buildLiveSummary(meta: Record<string, any> | null): {
   todayLine: string;
   noscriptSummary: string;
@@ -48,22 +63,60 @@ function buildLiveSummary(meta: Record<string, any> | null): {
   const tipClause = majority
     ? `, control flips at ${fmtMargin(majority.tipping_margin)}`
     : '';
+  // The comparison is the 2024 election result, not "today's" House.
+  const actual = meta?.national?.actual;
+  const actualClause = actual ? ` (as elected in 2024: D ${actual.d_seats} / R ${actual.r_seats})` : '';
+  const pollMiss = unc
+    ? ` If polls miss by the historical ±${unc.epsilon_points} points, the range is ` +
+      `D ${unc.d_seats_low}–${unc.d_seats_high}.`
+    : '';
+  const flip = majority
+    ? ` Control of the House would flip at ${escText(fmtMargin(majority.tipping_margin))} on the generic ballot.`
+    : '';
+
+  if (electionPhase(meta?.election) !== 'projection') {
+    const frozenOn = easternDate(meta?.election?.final_projection?.generated_at ?? '') || date;
+    const cycle = meta?.election?.cycle ?? 2026;
+    // Once votes are counted, lead with the results (build_results.py).
+    const results = readPublicResultsJson(cycle);
+    const reporting = (results?.states ?? []).filter((s: any) => s.under_pr);
+    if (results && reporting.length) {
+      const ae = results.national.as_elected;
+      const pr = results.national.under_pr;
+      const status = results.meta.all_certified ? 'certified' : 'provisional';
+      const todayLine =
+        ` ${cycle} results (${status}): ${results.meta.seats_called} of 435 races called` +
+        ` (D ${ae.d_seats} / R ${ae.r_seats}); proportional allocation of the votes counted:` +
+        ` D ${pr.d_seats} / R ${pr.r_seats}` +
+        (pr.pending_seats ? `, ${pr.pending_seats} seats not yet reporting.` : '.');
+      const noscriptSummary =
+        `<p>${cycle} election results (${status}): ${results.meta.seats_called} of 435 races called ` +
+        `(D ${ae.d_seats} / R ${ae.r_seats}). Allocated proportionally, the votes counted so far in ` +
+        `${reporting.length} states give D ${pr.d_seats} / R ${pr.r_seats}` +
+        (pr.pending_seats ? `, with ${pr.pending_seats} seats in states not yet reporting` : '') +
+        `. The final pre-election projection, frozen ${escText(frozenOn)}, was D ${projected.d_seats} / ` +
+        `R ${projected.r_seats} at ${escText(marginLabel)}.</p>`;
+      return { todayLine, noscriptSummary };
+    }
+    const todayLine =
+      ` Final pre-election projection: D ${projected.d_seats} / R ${projected.r_seats} under PR` +
+      ` (generic ballot ${marginLabel}${bandClause}${tipClause}), frozen ${frozenOn}.`;
+    const noscriptSummary =
+      `<p>The final pre-election projection, frozen ${escText(frozenOn)}, before any ${cycle} votes were ` +
+      `counted: under the last polling average (${escText(marginLabel)}), a proportional U.S. House ` +
+      `would be D ${projected.d_seats} / R ${projected.r_seats}${actualClause}.` +
+      pollMiss + flip +
+      ` ${cycle} results are being counted.</p>`;
+    return { todayLine, noscriptSummary };
+  }
+
   const todayLine =
     ` Today: D ${projected.d_seats} / R ${projected.r_seats} under PR` +
     ` (generic ballot ${marginLabel}${bandClause}${tipClause}). Updated ${date}.`;
-
-  const actual = meta?.national?.actual;
-  const actualClause = actual ? ` (actual House today: D ${actual.d_seats} / R ${actual.r_seats})` : '';
   const noscriptSummary =
     `<p>As of ${escText(date)}: under today's polling (${escText(marginLabel)}), a proportional ` +
     `U.S. House would be D ${projected.d_seats} / R ${projected.r_seats}${actualClause}.` +
-    (unc
-      ? ` If polls miss by the historical ±${unc.epsilon_points} points, the range is ` +
-        `D ${unc.d_seats_low}–${unc.d_seats_high}.`
-      : '') +
-    (majority
-      ? ` Control of the House would flip at ${escText(fmtMargin(majority.tipping_margin))} on the generic ballot.`
-      : '') +
+    pollMiss + flip +
     `</p>`;
   return { todayLine, noscriptSummary };
 }

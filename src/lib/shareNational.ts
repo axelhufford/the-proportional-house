@@ -1,3 +1,4 @@
+import { projectionCopy } from './election';
 import type { NationalTotals, ProjectionMeta, ViewMode } from './types';
 
 const LOGOMARK_SVG = `<g transform="translate(60, 95) scale(1.8)">
@@ -61,11 +62,13 @@ function buildNationalCardSvg({ national, meta, viewMode, retroYear = 2024 }: Na
     // likely-voter number can't be mistaken for the headline projection.
     const variant = meta.active_ballot_variant;
     const qualifier = variant ? ` (${variant.short_label.toUpperCase()})` : '';
-    modeLabel = `CURRENT POLLING${qualifier} · ${formatBallot(meta.generic_ballot_margin)}`;
+    modeLabel = `${projectionCopy(meta).shareLabel}${qualifier} · ${formatBallot(meta.generic_ballot_margin)}`;
   }
-  // The left stat column is "today" in Current/Sandbox, but a past cycle's
-  // actual result in a Retrospective.
-  const actualLabel = viewMode === 'retrospective' ? `ACTUAL ${retroYear}` : 'ACTUAL TODAY';
+  // The left stat column is the 2024 result in Current/Sandbox (the projection
+  // baseline — not "today's" House, which moves with vacancies and is replaced
+  // by the 2026-elected chamber in January 2027), a past cycle's in a
+  // Retrospective.
+  const actualLabel = viewMode === 'retrospective' ? `ACTUAL ${retroYear}` : 'AS ELECTED 2024';
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#F4EDE0"/>
@@ -116,14 +119,14 @@ export function buildNationalTweetIntent({ national, meta, viewMode, retroYear =
   const dGain = projected.d_seats - actual.d_seats;
   const absGain = Math.abs(dGain);
 
-  // "from today" framing fits Current/Sandbox; a Retrospective compares the
-  // PR allocation to what was actually elected *that* cycle, not to today.
+  // Current/Sandbox compare against the 2024 result; a Retrospective compares
+  // the PR allocation to what was actually elected *that* cycle.
   const shiftPhrase =
     dGain > 0
-      ? `+${dGain} Democratic / −${dGain} Republican from today`
+      ? `+${dGain} Democratic / −${dGain} Republican vs. the 2024 result`
       : dGain < 0
-        ? `−${absGain} Democratic / +${absGain} Republican from today`
-        : 'no net change from today';
+        ? `−${absGain} Democratic / +${absGain} Republican vs. the 2024 result`
+        : 'no net change from the 2024 result';
 
   let text: string;
   if (viewMode === 'retrospective') {
@@ -138,9 +141,12 @@ export function buildNationalTweetIntent({ national, meta, viewMode, retroYear =
     text = `Under a ${formatBallot(meta.generic_ballot_margin)} generic ballot with proportional representation: Democrats ${projected.d_seats} seats, Republicans ${projected.r_seats} — ${shiftPhrase}:`;
   } else {
     const variant = meta.active_ballot_variant;
+    const copy = projectionCopy(meta);
     const polling = variant
-      ? `${variant.label.toLowerCase()} (${formatBallot(meta.generic_ballot_margin)})`
-      : 'current polling';
+      ? `${copy.frozen ? 'the final ' : ''}${variant.label.toLowerCase()} (${formatBallot(meta.generic_ballot_margin)})`
+      : copy.frozen
+        ? `the final pre-election polling (${formatBallot(meta.generic_ballot_margin)})`
+        : 'current polling';
     text = `Under proportional representation with ${polling}, Democrats would hold ${projected.d_seats} seats and Republicans ${projected.r_seats} — ${shiftPhrase}:`;
   }
 
