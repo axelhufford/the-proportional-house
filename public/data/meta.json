@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-09-27T11:31:05.167624+00:00",
+  "generated_at": "2026-10-04T11:51:50.351115+00:00",
   "stale_after_hours": 48,
   "sources": {
     "baseline": "https://history.house.gov/Institution/Election-Statistics/2024election/",
     "polls": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
   },
   "generic_ballot": {
-    "margin": 8.906,
-    "n_polls": 33,
+    "margin": 9.189,
+    "n_polls": 37,
     "window_days": 30,
     "half_life_days": 14,
     "uses_house_effect_adjustment": true
   },
   "baseline_2024_r_margin": 2.511,
-  "swing": 11.42,
+  "swing": 11.7,
   "national": {
     "seats": 435,
     "projected": {
-      "d_seats": 239,
-      "r_seats": 196
+      "d_seats": 240,
+      "r_seats": 195
     },
     "actual": {
       "d_seats": 215,
@@ -54,31 +54,23 @@
       "code": "FL",
       "name": "Florida",
       "direction": "R",
-      "margin_delta": 0.1,
-      "flips_at_margin": 8.8
+      "margin_delta": 0.3,
+      "flips_at_margin": 8.9
     },
     {
       "fips": "48",
       "code": "TX",
       "name": "Texas",
-      "direction": "D",
-      "margin_delta": 0.1,
-      "flips_at_margin": 9.0
+      "direction": "R",
+      "margin_delta": 0.3,
+      "flips_at_margin": 8.9
     },
     {
       "fips": "06",
       "code": "CA",
       "name": "California",
       "direction": "R",
-      "margin_delta": 0.3,
-      "flips_at_margin": 8.6
-    },
-    {
-      "fips": "47",
-      "code": "TN",
-      "name": "Tennessee",
-      "direction": "R",
-      "margin_delta": 0.3,
+      "margin_delta": 0.6,
       "flips_at_margin": 8.6
     },
     {
@@ -86,7 +78,7 @@
       "code": "NY",
       "name": "New York",
       "direction": "D",
-      "margin_delta": 1.1,
+      "margin_delta": 0.8,
       "flips_at_margin": 10.0
     },
     {
@@ -94,8 +86,16 @@
       "code": "CA",
       "name": "California",
       "direction": "D",
-      "margin_delta": 2.1,
+      "margin_delta": 1.8,
       "flips_at_margin": 11.0
+    },
+    {
+      "fips": "22",
+      "code": "LA",
+      "name": "Louisiana",
+      "direction": "D",
+      "margin_delta": 2.4,
+      "flips_at_margin": 11.6
     }
   ],
   "ballot_variants": [
@@ -104,88 +104,10 @@
       "label": "Standard average",
       "short_label": "All polls",
       "note": "Every generic-ballot poll in the window \u2014 likely voters, registered voters, and adults \u2014 weighted by recency, sample size, and voter screen.",
-      "margin": 8.906,
-      "swing": 11.42,
-      "n_polls": 33,
+      "margin": 9.189,
+      "swing": 11.7,
+      "n_polls": 37,
       "populations": null,
-      "projected": {
-        "d_seats": 239,
-        "r_seats": 196
-      },
-      "uncertainty": {
-        "epsilon_points": 2.2,
-        "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
-        "d_seats_low": 234,
-        "d_seats_high": 242,
-        "r_seats_low": 193,
-        "r_seats_high": 201
-      },
-      "majority": {
-        "tipping_margin": -0.6,
-        "majority_seats": 218
-      },
-      "closest_flips": [
-        {
-          "fips": "12",
-          "code": "FL",
-          "name": "Florida",
-          "direction": "R",
-          "margin_delta": 0.1,
-          "flips_at_margin": 8.8
-        },
-        {
-          "fips": "48",
-          "code": "TX",
-          "name": "Texas",
-          "direction": "D",
-          "margin_delta": 0.1,
-          "flips_at_margin": 9.0
-        },
-        {
-          "fips": "06",
-          "code": "CA",
-          "name": "California",
-          "direction": "R",
-          "margin_delta": 0.3,
-          "flips_at_margin": 8.6
-        },
-        {
-          "fips": "47",
-          "code": "TN",
-          "name": "Tennessee",
-          "direction": "R",
-          "margin_delta": 0.3,
-          "flips_at_margin": 8.6
-        },
-        {
-          "fips": "36",
-          "code": "NY",
-          "name": "New York",
-          "direction": "D",
-          "margin_delta": 1.1,
-          "flips_at_margin": 10.0
-        },
-        {
-          "fips": "06",
-          "code": "CA",
-          "name": "California",
-          "direction": "D",
-          "margin_delta": 2.1,
-          "flips_at_margin": 11.0
-        }
-      ]
-    },
-    {
-      "id": "lv",
-      "label": "Likely-voter polls only",
-      "short_label": "LV only",
-      "note": "The same average restricted to polls of likely voters. This is our own calculation, not Silver Bulletin\u2019s likely-voter-adjusted average \u2014 that adjustment compares the likely-voter and registered-voter releases of a single survey, and the public poll database keeps only one row per survey.",
-      "margin": 9.22,
-      "swing": 11.73,
-      "n_polls": 22,
-      "populations": [
-        "LV"
-      ],
       "projected": {
         "d_seats": 240,
         "r_seats": 195
@@ -208,16 +130,16 @@
           "code": "FL",
           "name": "Florida",
           "direction": "R",
-          "margin_delta": 0.4,
-          "flips_at_margin": 8.8
+          "margin_delta": 0.3,
+          "flips_at_margin": 8.9
         },
         {
           "fips": "48",
           "code": "TX",
           "name": "Texas",
           "direction": "R",
-          "margin_delta": 0.4,
-          "flips_at_margin": 8.8
+          "margin_delta": 0.3,
+          "flips_at_margin": 8.9
         },
         {
           "fips": "06",
@@ -249,6 +171,84 @@
           "name": "Louisiana",
           "direction": "D",
           "margin_delta": 2.4,
+          "flips_at_margin": 11.6
+        }
+      ]
+    },
+    {
+      "id": "lv",
+      "label": "Likely-voter polls only",
+      "short_label": "LV only",
+      "note": "The same average restricted to polls of likely voters. This is our own calculation, not Silver Bulletin\u2019s likely-voter-adjusted average \u2014 that adjustment compares the likely-voter and registered-voter releases of a single survey, and the public poll database keeps only one row per survey.",
+      "margin": 9.479,
+      "swing": 11.99,
+      "n_polls": 23,
+      "populations": [
+        "LV"
+      ],
+      "projected": {
+        "d_seats": 240,
+        "r_seats": 195
+      },
+      "uncertainty": {
+        "epsilon_points": 2.2,
+        "basis": "RMS miss of final RealClearPolitics generic-ballot averages vs. the actual House two-party margin, 2016-2024",
+        "d_seats_low": 234,
+        "d_seats_high": 243,
+        "r_seats_low": 192,
+        "r_seats_high": 201
+      },
+      "majority": {
+        "tipping_margin": -0.6,
+        "majority_seats": 218
+      },
+      "closest_flips": [
+        {
+          "fips": "36",
+          "code": "NY",
+          "name": "New York",
+          "direction": "D",
+          "margin_delta": 0.5,
+          "flips_at_margin": 10.0
+        },
+        {
+          "fips": "12",
+          "code": "FL",
+          "name": "Florida",
+          "direction": "R",
+          "margin_delta": 0.6,
+          "flips_at_margin": 8.9
+        },
+        {
+          "fips": "48",
+          "code": "TX",
+          "name": "Texas",
+          "direction": "R",
+          "margin_delta": 0.6,
+          "flips_at_margin": 8.9
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "R",
+          "margin_delta": 0.8,
+          "flips_at_margin": 8.7
+        },
+        {
+          "fips": "06",
+          "code": "CA",
+          "name": "California",
+          "direction": "D",
+          "margin_delta": 1.5,
+          "flips_at_margin": 11.0
+        },
+        {
+          "fips": "22",
+          "code": "LA",
+          "name": "Louisiana",
+          "direction": "D",
+          "margin_delta": 2.1,
           "flips_at_margin": 11.6
         }
       ]
