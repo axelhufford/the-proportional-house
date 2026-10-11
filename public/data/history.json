@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-04T11:51:54.065532+00:00"
+    "generated_at": "2026-10-11T12:12:45.253519+00:00"
   },
   "points": [
     {
@@ -14579,6 +14579,174 @@
       "actual_r": 220,
       "generic_ballot_margin": 9.19,
       "swing": 11.7,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-05",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.18,
+      "swing": 11.69,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.23,
+      "swing": 11.74,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.17,
+      "swing": 11.68,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.34,
+      "swing": 11.85,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-09",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.37,
+      "swing": 11.89,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.37,
+      "swing": 11.88,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 9.4,
+      "swing": 11.91,
       "reconstructed": false,
       "methods": {
         "MMD-3": {
