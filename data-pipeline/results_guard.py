@@ -14,7 +14,7 @@ A changed state is reverted when:
   - its committed row is certified (only a human touches a certified state), or
     the new row claims certification (only a human certifies);
   - D or R votes fell (a correction or vandalism — needs a human);
-  - its as_of isn't later than the committed one;
+  - its vote totals changed but its as_of isn't later than the committed one;
   - a party's called seats went down;
   - the two-party total exceeds MAX_TURNOUT_RATIO × the state's 2024 two-party
     House vote (implausible for a midterm);
@@ -71,8 +71,11 @@ def problems(old: dict, new: dict, base_2p: int) -> list[str]:
     od, orr, nd, nr = _n(old.get("d_votes")), _n(old.get("r_votes")), _n(new.get("d_votes")), _n(new.get("r_votes"))
     if nd < od or nr < orr:
         out.append(f"votes fell (D {od:,}→{nd:,}, R {orr:,}→{nr:,})")
+    # A new timestamp is only expected when the vote totals changed: a race
+    # call adds a seat without touching the votes or their as_of.
+    votes_changed = any((old.get(k) or "") != (new.get(k) or "") for k in ("d_votes", "r_votes", "other_votes"))
     old_ts, new_ts = _ts(old.get("as_of")), _ts(new.get("as_of"))
-    if old_ts and (new_ts is None or new_ts <= old_ts):
+    if votes_changed and old_ts and (new_ts is None or new_ts <= old_ts):
         out.append(f"as_of not newer ({old.get('as_of')} → {new.get('as_of')})")
     for party in ("d", "r", "other"):
         if _n(new.get(f"{party}_seats")) < _n(old.get(f"{party}_seats")):

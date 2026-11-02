@@ -66,6 +66,13 @@ def test_stale_or_missing_timestamp_is_held_back():
     assert any("as_of" in p for p in problems(old, row(d="310000", r="260000"), BASE))  # same as_of
 
 
+def test_a_race_call_alone_passes_without_a_new_timestamp():
+    # Seats come from race calls; the votes (and their as_of) don't move.
+    old = row(d="300000", r="250000")
+    new = row(d="300000", r="250000", d_seats="1")
+    assert problems(old, new, BASE) == []
+
+
 def test_certified_rows_are_never_touched_and_never_set():
     cert = row(status="certified", d="500000", r="400000", d_seats="5", r_seats="4")
     assert "already certified" in problems(cert, row(d="510000", r="400000", as_of="2026-12-01T00:00:00Z"), BASE)
