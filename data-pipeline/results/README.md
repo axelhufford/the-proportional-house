@@ -46,6 +46,22 @@ Wikipedia seat numbers are **not** used mid-count (articles pre-fill last cycle'
 seats); enter race calls by hand from news desks' calls. Fill vote gaps for big
 states from state election offices (put that URL in `source_url`).
 
+## Automatic election-night updates (2026)
+
+Scheduled tasks in the Claude desktop app (on the owner's Mac) run the loop
+below unattended — Tue Nov 3 10 PM, Wed 12:30 AM, then 8 AM / 8 PM Nov 4–6 —
+publishing Wikipedia **vote totals** without review:
+
+1. `scrape_results_draft.py`, then `--apply` for every state with newer totals.
+2. `python data-pipeline/results_guard.py` — compares the file against the last
+   commit and reverts any state whose change looks wrong (votes fell, implausible
+   turnout, a big swing on few new votes, stale timestamp, seats going down, any
+   certification). Reverted states keep their published numbers and are reported.
+3. `build_results.py --check`, commit the CSV, push, verify the deploy.
+
+Race calls and certification stay manual. To stop the automation, disable the
+`election-results-*` tasks in the app's Scheduled section.
+
 ## Rehearsal (never deployed)
 
 Any `PH_*` override marks output `rehearsal: true`, shows a red banner, writes
