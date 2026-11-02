@@ -35,7 +35,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Where does the data come from?',
-    a: 'The 2024 baseline comes from the U.S. House Clerk’s official election statistics PDF. The generic-ballot polling average uses Silver Bulletin’s public polling database. Uncontested districts are imputed from The Downballot’s 2024 presidential-by-congressional-district vote totals. All sources are linked from the Methodology page.',
+    a: 'The 2024 baseline comes from the U.S. House Clerk’s official election statistics PDF. The generic-ballot polling average uses Silver Bulletin’s public polling database. Uncontested districts are imputed from The Downballot’s 2024 presidential-by-congressional-district vote totals. 2026 results come from Wikipedia’s state election articles (vote totals) and the major news decision desks (race calls) until states certify; see “What happens on election night?” below. All sources are linked from the Methodology page.',
   },
   {
     q: 'How does the generic-ballot polling become proportional House seats?',
@@ -45,6 +45,11 @@ const FAQS: FaqItem[] = [
   {
     q: 'Is this a forecast or a prediction of the next House election?',
     a: 'No — it’s a structural projection, not an election forecast. The site doesn’t predict who will win individual districts or which party controls the next House: there’s no candidate-level modeling, no turnout or fundamentals model, no district ratings. The projection simply takes the generic-ballot polling average and shows what the House would look like if every state allocated its seats proportionally instead of by winner-take-all districts. On Election Day it is frozen at the final pre-election polls, so it can be set against the real results. The goal is to make the structural gap between votes and seats visible, not to call the next election.',
+  },
+  {
+    q: 'What happens on election night?',
+    a: 'At 5 a.m. Eastern on Election Day the projection freezes: the site stops reading polls and keeps, unchanged, the last projection it published before the polls opened, so it can be set against the results. As votes are counted, the home page switches to the 2026 results. Vote totals come from Wikipedia’s state-by-state election articles, each tied to the exact page revision used, and are checked automatically before they’re published; a count that goes down, for example, is held back until someone looks at it. A race is marked as called as soon as one of the major news decision desks calls it: the Associated Press, Decision Desk HQ, or the NBC, CNN, ABC, CBS or Fox News desks. Every call is recorded with who made it, when, and a link, in the project’s public repository. Each state’s seats are then allocated in proportion to the votes counted so far. Everything stays provisional until the states certify their results, mostly by mid-December, and the headline comparison between the House voters elected and a proportional House appears only once every race has been called.',
+    link: { to: '/methodology#election-day', label: 'How results are sourced →' },
   },
   {
     q: 'Is this partisan?',

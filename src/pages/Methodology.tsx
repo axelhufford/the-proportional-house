@@ -516,10 +516,26 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
         </p>
         <p>
           From then on the site follows the results. Numbers shown during the count are
-          provisional: each state carries how much of its expected vote is counted, a source, and a
-          timestamp, and its figures change as counting continues. Each state is marked certified
-          once it certifies its results, most by mid-December. The final projection stays on the
-          site as a record, to set against the results.
+          provisional: each state carries a source and a timestamp, and its figures change as
+          counting continues. Each state is marked certified once it certifies its results, most by
+          mid-December. The final projection stays on the site as a record, to set against the
+          results.
+        </p>
+        <p>
+          <strong>Vote totals</strong> during the count come from Wikipedia’s state-by-state
+          election articles, linked to the exact revision used. Before each update is published,
+          every state’s new numbers are checked against the last published ones, and a state is
+          held back for a person to look at if its count went down, its turnout is implausible, or
+          its share swung sharply on few new votes. <strong>Race calls</strong> follow the major
+          news decision desks: a race is called here as soon as any one of the Associated Press,
+          Decision Desk HQ, or the NBC, CNN, ABC, CBS or Fox News desks calls it. Calls are only
+          ever added, never revised automatically, and each records the desk, the time and a link.
+          Both files are public:{' '}
+          <a className="underline" href="https://github.com/axelhufford/the-proportional-house/blob/main/data-pipeline/results/house_2026.csv" target="_blank" rel="noreferrer">vote totals by state</a>{' '}
+          and{' '}
+          <a className="underline" href="https://github.com/axelhufford/the-proportional-house/blob/main/data-pipeline/results/race_calls_2026.csv" target="_blank" rel="noreferrer">race calls by district</a>.
+          The headline comparison between the House voters elected and a proportional House waits
+          until every race is called.
         </p>
       </Section>
 

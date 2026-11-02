@@ -43,24 +43,41 @@ didn't come from a source you can link.
 ```
 
 Wikipedia seat numbers are **not** used mid-count (articles pre-fill last cycle's
-seats); enter race calls by hand from news desks' calls. Fill vote gaps for big
+seats); race calls come from news desks via `race_calls_2026.csv` (below). Fill vote gaps for big
 states from state election offices (put that URL in `source_url`).
 
 ## Automatic election-night updates (2026)
 
-Scheduled tasks in the Claude desktop app (on the owner's Mac) run the loop
-below unattended — Tue Nov 3 10 PM, Wed 12:30 AM, then 8 AM / 8 PM Nov 4–6 —
-publishing Wikipedia **vote totals** without review:
+Scheduled tasks in the Claude desktop app (on the owner's Mac) run this loop
+unattended — hourly 8 PM–3 AM ET on election night, then every 3 hours 8 AM–11 PM
+Nov 4–6 — and publish without review:
 
-1. `scrape_results_draft.py`, then `--apply` for every state with newer totals.
-2. `python data-pipeline/results_guard.py` — compares the file against the last
-   commit and reverts any state whose change looks wrong (votes fell, implausible
-   turnout, a big swing on few new votes, stale timestamp, seats going down, any
-   certification). Reverted states keep their published numbers and are reported.
-3. `build_results.py --check`, commit the CSV, push, verify the deploy.
+1. **Vote totals:** `scrape_results_draft.py`, then `--apply` for every state with
+   newer Wikipedia totals.
+2. **Race calls:** search for calls by AP, Decision Desk HQ, NBC, CNN, ABC, CBS
+   or Fox News (any one is enough) for districts not yet in
+   `race_calls_2026.csv`; append a row per call (desk, time, link to the call),
+   then `python data-pipeline/race_calls.py --apply` to set each state's called
+   seats. The validator rejects malformed, pre-election, unsourced or Wikipedia-
+   sourced calls, and any edit to a committed call (append-only).
+3. **Guard:** `python data-pipeline/results_guard.py` compares the results file
+   with the last commit and reverts any state whose change looks wrong (votes
+   fell, implausible turnout, a big swing on few new votes, stale timestamp,
+   called seats going down, any certification). Reverted states keep their
+   published numbers and are reported.
+4. `build_results.py --check`, commit both files, push, verify the deploy.
 
-Race calls and certification stay manual. To stop the automation, disable the
+Retracting a call and certifying a state stay manual (`race_calls.py
+--allow-edits` for a retraction). To stop the automation, disable the
 `election-results-*` tasks in the app's Scheduled section.
+
+## Race calls file
+
+`race_calls_2026.csv`: one row per called district — `district` (PA-07, WY-AL;
+2026 lines), `party` (D/R/O), `winner`, `caller` (AP, DDHQ, NBC, CNN, ABC, CBS,
+Fox), `called_at` (ISO with timezone), `source_url` (https, not Wikipedia),
+`note`. `race_calls.py --apply` derives each state's `d_seats`/`r_seats`/
+`other_seats` in house_2026.csv from it (certified states untouched).
 
 ## Rehearsal (never deployed)
 
