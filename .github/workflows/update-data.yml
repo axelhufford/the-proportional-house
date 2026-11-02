@@ -20,12 +20,17 @@ on:
       - "tsconfig*.json"
       - ".github/workflows/update-data.yml"
   schedule:
-    # 06:00 UTC daily = 02:00 ET / 23:00 PT prev day.
+    # 06:00 UTC daily = 01:00 EST / 22:00 PST prev day — nominally. GitHub
+    # starts scheduled runs late under load: through Oct 2026 this one began
+    # 4–8.5 hours after the hour. Anything time-critical (the election-eve
+    # final projection) is triggered by hand with workflow_dispatch instead;
+    # see data-pipeline/results/README.md.
     - cron: "0 6 * * *"
     # 10:10 UTC on Nov 3 — ten minutes after the 2026 election's freeze_at
     # (data-pipeline/election.json). The site and API flip to the frozen phase
     # on the clock by themselves; this run regenerates the static outputs (OG
-    # cards, llms.txt, prerendered copy) and captures the frozen projection.
+    # cards, llms.txt, prerendered copy) and captures the frozen projection,
+    # whenever GitHub gets to it (likely hours late — see above).
     # Fires every Nov 3; in other years it is just an extra daily run.
     - cron: "10 10 3 11 *"
   workflow_dispatch:
@@ -46,7 +51,12 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    # Pinned through the 2026 election: GitHub began moving `ubuntu-latest`
+    # to Ubuntu 26 on 2026-10-19, and this job still ran on 24.04 as of
+    # 2026-11-01. Pinning keeps the image every pre-election run used rather
+    # than letting it switch mid-count. Unpin to ubuntu-latest once every
+    # state has certified (data-pipeline/results/README.md).
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     steps:

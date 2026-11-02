@@ -64,18 +64,35 @@ public URL, preview deploys included.
 
 ## Election week (ET; EST = UTC−5 from Nov 1)
 
+GitHub runs the nightly "06:00 UTC" job late: through October 2026 it started
+between about 5 and 9:30 AM ET. So Tuesday's scheduled run will almost certainly
+start after the 5 AM freeze, and the last scheduled pre-election run is Monday
+morning's. A manual run Monday evening makes the final projection include
+Monday's polls, and covers a failed morning run (without one, nothing is
+published in the 30 hours before the freeze and the freeze step errors).
+
 - **Sun Nov 1** — code freeze. Check `/api/v1/projection.json` shows
   `"phase": "projection"` and `election.freeze_at`.
-- **Mon Nov 2, evening** — `freeze.py --check` should pick production's projection.
+- **Mon Nov 2, 9–11 PM** — run the workflow by hand (starts right away, ~2 min):
+  `gh workflow run update-data.yml --ref main`. When it finishes,
+  `.venv/bin/python data-pipeline/freeze.py --check` must end with
+  `→ final projection: production, generated …` and a Monday-evening timestamp.
+  If it says "no projection published", run the workflow again and recheck.
+  Any run that finishes later but before 5 AM becomes the final projection
+  instead (still a real published one) — rerun `--check` if you push again.
 - **Tue Nov 3**
-  - ~1:10 AM: last scheduled projection run.
-  - 5:00 AM: freeze; site and API flip on their own. 5:10 AM: one-off cron rebuilds static outputs.
-  - By ~9 AM: `curl -s https://proportionalhouse.org/api/v1/projection.json | jq '{phase,generated_at,election}'`
-    (phase `counting`, generated_at ≈ Nov 3 06:xx UTC); `freeze.py --capture`, commit
-    `data-pipeline/frozen/2026/`, push. Social engine: `snapshot.py` should exit 0 without storing.
+  - 5:00 AM: freeze; site and API flip on their own. The scheduled run and the
+    one-off "5:10 AM" rebuild start whenever GitHub gets to them (likely hours
+    late); until one finishes, only the share image, search snippet, state pages
+    and llms.txt still have pre-election wording.
+  - Morning: `curl -s https://proportionalhouse.org/api/v1/projection.json | jq '{phase,generated_at,election}'`
+    (phase `counting`, generated_at = Monday evening's run); `freeze.py --capture`, commit
+    `data-pipeline/frozen/2026/`, push (this run also refreshes the static outputs).
+    Social engine: `snapshot.py` should exit 0 without storing.
   - Evening loop (~10 PM, ~12:30 AM, morning): `git pull --rebase` → scrape draft → edit CSV
     → `build_results.py --check` → commit ("Results update: N states, M seats called, as of HH:MM ET")
-    → push → check the site ~8 min later. Batch edits: CI queues only one pending run.
+    → push → check the site a few minutes later (a run takes ~1.5 min plus the deploy).
+    Batch edits: CI queues only one pending run.
 - **Nov 4–6** — twice a day. **Nov 7 → mid-Dec** — every 1–3 days; flip states to
   `certified` with the certification as the source (California ≈ Dec 11). At 50/50
   the phase becomes `results` by itself.
@@ -86,6 +103,7 @@ Never write the CI skip token in a commit message (see the workflow's note).
 
 ## After certification (not built yet)
 
+0. Unpin the workflow's `runs-on: ubuntu-24.04` back to `ubuntu-latest` (pinned for the election).
 1. `house_2026.json` from the certified CSV (independent/other seats supported), then
    `KNOWN_ACTUAL["2026"]`, then 2026 in `RETRO_CYCLES` (keep 2016).
 2. Only then the 2026 row in `polling_error.json` (validation opens `house_{year}.json`).
