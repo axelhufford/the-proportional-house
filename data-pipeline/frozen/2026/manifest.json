@@ -1,0 +1,11 @@
+{
+  "cycle": 2026,
+  "freeze_at": "2026-11-03T10:00:00Z",
+  "generated_at": "2026-11-03T02:30:54.616945+00:00",
+  "sha256": "7d209ae74a577f20a589d726f884eb2fe21c1440eb55280eb408f5a4fd6c2d34",
+  "captured_from": "production",
+  "captured_from_detail": "https://proportionalhouse.org/data/",
+  "captured_at": "2026-11-03T10:30:37.927228+00:00",
+  "rehearsal": false,
+  "note": "The final pre-election projection exactly as the site published it. Never regenerate: the pipeline republishes this file for the rest of the cycle."
+}
