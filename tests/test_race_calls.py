@@ -38,8 +38,10 @@ def errors(text: str) -> str:
     return str(e.value)
 
 
-def test_committed_file_is_empty_before_the_election():
-    assert rc.parse(rc.CALLS.read_text(), NOW) == []
+def test_committed_file_is_valid():
+    # Since election night the committed file holds real calls, so check it
+    # against the real clock rather than that it's empty.
+    rc.parse(rc.CALLS.read_text(), datetime.now(timezone.utc))
 
 
 def test_valid_calls_and_district_normalization():

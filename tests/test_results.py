@@ -57,13 +57,12 @@ def errors_for(**overrides) -> str:
 
 # --- the committed file ------------------------------------------------------
 
-def test_committed_file_is_the_all_pending_skeleton():
-    # Nothing is counted before election night. A committed non-pending row
-    # before then would be data from nowhere.
-    results = load_results_csv(SKELETON, NOW)
+def test_committed_file_is_valid():
+    # Since election night the committed file holds real results, so check
+    # that it parses against the real clock rather than that it's empty.
+    results = load_results_csv(SKELETON, datetime.now(timezone.utc))
     assert len(results) == 50
-    assert {r.status for r in results} == {"pending"}
-    assert sum(r.d_seats + r.r_seats + r.other_seats for r in results) == 0
+    assert all("SYNTHETIC" not in r.note for r in results)
 
 
 def test_synthetic_fixtures_are_valid_and_say_so():
