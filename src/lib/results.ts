@@ -24,6 +24,22 @@ export function hasResults(results: ResultsPayload | null | undefined): results 
   return !!results && results.states.some((s) => s.under_pr !== null);
 }
 
+/**
+ * The election banner's tally of races called, e.g.
+ * "Races called so far: D 226 · R 137 · 72 not yet called." Race calls arrive
+ * before any state's vote totals, so this shows even before `hasResults`.
+ * Null when nothing is called yet, or once every state has certified.
+ */
+export function racesCalledLine(results: ResultsPayload | null | undefined): string | null {
+  if (!results || results.meta.seats_called <= 0 || results.meta.all_certified) return null;
+  const s = results.national.as_elected;
+  const parts = [`D ${s.d_seats}`, `R ${s.r_seats}`];
+  if (s.other_seats > 0) parts.push(`other ${s.other_seats}`);
+  const label = results.meta.all_called ? 'Races called' : 'Races called so far';
+  const tail = s.uncalled_seats > 0 ? ` · ${s.uncalled_seats} not yet called` : '';
+  return `${label}: ${parts.join(' · ')}${tail}.`;
+}
+
 /** "Provisional" until every state certifies. */
 export function resultsStatusLabel(results: ResultsPayload): 'Provisional' | 'Certified' {
   return results.meta.all_certified ? 'Certified' : 'Provisional';

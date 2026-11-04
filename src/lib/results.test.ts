@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calledDelegation, hasResults, isReporting, prDelegation, resultsToProjectionPayload } from './results';
+import { calledDelegation, hasResults, isReporting, prDelegation, racesCalledLine, resultsToProjectionPayload } from './results';
 import type { ProjectionPayload, ResultsPayload, ResultsState } from './types';
 
 const BASE: ProjectionPayload = {
@@ -62,6 +62,31 @@ const NJ = state('NJ', {
   votes: { d: 600, r: 400, other: null },
   two_party_share: { d_share: 0.6, r_share: 0.4 },
   under_pr: { d_seats: 7, r_seats: 5 },
+});
+
+describe('races called line', () => {
+  const withSeats = (as_elected: ResultsPayload['national']['as_elected'], meta: Partial<ResultsPayload['meta']> = {}) => {
+    const r = results([state('NJ'), state('WY')]);
+    const called = as_elected.d_seats + as_elected.r_seats + as_elected.other_seats;
+    return { ...r, meta: { ...r.meta, seats_called: called, ...meta }, national: { ...r.national, as_elected } };
+  };
+
+  it('shows calls before any state has vote totals', () => {
+    const r = withSeats({ d_seats: 226, r_seats: 137, other_seats: 0, uncalled_seats: 72 });
+    expect(hasResults(r)).toBe(false);
+    expect(racesCalledLine(r)).toBe('Races called so far: D 226 · R 137 · 72 not yet called.');
+  });
+
+  it('names other winners only when there are some, and drops "so far" once all are called', () => {
+    const r = withSeats({ d_seats: 230, r_seats: 204, other_seats: 1, uncalled_seats: 0 }, { all_called: true });
+    expect(racesCalledLine(r)).toBe('Races called: D 230 · R 204 · other 1.');
+  });
+
+  it('is empty with no calls, no file, or once every state has certified', () => {
+    expect(racesCalledLine(null)).toBeNull();
+    expect(racesCalledLine(withSeats({ d_seats: 0, r_seats: 0, other_seats: 0, uncalled_seats: 13 }))).toBeNull();
+    expect(racesCalledLine(withSeats({ d_seats: 7, r_seats: 6, other_seats: 0, uncalled_seats: 0 }, { all_certified: true }))).toBeNull();
+  });
 });
 
 describe('results adapter', () => {

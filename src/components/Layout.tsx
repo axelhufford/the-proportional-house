@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from './ErrorBoundary';
 import { electionPhase, projectionCopy } from '../lib/election';
+import { fetchJson } from '../lib/fetchJson';
 import { HOME_VIEW_PATHS } from '../lib/homeViews';
+import { racesCalledLine } from '../lib/results';
 import { Masthead } from './Masthead';
-import type { ProjectionMeta } from '../lib/types';
+import type { ProjectionMeta, ResultsPayload } from '../lib/types';
 
 interface LayoutProps {
   meta?: ProjectionMeta;
@@ -26,6 +29,18 @@ export function Layout({ meta }: LayoutProps) {
   // purpose, so "stale" no longer means anything went wrong.
   const isStale = meta && !copy.frozen ? isStaleData(meta.generated_at, staleAfterHours) : false;
   const { pathname } = useLocation();
+  // While votes are counted, the banner carries the tally of races called.
+  // Calls arrive hours before any state's vote totals, so this can't wait for
+  // the results view. A failed fetch just leaves the line off.
+  const counting = copy.frozen && electionPhase(meta?.election) !== 'results';
+  const [results, setResults] = useState<ResultsPayload | null>(null);
+  useEffect(() => {
+    if (!counting) return;
+    fetchJson<ResultsPayload>(`/data/results_${copy.cycle}.json`)
+      .then(setResults)
+      .catch(() => {});
+  }, [counting, copy.cycle]);
+  const calledLine = counting ? racesCalledLine(results) : null;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -58,6 +73,15 @@ export function Layout({ meta }: LayoutProps) {
                 the projection is final, frozen at the last pre-election polls
                 {copy.frozenOn ? ` on ${copy.frozenOn}` : ''}. Votes are being counted; results are
                 provisional until each state certifies.
+                {calledLine && (
+                  <>
+                    {' '}
+                    <strong>{calledLine}</strong>{' '}
+                    <Link to="/methodology#election-day" className="underline underline-offset-2">
+                      How races are called
+                    </Link>
+                  </>
+                )}
               </>
             )}
           </div>
