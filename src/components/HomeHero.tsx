@@ -213,8 +213,8 @@ export function HomeHero({
     const under = copy.frozen ? 'Under the final pre-election polling' : 'Under today’s polling';
     const frozenNote = copy.frozen ? (
       <>
-        {' '}This is the final projection, frozen{copy.frozenOn ? ` on ${copy.frozenOn},` : ''} before
-        any votes were counted; {copy.cycle} results replace it as they come in.
+        {' '}This is the final projection, made{copy.frozenOn ? ` on ${copy.frozenOn}` : ''} before
+        any votes were counted and frozen since; {copy.cycle} results replace it as they come in.
       </>
     ) : null;
     if (dGain === 0) {

@@ -105,7 +105,7 @@ export function ResultsSummary({ results, composition }: Props) {
             note={
               complete
                 ? undefined
-                : `${meta.seats_called}/435 races called · ${reporting}/50 states reporting`
+                : `${meta.seats_called}/435 races called` + (reporting < 50 ? ` · ${reporting}/50 states reporting` : '')
             }
           />
         </div>
@@ -116,8 +116,8 @@ export function ResultsSummary({ results, composition }: Props) {
             {national.two_party_d_margin_points == null ? '—' : fmtMargin(national.two_party_d_margin_points)}
           </span>
           {' · '}
-          {meta.status_counts.certified} certified · {meta.status_counts.provisional} provisional ·{' '}
-          {meta.status_counts.pending} not yet reporting
+          {meta.status_counts.certified} certified · {meta.status_counts.provisional} provisional
+          {meta.status_counts.pending ? ` · ${meta.status_counts.pending} not yet reporting` : ''}
           {meta.as_of && <> · latest update {fmtAsOf(meta.as_of)}</>}
           {' · '}Method:{' '}
           <span className="font-medium text-stone-700"><Term id="sainte-lague">Sainte-Laguë</Term></span>

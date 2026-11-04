@@ -111,9 +111,13 @@ export function ResultsHero({ results }: Props) {
               <p className="text-base sm:text-lg text-stone-800 leading-relaxed">
                 Votes are being counted. <strong>{meta.seats_called} of 435</strong> races are
                 called (D {el.d_seats} · R {el.r_seats}
-                {el.other_seats ? ` · ${el.other_seats} other` : ''}), and{' '}
-                <strong>{reporting} of 50</strong> states have votes in. Allocated proportionally,
-                the vote counted so far gives{' '}
+                {el.other_seats ? ` · ${el.other_seats} other` : ''})
+                {reporting < 50 ? (
+                  <>
+                    , and <strong>{reporting} of 50</strong> states have votes in
+                  </>
+                ) : null}
+                . Allocated proportionally, the vote counted so far gives{' '}
                 <strong className="text-blue-700">D {pr.d_seats}</strong> ·{' '}
                 <strong className="text-red-700">R {pr.r_seats}</strong>
                 {pr.pending_seats ? `, with ${pr.pending_seats} seats in states not yet reporting` : ''}.

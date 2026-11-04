@@ -25,7 +25,9 @@ Called from update.py after projection.json is written, so a normal
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # NOTE: resvg_py (a binary wheel for SVG→PNG) is imported lazily inside main(),
 # not here. It's in requirements.txt so CI re-renders the cards on every deploy,
@@ -38,12 +40,21 @@ META_PATH = REPO_ROOT / "public" / "data" / "meta.json"
 
 
 def frozen_on(meta: dict) -> str | None:
-    """Publication date (YYYY-MM-DD) of the frozen final projection, or None
-    before the election freeze (see data-pipeline/freeze.py)."""
+    """Publication date (YYYY-MM-DD, Eastern) of the frozen final projection,
+    or None before the election freeze (see data-pipeline/freeze.py). Eastern,
+    not UTC: the 2026 projection was published 9:30 PM ET on Nov 2, which is
+    already Nov 3 in UTC."""
     election = meta.get("election") or {}
     if election.get("phase", "projection") == "projection":
         return None
-    return str(meta.get("generated_at", ""))[:10] or None
+    raw = str(meta.get("generated_at", "")).replace("Z", "+00:00")
+    try:
+        ts = datetime.fromisoformat(raw)
+    except ValueError:
+        return raw[:10] or None
+    if ts.tzinfo is None:
+        ts = ts.replace(tzinfo=timezone.utc)
+    return ts.astimezone(ZoneInfo("America/New_York")).date().isoformat()
 OG_DIR = REPO_ROOT / "public" / "og"
 STATE_HTML_DIR = REPO_ROOT / "public" / "state"
 # Home share card. index.html points og:image at /og-card.png, so we overwrite
@@ -288,7 +299,7 @@ def build_html_page(
         f"it would be D {pd}/R {pr} ({change_desc})."
     )
     cadence = (
-        f"frozen at the final pre-election polling on {frozen_date}"
+        f"frozen at the final pre-election projection, made {frozen_date}"
         if frozen_date
         else "updated daily from current polling"
     )

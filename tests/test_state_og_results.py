@@ -82,3 +82,10 @@ def test_state_page_pending():
     html = og.build_html_page(STATE, "2026-11-05", "2026-11-03", result("pending"), 2026)
     assert "No 2026 votes have been reported for New Jersey yet." in html
     assert "was elected" in html  # still the projection lede
+
+
+def test_frozen_date_is_the_eastern_publication_date():
+    # Published 9:30 PM ET on Nov 2 = 02:30 UTC on Nov 3: the page says Nov 2.
+    meta = {"generated_at": "2026-11-03T02:30:54.616945+00:00", "election": {"phase": "counting"}}
+    assert og.frozen_on(meta) == "2026-11-02"
+    assert og.frozen_on({"generated_at": "2026-11-03T02:30:54Z", "election": {"phase": "projection"}}) is None

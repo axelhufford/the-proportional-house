@@ -66,13 +66,13 @@ export function Layout({ meta }: LayoutProps) {
             {electionPhase(meta?.election) === 'results' ? (
               <>
                 every state has certified its results. The final pre-election projection
-                {copy.frozenOn ? ` (frozen ${copy.frozenOn})` : ''} is kept for comparison.
+                {copy.frozenOn ? ` (made ${copy.frozenOn})` : ''} is kept for comparison.
               </>
             ) : (
               <>
-                the projection is final, frozen at the last pre-election polls
-                {copy.frozenOn ? ` on ${copy.frozenOn}` : ''}. Votes are being counted; results are
-                provisional until each state certifies.
+                the final projection{copy.frozenOn ? `, made ${copy.frozenOn} from the last pre-election polls,` : ''}{' '}
+                is frozen as a record. Votes are being counted; results are provisional until each
+                state certifies.
                 {calledLine && (
                   <>
                     {' '}
