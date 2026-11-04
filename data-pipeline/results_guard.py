@@ -16,8 +16,10 @@ A changed state is reverted when:
   - D or R votes fell (a correction or vandalism — needs a human);
   - its vote totals changed but its as_of isn't later than the committed one;
   - a party's called seats went down;
-  - the two-party total exceeds MAX_TURNOUT_RATIO × the state's 2024 two-party
-    House vote (implausible for a midterm);
+  - the total vote exceeds MAX_TURNOUT_RATIO × the state's 2024 total House
+    vote (implausible for a midterm). Totals, not two-party votes: a 2024
+    winner listed on another ballot line (Vermont) makes 2024's two-party
+    vote far too small to compare against;
   - the two-party share moved more than SHARE_MOVE_PTS points while the vote
     total grew by less than QUIET_GROWTH (a big swing on few new votes).
 Exit status is 0 unless the files can't be read.
@@ -56,12 +58,12 @@ def _ts(v: str | None) -> datetime | None:
         return None
 
 
-def baseline_two_party() -> dict[str, int]:
+def baseline_total() -> dict[str, int]:
     states = json.loads(BASELINE.read_text())["states"]
-    return {s["code"]: s["votes_2024"]["democratic"] + s["votes_2024"]["republican"] for s in states}
+    return {s["code"]: s["votes_2024"]["total"] for s in states}
 
 
-def problems(old: dict, new: dict, base_2p: int) -> list[str]:
+def problems(old: dict, new: dict, base_total: int) -> list[str]:
     """Why a changed row must not be published automatically ([] = fine)."""
     out = []
     if old.get("status") == "certified":
@@ -80,8 +82,9 @@ def problems(old: dict, new: dict, base_2p: int) -> list[str]:
     for party in ("d", "r", "other"):
         if _n(new.get(f"{party}_seats")) < _n(old.get(f"{party}_seats")):
             out.append(f"{party.upper()} called seats went down")
-    if base_2p and nd + nr > MAX_TURNOUT_RATIO * base_2p:
-        out.append(f"{nd + nr:,} two-party votes > {MAX_TURNOUT_RATIO}× 2024's {base_2p:,}")
+    total = nd + nr + _n(new.get("other_votes"))
+    if base_total and total > MAX_TURNOUT_RATIO * base_total:
+        out.append(f"{total:,} votes > {MAX_TURNOUT_RATIO}× 2024's {base_total:,}")
     if od + orr and nd + nr:
         move = abs(nd / (nd + nr) - od / (od + orr)) * 100
         growth = (nd + nr) / (od + orr) - 1
@@ -124,7 +127,7 @@ def guard(old_rows: dict[str, dict], new_rows: dict[str, dict], base: dict[str, 
 def main(argv: list[str]) -> int:
     old_rows = read_rows(committed_text())
     new_rows = read_rows(CURATED.read_text(encoding="utf-8"))
-    final, applied, reverted = guard(old_rows, new_rows, baseline_two_party())
+    final, applied, reverted = guard(old_rows, new_rows, baseline_total())
     for line in applied + reverted:
         print(line)
     print(f"{len(applied)} state(s) pass, {len(reverted)} reverted.")

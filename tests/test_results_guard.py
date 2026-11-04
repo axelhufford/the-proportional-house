@@ -61,6 +61,16 @@ def test_implausible_turnout_is_held_back():
     assert any("2024" in p for p in problems(PENDING, row(d="700000", r="600000"), BASE))
 
 
+def test_turnout_compares_total_votes_not_two_party():
+    # Vermont 2024: the winner's votes sat mostly on another ballot line, so
+    # 2024's two-party vote was ~218k of ~373k cast. A normal 2026 count with
+    # ~293k two-party votes (305k total) must pass against the 2024 total.
+    vt = row("VT", d="198668", r="94012") | {"other_votes": "11958"}
+    assert problems(row("VT", status="pending"), vt, 372_885) == []
+    over = row("VT", d="300000", r="100000") | {"other_votes": "80000"}
+    assert any("2024" in p for p in problems(row("VT", status="pending"), over, 372_885))
+
+
 def test_stale_or_missing_timestamp_is_held_back():
     old = row(d="300000", r="250000")
     assert any("as_of" in p for p in problems(old, row(d="310000", r="260000"), BASE))  # same as_of

@@ -522,8 +522,9 @@ projected_r_share = baseline_r_share − (state_swing / 2 / 100)`}</pre>
           results.
         </p>
         <p>
-          <strong>Vote totals</strong> during the count come from Wikipedia’s state-by-state
-          election articles, linked to the exact revision used. Before each update is published,
+          <strong>Vote totals</strong> during the count are the Associated Press count as published
+          on NBC News’ results pages: each state’s House votes summed across its districts, with
+          AP’s estimate of how much of the expected vote is in. Before each update is published,
           every state’s new numbers are checked against the last published ones, and a state is
           held back for a person to look at if its count went down, its turnout is implausible, or
           its share swung sharply on few new votes. <strong>Race calls</strong> follow the major

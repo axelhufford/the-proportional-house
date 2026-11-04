@@ -243,14 +243,22 @@ def diff(curated: dict[str, dict], draft: list[dict], per_state: dict | None) ->
         seats_changed = has_seats and (_num(c.get("d_seats")), _num(c.get("r_seats"))) != (_num(d["d_seats"]), _num(d["r_seats"]))
         changed = (cd, cr) != (dd, dr) or seats_changed
         if changed or flags:
+            # A draft without seats leaves the curated seats alone, so don't
+            # show them as going to 0.
+            seats = (
+                f" · seats D {_num(c.get('d_seats'))}→{_num(d['d_seats'])} R {_num(c.get('r_seats'))}→{_num(d['r_seats'])}"
+                if has_seats else ""
+            )
             lines.append(
-                f"  {code}: votes D {cd:,}→{dd:,} R {cr:,}→{dr:,} · seats D {_num(c.get('d_seats'))}→{_num(d['d_seats'])} "
-                f"R {_num(c.get('r_seats'))}→{_num(d['r_seats'])}" + (f"   ⚠ {', '.join(flags)}" if flags else "")
+                f"  {code}: votes D {cd:,}→{dd:,} R {cr:,}→{dr:,}{seats}" + (f"   ⚠ {', '.join(flags)}" if flags else "")
             )
     return lines
 
 
-def apply(curated_path: Path, draft: list[dict], codes: list[str]) -> None:
+VOTE_FIELDS = ("d_votes", "r_votes", "other_votes", "source_url", "as_of")
+
+
+def apply(curated_path: Path, draft: list[dict], codes: list[str], fields: tuple[str, ...] = VOTE_FIELDS) -> None:
     curated = read_curated(curated_path)
     by_code = {d["code"]: d for d in draft}
     for code in codes:
@@ -264,7 +272,7 @@ def apply(curated_path: Path, draft: list[dict], codes: list[str]) -> None:
         if d["status"] == "pending":
             print(f"  skip {code}: the draft has no votes for it")
             continue
-        for k in ("d_votes", "r_votes", "other_votes", "source_url", "as_of"):
+        for k in fields:
             curated[code][k] = d[k]
         # Seat calls only when the draft has them (a finished article);
         # otherwise the hand-entered calls stay.

@@ -30,7 +30,13 @@ didn't come from a source you can link.
 ## Tools
 
 ```bash
-# Draft from Wikipedia infoboxes → data-pipeline/results/drafts/ (gitignored) + diff
+# Vote totals: AP's count as published by NBC News (all 435 districts, one
+# request), summed by state → data-pipeline/results/drafts/ (gitignored) + diff
+.venv/bin/python data-pipeline/scrape_results_nbc.py
+# Copy every state whose totals changed (votes, AP reporting estimate,
+# uncontested-race count, source, as_of; never seats, never certified rows)
+.venv/bin/python data-pipeline/scrape_results_nbc.py --apply ALL
+# Fallback/cross-check: draft from Wikipedia infoboxes (lags hours behind the count)
 .venv/bin/python data-pipeline/scrape_results_draft.py
 # Copy vote totals for named states into the curated file (never certifies; seats
 # only from finished articles; certified rows are left alone)
@@ -52,8 +58,10 @@ Scheduled tasks in the Claude desktop app (on the owner's Mac) run this loop
 unattended — hourly 8 PM–3 AM ET on election night, then every 3 hours 8 AM–11 PM
 Nov 4–6 — and publish without review:
 
-1. **Vote totals:** `scrape_results_draft.py`, then `--apply` for every state with
-   newer Wikipedia totals.
+1. **Vote totals:** `scrape_results_nbc.py --apply ALL` (AP's count via NBC News).
+   Wikipedia was the source until the morning of Nov 4, when it still had no totals
+   for 49 states; switching states between sources can trip the guard's
+   "votes fell" rule, so stay on one source.
 2. **Race calls:** search for calls by AP, Decision Desk HQ, NBC, CNN, ABC, CBS
    or Fox News (any one is enough) for districts not yet in
    `race_calls_2026.csv`; append a row per call (desk, time, link to the call),
