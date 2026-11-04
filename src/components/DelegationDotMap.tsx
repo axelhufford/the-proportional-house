@@ -184,14 +184,18 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
         />
       </div>
 
+      {/* The legend carries the national count for whichever side is shown,
+       * e.g. as elected so far: Democrat 231 · Republican 144 · Not yet called 60. */}
       <ul
-        className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-600"
+        className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-stone-600"
         aria-hidden="true"
       >
-        <LegendItem kind="D" label="Democrat" />
-        <LegendItem kind="R" label="Republican" />
-        {totals.other > 0 && <LegendItem kind="other" label="Other" />}
-        {totals.vacant > 0 && <LegendItem kind="vacant" label={capitalize(shown.vacantLabel ?? 'vacant')} />}
+        <LegendItem kind="D" label="Democrat" count={totals.d} />
+        <LegendItem kind="R" label="Republican" count={totals.r} />
+        {totals.other > 0 && <LegendItem kind="other" label="Other" count={totals.other} />}
+        {totals.vacant > 0 && (
+          <LegendItem kind="vacant" label={capitalize(shown.vacantLabel ?? 'vacant')} count={totals.vacant} />
+        )}
       </ul>
 
       <div ref={frameRef} className="relative mt-2" onMouseMove={moveTooltip}>
@@ -352,7 +356,14 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
   );
 }
 
-function LegendItem({ kind, label }: { kind: SeatKind; label: string }) {
+const COUNT_CLASS: Record<SeatKind, string> = {
+  D: 'text-blue-700',
+  R: 'text-red-700',
+  other: 'text-stone-700',
+  vacant: 'text-stone-700',
+};
+
+function LegendItem({ kind, label, count }: { kind: SeatKind; label: string; count?: number }) {
   return (
     <li className="inline-flex items-center gap-1.5">
       <svg width="10" height="10" viewBox="0 0 10 10">
@@ -366,6 +377,7 @@ function LegendItem({ kind, label }: { kind: SeatKind; label: string }) {
         />
       </svg>
       {label}
+      {count != null && <span className={`font-semibold tabular-nums ${COUNT_CLASS[kind]}`}>{count}</span>}
     </li>
   );
 }

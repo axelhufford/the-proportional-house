@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PARTY_D, PARTY_R } from '../lib/parties';
 import { fmtAsOf, resultsStatusLabel } from '../lib/results';
 import type { ResultsPayload } from '../lib/types';
+import { CalledCount } from './CalledCount';
 import { Hemicycle } from './Hemicycle';
 
 /** Seats not yet allocated: races uncalled, or states with no votes counted. */
@@ -32,16 +34,33 @@ export function ResultsHero({ results }: Props) {
   const towardColor = dGain > 0 ? 'text-blue-700' : dGain < 0 ? 'text-red-700' : 'text-stone-700';
   const reporting = results.states.filter((s) => s.under_pr !== null).length;
 
-  const hemiParties = [
-    { id: 'D', color: PARTY_D.color, seats: pr.d_seats },
-    { id: 'R', color: PARTY_R.color, seats: pr.r_seats },
-    ...(pr.pending_seats ? [{ id: 'pending', color: PENDING_COLOR, seats: pr.pending_seats }] : []),
-  ];
+  // The seat chart shows either the House under PR of the votes counted or the
+  // House as elected so far (uncalled races gray).
+  const [chart, setChart] = useState<'pr' | 'elected'>('pr');
+  const hemiParties =
+    chart === 'pr'
+      ? [
+          { id: 'D', color: PARTY_D.color, seats: pr.d_seats },
+          { id: 'R', color: PARTY_R.color, seats: pr.r_seats },
+          ...(pr.pending_seats ? [{ id: 'pending', color: PENDING_COLOR, seats: pr.pending_seats }] : []),
+        ]
+      : [
+          { id: 'D', color: PARTY_D.color, seats: el.d_seats },
+          ...(el.other_seats ? [{ id: 'O', color: OTHER_COLOR, seats: el.other_seats }] : []),
+          // Uncalled in the middle, as on election-night seat charts.
+          ...(el.uncalled_seats ? [{ id: 'uncalled', color: PENDING_COLOR, seats: el.uncalled_seats }] : []),
+          { id: 'R', color: PARTY_R.color, seats: el.r_seats },
+        ];
   const hemiAria =
-    `${cycle} U.S. House under proportional representation of the votes counted: ` +
-    `D ${pr.d_seats}, R ${pr.r_seats}` +
-    (pr.pending_seats ? `, ${pr.pending_seats} seats in states not yet reporting` : '') +
-    '.';
+    chart === 'pr'
+      ? `${cycle} U.S. House under proportional representation of the votes counted: ` +
+        `D ${pr.d_seats}, R ${pr.r_seats}` +
+        (pr.pending_seats ? `, ${pr.pending_seats} seats in states not yet reporting` : '') +
+        '.'
+      : `${cycle} U.S. House as elected${meta.all_called ? '' : ' so far'}: D ${el.d_seats}, R ${el.r_seats}` +
+        (el.other_seats ? `, ${el.other_seats} other` : '') +
+        (el.uncalled_seats ? `, ${el.uncalled_seats} races not yet called` : '') +
+        '.';
 
   return (
     <section className="max-w-6xl mx-auto w-full px-6 pt-4 sm:pt-6">
@@ -109,12 +128,14 @@ export function ResultsHero({ results }: Props) {
           ) : (
             <>
               <p className="text-base sm:text-lg text-stone-800 leading-relaxed">
-                Votes are being counted. <strong>{meta.seats_called} of 435</strong> races are
-                called (D {el.d_seats} · R {el.r_seats}
-                {el.other_seats ? ` · ${el.other_seats} other` : ''})
+                Votes are being counted. Races called so far:{' '}
+                <strong className="text-blue-700">Democrats {el.d_seats}</strong>,{' '}
+                <strong className="text-red-700">Republicans {el.r_seats}</strong>
+                {el.other_seats ? `, other ${el.other_seats}` : ''}, with{' '}
+                <strong>{el.uncalled_seats} of 435</strong> not yet called
                 {reporting < 50 ? (
                   <>
-                    , and <strong>{reporting} of 50</strong> states have votes in
+                    ; <strong>{reporting} of 50</strong> states have votes in
                   </>
                 ) : null}
                 . Allocated proportionally, the vote counted so far gives{' '}
@@ -147,16 +168,50 @@ export function ResultsHero({ results }: Props) {
         </div>
 
         <figure className="mt-8 lg:mt-0">
+          <div role="group" aria-label="Seat chart" className="mb-3 flex justify-center">
+            <div className="inline-flex rounded-full border border-stone-200 bg-white p-0.5 text-xs font-medium">
+              {([
+                ['pr', 'Under PR'],
+                ['elected', meta.all_called ? 'As elected' : 'As elected so far'],
+              ] as const).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={chart === id}
+                  onClick={() => setChart(id)}
+                  className={`rounded-full px-3 py-1 transition-colors ${
+                    chart === id ? 'bg-brand-navy text-white' : 'text-stone-600 hover:text-brand-navy'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
           <Hemicycle parties={hemiParties} ariaLabel={hemiAria} className="w-full max-w-md mx-auto" />
           <figcaption className="mt-2 flex items-center justify-center gap-x-3 gap-y-1 flex-wrap text-xs text-stone-500">
-            <span>{cycle} votes{meta.all_certified ? '' : ' counted'}, under PR</span>
-            <span aria-hidden="true" className="text-stone-300">·</span>
-            <span className="font-semibold tabular-nums" style={{ color: PARTY_D.color }}>D {pr.d_seats}</span>
-            <span className="font-semibold tabular-nums" style={{ color: PARTY_R.color }}>R {pr.r_seats}</span>
-            {pr.pending_seats > 0 && (
-              <span className="tabular-nums" style={{ color: OTHER_COLOR }}>
-                {pr.pending_seats} not yet reporting
-              </span>
+            {chart === 'pr' ? (
+              <>
+                <span>{cycle} votes{meta.all_certified ? '' : ' counted'}, under PR</span>
+                <span aria-hidden="true" className="text-stone-300">·</span>
+                <span className="font-semibold tabular-nums" style={{ color: PARTY_D.color }}>D {pr.d_seats}</span>
+                <span className="font-semibold tabular-nums" style={{ color: PARTY_R.color }}>R {pr.r_seats}</span>
+                {pr.pending_seats > 0 && (
+                  <span className="tabular-nums" style={{ color: OTHER_COLOR }}>
+                    {pr.pending_seats} not yet reporting
+                  </span>
+                )}
+              </>
+            ) : (
+              <>
+                <span>
+                  {cycle} races called{meta.all_called ? '' : ' so far'}
+                </span>
+                <span aria-hidden="true" className="text-stone-300">·</span>
+                <span className="font-semibold">
+                  <CalledCount seats={el} />
+                </span>
+              </>
             )}
           </figcaption>
         </figure>

@@ -15,6 +15,7 @@ import {
 } from '../lib/colors';
 import { displayName, PARTY_D, PARTY_R } from '../lib/parties';
 import { formatSeatPct } from '../lib/format';
+import { CalledCount } from './CalledCount';
 import { SeatBar } from './SeatBar';
 
 /**
@@ -64,6 +65,27 @@ function buildAriaLabel(
   baselineD: number = state.actual.d_seats,
 ): string {
   const totalLabel = `${projectedTotal} ${projectedTotal === 1 ? 'seat' : 'seats'}`;
+  const result = state.result;
+  if (result) {
+    // Election results: seats called so far (with the uncalled remainder) and
+    // PR of the votes counted. No "shift" while races are uncalled: it would be
+    // a gap between two partial numbers.
+    if (result.status === 'pending') {
+      return `${state.name}, ${totalLabel}: no votes reported yet; final projection under PR ` +
+        `${state.projected.d_seats} Democratic, ${state.projected.r_seats} Republican.`;
+    }
+    const el = result.as_elected;
+    const called =
+      `${el.uncalled_seats ? 'called so far' : 'as elected'} ${el.d_seats} Democratic, ${el.r_seats} Republican` +
+      (el.other_seats ? `, ${el.other_seats} other` : '') +
+      (el.uncalled_seats ? `, ${el.uncalled_seats} not yet called` : '');
+    const text = `${state.name}, ${totalLabel}: ${called}; under PR of the votes counted ` +
+      `${projectedD} Democratic, ${projectedR} Republican.`;
+    if (colorMode !== 'distortion' || el.uncalled_seats) return text;
+    const shift = projectedD - el.d_seats;
+    if (shift === 0) return `${text} No seat shift under PR.`;
+    return `${text} Shifts ${Math.abs(shift)} ${Math.abs(shift) === 1 ? 'seat' : 'seats'} toward ${shift > 0 ? 'Democrats' : 'Republicans'} under PR.`;
+  }
   const base = `${state.name}, ${totalLabel}: ` +
     `as elected ${state.actual.d_seats} Democratic, ${state.actual.r_seats} Republican; ` +
     `projected under PR ${projectedD} Democratic, ${projectedR} Republican.`;
@@ -455,6 +477,11 @@ function Tooltip({
     <div className="absolute top-2 right-2 w-52 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
       <div className="font-semibold text-stone-900">{state.name}</div>
       <div className="text-stone-600 text-xs">{projectedTotal} {projectedTotal === 1 ? 'seat' : 'seats'}</div>
+      {state.result && (
+        <div className="mt-1.5 text-[10px] uppercase tracking-wider text-stone-500 font-medium">
+          Under PR (votes counted)
+        </div>
+      )}
       {hasMinorSeats ? (
         // Extended sandbox: list every party with seats, color-coded by
         // party.color. Skip parties at 0 to keep the line short.
@@ -503,6 +530,18 @@ function Tooltip({
               ]
         }
       />
+      {state.result ? (
+        // Election results: the seats called so far, with the uncalled
+        // remainder as its own count.
+        <div className="mt-2 pt-1.5 border-t border-stone-200">
+          <div className="text-[10px] uppercase tracking-wider text-stone-500 font-medium">
+            {uncalled > 0 ? 'Called so far' : 'As elected'}
+          </div>
+          <div className="text-sm font-medium">
+            <CalledCount seats={state.result.as_elected} />
+          </div>
+        </div>
+      ) : (
       <div className="text-xs text-stone-500 mt-1.5">
         As elected: D {state.actual.d_seats}
         {actualTotal > 0 && (
@@ -522,6 +561,7 @@ function Tooltip({
           </span>
         )}
       </div>
+      )}
     </div>
   );
 }

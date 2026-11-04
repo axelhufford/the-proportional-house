@@ -2,6 +2,7 @@ import { fmtMargin } from '../lib/format';
 import { PARTY_D, PARTY_R } from '../lib/parties';
 import { fmtAsOf } from '../lib/results';
 import type { HouseCompositionPayload, ResultsPayload } from '../lib/types';
+import { CalledCount } from './CalledCount';
 import { PENDING_COLOR } from './ResultsHero';
 import { SeatBar } from './SeatBar';
 import { Term } from './Term';
@@ -59,16 +60,13 @@ export function ResultsSummary({ results, composition }: Props) {
             note={pr.pending_seats ? `${pr.pending_seats} seats in states not yet reporting` : undefined}
           />
           <Cell
-            label={`As elected (${meta.cycle})`}
+            label={meta.all_called ? `As elected (${meta.cycle})` : `As elected so far (${meta.cycle})`}
             value={
-              <>
-                <span className="text-blue-700">D {el.d_seats}</span>
-                <span className="text-stone-400"> · </span>
-                <span className="text-red-700">R {el.r_seats}</span>
-                {el.other_seats > 0 && (
-                  <span className="text-stone-600 text-base"> · {el.other_seats} other</span>
-                )}
-              </>
+              <CalledCount
+                seats={el}
+                uncalledLabel="uncalled"
+                uncalledClassName="text-stone-500 text-base font-medium"
+              />
             }
             bar={
               <SeatBar
@@ -81,11 +79,7 @@ export function ResultsSummary({ results, composition }: Props) {
                 ]}
               />
             }
-            note={
-              [el.uncalled_seats ? `${el.uncalled_seats} races not yet called` : '', liveNote ?? '']
-                .filter(Boolean)
-                .join(' · ') || undefined
-            }
+            note={liveNote}
           />
           <Cell
             label="Difference under PR"

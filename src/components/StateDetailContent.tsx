@@ -203,8 +203,11 @@ export function StateDetailContent({
   const actualBaseD = sandboxState ? sandboxState.actual_scaled.d_seats : state.actual.d_seats;
   const actualBaseR = sandboxState ? sandboxState.actual_scaled.r_seats : state.actual.r_seats;
   const houseExpanded = !!sandboxState && sandboxState.total_seats !== state.seats;
+  const uncalledHere = result?.as_elected.uncalled_seats ?? 0;
   const actualHeading = result
-    ? `As elected (${resultCycle})`
+    ? uncalledHere
+      ? `Called so far (${resultCycle}) · ${uncalledHere} not yet called`
+      : `As elected (${resultCycle})`
     : houseExpanded
     ? `2024, scaled to ${effectiveSeats}`
     : isRetro

@@ -10,7 +10,9 @@ import { HomeSkeleton } from '../components/HomeSkeleton';
 import { Reveal } from '../components/Reveal';
 import { HomeHero } from '../components/HomeHero';
 import { ProjectionScorecard } from '../components/ProjectionScorecard';
-import { ResultsHero } from '../components/ResultsHero';
+import { CalledCount } from '../components/CalledCount';
+import { PENDING_COLOR, ResultsHero } from '../components/ResultsHero';
+import { SeatBar } from '../components/SeatBar';
 import { ResultsSummary } from '../components/ResultsSummary';
 import { USMap } from '../components/Map';
 import { MapLegend } from '../components/MapLegend';
@@ -30,6 +32,8 @@ import {
   buildCustomParty,
   CUSTOM_DEFAULT_COLOR,
   type MinorSlot,
+  PARTY_D,
+  PARTY_R,
   PRESET_MINORS,
 } from '../lib/parties';
 import {
@@ -1234,6 +1238,29 @@ function HomeView({ onMetaChange }: HomeProps) {
             <p className="text-xs text-stone-500">
               Hover a state for its numbers · click any state for full detail.
             </p>
+            {resultsMode && results && colorMode === 'distortion' && (
+              // The map compares PR with the House voters elected, so say what
+              // that House is so far.
+              <div className="rounded-lg bg-stone-50 border border-stone-200 px-3 py-2">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <span className="text-[11px] uppercase tracking-wider text-stone-500 font-medium">
+                    {results.meta.all_called ? 'As elected' : 'As elected so far'} ({results.meta.cycle})
+                  </span>
+                  <span className="text-base font-semibold">
+                    <CalledCount seats={results.national.as_elected} />
+                  </span>
+                </div>
+                <SeatBar
+                  className="h-1.5 mt-1.5"
+                  parties={[
+                    { id: 'D', color: PARTY_D.color, seats: results.national.as_elected.d_seats, label: 'D' },
+                    { id: 'O', color: '#78716c', seats: results.national.as_elected.other_seats, label: 'Other' },
+                    { id: 'uncalled', color: PENDING_COLOR, seats: results.national.as_elected.uncalled_seats, label: 'Not yet called' },
+                    { id: 'R', color: PARTY_R.color, seats: results.national.as_elected.r_seats, label: 'R' },
+                  ]}
+                />
+              </div>
+            )}
             <MapLegend
               mode={colorMode}
               sandboxPayload={sandboxPayload}
@@ -1288,7 +1315,9 @@ function HomeView({ onMetaChange }: HomeProps) {
           </table>
           <p className="mt-3 text-xs text-stone-500">
             {resultsMode
-              ? 'Each state’s seats are allocated by its two-party vote counted so far; states in gray have no votes reported yet.'
+              ? colorMode === 'distortion'
+                ? 'Each state’s seats are allocated by its two-party vote counted so far and compared with the races called there; a state stays gray until all its races are called.'
+                : 'Each state’s seats are allocated by its two-party vote counted so far; states in gray have no votes reported yet.'
               : 'Each state’s seats are allocated by its projected statewide vote share.'}{' '}
             <Link to="/methodology" className="underline underline-offset-2 hover:text-brand-navy">
               How it’s calculated
