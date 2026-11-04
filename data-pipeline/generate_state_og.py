@@ -298,11 +298,16 @@ def build_html_page(
         f"elected D {ad}/R {ar} in 2024; allocated proportionally to the projected statewide vote "
         f"it would be D {pd}/R {pr} ({change_desc})."
     )
-    cadence = (
-        f"frozen at the final pre-election projection, made {frozen_date}"
-        if frozen_date
-        else "updated daily from current polling"
-    )
+    if result and result.get("under_pr"):
+        # The map now shows results; the projection is kept for comparison.
+        cadence = (
+            f"showing {cycle} results as they are counted, beside the final pre-election "
+            f"projection made {frozen_date}" if frozen_date else f"showing {cycle} results as they are counted"
+        )
+    elif frozen_date:
+        cadence = f"frozen at the final pre-election projection, made {frozen_date}"
+    else:
+        cadence = "updated daily from current polling"
     def split(d: int, r: int) -> str:
         return f'<span class="d">D&nbsp;{d}</span> &middot; <span class="r">R&nbsp;{r}</span>'
 

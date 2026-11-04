@@ -76,12 +76,14 @@ def test_state_page_with_results():
     assert "5 races not yet called" in html
     assert "The final pre-election projection was" in html
     assert "Called so far (2026)" in html and "Under PR (votes counted)" in html
+    assert "showing 2026 results as they are counted, beside the final pre-election projection made 2026-11-03" in html
 
 
 def test_state_page_pending():
     html = og.build_html_page(STATE, "2026-11-05", "2026-11-03", result("pending"), 2026)
     assert "No 2026 votes have been reported for New Jersey yet." in html
     assert "was elected" in html  # still the projection lede
+    assert "frozen at the final pre-election projection, made 2026-11-03" in html
 
 
 def test_frozen_date_is_the_eastern_publication_date():
