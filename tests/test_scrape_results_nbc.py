@@ -7,6 +7,7 @@ never published.
 """
 
 import json
+from datetime import datetime, timezone
 import sys
 from pathlib import Path
 
@@ -113,3 +114,62 @@ def test_apply_copies_votes_and_reporting_but_never_seats(tmp_path):
     nh = read_curated(curated)["NH"]
     assert (nh["status"], nh["d_votes"], nh["r_votes"], nh["reporting_pct"]) == ("provisional", "380", "320", "87.5")
     assert (nh["d_seats"], nh["r_seats"]) == ("1", "1")
+
+
+# --- race calls ---------------------------------------------------------------
+
+def called(code, n, cands, winner_idx=0, status="P"):
+    key, entry = race(code, n, cands)
+    for i, c in enumerate(entry["tooltip"]["candidates"]):
+        c["name"] = f"Candidate {i}"
+        c["isWinner"] = status == "P" and i == winner_idx
+    entry["tooltip"]["callStatusCode"] = status
+    return key, entry
+
+
+PAGE = "https://www.nbcnews.com/politics/2026-elections/house-results"
+
+
+def test_new_projections_become_nbc_calls_and_known_ones_are_skipped():
+    p = props(
+        called("PA", 7, [("Dem", 100), ("Rep", 90)]),
+        called("PA", 8, [("Dem", 100), ("Rep", 90)], winner_idx=1),   # already recorded, same party
+        called("PA", 10, [("Dem", 100), ("Rep", 99)], status=""),     # not called yet
+        called("WY", 1, [("Rep", 900), ("Dem", 600)]),
+    )
+    existing = {"PA-08": {"party": "R", "winner": "X", "caller": "AP"}}
+    rows, warnings = nbc.nbc_calls(p, FIPS, existing, PAGE)
+    assert warnings == []
+    assert [(r["district"], r["party"], r["caller"]) for r in rows] == [("PA-07", "D", "NBC"), ("WY-AL", "R", "NBC")]
+    assert rows[0]["called_at"] == "2026-11-04T09:01:49-05:00"  # page time, in ET
+    assert "time observed" in rows[0]["note"] and rows[0]["source_url"] == PAGE
+
+
+def test_a_different_party_than_the_recorded_call_is_only_reported():
+    p = props(called("PA", 7, [("Dem", 100), ("Rep", 90)]))
+    rows, warnings = nbc.nbc_calls(p, FIPS, {"PA-07": {"party": "R", "winner": "X", "caller": "AP"}}, PAGE)
+    assert rows == []
+    assert "possible retraction" in warnings[0]
+
+
+def test_projected_race_without_a_single_winner_is_skipped():
+    key, entry = called("PA", 7, [("Dem", 100), ("Rep", 90)])
+    for c in entry["tooltip"]["candidates"]:
+        c["isWinner"] = True
+    rows, warnings = nbc.nbc_calls(props((key, entry)), FIPS, {}, PAGE)
+    assert rows == [] and "2 winners" in warnings[0]
+
+
+def test_add_calls_appends_valid_rows_and_refuses_invalid_ones(tmp_path, monkeypatch):
+    import race_calls as rc
+    calls = tmp_path / "calls.csv"
+    calls.write_text(",".join(rc.COLUMNS) + "\n")
+    monkeypatch.setattr(rc, "CALLS", calls)
+    p = props(called("PA", 7, [("Dem", 100), ("Rep", 90)]), current="2026-11-04T04:00:00Z")
+    rows, _ = nbc.nbc_calls(p, FIPS, {}, PAGE)
+    nbc.add_calls(rows)
+    assert [r["district"] for r in rc.parse(calls.read_text(), datetime(2026, 11, 4, 6, tzinfo=timezone.utc))] == ["PA-07"]
+    bad = [dict(rows[0], district="PA-99")]
+    with pytest.raises(rc.CallsError):
+        nbc.add_calls(bad)
+    assert calls.read_text().count("PA-") == 1  # nothing written

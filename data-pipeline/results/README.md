@@ -62,11 +62,13 @@ Nov 4–6 — and publish without review:
    Wikipedia was the source until the morning of Nov 4, when it still had no totals
    for 49 states; switching states between sources can trip the guard's
    "votes fell" rule, so stay on one source.
-2. **Race calls:** search for calls by AP, Decision Desk HQ, NBC, CNN, ABC, CBS
-   or Fox News (any one is enough) for districts not yet in
-   `race_calls_2026.csv`; append a row per call (desk, time, link to the call),
-   then `python data-pipeline/race_calls.py --apply` to set each state's called
-   seats. The validator rejects malformed, pre-election, unsourced or Wikipedia-
+2. **Race calls:** `scrape_results_nbc.py --add-calls` appends every district the
+   NBC News Decision Desk has projected that isn't recorded yet (same page as the
+   vote totals; a projection that disagrees with a recorded call is only reported).
+   Then a small web search for AP, Decision Desk HQ, CNN, ABC, CBS or Fox calls
+   (any one desk is enough) on districts NBC hasn't projected; append a row per
+   call (desk, time, link to the call). Then `python data-pipeline/race_calls.py
+   --apply` sets each state's called seats. The validator rejects malformed, pre-election, unsourced or Wikipedia-
    sourced calls, and any edit to a committed call (append-only).
 3. **Guard:** `python data-pipeline/results_guard.py` compares the results file
    with the last commit and reverts any state whose change looks wrong (votes

@@ -11,6 +11,14 @@ which reads Wikipedia and lags hours behind the count on election night.
     python data-pipeline/scrape_results_nbc.py                  # draft + diff
     python data-pipeline/scrape_results_nbc.py --apply CA,TX    # copy those states
     python data-pipeline/scrape_results_nbc.py --apply ALL      # every state that changed
+    python data-pipeline/scrape_results_nbc.py --add-calls      # append NBC's new race calls
+
+Race calls: every district the NBC News Decision Desk has projected ("Projected
+winner") that isn't in race_calls_2026.csv yet is listed, and --add-calls
+appends it (caller NBC; called_at = when the page was read, noted as "time
+observed", since the page carries no per-race call time). A district where NBC
+projects a different party than the recorded call is only reported — the file
+is append-only, and retractions are for a human. Then run race_calls.py --apply.
 
 --apply copies votes, the reporting estimate, uncontested-race count, source
 and as_of, and marks the state provisional. It never touches seats (those come
@@ -31,16 +39,19 @@ Per state:
 from __future__ import annotations
 
 import csv
+import io
 import json
 import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import requests
 
 import election
+import race_calls as rc
 from results_file import APPORTIONMENT, COLUMNS, ResultsFileError, parse_rows
 from scrape_results_draft import DRAFTS_DIR, REPO_ROOT, VOTE_FIELDS, apply, diff, read_curated
 
@@ -140,6 +151,66 @@ def draft_rows(props: dict, fips: dict[str, str]) -> tuple[list[dict], list[str]
     return rows, warnings
 
 
+def district_id(key: str, fips: dict[str, str]) -> str | None:
+    """NBC's mapData key ('4207' = PA district 7) → 'PA-07' / 'WY-AL'."""
+    code = fips.get(key[:-2].zfill(2))
+    if code is None or not key[-2:].isdigit():
+        return None
+    return f"{code}-AL" if APPORTIONMENT[code] == 1 else f"{code}-{int(key[-2:]):02d}"
+
+
+def nbc_calls(props: dict, fips: dict[str, str], existing: dict[str, dict], page_url: str) -> tuple[list[dict], list[str]]:
+    """Race-call rows for districts NBC's Decision Desk has projected and the
+    calls file doesn't have yet, plus warnings: a district where NBC projects a
+    different party than the recorded call (a possible retraction — for a
+    human), or a projected race without exactly one winner.
+
+    NBC's page gives no per-race call time, so called_at is the time the page
+    was rendered and the note says so, as for calls recorded by hand from it."""
+    observed = datetime.fromisoformat(_iso_z(props["currentTime"]).replace("Z", "+00:00"))
+    called_at = observed.astimezone(ZoneInfo("America/New_York")).isoformat(timespec="seconds")
+    rows, warnings = [], []
+    for key, entry in sorted(props["mapData"].items()):
+        tip = (entry or {}).get("tooltip") or {}
+        district = district_id(key, fips)
+        if district is None or tip.get("officeCode") != "H" or tip.get("electionTypeCode") != "G":
+            continue
+        if tip.get("callStatusCode") != "P":
+            continue
+        winners = [c for c in tip.get("candidates") or [] if c.get("isWinner")]
+        if len(winners) != 1:
+            warnings.append(f"{district}: NBC marks it projected but lists {len(winners)} winners — skipped")
+            continue
+        w = winners[0]
+        party = party_bucket(w.get("party"))
+        if district in existing:
+            had = existing[district]
+            if had["party"] != party:
+                warnings.append(
+                    f"{district}: calls file has {had['party']} ({had['winner']}, {had['caller']}); "
+                    f"NBC now projects {party} ({w.get('name')}) — possible retraction, for the owner"
+                )
+            continue
+        rows.append({
+            "district": district, "party": party, "winner": (w.get("name") or "").strip(),
+            "caller": "NBC", "called_at": called_at, "source_url": page_url,
+            "note": "time observed (NBC 'Projected winner')",
+        })
+    return rows, warnings
+
+
+def add_calls(rows: list[dict]) -> None:
+    """Append rows to the calls file, refusing to write one that won't validate."""
+    text = rc.CALLS.read_text(encoding="utf-8")
+    if text and not text.endswith("\n"):
+        text += "\n"
+    buf = io.StringIO()
+    csv.DictWriter(buf, fieldnames=rc.COLUMNS, lineterminator="\n").writerows(rows)
+    new_text = text + buf.getvalue()
+    rc.parse(new_text)  # raises CallsError listing every problem
+    rc.CALLS.write_text(new_text, encoding="utf-8")
+
+
 def fetch(url: str) -> str:
     r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
     r.raise_for_status()
@@ -150,7 +221,25 @@ def main(argv: list[str]) -> int:
     el = election.resolve()
     url = PAGE.format(cycle=el.cycle)
     print(f"Fetching {url} …")
-    draft, warnings = draft_rows(page_props(fetch(url)), fips_to_code())
+    props, fips = page_props(fetch(url)), fips_to_code()
+
+    try:
+        existing = {r["district"]: r for r in rc.parse(rc.CALLS.read_text(encoding="utf-8"))}
+    except rc.CallsError as e:
+        print(f"  ⚠ the calls file doesn't validate, so no NBC calls this run:\n    {e}")
+        existing = None
+    if existing is not None:
+        calls, call_warnings = nbc_calls(props, fips, existing, url)
+        for w in call_warnings:
+            print(f"  ⚠ {w}")
+        print(f"NBC projections not yet in the calls file: {len(calls)}")
+        for c in calls:
+            print(f"  + {c['district']} {c['party']} {c['winner']}")
+        if calls and "--add-calls" in argv:
+            add_calls(calls)
+            print(f"Appended {len(calls)} NBC call(s) to {rc.CALLS.relative_to(REPO_ROOT)} — next: race_calls.py --apply.")
+
+    draft, warnings = draft_rows(props, fips)
     for w in warnings:
         print(f"  ⚠ {w}")
     try:
