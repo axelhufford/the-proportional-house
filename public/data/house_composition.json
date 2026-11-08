@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generated_at": "2026-11-01T12:45:54.798603+00:00",
+    "generated_at": "2026-11-08T12:51:06.420938+00:00",
     "congress": 119,
-    "publish_date": "October 1, 2026",
+    "publish_date": "November 3, 2026",
     "source": "Clerk of the U.S. House, MemberData.xml",
     "source_url": "https://clerk.house.gov/xml/lists/MemberData.xml",
     "note": "Live chamber composition, including vacancies. Party attribution follows each member's caucus. Distinct from the November 2024 election result, which remains the projection baseline \u2014 see house_2024.json."

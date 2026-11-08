@@ -1,6 +1,8 @@
 {
   "meta": {
-    "generated_at": "2026-11-01T12:46:00.462795+00:00"
+    "generated_at": "2026-11-08T12:51:10.687161+00:00",
+    "cycle": 2026,
+    "final_date": "2026-11-03"
   },
   "points": [
     {
@@ -15252,6 +15254,55 @@
       "generic_ballot_margin": 8.93,
       "swing": 11.45,
       "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-11-02",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 8.92,
+      "swing": 11.43,
+      "reconstructed": false,
+      "methods": {
+        "MMD-3": {
+          "d": 233,
+          "r": 202
+        },
+        "MMD-5": {
+          "d": 246,
+          "r": 189
+        },
+        "MMP-50": {
+          "d": 239,
+          "r": 196
+        }
+      }
+    },
+    {
+      "date": "2026-11-03",
+      "projected_d": 240,
+      "projected_r": 195,
+      "actual_d": 215,
+      "actual_r": 220,
+      "generic_ballot_margin": 8.93,
+      "swing": 11.44,
+      "reconstructed": false,
+      "final": true,
       "methods": {
         "MMD-3": {
           "d": 233,

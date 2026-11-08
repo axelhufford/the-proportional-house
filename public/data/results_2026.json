@@ -1,40 +1,40 @@
 {
   "meta": {
-    "generated_at": "2026-11-01T12:45:54.327150+00:00",
+    "generated_at": "2026-11-08T12:51:06.227018+00:00",
     "cycle": 2026,
     "election_date": "2026-11-03",
     "source_file": "data-pipeline/results/house_2026.csv",
     "method": "sainte-lague",
-    "as_of": null,
+    "as_of": "2026-11-06T16:05:14Z",
     "rehearsal": false,
     "status_counts": {
-      "pending": 50,
-      "provisional": 0,
+      "pending": 0,
+      "provisional": 50,
       "certified": 0
     },
-    "seats_called": 0,
+    "seats_called": 406,
     "all_called": false,
     "all_certified": false
   },
   "national": {
     "seats": 435,
     "as_elected": {
-      "d_seats": 0,
-      "r_seats": 0,
+      "d_seats": 249,
+      "r_seats": 157,
       "other_seats": 0,
-      "uncalled_seats": 435
+      "uncalled_seats": 29
     },
     "under_pr": {
-      "d_seats": 0,
-      "r_seats": 0,
-      "pending_seats": 435
+      "d_seats": 249,
+      "r_seats": 186,
+      "pending_seats": 0
     },
     "votes": {
-      "d": 0,
-      "r": 0,
+      "d": 62215930,
+      "r": 48325267,
       "other": null
     },
-    "two_party_d_margin_points": null,
+    "two_party_d_margin_points": 12.566,
     "all_votes_d_margin_points": null
   },
   "states": [
@@ -43,7 +43,7 @@
       "code": "AK",
       "name": "Alaska",
       "seats": 1,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
         "r_seats": 0,
@@ -51,1342 +51,1957 @@
         "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 15550,
+        "r": 105647,
+        "other": 91812
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.128304,
+        "r_share": 0.871696
+      },
+      "under_pr": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "reporting_pct": 74.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/alaska-house-results",
+      "as_of": "2026-11-05T16:05:01Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.536309,
+        "r_share": 0.463691,
+        "d_seats": 1,
+        "r_seats": 0
+      }
     },
     {
       "fips": "01",
       "code": "AL",
       "name": "Alabama",
       "seats": 7,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 2,
+        "r_seats": 5,
         "other_seats": 0,
-        "uncalled_seats": 7
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
+        "d": 763464,
+        "r": 914968,
         "other": null
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.454867,
+        "r_share": 0.545133
+      },
+      "under_pr": {
+        "d_seats": 3,
+        "r_seats": 4
+      },
+      "reporting_pct": 98.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/alabama-house-results",
+      "as_of": "2026-11-04T22:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.295707,
+        "r_share": 0.704293,
+        "d_seats": 2,
+        "r_seats": 5
+      }
     },
     {
       "fips": "05",
       "code": "AR",
       "name": "Arkansas",
       "seats": 4,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 4,
         "other_seats": 0,
-        "uncalled_seats": 4
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 348470,
+        "r": 512986,
+        "other": 15351
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.404513,
+        "r_share": 0.595487
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "reporting_pct": 99.5,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/arkansas-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.358333,
+        "r_share": 0.641667,
+        "d_seats": 1,
+        "r_seats": 3
+      }
     },
     {
       "fips": "04",
       "code": "AZ",
       "name": "Arizona",
       "seats": 9,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 5,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 9
+        "uncalled_seats": 3
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1285372,
+        "r": 1042533,
+        "other": 40548
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.552158,
+        "r_share": 0.447842
+      },
+      "under_pr": {
+        "d_seats": 5,
+        "r_seats": 4
+      },
+      "reporting_pct": 90.4,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/arizona-house-results",
+      "as_of": "2026-11-06T04:46:32Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.537718,
+        "r_share": 0.462282,
+        "d_seats": 5,
+        "r_seats": 4
+      }
     },
     {
       "fips": "06",
       "code": "CA",
       "name": "California",
       "seats": 52,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 44,
+        "r_seats": 2,
         "other_seats": 0,
-        "uncalled_seats": 52
+        "uncalled_seats": 6
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 5809848,
+        "r": 2626194,
+        "other": 64143
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.688694,
+        "r_share": 0.311306
+      },
+      "under_pr": {
+        "d_seats": 36,
+        "r_seats": 16
+      },
+      "reporting_pct": 63.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/california-house-results",
+      "as_of": "2026-11-06T04:46:32Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": 10,
+      "final_projection": {
+        "d_share": 0.703992,
+        "r_share": 0.296008,
+        "d_seats": 37,
+        "r_seats": 15
+      }
     },
     {
       "fips": "08",
       "code": "CO",
       "name": "Colorado",
       "seats": 8,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 6,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 8
+        "uncalled_seats": 2
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1557172,
+        "r": 949461,
+        "other": 94214
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.621221,
+        "r_share": 0.378779
+      },
+      "under_pr": {
+        "d_seats": 5,
+        "r_seats": 3
+      },
+      "reporting_pct": 95.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/colorado-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.582815,
+        "r_share": 0.417185,
+        "d_seats": 5,
+        "r_seats": 3
+      }
     },
     {
       "fips": "09",
       "code": "CT",
       "name": "Connecticut",
       "seats": 5,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 5,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 5
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 800354,
+        "r": 462450,
+        "other": 16680
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.633791,
+        "r_share": 0.366209
+      },
+      "under_pr": {
+        "d_seats": 3,
+        "r_seats": 2
+      },
+      "reporting_pct": 98.3,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/connecticut-house-results",
+      "as_of": "2026-11-05T16:05:01Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.645776,
+        "r_share": 0.354224,
+        "d_seats": 3,
+        "r_seats": 2
+      }
     },
     {
       "fips": "10",
       "code": "DE",
       "name": "Delaware",
       "seats": 1,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 1,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
+        "d": 243467,
+        "r": 134966,
         "other": null
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.643356,
+        "r_share": 0.356644
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "reporting_pct": 99.1,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/delaware-house-results",
+      "as_of": "2026-11-04T19:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.620169,
+        "r_share": 0.379831,
+        "d_seats": 1,
+        "r_seats": 0
+      }
     },
     {
       "fips": "12",
       "code": "FL",
       "name": "Florida",
       "seats": 28,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 7,
+        "r_seats": 17,
         "other_seats": 0,
-        "uncalled_seats": 28
+        "uncalled_seats": 4
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 3864499,
+        "r": 4040069,
+        "other": 94559
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.488894,
+        "r_share": 0.511106
+      },
+      "under_pr": {
+        "d_seats": 14,
+        "r_seats": 14
+      },
+      "reporting_pct": 99.5,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/florida-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": 1,
+      "final_projection": {
+        "d_share": 0.518102,
+        "r_share": 0.481898,
+        "d_seats": 15,
+        "r_seats": 13
+      }
     },
     {
       "fips": "13",
       "code": "GA",
       "name": "Georgia",
       "seats": 14,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 5,
+        "r_seats": 9,
         "other_seats": 0,
-        "uncalled_seats": 14
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
+        "d": 2342620,
+        "r": 1825069,
         "other": null
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.562091,
+        "r_share": 0.437909
+      },
+      "under_pr": {
+        "d_seats": 8,
+        "r_seats": 6
+      },
+      "reporting_pct": 99.8,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/georgia-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.491166,
+        "r_share": 0.508834,
+        "d_seats": 7,
+        "r_seats": 7
+      }
     },
     {
       "fips": "15",
       "code": "HI",
       "name": "Hawaii",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 2,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 255550,
+        "r": 105424,
+        "other": 9318
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.707946,
+        "r_share": 0.292054
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 99.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/hawaii-house-results",
+      "as_of": "2026-11-05T16:05:01Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.770132,
+        "r_share": 0.229868,
+        "d_seats": 2,
+        "r_seats": 0
+      }
     },
     {
       "fips": "19",
       "code": "IA",
       "name": "Iowa",
       "seats": 4,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 3,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 4
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 667202,
+        "r": 650676,
+        "other": 29572
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.50627,
+        "r_share": 0.49373
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "reporting_pct": 98.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/iowa-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.490935,
+        "r_share": 0.509065,
+        "d_seats": 2,
+        "r_seats": 2
+      }
     },
     {
       "fips": "16",
       "code": "ID",
       "name": "Idaho",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 2,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 242062,
+        "r": 414371,
+        "other": 53037
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.368754,
+        "r_share": 0.631246
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 98.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/idaho-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.353558,
+        "r_share": 0.646442,
+        "d_seats": 1,
+        "r_seats": 1
+      }
     },
     {
       "fips": "17",
       "code": "IL",
       "name": "Illinois",
       "seats": 17,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 14,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 17
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 2477640,
+        "r": 1504533,
+        "other": 19774
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.622183,
+        "r_share": 0.377817
+      },
+      "under_pr": {
+        "d_seats": 11,
+        "r_seats": 6
+      },
+      "reporting_pct": 91.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/illinois-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.590211,
+        "r_share": 0.409789,
+        "d_seats": 10,
+        "r_seats": 7
+      }
     },
     {
       "fips": "18",
       "code": "IN",
       "name": "Indiana",
       "seats": 9,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 3,
+        "r_seats": 6,
         "other_seats": 0,
-        "uncalled_seats": 9
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 996768,
+        "r": 926490,
+        "other": 15890
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.518271,
+        "r_share": 0.481729
+      },
+      "under_pr": {
+        "d_seats": 5,
+        "r_seats": 4
+      },
+      "reporting_pct": 99.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/indiana-house-results",
+      "as_of": "2026-11-05T22:05:31Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.42067,
+        "r_share": 0.57933,
+        "d_seats": 4,
+        "r_seats": 5
+      }
     },
     {
       "fips": "20",
       "code": "KS",
       "name": "Kansas",
       "seats": 4,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 4
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 520987,
+        "r": 544405,
+        "other": 29102
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.48901,
+        "r_share": 0.51099
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "reporting_pct": 98.7,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/kansas-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.433269,
+        "r_share": 0.566731,
+        "d_seats": 2,
+        "r_seats": 2
+      }
     },
     {
       "fips": "21",
       "code": "KY",
       "name": "Kentucky",
       "seats": 6,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 2,
+        "r_seats": 4,
         "other_seats": 0,
-        "uncalled_seats": 6
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 622448,
+        "r": 765229,
+        "other": 34692
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.448554,
+        "r_share": 0.551446
+      },
+      "under_pr": {
+        "d_seats": 3,
+        "r_seats": 3
+      },
+      "reporting_pct": 99.5,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/kentucky-house-results",
+      "as_of": "2026-11-05T16:05:01Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.312115,
+        "r_share": 0.687885,
+        "d_seats": 2,
+        "r_seats": 4
+      }
     },
     {
       "fips": "22",
       "code": "LA",
       "name": "Louisiana",
       "seats": 6,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 6
+        "uncalled_seats": 2
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 645809,
+        "r": 789442,
+        "other": 23905
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.449962,
+        "r_share": 0.550038
+      },
+      "under_pr": {
+        "d_seats": 3,
+        "r_seats": 3
+      },
+      "reporting_pct": 99.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/louisiana-house-results",
+      "as_of": "2026-11-04T22:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.409998,
+        "r_share": 0.590002,
+        "d_seats": 2,
+        "r_seats": 4
+      }
     },
     {
       "fips": "25",
       "code": "MA",
       "name": "Massachusetts",
       "seats": 9,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 9,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 9
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1722804,
+        "r": 507901,
+        "other": 110663
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.772314,
+        "r_share": 0.227686
+      },
+      "under_pr": {
+        "d_seats": 7,
+        "r_seats": 2
+      },
+      "reporting_pct": 89.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/massachusetts-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": 4,
+      "final_projection": {
+        "d_share": 0.971071,
+        "r_share": 0.028929,
+        "d_seats": 9,
+        "r_seats": 0
+      }
     },
     {
       "fips": "24",
       "code": "MD",
       "name": "Maryland",
       "seats": 8,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 7,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 8
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1328520,
+        "r": 612742,
+        "other": 18575
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.684359,
+        "r_share": 0.315641
+      },
+      "under_pr": {
+        "d_seats": 5,
+        "r_seats": 3
+      },
+      "reporting_pct": 82.7,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/maryland-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.68958,
+        "r_share": 0.31042,
+        "d_seats": 6,
+        "r_seats": 2
+      }
     },
     {
       "fips": "23",
       "code": "ME",
       "name": "Maine",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 1,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 414617,
+        "r": 299607,
+        "other": 125
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.580514,
+        "r_share": 0.419486
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 94.7,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/maine-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.582093,
+        "r_share": 0.417907,
+        "d_seats": 1,
+        "r_seats": 1
+      }
     },
     {
       "fips": "26",
       "code": "MI",
       "name": "Michigan",
       "seats": 13,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 9,
+        "r_seats": 4,
         "other_seats": 0,
-        "uncalled_seats": 13
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 2519876,
+        "r": 2102070,
+        "other": 102085
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.545198,
+        "r_share": 0.454802
+      },
+      "under_pr": {
+        "d_seats": 7,
+        "r_seats": 6
+      },
+      "reporting_pct": 95.1,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/michigan-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.532327,
+        "r_share": 0.467673,
+        "d_seats": 7,
+        "r_seats": 6
+      }
     },
     {
       "fips": "27",
       "code": "MN",
       "name": "Minnesota",
       "seats": 8,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 4,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 8
+        "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1574625,
+        "r": 1214704,
+        "other": 27869
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.564517,
+        "r_share": 0.435483
+      },
+      "under_pr": {
+        "d_seats": 5,
+        "r_seats": 3
+      },
+      "reporting_pct": 98.8,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/minnesota-house-results",
+      "as_of": "2026-11-04T19:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.521837,
+        "r_share": 0.478163,
+        "d_seats": 4,
+        "r_seats": 4
+      }
     },
     {
       "fips": "29",
       "code": "MO",
       "name": "Missouri",
       "seats": 8,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 3,
+        "r_seats": 5,
         "other_seats": 0,
-        "uncalled_seats": 8
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1008272,
+        "r": 1023177,
+        "other": 59638
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.496331,
+        "r_share": 0.503669
+      },
+      "under_pr": {
+        "d_seats": 4,
+        "r_seats": 4
+      },
+      "reporting_pct": 99.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/missouri-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.416276,
+        "r_share": 0.583724,
+        "d_seats": 3,
+        "r_seats": 5
+      }
     },
     {
       "fips": "28",
       "code": "MS",
       "name": "Mississippi",
       "seats": 4,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 4
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 441660,
+        "r": 488580,
+        "other": 18964
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.474781,
+        "r_share": 0.525219
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "reporting_pct": 95.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/mississippi-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.350534,
+        "r_share": 0.649466,
+        "d_seats": 1,
+        "r_seats": 3
+      }
     },
     {
       "fips": "30",
       "code": "MT",
       "name": "Montana",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 202434,
+        "r": 250040,
+        "other": 28604
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.447394,
+        "r_share": 0.552606
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 97.5,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/montana-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.435131,
+        "r_share": 0.564869,
+        "d_seats": 1,
+        "r_seats": 1
+      }
     },
     {
       "fips": "37",
       "code": "NC",
       "name": "North Carolina",
       "seats": 14,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 9,
+        "r_seats": 2,
         "other_seats": 0,
-        "uncalled_seats": 14
+        "uncalled_seats": 3
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 2385603,
+        "r": 1752606,
+        "other": 52660
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.576482,
+        "r_share": 0.423518
+      },
+      "under_pr": {
+        "d_seats": 8,
+        "r_seats": 6
+      },
+      "reporting_pct": 99.1,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/north-carolina-house-results",
+      "as_of": "2026-11-05T01:05:17Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.465599,
+        "r_share": 0.534401,
+        "d_seats": 7,
+        "r_seats": 7
+      }
     },
     {
       "fips": "38",
       "code": "ND",
       "name": "North Dakota",
       "seats": 1,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 85892,
+        "r": 134477,
+        "other": 13886
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.389764,
+        "r_share": 0.610236
+      },
+      "under_pr": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "reporting_pct": 98.2,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/north-dakota-house-results",
+      "as_of": "2026-11-05T19:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.346374,
+        "r_share": 0.653626,
+        "d_seats": 0,
+        "r_seats": 1
+      }
     },
     {
       "fips": "31",
       "code": "NE",
       "name": "Nebraska",
       "seats": 3,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 2,
         "other_seats": 0,
-        "uncalled_seats": 3
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 302251,
+        "r": 399045,
+        "other": 37080
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.430989,
+        "r_share": 0.569011
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 2
+      },
+      "reporting_pct": 93.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/nebraska-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.38101,
+        "r_share": 0.61899,
+        "d_seats": 1,
+        "r_seats": 2
+      }
     },
     {
       "fips": "33",
       "code": "NH",
       "name": "New Hampshire",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 2,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 364792,
+        "r": 257128,
+        "other": 7439
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.586558,
+        "r_share": 0.413442
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 98.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/new-hampshire-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.58702,
+        "r_share": 0.41298,
+        "d_seats": 1,
+        "r_seats": 1
+      }
     },
     {
       "fips": "34",
       "code": "NJ",
       "name": "New Jersey",
       "seats": 12,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 11,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 12
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1813138,
+        "r": 1012838,
+        "other": 43843
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.641597,
+        "r_share": 0.358403
+      },
+      "under_pr": {
+        "d_seats": 8,
+        "r_seats": 4
+      },
+      "reporting_pct": 94.4,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/new-jersey-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": 1,
+      "final_projection": {
+        "d_share": 0.648013,
+        "r_share": 0.351987,
+        "d_seats": 8,
+        "r_seats": 4
+      }
     },
     {
       "fips": "35",
       "code": "NM",
       "name": "New Mexico",
       "seats": 3,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 3,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 3
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
+        "d": 444121,
+        "r": 277356,
         "other": null
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.615572,
+        "r_share": 0.384428
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 1
+      },
+      "reporting_pct": 98.3,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/new-mexico-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.595698,
+        "r_share": 0.404302,
+        "d_seats": 2,
+        "r_seats": 1
+      }
     },
     {
       "fips": "32",
       "code": "NV",
       "name": "Nevada",
       "seats": 4,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 4,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 4
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 609218,
+        "r": 424754,
+        "other": 35350
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.589202,
+        "r_share": 0.410798
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "reporting_pct": 93.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/nevada-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.492468,
+        "r_share": 0.507532,
+        "d_seats": 2,
+        "r_seats": 2
+      }
     },
     {
       "fips": "36",
       "code": "NY",
       "name": "New York",
       "seats": 26,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 20,
+        "r_seats": 5,
         "other_seats": 0,
-        "uncalled_seats": 26
+        "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 3637474,
+        "r": 2226539,
+        "other": 40393
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.620305,
+        "r_share": 0.379695
+      },
+      "under_pr": {
+        "d_seats": 16,
+        "r_seats": 10
+      },
+      "reporting_pct": 91.1,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/new-york-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.701355,
+        "r_share": 0.298645,
+        "d_seats": 18,
+        "r_seats": 8
+      }
     },
     {
       "fips": "39",
       "code": "OH",
       "name": "Ohio",
       "seats": 15,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 8,
+        "r_seats": 7,
         "other_seats": 0,
-        "uncalled_seats": 15
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 2318450,
+        "r": 2178153,
+        "other": 53402
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.5156,
+        "r_share": 0.4844
+      },
+      "under_pr": {
+        "d_seats": 8,
+        "r_seats": 7
+      },
+      "reporting_pct": 97.8,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/ohio-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.457012,
+        "r_share": 0.542988,
+        "d_seats": 7,
+        "r_seats": 8
+      }
     },
     {
       "fips": "40",
       "code": "OK",
       "name": "Oklahoma",
       "seats": 5,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 5,
         "other_seats": 0,
-        "uncalled_seats": 5
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 454345,
+        "r": 643929,
+        "other": 18961
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.41369,
+        "r_share": 0.58631
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 3
+      },
+      "reporting_pct": 99.8,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/oklahoma-house-results",
+      "as_of": "2026-11-04T22:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.339994,
+        "r_share": 0.660006,
+        "d_seats": 2,
+        "r_seats": 3
+      }
     },
     {
       "fips": "41",
       "code": "OR",
       "name": "Oregon",
       "seats": 6,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 5,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 6
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 993174,
+        "r": 706841,
+        "other": 20046
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.584215,
+        "r_share": 0.415785
+      },
+      "under_pr": {
+        "d_seats": 4,
+        "r_seats": 2
+      },
+      "reporting_pct": 84.5,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/oregon-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.575085,
+        "r_share": 0.424915,
+        "d_seats": 3,
+        "r_seats": 3
+      }
     },
     {
       "fips": "42",
       "code": "PA",
       "name": "Pennsylvania",
       "seats": 17,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 11,
+        "r_seats": 6,
         "other_seats": 0,
-        "uncalled_seats": 17
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 2800670,
+        "r": 2141039,
+        "other": 17361
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.566741,
+        "r_share": 0.433259
+      },
+      "under_pr": {
+        "d_seats": 10,
+        "r_seats": 7
+      },
+      "reporting_pct": 98.8,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/pennsylvania-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": 1,
+      "final_projection": {
+        "d_share": 0.518659,
+        "r_share": 0.481341,
+        "d_seats": 9,
+        "r_seats": 8
+      }
     },
     {
       "fips": "44",
       "code": "RI",
       "name": "Rhode Island",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 2,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 232225,
+        "r": 118449,
+        "other": 6916
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.662225,
+        "r_share": 0.337775
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 98.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/rhode-island-house-results",
+      "as_of": "2026-11-05T01:05:17Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.696997,
+        "r_share": 0.303003,
+        "d_seats": 1,
+        "r_seats": 1
+      }
     },
     {
       "fips": "45",
       "code": "SC",
       "name": "South Carolina",
       "seats": 7,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 4,
         "other_seats": 0,
-        "uncalled_seats": 7
+        "uncalled_seats": 2
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 976888,
+        "r": 1030157,
+        "other": 22979
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.486729,
+        "r_share": 0.513271
+      },
+      "under_pr": {
+        "d_seats": 3,
+        "r_seats": 4
+      },
+      "reporting_pct": 99.1,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/south-carolina-house-results",
+      "as_of": "2026-11-04T14:09:05Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.457615,
+        "r_share": 0.542385,
+        "d_seats": 3,
+        "r_seats": 4
+      }
     },
     {
       "fips": "46",
       "code": "SD",
       "name": "South Dakota",
       "seats": 1,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
+        "d": 109993,
+        "r": 195587,
         "other": null
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.359948,
+        "r_share": 0.640052
+      },
+      "under_pr": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "reporting_pct": 99.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/south-dakota-house-results",
+      "as_of": "2026-11-05T22:05:31Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.310683,
+        "r_share": 0.689317,
+        "d_seats": 0,
+        "r_seats": 1
+      }
     },
     {
       "fips": "47",
       "code": "TN",
       "name": "Tennessee",
       "seats": 9,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 8,
         "other_seats": 0,
-        "uncalled_seats": 9
+        "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 896349,
+        "r": 1095895,
+        "other": 39360
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.449919,
+        "r_share": 0.550081
+      },
+      "under_pr": {
+        "d_seats": 4,
+        "r_seats": 5
+      },
+      "reporting_pct": 98.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/tennessee-house-results",
+      "as_of": "2026-11-04T22:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.390072,
+        "r_share": 0.609928,
+        "d_seats": 4,
+        "r_seats": 5
+      }
     },
     {
       "fips": "48",
       "code": "TX",
       "name": "Texas",
       "seats": 38,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 14,
+        "r_seats": 24,
         "other_seats": 0,
-        "uncalled_seats": 38
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 5146097,
+        "r": 4590935,
+        "other": 43578
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.528508,
+        "r_share": 0.471492
+      },
+      "under_pr": {
+        "d_seats": 20,
+        "r_seats": 18
+      },
+      "reporting_pct": 99.4,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/texas-house-results",
+      "as_of": "2026-11-05T16:05:01Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.486942,
+        "r_share": 0.513058,
+        "d_seats": 19,
+        "r_seats": 19
+      }
     },
     {
       "fips": "49",
       "code": "UT",
       "name": "Utah",
       "seats": 4,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 1,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 4
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 401809,
+        "r": 409992,
+        "other": 56534
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.49496,
+        "r_share": 0.50504
+      },
+      "under_pr": {
+        "d_seats": 2,
+        "r_seats": 2
+      },
+      "reporting_pct": 81.7,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/utah-house-results",
+      "as_of": "2026-11-06T16:05:14Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.358413,
+        "r_share": 0.641587,
+        "d_seats": 1,
+        "r_seats": 3
+      }
     },
     {
       "fips": "51",
       "code": "VA",
       "name": "Virginia",
       "seats": 11,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 8,
+        "r_seats": 2,
         "other_seats": 0,
-        "uncalled_seats": 11
+        "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 2080510,
+        "r": 1420537,
+        "other": 58230
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.594254,
+        "r_share": 0.405746
+      },
+      "under_pr": {
+        "d_seats": 7,
+        "r_seats": 4
+      },
+      "reporting_pct": 96.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/virginia-house-results",
+      "as_of": "2026-11-04T16:05:12Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.557899,
+        "r_share": 0.442101,
+        "d_seats": 6,
+        "r_seats": 5
+      }
     },
     {
       "fips": "50",
       "code": "VT",
       "name": "Vermont",
       "seats": 1,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
+        "d_seats": 1,
         "r_seats": 0,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 198766,
+        "r": 94071,
+        "other": 11932
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.67876,
+        "r_share": 0.32124
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 0
+      },
+      "reporting_pct": 99.0,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/vermont-house-results",
+      "as_of": "2026-11-06T01:32:59Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.701337,
+        "r_share": 0.298663,
+        "d_seats": 1,
+        "r_seats": 0
+      }
     },
     {
       "fips": "53",
       "code": "WA",
       "name": "Washington",
       "seats": 10,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 8,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 10
+        "uncalled_seats": 1
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1594921,
+        "r": 932555,
+        "other": 10700
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.631033,
+        "r_share": 0.368967
+      },
+      "under_pr": {
+        "d_seats": 6,
+        "r_seats": 4
+      },
+      "reporting_pct": 78.4,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/washington-house-results",
+      "as_of": "2026-11-06T04:46:32Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.601523,
+        "r_share": 0.398477,
+        "d_seats": 6,
+        "r_seats": 4
+      }
     },
     {
       "fips": "55",
       "code": "WI",
       "name": "Wisconsin",
       "seats": 8,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
-        "d_seats": 0,
-        "r_seats": 0,
+        "d_seats": 4,
+        "r_seats": 4,
         "other_seats": 0,
-        "uncalled_seats": 8
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 1454885,
+        "r": 1106267,
+        "other": 25219
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.568059,
+        "r_share": 0.431941
+      },
+      "under_pr": {
+        "d_seats": 5,
+        "r_seats": 3
+      },
+      "reporting_pct": 98.1,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/wisconsin-house-results",
+      "as_of": "2026-11-05T19:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": 1,
+      "final_projection": {
+        "d_share": 0.502264,
+        "r_share": 0.497736,
+        "d_seats": 4,
+        "r_seats": 4
+      }
     },
     {
       "fips": "54",
       "code": "WV",
       "name": "West Virginia",
       "seats": 2,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 2,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 180582,
+        "r": 262492,
+        "other": 6904
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.407566,
+        "r_share": 0.592434
+      },
+      "under_pr": {
+        "d_seats": 1,
+        "r_seats": 1
+      },
+      "reporting_pct": 98.9,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/west-virginia-house-results",
+      "as_of": "2026-11-04T22:05:26Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.319034,
+        "r_share": 0.680966,
+        "d_seats": 1,
+        "r_seats": 1
+      }
     },
     {
       "fips": "56",
       "code": "WY",
       "name": "Wyoming",
       "seats": 1,
-      "status": "pending",
+      "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": null,
-        "r": null,
-        "other": null
+        "d": 61687,
+        "r": 99891,
+        "other": 21625
       },
-      "two_party_share": null,
-      "under_pr": null,
-      "reporting_pct": null,
-      "reporting_source": null,
-      "source_url": null,
-      "as_of": null,
+      "two_party_share": {
+        "d_share": 0.381778,
+        "r_share": 0.618222
+      },
+      "under_pr": {
+        "d_seats": 0,
+        "r_seats": 1
+      },
+      "reporting_pct": 96.6,
+      "reporting_source": "AP",
+      "source_url": "https://www.nbcnews.com/politics/2026-elections/wyoming-house-results",
+      "as_of": "2026-11-04T14:09:05Z",
       "note": null,
       "baseline_distortion_warning": false,
-      "uncontested_district_count": null
+      "uncontested_district_count": null,
+      "final_projection": {
+        "d_share": 0.278739,
+        "r_share": 0.721261,
+        "d_seats": 0,
+        "r_seats": 1
+      }
     }
-  ]
+  ],
+  "vs_final_projection": {
+    "final_generated_at": "2026-11-03T02:30:54.616945+00:00",
+    "final_generic_ballot_margin": 8.933,
+    "final_projected_pr": {
+      "d_seats": 240,
+      "r_seats": 195
+    },
+    "pr_on_counted_votes": {
+      "d_seats": 249,
+      "r_seats": 186,
+      "pending_seats": 0
+    },
+    "counted_two_party_d_margin_points": 12.566,
+    "provisional": true
+  }
 }
