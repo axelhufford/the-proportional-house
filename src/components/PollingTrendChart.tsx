@@ -200,9 +200,18 @@ interface Props {
   currentAverageMargin: number;
   /** Chart height in px. Compact (160) in panels; taller on the homepage. */
   height?: number;
+  /** True once the projection is frozen: the average is the final one, not today's. */
+  frozen?: boolean;
 }
 
-export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props) {
+/** Y-axis ticks on round 5-point steps inside [lo, hi], always including Even. */
+function marginTicks(lo: number, hi: number): number[] {
+  const ticks: number[] = [];
+  for (let v = Math.ceil(lo / 5) * 5; v <= hi; v += 5) ticks.push(v);
+  return ticks;
+}
+
+export function PollingTrendChart({ currentAverageMargin, height = 160, frozen = false }: Props) {
   const [raw, setRaw] = useState<RawPoll[] | null>(null);
   // The hovered/tapped poll drives the tooltip + highlight. cx/cy are SVG
   // pixel coords (the surface fills the wrapper at 0,0), so they double as the
@@ -246,8 +255,8 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
   // Screen-reader equivalent of the scatter (which is otherwise opaque to AT).
   // Mirrors the sr-only table fallback the map uses.
   const srSummary =
-    `Generic-ballot polling over the last 180 days, ${fmtDate(xMin)} to ${fmtDate(xMax)}: ` +
-    `${points.length} polls. Current 14-day weighted average ${fmtMargin(currentAverageMargin)}. ` +
+    `Generic-ballot polling over ${frozen ? 'the final' : 'the last'} 180 days, ${fmtDate(xMin)} to ${fmtDate(xMax)}: ` +
+    `${points.length} polls. ${frozen ? 'Final' : 'Current'} 14-day weighted average ${fmtMargin(currentAverageMargin)}. ` +
     `Individual polls range from ${fmtMargin(lo)} to ${fmtMargin(hi)}. ` +
     `Positive values favor Democrats; negative favor Republicans.`;
 
@@ -289,7 +298,8 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
           <YAxis
             type="number"
             domain={[yMin, yMax]}
-            tickFormatter={(v: number) => fmtMargin(v)}
+            ticks={marginTicks(yMin, yMax)}
+            tickFormatter={(v: number) => (v === 0 ? 'Even' : fmtMargin(v, 0))}
             tick={{ fontSize: 10, fill: '#888' }}
             stroke="#d6d3d1"
             tickLine={false}
@@ -300,12 +310,22 @@ export function PollingTrendChart({ currentAverageMargin, height = 160 }: Props)
             y={currentAverageMargin}
             stroke="#1F2E4D"
             strokeWidth={1}
-            label={{
-              value: `now: ${fmtMargin(currentAverageMargin)}`,
-              position: 'insideTopRight',
-              fontSize: 10,
-              fill: '#1F2E4D',
-            }}
+            label={({ viewBox }: { viewBox?: { x?: number; y?: number; width?: number } }) => (
+              // A white halo keeps the label readable where it crosses poll dots.
+              <text
+                x={(viewBox?.x ?? 0) + (viewBox?.width ?? 0) - 4}
+                y={(viewBox?.y ?? 0) - 6}
+                textAnchor="end"
+                fontSize={10}
+                fontWeight={600}
+                fill="#1F2E4D"
+                stroke="#fff"
+                strokeWidth={3}
+                paintOrder="stroke"
+              >
+                {`${frozen ? 'final' : 'now'}: ${fmtMargin(currentAverageMargin)}`}
+              </text>
+            )}
           />
           <Line
             type="monotone"

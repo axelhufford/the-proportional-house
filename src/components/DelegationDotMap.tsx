@@ -320,8 +320,9 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
       <p className="mt-3 text-xs text-stone-500">
         Each dot is one seat, with Democrats on the left of each state and Republicans on the
         right. The six smallest Northeast states are drawn offshore. Flip between{' '}
-        {proportional.toggleLabel} and {actual.toggleLabel} to watch the seats that change hands.
-        Hover a state for its numbers, or click it for full detail.
+        {proportional.toggleLabel} and {actual.toggleLabel} to watch the seats that change hands.{' '}
+        <span className="hidden sm:inline">Hover a state for its numbers, or click it for full detail.</span>
+        <span className="sm:hidden">Tap a state for its numbers and full detail.</span>
       </p>
 
       <table className="sr-only">

@@ -16,6 +16,8 @@ interface Props {
    * counted, or — in distortion mode — with races still uncalled).
    */
   resultsNote?: string;
+  /** Replaces the mode's default caption (e.g. results rather than a projection). */
+  caption?: string;
 }
 
 // Sample the same diverging color function the map uses, at evenly-spaced
@@ -42,7 +44,7 @@ const LABELS: Record<
   },
 };
 
-export function MapLegend({ mode, sandboxPayload, resultsNote }: Props) {
+export function MapLegend({ mode, sandboxPayload, resultsNote, caption }: Props) {
   // Extended sandbox legend: party swatches instead of a diverging
   // scale. Only swap to swatches when minors are actually active —
   // otherwise the map keeps painting balance/distortion (from sandbox
@@ -96,7 +98,7 @@ export function MapLegend({ mode, sandboxPayload, resultsNote }: Props) {
         <span className="text-stone-400">{labels.center}</span>
         <span>{labels.right}</span>
       </div>
-      <p className="mt-1.5 text-xs text-stone-500">{labels.caption}</p>
+      <p className="mt-1.5 text-xs text-stone-500">{caption ?? labels.caption}</p>
       {resultsNote && <p className="mt-0.5 text-xs text-stone-500">{resultsNote}</p>}
     </div>
   );

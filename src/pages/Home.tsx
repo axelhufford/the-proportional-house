@@ -749,6 +749,8 @@ function HomeView({ onMetaChange }: HomeProps) {
   }, [frozen, resultsCycle]);
   // The Current view becomes the results view once any votes are counted.
   const resultsMode = viewMode === 'current' && hasResults(results);
+  // Any state still without votes — only then does the map need a "gray" note.
+  const statesPending = (results?.meta.status_counts.pending ?? 0) > 0;
 
   // Derive what the user actually sees based on the active view mode.
   // - current: election results once votes are counted; before that the
@@ -1097,7 +1099,9 @@ function HomeView({ onMetaChange }: HomeProps) {
           colorMode={colorMode}
           onColorModeChange={setColorMode}
           currentTab={
-            resultsMode && results
+            // Keyed on the results themselves, not the active view: the tab must
+            // keep its name while Retrospective or Sandbox is open.
+            hasResults(results) && results
               ? {
                   label: `${results.meta.cycle} Results`,
                   desc: resultsStatusLabel(results),
@@ -1236,7 +1240,8 @@ function HomeView({ onMetaChange }: HomeProps) {
            * map so newcomers know what they're looking at before they look. */}
           <div className="mb-3 space-y-2">
             <p className="text-xs text-stone-500">
-              Hover a state for its numbers · click any state for full detail.
+              <span className="hidden sm:inline">Hover a state for its numbers · click any state for full detail.</span>
+              <span className="sm:hidden">Tap any state for its numbers and full detail.</span>
             </p>
             {resultsMode && results && colorMode === 'distortion' && (
               // The map compares PR with the House voters elected, so say what
@@ -1264,11 +1269,19 @@ function HomeView({ onMetaChange }: HomeProps) {
             <MapLegend
               mode={colorMode}
               sandboxPayload={sandboxPayload}
+              caption={
+                resultsMode && colorMode === 'balance'
+                  ? 'Each state’s color shows which party holds more of its seats under PR of the votes counted so far.'
+                  : undefined
+              }
               resultsNote={
                 resultsMode
                   ? colorMode === 'distortion'
-                    ? 'Light gray: no votes counted yet. Darker gray: races still uncalled.'
-                    : 'Gray: no votes counted yet. Colors show PR of the vote counted so far.'
+                    ? (statesPending ? 'Light gray: no votes counted yet. ' : '') +
+                      'Gray: races still uncalled.'
+                    : statesPending
+                      ? 'Gray: no votes counted yet.'
+                      : undefined
                   : undefined
               }
             />
@@ -1317,7 +1330,8 @@ function HomeView({ onMetaChange }: HomeProps) {
             {resultsMode
               ? colorMode === 'distortion'
                 ? 'Each state’s seats are allocated by its two-party vote counted so far and compared with the races called there; a state stays gray until all its races are called.'
-                : 'Each state’s seats are allocated by its two-party vote counted so far; states in gray have no votes reported yet.'
+                : 'Each state’s seats are allocated by its two-party vote counted so far' +
+                  (statesPending ? '; states in gray have no votes reported yet.' : '.')
               : 'Each state’s seats are allocated by its projected statewide vote share.'}{' '}
             <Link to="/methodology" className="underline underline-offset-2 hover:text-brand-navy">
               How it’s calculated
@@ -1373,7 +1387,7 @@ function HomeView({ onMetaChange }: HomeProps) {
                     : 'Last 180 days'}
                 </p>
               </div>
-              <div className="text-right">
+              <div className="sm:text-right">
                 <div
                   className={`text-2xl font-semibold tabular-nums ${
                     pollMargin >= 0 ? 'text-blue-700' : 'text-red-700'
@@ -1388,7 +1402,7 @@ function HomeView({ onMetaChange }: HomeProps) {
             </div>
             <div className="mt-4">
               <Suspense fallback={<ChartSkeleton className="h-[300px]" />}>
-                <PollingTrendChart currentAverageMargin={pollMargin} height={300} />
+                <PollingTrendChart currentAverageMargin={pollMargin} height={300} frozen={copy.frozen} />
               </Suspense>
             </div>
             <p className="mt-3 text-xs text-stone-500">

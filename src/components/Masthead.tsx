@@ -9,15 +9,15 @@ export function Masthead() {
   return (
     <header className="bg-brand-cream">
       <div className="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <Link to="/" className="flex items-center gap-4 flex-shrink-0 group" aria-label="The Proportional House: home">
+        <Link to="/" className="flex items-center gap-3 sm:gap-4 min-w-0 max-w-full sm:flex-shrink-0 group" aria-label="The Proportional House: home">
           <img
             src="/logomark.svg"
             alt=""
             width="56"
             height="56"
-            className="w-10 h-10 sm:w-14 sm:h-14"
+            className="w-10 h-10 sm:w-14 sm:h-14 flex-shrink-0"
           />
-          <div>
+          <div className="min-w-0">
             <span className="block font-serif text-[22px] sm:text-[32px] font-medium text-brand-navy leading-[1.05] tracking-tight transition-opacity group-hover:opacity-90">
               The Proportional House
             </span>

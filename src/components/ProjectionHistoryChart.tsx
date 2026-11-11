@@ -250,7 +250,7 @@ export function ProjectionHistoryChart({ points, height = 260 }: Props) {
               x={finalDate}
               stroke="#57534e"
               strokeDasharray="2 2"
-              label={{ value: 'Final', position: 'insideTopLeft', fontSize: 10, fill: '#57534e' }}
+              label={{ value: 'Final', position: 'insideTopRight', fontSize: 10, fill: '#57534e' }}
             />
           )}
           {visibleIds.map((id) => {

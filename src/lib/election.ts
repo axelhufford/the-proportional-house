@@ -49,6 +49,22 @@ export function easternDate(iso: string): string {
   });
 }
 
+/** "Nov 2, 2026, 9:30 PM ET" — a timestamp read in Eastern time, wherever the reader is. */
+export function easternDateTime(iso: string): string {
+  const ms = Date.parse(iso);
+  if (!Number.isFinite(ms)) return '';
+  return (
+    new Date(ms).toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: 'America/New_York',
+    }) + ' ET'
+  );
+}
+
 export interface ProjectionCopy {
   frozen: boolean;
   /** The election year the projection is for. */

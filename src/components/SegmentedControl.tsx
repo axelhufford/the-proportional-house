@@ -53,7 +53,7 @@ export function SegmentedControl<T extends string>({
               onFocus={() => onHover?.(opt.value)}
               onBlur={() => onHover?.(null)}
               className={[
-                'px-3 py-1.5 sm:py-1 text-sm rounded transition-colors',
+                'px-2.5 sm:px-3 py-1.5 sm:py-1 text-[13px] sm:text-sm whitespace-nowrap rounded transition-colors',
                 active ? 'bg-brand-navy text-white' : 'text-stone-700 hover:bg-stone-100',
                 opt.disabled ? 'opacity-40 cursor-not-allowed hover:bg-transparent' : '',
               ].join(' ')}

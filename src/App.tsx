@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Layout } from './components/Layout';
@@ -6,6 +6,7 @@ import { ScrollManager } from './components/ScrollManager';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
 import { StateRedirect } from './pages/StateRedirect';
+import { fetchJson } from './lib/fetchJson';
 import type { ProjectionMeta, ProjectionPayload } from './lib/types';
 
 // Home stays eagerly imported — it's the landing page for nearly every visit,
@@ -38,11 +39,31 @@ function RouteFallback() {
   return <div className="max-w-5xl mx-auto px-4 py-12 text-stone-500">Loading…</div>;
 }
 
+/** Routes rendered by Home, which loads the projection itself. */
+const HOME_ENTRY_PATHS = new Set(['/', '/retrospective', '/sandbox']);
+
 export default function App() {
   const [meta, setMeta] = useState<ProjectionMeta | undefined>();
 
   const handleMetaChange = useCallback((payload: ProjectionPayload) => {
     setMeta(payload.meta);
+  }, []);
+
+  // Home reports the projection's meta once it loads. A visit that lands on any
+  // other page (Rankings, About, Methodology…) never mounts Home, which left the
+  // layout without the election banner and the footer's data line. Fetch it here
+  // for those entry points; Home's own report still wins when it arrives.
+  useEffect(() => {
+    if (HOME_ENTRY_PATHS.has(window.location.pathname.replace(/\/+$/, '') || '/')) return;
+    let alive = true;
+    fetchJson<ProjectionPayload>('/data/projection.json')
+      .then((p) => {
+        if (alive) setMeta((cur) => cur ?? p.meta);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
   }, []);
 
   return (

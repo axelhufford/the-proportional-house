@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from './ErrorBoundary';
-import { electionPhase, projectionCopy } from '../lib/election';
+import { easternDateTime, electionPhase, projectionCopy } from '../lib/election';
 import { fetchJson } from '../lib/fetchJson';
 import { HOME_VIEW_PATHS } from '../lib/homeViews';
 import { racesCalledLine } from '../lib/results';
@@ -60,7 +60,7 @@ export function Layout({ meta }: LayoutProps) {
         </div>
       )}
       {copy.frozen && (
-        <div className="bg-amber-50 border-b border-amber-200 text-amber-950 text-sm">
+        <div className="bg-amber-50 border-b border-amber-200 text-amber-950 text-[13px] sm:text-sm">
           <div className="max-w-6xl mx-auto px-6 py-2">
             <strong>Election {copy.cycle}:</strong>{' '}
             {electionPhase(meta?.election) === 'results' ? (
@@ -70,9 +70,15 @@ export function Layout({ meta }: LayoutProps) {
               </>
             ) : (
               <>
-                the final projection{copy.frozenOn ? `, made ${copy.frozenOn} from the last pre-election polls,` : ''}{' '}
-                is frozen as a record. Votes are being counted; results are provisional until each
-                state certifies.
+                {/* Phones get the short version: the frozen-projection note is
+                    repeated in the page itself, and six lines of banner pushed
+                    the results below the fold. */}
+                <span className="hidden sm:inline">
+                  the final projection{copy.frozenOn ? `, made ${copy.frozenOn} from the last pre-election polls,` : ''}{' '}
+                  is frozen as a record. Votes are being counted; results are provisional until each
+                  state certifies.
+                </span>
+                <span className="sm:hidden">votes are being counted; results are provisional.</span>
                 {calledLine && (
                   <>
                     {' '}
@@ -92,7 +98,7 @@ export function Layout({ meta }: LayoutProps) {
           <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between gap-4">
             <span>
               <strong>Data may be stale.</strong>{' '}
-              Last updated {new Date(meta.generated_at).toLocaleString()}{' '}
+              Last updated {easternDateTime(meta.generated_at)}{' '}
               (over {staleAfterHours} hours ago). The pipeline normally runs nightly.
             </span>
           </div>
@@ -118,7 +124,7 @@ export function Layout({ meta }: LayoutProps) {
             {meta ? (
               <>
                 <span>
-                  {copy.updatedLabel} {new Date(meta.generated_at).toLocaleString()}
+                  {copy.updatedLabel} {easternDateTime(meta.generated_at)}
                   {' · '}Source: {meta.data_source}
                 </span>
                 {meta.n_polls_in_average !== undefined && (
