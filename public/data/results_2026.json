@@ -1,28 +1,28 @@
 {
   "meta": {
-    "generated_at": "2026-11-15T13:30:55.114077+00:00",
+    "generated_at": "2026-11-22T14:09:33.916165+00:00",
     "cycle": 2026,
     "election_date": "2026-11-03",
     "source_file": "data-pipeline/results/house_2026.csv",
     "method": "sainte-lague",
-    "as_of": "2026-11-13T13:49:22Z",
+    "as_of": "2026-11-21T14:04:23Z",
     "rehearsal": false,
     "status_counts": {
       "pending": 0,
       "provisional": 50,
       "certified": 0
     },
-    "seats_called": 424,
+    "seats_called": 430,
     "all_called": false,
     "all_certified": false
   },
   "national": {
     "seats": 435,
     "as_elected": {
-      "d_seats": 255,
-      "r_seats": 169,
+      "d_seats": 257,
+      "r_seats": 173,
       "other_seats": 0,
-      "uncalled_seats": 11
+      "uncalled_seats": 5
     },
     "under_pr": {
       "d_seats": 250,
@@ -30,11 +30,11 @@
       "pending_seats": 0
     },
     "votes": {
-      "d": 66158471,
-      "r": 49931899,
+      "d": 66884129,
+      "r": 50208604,
       "other": null
     },
-    "two_party_d_margin_points": 13.978,
+    "two_party_d_margin_points": 14.241,
     "all_votes_d_margin_points": null
   },
   "states": [
@@ -46,27 +46,27 @@
       "status": "provisional",
       "as_elected": {
         "d_seats": 0,
-        "r_seats": 0,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": 19032,
-        "r": 123241,
-        "other": 111186
+        "d": 22669,
+        "r": 136215,
+        "other": 127661
       },
       "two_party_share": {
-        "d_share": 0.133771,
-        "r_share": 0.866229
+        "d_share": 0.142676,
+        "r_share": 0.857324
       },
       "under_pr": {
         "d_seats": 0,
         "r_seats": 1
       },
-      "reporting_pct": 87.9,
+      "reporting_pct": 99.3,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/alaska-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-18T05:23:27Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -129,22 +129,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 348643,
-        "r": 513166,
-        "other": 15357
+        "d": 349872,
+        "r": 513912,
+        "other": 15382
       },
       "two_party_share": {
-        "d_share": 0.404548,
-        "r_share": 0.595452
+        "d_share": 0.405046,
+        "r_share": 0.594954
       },
       "under_pr": {
         "d_seats": 2,
         "r_seats": 2
       },
-      "reporting_pct": 99.5,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/arkansas-house-results",
-      "as_of": "2026-11-11T00:32:19Z",
+      "as_of": "2026-11-19T23:41:54Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -168,22 +168,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 1393418,
-        "r": 1115819,
-        "other": 44613
+        "d": 1394455,
+        "r": 1116619,
+        "other": 44618
       },
       "two_party_share": {
-        "d_share": 0.555315,
-        "r_share": 0.444685
+        "d_share": 0.555322,
+        "r_share": 0.444678
       },
       "under_pr": {
         "d_seats": 5,
         "r_seats": 4
       },
-      "reporting_pct": 99.9,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/arizona-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-16T16:06:28Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -201,28 +201,28 @@
       "seats": 52,
       "status": "provisional",
       "as_elected": {
-        "d_seats": 47,
-        "r_seats": 3,
+        "d_seats": 48,
+        "r_seats": 4,
         "other_seats": 0,
-        "uncalled_seats": 2
+        "uncalled_seats": 0
       },
       "votes": {
-        "d": 8504120,
-        "r": 3645129,
-        "other": 98368
+        "d": 8880260,
+        "r": 3798232,
+        "other": 111663
       },
       "two_party_share": {
-        "d_share": 0.699971,
-        "r_share": 0.300029
+        "d_share": 0.700419,
+        "r_share": 0.299581
       },
       "under_pr": {
         "d_seats": 36,
         "r_seats": 16
       },
-      "reporting_pct": 93.2,
+      "reporting_pct": 98.6,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/california-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": 10,
@@ -246,22 +246,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 1592969,
-        "r": 962123,
-        "other": 96823
+        "d": 1608646,
+        "r": 969096,
+        "other": 97817
       },
       "two_party_share": {
-        "d_share": 0.623449,
-        "r_share": 0.376551
+        "d_share": 0.624052,
+        "r_share": 0.375948
       },
       "under_pr": {
         "d_seats": 5,
         "r_seats": 3
       },
-      "reporting_pct": 96.9,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/colorado-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-16T16:06:28Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -363,22 +363,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 3867141,
-        "r": 4041645,
-        "other": 94649
+        "d": 3868278,
+        "r": 4041906,
+        "other": 94670
       },
       "two_party_share": {
-        "d_share": 0.488968,
-        "r_share": 0.511032
+        "d_share": 0.489025,
+        "r_share": 0.510975
       },
       "under_pr": {
         "d_seats": 14,
         "r_seats": 14
       },
-      "reporting_pct": 99.4,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/florida-house-results",
-      "as_of": "2026-11-11T00:32:19Z",
+      "as_of": "2026-11-17T05:43:30Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": 1,
@@ -402,13 +402,13 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 2344881,
-        "r": 1826666,
-        "other": null
+        "d": 2344946,
+        "r": 1826685,
+        "other": 338
       },
       "two_party_share": {
-        "d_share": 0.562113,
-        "r_share": 0.437887
+        "d_share": 0.562117,
+        "r_share": 0.437883
       },
       "under_pr": {
         "d_seats": 8,
@@ -417,7 +417,7 @@
       "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/georgia-house-results",
-      "as_of": "2026-11-11T00:32:19Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -480,22 +480,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 669187,
-        "r": 651309,
-        "other": 29636
+        "d": 669311,
+        "r": 651345,
+        "other": 29638
       },
       "two_party_share": {
-        "d_share": 0.506769,
-        "r_share": 0.493231
+        "d_share": 0.506802,
+        "r_share": 0.493198
       },
       "under_pr": {
         "d_seats": 2,
         "r_seats": 2
       },
-      "reporting_pct": 98.9,
+      "reporting_pct": 99.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/iowa-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-16T16:06:28Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -531,10 +531,10 @@
         "d_seats": 1,
         "r_seats": 1
       },
-      "reporting_pct": 99.6,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/idaho-house-results",
-      "as_of": "2026-11-12T13:48:36Z",
+      "as_of": "2026-11-19T23:41:54Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -558,22 +558,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 2607033,
-        "r": 1527254,
-        "other": 20707
+        "d": 2643465,
+        "r": 1535165,
+        "other": 21052
       },
       "two_party_share": {
-        "d_share": 0.630588,
-        "r_share": 0.369412
+        "d_share": 0.632615,
+        "r_share": 0.367385
       },
       "under_pr": {
         "d_seats": 11,
         "r_seats": 6
       },
-      "reporting_pct": 97.7,
+      "reporting_pct": 98.6,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/illinois-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -636,22 +636,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 522916,
-        "r": 546236,
-        "other": 29255
+        "d": 531893,
+        "r": 551423,
+        "other": 29815
       },
       "two_party_share": {
-        "d_share": 0.489094,
-        "r_share": 0.510906
+        "d_share": 0.490986,
+        "r_share": 0.509014
       },
       "under_pr": {
         "d_seats": 2,
         "r_seats": 2
       },
-      "reporting_pct": 98.6,
+      "reporting_pct": 99.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/kansas-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-18T05:23:27Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -714,22 +714,22 @@
         "uncalled_seats": 2
       },
       "votes": {
-        "d": 645894,
-        "r": 789509,
-        "other": 23909
+        "d": 646131,
+        "r": 789939,
+        "other": 23926
       },
       "two_party_share": {
-        "d_share": 0.449974,
-        "r_share": 0.550026
+        "d_share": 0.44993,
+        "r_share": 0.55007
       },
       "under_pr": {
         "d_seats": 3,
         "r_seats": 3
       },
-      "reporting_pct": 99.6,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/louisiana-house-results",
-      "as_of": "2026-11-11T00:32:19Z",
+      "as_of": "2026-11-19T23:41:54Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -753,22 +753,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 1724771,
-        "r": 508513,
-        "other": 110858
+        "d": 1760716,
+        "r": 519477,
+        "other": 112625
       },
       "two_party_share": {
-        "d_share": 0.772303,
-        "r_share": 0.227697
+        "d_share": 0.772178,
+        "r_share": 0.227822
       },
       "under_pr": {
         "d_seats": 7,
         "r_seats": 2
       },
-      "reporting_pct": 90.1,
+      "reporting_pct": 95.7,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/massachusetts-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": 4,
@@ -792,22 +792,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 1458460,
-        "r": 633996,
-        "other": 20182
+        "d": 1558938,
+        "r": 650834,
+        "other": 22203
       },
       "two_party_share": {
-        "d_share": 0.697009,
-        "r_share": 0.302991
+        "d_share": 0.705475,
+        "r_share": 0.294525
       },
       "under_pr": {
         "d_seats": 6,
         "r_seats": 2
       },
-      "reporting_pct": 90.1,
+      "reporting_pct": 97.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/maryland-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -826,9 +826,9 @@
       "status": "provisional",
       "as_elected": {
         "d_seats": 1,
-        "r_seats": 0,
+        "r_seats": 1,
         "other_seats": 0,
-        "uncalled_seats": 1
+        "uncalled_seats": 0
       },
       "votes": {
         "d": 415297,
@@ -870,7 +870,7 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 2533204,
+        "d": 2533206,
         "r": 2108972,
         "other": 102616
       },
@@ -882,10 +882,10 @@
         "d_seats": 7,
         "r_seats": 6
       },
-      "reporting_pct": 95.6,
+      "reporting_pct": 98.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/michigan-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-17T05:43:30Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -987,22 +987,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 450236,
-        "r": 494319,
-        "other": 19256
+        "d": 454212,
+        "r": 496251,
+        "other": 19345
       },
       "two_party_share": {
-        "d_share": 0.476665,
-        "r_share": 0.523335
+        "d_share": 0.477885,
+        "r_share": 0.522115
       },
       "under_pr": {
         "d_seats": 2,
         "r_seats": 2
       },
-      "reporting_pct": 99.4,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/mississippi-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-17T05:43:30Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1059,10 +1059,10 @@
       "seats": 14,
       "status": "provisional",
       "as_elected": {
-        "d_seats": 9,
-        "r_seats": 2,
+        "d_seats": 10,
+        "r_seats": 3,
         "other_seats": 0,
-        "uncalled_seats": 3
+        "uncalled_seats": 1
       },
       "votes": {
         "d": 2398210,
@@ -1104,22 +1104,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 85892,
-        "r": 134477,
-        "other": 13886
+        "d": 86088,
+        "r": 134636,
+        "other": 13904
       },
       "two_party_share": {
-        "d_share": 0.389764,
-        "r_share": 0.610236
+        "d_share": 0.390026,
+        "r_share": 0.609974
       },
       "under_pr": {
         "d_seats": 0,
         "r_seats": 1
       },
-      "reporting_pct": 99.0,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/north-dakota-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-19T08:48:55Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1143,22 +1143,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 312596,
-        "r": 405935,
-        "other": 37787
+        "d": 318197,
+        "r": 408900,
+        "other": 38238
       },
       "two_party_share": {
-        "d_share": 0.435049,
-        "r_share": 0.564951
+        "d_share": 0.437627,
+        "r_share": 0.562373
       },
       "under_pr": {
         "d_seats": 1,
         "r_seats": 2
       },
-      "reporting_pct": 97.7,
+      "reporting_pct": 99.4,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/nebraska-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-17T05:43:30Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1221,22 +1221,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 1845211,
-        "r": 1020821,
-        "other": 44906
+        "d": 1877202,
+        "r": 1030215,
+        "other": 45634
       },
       "two_party_share": {
-        "d_share": 0.643821,
-        "r_share": 0.356179
+        "d_share": 0.64566,
+        "r_share": 0.35434
       },
       "under_pr": {
         "d_seats": 8,
         "r_seats": 4
       },
-      "reporting_pct": 97.5,
+      "reporting_pct": 99.7,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/new-jersey-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": 1,
@@ -1299,13 +1299,13 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 615884,
-        "r": 430363,
-        "other": 36117
+        "d": 616267,
+        "r": 430779,
+        "other": 36182
       },
       "two_party_share": {
-        "d_share": 0.58866,
-        "r_share": 0.41134
+        "d_share": 0.588577,
+        "r_share": 0.411423
       },
       "under_pr": {
         "d_seats": 2,
@@ -1314,7 +1314,7 @@
       "reporting_pct": 98.4,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/nevada-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-16T16:06:28Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1338,22 +1338,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 3728142,
-        "r": 2262823,
-        "other": 40734
+        "d": 3746878,
+        "r": 2271096,
+        "other": 40810
       },
       "two_party_share": {
-        "d_share": 0.622294,
-        "r_share": 0.377706
+        "d_share": 0.622615,
+        "r_share": 0.377385
       },
       "under_pr": {
         "d_seats": 16,
         "r_seats": 10
       },
-      "reporting_pct": 94.3,
+      "reporting_pct": 96.1,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/new-york-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1377,22 +1377,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 2319338,
-        "r": 2179136,
-        "other": 53407
+        "d": 2340723,
+        "r": 2191689,
+        "other": 53133
       },
       "two_party_share": {
-        "d_share": 0.515583,
-        "r_share": 0.484417
+        "d_share": 0.516441,
+        "r_share": 0.483559
       },
       "under_pr": {
         "d_seats": 8,
         "r_seats": 7
       },
-      "reporting_pct": 97.7,
+      "reporting_pct": 98.7,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/ohio-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1494,22 +1494,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 2818719,
-        "r": 2146600,
-        "other": 17424
+        "d": 2832541,
+        "r": 2148713,
+        "other": 17628
       },
       "two_party_share": {
-        "d_share": 0.567681,
-        "r_share": 0.432319
+        "d_share": 0.56864,
+        "r_share": 0.43136
       },
       "under_pr": {
         "d_seats": 10,
         "r_seats": 7
       },
-      "reporting_pct": 99.7,
+      "reporting_pct": 99.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/pennsylvania-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": 1,
@@ -1533,13 +1533,13 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 233127,
-        "r": 118806,
-        "other": 6951
+        "d": 233139,
+        "r": 118811,
+        "other": 6952
       },
       "two_party_share": {
-        "d_share": 0.662419,
-        "r_share": 0.337581
+        "d_share": 0.662421,
+        "r_share": 0.337579
       },
       "under_pr": {
         "d_seats": 1,
@@ -1548,7 +1548,7 @@
       "reporting_pct": 99.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/rhode-island-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-19T08:48:55Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1611,22 +1611,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 109993,
-        "r": 195587,
+        "d": 109997,
+        "r": 195589,
         "other": null
       },
       "two_party_share": {
-        "d_share": 0.359948,
-        "r_share": 0.640052
+        "d_share": 0.359954,
+        "r_share": 0.640046
       },
       "under_pr": {
         "d_seats": 0,
         "r_seats": 1
       },
-      "reporting_pct": 99.2,
+      "reporting_pct": 100.0,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/south-dakota-house-results",
-      "as_of": "2026-11-06T19:30:42Z",
+      "as_of": "2026-11-17T05:43:30Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1650,13 +1650,13 @@
         "uncalled_seats": 1
       },
       "votes": {
-        "d": 896349,
-        "r": 1095895,
+        "d": 896352,
+        "r": 1095906,
         "other": 39360
       },
       "two_party_share": {
-        "d_share": 0.449919,
-        "r_share": 0.550081
+        "d_share": 0.449918,
+        "r_share": 0.550082
       },
       "under_pr": {
         "d_seats": 4,
@@ -1665,7 +1665,7 @@
       "reporting_pct": 98.9,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/tennessee-house-results",
-      "as_of": "2026-11-04T22:05:26Z",
+      "as_of": "2026-11-18T05:23:27Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1728,22 +1728,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 478987,
-        "r": 481385,
-        "other": 69121
+        "d": 491232,
+        "r": 485355,
+        "other": 70277
       },
       "two_party_share": {
-        "d_share": 0.498752,
-        "r_share": 0.501248
+        "d_share": 0.503009,
+        "r_share": 0.496991
       },
       "under_pr": {
         "d_seats": 2,
         "r_seats": 2
       },
-      "reporting_pct": 97.2,
+      "reporting_pct": 99.7,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/utah-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-19T23:41:54Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -1845,22 +1845,22 @@
         "uncalled_seats": 0
       },
       "votes": {
-        "d": 1973320,
-        "r": 1139060,
-        "other": 13738
+        "d": 2009507,
+        "r": 1157730,
+        "other": 13957
       },
       "two_party_share": {
-        "d_share": 0.634023,
-        "r_share": 0.365977
+        "d_share": 0.634467,
+        "r_share": 0.365533
       },
       "under_pr": {
         "d_seats": 6,
         "r_seats": 4
       },
-      "reporting_pct": 97.2,
+      "reporting_pct": 99.3,
       "reporting_source": "AP",
       "source_url": "https://www.nbcnews.com/politics/2026-elections/washington-house-results",
-      "as_of": "2026-11-13T13:49:22Z",
+      "as_of": "2026-11-21T14:04:23Z",
       "note": null,
       "baseline_distortion_warning": false,
       "uncontested_district_count": null,
@@ -2001,7 +2001,7 @@
       "r_seats": 185,
       "pending_seats": 0
     },
-    "counted_two_party_d_margin_points": 13.978,
+    "counted_two_party_d_margin_points": 14.241,
     "provisional": true
   }
 }
