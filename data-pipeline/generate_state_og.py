@@ -37,6 +37,9 @@ from zoneinfo import ZoneInfo
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTION_PATH = REPO_ROOT / "public" / "data" / "projection.json"
 META_PATH = REPO_ROOT / "public" / "data" / "meta.json"
+# Past cycles (2016–2024) under PR, per state — gives each static state page
+# its own election-by-election table rather than one templated paragraph.
+RETRO_PATH = REPO_ROOT / "public" / "data" / "retrospectives.json"
 
 
 def frozen_on(meta: dict) -> str | None:
@@ -256,9 +259,117 @@ def build_results_home_card_svg(results: dict) -> str:
     )
 
 
+def _two_party(tp: dict) -> str:
+    """'D 60.7% · R 39.3%' — R is 100 minus the rounded D so the pair always
+    sums to 100.0 (rounding each share separately can show 100.1%)."""
+    d = round(tp["d_share"] * 100, 1)
+    return f"D {d:.1f}% &middot; R {100 - d:.1f}%"
+
+
+def _eastern_day(iso: str) -> str:
+    """'2026-11-21T14:04:23Z' → 'Nov 21, 2026' (Eastern), or '' if unparseable."""
+    try:
+        ts = datetime.fromisoformat(str(iso).replace("Z", "+00:00"))
+    except ValueError:
+        return ""
+    if ts.tzinfo is None:
+        ts = ts.replace(tzinfo=timezone.utc)
+    d = ts.astimezone(ZoneInfo("America/New_York"))
+    return f"{d:%b} {d.day}, {d.year}"
+
+
+def build_votes_html(name: str, result: dict | None, cycle: int | None) -> str:
+    """One paragraph with the raw 2026 vote counts behind the PR allocation,
+    with its reporting level and source. '' when the counts aren't there."""
+    votes = (result or {}).get("votes")
+    if not votes or not result.get("under_pr"):
+        return ""
+    certified = result.get("status") == "certified"
+    parts = [f"Democrats {votes['d']:,}", f"Republicans {votes['r']:,}"]
+    if votes.get("other"):
+        parts.append(f"other candidates {votes['other']:,}")
+    reporting = []
+    if result.get("reporting_pct") is not None and not certified:
+        reporting.append(f"{result['reporting_pct']:g}% of the expected vote reported")
+    as_of = _eastern_day(result.get("as_of", ""))
+    if as_of:
+        reporting.append(f"as of {as_of}")
+    source = result.get("reporting_source")
+    credit = ""
+    if source and result.get("source_url"):
+        credit = f'<a href="{result["source_url"]}">{source} count</a>'
+    elif source:
+        credit = f"{source} count"
+    inner = " ".join(reporting)
+    if credit:
+        inner = f"{inner}; {credit}" if inner else credit
+    tail = f" ({inner})" if inner else ""
+    label = f"{cycle} House votes in {name}" + ("" if certified else ", counted so far")
+    return f'  <p class="votes">{label}: {" &middot; ".join(parts)}{tail}.</p>\n'
+
+
+def build_history_html(
+    name: str, history: list[dict] | None, result: dict | None, cycle: int | None,
+) -> str:
+    """The state's House delegation election by election — two-party vote, seats
+    as elected, seats under PR — newest first, 2026 included once it reports.
+    Every number comes straight from results_<cycle>.json / retrospectives.json."""
+    def seats(d: int, r: int) -> str:
+        return f'<span class="d">D&nbsp;{d}</span> &middot; <span class="r">R&nbsp;{r}</span>'
+
+    rows: list[str] = []
+    if result and result.get("under_pr") and result.get("two_party_share"):
+        ae, upr, tp = result["as_elected"], result["under_pr"], result["two_party_share"]
+        word = "certified" if result.get("status") == "certified" else "provisional"
+        elected = seats(ae["d_seats"], ae["r_seats"])
+        if ae.get("other_seats"):
+            elected += f" &middot; {ae['other_seats']}&nbsp;other"
+        if ae.get("uncalled_seats"):
+            elected += f' <span class="mut">+{ae["uncalled_seats"]}&nbsp;uncalled</span>'
+        rows.append(
+            f'      <tr><th scope="row">{cycle} <span class="mut">({word})</span></th>'
+            f'<td>{_two_party(tp)}</td>'
+            f'<td>{elected}</td><td>{seats(upr["d_seats"], upr["r_seats"])}</td></tr>'
+        )
+    uncontested: list[str] = []
+    for h in sorted(history or [], key=lambda h: -int(h["year"])):
+        n = h.get("uncontested_district_count") or 0
+        mark = "<sup>&dagger;</sup>" if n else ""
+        if n:
+            uncontested.append(f"{n} in {h['year']}")
+        tp, act, pr = h["two_party_share"], h["actual"], h["projected_pr"]
+        rows.append(
+            f'      <tr><th scope="row">{h["year"]}{mark}</th>'
+            f'<td>{_two_party(tp)}</td>'
+            f'<td>{seats(act["d_seats"], act["r_seats"])}</td>'
+            f'<td>{seats(pr["d_seats"], pr["r_seats"])}</td></tr>'
+        )
+    if not rows:
+        return ""
+    footnote = ""
+    if uncontested:
+        footnote = (
+            f" <sup>&dagger;</sup>Races with no major-party opponent ({', '.join(uncontested)}): "
+            f"their votes count as cast."
+        )
+    return f"""  <h2>{name} under proportional representation, election by election</h2>
+  <table>
+    <thead><tr><th scope="col">Election</th><th scope="col">Two-party vote</th><th scope="col">As elected</th><th scope="col">Under PR</th></tr></thead>
+    <tbody>
+{chr(10).join(rows)}
+    </tbody>
+  </table>
+  <p class="src">Seats under PR are allocated in proportion to the statewide House vote with the
+    Sainte-Lagu&euml; method. Past results: U.S. House Clerk (2024) and the MIT Election Data and
+    Science Lab (2016&ndash;2022).{footnote} See <a href="/retrospective">every state, 2016&ndash;2024</a>
+    and the <a href="/methodology">methodology</a>.</p>
+"""
+
+
 def build_html_page(
     state: dict, og_version: str = "", frozen_date: str | None = None,
     result: dict | None = None, cycle: int | None = None,
+    history: list[dict] | None = None, all_states: list[tuple[str, str]] | None = None,
 ) -> str:
     """Return the static /state/{code}.html page — a real, indexable content
     page (no redirect) that search + AI crawlers can read, with a link into the
@@ -355,6 +466,28 @@ def build_html_page(
     # Self-canonical keeps each /state/{code} page indexable in its own right
     # (the sitemap lists them for exactly this reason).
     canonical_url = f"{SITE_URL}/state/{code_lower}"
+    votes_html = build_votes_html(name, result, cycle)
+    history_html = build_history_html(name, history, result, cycle)
+    states_html = ""
+    if all_states:
+        links = " &middot;\n    ".join(
+            f"<strong>{n}</strong>" if c == code else f'<a href="/state/{c.lower()}">{n}</a>'
+            for c, n in all_states
+        )
+        states_html = (
+            f'  <nav class="states" aria-label="Every state">\n'
+            f"  <h2>Every state under proportional representation</h2>\n"
+            f"  <p>{links}</p>\n  </nav>\n"
+        )
+    # Breadcrumb (Home › State) so search results show where the page sits.
+    breadcrumb = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "The Proportional House", "item": f"{SITE_URL}/"},
+            {"@type": "ListItem", "position": 2, "name": name, "item": canonical_url},
+        ],
+    }, ensure_ascii=False)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -365,6 +498,8 @@ def build_html_page(
 <link rel="canonical" href="{canonical_url}">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="The Proportional House">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="{name} under proportional representation">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical_url}">
@@ -379,6 +514,7 @@ def build_html_page(
 
 <meta name="theme-color" content="#1F2E4D">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script type="application/ld+json">{breadcrumb}</script>
 
 <style>
   :root {{ --navy:#1F2E4D; --cream:#F4EDE0; --d:#2166ac; --r:#b2182b; --ink:#3f3f46; --mut:#71717a; }}
@@ -399,6 +535,21 @@ def build_html_page(
           padding: .6rem 1.1rem; border-radius: 999px; font-weight: 600; }}
   .note {{ font-size: .9rem; color: var(--mut); margin-top: 2rem; }}
   a {{ color: var(--navy); }}
+  h2 {{ font-family: Georgia, "Times New Roman", serif; color: var(--navy); font-weight: 600;
+        font-size: 1.25rem; line-height: 1.25; margin: 2.25rem 0 .75rem; }}
+  .votes {{ font-size: .95rem; margin: 0 0 1.5rem; }}
+  .mut {{ color: var(--mut); font-weight: 400; }}
+  table {{ width: 100%; border-collapse: collapse; font-size: .9rem; background: #fff;
+           border: 1px solid #e7e5e4; border-radius: .5rem; overflow: hidden; }}
+  th, td {{ text-align: left; padding: .5rem .65rem; border-bottom: 1px solid #efedeb; vertical-align: top; }}
+  thead th {{ font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); font-weight: 600; }}
+  tbody tr:last-child th, tbody tr:last-child td {{ border-bottom: 0; }}
+  tbody th {{ font-weight: 600; white-space: nowrap; }}
+  .src {{ font-size: .82rem; color: var(--mut); margin: .6rem 0 0; }}
+  .states p {{ font-size: .85rem; line-height: 1.9; color: var(--mut); margin: 0; }}
+  .states strong {{ color: var(--ink); }}
+  .foot {{ font-size: .8rem; color: var(--mut); margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e2dccf; }}
+  @media (max-width: 480px) {{ th, td {{ padding: .45rem .4rem; }} table {{ font-size: .82rem; }} }}
 </style>
 </head>
 <body>
@@ -409,12 +560,14 @@ def build_html_page(
   <div class="stats">
 {stats_html}
   </div>
-  <p><a class="cta" href="{spa_url}">Explore {name} on the interactive map &rarr;</a></p>
-  <p class="note">{name} is one of 50 states in an interactive map of the U.S. House under
+{votes_html}  <p><a class="cta" href="{spa_url}">Explore {name} on the interactive map &rarr;</a></p>
+{history_html}  <p class="note">{name} is one of 50 states in an interactive map of the U.S. House under
     proportional representation, {cadence}. See the
     <a href="/rankings">most distorted delegations</a>, the
     <a href="/methodology">methodology and data sources</a>, or the
     <a href="/">national map</a>.</p>
+{states_html}  <p class="foot">A website by <a href="https://axelhufford.com">Axel Hufford</a> &middot;
+    <a href="https://github.com/axelhufford/the-proportional-house">open source on GitHub</a></p>
 </main>
 </body>
 </html>
@@ -469,6 +622,19 @@ def main() -> None:
     result_by_code = {r["code"]: r for r in results["states"]} if results else {}
     any_reporting = any(r.get("under_pr") for r in result_by_code.values())
 
+    # Past cycles per state for each page's election-by-election table. A
+    # missing/garbled file just drops the table — the page still writes.
+    history_by_code: dict[str, list[dict]] = {}
+    try:
+        retro = json.loads(RETRO_PATH.read_text())
+        for year, cyc in (retro.get("cycles") or {}).items():
+            for s in cyc.get("states") or []:
+                if s.get("actual") and s.get("projected_pr") and s.get("two_party_share"):
+                    history_by_code.setdefault(s["code"], []).append({**s, "year": year})
+    except (FileNotFoundError, ValueError) as e:
+        print(f"  (note) retrospectives unavailable ({e}); state pages skip the history table.")
+    all_states = sorted(((s["code"], s["name"]) for s in payload["states"]), key=lambda cn: cn[1])
+
     # Home share card (live national headline) → public/og-card.png.
     national = payload.get("national")
     if resvg_py and national:
@@ -485,7 +651,10 @@ def main() -> None:
         # HTML content page — always written (pure Python, no resvg).
         result = result_by_code.get(state["code"])
         (STATE_HTML_DIR / f"{state['code'].lower()}.html").write_text(
-            build_html_page(state, og_version, frozen_date, result, cycle)
+            build_html_page(
+                state, og_version, frozen_date, result, cycle,
+                history=history_by_code.get(state["code"]), all_states=all_states,
+            )
         )
         n_html += 1
         # PNG share-card — only when resvg is available.

@@ -91,3 +91,33 @@ def test_frozen_date_is_the_eastern_publication_date():
     meta = {"generated_at": "2026-11-03T02:30:54.616945+00:00", "election": {"phase": "counting"}}
     assert og.frozen_on(meta) == "2026-11-02"
     assert og.frozen_on({"generated_at": "2026-11-03T02:30:54Z", "election": {"phase": "projection"}}) is None
+
+
+def test_state_page_history_votes_and_links():
+    history = [
+        {"year": "2024", "actual": {"d_seats": 9, "r_seats": 3}, "projected_pr": {"d_seats": 7, "r_seats": 5},
+         "two_party_share": {"d_share": 0.6065, "r_share": 0.3935}, "uncontested_district_count": 0},
+        {"year": "2016", "actual": {"d_seats": 7, "r_seats": 5}, "projected_pr": {"d_seats": 6, "r_seats": 6},
+         "two_party_share": {"d_share": 0.52, "r_share": 0.48}, "uncontested_district_count": 2},
+    ]
+    res = {**result(), "votes": {"d": 1200000, "r": 900000, "other": 0},
+           "two_party_share": {"d_share": 0.5714, "r_share": 0.4286},
+           "reporting_pct": 97.5, "reporting_source": "AP", "source_url": "https://example.com/nj",
+           "as_of": "2026-11-21T14:04:23Z"}
+    html = og.build_html_page(STATE, "2026-11-05", "2026-11-03", res, 2026, history=history,
+                              all_states=[("NJ", "New Jersey"), ("NY", "New York")])
+    # Votes paragraph: real counts, reporting level, dated, sourced.
+    assert "Democrats 1,200,000 &middot; Republicans 900,000 (97.5% of the expected vote reported as of Nov 21, 2026" in html
+    assert '<a href="https://example.com/nj">AP count</a>' in html
+    # History table, newest first; shares always sum to 100.0.
+    assert html.index("2026 <span") < html.index(">2024<") < html.index(">2016<")
+    assert "D 60.7% &middot; R 39.3%" in html and "D 57.1% &middot; R 42.9%" in html
+    assert "no major-party opponent (2 in 2016)" in html
+    # Every-state nav links the others, not itself; breadcrumb + credit present.
+    assert '<a href="/state/ny">New York</a>' in html and "<strong>New Jersey</strong>" in html
+    assert '"@type": "BreadcrumbList"' in html and "https://axelhufford.com" in html
+
+
+def test_state_page_without_history_still_renders():
+    html = og.build_html_page(STATE, "2026-11-05", "2026-11-03", result("pending"), 2026)
+    assert "election by election" not in html and "Every state under" not in html
