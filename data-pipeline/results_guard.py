@@ -22,6 +22,12 @@ A changed state is reverted when:
     vote far too small to compare against;
   - the two-party share moved more than SHARE_MOVE_PTS points while the vote
     total grew by less than QUIET_GROWTH (a big swing on few new votes).
+Seat calls and vote totals are held back separately. Called seats come from
+the validated calls file, not from the vote count, so a vote problem (say, a
+small downward correction) keeps the previous vote numbers but still applies
+a new race call, and a seat problem keeps the previous seats but still lets
+good vote totals through. Certification problems hold back the whole row.
+
 Exit status is 0 unless the files can't be read.
 """
 
@@ -63,13 +69,33 @@ def baseline_total() -> dict[str, int]:
     return {s["code"]: s["votes_2024"]["total"] for s in states}
 
 
+SEAT_FIELDS = ("d_seats", "r_seats", "other_seats")
+
+
 def problems(old: dict, new: dict, base_total: int) -> list[str]:
     """Why a changed row must not be published automatically ([] = fine)."""
+    return status_problems(old, new) + vote_problems(old, new, base_total) + seat_problems(old, new)
+
+
+def status_problems(old: dict, new: dict) -> list[str]:
     out = []
     if old.get("status") == "certified":
         out.append("already certified")
     if new.get("status") == "certified":
         out.append("only a human certifies a state")
+    return out
+
+
+def seat_problems(old: dict, new: dict) -> list[str]:
+    return [
+        f"{party.upper()} called seats went down"
+        for party in ("d", "r", "other")
+        if _n(new.get(f"{party}_seats")) < _n(old.get(f"{party}_seats"))
+    ]
+
+
+def vote_problems(old: dict, new: dict, base_total: int) -> list[str]:
+    out = []
     od, orr, nd, nr = _n(old.get("d_votes")), _n(old.get("r_votes")), _n(new.get("d_votes")), _n(new.get("r_votes"))
     if nd < od or nr < orr:
         out.append(f"votes fell (D {od:,}→{nd:,}, R {orr:,}→{nr:,})")
@@ -79,9 +105,6 @@ def problems(old: dict, new: dict, base_total: int) -> list[str]:
     old_ts, new_ts = _ts(old.get("as_of")), _ts(new.get("as_of"))
     if votes_changed and old_ts and (new_ts is None or new_ts <= old_ts):
         out.append(f"as_of not newer ({old.get('as_of')} → {new.get('as_of')})")
-    for party in ("d", "r", "other"):
-        if _n(new.get(f"{party}_seats")) < _n(old.get(f"{party}_seats")):
-            out.append(f"{party.upper()} called seats went down")
     total = nd + nr + _n(new.get("other_votes"))
     if base_total and total > MAX_TURNOUT_RATIO * base_total:
         out.append(f"{total:,} votes > {MAX_TURNOUT_RATIO}× 2024's {base_total:,}")
@@ -112,10 +135,27 @@ def guard(old_rows: dict[str, dict], new_rows: dict[str, dict], base: dict[str, 
         if {k: (old.get(k) or "") for k in COLUMNS} == {k: (new.get(k) or "") for k in COLUMNS}:
             final[code] = new
             continue
-        why = problems(old, new, base.get(code, 0))
-        if why:
+        status_why = status_problems(old, new)
+        if status_why:
             final[code] = old
-            reverted.append(f"REVERT {code}: {'; '.join(why)}")
+            reverted.append(f"REVERT {code}: {'; '.join(status_why)}")
+            continue
+        vote_why = vote_problems(old, new, base.get(code, 0))
+        seat_why = seat_problems(old, new)
+        if vote_why or seat_why:
+            # Hold back only the part that failed; the other part still applies.
+            merged = dict(old if vote_why else new)
+            for k in SEAT_FIELDS:
+                merged[k] = (old if seat_why else new).get(k, "")
+            final[code] = merged
+            kept = []
+            if vote_why and not seat_why and any((old.get(k) or "") != (new.get(k) or "") for k in SEAT_FIELDS):
+                kept.append("new seat calls applied")
+            if seat_why and not vote_why:
+                kept.append("new vote totals applied")
+            reverted.append(
+                f"REVERT {code}: {'; '.join(vote_why + seat_why)}" + (f" ({'; '.join(kept)})" if kept else "")
+            )
         else:
             final[code] = new
             nd, nr = _n(new.get("d_votes")), _n(new.get("r_votes"))

@@ -108,6 +108,34 @@ def test_guard_reverts_only_the_bad_row():
     assert [r.split(":")[0] for r in reverted] == ["REVERT PA"]
 
 
+def test_held_back_votes_still_apply_a_new_race_call():
+    # Nov 2026: NC's count was corrected down slightly, and the whole row was
+    # held back daily, so a new NC race call never reached the seat count.
+    old = {"NC": row("NC", d="2398210", r="1758802", d_seats="10", r_seats="3")}
+    new = {"NC": row("NC", d="2397772", r="1758693", d_seats="11", r_seats="3", as_of="2026-11-24T21:00:00Z")}
+    final, applied, reverted = guard(old, new, {"NC": BASE * 5})
+    nc = final["NC"]
+    assert (nc["d_votes"], nc["r_votes"], nc["as_of"]) == ("2398210", "1758802", old["NC"]["as_of"])
+    assert (nc["d_seats"], nc["r_seats"]) == ("11", "3")
+    assert applied == [] and len(reverted) == 1
+    assert "votes fell" in reverted[0] and "new seat calls applied" in reverted[0]
+
+
+def test_seats_going_down_still_applies_good_votes():
+    old = {"PA": row(d="300000", r="250000", d_seats="3", r_seats="2")}
+    new = {"PA": row(d="320000", r="260000", d_seats="2", r_seats="2", as_of="2026-11-04T05:00:00Z")}
+    final, _, reverted = guard(old, new, {"PA": BASE})
+    assert (final["PA"]["d_votes"], final["PA"]["d_seats"]) == ("320000", "3")
+    assert "new vote totals applied" in reverted[0]
+
+
+def test_certification_holds_back_the_whole_row():
+    old = {"PA": row(d="300000", r="250000", d_seats="3", r_seats="2")}
+    new = {"PA": row(status="certified", d="310000", r="250000", d_seats="4", r_seats="2", as_of="2026-12-01T00:00:00Z")}
+    final, _, _ = guard(old, new, {"PA": BASE})
+    assert final["PA"] == old["PA"]
+
+
 def test_unchanged_rows_are_left_alone():
     same = {"PA": row(d="300000", r="250000")}
     final, applied, reverted = guard(same, dict(same), {"PA": BASE})
