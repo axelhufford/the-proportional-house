@@ -275,32 +275,34 @@ function SenateMap({
       </svg>
 
       {/* Screen-reader-only tabular fallback for the map. */}
-      <table className="sr-only">
-        <caption>
-          U.S. Senate representation by state: population, people per senator, and representation
-          relative to the national average.
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">State</th>
-            <th scope="col">Population</th>
-            <th scope="col">People per senator</th>
-            <th scope="col">Representation vs. national average</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[...states]
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map((s) => (
-              <tr key={s.code}>
-                <th scope="row">{s.name}</th>
-                <td>{fmt(s.population)}</td>
-                <td>{fmt(s.people_per_senator)}</td>
-                <td>{s.representation_index}×</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <div className="sr-only">
+        <table>
+          <caption>
+            U.S. Senate representation by state: population, people per senator, and representation
+            relative to the national average.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">Population</th>
+              <th scope="col">People per senator</th>
+              <th scope="col">Representation vs. national average</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...states]
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((s) => (
+                <tr key={s.code}>
+                  <th scope="row">{s.name}</th>
+                  <td>{fmt(s.population)}</td>
+                  <td>{fmt(s.people_per_senator)}</td>
+                  <td>{s.representation_index}×</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
       {hovered && (
         <div className="absolute top-2 right-2 w-56 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
           <div className="font-semibold text-stone-900">{hovered.name}</div>

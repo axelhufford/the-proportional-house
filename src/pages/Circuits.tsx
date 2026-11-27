@@ -316,33 +316,35 @@ function CircuitMap({
       </svg>
 
       {/* Screen-reader-only tabular fallback for the map. */}
-      <table className="sr-only">
-        <caption>
-          {view === 'current' ? 'Today’s' : 'Rebalanced'} U.S. courts of appeals circuits: the circuit,
-          total circuit population, and people per {showSeniors ? 'active or senior ' : ''}judge for each state.
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">State</th>
-            <th scope="col">Circuit</th>
-            <th scope="col">Circuit population</th>
-            <th scope="col">People per judge</th>
-          </tr>
-        </thead>
-        <tbody>
-          {srRows.map((r) => {
-            const ppj = peoplePerJudge(r.population, r.active, r.senior);
-            return (
-              <tr key={r.name}>
-                <th scope="row">{r.name}</th>
-                <td>{r.circuit}</td>
-                <td>{fmt(r.population)}</td>
-                <td>{ppj ? fmt(ppj) : '—'}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="sr-only">
+        <table>
+          <caption>
+            {view === 'current' ? 'Today’s' : 'Rebalanced'} U.S. courts of appeals circuits: the circuit,
+            total circuit population, and people per {showSeniors ? 'active or senior ' : ''}judge for each state.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">Circuit</th>
+              <th scope="col">Circuit population</th>
+              <th scope="col">People per judge</th>
+            </tr>
+          </thead>
+          <tbody>
+            {srRows.map((r) => {
+              const ppj = peoplePerJudge(r.population, r.active, r.senior);
+              return (
+                <tr key={r.name}>
+                  <th scope="row">{r.name}</th>
+                  <td>{r.circuit}</td>
+                  <td>{fmt(r.population)}</td>
+                  <td>{ppj ? fmt(ppj) : '—'}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {hovered && (
         <div className="absolute top-2 right-2 w-56 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl px-3 py-2.5 shadow-lg text-sm pointer-events-none">
           <div className="font-semibold text-stone-900">{hover}</div>

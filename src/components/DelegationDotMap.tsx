@@ -325,34 +325,36 @@ function DelegationDotMapInner({ topology, title, proportional, actual, onSelect
         <span className="sm:hidden">Tap a state for its numbers and full detail.</span>
       </p>
 
-      <table className="sr-only">
-        <caption>{`Seats by state: ${proportional.rowLabel} vs. ${actual.rowLabel}.`}</caption>
-        <thead>
-          <tr>
-            <th scope="col">State</th>
-            <th scope="col">{proportional.rowLabel}</th>
-            <th scope="col">{actual.rowLabel}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {proportional.delegations.map((pr) => {
-            const act = actualByFips.get(pr.fips);
-            return (
-              <tr key={pr.fips}>
-                <th scope="row">{pr.name}</th>
-                <td>{`Democratic ${pr.d}, Republican ${pr.r}`}</td>
-                <td>
-                  {act
-                    ? `Democratic ${act.d}, Republican ${act.r}` +
-                      (act.other ? `, other ${act.other}` : '') +
-                      (act.vacant ? `, ${actual.vacantLabel ?? 'vacant'} ${act.vacant}` : '')
-                    : '—'}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="sr-only">
+        <table>
+          <caption>{`Seats by state: ${proportional.rowLabel} vs. ${actual.rowLabel}.`}</caption>
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">{proportional.rowLabel}</th>
+              <th scope="col">{actual.rowLabel}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {proportional.delegations.map((pr) => {
+              const act = actualByFips.get(pr.fips);
+              return (
+                <tr key={pr.fips}>
+                  <th scope="row">{pr.name}</th>
+                  <td>{`Democratic ${pr.d}, Republican ${pr.r}`}</td>
+                  <td>
+                    {act
+                      ? `Democratic ${act.d}, Republican ${act.r}` +
+                        (act.other ? `, other ${act.other}` : '') +
+                        (act.vacant ? `, ${actual.vacantLabel ?? 'vacant'} ${act.vacant}` : '')
+                      : '—'}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

@@ -1295,37 +1295,39 @@ function HomeView({ onMetaChange }: HomeProps) {
             sandboxPayload={sandboxPayload}
           />
           {/* Screen-reader-only tabular fallback for the map. */}
-          <table className="sr-only">
-            <caption>
-              {resultsMode
-                ? `${results?.meta.cycle} House results by state: races called, and a proportional allocation of the votes counted.`
-                : colorMode === 'balance'
-                ? 'Projected House delegation by state under proportional representation.'
-                : 'Distortion shift by state under proportional representation.'}
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">State</th>
-                <th scope="col">Seats</th>
-                <th scope="col">{resultsMode ? 'Races called' : 'As elected (2024)'}</th>
-                <th scope="col">{resultsMode ? 'Under PR (votes counted)' : 'Projected under PR'}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {effectivePayload.states.map((s) => (
-                <tr key={s.fips}>
-                  <th scope="row">{s.name}</th>
-                  <td>{s.seats}</td>
-                  <td>{`Democratic ${s.actual.d_seats}, Republican ${s.actual.r_seats}`}</td>
-                  <td>
-                    {s.result?.status === 'pending'
-                      ? 'No votes reported yet'
-                      : `Democratic ${s.projected.d_seats}, Republican ${s.projected.r_seats}`}
-                  </td>
+          <div className="sr-only">
+            <table>
+              <caption>
+                {resultsMode
+                  ? `${results?.meta.cycle} House results by state: races called, and a proportional allocation of the votes counted.`
+                  : colorMode === 'balance'
+                  ? 'Projected House delegation by state under proportional representation.'
+                  : 'Distortion shift by state under proportional representation.'}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">State</th>
+                  <th scope="col">Seats</th>
+                  <th scope="col">{resultsMode ? 'Races called' : 'As elected (2024)'}</th>
+                  <th scope="col">{resultsMode ? 'Under PR (votes counted)' : 'Projected under PR'}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {effectivePayload.states.map((s) => (
+                  <tr key={s.fips}>
+                    <th scope="row">{s.name}</th>
+                    <td>{s.seats}</td>
+                    <td>{`Democratic ${s.actual.d_seats}, Republican ${s.actual.r_seats}`}</td>
+                    <td>
+                      {s.result?.status === 'pending'
+                        ? 'No votes reported yet'
+                        : `Democratic ${s.projected.d_seats}, Republican ${s.projected.r_seats}`}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p className="mt-3 text-xs text-stone-500">
             {resultsMode
               ? colorMode === 'distortion'

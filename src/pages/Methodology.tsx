@@ -69,7 +69,7 @@ export function Methodology(_props: MethodologyProps) {
   return (
     <div className="max-w-5xl mx-auto px-6 py-8 lg:grid lg:grid-cols-[208px_minmax(0,1fr)] lg:gap-10">
       <MethodologyToc />
-      <article className="min-w-0 max-w-3xl prose-stone text-stone-800 leading-relaxed">
+      <article className="min-w-0 max-w-3xl prose-stone text-stone-800 leading-relaxed [&_code]:[overflow-wrap:anywhere]">
       <h1 className="font-serif text-3xl sm:text-4xl font-medium text-brand-navy tracking-tight">Methodology</h1>
       <p className="mt-3 text-stone-600">
         What would the U.S. House look like if every state allocated its seats by proportional

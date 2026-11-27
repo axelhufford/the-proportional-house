@@ -362,7 +362,7 @@ export function NationalSummary({
             )}
           </div>
 
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex flex-wrap items-center gap-1">
           <button
             type="button"
             onClick={handleCopyLink}
