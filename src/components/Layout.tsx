@@ -180,6 +180,28 @@ export function Layout({ meta }: LayoutProps) {
               </a>
             </span>
           </div>
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1 text-stone-500">
+            <span className="text-center sm:text-right">
+              Also by Axel Hufford:{' '}
+              <a
+                href="https://timesplacesandmanner.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whitespace-nowrap underline underline-offset-2 hover:text-brand-navy transition-colors"
+              >
+                Times, Places and Manner
+              </a>
+              {' · '}
+              <a
+                href="https://goodbehaviour.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whitespace-nowrap underline underline-offset-2 hover:text-brand-navy transition-colors"
+              >
+                Good Behaviour
+              </a>
+            </span>
+          </div>
         </div>
       </footer>
     </div>
